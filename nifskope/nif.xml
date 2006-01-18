@@ -11,20 +11,22 @@
 	<version>10.0.1.0</version>
 	<version>10.1.0.0</version>
 	<version>10.2.0.0</version>
+	<version>20.0.0.4</version>
 	
-	<alias name="alphaformat"	type="int" />
-	<alias name="applymode"		type="int" />
-	<alias name="mipmapformat"	type="int" />
-	<alias name="pixellayout"	type="int" />
-	<alias name="lightmode"		type="int" />
-	<alias name="vertmode"		type="int" />
-	
-	<alias name="controllertarget"	type="parent" />
-	<alias name="skeletonroot"		type="parent" />
-	<alias name="boneref"			type="parent" />
+	<alias name="alphaformat"       type="int" />
+	<alias name="applymode"         type="int" />
+	<alias name="mipmapformat"      type="int" />
+	<alias name="pixellayout"       type="int" />
+	<alias name="lightmode"         type="int" />
+	<alias name="vertmode"          type="int" />
 
-	<alias name="texcoord"	type="vector2" />
-	<alias name="tbc"		type="vector2" />
+	<alias name="controllertarget"  type="parent" />
+	<alias name="skeletonroot"      type="parent" />
+	<alias name="boneref"           type="parent" />
+
+	<alias name="texcoord"          type="vector2" />
+	<alias name="tbc"               type="vector3" />
+
 
 	<compound name="bones">
 		<add name="Num Bones" type="int" />
