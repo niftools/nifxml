@@ -105,7 +105,7 @@
 		<add name="Unknown" type="int" arr1="7" ver1="167903232" />
 	</compound>
 	<compound name="header">
-		<add name="Version" type="int" />
+		<add name="Version" type="version" />
 		<add name="Unknown Byte" type="byte" ver1="335544324" />
 		<add name="Unknown Int 1" type="int" ver1="167837696" />
 		<add name="Num Blocks" type="int" />
@@ -172,11 +172,6 @@
 	<compound name="texture">
 		<add name="Is Used" type="bool" />
 		<add name="Texture Data" type="texdesc" cond="Is Used != 0" />
-	</compound>
-	<compound name="triangle">
-		<add name="v1" type="short" />
-		<add name="v2" type="short" />
-		<add name="v3" type="short" />
 	</compound>
 	<compound name="skinpartitionblock">
 		<add name="Num Vertices" type="short" />
