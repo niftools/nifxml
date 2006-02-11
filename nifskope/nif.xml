@@ -36,14 +36,6 @@
 		<add name="Is Used" type="bool" />
 		<add name="Unknown Int" type="int" cond="Is Used != 0" />
 	</compound>
-	<compound name="keybool">
-		<add name="Time" type="float" />
-		<add name="Is Visible" type="byte" />
-	</compound>
-	<compound name="keycolor4">
-		<add name="Time" type="float" />
-		<add name="Color" type="color4" />
-	</compound>
 	<compound name="linkgroup">
 		<add name="Num Indices" type="int" />
 		<add name="Indices" type="link" arr1="Num Indices" />
@@ -73,22 +65,6 @@
 		<add name="Width" type="int" />
 		<add name="Height" type="int" />
 		<add name="Offset" type="int" />
-	</compound>
-	<compound name="morphframe">
-		<add name="Time" type="float" />
-		<add name="Data" type="float" />
-		<add name="Forward" type="float" />
-		<add name="Backward" type="float" />
-	</compound>
-	<compound name="particle">
-		<add name="Unknown Matrix" type="matrix33" />
-		<add name="Unknown Short" type="short" />
-		<add name="Vertex ID" type="short" />
-	</compound>
-	<compound name="particlegroup">
-		<add name="Num Particles" type="short" />
-		<add name="Num Valid" type="short" />
-		<add name="Particles" type="particle" arr1="Num Particles" />
 	</compound>
 	<compound name="skinshapegroup">
 		<add name="Num Link Pairs" type="int" />
@@ -120,10 +96,6 @@
 		<add name="Block Type Index" type="short" arr1="Num Blocks" ver1="167772416" />
 		<add name="Unknown Int 2" type="int" ver1="167772416" />
 	</compound>
-	<compound name="keystring">
-		<add name="Time" type="float" />
-		<add name="Name" type="string" />
-	</compound>
 	<compound name="shader">
 		<add name="Has Shader" type="bool" />
 		<add name="Shader Name" type="string" cond="Has Shader != 0" />
@@ -132,25 +104,6 @@
 	<compound name="targetgroup">
 		<add name="Num Indices" type="short" />
 		<add name="Indices" type="link" arr1="Num Indices" />
-	</compound>
-	<compound name="keyfloat">
-		<add name="Time" type="float" />
-		<add name="Value" type="float" />
-		<add name="Forward" type="float" cond="(ARG) == 2" />
-		<add name="Backward" type="float" cond="(ARG) == 2" />
-		<add name="TBC" type="tbc" cond="(ARG) == 3" />
-	</compound>
-	<compound name="rotationsubkey">
-		<add name="Sub Key Count" type="int" />
-		<add name="Key Type" type="int" cond="Sub Key Count != 0" />
-		<add name="Unknown Keys" type="keyfloat" arg="Key Type" arr1="Sub Key Count" />
-	</compound>
-	<compound name="keyrotation">
-		<add name="Time" type="float" ver2="167837696" />
-		<add name="Time" type="float" cond="(ARG) != 4" ver1="167903232" />
-		<add name="Quat" type="quaternion" cond="(ARG) != 4" />
-		<add name="TBC" type="tbc" cond="(ARG) == 3" />
-		<add name="Sub Keys" type="rotationsubkey" arr1="3" cond="(ARG) == 4" />
 	</compound>
 	<compound name="texdesc">
 		<add name="Source" type="link" />
@@ -217,11 +170,6 @@
 	<compound name="unk292bytes">
 		<add name="Unknown 292 Bytes" type="byte" arr1="73" arr2="4" />
 	</compound>
-	<compound name="uvgroup">
-		<add name="Num Keys" type="int" />
-		<add name="Key Type" type="int" cond="Num Keys != 0" />
-		<add name="UV Keys" type="keyfloat" arg="Key Type" arr1="Num Keys" />
-	</compound>
 	<compound name="bbox">
 		<add name="Is Used" type="bool" />
 		<add name="Unknown" type="int" cond="Is Used != 0" />
@@ -229,18 +177,64 @@
 		<add name="Rotation" type="matrix33" cond="Is Used != 0" />
 		<add name="Radius" type="vector3" cond="Is Used != 0" />
 	</compound>
-	<compound name="keyvector3">
+	
+	<compound name="keyframelin">
 		<add name="Time" type="float" />
-		<add name="Pos" type="vector3" />
-		<add name="Forward" type="vector3" cond="(ARG) == 2" />
-		<add name="Backward" type="vector3" cond="(ARG) == 2" />
-		<add name="TBC" type="tbc" cond="(ARG) == 3" />
+		<add name="Value" type="(ARG)" />
 	</compound>
+	<compound name="keyframetan">
+		<add name="Time" type="float" />
+		<add name="Value" type="(ARG)" />
+		<add name="Forward" type="(ARG)" />
+		<add name="Backward" type="(ARG)" />
+	</compound>
+	<compound name="keyframetbc">
+		<add name="Time" type="float" />
+		<add name="Value" type="(ARG)" />
+		<add name="TBC" type="tbc" />
+	</compound>
+	<compound name="subkeyrotation">
+		<add name="Time" type="float" ver2="167837696" />
+		<add name="Sub Keys" type="keyframearray" arg="float" arr1="3" />
+	</compound>
+	<compound name="keyframearray">
+		<add name="Count" type="int" />
+		<add name="Type" type="int" cond="Count != 0" />
+		<add name="Frames" type="keyframelin" cond="Type == 1" arr1="Count" arg="(ARG)" />
+		<add name="Frames" type="keyframetan" cond="Type == 2" arr1="Count" arg="(ARG)" />
+		<add name="Frames" type="keyframetbc" cond="Type == 3" arr1="Count" arg="(ARG)" />
+		<add name="Frames" type="subkeyrotation" cond="Type == 4" arr1="Count" />
+	</compound>
+	<compound name="keyframearraynotype">
+		<add name="Count" type="int" />
+		<add name="Frames" type="keyframelin" arr1="Count" arg="(ARG)" />
+	</compound>
+	<compound name="keyframearrayforcetype">
+		<add name="Count" type="int" />
+		<add name="Type" type="int" />
+		<add name="Frames" type="keyframelin" cond="Type == 1" arr1="Count" arg="(ARG)" />
+		<add name="Frames" type="keyframetan" cond="Type == 2" arr1="Count" arg="(ARG)" />
+		<add name="Frames" type="keyframetbc" cond="Type == 3" arr1="Count" arg="(ARG)" />
+	</compound>
+	
 	<compound name="morphblock">
-		<add name="Num Frames" type="int" />
-		<add name="Key Type" type="int" />
-		<add name="Frames" type="keyfloat" arg="Key Type" arr1="Num Frames" />
+		<add name="Keys" type="keyframearrayforcetype" arg="float" />
 		<add name="Vectors" type="vector3" arr1="(ARG)" />
+	</compound>
+	
+	<compound name="particle">
+		<add name="Velocity" type="vector3" />
+		<add name="Unknown Vector" type="vector3" />
+		<add name="Lifetime" type="float" />
+		<add name="Lifespan" type="float" />
+		<add name="Timestamp" type="float" />
+		<add name="Unknown Short" type="short" />
+		<add name="Vertex ID" type="short" />
+	</compound>
+	<compound name="particlegroup">
+		<add name="Num Particles" type="short" />
+		<add name="Num Valid" type="short" />
+		<add name="Particles" type="particle" arr1="Num Particles" />
 	</compound>
 	<compound name="skinblock">
 		<add name="Rotation" type="matrix33" />
@@ -281,15 +275,9 @@
 	</ancestor>
 	<ancestor name="AKeyframeData">
 		<inherit name="AData"/>
-		<add name="Num Rotations" type="int" />
-		<add name="Rotation Type" type="int" cond="Num Rotations != 0" />
-		<add name="Rotations" type="keyrotation" arg="Rotation Type" arr1="Num Rotations" />
-		<add name="Num Translations" type="int" />
-		<add name="Translation Type" type="int" cond="Num Translations != 0" />
-		<add name="Translations" type="keyvector3" arg="Translation Type" arr1="Num Translations" />
-		<add name="Num Scales" type="int" />
-		<add name="Scale Type" type="int" cond="Num Scales != 0" />
-		<add name="Scales" type="keyfloat" arg="Scale Type" arr1="Num Scales" />
+		<add name="Rotations" type="keyframearray" arg="quaternion" />
+		<add name="Translations" type="keyframearray" arg="vector3" />
+		<add name="Scales" type="keyframearray" arg="float" />
 	</ancestor>
 	<ancestor name="ANode">
 		<inherit name="AControllable"/>
@@ -304,10 +292,8 @@
 	</ancestor>
 	<ancestor name="ALight">
 		<inherit name="ANode"/>
-		<add name="Unknown Int 1" type="int" ver2="67108866" />
-		<add name="Unknown Int 2" type="int" ver2="67108866" />
 		<add name="Unknown4" type="byte" ver1="167903232" />
-		<add name="Unknown3" type="linkgroup" ver1="167837696" />
+		<add name="Affected Nodes" type="linkgroup" />
 		<add name="Dimmer" type="float" />
 		<add name="Ambient Color" type="color3" />
 		<add name="Diffuse Color" type="color3" />
@@ -357,7 +343,7 @@
 		<add name="Lifetime Random" type="float" />
 		<add name="Unknown Short 1" type="short" />
 		<add name="Start Random" type="vector3" />
-		<add name="Emitter" type="link" />
+		<add name="Emitter" type="parent" />
 		<add name="Unknown Short 2?" type="short" />
 		<add name="Unknown Float 13?" type="float" />
 		<add name="Unknown Int 1?" type="int" />
@@ -368,6 +354,12 @@
 		<add name="Particle Extra" type="link" />
 		<add name="Unknown Link 2" type="link" />
 		<add name="Trailer" type="byte" />
+	</ancestor>
+	<ancestor name="APointLight">
+		<inherit name="ALight"/>
+		<add name="Constant Attenuation" type="float" />
+		<add name="Linear Attenuation" type="float" />
+		<add name="Quadratic Attenuation" type="float" />
 	</ancestor>
 	<ancestor name="AProperty">
 		<inherit name="AControllable"/>
@@ -453,7 +445,7 @@
 	<niblock name="NiAlphaProperty">
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags" />
-		<add name="Unknown Byte" type="byte" />
+		<add name="Threshold" type="byte" />
 	</niblock>
 	<niblock name="NiAmbientLight">
 		<inherit name="ALight"/>
@@ -479,8 +471,8 @@
 		<add name="Shape Groups 2" type="linkgroup" />
 	</niblock>
 	<niblock name="NiBoolData">
-		<inherit name="AKeyedData"/>
-		<add name="Keys" type="keybool" arr1="Num Keys" />
+		<inherit name="AData"/>
+		<add name="Keys" type="keyframearray" arg="byte" />
 	</niblock>
 	<niblock name="NiBooleanExtraData">
 		<inherit name="AExtraData"/>
@@ -560,8 +552,8 @@
 		<add name="Unknown8" type="float" arr1="15" cond="Collision Type == 1" />
 	</niblock>
 	<niblock name="NiColorData">
-		<inherit name="AKeyedData"/>
-		<add name="Keys" type="keycolor4" arr1="Num Keys" />
+		<inherit name="AData"/>
+		<add name="Keys" type="keyframearray" arg="color4" />
 	</niblock>
 	<niblock name="NiColorExtraData">
 		<inherit name="AExtraData"/>
@@ -597,8 +589,8 @@
 		<add name="Sources" type="linkgroup" />
 	</niblock>
 	<niblock name="NiFloatData">
-		<inherit name="AKeyedData"/>
-		<add name="Keys" type="keyfloat" arg="Key Type" arr1="Num Keys" />
+		<inherit name="AData"/>
+		<add name="Keys" type="keyframearray" arg="float" />
 	</niblock>
 	<niblock name="NiFloatExtraData">
 		<inherit name="AExtraData"/>
@@ -836,12 +828,11 @@
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiPointLight">
-		<inherit name="ALight"/>
-		<add name="Unknown Color" type="color3" />
+		<inherit name="APointLight"/>
 	</niblock>
 	<niblock name="NiPosData">
-		<inherit name="AKeyedData"/>
-		<add name="Keys" type="keyvector3" arg="Key Type" arr1="Num Keys" />
+		<inherit name="AData"/>
+		<add name="Keys" type="keyframearray" arg="vector3" />
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier">
 		<inherit name="APSysModifier"/>
@@ -910,12 +901,12 @@
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="167903232" />
-		<add name="Unknown Byte 2" type="byte" ver1="335544324" />
-		<add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Byte 2 != 0" ver1="335544324" />
-		<add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Byte 2 == 0" ver1="335544324" />
+		<add name="Unknown Bool 1" type="bool" ver1="335544324" />
+		<add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Bool 1 != 0" ver1="335544324" />
+		<add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Bool 1 == 0" ver1="335544324" />
 		<add name="Unknown Byte 3" type="byte" ver1="335544324" />
-		<add name="Unknown Byte 4" type="byte" ver1="335544324" />
-		<add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Byte 4 != 0" ver1="335544324" />
+		<add name="Unknown Bool 2" type="bool" ver1="335544324" />
+		<add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="335544324" />
 		<add name="Unknown Int 1" type="int" />
 	</niblock>
 	<niblock name="NiPSysEmitterCtlr">
@@ -1038,8 +1029,8 @@
 	<niblock name="NiSkinInstance">
 		<inherit name="AData"/>
 		<add name="Data" type="link" />
+		<add name="Skin Partition" type="link" ver1="167903232" />
 		<add name="Skeleton Root" type="skeletonroot" />
-		<add name="Unknown Int" type="int" ver1="167903232" />
 		<add name="Bones" type="bones" />
 	</niblock>
 	<niblock name="NiSkinPartition">
@@ -1070,12 +1061,9 @@
 		<add name="Unknown Float 5" type="float" />
 	</niblock>
 	<niblock name="NiSpotLight">
-		<inherit name="ALight"/>
-		<add name="Unknown Float 1" type="float" />
-		<add name="Unknown Float 2" type="float" />
-		<add name="Unknown Float 3" type="float" />
-		<add name="Unknown Float 4" type="float" />
-		<add name="Unknown Float 5" type="float" />
+		<inherit name="APointLight"/>
+		<add name="Cutoff Angle" type="float" />
+		<add name="Exponent" type="float" />
 	</niblock>
 	<niblock name="NiStencilProperty">
 		<inherit name="AProperty"/>
@@ -1102,8 +1090,7 @@
 	<niblock name="NiTextKeyExtraData">
 		<inherit name="AExtraData"/>
 		<add name="Unknown Int 1" type="int" ver2="67240448" />
-		<add name="Num Text Keys" type="int" />
-		<add name="Text Keys" type="keystring" arr1="Num Text Keys" />
+		<add name="Text Keys" type="keyframearraynotype" arg="string" />
 	</niblock>
 	<niblock name="NiTextureEffect">
 		<inherit name="ANode"/>
@@ -1209,7 +1196,7 @@
 	</niblock>
 	<niblock name="NiUVData">
 		<inherit name="AData"/>
-		<add name="UV Groups" type="uvgroup" arr1="4" />
+		<add name="Keys" type="keyframearray" arg="float" arr1="4" />
 	</niblock>
 	<niblock name="NiVertexColorProperty">
 		<inherit name="AProperty"/>
@@ -1229,8 +1216,7 @@
 	</niblock>
 	<niblock name="NiVisData">
 		<inherit name="AData"/>
-		<add name="Num Keys" type="int" />
-		<add name="Keys" type="keybool" arr1="Num Keys" />
+		<add name="Keys" type="keyframearraynotype" arg="byte" />
 	</niblock>
 	<niblock name="NiWireframeProperty">
 		<inherit name="AProperty"/>
