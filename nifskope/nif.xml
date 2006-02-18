@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niflotoxml>
-<niflotoxml version="0.5.0.0">
+<niflotoxml version="0.6.0.0">
 
 	<version>4.0.0.2</version>
 	<version>4.1.0.1</version>
@@ -28,20 +28,97 @@
 	<alias name="tbc"               type="vector3" />
 
 
+	<compound name="bbox">
+		<add name="Is Used" type="bool" />
+		<add name="Unknown" type="int" cond="Is Used != 0" />
+		<add name="Translation" type="vector3" cond="Is Used != 0" />
+		<add name="Rotation" type="matrix33" cond="Is Used != 0" />
+		<add name="Radius" type="vector3" cond="Is Used != 0" />
+	</compound>
 	<compound name="bones">
 		<add name="Num Bones" type="int" />
 		<add name="Bones" type="boneref" arr1="Num Bones" />
+	</compound>
+	<compound name="bumpmap">
+		<add name="Is Used" type="bool" />
+		<add name="Texture" type="texdesc" cond="Is Used != 0" />
+		<add name="Bump Map Luma Scale" type="float" cond="Is Used != 0" />
+		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0" />
+		<add name="Matrix" type="matrix22" cond="Is Used != 0" />
 	</compound>
 	<compound name="condint">
 		<add name="Is Used" type="bool" />
 		<add name="Unknown Int" type="int" cond="Is Used != 0" />
 	</compound>
-	<compound name="linkgroup">
-		<add name="Num Indices" type="int" />
-		<add name="Indices" type="link" arr1="Num Indices" />
+	<compound name="controllerlink">
+		<add name="Name" type="string" ver2="167837696" />
+		<add name="Interpolator" type="link" />
+		<add name="Unknown Link 1" type="link" ver1="167903232" />
+		<add name="String Palette" type="link" ver1="167903232" />
+		<add name="Controllable String Offset" type="int" ver1="167903232" />
+		<add name="Unknown Int 1" type="int" ver1="167903232" />
+		<add name="Controller String Offset" type="int" ver1="167903232" />
+		<add name="Unknown Int 2" type="int" ver1="167903232" />
+		<add name="Unknown Int 3" type="int" ver1="167903232" />
+	</compound>
+	<compound name="extratexturegroup">
+		<add name="Num Textures" type="int" />
+		<add name="Textures" type="texture2" arr1="Num Textures" />
 	</compound>
 	<compound name="footer">
 		<add name="Roots" type="linkgroup" />
+	</compound>
+	<compound name="header">
+		<add name="Header String" type="headerstring" />
+		<add name="Version" type="fileversion" />
+		<add name="Unknown Byte" type="byte" ver1="335544324" />
+		<add name="Unknown Int 1" type="int" ver1="167837696" />
+		<add name="Num Blocks" type="int" />
+		<add name="Num Block Types" type="short" ver1="167772416" />
+		<add name="Block Types" type="string" arr1="Num Block Types" ver1="167772416" />
+		<add name="Block Type Index" type="short" arr1="Num Blocks" ver1="167772416" />
+		<add name="Unknown Int 2" type="int" ver1="167772416" />
+	</compound>
+	<compound name="key">
+		<add name="Time" type="float" />
+		<add name="Value" type="(TEMPLATE)" />
+	</compound>
+	<compound name="keyarray">
+		<add name="Num Keys" type="int" />
+		<add name="Keys" type="key" template="(TEMPLATE)" arr1="Num Keys" />
+	</compound>
+	<compound name="keyarraytyp">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" />
+		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
+	</compound>
+	<compound name="keyrot">
+		<add name="Time" type="float" ver2="167837696" />
+		<add name="Time" type="float" cond="(ARG) != 4" ver1="167903232" />
+		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4" />
+		<add name="TBC" type="tbc" cond="(ARG) == 3" />
+		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" cond="(ARG) == 4" />
+	</compound>
+	<compound name="keyrotarray">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="keyrot" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
+	</compound>
+	<compound name="keyvec">
+		<add name="Time" type="float" />
+		<add name="Value" type="(TEMPLATE)" />
+		<add name="Forward" type="(TEMPLATE)" cond="(ARG) == 2" />
+		<add name="Backward" type="(TEMPLATE)" cond="(ARG) == 2" />
+		<add name="TBC" type="tbc" cond="(ARG) == 3" />
+	</compound>
+	<compound name="keyvecarray">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
+	</compound>
+	<compound name="linkgroup">
+		<add name="Num Indices" type="int" />
+		<add name="Indices" type="link" arr1="Num Indices" />
 	</compound>
 	<compound name="lodrange">
 		<add name="Near" type="float" />
@@ -66,85 +143,81 @@
 		<add name="Height" type="int" />
 		<add name="Offset" type="int" />
 	</compound>
-	<compound name="skinshapegroup">
-		<add name="Num Link Pairs" type="int" />
-		<add name="Link Pairs" type="link" arr1="Num Link Pairs" arr2="2" />
+	<compound name="morphblock">
+		<add name="Frames" type="keyarraytyp" template="float" />
+		<add name="Vectors" type="vector3" arr1="(ARG)" />
 	</compound>
-	<compound name="skinweight">
-		<add name="Index" type="short" />
-		<add name="Weight" type="float" />
+	<compound name="ns keyarray">
+		<add name="Num Keys" type="int" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" />
 	</compound>
-	<compound name="controllerlink">
-		<add name="Name" type="string" ver2="167837696" />
-		<add name="Interpolator" type="link" />
-		<add name="Unknown Link 1" type="link" ver1="167903232" />
-		<add name="String Palette" type="link" ver1="167903232" />
-		<add name="Controllable String Offset" type="int" ver1="167903232" />
-		<add name="Unknown Int 1" type="int" ver1="167903232" />
-		<add name="Controller String Offset" type="int" ver1="167903232" />
-		<add name="Unknown Int 2" type="int" ver1="167903232" />
-		<add name="Unknown Int 3" type="int" ver1="167903232" />
+	<compound name="ns keyarraytyp">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
+		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
 	</compound>
-	<compound name="header">
-		<add name="Header String" type="headerstring" />
-		<add name="Version" type="fileversion" />
-		<add name="Unknown Byte" type="byte" ver1="335544324" />
-		<add name="Unknown Int 1" type="int" ver1="167837696" />
-		<add name="Num Blocks" type="int" />
-		<add name="Num Block Types" type="short" ver1="167772416" />
-		<add name="Block Types" type="string" arr1="Num Block Types" ver1="167772416" />
-		<add name="Block Type Index" type="short" arr1="Num Blocks" ver1="167772416" />
-		<add name="Unknown Int 2" type="int" ver1="167772416" />
+	<compound name="ns keylin">
+		<add name="Time" type="float" />
+		<add name="Value" type="(TEMPLATE)" />
+	</compound>
+	<compound name="ns keyrotarray">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
+		<add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4" />
+	</compound>
+	<compound name="ns keyrotsub">
+		<add name="Time" type="float" ver2="167837696" />
+		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" />
+	</compound>
+	<compound name="ns keytan">
+		<add name="Time" type="float" />
+		<add name="Value" type="(TEMPLATE)" />
+		<add name="Forward" type="(TEMPLATE)" />
+		<add name="Backward" type="(TEMPLATE)" />
+	</compound>
+	<compound name="ns keytbc">
+		<add name="Time" type="float" />
+		<add name="Value" type="(TEMPLATE)" />
+		<add name="TBC" type="tbc" />
+	</compound>
+	<compound name="ns keyvecarray">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
+		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
+	</compound>
+	<compound name="particle">
+		<add name="Velocity" type="vector3" />
+		<add name="Unknown Vector" type="vector3" />
+		<add name="Lifetime" type="float" />
+		<add name="Lifespan" type="float" />
+		<add name="Timestamp" type="float" />
+		<add name="Unknown Short" type="short" />
+		<add name="Vertex ID" type="short" />
+	</compound>
+	<compound name="particlegroup">
+		<add name="Num Particles" type="short" />
+		<add name="Num Valid" type="short" />
+		<add name="Particles" type="particle" arr1="Num Particles" />
 	</compound>
 	<compound name="shader">
 		<add name="Has Shader" type="bool" />
 		<add name="Shader Name" type="string" cond="Has Shader != 0" />
 		<add name="Unknown Link" type="link" cond="Has Shader != 0" />
 	</compound>
-	<compound name="targetgroup">
-		<add name="Num Indices" type="short" />
-		<add name="Indices" type="link" arr1="Num Indices" />
-	</compound>
-	<compound name="texdesc">
-		<add name="Source" type="link" />
-		<add name="Clamp Mode" type="int" />
-		<add name="Filter Mode" type="int" />
-		<add name="Texture Set" type="int" />
-		<add name="PS2 L" type="short" ver2="167903232" />
-		<add name="PS2 K" type="short" ver2="167903232" />
-		<add name="Unknown1" type="short" ver2="67174412" />
-		<add name="Has Unknown2" type="bool" ver1="167837696" />
-		<add name="Unknown3" type="float" arr1="5" cond="Has Unknown2 != 0" ver1="167837696" />
-		<add name="Unknown4" type="int" cond="Has Unknown2 != 0" ver1="167837696" />
-		<add name="Unknown5" type="float" arr1="2" cond="Has Unknown2 != 0" ver1="167837696" />
-	</compound>
-	<compound name="bumpmap">
-		<add name="Is Used" type="bool" />
-		<add name="Texture" type="texdesc" cond="Is Used != 0" />
-		<add name="Bump Map Luma Scale" type="float" cond="Is Used != 0" />
-		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0" />
-		<add name="Matrix" type="matrix22" cond="Is Used != 0" />
-	</compound>
-	<compound name="texsource">
-		<add name="Use External" type="byte" />
-		<add name="File Name" type="string" cond="Use External == 1" />
-		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="167837696" />
-		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="167772416" />
-		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="167837696" />
-		<add name="Pixel Data" type="link" cond="Use External == 0" />
-	</compound>
-	<compound name="texture">
-		<add name="Is Used" type="bool" />
-		<add name="Texture Data" type="texdesc" cond="Is Used != 0" />
-	</compound>
-	<compound name="texture2">
-		<add name="Is Used" type="bool" />
-		<add name="Texture Data" type="texdesc" cond="Is Used != 0" />
-		<add name="Unknown Int" type="int" cond="Is Used != 0" />
-	</compound>
-	<compound name="extratexturegroup">
-		<add name="Num Textures" type="int" />
-		<add name="Textures" type="texture2" arr1="Num Textures" />
+	<compound name="skinblock">
+		<add name="Rotation" type="matrix33" />
+		<add name="Translation" type="vector3" />
+		<add name="Scale" type="float" />
+		<add name="Unknown 4 Floats" type="float" arr1="4" />
+		<add name="Num Vertices" type="short" />
+		<add name="Vertex Weights" type="skinweight" arr1="Num Vertices" />
 	</compound>
 	<compound name="skinpartitionblock">
 		<add name="Num Vertices" type="short" />
@@ -167,82 +240,50 @@
 		<add name="Has Bone Indices" type="bool" />
 		<add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0" />
 	</compound>
+	<compound name="skinshapegroup">
+		<add name="Num Link Pairs" type="int" />
+		<add name="Link Pairs" type="link" arr1="Num Link Pairs" arr2="2" />
+	</compound>
+	<compound name="skinweight">
+		<add name="Index" type="short" />
+		<add name="Weight" type="float" />
+	</compound>
+	<compound name="targetgroup">
+		<add name="Num Indices" type="short" />
+		<add name="Indices" type="link" arr1="Num Indices" />
+	</compound>
+	<compound name="texdesc">
+		<add name="Source" type="link" />
+		<add name="Clamp Mode" type="int" />
+		<add name="Filter Mode" type="int" />
+		<add name="Texture Set" type="int" />
+		<add name="PS2 L" type="short" ver2="167903232" />
+		<add name="PS2 K" type="short" ver2="167903232" />
+		<add name="Unknown1" type="short" ver2="67174412" />
+		<add name="Has Unknown2" type="bool" ver1="167837696" />
+		<add name="Unknown3" type="float" arr1="5" cond="Has Unknown2 != 0" ver1="167837696" />
+		<add name="Unknown4" type="int" cond="Has Unknown2 != 0" ver1="167837696" />
+		<add name="Unknown5" type="float" arr1="2" cond="Has Unknown2 != 0" ver1="167837696" />
+	</compound>
+	<compound name="texsource">
+		<add name="Use External" type="byte" />
+		<add name="File Name" type="filepath" cond="Use External == 1" />
+		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="167837696" />
+		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="167772416" />
+		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="167837696" />
+		<add name="Pixel Data" type="link" cond="Use External == 0" />
+	</compound>
+	<compound name="texture">
+		<add name="Is Used" type="bool" />
+		<add name="Texture Data" type="texdesc" cond="Is Used != 0" />
+	</compound>
+	<compound name="texture2">
+		<add name="Is Used" type="bool" />
+		<add name="Texture Data" type="texdesc" cond="Is Used != 0" />
+		<add name="Unknown Int" type="int" cond="Is Used != 0" />
+	</compound>
 	<compound name="unk292bytes">
 		<add name="Unknown 292 Bytes" type="byte" arr1="73" arr2="4" />
-	</compound>
-	<compound name="bbox">
-		<add name="Is Used" type="bool" />
-		<add name="Unknown" type="int" cond="Is Used != 0" />
-		<add name="Translation" type="vector3" cond="Is Used != 0" />
-		<add name="Rotation" type="matrix33" cond="Is Used != 0" />
-		<add name="Radius" type="vector3" cond="Is Used != 0" />
-	</compound>
-	
-	<compound name="keyframelin">
-		<add name="Time" type="float" />
-		<add name="Value" type="(ARG)" />
-	</compound>
-	<compound name="keyframetan">
-		<add name="Time" type="float" />
-		<add name="Value" type="(ARG)" />
-		<add name="Forward" type="(ARG)" />
-		<add name="Backward" type="(ARG)" />
-	</compound>
-	<compound name="keyframetbc">
-		<add name="Time" type="float" />
-		<add name="Value" type="(ARG)" />
-		<add name="TBC" type="tbc" />
-	</compound>
-	<compound name="subkeyrotation">
-		<add name="Time" type="float" ver2="167837696" />
-		<add name="Sub Keys" type="keyframearray" arg="float" arr1="3" />
-	</compound>
-	<compound name="keyframearray">
-		<add name="Count" type="int" />
-		<add name="Type" type="int" cond="Count != 0" />
-		<add name="Frames" type="keyframelin" cond="Type == 1" arr1="Count" arg="(ARG)" />
-		<add name="Frames" type="keyframetan" cond="Type == 2" arr1="Count" arg="(ARG)" />
-		<add name="Frames" type="keyframetbc" cond="Type == 3" arr1="Count" arg="(ARG)" />
-		<add name="Frames" type="subkeyrotation" cond="Type == 4" arr1="Count" />
-	</compound>
-	<compound name="keyframearraynotype">
-		<add name="Count" type="int" />
-		<add name="Frames" type="keyframelin" arr1="Count" arg="(ARG)" />
-	</compound>
-	<compound name="keyframearrayforcetype">
-		<add name="Count" type="int" />
-		<add name="Type" type="int" />
-		<add name="Frames" type="keyframelin" cond="Type == 1" arr1="Count" arg="(ARG)" />
-		<add name="Frames" type="keyframetan" cond="Type == 2" arr1="Count" arg="(ARG)" />
-		<add name="Frames" type="keyframetbc" cond="Type == 3" arr1="Count" arg="(ARG)" />
-	</compound>
-	
-	<compound name="morphblock">
-		<add name="Keys" type="keyframearrayforcetype" arg="float" />
-		<add name="Vectors" type="vector3" arr1="(ARG)" />
-	</compound>
-	
-	<compound name="particle">
-		<add name="Velocity" type="vector3" />
-		<add name="Unknown Vector" type="vector3" />
-		<add name="Lifetime" type="float" />
-		<add name="Lifespan" type="float" />
-		<add name="Timestamp" type="float" />
-		<add name="Unknown Short" type="short" />
-		<add name="Vertex ID" type="short" />
-	</compound>
-	<compound name="particlegroup">
-		<add name="Num Particles" type="short" />
-		<add name="Num Valid" type="short" />
-		<add name="Particles" type="particle" arr1="Num Particles" />
-	</compound>
-	<compound name="skinblock">
-		<add name="Rotation" type="matrix33" />
-		<add name="Translation" type="vector3" />
-		<add name="Scale" type="float" />
-		<add name="Unknown 4 Floats" type="float" arr1="4" />
-		<add name="Num Vertices" type="short" />
-		<add name="Vertex Weights" type="skinweight" arr1="Num Vertices" />
 	</compound>
 	<ancestor name="AControllable">
 		<add name="Name" type="string" />
@@ -270,14 +311,12 @@
 	</ancestor>
 	<ancestor name="AKeyedData">
 		<inherit name="AData"/>
-		<add name="Num Keys" type="int" />
-		<add name="Key Type" type="int" />
 	</ancestor>
 	<ancestor name="AKeyframeData">
 		<inherit name="AData"/>
-		<add name="Rotations" type="keyframearray" arg="quaternion" />
-		<add name="Translations" type="keyframearray" arg="vector3" />
-		<add name="Scales" type="keyframearray" arg="float" />
+		<add name="Rotations" type="ns keyrotarray" template="quaternion" />
+		<add name="Translations" type="ns keyvecarray" template="vector3" />
+		<add name="Scales" type="ns keyvecarray" template="float" />
 	</ancestor>
 	<ancestor name="ANode">
 		<inherit name="AControllable"/>
@@ -343,7 +382,7 @@
 		<add name="Lifetime Random" type="float" />
 		<add name="Unknown Short 1" type="short" />
 		<add name="Start Random" type="vector3" />
-		<add name="Emitter" type="parent" />
+		<add name="Emitter" type="link" />
 		<add name="Unknown Short 2?" type="short" />
 		<add name="Unknown Float 13?" type="float" />
 		<add name="Unknown Int 1?" type="int" />
@@ -471,8 +510,8 @@
 		<add name="Shape Groups 2" type="linkgroup" />
 	</niblock>
 	<niblock name="NiBoolData">
-		<inherit name="AData"/>
-		<add name="Keys" type="keyframearray" arg="byte" />
+		<inherit name="AKeyedData"/>
+		<add name="Data" type="ns keyvecarray" template="byte" />
 	</niblock>
 	<niblock name="NiBooleanExtraData">
 		<inherit name="AExtraData"/>
@@ -552,8 +591,8 @@
 		<add name="Unknown8" type="float" arr1="15" cond="Collision Type == 1" />
 	</niblock>
 	<niblock name="NiColorData">
-		<inherit name="AData"/>
-		<add name="Keys" type="keyframearray" arg="color4" />
+		<inherit name="AKeyedData"/>
+		<add name="Data" type="ns keyvecarray" template="color4" />
 	</niblock>
 	<niblock name="NiColorExtraData">
 		<inherit name="AExtraData"/>
@@ -589,8 +628,8 @@
 		<add name="Sources" type="linkgroup" />
 	</niblock>
 	<niblock name="NiFloatData">
-		<inherit name="AData"/>
-		<add name="Keys" type="keyframearray" arg="float" />
+		<inherit name="AKeyedData"/>
+		<add name="Data" type="ns keyvecarray" template="float" />
 	</niblock>
 	<niblock name="NiFloatExtraData">
 		<inherit name="AExtraData"/>
@@ -620,18 +659,19 @@
 	<niblock name="NiGravity">
 		<inherit name="AParticleModifier"/>
 		<add name="Unknown Float 1" type="float" />
-		<add name="Unknown Float 2" type="float" />
-		<add name="Unknown Int" type="int" />
-		<add name="Unknown Float 3" type="float" />
-		<add name="Unknown Float 4" type="float" />
-		<add name="Unknown Float 5" type="float" />
-		<add name="Unknown Float 6" type="float" />
-		<add name="Unknown Float 7" type="float" />
-		<add name="Unknown Float 8" type="float" />
+		<add name="Force" type="float" />
+		<add name="Type" type="int" />
+		<add name="Position" type="vector3" />
+		<add name="Direction" type="vector3" />
 	</niblock>
 	<niblock name="NiIntegerExtraData">
 		<inherit name="AExtraData"/>
 		<add name="Integer Data" type="int" />
+	</niblock>
+	<niblock name="NiIntegersExtraData">
+		<inherit name="AExtraData"/>
+		<add name="Num Integers" type="int" />
+		<add name="Data" type="int" />
 	</niblock>
 	<niblock name="NiKeyframeController">
 		<inherit name="AController"/>
@@ -831,8 +871,8 @@
 		<inherit name="APointLight"/>
 	</niblock>
 	<niblock name="NiPosData">
-		<inherit name="AData"/>
-		<add name="Keys" type="keyframearray" arg="vector3" />
+		<inherit name="AKeyedData"/>
+		<add name="Data" type="ns keyvecarray" template="vector3" />
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier">
 		<inherit name="APSysModifier"/>
@@ -1090,7 +1130,7 @@
 	<niblock name="NiTextKeyExtraData">
 		<inherit name="AExtraData"/>
 		<add name="Unknown Int 1" type="int" ver2="67240448" />
-		<add name="Text Keys" type="keyframearraynotype" arg="string" />
+		<add name="Text Keys" type="ns keyarray" template="string" />
 	</niblock>
 	<niblock name="NiTextureEffect">
 		<inherit name="ANode"/>
@@ -1196,7 +1236,7 @@
 	</niblock>
 	<niblock name="NiUVData">
 		<inherit name="AData"/>
-		<add name="Keys" type="keyframearray" arg="float" arr1="4" />
+		<add name="UV Groups" type="ns keyvecarray" template="float" arr1="4" />
 	</niblock>
 	<niblock name="NiVertexColorProperty">
 		<inherit name="AProperty"/>
@@ -1215,8 +1255,8 @@
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiVisData">
-		<inherit name="AData"/>
-		<add name="Keys" type="keyframearraynotype" arg="byte" />
+		<inherit name="AKeyedData"/>
+		<add name="Data" type="ns keyarray" template="byte" />
 	</niblock>
 	<niblock name="NiWireframeProperty">
 		<inherit name="AProperty"/>
