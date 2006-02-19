@@ -87,11 +87,6 @@
 		<add name="Num Keys" type="int" />
 		<add name="Keys" type="key" template="(TEMPLATE)" arr1="Num Keys" />
 	</compound>
-	<compound name="keyarraytyp">
-		<add name="Num Keys" type="int" />
-		<add name="Key Type" type="int" />
-		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
-	</compound>
 	<compound name="keyrot">
 		<add name="Time" type="float" ver2="167837696" />
 		<add name="Time" type="float" cond="(ARG) != 4" ver1="167903232" />
@@ -114,6 +109,11 @@
 	<compound name="keyvecarray">
 		<add name="Num Keys" type="int" />
 		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
+	</compound>
+	<compound name="keyvecarraytyp">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" />
 		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys" />
 	</compound>
 	<compound name="linkgroup">
@@ -144,19 +144,12 @@
 		<add name="Offset" type="int" />
 	</compound>
 	<compound name="morphblock">
-		<add name="Frames" type="keyarraytyp" template="float" />
+		<add name="Frames" type="ns keyvecarraytyp" template="float" />
 		<add name="Vectors" type="vector3" arr1="(ARG)" />
 	</compound>
 	<compound name="ns keyarray">
 		<add name="Num Keys" type="int" />
 		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" />
-	</compound>
-	<compound name="ns keyarraytyp">
-		<add name="Num Keys" type="int" />
-		<add name="Key Type" type="int" />
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
-		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
-		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
 	</compound>
 	<compound name="ns keylin">
 		<add name="Time" type="float" />
@@ -188,6 +181,13 @@
 	<compound name="ns keyvecarray">
 		<add name="Num Keys" type="int" />
 		<add name="Key Type" type="int" cond="Num Keys != 0" />
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
+		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
+	</compound>
+	<compound name="ns keyvecarraytyp">
+		<add name="Num Keys" type="int" />
+		<add name="Key Type" type="int" />
 		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1" />
 		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2" />
 		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3" />
