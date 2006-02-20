@@ -120,13 +120,17 @@
 		<add name="Num Indices" type="int" />
 		<add name="Indices" type="link" arr1="Num Indices" />
 	</compound>
+	<compound name="lodinfo">
+		<add name="LOD Type" type="int" />
+		<add name="LOD Center" type="vector3" cond="LOD Type == 0" />
+		<add name="Num LOD Levels" type="int" cond="LOD Type == 0" />
+		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels" cond="LOD Type == 0" />
+		<add name="Unknown Short" type="short" cond="LOD Type == 1" />
+		<add name="Range Data" type="link" cond="LOD Type == 1" />
+	</compound>
 	<compound name="lodrange">
 		<add name="Near" type="float" />
 		<add name="Far" type="float" />
-	</compound>
-	<compound name="lodrangegroup">
-		<add name="Num LOD Levels" type="int" />
-		<add name="Ranges" type="lodrange" arr1="Num LOD Levels" />
 	</compound>
 	<compound name="matchgroup">
 		<add name="Num Vertices" type="short" />
@@ -267,7 +271,7 @@
 	</compound>
 	<compound name="texsource">
 		<add name="Use External" type="byte" />
-		<add name="File Name" type="filepath" cond="Use External == 1" />
+		<add name="File Name" type="string" cond="Use External == 1" />
 		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="167837696" />
 		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="167772416" />
 		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="167837696" />
@@ -650,6 +654,11 @@
 		<add name="Num Floats" type="int" />
 		<add name="Data" type="float" arr1="Num Floats" />
 	</niblock>
+	<niblock name="NiFogProperty">
+		<inherit name="AProperty"/>
+		<add name="Flags" type="flags" />
+		<add name="Unknown Floats" type="float" arr1="4" />
+	</niblock>
 	<niblock name="NiGeomMorpherController">
 		<inherit name="AController"/>
 		<add name="Unknown" type="short" ver1="167837696" />
@@ -671,7 +680,7 @@
 	<niblock name="NiIntegersExtraData">
 		<inherit name="AExtraData"/>
 		<add name="Num Integers" type="int" />
-		<add name="Data" type="int" />
+		<add name="Data" type="int" arr1="Num Integers" />
 	</niblock>
 	<niblock name="NiKeyframeController">
 		<inherit name="AController"/>
@@ -691,9 +700,7 @@
 	</niblock>
 	<niblock name="NiLODNode">
 		<inherit name="AParentNode"/>
-		<add name="Unknown Int" type="int" />
-		<add name="LOD Center" type="vector3" />
-		<add name="LOD Levels" type="lodrangegroup" />
+		<add name="LOD Info" type="lodinfo" />
 	</niblock>
 	<niblock name="NiLookAtController">
 		<inherit name="AController"/>
@@ -1043,6 +1050,12 @@
 	<niblock name="NiPSysUpdateCtlr">
 		<inherit name="AController"/>
 	</niblock>
+	<niblock name="NiRangeLODData">
+		<inherit name="AData"/>
+		<add name="LOD Center" type="vector3" />
+		<add name="Num LOD Levels" type="int" />
+		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels" />
+	</niblock>
 	<niblock name="NiRotatingParticles">
 		<inherit name="AParticleNode"/>
 	</niblock>
@@ -1168,7 +1181,7 @@
 		<add name="Unknown1" type="int" />
 		<add name="Unknown2" type="byte" />
 		<add name="Unknown3" type="int" />
-		<add name="Unknown4" type="int" />
+		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiTexturingProperty">
 		<inherit name="AProperty"/>
