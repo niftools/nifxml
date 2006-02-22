@@ -271,7 +271,7 @@
 	</compound>
 	<compound name="texsource">
 		<add name="Use External" type="byte" />
-		<add name="File Name" type="string" cond="Use External == 1" />
+		<add name="File Name" type="filepath" cond="Use External == 1" />
 		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="167837696" />
 		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="167772416" />
 		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="167837696" />
@@ -335,8 +335,9 @@
 	</ancestor>
 	<ancestor name="ALight">
 		<inherit name="ANode"/>
+		<add name="Affected Node List?" type="condint" ver2="67108866" />
 		<add name="Unknown4" type="byte" ver1="167903232" />
-		<add name="Affected Nodes" type="linkgroup" />
+		<add name="Affected Nodes" type="linkgroup" ver1="167837696" />
 		<add name="Dimmer" type="float" />
 		<add name="Ambient Color" type="color3" />
 		<add name="Diffuse Color" type="color3" />
@@ -1062,6 +1063,10 @@
 	<niblock name="NiRotatingParticlesData">
 		<inherit name="ARotatingParticlesData"/>
 	</niblock>
+	<niblock name="NiScreenLODData">
+		<inherit name="AData"/>
+		<add name="Unknown Floats" type="float" arr1="9" />
+	</niblock>
 	<niblock name="NiSequenceStreamHelper">
 		<inherit name="AControllable"/>
 	</niblock>
@@ -1149,7 +1154,7 @@
 		<inherit name="ANode"/>
 		<add name="Conditional Int" type="condint" ver2="67108866" />
 		<add name="Unknown Byte 2" type="byte" ver1="335544324" />
-		<add name="Unknown Node List" type="linkgroup" ver1="167837696" />
+		<add name="Affected Node List" type="linkgroup" ver1="167837696" />
 		<add name="Unknown Float 1" type="float" />
 		<add name="Unknown Float 2" type="float" />
 		<add name="Unknown Float 3" type="float" />
@@ -1181,7 +1186,7 @@
 		<add name="Unknown1" type="int" />
 		<add name="Unknown2" type="byte" />
 		<add name="Unknown3" type="int" />
-		<add name="Data" type="link" />
+		<add name="Unknown4" type="int" />
 	</niblock>
 	<niblock name="NiTexturingProperty">
 		<inherit name="AProperty"/>
