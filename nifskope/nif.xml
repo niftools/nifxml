@@ -335,7 +335,8 @@
 	</ancestor>
 	<ancestor name="ALight">
 		<inherit name="ANode"/>
-		<add name="Affected Node List?" type="condint" ver2="67108866" />
+		<add name="Affected Node List?" type="int" ver2="67108866" />
+		<add name="Affected Node List??" type="int" ver2="67108866" />
 		<add name="Unknown4" type="byte" ver1="167903232" />
 		<add name="Affected Nodes" type="linkgroup" ver1="167837696" />
 		<add name="Dimmer" type="float" />
@@ -446,9 +447,9 @@
 	<ancestor name="AParticlesData">
 		<inherit name="AShapeData"/>
 		<add name="Num Active" type="short" ver2="67108866" />
-		<add name="Active Radius" type="float" />
+		<add name="Size" type="float" ver2="10.0.0.0" />
 		<add name="Num Valid" type="short" ver2="67108866" />
-		<add name="Unknown Short" type="short" ver1="67174412" />
+		<add name="Unknown Short" type="short" ver1="67174412" ver2="10.0.0.0" />
 		<add name="Has Sizes" type="bool" />
 		<add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes != 0" />
 	</ancestor>
@@ -583,6 +584,7 @@
 		<add name="Unknown Link?" type="link" />
 		<add name="Unknown Int" type="int" />
 		<add name="Unknown Int 2" type="int" ver1="167837696" />
+		<add name="Unknown Int 3" type="int" ver1="4.2.1.0" ver2="4.2.1.0" />
 	</niblock>
 	<niblock name="NiCollisionData">
 		<inherit name="AData"/>
@@ -813,7 +815,14 @@
 		<inherit name="AParticleNode"/>
 	</niblock>
 	<niblock name="NiParticlesData">
-		<inherit name="ARotatingParticlesData"/>
+		<inherit name="AParticlesData"/>
+		<add name="Num Active" type="short" ver1="10.1.0.0" />
+		<add name="Has Rotations" type="bool" ver2="10.0.1.0" />
+		<add name="Rotations" type="quaternion" arr1="Num Vertices" cond="Has Rotations != 0" ver2="10.0.1.0" />
+		<add name="Has Unknown Floats" type="bool" ver1="10.1.0.0" />
+		<add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="10.1.0.0" />
+		<add name="Has Rotations" type="bool" ver1="10.1.0.0" />
+		<add name="Rotations" type="quaternion" arr1="Num Vertices" cond="Has Rotations != 0" ver1="10.1.0.0" />
 	</niblock>
 	<niblock name="NiParticleSystem">
 		<inherit name="AParticleNode"/>
@@ -1065,7 +1074,9 @@
 	</niblock>
 	<niblock name="NiScreenLODData">
 		<inherit name="AData"/>
-		<add name="Unknown Floats" type="float" arr1="9" />
+		<add name="Unknown Floats" type="float" arr1="8" />
+		<add name="Count" type="int" />
+		<add name="Unknown Floats 2" type="float" arr1="Count" />
 	</niblock>
 	<niblock name="NiSequenceStreamHelper">
 		<inherit name="AControllable"/>
@@ -1133,7 +1144,7 @@
 		<add name="Unknown Int 4" type="int" />
 		<add name="Unknown Int 5" type="int" />
 		<add name="Unknown Int 6" type="int" />
-		<add name="Unknown Int 7" type="int" />
+		<add name="Cull Mode" type="int" />
 	</niblock>
 	<niblock name="NiStringExtraData">
 		<inherit name="AExtraData"/>
@@ -1283,7 +1294,7 @@
 	<niblock name="NiZBufferProperty">
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags" />
-		<add name="Unknown Int" type="int" ver1="67174412" />
+		<add name="Function" type="int" ver1="67174412" />
 	</niblock>
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
