@@ -59,11 +59,7 @@
 		<add name="Interpolator" type="link" />
 		<add name="Unknown Link 1" type="link" ver1="167903232" />
 		<add name="String Palette" type="link" ver1="167903232" />
-		<add name="Controllable String Offset" type="int" ver1="167903232" />
-		<add name="Unknown Int 1" type="int" ver1="167903232" />
-		<add name="Controller String Offset" type="int" ver1="167903232" />
-		<add name="Unknown Int 2" type="int" ver1="167903232" />
-		<add name="Unknown Int 3" type="int" ver1="167903232" />
+		<add name="String Offsets" type="stringoffset" arr1="10" ver1="167903232" />
 	</compound>
 	<compound name="extratexturegroup">
 		<add name="Num Textures" type="int" />
@@ -1148,8 +1144,7 @@
 	</niblock>
 	<niblock name="NiStringPalette">
 		<inherit name="AData"/>
-		<add name="Palette" type="string" />
-		<add name="Length" type="int" />
+		<add name="Palette" type="stringpalette" />
 	</niblock>
 	<niblock name="NiStringsExtraData">
 		<inherit name="AExtraData"/>
