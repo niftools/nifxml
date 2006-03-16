@@ -389,7 +389,7 @@
 		<add name="Emit Rate" type="float" />
 		<add name="Lifetime" type="float" />
 		<add name="Lifetime Random" type="float" />
-		<add name="Unknown Short 1" type="short" />
+		<add name="Emit Flags" type="short" />
 		<add name="Start Random" type="vector3" />
 		<add name="Emitter" type="link" />
 		<add name="Unknown Short 2?" type="short" />
