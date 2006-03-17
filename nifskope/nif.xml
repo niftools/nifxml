@@ -20,13 +20,12 @@
 	<alias name="lightmode"         type="int" />
 	<alias name="vertmode"          type="int" />
 
-	<alias name="parent"			type="uplink" />
+	<alias name="parent"            type="uplink" />
 	<alias name="controllertarget"  type="uplink" />
 	<alias name="skeletonroot"      type="uplink" />
-	<alias name="boneref"           type="uplink" />
-	<alias name="crossref"			type="uplink" />
-	<alias name="emitterobject"		type="uplink" />
-	<alias name="selflink"			type="uplink" />
+	<alias name="crossref"          type="uplink" />
+	<alias name="emitterobject"     type="uplink" />
+	<alias name="selflink"          type="uplink" />
 
 	<alias name="texcoord"          type="vector2" />
 	<alias name="tbc"               type="vector3" />
@@ -59,7 +58,16 @@
 		<add name="Interpolator" type="link" />
 		<add name="Unknown Link 1" type="link" ver1="167903232" />
 		<add name="String Palette" type="link" ver1="167903232" />
-		<add name="String Offsets" type="stringoffset" arr1="10" ver1="167903232" />
+		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 1" type="short" ver1="167903232" />
+		<add name="Property Type Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 2" type="short" ver1="167903232" />
+		<add name="Controller Type Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 3" type="short" ver1="167903232" />
+		<add name="Variable Offset 1" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 4" type="short" ver1="167903232" />
+		<add name="Variable Offset 2" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 5" type="short" ver1="167903232" />
 	</compound>
 	<compound name="extratexturegroup">
 		<add name="Num Textures" type="int" />
@@ -316,7 +324,7 @@
 	<ancestor name="AExtraData">
 		<inherit name="AData"/>
 		<add name="Name" type="string" ver1="167772416" />
-		<add name="Extra Data" type="link" ver2="67240448" />
+		<add name="Next Extra Data" type="link" ver2="67240448" />
 	</ancestor>
 	<ancestor name="AInterpolator">
 	</ancestor>
@@ -641,14 +649,14 @@
 		<add name="Name" type="string" />
 		<add name="Text Keys" type="controllerlink" ver2="167837696" />
 		<add name="Num Controlled Blocks" type="int" />
-		<add name="Unknown3" type="int" ver1="167903232" />
+		<add name="Unknown Int 1" type="int" ver1="167903232" />
 		<add name="Controlled Blocks" type="controllerlink" arr1="Num Controlled Blocks" />
-		<add name="Unknown4" type="float" ver1="167903232" />
+		<add name="Unknown Float 1" type="float" ver1="167903232" />
 		<add name="Text Keys 2" type="link" ver1="167903232" />
-		<add name="Unknown5" type="float" arr1="4" ver1="167903232" />
-		<add name="Unknown51" type="float" ver1="167903232" ver2="167903232" />
-		<add name="Unknown6" type="int" ver1="167903232" />
-		<add name="Unknown7" type="string" ver1="167903232" />
+		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="167903232" />
+		<add name="Unkown Float 2" type="float" ver1="167903232" ver2="167903232" />
+		<add name="Unknown Int 2" type="int" ver1="167903232" />
+		<add name="Unknown String" type="string" ver1="167903232" />
 		<add name="String Palette" type="link" ver1="167903232" />
 	</niblock>
 	<niblock name="NiDirectionalLight">
@@ -1245,7 +1253,7 @@
 	<niblock name="NiVectorExtraData">
 		<inherit name="AExtraData"/>
 		<add name="Vector Data" type="vector3" />
-		<add name="Unknown" type="float" />
+		<add name="Unknown Float" type="float" />
 	</niblock>
 	<niblock name="NiVertexColorProperty">
 		<inherit name="AProperty"/>
