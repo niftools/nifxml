@@ -20,6 +20,8 @@
 	<alias name="lightmode"         type="int" />
 	<alias name="vertmode"          type="int" />
 
+	<alias name="offset"            type="short" />
+
 	<alias name="parent"            type="uplink" />
 	<alias name="controllertarget"  type="uplink" />
 	<alias name="skeletonroot"      type="uplink" />
@@ -502,6 +504,10 @@
 		<add name="Has Rotations" type="bool" />
 		<add name="Rotations" type="quaternion" arr1="Num Vertices" cond="Has Rotations != 0" />
 	</ancestor>
+	<ancestor name="ASingleInterpolatorController">
+		<inherit name="AController"/>
+		<add name="Interpolator" type="link" ver1="167903232" />
+	</ancestor>
 	<niblock name="AvoidNode">
 		<inherit name="AParentNode"/>
 	</niblock>
@@ -519,8 +525,8 @@
 		<inherit name="AFx"/>
 	</niblock>
 	<niblock name="NiAlphaController">
-		<inherit name="AController"/>
-		<add name="Data" type="link" />
+		<inherit name="ASingleInterpolatorController"/>
+		<add name="Data" type="link" ver2="167837696" />
 	</niblock>
 	<niblock name="NiAlphaProperty">
 		<inherit name="AProperty"/>
@@ -1181,11 +1187,11 @@
 		<add name="Unknown Short" type="short" ver2="67174412" />
 	</niblock>
 	<niblock name="NiTextureTransformController">
-		<inherit name="AController"/>
-		<add name="Unknown1" type="int" />
+		<inherit name="ASingleInterpolatorController"/>
 		<add name="Unknown2" type="byte" />
-		<add name="Unknown3" type="int" />
-		<add name="Unknown4" type="int" />
+		<add name="Texture Slot" type="int" />
+		<add name="Operation" type="int" />
+		<add name="Data" type="link" ver2="167837696" />
 	</niblock>
 	<niblock name="NiTexturingProperty">
 		<inherit name="AProperty"/>
@@ -1203,8 +1209,7 @@
 		<add name="Shader Textures" type="extratexturegroup" ver1="167772416" />
 	</niblock>
 	<niblock name="NiTransformController">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link" />
+		<inherit name="ASingleInterpolatorController"/>
 	</niblock>
 	<niblock name="NiTransformData">
 		<inherit name="AKeyframeData"/>
