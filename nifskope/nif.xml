@@ -513,6 +513,124 @@
 		<inherit name="AController"/>
 		<add name="Interpolator" type="link" ver1="167903232" />
 	</ancestor>
+	
+	<!-- Experimental Oblivion Block tests !-->
+    <niblock name="NiBSBoneLODController">
+            <inherit name="AController"/>
+            <add name="Unknown Int 1" type="int" />
+            <add name="Num Node Groups" type="int" />
+            <add name="Unknown Int 2" type="int" />
+            <add name="Node Groups" type="linkgroup" arr1="Num Node Groups" />
+    </niblock>
+    
+    <niblock name="BSBound">
+            <add name="ID" type="string" />
+            <add name="float" type="float" arr1="6" />
+    </niblock>
+    <niblock name="BSXFlags">
+            <add name="ID" type="string" />
+            <add name="int" type="int" />
+    </niblock> 
+    <niblock name="BSFurnitureMarker">
+            <add name="ID" type="string" />
+            <add name="count" type="int" />
+            <add name="bytes" type="byte" arr1="count" arr2="16" />
+    </niblock>
+
+    <niblock name="bhkBlendController">
+            <inherit name="AController"/>
+            <add name="Unknown 4 Bytes" type="byte" arr1="4" />
+    </niblock>
+    
+    <niblock name="bhkCollisionObject">
+            <add name="parent node" type="uplink" />
+            <add name="short" type="short" />
+            <add name="body" type="link" />
+    </niblock>
+    <niblock name="bhkBlendCollisionObject">
+            <add name="parent node" type="uplink" />
+            <add name="short" type="short" />
+            <add name="body" type="link" />
+            <add name="float" type="float" />
+            <add name="float" type="float" />
+    </niblock>
+
+    <ancestor name="ARigidBody">
+            <add name="shape" type="link" />
+            <add name="int" type="int" />
+            <add name="bytes" type="byte" arr1="172"/>
+            <add name="Mass" type="float" />
+            <add name="Unknown float0" type="float" />
+            <add name="Unknown float1" type="float" />
+            <add name="Ellasticiy" type="float" />
+            <add name="Friction" type="float" />
+            <add name="Some Float?" type="float" />
+            <add name="Some Float?" type="float" />
+            <add name="Some Float?" type="float" />
+            <add name="Unknown 16 Bytes" type="byte" arr1="16" />
+            <add name="constraints" type="linkgroup" />
+            <add name="int" type="int" />
+    </ancestor>
+    <niblock name="bhkRigidBody">
+            <inherit name="ARigidBody" />
+    </niblock>
+    <niblock name="bhkRigidBodyT">
+            <inherit name="ARigidBody" />
+    </niblock>
+    
+    <niblock name="bhkSphereShape">
+            <add name="int" type="int" />
+            <add name="float" type="float" />
+    </niblock>
+    <niblock name="bhkBoxShape">
+            <add name="int" type="int" />
+            <add name="bytes" type="byte" arr1="28" />
+    </niblock>
+    <niblock name="bhkCapsuleShape">
+            <add name="int" type="int" />
+            <add name="bytes" type="byte" arr1="44" />
+    </niblock>
+    <niblock name="bhkConvexTransformShape">
+            <add name="sub shape" type="link" />
+            <add name="int" type="int" />
+            <add name="bytes" type="byte" arr1="76" />
+    </niblock>
+    <niblock name="bhkListShape">
+            <add name="sub shapes" type="linkgroup" />
+            <add name="int" type="int" />
+            <add name="float" type="float" arr1="6" />
+            <add name="count" type="int" />
+            <add name="int" type="int" arr1="count" />
+    </niblock>
+    <niblock name="bhkPackedNiTriStripsShape">
+            <add name="int" type="int" />
+            <add name="floats" type="float" arr1="13" />
+            <add name="Data" type="link" />
+    </niblock>
+    <niblock name="bhkRagdollConstraint">
+            <add name="count" type="int" />
+            <add name="bodies" type="uplink" arr1="count" />
+            <add name="bytes" type="byte" arr1="124" />
+    </niblock>
+    <niblock name="bhkLimitedHingeConstraint">
+            <add name="count" type="int" />
+            <add name="bodies" type="uplink" arr1="count" />
+            <add name="bytes" type="byte" arr1="128" />
+    </niblock>
+    <niblock name="bhkMalleableConstraint">
+            <add name="count" type="int" />
+            <add name="bodies" type="uplink" arr1="count" />
+            <add name="int" type="int" />
+            <add name="type" type="int" />
+            <add name="int" type="int" />
+            <add name="link" type="link" />
+            <add name="link" type="link" />
+            <add name="int" type="int" />
+            <add name="bytes" type="byte" arr1="132" cond="type == 2" />
+            <add name="bytes" type="byte" arr1="128" cond="type == 7" />
+    </niblock>
+    <!-- End Experimental Oblivion Block tests !-->
+
 	<niblock name="AvoidNode">
 		<inherit name="AParentNode"/>
 	</niblock>
@@ -1297,6 +1415,10 @@
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
 	</niblock>
+	<niblock name="BSXFlags">
+		<add name="Unknown 11 Bytes" type="byte" arr1="11" />
+	</niblock> 
+
 
 </niflotoxml>
 
