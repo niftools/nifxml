@@ -1415,10 +1415,5 @@
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
 	</niblock>
-	<niblock name="BSXFlags">
-		<add name="Unknown 11 Bytes" type="byte" arr1="11" />
-	</niblock> 
-
-
 </niflotoxml>
 
