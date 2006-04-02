@@ -658,7 +658,12 @@
 	</niblock>
 	<niblock name="bhkMoppBvTreeShape">
 		<add name="Shape" type="link"/>
-		<add name="Unknown Floats" type="float" arr1="127"/>
+		<add name="Unknown Int (zero)" type="int"/>
+		<add name="Unknown Bytes 2" type="byte" arr1="8"/>
+		<add name="Unknown Float" type="float"/>
+		<add name="Num Bytes" type="int"/>
+		<add name="Unknown Bytes" type="byte" arr1="Num Bytes"/>
+		<add name="Unknown Floats??" type="float" arr1="4"/>
 	</niblock>
 	<niblock name="bhkHingeConstraint">
         <add name="count" type="int" />
