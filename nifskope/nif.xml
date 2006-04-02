@@ -647,7 +647,10 @@
 		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
 		<add name="Unknown Short" type="short" /> 
 		<add name="Unknown Int 1" type="int" />
-		<add name="Unknown Int 2 (num vertices bis?)" type="int" />
+		<add name="Unknown Int 2 (count?)" type="int" />
+		<add name="Unknown Int 3" type="int" cond="Unknown Short == 2" />
+		<add name="Unknown Int 4" type="int" cond="Unknown Short == 2" />
+		<add name="Unknown Int 5" type="int" cond="Unknown Short == 2" />
 	</niblock>
 	<niblock name="bhkConvexVerticesShape">
 		<add name="Unknown Int" type="int"/>
