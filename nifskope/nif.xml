@@ -629,6 +629,18 @@
             <add name="bytes" type="byte" arr1="132" cond="type == 2" />
             <add name="bytes" type="byte" arr1="128" cond="type == 7" />
     </niblock>
+    <compound name="hktriangle">
+		<add name="Triangle" type="triangle" /> 
+		<add name="Unknown Short" type="short" /> 
+		<add name="Normal" type="vector3" /> 
+	</compound>
+    <niblock name="hkPackedNiTriStripsData">
+		<inherit name="AData" /> 
+		<add name="Num Triangles" type="int" /> 
+		<add name="Triangles?" type="hktriangle" arr1="Num Triangles" /> 
+		<add name="Num Vertices" type="int" /> 
+		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
@@ -1415,5 +1427,10 @@
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
 	</niblock>
+	<niblock name="BSXFlags">
+		<add name="Unknown 11 Bytes" type="byte" arr1="11" />
+	</niblock> 
+
+
 </niflotoxml>
 
