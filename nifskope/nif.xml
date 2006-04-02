@@ -593,9 +593,10 @@
             <add name="bytes" type="byte" arr1="44" />
     </niblock>
     <niblock name="bhkConvexTransformShape">
-            <add name="sub shape" type="link" />
-            <add name="int" type="int" />
-            <add name="bytes" type="byte" arr1="76" />
+            <add name="Sub Shape" type="link" />
+            <add name="Unknown Int" type="int" />
+            <add name="Unknown Float" type="float" />
+            <add name="Unknown Vectors?" type="vector3" arr1="6" />
     </niblock>
     <niblock name="bhkListShape">
             <add name="sub shapes" type="linkgroup" />
