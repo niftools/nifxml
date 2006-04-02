@@ -652,8 +652,14 @@
 	<niblock name="bhkHingeConstraint">
         <add name="count" type="int" />
         <add name="bodies" type="uplink" arr1="count" />
-        <add name="bytes" type="byte" arr1="124" />
+        <add name="bytes" type="byte" arr1="84" />
 	</niblock>
+	<niblock name="bhkPrismaticConstraint">
+        <add name="count" type="int" />
+        <add name="bodies" type="uplink" arr1="count" />
+        <add name="bytes" type="byte" arr1="144" />
+	</niblock>
+	
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
