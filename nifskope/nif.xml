@@ -643,6 +643,9 @@
 		<add name="Triangles?" type="hktriangle" arr1="Num Triangles" /> 
 		<add name="Num Vertices" type="int" /> 
 		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
+		<add name="Unknown Short" type="short" /> 
+		<add name="Unknown Int 1" type="int" />
+		<add name="Unknown Int 2 (num vertices bis?)" type="int" />
 	</niblock>
 	<niblock name="bhkConvexVerticesShape">
 		<add name="Unknown Int" type="int"/>
@@ -651,6 +654,10 @@
 		<add name="Unknown Floats" type="float" arr1="Count 1" arr2="4"/>
 		<add name="Count 2" type="int"/>
 		<add name="Unknown Floats" type="float" arr1="Count 2" arr2="4"/>
+	</niblock>
+	<niblock name="bhkMoppBvTreeShape">
+		<add name="Shape" type="link"/>
+		<add name="Unknown Floats" type="float" arr1="127"/>
 	</niblock>
 	<niblock name="bhkHingeConstraint">
         <add name="count" type="int" />
