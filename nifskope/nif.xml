@@ -471,7 +471,7 @@
 		<add name="Unknown Byte" type="byte" ver1="167772416" />
 		<add name="Has Normals" type="bool" />
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0" />
-		<add name="Unknown Vectors" type="vector3" arr1="2" arr2="Num Vertices" cond="Unknown Byte != 0" ver1="167837696" />
+		<add name="Unknown Vectors" type="vector3" arr1="2" arr2="Num Vertices" cond="Unknown Byte != 0" ver1="167837696" ver2="335544324"/>
 		<add name="Center" type="vector3" />
 		<add name="Radius" type="float" />
 		<add name="Has Vertex Colors" type="bool" />
@@ -479,7 +479,8 @@
 		<add name="Num UV Sets 2" type="short" ver2="67240448" />
 		<add name="Has UV" type="bool" ver2="67108866" />
 		<add name="UV Sets" type="texcoord" arr1="Num UV Sets 2" arr2="Num Vertices" ver2="67240448" />
-		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416" />
+		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416"  ver2="335544324" />
+		<add name="UV" type="texcoord" arr1="Num Vertices" ver1="335544325" />
 		<add name="Unknown Short 2" type="short" ver1="167772416" />
 		<add name="Unknown Link" type="link" ver1="335544324" />
 	</ancestor>
