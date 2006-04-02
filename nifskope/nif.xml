@@ -641,6 +641,14 @@
 		<add name="Num Vertices" type="int" /> 
 		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
 	</niblock>
+	<niblock name="bhkConvexVerticesShape">
+		<add name="Unknown Int" type="int"/>
+		<add name="Unknown Floats" type="float" arr1="7"/>
+		<add name="Count 1" type="int"/>
+		<add name="Unknown Floats" type="float" arr1="Count 1" arr2="4"/>
+		<add name="Count 2" type="int"/>
+		<add name="Unknown Floats" type="float" arr1="Count 2" arr2="4"/>
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
