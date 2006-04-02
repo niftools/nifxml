@@ -649,6 +649,11 @@
 		<add name="Count 2" type="int"/>
 		<add name="Unknown Floats" type="float" arr1="Count 2" arr2="4"/>
 	</niblock>
+	<niblock name="bhkHingeConstraint">
+        <add name="count" type="int" />
+        <add name="bodies" type="uplink" arr1="count" />
+        <add name="bytes" type="byte" arr1="124" />
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
