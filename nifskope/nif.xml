@@ -542,15 +542,16 @@
             <add name="Unknown 4 Bytes" type="byte" arr1="4" />
     </niblock>
     
-    <niblock name="bhkCollisionObject">
+    <ancestor name="ACollisionObject">
             <add name="parent node" type="uplink" />
             <add name="short" type="short" />
             <add name="body" type="link" />
+    </ancestor>
+    <niblock name="bhkCollisionObject">
+            <inherit name="ACollisionObject"/>
     </niblock>
     <niblock name="bhkBlendCollisionObject">
-            <add name="parent node" type="uplink" />
-            <add name="short" type="short" />
-            <add name="body" type="link" />
+            <inherit name="ACollisionObject"/>
             <add name="float" type="float" />
             <add name="float" type="float" />
     </niblock>
