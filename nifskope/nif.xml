@@ -693,6 +693,14 @@
         <add name="bodies" type="uplink" arr1="count" />
         <add name="bytes" type="byte" arr1="144" />
 	</niblock>
+	<niblock name="bhkSimpleShapePhantom">
+		<add name="Shape" type="link" />
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Floats" type="float" arr1="23" />
+	</niblock>
+	<niblock name="bhkSPCollisionObject">
+		<inherit name="ACollisionObject"/>
+	</niblock>
 	<niblock name="NiControllerManager">
       <inherit name="AController" />
       <add name="Unknown Byte" type="byte" />
