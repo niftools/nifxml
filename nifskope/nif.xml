@@ -688,7 +688,15 @@
 		<add name="Unknown Int" type="int" />
 		<add name="Num Objects" type="int" />
 		<add name="Objects" type="avobject" arr1="Num Objects" />
-	</niblock>	
+	</niblock>
+	<niblock name="NiBlendPoint3Interpolator">
+		<inherit name="AInterpolator"/>
+		<add name="Unknown Short" type="short" />
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
