@@ -608,10 +608,11 @@
             <add name="count" type="int" />
             <add name="int" type="int" arr1="count" />
     </niblock>
-    <niblock name="bhkPackedNiTriStripsShape">
-            <add name="int" type="int" />
-            <add name="floats" type="float" arr1="13" />
-            <add name="Data" type="link" />
+	<niblock name="bhkPackedNiTriStripsShape">
+		<add name="Num Unknown" type="short" /> 
+		<add name="Unknown Ints" type="int" arr1="Num Unknown" arr2="3" />
+		<add name="Unknown Floats" type="float" arr1="13" />
+		<add name="Data" type="link" />
     </niblock>
     <niblock name="bhkRagdollConstraint">
             <add name="count" type="int" />
@@ -646,15 +647,6 @@
 		<add name="Triangles?" type="hktriangle" arr1="Num Triangles" /> 
 		<add name="Num Vertices" type="int" /> 
 		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
-		<add name="Type" type="short" /> 
-		<add name="Unknown Int 1" type="int" />
-		<add name="Unknown Int 2 (count?)" type="int" />
-		<add name="Unknown Int 3" type="int" cond="Type != 1" />
-		<add name="Unknown Int 4" type="int" cond="Type != 1" />
-		<add name="Unknown Int 5" type="int" cond="Type != 1" />
-		<add name="Unknown Int 6" type="int" cond="Type == 3" />
-		<add name="Unknown Int 7" type="int" cond="Type == 3" />
-		<add name="Unknown Int 8" type="int" cond="Type == 3" />
 	</niblock>
 	<niblock name="bhkConvexVerticesShape">
 		<add name="Unknown Int" type="int"/>
