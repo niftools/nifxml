@@ -685,7 +685,15 @@
       <add name="Unknown Byte" type="byte" />
       <add name="Unknown Ints" type="int" arr1="4" />
 	</niblock>
-	
+	<compound name="avobject">
+		<add name="Name" type="string" />
+		<add name="Object" type="link" />
+	</compound>
+	<niblock name="NiDefaultAVObjectPalette">
+		<add name="Unknown Int" type="int" />
+		<add name="Num Objects" type="int" />
+		<add name="Objects" type="avobject" arr1="Num Objects" />
+	</niblock>	
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
