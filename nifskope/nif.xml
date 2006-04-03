@@ -678,11 +678,13 @@
 	<niblock name="NiControllerManager">
       <inherit name="AController" />
       <add name="Unknown Byte" type="byte" />
-      <add name="Unknown Ints" type="int" arr1="4" />
+      <add name="Num Unknown Links" type="int" />
+      <add name="Controller Sequence" type="link" />
+      <add name="Unknown Links" type="link" arr1="Num Unknown Links" />
 	</niblock>
 	<compound name="avobject">
 		<add name="Name" type="string" />
-		<add name="Object" type="link" />
+		<add name="Object" type="crossref" />
 	</compound>
 	<niblock name="NiDefaultAVObjectPalette">
 		<add name="Unknown Int" type="int" />
