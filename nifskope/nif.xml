@@ -691,13 +691,22 @@
 		<add name="Num Objects" type="int" />
 		<add name="Objects" type="avobject" arr1="Num Objects" />
 	</niblock>
-	<niblock name="NiBlendPoint3Interpolator">
-		<inherit name="AInterpolator"/>
+	<ancestor name="ABlendInterpolator">
+		<inherit name="AInterpolator" />
 		<add name="Unknown Short" type="short" />
 		<add name="Unknown Int" type="int" />
-		<add name="Unknown Float 1" type="float" />
-		<add name="Unknown Float 2" type="float" />
-		<add name="Unknown Float 3" type="float" />
+	</ancestor>
+	<niblock name="NiBlendPoint3Interpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Point" type="vector3" />
+	</niblock>
+	<niblock name="NiBlendBoolInterpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Bool" type="byte" />
+	</niblock>
+	<niblock name="NiBlendFloatInterpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Float" type="float" />
 	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
