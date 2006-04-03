@@ -481,7 +481,7 @@
 		<add name="Has UV" type="bool" ver2="67108866" />
 		<add name="UV Sets" type="texcoord" arr1="Num UV Sets 2" arr2="Num Vertices" ver2="67240448" />
 		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416"  ver2="335544324" />
-		<add name="UV" type="texcoord" arr1="Num Vertices" ver1="335544325" />
+		<add name="UV" type="texcoord" arr1="Num Vertices" cond="Num UV Sets != 0" ver1="335544325" />
 		<add name="Unknown Short 2" type="short" ver1="167772416" />
 		<add name="Unknown Link" type="link" ver1="335544324" />
 	</ancestor>
@@ -614,6 +614,24 @@
 		<add name="Unknown Floats" type="float" arr1="13" />
 		<add name="Data" type="link" />
     </niblock>
+	<niblock name="bhkNiTriStripsShape">
+		<add name="Unknown Int 11" type="int" />
+		<add name="Unknown Float 11" type="float" />
+		<add name="Unknown Float 12" type="float" />
+		<add name="Unknown Int 21" type="int" />
+		<add name="Unknown Int 22" type="int" />
+		<add name="Unknown Int 23" type="int" />
+		<add name="Unknown Int 24" type="int" />
+		<add name="Unknown Int 25" type="int" />
+		<add name="Unknown Float 21" type="float" />
+		<add name="Unknown Float 22" type="float" />
+		<add name="Unknown Float 23" type="float" />
+		<add name="Unknown Int 31" type="int" />
+		<add name="Unknown Int 32" type="int" />
+		<add name="Data" type="link" />
+		<add name="Unknown Int 34" type="int" />
+		<add name="Unknown Int 35" type="int" />
+	</niblock>
     <niblock name="bhkRagdollConstraint">
             <add name="count" type="int" />
             <add name="bodies" type="uplink" arr1="count" />
