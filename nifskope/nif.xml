@@ -60,6 +60,7 @@
 		<add name="Name" type="string" ver2="167837696" />
 		<add name="Interpolator" type="link" />
 		<add name="Unknown Link 1" type="link" ver1="167903232" />
+		<add name="Unknown Byte" type="byte" ver1="335544325" /> 
 		<add name="String Palette" type="link" ver1="167903232" />
 		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
 		<add name="Unknown Short 1" type="short" ver1="167903232" />
@@ -678,6 +679,11 @@
         <add name="count" type="int" />
         <add name="bodies" type="uplink" arr1="count" />
         <add name="bytes" type="byte" arr1="144" />
+	</niblock>
+	<niblock name="NiControllerManager">
+      <inherit name="AController" />
+      <add name="Unknown Byte" type="byte" />
+      <add name="Unknown Ints" type="int" arr1="4" />
 	</niblock>
 	
     <!-- End Experimental Oblivion Block tests !-->
