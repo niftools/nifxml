@@ -734,6 +734,9 @@
 		<inherit name="ABlendInterpolator"/>
 		<add name="Float" type="float" />
 	</niblock>
+	<niblock name="NiBlendTransformInterpolator">
+		<inherit name="ABlendInterpolator"/>
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
