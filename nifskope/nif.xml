@@ -1230,6 +1230,15 @@
 		<add name="Interpolator" type="link" />
 		<add name="Unknown String" type="string" />
 	</niblock>
+	<niblock name="NiPSysEmitterSpeedCtlr">
+		<inherit name="AController"/>
+		<add name="Unknowns" type="byte" arr1="4"/>
+		<add name="Some String" type="string"/>
+	</niblock>
+	<niblock name="NiPSysMeshEmitter">	
+		<inherit name="APSysVolumeEmitter"/>
+		<add name="Unknowns" type="byte" arr1="24"/>
+	</niblock>
 	<niblock name="NiPSysEmitterInitialRadiusCtlr">
 		<inherit name="AController"/>
 		<add name="Interpolator" type="link" />
