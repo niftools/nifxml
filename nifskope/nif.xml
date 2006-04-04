@@ -481,7 +481,7 @@
 		<add name="Has UV" type="bool" ver2="67108866" />
 		<add name="UV Sets" type="texcoord" arr1="Num UV Sets 2" arr2="Num Vertices" ver2="67240448" />
 		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416"  ver2="335544324" />
-		<add name="UV" type="texcoord" arr1="Num Vertices" cond="Num UV Sets != 0" ver1="335544325" />
+		<add name="UV Sets" type="texcoord" arr1="1" arr2="Num Vertices" cond="Num UV Sets != 0" ver1="335544325" />
 		<add name="Unknown Short 2" type="short" ver1="167772416" />
 		<add name="Unknown Link" type="link" ver1="335544324" />
 	</ancestor>
@@ -904,10 +904,11 @@
 		<add name="Flags" type="flags" />
 	</niblock>
 	<niblock name="NiFlipController">
-		<inherit name="AController"/>
+		<inherit name="ASingleInterpolatorController"/>
 		<add name="Texture Slot" type="int" />
-		<add name="Unknown Int 2" type="int" />
-		<add name="Delta" type="float" />
+		<add name="Unknown Int 2" type="int" ver2="10.1.0.0" />
+		<add name="Delta" type="float" ver2="10.1.0.0" />
+		<add name="Delta" type="float" ver2="10.1.0.0" />
 		<add name="Sources" type="linkgroup" />
 	</niblock>
 	<niblock name="NiFloatData">
