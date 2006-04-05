@@ -595,12 +595,20 @@
             <add name="int" type="int" />
             <add name="bytes" type="byte" arr1="44" />
     </niblock>
-    <niblock name="bhkConvexTransformShape">
+	
+    <ancestor name="ATransformShape">
             <add name="Sub Shape" type="link" />
             <add name="Unknown Int" type="int" />
             <add name="Unknown Float" type="float" />
             <add name="Unknown Vectors?" type="vector3" arr1="6" />
+    </ancestor>
+    <niblock name="bhkTransformShape">
+            <inherit name="ATransformShape" />
     </niblock>
+    <niblock name="bhkConvexTransformShape">
+            <inherit name="ATransformShape" />
+    </niblock>
+	
     <niblock name="bhkListShape">
             <add name="sub shapes" type="linkgroup" />
             <add name="int" type="int" />
@@ -692,6 +700,12 @@
         <add name="count" type="int" />
         <add name="bodies" type="uplink" arr1="count" />
         <add name="bytes" type="byte" arr1="144" />
+	</niblock>
+	<niblock name="bhkStiffSpringConstraint">
+        <add name="count" type="int" />
+        <add name="bodies" type="uplink" arr1="count" />
+		<add name="int" type="int" />
+		<add name="floats" type="float" arr1="9" />
 	</niblock>
 	<niblock name="bhkSimpleShapePhantom">
 		<add name="Shape" type="link" />
