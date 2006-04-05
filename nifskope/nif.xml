@@ -482,7 +482,7 @@
 		<add name="Has UV" type="bool" ver2="67108866" />
 		<add name="UV Sets" type="texcoord" arr1="Num UV Sets 2" arr2="Num Vertices" ver2="67240448" />
 		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416"  ver2="335544324" />
-		<add name="UV Sets" type="texcoord" arr1="1" arr2="Num Vertices" cond="Num UV Sets != 0" ver1="335544325" />
+		<add name="UV Sets" type="texcoord" arr1="1" arr2="Num Vertices" cond="Num UV Sets &amp; 1" ver1="335544325" />
 		<add name="Unknown Short 2" type="short" ver1="167772416" />
 		<add name="Unknown Link" type="link" ver1="335544324" />
 	</ancestor>
