@@ -92,7 +92,7 @@
 		<add name="Export Script?" type="shortstring" ver1="167837696" cond = "Unknown Int 1 != 0" />
 		<add name="Num Block Types" type="short" ver1="167772416" />
 		<add name="Block Types" type="string" arr1="Num Block Types" ver1="167772416" />
-		<add name="Block Type Index" type="short" arr1="Num Blocks" ver1="167772416" />
+		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="167772416" />
 		<add name="Unknown Int 2" type="int" ver1="167772416" />
 	</compound>
 	<compound name="key">
@@ -907,7 +907,6 @@
 		<inherit name="ASingleInterpolatorController"/>
 		<add name="Texture Slot" type="int" />
 		<add name="Unknown Int 2" type="int" ver2="10.1.0.0" />
-		<add name="Delta" type="float" ver2="10.1.0.0" />
 		<add name="Delta" type="float" ver2="10.1.0.0" />
 		<add name="Sources" type="linkgroup" />
 	</niblock>
