@@ -60,7 +60,7 @@
 		<add name="Name" type="string" ver2="167837696" />
 		<add name="Interpolator" type="link" />
 		<add name="Unknown Link 1" type="link" ver1="167903232" />
-		<add name="Unknown Byte" type="byte" ver1="20.0.0.5" /> 
+		<add name="Unknown Byte" type="byte" ver1="10.2.0.0" /> 
 		<add name="String Palette" type="link" ver1="167903232" />
 		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
 		<add name="Unknown Short 1" type="short" ver1="167903232" />
@@ -1261,13 +1261,6 @@
 	<niblock name="NiPSysColliderManager">
 		<inherit name="APSysModifier"/>
 		<add name="Collider" type="link" />
-		<add name="Bounce" type="float" />
-		<add name="Spawn on Collide" type="bool" />
-		<add name="Die on Collide" type="bool" />
-		<add name="Spawn Modifier" type="link" />
-		<add name="Manager" type="selflink" />
-		<add name="Unknown Link?" type="link" />
-		<add name="Collider Object" type="link" />
 	</niblock>
 	<niblock name="NiPSysColorModifier">
 		<inherit name="APSysModifier"/>
@@ -1375,6 +1368,13 @@
 	</niblock>
 	<niblock name="NiPSysPlanarCollider">
 		<inherit name="AData"/>
+		<add name="Bounce" type="float" />
+		<add name="Spawn on Collide" type="bool" />
+		<add name="Die on Collide" type="bool" />
+		<add name="Spawn Modifier" type="link" />
+		<add name="Manager" type="crossref" />
+		<add name="Next Collider?" type="link" />
+		<add name="Collider Object" type="link" />
 		<add name="Width" type="float" />
 		<add name="Height" type="float" />
 		<add name="X Axis" type="vector3" />
