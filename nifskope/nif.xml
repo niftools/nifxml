@@ -528,6 +528,11 @@
 	</ancestor>
 	
 	<!-- Experimental Oblivion Block tests !-->
+	<niblock name="BSKeyframeController">
+		<inherit name="AController"/>
+		<add name="Data" type="link" />
+		<add name="Data 2" type="link" />
+	</niblock>
     <niblock name="NiBSBoneLODController">
             <inherit name="AController"/>
             <add name="Unknown Int 1" type="int" />
