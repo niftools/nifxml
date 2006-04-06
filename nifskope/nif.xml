@@ -60,7 +60,7 @@
 		<add name="Name" type="string" ver2="167837696" />
 		<add name="Interpolator" type="link" />
 		<add name="Unknown Link 1" type="link" ver1="167903232" />
-		<add name="Unknown Byte" type="byte" ver1="335544325" /> 
+		<add name="Unknown Byte" type="byte" ver1="20.0.0.5" /> 
 		<add name="String Palette" type="link" ver1="167903232" />
 		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
 		<add name="Unknown Short 1" type="short" ver1="167903232" />
@@ -168,8 +168,8 @@
 		<add name="Modifiers" type="linkgroup" />
 	</compound>
 	<compound name="morphblock">
-		<add name="Name" type="string" ver1="335544325" />
-		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="335544324" />
+		<add name="Name" type="string" ver1="20.0.0.4" />
+		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.2.0.0" />
 		<add name="Vectors" type="vector3" arr1="(ARG)" />
 	</compound>
 	<compound name="ns keyarray">
@@ -566,7 +566,17 @@
 
     <ancestor name="ARigidBody">
             <add name="Shape" type="link" />
-            <add name="Unknown Int 1" type="int" />
+            <add name="Unknown Int 1" type="int">
+				lower x bits (at least 5) selects the color of the collision mesh in the cs:
+					1 : red (statics)
+					2 : purple
+					3 : white
+					4 : light blue (clutter)
+					5 : orange (weapons)
+					6 : light orange
+					7 : turkoise
+					8 : green (creatures)
+			</add>
             <add name="Unknown Floats 1" type="float" arr1="5" />
             <add name="Unknown Shorts 1" type="short" arr1="2" />
             <add name="Unknown Int 4" type="int" />
@@ -603,20 +613,36 @@
     <niblock name="bhkBoxShape">
             <add name="Unknown Int" type="int" />
             <add name="Unknown Float" type="float" />
+            <add name="Unknown Float" type="float" />
+            <add name="Unknown Float" type="float" />
             <add name="Unknown Vector 1 (bound of box?)" type="vector3" />
-            <add name="Unknown Vector 2 (bound of box?)" type="vector3" />
+            <add name="Unknown Float" type="float" />
     </niblock>
     <niblock name="bhkCapsuleShape">
             <add name="Unknown Int 1" type="int" />
+            <add name="Radius" type="float" />
             <add name="Unknown Float 2" type="float" />
-            <add name="Unknown Int 3" type="int" />
-            <add name="Unknown Floats" type="float" arr1="9" />
+            <add name="Unknown Float 3" type="float" />
+			<add name="Vector A" type="vector3" />
+            <add name="Unknown Float 2" type="float" />
+			<add name="Vector B" type="vector3" />
+            <add name="Unknown Float 2" type="float" />
     </niblock>	
     <ancestor name="ATransformShape">
             <add name="Sub Shape" type="link" />
             <add name="Unknown Int" type="int" />
             <add name="Unknown Float" type="float" />
-            <add name="Unknown Vectors?" type="vector3" arr1="6" />
+			<add name="Unknown Float" type="float" />
+			<add name="Unknown Float" type="float" />
+			
+            <add name="Unknown Normal 1" type="vector3" />
+			<add name="Unknown Float" type="float" />
+            <add name="Unknown Normal 2" type="vector3" />
+			<add name="Unknown Float" type="float" />
+            <add name="Unknown Normal 3" type="vector3" />
+			<add name="Unknown Float" type="float" />
+            <add name="Translation" type="vector3" />
+			<add name="Unknown Float" type="float" />
     </ancestor>
     <niblock name="bhkTransformShape">
             <inherit name="ATransformShape" />
@@ -987,9 +1013,9 @@
 		<add name="Unknown" type="short" ver1="167837696" />
 		<add name="Data" type="link" />
 		<add name="Unknown Byte" type="byte" />
-		<add name="Interpolators" type="linkgroup" ver1="335544325" />
-		<add name="Num Unknown Ints" type="int" ver1="335544325" />
-		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="335544325" />
+		<add name="Interpolators" type="linkgroup" ver1="20.0.0.4" />
+		<add name="Num Unknown Ints" type="int" ver1="20.0.0.4" />
+		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="20.0.0.4" />
 	</niblock>
 	<niblock name="NiGravity">
 		<inherit name="AParticleModifier"/>
