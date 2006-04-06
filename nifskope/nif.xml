@@ -560,20 +560,29 @@
     </niblock>
 
     <ancestor name="ARigidBody">
-            <add name="shape" type="link" />
-            <add name="int" type="int" />
-            <add name="bytes" type="byte" arr1="172"/>
+            <add name="Shape" type="link" />
+            <add name="Unknown Int 1" type="int" />
+            <add name="Unknown Floats 1" type="float" arr1="5" />
+            <add name="Unknown Shorts 1" type="short" arr1="2" />
+            <add name="Unknown Int 4" type="int" />
+            <add name="Unknown Float" type="float" />
+            <add name="Unknown Shorts 2" type="short" arr1="2" />
+            <add name="Unknown Int 5" type="int" />
+            <add name="Unknown Floats 2" type="float" arr1="33" />
             <add name="Mass" type="float" />
-            <add name="Unknown float0" type="float" />
-            <add name="Unknown float1" type="float" />
+            <add name="Unknown Float 0" type="float" />
+            <add name="Unknown Float 1" type="float" />
             <add name="Ellasticiy" type="float" />
             <add name="Friction" type="float" />
-            <add name="Some Float?" type="float" />
-            <add name="Some Float?" type="float" />
-            <add name="Some Float?" type="float" />
-            <add name="Unknown 16 Bytes" type="byte" arr1="16" />
-            <add name="constraints" type="linkgroup" />
-            <add name="int" type="int" />
+            <add name="Unknown Float 2" type="float" />
+            <add name="Unknown Float 3" type="float" />
+            <add name="Unknown Float 4 (pi x 10)" type="float" />
+            <add name="Unknown Float 5" type="float" />
+            <add name="Unknown Float 6" type="float" />
+            <add name="Unknown Float 7" type="float" />
+            <add name="Unknown Float 8" type="float" />
+            <add name="Constraints" type="linkgroup" />
+            <add name="Unknown Int 6" type="int" />
     </ancestor>
     <niblock name="bhkRigidBody">
             <inherit name="ARigidBody" />
