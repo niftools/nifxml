@@ -1282,6 +1282,25 @@
 		<inherit name="ASingleInterpolatorController"/>
 		<add name="Unknown String" type="string" />
 	</niblock>
+	<niblock name="NiPSysDragModifier">
+		<inherit name="APSysModifier"/>
+		<add name="Parent" type="parent"/>
+		<add name="Unkown Float 1" type="float"/>
+		<add name="Unkown Float 2" type="float"/>
+		<add name="Unkown Float 3" type="float"/>
+		<add name="Unkown Float 4" type="float"/>
+		<add name="Unkown Float 5" type="float"/>
+		<add name="Unkown Float 6" type="float"/>
+	</niblock>
+	<niblock name="NiPSysBombModifier">
+		<inherit name="APSysModifier"/>
+		<add name="Unknown" type="byte" arr1="12"/>
+		<add name="Unkown Float 1" type="float"/>
+		<add name="Unkown Float 2" type="float"/>
+		<add name="Unkown Float 3" type="float"/>
+		<add name="Unkown Int 1" type="int"/>
+		<add name="Unkown Int 2" type="int"/>
+	</niblock>
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="167903232" />
@@ -1335,7 +1354,8 @@
 	</niblock>
 	<niblock name="NiPSysGravityStrengthCtlr">
 		<inherit name="AController"/>
-		<add name="Bytes" type="byte" arr1="31"/>
+		<add name="Link?" type="link"/>
+		<add name="Unknown String" type="string"/>
 	</niblock>
 	<niblock name="NiPSysEmitterLifeSpanCtlr">
 		<inherit name="AController"/>
