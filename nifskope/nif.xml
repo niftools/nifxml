@@ -10,6 +10,8 @@
 	<version>4.2.2.0</version>
 	<version>10.0.1.0</version>
 	<version>10.1.0.0</version>
+	<version>10.1.0.106</version>
+	<version>10.1.0.2</version>
 	<version>10.2.0.0</version>
 	<version>20.0.0.4</version>
 	<version>20.0.0.5</version>
@@ -801,6 +803,11 @@
 	<niblock name="NiBlendTransformInterpolator">
 		<inherit name="ABlendInterpolator"/>
 	</niblock>
+	<niblock name="NiPSysEmitterDeclinationCtlr">
+		<inherit name="AController"/>
+		<add name="Interpolator" type="link" />
+		<add name="Unknown String" type="string" />
+	</niblock>
     <!-- End Experimental Oblivion Block tests !-->
 
 	<niblock name="AvoidNode">
@@ -1323,8 +1330,8 @@
 	</niblock>
 	<niblock name="NiPSysEmitterSpeedCtlr">
 		<inherit name="AController"/>
-		<add name="Unknowns" type="byte" arr1="4"/>
-		<add name="Some String" type="string"/>
+		<add name="Interpolator" type="link"/>
+		<add name="Unknown String" type="string"/>
 	</niblock>
 	<niblock name="NiPSysMeshEmitter">	
 		<inherit name="APSysVolumeEmitter"/>
