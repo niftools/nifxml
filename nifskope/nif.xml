@@ -61,19 +61,26 @@
 	<compound name="controllerlink">
 		<add name="Name" type="string" ver2="167837696" />
 		<add name="Interpolator" type="link" />
-		<add name="Unknown Link 1" type="link" ver1="167903232" />
-		<add name="Unknown Byte" type="byte" ver1="10.2.0.0" /> 
-		<add name="String Palette" type="link" ver1="167903232" />
-		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 1" type="short" ver1="167903232" />
-		<add name="Property Type Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 2" type="short" ver1="167903232" />
-		<add name="Controller Type Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 3" type="short" ver1="167903232" />
-		<add name="Variable Offset 1" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 4" type="short" ver1="167903232" />
-		<add name="Variable Offset 2" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 5" type="short" ver1="167903232" />
+		<add name="Unknown Link 1" type="link" ver1="10.1.0.106" />
+		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106"/>
+		<add name="Unknown Short" type="short" ver1="10.1.0.106" ver2="10.1.0.106"/>
+		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" /> 
+		<add name="String Palette" type="link" ver1="10.2.0.0" />
+		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 1" type="short" ver1="10.2.0.0" />
+		<add name="Property Type Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 2" type="short" ver1="10.2.0.0" />
+		<add name="Controller Type Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 3" type="short" ver1="10.2.0.0" />
+		<add name="Variable Offset 1" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 4" type="short" ver1="10.2.0.0" />
+		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 5" type="short" ver1="10.2.0.0" />
 	</compound>
 	<compound name="extratexturegroup">
 		<add name="Num Textures" type="int" />
@@ -962,14 +969,19 @@
 		<add name="Name" type="string" />
 		<add name="Text Keys" type="controllerlink" ver2="167837696" />
 		<add name="Num Controlled Blocks" type="int" />
-		<add name="Unknown Int 1" type="int" ver1="167903232" />
+		<add name="Unknown Int 1" type="int" ver1="10.1.0.106" />
 		<add name="Controlled Blocks" type="controllerlink" arr1="Num Controlled Blocks" />
-		<add name="Unknown Float 1" type="float" ver1="167903232" />
-		<add name="Text Keys 2" type="link" ver1="167903232" />
-		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="167903232" />
+		<add name="Unknown Float 1" type="float" ver1="10.1.0.106" />
+		<add name="Text Keys 2" type="link" ver1="10.1.0.106" />
+		<add name="Unknown Int 0" type="int" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Float 3" type="float" ver1="10.1.0.106" />
+		<add name="Unknown Float 4" type="float" ver1="10.1.0.106" />
+		<add name="Start Time" type="float" ver1="10.1.0.106" />
+		<add name="Stop Time" type="float" ver1="10.1.0.106" />
 		<add name="Unkown Float 2" type="float" ver1="167903232" ver2="167903232" />
-		<add name="Unknown Int 2" type="int" ver1="167903232" />
-		<add name="Unknown String" type="string" ver1="167903232" />
+		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Int 2" type="int" ver1="10.1.0.106" />
+		<add name="Unknown String" type="string" ver1="10.1.0.106" />
 		<add name="String Palette" type="link" ver1="167903232" />
 	</niblock>
 	<niblock name="NiDirectionalLight">
@@ -1578,6 +1590,7 @@
 		<add name="Translation" type="vector3" />
 		<add name="Rotation" type="quaternion" />
 		<add name="Scale" type="float" />
+		<add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106" />
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiTriShape">
