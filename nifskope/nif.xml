@@ -1518,7 +1518,7 @@
 	</niblock>
 	<niblock name="NiStencilProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="167772416" />
+		<add name="Flags" type="flags" ver2="10.0.1.2" />
 		<add name="Stencil Enabled" type="bool" />
 		<add name="Stencil Function" type="int" />
 		<add name="Stencil Ref" type="int" />
