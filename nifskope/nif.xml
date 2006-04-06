@@ -525,6 +525,11 @@
             <add name="Unknown Int 2" type="int" />
             <add name="Node Groups" type="linkgroup" arr1="Num Node Groups" />
     </niblock>
+	
+	<niblock name="BSParentVelocityModifier">
+		<inherit name="APSysModifier" />
+		<add name="Unknown Float" type="float" />
+	</niblock>
     
     <niblock name="BSBound">
             <add name="ID" type="string" />
@@ -841,7 +846,7 @@
 		<niblock name="NiBoolTimelineInterpolator">
 		<inherit name="AInterpolator"/>
 		<add name="Bool" type="bool"/>
-		<add name="Unknown bytes" type="byte" arr1="34"/>
+		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiBSAnimationNode">
 		<inherit name="AParentNode"/>
@@ -1248,8 +1253,8 @@
 		<add name="Height" type="float" />
 	</niblock>
 	<niblock name="NiPSysModifierActiveCtlr">
-		<inherit name="APSysModifier"/>
-		<add name="Bytes" type="byte" arr1="21"/>
+		<inherit name="ASingleInterpolatorController"/>
+		<add name="Unknown String" type="string" />
 	</niblock>
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
