@@ -646,10 +646,10 @@
 		<add name="Unknown Float 22" type="float" />
 		<add name="Unknown Float 23" type="float" />
 		<add name="Unknown Int 31" type="int" />
-		<add name="Unknown Int 32" type="int" />
-		<add name="Data" type="link" />
-		<add name="Unknown Int 34" type="int" />
-		<add name="Unknown Int 35" type="int" />
+		<add name="Num Data" type="int" />
+		<add name="Data" type="link" arr1="Num Data"/>
+		<add name="Num Unknown" type="int" />
+		<add name="Unknown Int 35" type="int" arr1="Num Unknown"/>
 	</niblock>
     <niblock name="bhkRagdollConstraint">
             <add name="count" type="int" />
