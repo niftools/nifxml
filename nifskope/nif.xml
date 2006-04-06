@@ -838,6 +838,11 @@
 		<add name="Bool Value" type="bool" />
 		<add name="Data" type="link" />
 	</niblock>
+		<niblock name="NiBoolTimelineInterpolator">
+		<inherit name="AInterpolator"/>
+		<add name="Bool" type="bool"/>
+		<add name="Unknown bytes" type="byte" arr1="34"/>
+	</niblock>
 	<niblock name="NiBSAnimationNode">
 		<inherit name="AParentNode"/>
 	</niblock>
@@ -1153,6 +1158,10 @@
 		<add name="Pos Data" type="link" />
 		<add name="Float Data" type="link" />
 	</niblock>
+	<niblock name="NiPathInterpolator">
+		<inherit name="AInterpolator"/>
+		<add name="Bytes" type="byte" arr1="24"/>
+	</niblock>
 	<niblock name="NiPixelData">
 		<inherit name="AData"/>
 		<add name="Pixel Format" type="int" />
@@ -1237,6 +1246,10 @@
 		<inherit name="APSysVolumeEmitter"/>
 		<add name="Radius" type="float" />
 		<add name="Height" type="float" />
+	</niblock>
+	<niblock name="NiPSysModifierActiveCtlr">
+		<inherit name="APSysModifier"/>
+		<add name="Bytes" type="byte" arr1="21"/>
 	</niblock>
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
