@@ -1418,6 +1418,9 @@
 		<inherit name="APSysVolumeEmitter"/>
 		<add name="Radius" type="float" />
 	</niblock>
+	<niblock name="BSPSysArrayEmitter">
+		<inherit name="APSysVolumeEmitter"/>
+	</niblock>
 	<niblock name="NiPSysUpdateCtlr">
 		<inherit name="AController"/>
 	</niblock>
