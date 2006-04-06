@@ -567,7 +567,7 @@
     <ancestor name="ARigidBody">
             <add name="Shape" type="link" />
             <add name="Unknown Int 1" type="int">
-				lower x bits (at least 5) selects the color of the collision mesh in the cs:
+				lower 4 bits select the color of the collision mesh in the cs:
 					1 : red (statics)
 					2 : purple
 					3 : white
