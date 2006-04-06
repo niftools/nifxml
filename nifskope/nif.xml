@@ -593,10 +593,11 @@
             <add name="Unknown Vector 2 (bound of box?)" type="vector3" />
     </niblock>
     <niblock name="bhkCapsuleShape">
-            <add name="int" type="int" />
-            <add name="bytes" type="byte" arr1="44" />
-    </niblock>
-	
+            <add name="Unknown Int 1" type="int" />
+            <add name="Unknown Float 2" type="float" />
+            <add name="Unknown Int 3" type="int" />
+            <add name="Unknown Floats" type="float" arr1="9" />
+    </niblock>	
     <ancestor name="ATransformShape">
             <add name="Sub Shape" type="link" />
             <add name="Unknown Int" type="int" />
@@ -712,6 +713,14 @@
 		<add name="Shape" type="link" />
 		<add name="Unknown Int" type="int" />
 		<add name="Unknown Floats" type="float" arr1="23" />
+	</niblock>
+	<niblock name="bhkMultiSphereShape">
+		<add name="Unknown Int 1" type="int" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+		<add name="Unknown Int 2" type="int" />
+		<add name="Unknown Floats" type="float" arr1="8" />
 	</niblock>
 	<niblock name="bhkSPCollisionObject">
 		<inherit name="ACollisionObject"/>
