@@ -1289,6 +1289,15 @@
 		<add name="Turbulence Scale" type="float" />
 		<add name="Force Type" type="float" />
 	</niblock>
+	<niblock name="NiPSysGravityStrengthCtlr">
+		<inherit name="AController"/>
+		<add name="Bytes" type="byte" arr1="31"/>
+	</niblock>
+	<niblock name="NiPSysEmitterLifeSpanCtlr">
+		<inherit name="AController"/>
+		<add name="Unknowns" type="byte" arr1="4"/>
+		<add name="Some String" type="string"/>
+	</niblock>
 	<niblock name="NiPSysGrowFadeModifier">
 		<inherit name="APSysModifier"/>
 		<add name="Grow Time" type="float" />
