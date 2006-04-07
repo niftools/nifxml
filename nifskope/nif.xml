@@ -1123,12 +1123,19 @@
 	</niblock>
 	<niblock name="NiMeshPSysData">
 		<inherit name="APSysData"/>
-		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" />
-		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" />
+		<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5" />
+		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="20.0.0.4" />
+		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4" />
+		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver2="20.0.0.5" />
 		<add name="Unknown Int 1" type="int" />
-		<add name="Modifier" type="link" />
-		<add name="Unknown Byte 2" type="byte" ver1="167903232" />
-		<add name="Unknown Link Group" type="linkgroup" ver1="167903232" />
+		<add name="Unknown Short 4" type="short" ver1="20.0.0.5" />
+		<add name="Unknown Int 2" type="int" ver1="20.0.0.5" />
+		<add name="Unknown Byte 12" type="byte" ver1="20.0.0.5" />
+		<add name="Unknown Int 3" type="int" ver1="20.0.0.5" />
+		<add name="Unknown Int 4" type="int" ver1="20.0.0.5" />
+		<add name="Modifier" type="link"  ver2="20.0.0.4" />
+		<add name="Unknown Byte 2" type="byte" ver1="167903232" ver2="20.0.0.4" />
+		<add name="Unknown Link Group" type="linkgroup" ver1="167903232" ver2="20.0.0.4" />
 		<add name="Unknown Link 2" type="link" ver1="167903232" />
 	</niblock>
 	<niblock name="NiMorphData">
