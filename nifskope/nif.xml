@@ -484,7 +484,8 @@
 		<add name="Unknown Byte" type="byte" ver1="167772416" />
 		<add name="Has Normals" type="bool" />
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0" />
-		<add name="Unknown Vectors" type="vector3" arr1="2" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="167837696"/>
+		<add name="Unknown Vectors 1" type="vector3" arr1="Num Vertices" arr2="Has Normals" cond="Unknown Byte &amp; 16" ver1="167837696"/>
+		<add name="Unknown Vectors 2" type="vector3" arr1="Num Vertices" arr2="Has Normals" cond="Unknown Byte &amp; 16" ver1="167837696"/>
 		<add name="Center" type="vector3" />
 		<add name="Radius" type="float" />
 		<add name="Has Vertex Colors" type="bool" />
