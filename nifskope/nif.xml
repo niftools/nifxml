@@ -1363,7 +1363,8 @@
 	</niblock>
 	<niblock name="NiPSysMeshEmitter">	
 		<inherit name="APSysEmitter"/>
-		<add name="Unknown Ints" type="int" arr1="3"/>
+		<add name="Unknown Link Group" type="linkgroup"/>
+		<add name="Unknown Ints" type="int" arr1="2"/>
 		<add name="Unknown Float" type="float"/>
 		<add name="Unknown Ints 2" type="int" arr1="2"/>
 	</niblock>
