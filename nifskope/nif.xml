@@ -1362,8 +1362,10 @@
 		<add name="Unknown String" type="string"/>
 	</niblock>
 	<niblock name="NiPSysMeshEmitter">	
-		<inherit name="APSysVolumeEmitter"/>
-		<add name="Unknowns" type="byte" arr1="24"/>
+		<inherit name="APSysEmitter"/>
+		<add name="Unknown Ints" type="int" arr1="3"/>
+		<add name="Unknown Float" type="float"/>
+		<add name="Unknown Ints 2" type="int" arr1="2"/>
 	</niblock>
 	<niblock name="NiPSysEmitterInitialRadiusCtlr">
 		<inherit name="AController"/>
