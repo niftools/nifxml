@@ -1126,7 +1126,7 @@
 		<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5" />
 		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="20.0.0.4" />
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4" />
-		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver2="20.0.0.5" />
+		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5" />
 		<add name="Unknown Int 1" type="int" />
 		<add name="Unknown Short 4" type="short" ver1="20.0.0.5" />
 		<add name="Unknown Int 2" type="int" ver1="20.0.0.5" />
