@@ -556,10 +556,16 @@
             <add name="ID" type="string" />
             <add name="int" type="int" />
     </niblock> 
+    <compound name="furniture position">
+            <add name="vec" type="vector3" />
+            <add name="unk" type="short" />
+            <add name="ref1" type="byte" />
+            <add name="ref2" type="byte" />
+    </compound>
     <niblock name="BSFurnitureMarker">
             <add name="ID" type="string" />
             <add name="count" type="int" />
-            <add name="bytes" type="byte" arr1="count" arr2="16" />
+            <add name="pos" type="furniture position" arr1="count" />
     </niblock>
 
     <niblock name="bhkBlendController">
