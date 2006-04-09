@@ -36,6 +36,10 @@
 	<alias name="tbc"               type="vector3" />
 
 
+	<compound name="avobject">
+		<add name="Name" type="string" />
+		<add name="Object" type="crossref" />
+	</compound>
 	<compound name="bbox">
 		<add name="Is Used" type="bool" />
 		<add name="Unknown" type="int" cond="Is Used != 0" />
@@ -61,26 +65,26 @@
 	<compound name="controllerlink">
 		<add name="Name" type="string" ver2="167837696" />
 		<add name="Interpolator" type="link" />
-		<add name="Unknown Link 1" type="link" ver1="10.1.0.106" />
-		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106"/>
-		<add name="Unknown Short" type="short" ver1="10.1.0.106" ver2="10.1.0.106"/>
-		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" /> 
-		<add name="String Palette" type="link" ver1="10.2.0.0" />
-		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0" />
-		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Short 1" type="short" ver1="10.2.0.0" />
-		<add name="Property Type Offset" type="stringoffset" ver1="10.2.0.0" />
-		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Short 2" type="short" ver1="10.2.0.0" />
-		<add name="Controller Type Offset" type="stringoffset" ver1="10.2.0.0" />
-		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Short 3" type="short" ver1="10.2.0.0" />
-		<add name="Variable Offset 1" type="stringoffset" ver1="10.2.0.0" />
-		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Short 4" type="short" ver1="10.2.0.0" />
-		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0" />
-		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Short 5" type="short" ver1="10.2.0.0" />
+		<add name="Unknown Link 1" type="link" ver1="167837802" />
+		<add name="Unknown Link 2" type="link" ver1="167837802" ver2="167837802" />
+		<add name="Unknown Short 0" type="short" ver1="167837802" ver2="167837802" />
+		<add name="Unknown Byte" type="byte" ver1="167837802" />
+		<add name="String Palette" type="link" ver1="167903232" />
+		<add name="Node Name" type="string" ver1="167837802" ver2="167837802" />
+		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 1" type="short" ver1="167903232" />
+		<add name="Property Type" type="string" ver1="167837802" ver2="167837802" />
+		<add name="Property Type Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 2" type="short" ver1="167903232" />
+		<add name="Controller Type" type="string" ver1="167837802" ver2="167837802" />
+		<add name="Controller Type Offset" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 3" type="short" ver1="167903232" />
+		<add name="Variable 1" type="string" ver1="167837802" ver2="167837802" />
+		<add name="Variable Offset 1" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 4" type="short" ver1="167903232" />
+		<add name="Variable 2" type="string" ver1="167837802" ver2="167837802" />
+		<add name="Variable Offset 2" type="stringoffset" ver1="167903232" />
+		<add name="Unknown Short 5" type="short" ver1="167903232" />
 	</compound>
 	<compound name="extratexturegroup">
 		<add name="Num Textures" type="int" />
@@ -89,21 +93,32 @@
 	<compound name="footer">
 		<add name="Roots" type="linkgroup" />
 	</compound>
+	<compound name="furniture position">
+		<add name="Unknown Vector" type="vector3" />
+		<add name="Unknown Short" type="short" />
+		<add name="Position Ref 1?" type="byte" />
+		<add name="Position Ref 2?" type="byte" />
+	</compound>
 	<compound name="header">
 		<add name="Header String" type="headerstring" />
 		<add name="Version" type="fileversion" />
 		<add name="Unknown Byte" type="byte" ver1="335544324" />
 		<add name="Unknown Int 1" type="int" ver1="167837696" />
 		<add name="Num Blocks" type="int" />
-		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2" />
-		<add name="Unknown Bytes" type="byte" arr1="4" ver1="167837696" cond = "Unknown Int 1 != 0" />
-		<add name="Creator?" type="shortstring" ver1="10.0.1.2" cond = "Unknown Int 1 != 0" />
-		<add name="Export Type?" type="shortstring" ver1="10.0.1.2" cond = "Unknown Int 1 != 0" />
-		<add name="Export Script?" type="shortstring" ver1="10.0.1.2" cond = "Unknown Int 1 != 0" />
+		<add name="Unknown Int 1" type="int" ver1="167772418" ver2="167772418" />
+		<add name="Unknown Int 3" type="int" cond="Unknown Int 1 != 0" ver1="167837696" />
+		<add name="Creator?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
+		<add name="Export Type?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
+		<add name="Export Script?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
 		<add name="Num Block Types" type="short" ver1="167772416" />
 		<add name="Block Types" type="string" arr1="Num Block Types" ver1="167772416" />
 		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="167772416" />
 		<add name="Unknown Int 2" type="int" ver1="167772416" />
+	</compound>
+	<compound name="hktriangle">
+		<add name="Triangle" type="triangle" />
+		<add name="Unknown Short" type="short" />
+		<add name="Normal" type="vector3" />
 	</compound>
 	<compound name="key">
 		<add name="Time" type="float" />
@@ -178,9 +193,9 @@
 		<add name="Modifiers" type="linkgroup" />
 	</compound>
 	<compound name="morphblock">
-		<add name="Name" type="string" ver1="10.1.0.106" />
-		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2" />
-		<add name="Unknown" type="int" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Frame Name" type="string" ver1="167837802" />
+		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="167772418" />
+		<add name="Unknown Int" type="int" ver1="167837802" ver2="167837802" />
 		<add name="Vectors" type="vector3" arr1="(ARG)" />
 	</compound>
 	<compound name="ns keyarray">
@@ -264,14 +279,14 @@
 		<add name="Num Weights Per Vertex" type="short" />
 		<add name="Bones" type="short" arr1="Num Bones" />
 		<add name="Has Vertex Map" type="bool" ver1="167837696" />
-		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="10.0.1.2" />
+		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="167772418" />
 		<add name="Vertex Map" type="short" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="167837696" />
 		<add name="Has Vertex Weights" type="bool" ver1="167837696" />
-		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2" />
+		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="167772418" />
 		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="167837696" />
 		<add name="Strip Lengths" type="short" arr1="Num Strips" />
 		<add name="Has Strips" type="bool" ver1="167837696" />
-		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2" />
+		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="167772418" />
 		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="167837696" />
 		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Num Strips == 0" />
 		<add name="Has Bone Indices" type="bool" />
@@ -339,7 +354,77 @@
 		<add name="Stop Time" type="float" />
 		<add name="Target" type="controllertarget" />
 	</ancestor>
+	<ancestor name="ABoneLODController">
+		<inherit name="AController"/>
+		<add name="Unknown Int 1" type="int" />
+		<add name="Num Node Groups" type="int" />
+		<add name="Unknown Int 2" type="int" />
+		<add name="Node Groups" type="linkgroup" arr1="Num Node Groups" />
+	</ancestor>
 	<ancestor name="AData">
+	</ancestor>
+	<ancestor name="AbhkConstraint">
+		<inherit name="AData"/>
+		<add name="Num Bodies" type="int" />
+		<add name="Bodies" type="crossref" arr1="Num Bodies" />
+		<add name="Unknown Int" type="int" />
+	</ancestor>
+	<ancestor name="AbhkRagdollConstraint">
+		<inherit name="AbhkConstraint"/>
+		<add name="Unknown Floats" type="float" arr1="7" arr2="4" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+	</ancestor>
+	<ancestor name="AbhkRigidBody">
+		<inherit name="AData"/>
+		<add name="Shape" type="link" />
+		<add name="Unknown Int 1" type="int" />
+		<add name="Unknown Floats 1" type="float" arr1="5" />
+		<add name="Unknown Shorts 1" type="short" arr1="2" />
+		<add name="Unknown Int 4" type="int" />
+		<add name="Unknown Float" type="float" />
+		<add name="Unknown Shorts 2" type="short" arr1="2" />
+		<add name="Unknown Int 5" type="int" />
+		<add name="Unknown Floats 2" type="float" arr1="33" />
+		<add name="Mass" type="float" />
+		<add name="Unknown Float 0" type="float" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Elasticity" type="float" />
+		<add name="Friction" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+		<add name="Unknown Float 4" type="float" />
+		<add name="Unknown Float 5" type="float" />
+		<add name="Unknown Float 6" type="float" />
+		<add name="Unknown Float 7" type="float" />
+		<add name="Unknown Float 8" type="float" />
+		<add name="Constraints" type="linkgroup" />
+		<add name="Unknown Int 6" type="int" />
+	</ancestor>
+	<ancestor name="AbhkShape">
+		<inherit name="AData"/>
+	</ancestor>
+	<ancestor name="AbhkTransformShape">
+		<inherit name="AbhkShape"/>
+		<add name="Sub Shape" type="link" />
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+		<add name="Unknown Normal 1" type="vector3" />
+		<add name="Unknown Float 4" type="float" />
+		<add name="Unknown Normal 2" type="vector3" />
+		<add name="Unknown Float 5" type="float" />
+		<add name="Unknown Normal 3" type="vector3" />
+		<add name="Unknown Float 6" type="float" />
+		<add name="Translation" type="vector3" />
+		<add name="Unknown Float 8" type="float" />
+	</ancestor>
+	<ancestor name="ACollisionObject">
+		<inherit name="AData"/>
+		<add name="Parent" type="parent" />
+		<add name="Unknown Short" type="short" />
+		<add name="Body" type="link" />
 	</ancestor>
 	<ancestor name="AExtraData">
 		<inherit name="AData"/>
@@ -348,8 +433,17 @@
 	</ancestor>
 	<ancestor name="AInterpolator">
 	</ancestor>
+	<ancestor name="ABlendInterpolator">
+		<inherit name="AInterpolator"/>
+		<add name="Unknown Short" type="short" />
+		<add name="Unknown Int" type="int" />
+	</ancestor>
 	<ancestor name="AKeyedData">
 		<inherit name="AData"/>
+	</ancestor>
+	<ancestor name="AKeyframeController">
+		<inherit name="AController"/>
+		<add name="Data" type="link" />
 	</ancestor>
 	<ancestor name="AKeyframeData">
 		<inherit name="AData"/>
@@ -480,21 +574,20 @@
 		<add name="Unknown Short 1" type="short" ver1="167837696" />
 		<add name="Has Vertices" type="bool" />
 		<add name="Vertices" type="vector3" arr1="Num Vertices" cond="Has Vertices != 0" />
-		<add name="Num UV Sets" type="byte" ver1="167772416" />
+		<add name="Num UV Sets 2" type="byte" ver1="167772416" />
 		<add name="Unknown Byte" type="byte" ver1="167772416" />
 		<add name="Has Normals" type="bool" />
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0" />
-		<add name="Unknown Vectors 1" type="vector3" arr1="Num Vertices" arr2="Has Normals" cond="Unknown Byte &amp; 16" ver1="167837696"/>
-		<add name="Unknown Vectors 2" type="vector3" arr1="Num Vertices" arr2="Has Normals" cond="Unknown Byte &amp; 16" ver1="167837696"/>
+		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="167837696" />
+		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="167837696" />
 		<add name="Center" type="vector3" />
 		<add name="Radius" type="float" />
 		<add name="Has Vertex Colors" type="bool" />
 		<add name="Vertex Colors" type="color4" arr1="Num Vertices" cond="Has Vertex Colors != 0" />
-		<add name="Num UV Sets 2" type="short" ver2="67240448" />
+		<add name="Num UV Sets" type="short" ver2="67240448" />
 		<add name="Has UV" type="bool" ver2="67108866" />
-		<add name="UV Sets" type="texcoord" arr1="Num UV Sets 2" arr2="Num Vertices" ver2="67240448" />
-		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver1="167772416"  ver2="335544324" />
-		<add name="UV Sets" type="texcoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" ver1="335544325" />
+		<add name="UV Sets" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="67240448" />
+		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="167772416" />
 		<add name="Unknown Short 2" type="short" ver1="167772416" />
 		<add name="Unknown Link" type="link" ver1="335544324" />
 	</ancestor>
@@ -528,311 +621,186 @@
 		<inherit name="AController"/>
 		<add name="Interpolator" type="link" ver1="167903232" />
 	</ancestor>
-	
-	<!-- Experimental Oblivion Block tests !-->
-	<niblock name="BSKeyframeController">
+	<ancestor name="APSysCtlr">
+		<inherit name="ASingleInterpolatorController"/>
+		<add name="Unknown String" type="string" />
+	</ancestor>
+	<niblock name="AvoidNode">
+		<inherit name="AParentNode"/>
+	</niblock>
+	<niblock name="bhkBlendCollisionObject">
+		<inherit name="ACollisionObject"/>
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+	</niblock>
+	<niblock name="bhkBlendController">
 		<inherit name="AController"/>
-		<add name="Data" type="link" />
-		<add name="Data 2" type="link" />
+		<add name="Unknown Int" type="int" />
 	</niblock>
-    <niblock name="NiBSBoneLODController">
-            <inherit name="AController"/>
-            <add name="Unknown Int 1" type="int" />
-            <add name="Num Node Groups" type="int" />
-            <add name="Unknown Int 2" type="int" />
-            <add name="Node Groups" type="linkgroup" arr1="Num Node Groups" />
-    </niblock>
-	
-	<niblock name="BSParentVelocityModifier">
-		<inherit name="APSysModifier" />
-		<add name="Unknown Float" type="float" />
+	<niblock name="bhkBoxShape">
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+		<add name="Unknown Vector" type="vector3" />
+		<add name="Unknown Float 4" type="float" />
 	</niblock>
-    
-    <niblock name="BSBound">
-            <add name="ID" type="string" />
-            <add name="float" type="float" arr1="6" />
-    </niblock>
-    <niblock name="BSXFlags">
-            <add name="ID" type="string" />
-            <add name="int" type="int" />
-    </niblock> 
-    <compound name="furniture position">
-            <add name="vec" type="vector3" />
-            <add name="unk" type="short" />
-            <add name="ref1" type="byte" />
-            <add name="ref2" type="byte" />
-    </compound>
-    <niblock name="BSFurnitureMarker">
-            <add name="ID" type="string" />
-            <add name="count" type="int" />
-            <add name="pos" type="furniture position" arr1="count" />
-    </niblock>
-
-    <niblock name="bhkBlendController">
-            <inherit name="AController"/>
-            <add name="Unknown 4 Bytes" type="byte" arr1="4" />
-    </niblock>
-    
-    <ancestor name="ACollisionObject">
-            <add name="parent node" type="uplink" />
-            <add name="short" type="short" />
-            <add name="body" type="link" />
-    </ancestor>
-    <niblock name="bhkCollisionObject">
-            <inherit name="ACollisionObject"/>
-    </niblock>
-    <niblock name="bhkBlendCollisionObject">
-            <inherit name="ACollisionObject"/>
-            <add name="float" type="float" />
-            <add name="float" type="float" />
-    </niblock>
-
-    <ancestor name="ARigidBody">
-            <add name="Shape" type="link" />
-            <add name="Unknown Int 1" type="int">
-				lower 4 bits select the color of the collision mesh in the cs:
-					1 : red (statics)
-					2 : purple
-					3 : white
-					4 : light blue (clutter)
-					5 : orange (weapons)
-					6 : light orange
-					7 : turkoise
-					8 : green (creatures)
-			</add>
-            <add name="Unknown Floats 1" type="float" arr1="5" />
-            <add name="Unknown Shorts 1" type="short" arr1="2" />
-            <add name="Unknown Int 4" type="int" />
-            <add name="Unknown Float" type="float" />
-            <add name="Unknown Shorts 2" type="short" arr1="2" />
-            <add name="Unknown Int 5" type="int" />
-            <add name="Unknown Floats 2" type="float" arr1="33" />
-            <add name="Mass" type="float" />
-            <add name="Unknown Float 0" type="float" />
-            <add name="Unknown Float 1" type="float" />
-            <add name="Ellasticiy" type="float" />
-            <add name="Friction" type="float" />
-            <add name="Unknown Float 2" type="float" />
-            <add name="Unknown Float 3" type="float" />
-            <add name="Unknown Float 4 (pi x 10)" type="float" />
-            <add name="Unknown Float 5" type="float" />
-            <add name="Unknown Float 6" type="float" />
-            <add name="Unknown Float 7" type="float" />
-            <add name="Unknown Float 8" type="float" />
-            <add name="Constraints" type="linkgroup" />
-            <add name="Unknown Int 6" type="int" />
-    </ancestor>
-    <niblock name="bhkRigidBody">
-            <inherit name="ARigidBody" />
-    </niblock>
-    <niblock name="bhkRigidBodyT">
-            <inherit name="ARigidBody" />
-    </niblock>
-    
-    <niblock name="bhkSphereShape">
-            <add name="int" type="int" />
-            <add name="float" type="float" />
-    </niblock>
-    <niblock name="bhkBoxShape">
-            <add name="Unknown Int" type="int" />
-            <add name="Unknown Float" type="float" />
-            <add name="Unknown Float" type="float" />
-            <add name="Unknown Float" type="float" />
-            <add name="Unknown Vector 1 (bound of box?)" type="vector3" />
-            <add name="Unknown Float" type="float" />
-    </niblock>
-    <niblock name="bhkCapsuleShape">
-            <add name="Unknown Int 1" type="int" />
-            <add name="Radius" type="float" />
-            <add name="Unknown Float 2" type="float" />
-            <add name="Unknown Float 3" type="float" />
-			<add name="Vector A" type="vector3" />
-            <add name="Unknown Float 2" type="float" />
-			<add name="Vector B" type="vector3" />
-            <add name="Unknown Float 2" type="float" />
-    </niblock>	
-    <ancestor name="ATransformShape">
-            <add name="Sub Shape" type="link" />
-            <add name="Unknown Int" type="int" />
-            <add name="Unknown Float" type="float" />
-			<add name="Unknown Float" type="float" />
-			<add name="Unknown Float" type="float" />
-			
-            <add name="Unknown Normal 1" type="vector3" />
-			<add name="Unknown Float" type="float" />
-            <add name="Unknown Normal 2" type="vector3" />
-			<add name="Unknown Float" type="float" />
-            <add name="Unknown Normal 3" type="vector3" />
-			<add name="Unknown Float" type="float" />
-            <add name="Translation" type="vector3" />
-			<add name="Unknown Float" type="float" />
-    </ancestor>
-    <niblock name="bhkTransformShape">
-            <inherit name="ATransformShape" />
-    </niblock>
-    <niblock name="bhkConvexTransformShape">
-            <inherit name="ATransformShape" />
-    </niblock>
-	
-    <niblock name="bhkListShape">
-            <add name="sub shapes" type="linkgroup" />
-            <add name="int" type="int" />
-            <add name="float" type="float" arr1="6" />
-            <add name="count" type="int" />
-            <add name="int" type="int" arr1="count" />
-    </niblock>
-	<niblock name="bhkPackedNiTriStripsShape">
-		<add name="Num Unknown" type="short" /> 
-		<add name="Unknown Ints" type="int" arr1="Num Unknown" arr2="3" />
-		<add name="Unknown Floats" type="float" arr1="13" />
-		<add name="Data" type="link" />
-    </niblock>
-	<niblock name="bhkNiTriStripsShape">
-		<add name="Unknown Int 11" type="int" />
-		<add name="Unknown Float 11" type="float" />
-		<add name="Unknown Float 12" type="float" />
-		<add name="Unknown Int 21" type="int" />
-		<add name="Unknown Int 22" type="int" />
-		<add name="Unknown Int 23" type="int" />
-		<add name="Unknown Int 24" type="int" />
-		<add name="Unknown Int 25" type="int" />
-		<add name="Unknown Float 21" type="float" />
-		<add name="Unknown Float 22" type="float" />
-		<add name="Unknown Float 23" type="float" />
-		<add name="Unknown Int 31" type="int" />
-		<add name="Num Data" type="int" />
-		<add name="Data" type="link" arr1="Num Data"/>
-		<add name="Num Unknown" type="int" />
-		<add name="Unknown Int 35" type="int" arr1="Num Unknown"/>
+	<niblock name="bhkCapsuleShape">
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int 1" type="int" />
+		<add name="Radius" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Float 3" type="float" />
+		<add name="Unknown Vector 1" type="vector3" />
+		<add name="Unknown Float 4" type="float" />
+		<add name="Unknown Vector 2" type="vector3" />
+		<add name="Unknown Float 5" type="float" />
 	</niblock>
-    <niblock name="bhkRagdollConstraint">
-            <add name="count" type="int" />
-            <add name="bodies" type="uplink" arr1="count" />
-            <add name="bytes" type="byte" arr1="124" />
-    </niblock>
-    <niblock name="bhkLimitedHingeConstraint">
-            <add name="count" type="int" />
-            <add name="bodies" type="uplink" arr1="count" />
-            <add name="bytes" type="byte" arr1="128" />
-    </niblock>
-    <niblock name="bhkMalleableConstraint">
-            <add name="count" type="int" />
-            <add name="bodies" type="uplink" arr1="count" />
-            <add name="int" type="int" />
-            <add name="type" type="int" />
-            <add name="int" type="int" />
-            <add name="link" type="link" />
-            <add name="link" type="link" />
-            <add name="int" type="int" />
-            <add name="bytes" type="byte" arr1="132" cond="type == 2" />
-            <add name="bytes" type="byte" arr1="128" cond="type == 7" />
-    </niblock>
-    <compound name="hktriangle">
-		<add name="Triangle" type="triangle" /> 
-		<add name="Unknown Short" type="short" /> 
-		<add name="Normal" type="vector3" /> 
-	</compound>
-    <niblock name="hkPackedNiTriStripsData">
-		<inherit name="AData" /> 
-		<add name="Num Triangles" type="int" /> 
-		<add name="Triangles?" type="hktriangle" arr1="Num Triangles" /> 
-		<add name="Num Vertices" type="int" /> 
-		<add name="Vertices?" type="vector3" arr1="Num Vertices" /> 
+	<niblock name="bhkCollisionObject">
+		<inherit name="ACollisionObject"/>
+	</niblock>
+	<niblock name="bhkConvexTransformShape">
+		<inherit name="AbhkTransformShape"/>
 	</niblock>
 	<niblock name="bhkConvexVerticesShape">
-		<add name="Unknown Int" type="int"/>
-		<add name="Unknown Floats" type="float" arr1="7"/>
-		<add name="Count 1" type="int"/>
-		<add name="Unknown Floats" type="float" arr1="Count 1" arr2="4"/>
-		<add name="Count 2" type="int"/>
-		<add name="Unknown Floats" type="float" arr1="Count 2" arr2="4"/>
-	</niblock>
-	<niblock name="bhkMoppBvTreeShape">
-		<add name="Shape" type="link"/>
-		<add name="Unknown Int (zero)" type="int"/>
-		<add name="Unknown Bytes 2" type="byte" arr1="8"/>
-		<add name="Unknown Float" type="float"/>
-		<add name="Num Bytes" type="int"/>
-		<add name="Unknown Bytes" type="byte" arr1="Num Bytes"/>
-		<add name="Unknown Floats??" type="float" arr1="4"/>
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Floats 1" type="float" arr1="7" />
+		<add name="Num 1" type="int" />
+		<add name="Unknown Floats 2" type="float" arr1="Num 1" arr2="4" />
+		<add name="Num 2" type="int" />
+		<add name="Unkown Floats 3" type="float" arr1="Num 2" arr2="4" />
 	</niblock>
 	<niblock name="bhkHingeConstraint">
-        <add name="count" type="int" />
-        <add name="bodies" type="uplink" arr1="count" />
-        <add name="bytes" type="byte" arr1="84" />
+		<inherit name="AbhkConstraint"/>
+		<add name="Unknown Floats" type="float" arr1="5" arr2="4" />
 	</niblock>
-	<niblock name="bhkPrismaticConstraint">
-        <add name="count" type="int" />
-        <add name="bodies" type="uplink" arr1="count" />
-        <add name="bytes" type="byte" arr1="144" />
+	<niblock name="bhkLimitedHingeConstraint">
+		<inherit name="AbhkRagdollConstraint"/>
+		<add name="Unknown Int" type="int" />
 	</niblock>
-	<niblock name="bhkStiffSpringConstraint">
-        <add name="count" type="int" />
-        <add name="bodies" type="uplink" arr1="count" />
-		<add name="int" type="int" />
-		<add name="floats" type="float" arr1="9" />
+	<niblock name="bhkListShape">
+		<inherit name="AbhkShape"/>
+		<add name="Sub Shapes" type="linkgroup" />
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Floats" type="float" arr1="6" />
+		<add name="Num Unknown Ints" type="int" />
+		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" />
 	</niblock>
-	<niblock name="bhkSimpleShapePhantom">
+	<niblock name="bhkMalleableConstraint">
+		<inherit name="AbhkConstraint"/>
+		<add name="Type" type="int" />
+		<add name="Unknown Int 2" type="int" />
+		<add name="Unknown Link 1" type="link" />
+		<add name="Unknown Link 2" type="link" />
+		<add name="Unknown Int 3" type="int" />
+		<add name="Unknown Floats 1" type="float" arr1="3" />
+		<add name="Unknown Floats" type="float" arr1="7" arr2="4" />
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" cond="Type == 2" />
+	</niblock>
+	<niblock name="bhkMoppBvTreeShape">
+		<inherit name="AbhkShape"/>
 		<add name="Shape" type="link" />
 		<add name="Unknown Int" type="int" />
-		<add name="Unknown Floats" type="float" arr1="23" />
+		<add name="Unknown Bytes 1" type="byte" arr1="8" />
+		<add name="Unknown Float" type="float" />
+		<add name="Num Unknown Bytes 2" type="int" />
+		<add name="Unknown Bytes 2" type="byte" arr1="Num Unknown Bytes 2" />
+		<add name="Unknown Floats" type="float" arr1="4" />
 	</niblock>
 	<niblock name="bhkMultiSphereShape">
-		<add name="Unknown Int 1" type="int" />
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int" type="int" />
 		<add name="Unknown Float 1" type="float" />
 		<add name="Unknown Float 2" type="float" />
 		<add name="Unknown Float 3" type="float" />
 		<add name="Unknown Int 2" type="int" />
 		<add name="Unknown Floats" type="float" arr1="8" />
 	</niblock>
+	<niblock name="bhkNiTriStripsShape">
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Floats 1" type="float" arr1="2" />
+		<add name="Unknown Ints 1" type="int" arr1="5" />
+		<add name="Unknown Floats 2" type="float" arr1="3" />
+		<add name="Unknown Int 2" type="int" />
+		<add name="Strips" type="linkgroup" />
+		<add name="Num Unknown Ints 3" type="int" />
+		<add name="Unknown Ints 3" type="int" arr1="Num Unknown Ints 3" />
+	</niblock>
+	<niblock name="bhkPackedNiTriStripsShape">
+		<inherit name="AbhkShape"/>
+		<add name="Num Unknown Ints" type="short" />
+		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" arr2="3" />
+		<add name="Unknown Floats" type="float" arr1="13" />
+		<add name="Data" type="link" />
+	</niblock>
+	<niblock name="bhkPrismaticConstraint">
+		<inherit name="AbhkConstraint"/>
+		<add name="Unknown Floats" type="float" arr1="8" arr2="4" />
+		<add name="Unknown Floats 2" type="float" arr1="3" />
+	</niblock>
+	<niblock name="bhkRagdollConstraint">
+		<inherit name="AbhkRagdollConstraint"/>
+	</niblock>
+	<niblock name="bhkRigidBody">
+		<inherit name="AbhkRigidBody"/>
+	</niblock>
+	<niblock name="bhkRigidBodyT">
+		<inherit name="AbhkRigidBody"/>
+	</niblock>
+	<niblock name="bhkSimpleShapePhantom">
+		<inherit name="AbhkShape"/>
+		<add name="Shape" type="link" />
+		<add name="Unknown Int 1" type="int" />
+		<add name="Unkown Floats" type="float" arr1="7" />
+		<add name="Unknown Floats 2" type="float" arr1="3" arr2="5" />
+		<add name="Unknown Float" type="float" />
+	</niblock>
 	<niblock name="bhkSPCollisionObject">
 		<inherit name="ACollisionObject"/>
 	</niblock>
-	<niblock name="NiControllerManager">
-      <inherit name="AController" />
-      <add name="Unknown Byte" type="byte" />
-      <add name="Num Unknown Links" type="int" />
-      <add name="Controller Sequence" type="link" />
-      <add name="Unknown Links" type="link" arr1="Num Unknown Links" />
+	<niblock name="bhkSphereShape">
+		<inherit name="AbhkShape"/>
+		<add name="Unknown Int" type="int" />
+		<add name="Unknown Float" type="float" />
 	</niblock>
-	<compound name="avobject">
+	<niblock name="bhkStiffSpringConstraint">
+		<inherit name="AbhkConstraint"/>
+		<add name="Unknown Floats" type="float" arr1="2" arr2="4" />
+		<add name="Unknown Float" type="float" />
+	</niblock>
+	<niblock name="bhkTransformShape">
+		<inherit name="AbhkTransformShape"/>
+	</niblock>
+	<niblock name="BSBound">
+		<inherit name="AData"/>
 		<add name="Name" type="string" />
-		<add name="Object" type="crossref" />
-	</compound>
-	<niblock name="NiDefaultAVObjectPalette">
-		<add name="Unknown Int" type="int" />
-		<add name="Num Objects" type="int" />
-		<add name="Objects" type="avobject" arr1="Num Objects" />
+		<add name="Unknown Floats" type="float" arr1="6" />
 	</niblock>
-	<ancestor name="ABlendInterpolator">
-		<inherit name="AInterpolator" />
-		<add name="Unknown Short" type="short" />
-		<add name="Unknown Int" type="int" />
-	</ancestor>
-	<niblock name="NiBlendPoint3Interpolator">
-		<inherit name="ABlendInterpolator"/>
-		<add name="Point" type="vector3" />
+	<niblock name="BSFurnitureMarker">
+		<inherit name="AData"/>
+		<add name="Name" type="string" ver2="335544325" />
+		<add name="Num Positions" type="int" />
+		<add name="Positions" type="furniture position" arr1="Num Positions" />
 	</niblock>
-	<niblock name="NiBlendBoolInterpolator">
-		<inherit name="ABlendInterpolator"/>
-		<add name="Bool" type="byte" />
+	<niblock name="BSKeyframeController">
+		<inherit name="AKeyframeController"/>
+		<add name="Data 2" type="link" />
 	</niblock>
-	<niblock name="NiBlendFloatInterpolator">
-		<inherit name="ABlendInterpolator"/>
-		<add name="Float" type="float" />
+	<niblock name="BSParentVelocityModifier">
+		<inherit name="APSysModifier"/>
+		<add name="Unknown Float" type="float" />
 	</niblock>
-	<niblock name="NiBlendTransformInterpolator">
-		<inherit name="ABlendInterpolator"/>
+	<niblock name="BSPSysArrayEmitter">
+		<inherit name="APSysVolumeEmitter"/>
 	</niblock>
-	<niblock name="NiPSysEmitterDeclinationCtlr">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link" />
-		<add name="Unknown String" type="string" />
-	</niblock>
-    <!-- End Experimental Oblivion Block tests !-->
-
-	<niblock name="AvoidNode">
-		<inherit name="AParentNode"/>
+	<niblock name="BSXFlags">
+		<inherit name="AData"/>
+		<add name="Name" type="string" />
+		<add name="Flags" type="int" />
 	</niblock>
 	<niblock name="FxButton">
 		<inherit name="AFx"/>
@@ -846,6 +814,13 @@
 	</niblock>
 	<niblock name="FxWidget">
 		<inherit name="AFx"/>
+	</niblock>
+	<niblock name="hkPackedNiTriStripsData">
+		<inherit name="AbhkShape"/>
+		<add name="Num Triangles" type="int" />
+		<add name="Triangles?" type="hktriangle" arr1="Num Triangles" />
+		<add name="Num Vertices" type="int" />
+		<add name="Vertices?" type="vector3" arr1="Num Vertices" />
 	</niblock>
 	<niblock name="NiAlphaController">
 		<inherit name="ASingleInterpolatorController"/>
@@ -874,12 +849,23 @@
 		<add name="Num Bytes" type="int" />
 		<add name="Bytes" type="byte" arr1="Num Bytes" />
 	</niblock>
+	<niblock name="NiBlendBoolInterpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Bool" type="byte" />
+	</niblock>
+	<niblock name="NiBlendFloatInterpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Float" type="float" />
+	</niblock>
+	<niblock name="NiBlendPoint3Interpolator">
+		<inherit name="ABlendInterpolator"/>
+		<add name="Point" type="vector3" />
+	</niblock>
+	<niblock name="NiBlendTransformInterpolator">
+		<inherit name="ABlendInterpolator"/>
+	</niblock>
 	<niblock name="NiBoneLODController">
-		<inherit name="AController"/>
-		<add name="Unknown Int 1" type="int" />
-		<add name="Num Node Groups" type="int" />
-		<add name="Unknown Int 2" type="int" />
-		<add name="Node Groups" type="linkgroup" arr1="Num Node Groups" />
+		<inherit name="ABoneLODController"/>
 		<add name="Num Shape Groups" type="int" />
 		<add name="Shape Groups 1" type="skinshapegroup" arr1="Num Shape Groups" />
 		<add name="Shape Groups 2" type="linkgroup" />
@@ -897,13 +883,16 @@
 		<add name="Bool Value" type="bool" />
 		<add name="Data" type="link" />
 	</niblock>
-		<niblock name="NiBoolTimelineInterpolator">
+	<niblock name="NiBoolTimelineInterpolator">
 		<inherit name="AInterpolator"/>
-		<add name="Bool" type="bool"/>
+		<add name="Bool" type="byte" />
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiBSAnimationNode">
 		<inherit name="AParentNode"/>
+	</niblock>
+	<niblock name="NiBSBoneLODController">
+		<inherit name="ABoneLODController"/>
 	</niblock>
 	<niblock name="NiBSPArrayController">
 		<inherit name="AParticleSystemController"/>
@@ -978,25 +967,34 @@
 		<inherit name="AExtraData"/>
 		<add name="Data" type="color4" />
 	</niblock>
+	<niblock name="NiControllerManager">
+		<inherit name="AController"/>
+		<add name="Unknown Byte" type="bool" />
+		<add name="Controller Sequences" type="linkgroup" />
+		<add name="Object Palette" type="link" />
+	</niblock>
 	<niblock name="NiControllerSequence">
 		<inherit name="AData"/>
 		<add name="Name" type="string" />
 		<add name="Text Keys" type="controllerlink" ver2="167837696" />
 		<add name="Num Controlled Blocks" type="int" />
-		<add name="Unknown Int 1" type="int" ver1="10.1.0.106" />
+		<add name="Unknown Int 1" type="int" ver1="167837802" />
 		<add name="Controlled Blocks" type="controllerlink" arr1="Num Controlled Blocks" />
-		<add name="Unknown Float 1" type="float" ver1="10.1.0.106" />
-		<add name="Text Keys 2" type="link" ver1="10.1.0.106" />
-		<add name="Unknown Int 0" type="int" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Float 3" type="float" ver1="10.1.0.106" />
-		<add name="Unknown Float 4" type="float" ver1="10.1.0.106" />
-		<add name="Start Time" type="float" ver1="10.1.0.106" />
-		<add name="Stop Time" type="float" ver1="10.1.0.106" />
+		<add name="Unknown Float 1" type="float" ver1="167837802" />
+		<add name="Text Keys 2" type="link" ver1="167837802" />
+		<add name="Unknown Int 0" type="int" ver1="167837802" ver2="167837802" />
+		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="167837802" />
 		<add name="Unkown Float 2" type="float" ver1="167903232" ver2="167903232" />
-		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106" />
-		<add name="Unknown Int 2" type="int" ver1="10.1.0.106" />
-		<add name="Unknown String" type="string" ver1="10.1.0.106" />
+		<add name="Unknown Byte" type="byte" ver1="167837802" ver2="167837802" />
+		<add name="Unknown Int 3" type="int" ver1="167837802" />
+		<add name="Unknown String" type="string" ver1="167837802" />
 		<add name="String Palette" type="link" ver1="167903232" />
+	</niblock>
+	<niblock name="NiDefaultAVObjectPalette">
+		<inherit name="AData"/>
+		<add name="Unknown Int" type="int" />
+		<add name="Num Objects" type="int" />
+		<add name="Objects" type="avobject" arr1="Num Objects" />
 	</niblock>
 	<niblock name="NiDirectionalLight">
 		<inherit name="ALight"/>
@@ -1008,8 +1006,8 @@
 	<niblock name="NiFlipController">
 		<inherit name="ASingleInterpolatorController"/>
 		<add name="Texture Slot" type="int" />
-		<add name="Unknown Int 2" type="int" ver2="10.1.0.0" />
-		<add name="Delta" type="float" ver2="10.1.0.0" />
+		<add name="Unknown Int 2" type="int" ver2="167837696" />
+		<add name="Delta" type="float" ver2="167837696" />
 		<add name="Sources" type="linkgroup" />
 	</niblock>
 	<niblock name="NiFloatData">
@@ -1044,12 +1042,12 @@
 	<niblock name="NiGeomMorpherController">
 		<inherit name="AController"/>
 		<add name="Unknown" type="short" ver1="167837696" />
-		<add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown 2" type="byte" ver1="167837802" ver2="167837802" />
 		<add name="Data" type="link" />
 		<add name="Unknown Byte" type="byte" />
-		<add name="Interpolators" type="linkgroup" ver1="10.1.0.106" />
-		<add name="Num Unknown Ints" type="int" ver1="10.2.0.0" />
-		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="10.2.0.0" />
+		<add name="Interpolators" type="linkgroup" ver1="167837802" />
+		<add name="Num Unknown Ints" type="int" ver1="167903232" />
+		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="167903232" />
 	</niblock>
 	<niblock name="NiGravity">
 		<inherit name="AParticleModifier"/>
@@ -1069,8 +1067,7 @@
 		<add name="Data" type="int" arr1="Num Integers" />
 	</niblock>
 	<niblock name="NiKeyframeController">
-		<inherit name="AController"/>
-		<add name="Data" type="link" />
+		<inherit name="AKeyframeController"/>
 	</niblock>
 	<niblock name="NiKeyframeData">
 		<inherit name="AKeyframeData"/>
@@ -1115,7 +1112,7 @@
 	</niblock>
 	<niblock name="NiMaterialProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="10.0.1.2" />
+		<add name="Flags" type="flags" ver2="167772418" />
 		<add name="Ambient Color" type="color3" />
 		<add name="Diffuse Color" type="color3" />
 		<add name="Specular Color" type="color3" />
@@ -1129,19 +1126,19 @@
 	</niblock>
 	<niblock name="NiMeshPSysData">
 		<inherit name="APSysData"/>
-		<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5" />
-		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="20.0.0.4" />
-		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4" />
-		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5" />
+		<add name="Unknown Byte 11" type="byte" ver1="335544325" />
+		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="335544324" />
+		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="335544324" />
+		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="335544325" />
 		<add name="Unknown Int 1" type="int" />
-		<add name="Unknown Short 4" type="short" ver1="20.0.0.5" />
-		<add name="Unknown Int 2" type="int" ver1="20.0.0.5" />
-		<add name="Unknown Byte 12" type="byte" ver1="20.0.0.5" />
-		<add name="Unknown Int 3" type="int" ver1="20.0.0.5" />
-		<add name="Unknown Int 4" type="int" ver1="20.0.0.5" />
-		<add name="Modifier" type="link"  ver2="20.0.0.4" />
-		<add name="Unknown Byte 2" type="byte" ver1="167903232" ver2="20.0.0.4" />
-		<add name="Unknown Link Group" type="linkgroup" ver1="167903232" ver2="20.0.0.4" />
+		<add name="Modifier" type="link" ver2="335544324" />
+		<add name="Unknown Byte 2" type="byte" ver1="167903232" ver2="335544324" />
+		<add name="Unknown Link Group" type="linkgroup" ver1="167903232" ver2="335544324" />
+		<add name="Unknown Short 4" type="short" ver1="335544325" />
+		<add name="Unknown Int 2" type="int" ver1="335544325" />
+		<add name="Unknown Byte 12" type="byte" ver1="335544325" />
+		<add name="Unknown Int 3" type="int" ver1="335544325" />
+		<add name="Unknown Int 4" type="int" ver1="335544325" />
 		<add name="Unknown Link 2" type="link" ver1="167903232" />
 	</niblock>
 	<niblock name="NiMorphData">
@@ -1231,8 +1228,12 @@
 		<add name="Float Data" type="link" />
 	</niblock>
 	<niblock name="NiPathInterpolator">
-		<inherit name="AInterpolator"/>
-		<add name="Bytes" type="byte" arr1="24"/>
+		<inherit name="ABlendInterpolator"/>
+		<add name="Unknown Float 1" type="float" />
+		<add name="Unknown Float 2" type="float" />
+		<add name="Unknown Short 2" type="short" />
+		<add name="Pos Data" type="link" />
+		<add name="Float Data" type="link" />
 	</niblock>
 	<niblock name="NiPixelData">
 		<inherit name="AData"/>
@@ -1289,6 +1290,13 @@
 		<add name="Spawn on Death" type="bool" />
 		<add name="Spawn Modifier" type="link" />
 	</niblock>
+	<niblock name="NiPSysBombModifier">
+		<inherit name="APSysModifier"/>
+		<add name="Unknown Link" type="crossref" />
+		<add name="Unknown Ints 1" type="int" arr1="2" />
+		<add name="Unknown Floats" type="float" arr1="3" />
+		<add name="Unknown Ints 2" type="int" arr1="2" />
+	</niblock>
 	<niblock name="NiPSysBoundUpdateModifier">
 		<inherit name="APSysModifier"/>
 		<add name="Update Skip" type="short" />
@@ -1312,29 +1320,6 @@
 		<add name="Radius" type="float" />
 		<add name="Height" type="float" />
 	</niblock>
-	<niblock name="NiPSysModifierActiveCtlr">
-		<inherit name="ASingleInterpolatorController"/>
-		<add name="Unknown String" type="string" />
-	</niblock>
-	<niblock name="NiPSysDragModifier">
-		<inherit name="APSysModifier"/>
-		<add name="Parent" type="parent"/>
-		<add name="Unkown Float 1" type="float"/>
-		<add name="Unkown Float 2" type="float"/>
-		<add name="Unkown Float 3" type="float"/>
-		<add name="Unkown Float 4" type="float"/>
-		<add name="Unkown Float 5" type="float"/>
-		<add name="Unkown Float 6" type="float"/>
-	</niblock>
-	<niblock name="NiPSysBombModifier">
-		<inherit name="APSysModifier"/>
-		<add name="Unknown" type="byte" arr1="12"/>
-		<add name="Unkown Float 1" type="float"/>
-		<add name="Unkown Float 2" type="float"/>
-		<add name="Unkown Float 3" type="float"/>
-		<add name="Unkown Int 1" type="int"/>
-		<add name="Unkown Int 2" type="int"/>
-	</niblock>
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="167903232" />
@@ -1346,10 +1331,13 @@
 		<add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="335544324" />
 		<add name="Unknown Int 1" type="int" />
 	</niblock>
+	<niblock name="NiPSysDragModifier">
+		<inherit name="APSysModifier"/>
+		<add name="Parent" type="parent" />
+		<add name="Unknown Floats" type="float" arr1="6" />
+	</niblock>
 	<niblock name="NiPSysEmitterCtlr">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link" ver1="167903232" />
-		<add name="Unknown String" type="string" />
+		<inherit name="APSysCtlr"/>
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiPSysEmitterCtlrData">
@@ -1357,27 +1345,20 @@
 		<add name="Float Keys?" type="ns keyvecarray" template="float" />
 		<add name="Visibility Keys?" type="ns keyarray" template="byte" />
 	</niblock>
+	<niblock name="NiPSysEmitterDeclinationCtlr">
+		<inherit name="APSysCtlr"/>
+	</niblock>
 	<niblock name="NiPSysEmitterDeclinationVarCtlr">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link" />
-		<add name="Unknown String" type="string" />
-	</niblock>
-	<niblock name="NiPSysEmitterSpeedCtlr">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link"/>
-		<add name="Unknown String" type="string"/>
-	</niblock>
-	<niblock name="NiPSysMeshEmitter">	
-		<inherit name="APSysEmitter"/>
-		<add name="Unknown Link Group" type="linkgroup"/>
-		<add name="Unknown Ints" type="int" arr1="2"/>
-		<add name="Unknown Float" type="float"/>
-		<add name="Unknown Ints 2" type="int" arr1="2"/>
+		<inherit name="APSysCtlr"/>
 	</niblock>
 	<niblock name="NiPSysEmitterInitialRadiusCtlr">
-		<inherit name="AController"/>
-		<add name="Interpolator" type="link" />
-		<add name="Unknown String" type="string" />
+		<inherit name="APSysCtlr"/>
+	</niblock>
+	<niblock name="NiPSysEmitterLifeSpanCtlr">
+		<inherit name="APSysCtlr"/>
+	</niblock>
+	<niblock name="NiPSysEmitterSpeedCtlr">
+		<inherit name="APSysCtlr"/>
 	</niblock>
 	<niblock name="NiPSysGravityModifier">
 		<inherit name="APSysModifier"/>
@@ -1390,14 +1371,7 @@
 		<add name="Force Type" type="float" />
 	</niblock>
 	<niblock name="NiPSysGravityStrengthCtlr">
-		<inherit name="AController"/>
-		<add name="Link?" type="link"/>
-		<add name="Unknown String" type="string"/>
-	</niblock>
-	<niblock name="NiPSysEmitterLifeSpanCtlr">
-		<inherit name="AController"/>
-		<add name="Unknowns" type="byte" arr1="4"/>
-		<add name="Some String" type="string"/>
+		<inherit name="APSysCtlr"/>
 	</niblock>
 	<niblock name="NiPSysGrowFadeModifier">
 		<inherit name="APSysModifier"/>
@@ -1406,9 +1380,19 @@
 		<add name="Fade Time" type="float" />
 		<add name="Fade Generation" type="short" />
 	</niblock>
+	<niblock name="NiPSysMeshEmitter">
+		<inherit name="APSysEmitter"/>
+		<add name="Unknown Link Group" type="linkgroup" />
+		<add name="Unknown Ints 1" type="int" arr1="2" />
+		<add name="Unknown Float" type="float" />
+		<add name="Unknown Ints 2" type="int" arr1="2" />
+	</niblock>
 	<niblock name="NiPSysMeshUpdateModifier">
 		<inherit name="APSysModifier"/>
 		<add name="Meshes" type="linkgroup" />
+	</niblock>
+	<niblock name="NiPSysModifierActiveCtlr">
+		<inherit name="APSysCtlr"/>
 	</niblock>
 	<niblock name="NiPSysPlanarCollider">
 		<inherit name="AData"/>
@@ -1416,8 +1400,8 @@
 		<add name="Spawn on Collide" type="bool" />
 		<add name="Die on Collide" type="bool" />
 		<add name="Spawn Modifier" type="link" />
-		<add name="Manager" type="crossref" />
-		<add name="Next Collider?" type="link" />
+		<add name="Parent" type="parent" />
+		<add name="Unknown Link?" type="link" />
 		<add name="Collider Object" type="link" />
 		<add name="Width" type="float" />
 		<add name="Height" type="float" />
@@ -1454,9 +1438,6 @@
 	<niblock name="NiPSysSphereEmitter">
 		<inherit name="APSysVolumeEmitter"/>
 		<add name="Radius" type="float" />
-	</niblock>
-	<niblock name="BSPSysArrayEmitter">
-		<inherit name="APSysVolumeEmitter"/>
 	</niblock>
 	<niblock name="NiPSysUpdateCtlr">
 		<inherit name="AController"/>
@@ -1515,7 +1496,7 @@
 		<add name="Use Mipmaps" type="mipmapformat" />
 		<add name="Alpha Format" type="alphaformat" />
 		<add name="Unknown Byte" type="byte" />
-		<add name="Unknown Byte 2" type="byte" ver1="10.1.0.106" />
+		<add name="Unknown Byte 2" type="byte" ver1="167837802" />
 	</niblock>
 	<niblock name="NiSpecularProperty">
 		<inherit name="AProperty"/>
@@ -1537,7 +1518,7 @@
 	</niblock>
 	<niblock name="NiStencilProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="10.0.1.2" />
+		<add name="Flags" type="flags" ver2="167772418" />
 		<add name="Stencil Enabled" type="bool" />
 		<add name="Stencil Function" type="int" />
 		<add name="Stencil Ref" type="int" />
@@ -1591,7 +1572,7 @@
 	</niblock>
 	<niblock name="NiTexturingProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="10.0.1.2" />
+		<add name="Flags" type="flags" ver2="167772418" />
 		<add name="Apply Mode" type="applymode" />
 		<add name="Texture Count" type="int" />
 		<add name="Base Texture" type="texture" />
@@ -1615,7 +1596,7 @@
 		<add name="Translation" type="vector3" />
 		<add name="Rotation" type="quaternion" />
 		<add name="Scale" type="float" />
-		<add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Bytes" type="byte" arr1="3" ver1="167837802" ver2="167837802" />
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiTriShape">
@@ -1625,8 +1606,8 @@
 		<inherit name="AShapeData"/>
 		<add name="Num Triangles" type="short" />
 		<add name="Num Triangle Points" type="int" />
-		<add name="Has Triangles" type="bool" ver1="10.1.0.0" />
-		<add name="Triangles" type="triangle" arr1="Num Triangles" ver2="10.0.1.2" />
+		<add name="Has Triangles" type="bool" ver1="167837696" />
+		<add name="Triangles" type="triangle" arr1="Num Triangles" ver2="167772418" />
 		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="167837696" />
 		<add name="Num Match Groups" type="short" />
 		<add name="Match Groups" type="matchgroup" arr1="Num Match Groups" />
@@ -1640,7 +1621,7 @@
 		<add name="Num Strips" type="short" />
 		<add name="Strip Lengths" type="short" arr1="Num Strips" />
 		<add name="Has Points" type="bool" ver1="167837696" />
-		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2" />
+		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="167772418" />
 		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points != 0" ver1="167837696" />
 	</niblock>
 	<niblock name="NiUVController">
@@ -1689,7 +1670,6 @@
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
 	</niblock>
-
 
 </niflotoxml>
 
