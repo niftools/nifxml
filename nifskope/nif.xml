@@ -63,28 +63,28 @@
 		<add name="Unknown Int" type="int" cond="Is Used != 0" />
 	</compound>
 	<compound name="controllerlink">
-		<add name="Name" type="string" ver2="167837696" />
+		<add name="Name" type="string" ver2="10.1.0.0" />
 		<add name="Interpolator" type="link" />
-		<add name="Unknown Link 1" type="link" ver1="167837802" />
-		<add name="Unknown Link 2" type="link" ver1="167837802" ver2="167837802" />
-		<add name="Unknown Short 0" type="short" ver1="167837802" ver2="167837802" />
-		<add name="Unknown Byte" type="byte" ver1="167837802" />
-		<add name="String Palette" type="link" ver1="167903232" />
-		<add name="Node Name" type="string" ver1="167837802" ver2="167837802" />
-		<add name="Node Name Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 1" type="short" ver1="167903232" />
-		<add name="Property Type" type="string" ver1="167837802" ver2="167837802" />
-		<add name="Property Type Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 2" type="short" ver1="167903232" />
-		<add name="Controller Type" type="string" ver1="167837802" ver2="167837802" />
-		<add name="Controller Type Offset" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 3" type="short" ver1="167903232" />
-		<add name="Variable 1" type="string" ver1="167837802" ver2="167837802" />
-		<add name="Variable Offset 1" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 4" type="short" ver1="167903232" />
-		<add name="Variable 2" type="string" ver1="167837802" ver2="167837802" />
-		<add name="Variable Offset 2" type="stringoffset" ver1="167903232" />
-		<add name="Unknown Short 5" type="short" ver1="167903232" />
+		<add name="Unknown Link 1" type="link" ver1="10.1.0.106" />
+		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Short 0" type="short" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" />
+		<add name="String Palette" type="link" ver1="10.2.0.0" />
+		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Unknown Short 1" type="short" ver1="10.2.0.0" />
+		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Property Type Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Unknown Short 2" type="short" ver1="10.2.0.0" />
+		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Controller Type Offset" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Unknown Short 3" type="short" ver1="10.2.0.0" />
+		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Variable Offset 1" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Unknown Short 4" type="short" ver1="10.2.0.0" />
+		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0" />
+		<add name="Unknown Short 5" type="short" ver1="10.2.0.0" />
 	</compound>
 	<compound name="extratexturegroup">
 		<add name="Num Textures" type="int" />
@@ -102,18 +102,18 @@
 	<compound name="header">
 		<add name="Header String" type="headerstring" />
 		<add name="Version" type="fileversion" />
-		<add name="Unknown Byte" type="byte" ver1="335544324" />
-		<add name="Unknown Int 1" type="int" ver1="167837696" />
+		<add name="Unknown Byte" type="byte" ver1="20.0.0.4" />
+		<add name="Unknown Int 1" type="int" ver1="10.1.0.0" />
 		<add name="Num Blocks" type="int" />
-		<add name="Unknown Int 1" type="int" ver1="167772418" ver2="167772418" />
-		<add name="Unknown Int 3" type="int" cond="Unknown Int 1 != 0" ver1="167837696" />
-		<add name="Creator?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
-		<add name="Export Type?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
-		<add name="Export Script?" type="shortstring" cond="Unknown Int 1 != 0" ver1="167772418" />
-		<add name="Num Block Types" type="short" ver1="167772416" />
-		<add name="Block Types" type="string" arr1="Num Block Types" ver1="167772416" />
-		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="167772416" />
-		<add name="Unknown Int 2" type="int" ver1="167772416" />
+		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2" />
+		<add name="Unknown Int 3" type="int" cond="Unknown Int 1 != 0" ver1="10.1.0.0" />
+		<add name="Creator?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2" />
+		<add name="Export Type?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2" />
+		<add name="Export Script?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2" />
+		<add name="Num Block Types" type="short" ver1="10.0.1.0" />
+		<add name="Block Types" type="string" arr1="Num Block Types" ver1="10.0.1.0" />
+		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="10.0.1.0" />
+		<add name="Unknown Int 2" type="int" ver1="10.0.1.0" />
 	</compound>
 	<compound name="hktriangle">
 		<add name="Triangle" type="triangle" />
@@ -129,8 +129,8 @@
 		<add name="Keys" type="key" template="(TEMPLATE)" arr1="Num Keys" />
 	</compound>
 	<compound name="keyrot">
-		<add name="Time" type="float" ver2="167837696" />
-		<add name="Time" type="float" cond="(ARG) != 4" ver1="167903232" />
+		<add name="Time" type="float" ver2="10.1.0.0" />
+		<add name="Time" type="float" cond="(ARG) != 4" ver1="10.2.0.0" />
 		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4" />
 		<add name="TBC" type="tbc" cond="(ARG) == 3" />
 		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" cond="(ARG) == 4" />
@@ -193,9 +193,9 @@
 		<add name="Modifiers" type="linkgroup" />
 	</compound>
 	<compound name="morphblock">
-		<add name="Frame Name" type="string" ver1="167837802" />
-		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="167772418" />
-		<add name="Unknown Int" type="int" ver1="167837802" ver2="167837802" />
+		<add name="Frame Name" type="string" ver1="10.1.0.106" />
+		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2" />
+		<add name="Unknown Int" type="int" ver1="10.1.0.106" ver2="10.1.0.106" />
 		<add name="Vectors" type="vector3" arr1="(ARG)" />
 	</compound>
 	<compound name="ns keyarray">
@@ -215,7 +215,7 @@
 		<add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4" />
 	</compound>
 	<compound name="ns keyrotsub">
-		<add name="Time" type="float" ver2="167837696" />
+		<add name="Time" type="float" ver2="10.1.0.0" />
 		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" />
 	</compound>
 	<compound name="ns keytan">
@@ -278,16 +278,16 @@
 		<add name="Num Strips" type="short" />
 		<add name="Num Weights Per Vertex" type="short" />
 		<add name="Bones" type="short" arr1="Num Bones" />
-		<add name="Has Vertex Map" type="bool" ver1="167837696" />
-		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="167772418" />
-		<add name="Vertex Map" type="short" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="167837696" />
-		<add name="Has Vertex Weights" type="bool" ver1="167837696" />
-		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="167772418" />
-		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="167837696" />
+		<add name="Has Vertex Map" type="bool" ver1="10.1.0.0" />
+		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="10.0.1.2" />
+		<add name="Vertex Map" type="short" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="10.1.0.0" />
+		<add name="Has Vertex Weights" type="bool" ver1="10.1.0.0" />
+		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2" />
+		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="10.1.0.0" />
 		<add name="Strip Lengths" type="short" arr1="Num Strips" />
-		<add name="Has Strips" type="bool" ver1="167837696" />
-		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="167772418" />
-		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="167837696" />
+		<add name="Has Strips" type="bool" ver1="10.1.0.0" />
+		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2" />
+		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="10.1.0.0" />
 		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Num Strips == 0" />
 		<add name="Has Bone Indices" type="bool" />
 		<add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0" />
@@ -309,22 +309,22 @@
 		<add name="Clamp Mode" type="int" />
 		<add name="Filter Mode" type="int" />
 		<add name="Texture Set" type="int" />
-		<add name="PS2 L" type="short" ver2="167903232" />
-		<add name="PS2 K" type="short" ver2="167903232" />
-		<add name="Unknown1" type="short" ver2="67174412" />
-		<add name="Has Texture Transform" type="bool" ver1="167837696" />
-		<add name="Translation" type="texcoord" cond="Has Texture Transform != 0" ver1="167837696" />
-		<add name="Tiling" type="texcoord" cond="Has Texture Transform != 0" ver1="167837696" />
-		<add name="W Rotation" type="float" cond="Has Texture Transform != 0" ver1="167837696" />
-		<add name="Transform Type?" type="int" cond="Has Texture Transform != 0" ver1="167837696" />
-		<add name="Center Offset" type="texcoord" cond="Has Texture Transform != 0" ver1="167837696" />
+		<add name="PS2 L" type="short" ver2="10.2.0.0" />
+		<add name="PS2 K" type="short" ver2="10.2.0.0" />
+		<add name="Unknown1" type="short" ver2="4.1.0.12" />
+		<add name="Has Texture Transform" type="bool" ver1="10.1.0.0" />
+		<add name="Translation" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0" />
+		<add name="Tiling" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0" />
+		<add name="W Rotation" type="float" cond="Has Texture Transform != 0" ver1="10.1.0.0" />
+		<add name="Transform Type?" type="int" cond="Has Texture Transform != 0" ver1="10.1.0.0" />
+		<add name="Center Offset" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0" />
 	</compound>
 	<compound name="texsource">
 		<add name="Use External" type="byte" />
 		<add name="File Name" type="filepath" cond="Use External == 1" />
-		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="167837696" />
-		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="167772416" />
-		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="167837696" />
+		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="10.1.0.0" />
+		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0" />
+		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="10.1.0.0" />
 		<add name="Pixel Data" type="link" cond="Use External == 0" />
 	</compound>
 	<compound name="texture">
@@ -341,8 +341,8 @@
 	</compound>
 	<ancestor name="AControllable">
 		<add name="Name" type="string" />
-		<add name="Extra Data" type="link" ver2="67240448" />
-		<add name="Extra Data List" type="linkgroup" ver1="167772416" />
+		<add name="Extra Data" type="link" ver2="4.2.2.0" />
+		<add name="Extra Data List" type="linkgroup" ver1="10.0.1.0" />
 		<add name="Controller" type="link" />
 	</ancestor>
 	<ancestor name="AController">
@@ -428,8 +428,8 @@
 	</ancestor>
 	<ancestor name="AExtraData">
 		<inherit name="AData"/>
-		<add name="Name" type="string" ver1="167772416" />
-		<add name="Next Extra Data" type="link" ver2="67240448" />
+		<add name="Name" type="string" ver1="10.0.1.0" />
+		<add name="Next Extra Data" type="link" ver2="4.2.2.0" />
 	</ancestor>
 	<ancestor name="AInterpolator">
 	</ancestor>
@@ -457,16 +457,16 @@
 		<add name="Translation" type="vector3" />
 		<add name="Rotation" type="matrix33" />
 		<add name="Scale" type="float" />
-		<add name="Velocity" type="vector3" ver2="67240448" />
+		<add name="Velocity" type="vector3" ver2="4.2.2.0" />
 		<add name="Properties" type="linkgroup" />
-		<add name="Bounding Box" type="bbox" ver2="67240448" />
-		<add name="Collision Data" type="link" ver1="167772416" />
+		<add name="Bounding Box" type="bbox" ver2="4.2.2.0" />
+		<add name="Collision Data" type="link" ver1="10.0.1.0" />
 	</ancestor>
 	<ancestor name="ADynamicEffect">
 		<inherit name="ANode"/>
-		<add name="Affected Node List?" type="condint" ver2="67108866" />
-		<add name="Switch State" type="bool" ver1="167903232" />
-		<add name="Affected Nodes" type="linkgroup" ver1="167837696" />
+		<add name="Affected Node List?" type="condint" ver2="4.0.0.2" />
+		<add name="Switch State" type="bool" ver1="10.2.0.0" />
+		<add name="Affected Nodes" type="linkgroup" ver1="10.1.0.0" />
 	</ancestor>
 	<ancestor name="ALight">
 		<inherit name="ADynamicEffect"/>
@@ -556,47 +556,47 @@
 	</ancestor>
 	<ancestor name="APSysVolumeEmitter">
 		<inherit name="APSysEmitter"/>
-		<add name="Emitter Object" type="emitterobject" ver1="335544324" />
+		<add name="Emitter Object" type="emitterobject" ver1="20.0.0.4" />
 	</ancestor>
 	<ancestor name="AShape">
 		<inherit name="ANode"/>
 		<add name="Data" type="link" />
 		<add name="Skin Instance" type="link" />
-		<add name="Shader" type="shader" ver1="167772416" />
+		<add name="Shader" type="shader" ver1="10.0.1.0" />
 	</ancestor>
 	<ancestor name="AParticleNode">
 		<inherit name="AShape"/>
 	</ancestor>
 	<ancestor name="AShapeData">
 		<inherit name="AData"/>
-		<add name="Name" type="string" ver1="167903232" />
+		<add name="Name" type="string" ver1="10.2.0.0" />
 		<add name="Num Vertices" type="short" />
-		<add name="Unknown Short 1" type="short" ver1="167837696" />
+		<add name="Unknown Short 1" type="short" ver1="10.1.0.0" />
 		<add name="Has Vertices" type="bool" />
 		<add name="Vertices" type="vector3" arr1="Num Vertices" cond="Has Vertices != 0" />
-		<add name="Num UV Sets 2" type="byte" ver1="167772416" />
-		<add name="Unknown Byte" type="byte" ver1="167772416" />
+		<add name="Num UV Sets 2" type="byte" ver1="10.0.1.0" />
+		<add name="Unknown Byte" type="byte" ver1="10.0.1.0" />
 		<add name="Has Normals" type="bool" />
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0" />
-		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="167837696" />
-		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="167837696" />
+		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0" />
+		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0" />
 		<add name="Center" type="vector3" />
 		<add name="Radius" type="float" />
 		<add name="Has Vertex Colors" type="bool" />
 		<add name="Vertex Colors" type="color4" arr1="Num Vertices" cond="Has Vertex Colors != 0" />
-		<add name="Num UV Sets" type="short" ver2="67240448" />
-		<add name="Has UV" type="bool" ver2="67108866" />
-		<add name="UV Sets" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="67240448" />
-		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="167772416" />
-		<add name="Unknown Short 2" type="short" ver1="167772416" />
-		<add name="Unknown Link" type="link" ver1="335544324" />
+		<add name="Num UV Sets" type="short" ver2="4.2.2.0" />
+		<add name="Has UV" type="bool" ver2="4.0.0.2" />
+		<add name="UV Sets" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0" />
+		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0" />
+		<add name="Unknown Short 2" type="short" ver1="10.0.1.0" />
+		<add name="Unknown Link" type="link" ver1="20.0.0.4" />
 	</ancestor>
 	<ancestor name="AParticlesData">
 		<inherit name="AShapeData"/>
-		<add name="Num Particles" type="short" ver2="67108866" />
-		<add name="Size" type="float" ver2="167772416" />
-		<add name="Num Active" type="short" ver2="67108866" />
-		<add name="Unknown Short" type="short" ver1="67174412" ver2="167772416" />
+		<add name="Num Particles" type="short" ver2="4.0.0.2" />
+		<add name="Size" type="float" ver2="10.0.1.0" />
+		<add name="Num Active" type="short" ver2="4.0.0.2" />
+		<add name="Unknown Short" type="short" ver1="4.1.0.12" ver2="10.0.1.0" />
 		<add name="Has Sizes" type="bool" />
 		<add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes != 0" />
 	</ancestor>
@@ -611,15 +611,15 @@
 	</ancestor>
 	<ancestor name="ARotatingParticlesData">
 		<inherit name="AParticlesData"/>
-		<add name="Num Active" type="short" ver1="167837696" />
-		<add name="Has Unknown Floats" type="bool" ver1="167837696" />
-		<add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="167837696" />
+		<add name="Num Active" type="short" ver1="10.1.0.0" />
+		<add name="Has Unknown Floats" type="bool" ver1="10.1.0.0" />
+		<add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="10.1.0.0" />
 		<add name="Has Rotations" type="bool" />
 		<add name="Rotations" type="quaternion" arr1="Num Vertices" cond="Has Rotations != 0" />
 	</ancestor>
 	<ancestor name="ASingleInterpolatorController">
 		<inherit name="AController"/>
-		<add name="Interpolator" type="link" ver1="167903232" />
+		<add name="Interpolator" type="link" ver1="10.2.0.0" />
 	</ancestor>
 	<ancestor name="APSysCtlr">
 		<inherit name="ASingleInterpolatorController"/>
@@ -782,7 +782,7 @@
 	</niblock>
 	<niblock name="BSFurnitureMarker">
 		<inherit name="AData"/>
-		<add name="Name" type="string" ver2="335544325" />
+		<add name="Name" type="string" ver2="20.0.0.5" />
 		<add name="Num Positions" type="int" />
 		<add name="Positions" type="furniture position" arr1="Num Positions" />
 	</niblock>
@@ -824,7 +824,7 @@
 	</niblock>
 	<niblock name="NiAlphaController">
 		<inherit name="ASingleInterpolatorController"/>
-		<add name="Data" type="link" ver2="167837696" />
+		<add name="Data" type="link" ver2="10.1.0.0" />
 	</niblock>
 	<niblock name="NiAlphaProperty">
 		<inherit name="AProperty"/>
@@ -842,7 +842,7 @@
 	</niblock>
 	<niblock name="NiBillboardNode">
 		<inherit name="AParentNode"/>
-		<add name="Billboard Mode" type="short" ver1="167837696" />
+		<add name="Billboard Mode" type="short" ver1="10.1.0.0" />
 	</niblock>
 	<niblock name="NiBinaryExtraData">
 		<inherit name="AExtraData"/>
@@ -931,14 +931,14 @@
 	</niblock>
 	<niblock name="NiCamera">
 		<inherit name="ANode"/>
-		<add name="Unknown Short" type="short" ver1="167837696" />
+		<add name="Unknown Short" type="short" ver1="10.1.0.0" />
 		<add name="Frustum Left" type="float" />
 		<add name="Frustum Right" type="float" />
 		<add name="Frustum Top" type="float" />
 		<add name="Frustum Bottom" type="float" />
 		<add name="Frustum Near" type="float" />
 		<add name="Frustum Far" type="float" />
-		<add name="Use Orthographic Projection" type="bool" ver1="167837696" />
+		<add name="Use Orthographic Projection" type="bool" ver1="10.1.0.0" />
 		<add name="Viewport Left" type="float" />
 		<add name="Viewport Right" type="float" />
 		<add name="Viewport Top" type="float" />
@@ -946,7 +946,7 @@
 		<add name="LOD Adjust" type="float" />
 		<add name="Unknown Link?" type="link" />
 		<add name="Unknown Int" type="int" />
-		<add name="Unknown Int 2" type="int" ver1="67240192" />
+		<add name="Unknown Int 2" type="int" ver1="4.2.1.0" />
 	</niblock>
 	<niblock name="NiCollisionData">
 		<inherit name="AData"/>
@@ -976,19 +976,19 @@
 	<niblock name="NiControllerSequence">
 		<inherit name="AData"/>
 		<add name="Name" type="string" />
-		<add name="Text Keys" type="controllerlink" ver2="167837696" />
+		<add name="Text Keys" type="controllerlink" ver2="10.1.0.0" />
 		<add name="Num Controlled Blocks" type="int" />
-		<add name="Unknown Int 1" type="int" ver1="167837802" />
+		<add name="Unknown Int 1" type="int" ver1="10.1.0.106" />
 		<add name="Controlled Blocks" type="controllerlink" arr1="Num Controlled Blocks" />
-		<add name="Unknown Float 1" type="float" ver1="167837802" />
-		<add name="Text Keys 2" type="link" ver1="167837802" />
-		<add name="Unknown Int 0" type="int" ver1="167837802" ver2="167837802" />
-		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="167837802" />
-		<add name="Unkown Float 2" type="float" ver1="167903232" ver2="167903232" />
-		<add name="Unknown Byte" type="byte" ver1="167837802" ver2="167837802" />
-		<add name="Unknown Int 3" type="int" ver1="167837802" />
-		<add name="Unknown String" type="string" ver1="167837802" />
-		<add name="String Palette" type="link" ver1="167903232" />
+		<add name="Unknown Float 1" type="float" ver1="10.1.0.106" />
+		<add name="Text Keys 2" type="link" ver1="10.1.0.106" />
+		<add name="Unknown Int 0" type="int" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="10.1.0.106" />
+		<add name="Unkown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0" />
+		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106" />
+		<add name="Unknown Int 3" type="int" ver1="10.1.0.106" />
+		<add name="Unknown String" type="string" ver1="10.1.0.106" />
+		<add name="String Palette" type="link" ver1="10.2.0.0" />
 	</niblock>
 	<niblock name="NiDefaultAVObjectPalette">
 		<inherit name="AData"/>
@@ -1006,8 +1006,8 @@
 	<niblock name="NiFlipController">
 		<inherit name="ASingleInterpolatorController"/>
 		<add name="Texture Slot" type="int" />
-		<add name="Unknown Int 2" type="int" ver2="167837696" />
-		<add name="Delta" type="float" ver2="167837696" />
+		<add name="Unknown Int 2" type="int" ver2="10.1.0.0" />
+		<add name="Delta" type="float" ver2="10.1.0.0" />
 		<add name="Sources" type="linkgroup" />
 	</niblock>
 	<niblock name="NiFloatData">
@@ -1020,8 +1020,8 @@
 	</niblock>
 	<niblock name="NiFloatExtraDataController">
 		<inherit name="AController"/>
-		<add name="Unknown Link" type="link" ver1="335544324" />
-		<add name="Unknown String" type="string" ver1="335544324" />
+		<add name="Unknown Link" type="link" ver1="20.0.0.4" />
+		<add name="Unknown String" type="string" ver1="20.0.0.4" />
 	</niblock>
 	<niblock name="NiFloatInterpolator">
 		<inherit name="AInterpolator"/>
@@ -1041,13 +1041,13 @@
 	</niblock>
 	<niblock name="NiGeomMorpherController">
 		<inherit name="AController"/>
-		<add name="Unknown" type="short" ver1="167837696" />
-		<add name="Unknown 2" type="byte" ver1="167837802" ver2="167837802" />
+		<add name="Unknown" type="short" ver1="10.1.0.0" />
+		<add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106" />
 		<add name="Data" type="link" />
 		<add name="Unknown Byte" type="byte" />
-		<add name="Interpolators" type="linkgroup" ver1="167837802" />
-		<add name="Num Unknown Ints" type="int" ver1="167903232" />
-		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="167903232" />
+		<add name="Interpolators" type="linkgroup" ver1="10.1.0.106" />
+		<add name="Num Unknown Ints" type="int" ver1="10.2.0.0" />
+		<add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="10.2.0.0" />
 	</niblock>
 	<niblock name="NiGravity">
 		<inherit name="AParticleModifier"/>
@@ -1074,10 +1074,10 @@
 	</niblock>
 	<niblock name="NiLightColorController">
 		<inherit name="AController"/>
-		<add name="Unknown Short" type="short" ver1="167837696" ver2="167837696" />
-		<add name="Data" type="link" ver2="167837696" />
-		<add name="Interpolator" type="link" ver1="167903232" />
-		<add name="Unknown Short" type="short" ver1="167903232" />
+		<add name="Unknown Short" type="short" ver1="10.1.0.0" ver2="10.1.0.0" />
+		<add name="Data" type="link" ver2="10.1.0.0" />
+		<add name="Interpolator" type="link" ver1="10.2.0.0" />
+		<add name="Unknown Short" type="short" ver1="10.2.0.0" />
 	</niblock>
 	<niblock name="NiLightDimmerController">
 		<inherit name="AController"/>
@@ -1089,7 +1089,7 @@
 	</niblock>
 	<niblock name="NiLookAtController">
 		<inherit name="AController"/>
-		<add name="Unknown1" type="short" ver1="167837696" />
+		<add name="Unknown1" type="short" ver1="10.1.0.0" />
 		<add name="Look At Node" type="link" />
 	</niblock>
 	<niblock name="NiLookAtInterpolator">
@@ -1106,13 +1106,13 @@
 	</niblock>
 	<niblock name="NiMaterialColorController">
 		<inherit name="AController"/>
-		<add name="Unknown" type="short" ver1="167837696" ver2="167837696" />
+		<add name="Unknown" type="short" ver1="10.1.0.0" ver2="10.1.0.0" />
 		<add name="Data" type="link" />
-		<add name="Unknown Short" type="short" ver1="167903232" />
+		<add name="Unknown Short" type="short" ver1="10.2.0.0" />
 	</niblock>
 	<niblock name="NiMaterialProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="167772418" />
+		<add name="Flags" type="flags" ver2="10.0.1.2" />
 		<add name="Ambient Color" type="color3" />
 		<add name="Diffuse Color" type="color3" />
 		<add name="Specular Color" type="color3" />
@@ -1122,24 +1122,24 @@
 	</niblock>
 	<niblock name="NiMeshParticleSystem">
 		<inherit name="AParticleNode"/>
-		<add name="Modifiers" type="modifiergroup" ver1="167837696" />
+		<add name="Modifiers" type="modifiergroup" ver1="10.1.0.0" />
 	</niblock>
 	<niblock name="NiMeshPSysData">
 		<inherit name="APSysData"/>
-		<add name="Unknown Byte 11" type="byte" ver1="335544325" />
-		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="335544324" />
-		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="335544324" />
-		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="335544325" />
+		<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5" />
+		<add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="20.0.0.4" />
+		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4" />
+		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5" />
 		<add name="Unknown Int 1" type="int" />
-		<add name="Modifier" type="link" ver2="335544324" />
-		<add name="Unknown Byte 2" type="byte" ver1="167903232" ver2="335544324" />
-		<add name="Unknown Link Group" type="linkgroup" ver1="167903232" ver2="335544324" />
-		<add name="Unknown Short 4" type="short" ver1="335544325" />
-		<add name="Unknown Int 2" type="int" ver1="335544325" />
-		<add name="Unknown Byte 12" type="byte" ver1="335544325" />
-		<add name="Unknown Int 3" type="int" ver1="335544325" />
-		<add name="Unknown Int 4" type="int" ver1="335544325" />
-		<add name="Unknown Link 2" type="link" ver1="167903232" />
+		<add name="Modifier" type="link" ver2="20.0.0.4" />
+		<add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4" />
+		<add name="Unknown Link Group" type="linkgroup" ver1="10.2.0.0" ver2="20.0.0.4" />
+		<add name="Unknown Short 4" type="short" ver1="20.0.0.5" />
+		<add name="Unknown Int 2" type="int" ver1="20.0.0.5" />
+		<add name="Unknown Byte 12" type="byte" ver1="20.0.0.5" />
+		<add name="Unknown Int 3" type="int" ver1="20.0.0.5" />
+		<add name="Unknown Int 4" type="int" ver1="20.0.0.5" />
+		<add name="Unknown Link 2" type="link" ver1="10.2.0.0" />
 	</niblock>
 	<niblock name="NiMorphData">
 		<inherit name="AData"/>
@@ -1212,14 +1212,14 @@
 	</niblock>
 	<niblock name="NiParticleSystem">
 		<inherit name="AParticleNode"/>
-		<add name="Modifiers" type="modifiergroup" ver1="167837696" />
+		<add name="Modifiers" type="modifiergroup" ver1="10.1.0.0" />
 	</niblock>
 	<niblock name="NiParticleSystemController">
 		<inherit name="AParticleSystemController"/>
 	</niblock>
 	<niblock name="NiPathController">
 		<inherit name="AController"/>
-		<add name="Unknown Short 2" type="short" ver1="167837696" />
+		<add name="Unknown Short 2" type="short" ver1="10.1.0.0" />
 		<add name="Unknown Int 1" type="int" />
 		<add name="Unknown Int 2" type="int" />
 		<add name="Unknown Int 3" type="int" />
@@ -1238,14 +1238,14 @@
 	<niblock name="NiPixelData">
 		<inherit name="AData"/>
 		<add name="Pixel Format" type="int" />
-		<add name="Red Mask" type="int" ver2="167903232" />
-		<add name="Green Mask" type="int" ver2="167903232" />
-		<add name="Blue Mask" type="int" ver2="167903232" />
-		<add name="Alpha Mask" type="int" ver2="167903232" />
-		<add name="Bits Per Pixel" type="int" ver2="167903232" />
-		<add name="Unknown 8 Bytes" type="byte" arr1="8" ver2="167903232" />
-		<add name="Unknown Int" type="int" ver1="167837696" ver2="167903232" />
-		<add name="Unknown 54 Bytes" type="byte" arr1="54" ver1="335544324" />
+		<add name="Red Mask" type="int" ver2="10.2.0.0" />
+		<add name="Green Mask" type="int" ver2="10.2.0.0" />
+		<add name="Blue Mask" type="int" ver2="10.2.0.0" />
+		<add name="Alpha Mask" type="int" ver2="10.2.0.0" />
+		<add name="Bits Per Pixel" type="int" ver2="10.2.0.0" />
+		<add name="Unknown 8 Bytes" type="byte" arr1="8" ver2="10.2.0.0" />
+		<add name="Unknown Int" type="int" ver1="10.1.0.0" ver2="10.2.0.0" />
+		<add name="Unknown 54 Bytes" type="byte" arr1="54" ver1="20.0.0.4" />
 		<add name="Palette" type="link" />
 		<add name="Num Mipmaps" type="int" />
 		<add name="Bytes Per Pixel" type="int" />
@@ -1254,10 +1254,10 @@
 	</niblock>
 	<niblock name="NiPlanarCollider">
 		<inherit name="AParticleModifier"/>
-		<add name="Unknown Short" type="short" ver1="167772416" />
+		<add name="Unknown Short" type="short" ver1="10.0.1.0" />
 		<add name="Unknown Float 1" type="float" />
 		<add name="Unknown Float 2" type="float" />
-		<add name="Unknown Short 2" type="short" ver1="67240448" ver2="67240448" />
+		<add name="Unknown Short 2" type="short" ver1="4.2.2.0" ver2="4.2.2.0" />
 		<add name="Unknown Float 3" type="float" />
 		<add name="Unknown Float 4" type="float" />
 		<add name="Unknown Float 5" type="float" />
@@ -1322,13 +1322,13 @@
 	</niblock>
 	<niblock name="NiPSysData">
 		<inherit name="APSysData"/>
-		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="167903232" />
-		<add name="Unknown Bool 1" type="bool" ver1="335544324" />
-		<add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Bool 1 != 0" ver1="335544324" />
-		<add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Bool 1 == 0" ver1="335544324" />
-		<add name="Unknown Byte 3" type="byte" ver1="335544324" />
-		<add name="Unknown Bool 2" type="bool" ver1="335544324" />
-		<add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="335544324" />
+		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="10.2.0.0" />
+		<add name="Unknown Bool 1" type="bool" ver1="20.0.0.4" />
+		<add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Bool 1 != 0" ver1="20.0.0.4" />
+		<add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Bool 1 == 0" ver1="20.0.0.4" />
+		<add name="Unknown Byte 3" type="byte" ver1="20.0.0.4" />
+		<add name="Unknown Bool 2" type="bool" ver1="20.0.0.4" />
+		<add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="20.0.0.4" />
 		<add name="Unknown Int 1" type="int" />
 	</niblock>
 	<niblock name="NiPSysDragModifier">
@@ -1417,10 +1417,10 @@
 	<niblock name="NiPSysRotationModifier">
 		<inherit name="APSysModifier"/>
 		<add name="Initial Rotation Speed" type="float" />
-		<add name="Initial Rotation Speed Variation" type="float" ver1="335544324" />
-		<add name="Initial Rotation Angle" type="float" ver1="335544324" />
-		<add name="Initial Rotation Angle Variation" type="float" ver1="335544324" />
-		<add name="Random Rot Speed Sign" type="bool" ver1="335544324" />
+		<add name="Initial Rotation Speed Variation" type="float" ver1="20.0.0.4" />
+		<add name="Initial Rotation Angle" type="float" ver1="20.0.0.4" />
+		<add name="Initial Rotation Angle Variation" type="float" ver1="20.0.0.4" />
+		<add name="Random Rot Speed Sign" type="bool" ver1="20.0.0.4" />
 		<add name="Random Initial Axis" type="bool" />
 		<add name="Initial Axis" type="vector3" />
 	</niblock>
@@ -1473,14 +1473,14 @@
 		<add name="Translation" type="vector3" />
 		<add name="Scale" type="float" />
 		<add name="Num Bones" type="int" />
-		<add name="Skin Partition" type="link" ver2="167837696" />
-		<add name="Unknown Byte" type="byte" ver1="67240192" />
+		<add name="Skin Partition" type="link" ver2="10.1.0.0" />
+		<add name="Unknown Byte" type="byte" ver1="4.2.1.0" />
 		<add name="Bone List" type="skinblock" arr1="Num Bones" />
 	</niblock>
 	<niblock name="NiSkinInstance">
 		<inherit name="AData"/>
 		<add name="Data" type="link" />
-		<add name="Skin Partition" type="link" ver1="167903232" />
+		<add name="Skin Partition" type="link" ver1="10.2.0.0" />
 		<add name="Skeleton Root" type="skeletonroot" />
 		<add name="Bones" type="bones" />
 	</niblock>
@@ -1496,7 +1496,7 @@
 		<add name="Use Mipmaps" type="mipmapformat" />
 		<add name="Alpha Format" type="alphaformat" />
 		<add name="Unknown Byte" type="byte" />
-		<add name="Unknown Byte 2" type="byte" ver1="167837802" />
+		<add name="Unknown Byte 2" type="byte" ver1="10.1.0.106" />
 	</niblock>
 	<niblock name="NiSpecularProperty">
 		<inherit name="AProperty"/>
@@ -1518,7 +1518,7 @@
 	</niblock>
 	<niblock name="NiStencilProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="167772418" />
+		<add name="Flags" type="flags" ver2="10.0.1.2" />
 		<add name="Stencil Enabled" type="bool" />
 		<add name="Stencil Function" type="int" />
 		<add name="Stencil Ref" type="int" />
@@ -1530,7 +1530,7 @@
 	</niblock>
 	<niblock name="NiStringExtraData">
 		<inherit name="AExtraData"/>
-		<add name="Bytes Remaining" type="int" ver2="67240448" />
+		<add name="Bytes Remaining" type="int" ver2="4.2.2.0" />
 		<add name="String Data" type="string" />
 	</niblock>
 	<niblock name="NiStringPalette">
@@ -1544,7 +1544,7 @@
 	</niblock>
 	<niblock name="NiTextKeyExtraData">
 		<inherit name="AExtraData"/>
-		<add name="Unknown Int 1" type="int" ver2="67240448" />
+		<add name="Unknown Int 1" type="int" ver2="4.2.2.0" />
 		<add name="Text Keys" type="ns keyarray" template="string" />
 	</niblock>
 	<niblock name="NiTextureEffect">
@@ -1559,20 +1559,20 @@
 		<add name="Clipping Plane" type="byte" />
 		<add name="Unknown Vector" type="vector3" />
 		<add name="Unknown Float" type="float" />
-		<add name="PS2 L" type="short" ver2="167903232" />
-		<add name="PS2 K" type="short" ver2="167903232" />
-		<add name="Unknown Short" type="short" ver2="67174412" />
+		<add name="PS2 L" type="short" ver2="10.2.0.0" />
+		<add name="PS2 K" type="short" ver2="10.2.0.0" />
+		<add name="Unknown Short" type="short" ver2="4.1.0.12" />
 	</niblock>
 	<niblock name="NiTextureTransformController">
 		<inherit name="ASingleInterpolatorController"/>
 		<add name="Unknown2" type="byte" />
 		<add name="Texture Slot" type="int" />
 		<add name="Operation" type="int" />
-		<add name="Data" type="link" ver2="167837696" />
+		<add name="Data" type="link" ver2="10.1.0.0" />
 	</niblock>
 	<niblock name="NiTexturingProperty">
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags" ver2="167772418" />
+		<add name="Flags" type="flags" ver2="10.0.1.2" />
 		<add name="Apply Mode" type="applymode" />
 		<add name="Texture Count" type="int" />
 		<add name="Base Texture" type="texture" />
@@ -1582,8 +1582,8 @@
 		<add name="Glow Texture" type="texture" />
 		<add name="Bump Map Texture" type="bumpmap" />
 		<add name="Decal 0 Texture" type="texture" />
-		<add name="Decal Texture 1" type="texture" cond="Texture Count == 8" ver1="335544324" />
-		<add name="Shader Textures" type="extratexturegroup" ver1="167772416" />
+		<add name="Decal Texture 1" type="texture" cond="Texture Count == 8" ver1="20.0.0.4" />
+		<add name="Shader Textures" type="extratexturegroup" ver1="10.0.1.0" />
 	</niblock>
 	<niblock name="NiTransformController">
 		<inherit name="ASingleInterpolatorController"/>
@@ -1596,7 +1596,7 @@
 		<add name="Translation" type="vector3" />
 		<add name="Rotation" type="quaternion" />
 		<add name="Scale" type="float" />
-		<add name="Unknown Bytes" type="byte" arr1="3" ver1="167837802" ver2="167837802" />
+		<add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106" />
 		<add name="Data" type="link" />
 	</niblock>
 	<niblock name="NiTriShape">
@@ -1606,9 +1606,9 @@
 		<inherit name="AShapeData"/>
 		<add name="Num Triangles" type="short" />
 		<add name="Num Triangle Points" type="int" />
-		<add name="Has Triangles" type="bool" ver1="167837696" />
-		<add name="Triangles" type="triangle" arr1="Num Triangles" ver2="167772418" />
-		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="167837696" />
+		<add name="Has Triangles" type="bool" ver1="10.1.0.0" />
+		<add name="Triangles" type="triangle" arr1="Num Triangles" ver2="10.0.1.2" />
+		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="10.1.0.0" />
 		<add name="Num Match Groups" type="short" />
 		<add name="Match Groups" type="matchgroup" arr1="Num Match Groups" />
 	</niblock>
@@ -1620,9 +1620,9 @@
 		<add name="Num Triangles" type="short" />
 		<add name="Num Strips" type="short" />
 		<add name="Strip Lengths" type="short" arr1="Num Strips" />
-		<add name="Has Points" type="bool" ver1="167837696" />
-		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="167772418" />
-		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points != 0" ver1="167837696" />
+		<add name="Has Points" type="bool" ver1="10.1.0.0" />
+		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2" />
+		<add name="Points" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points != 0" ver1="10.1.0.0" />
 	</niblock>
 	<niblock name="NiUVController">
 		<inherit name="AController"/>
@@ -1665,7 +1665,7 @@
 	<niblock name="NiZBufferProperty">
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags" />
-		<add name="Function" type="int" ver1="67174412" />
+		<add name="Function" type="int" ver1="4.1.0.12" />
 	</niblock>
 	<niblock name="RootCollisionNode">
 		<inherit name="AParentNode"/>
