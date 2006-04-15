@@ -438,8 +438,7 @@ Ragdoll constraint.
 Describes physical properties of an object?
 		<inherit name="AData"/>
 		<add name="Shape" type="link">The rigid body&#039;s shape.</add>
-		<add name="Unknown Int 1" type="int">The lower 4 bits select the color of the collision mesh in the construction set:
-
+		<add name="Flags" type="int">The lower 4 bits select the color of the collision mesh in the construction set:
 1 : red (statics)
 2 : purple
 3 : white
@@ -449,20 +448,22 @@ Describes physical properties of an object?
 7 : turkoise
 8 : green (creatures)</add>
 		<add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
-		<add name="Unknown Shorts 1" type="short" arr1="2">Unknown.</add>
-		<add name="Unknown Int 4" type="int">Unknown.</add>
-		<add name="Unknown Float" type="float">Unknown.</add>
-		<add name="Unknown Shorts 2" type="short" arr1="2">Unknown.</add>
-		<add name="Unknown Int 5" type="int">Unknown.</add>
-		<add name="Unknown Floats 2" type="float" arr1="33">Unknown.</add>
+		<add name="Unknown Shorts 1" type="short" arr1="4">Unknown.</add>
+		<add name="Flags (repeated)" type="int">Unknown.</add>
+		<add name="Unknown Shorts 2" type="short" arr1="6">Unknown.</add>
+		<add name="Translation" type="vector3" />
+		<add name="Rotation" type="quat" />
+		<add name="Unknown Float" type="float" />
+		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
+		<add name="Matrix ?" type="matrix44" >Sometimes this seems to be some kind of scale or translation matrix.</add>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Unknown Float 0" type="float">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Elasticity" type="float">The object&#039;s elasticity.</add>
 		<add name="Friction" type="float">The object&#039;s friction.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown.</add>
-		<add name="Unknown Float 4" type="float">Unknown. Pi x 10?</add>
+		<add name="Unknown Float 3" type="float">Unknown. Pi x 10?</add>
+		<add name="Inv Scale" type="float">1.0 / Scale ?</add>
 		<add name="Unknown Float 5" type="float">Unknown.</add>
 		<add name="Unknown Float 6" type="float">Unknown.</add>
 		<add name="Unknown Float 7" type="float">Unknown.</add>
@@ -482,14 +483,7 @@ Shape modifier?
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown.</add>
-		<add name="Unknown Normal 1" type="vector3">A normalized vector.</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
-		<add name="Unknown Normal 2" type="vector3">A normalized vector.</add>
-		<add name="Unknown Float 5" type="float">Unknown.</add>
-		<add name="Unknown Normal 3" type="vector3">A normalized vector.</add>
-		<add name="Unknown Float 6" type="float">Unknown.</add>
-		<add name="Translation" type="vector3">Shape translation.</add>
-		<add name="Unknown Float 8" type="float">Unknown.</add>
+		<add name="Transform" type="matrix44">Transform Matrix.</add>
 	</ancestor>
 	<ancestor name="ACollisionObject">
 Unknown.
@@ -775,9 +769,9 @@ Unknown.
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
 		<add name="Num 1" type="int">A count.</add>
-		<add name="Unknown Floats 2" type="float" arr1="Num 1" arr2="4">Unknown. Vertices?</add>
+		<add name="Unknown Vectors 1" type="vector4" arr1="Num 1" >Unknown. Vertices?</add>
 		<add name="Num 2" type="int">A count.</add>
-		<add name="Unkown Floats 3" type="float" arr1="Num 2" arr2="4">Unknown. Vertices?</add>
+		<add name="Unknown Vectors 2" type="vector4" arr1="Num 2" >Unknown. Vertices?</add>
 	</niblock>
 	<niblock name="bhkHingeConstraint">A hinge constraint.
 		<inherit name="AbhkConstraint"/>
@@ -986,8 +980,7 @@ test modes (glAlphaFunc):
 	</niblock>
 	<niblock name="NiBinaryExtraData">Binary extra data block.
 		<inherit name="AExtraData"/>
-		<add name="Num Bytes" type="int">Number of bytes stored next.</add>
-		<add name="Bytes" type="byte" arr1="Num Bytes">The binary data.</add>
+		<add name="Binary Data" type="bytearray" >The binary data.</add>
 	</niblock>
 	<niblock name="NiBlendBoolInterpolator">An interpolator for a bool.
 		<inherit name="ABlendInterpolator"/>
