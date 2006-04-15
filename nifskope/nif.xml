@@ -113,14 +113,17 @@ Describes a furniture position?
 The NIF file header.
 		<add name="Header String" type="headerstring">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
 		<add name="Version" type="fileversion">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-		<add name="Unknown Byte" type="byte" ver1="20.0.0.4">Unknown, equal to 1.</add>
-		<add name="Unknown Int 1" type="int" ver1="10.1.0.0">Unknown.</add>
+		<add name="Endian Type" type="byte" ver1="20.0.0.4">Determines the endian-ness of the data.
+
+1 = little endian (default)
+0 = big endian</add>
+		<add name="User Version" type="int" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
 		<add name="Num Blocks" type="int">Number of file blocks.</add>
-		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2">Unknown. Seems to have moved up in later versions.</add>
-		<add name="Unknown Int 3" type="int" cond="Unknown Int 1 != 0" ver1="10.1.0.0">Unknown.</add>
-		<add name="Creator?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
-		<add name="Export Type?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
-		<add name="Export Script?" type="shortstring" cond="Unknown Int 1 != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
+		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
+		<add name="Unknown Int 3" type="int" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
+		<add name="Creator?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
+		<add name="Export Type?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
+		<add name="Export Script?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
 		<add name="Num Block Types" type="short" ver1="10.0.1.0">Number of block types in this NIF file.</add>
 		<add name="Block Types" type="string" arr1="Num Block Types" ver1="10.0.1.0">List of all block types used in this NIF file.</add>
 		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="10.0.1.0">Maps file blocks on their corresponding type: first file block is of type block_types[block_type_index[0]], the second of block_types[block_type_index[1]], etc.</add>
@@ -439,6 +442,7 @@ Describes physical properties of an object?
 		<inherit name="AData"/>
 		<add name="Shape" type="link">The rigid body&#039;s shape.</add>
 		<add name="Flags" type="int">The lower 4 bits select the color of the collision mesh in the construction set:
+
 1 : red (statics)
 2 : purple
 3 : white
@@ -449,13 +453,13 @@ Describes physical properties of an object?
 8 : green (creatures)</add>
 		<add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
 		<add name="Unknown Shorts 1" type="short" arr1="4">Unknown.</add>
-		<add name="Flags (repeated)" type="int">Unknown.</add>
+		<add name="Flags 2" type="int">The flags, repeated?</add>
 		<add name="Unknown Shorts 2" type="short" arr1="6">Unknown.</add>
-		<add name="Translation" type="vector3" />
-		<add name="Rotation" type="quat" />
-		<add name="Unknown Float" type="float" />
+		<add name="Translation" type="vector3">Translation.</add>
+		<add name="Rotation" type="quaternion">Rotation.</add>
+		<add name="Unknown Float" type="float">Unknown.</add>
 		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
-		<add name="Matrix ?" type="matrix44" >Sometimes this seems to be some kind of scale or translation matrix.</add>
+		<add name="Transform?" type="matrix44">Seems to be some kind of transformation matrix, scale or translation?</add>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Unknown Float 0" type="float">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
@@ -463,7 +467,7 @@ Describes physical properties of an object?
 		<add name="Friction" type="float">The object&#039;s friction.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown. Pi x 10?</add>
-		<add name="Inv Scale" type="float">1.0 / Scale ?</add>
+		<add name="Inv Scale" type="float">1/scale?</add>
 		<add name="Unknown Float 5" type="float">Unknown.</add>
 		<add name="Unknown Float 6" type="float">Unknown.</add>
 		<add name="Unknown Float 7" type="float">Unknown.</add>
@@ -483,7 +487,7 @@ Shape modifier?
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown.</add>
-		<add name="Transform" type="matrix44">Transform Matrix.</add>
+		<add name="Transform" type="matrix44">A transform matrix.</add>
 	</ancestor>
 	<ancestor name="ACollisionObject">
 Unknown.
@@ -769,9 +773,9 @@ Unknown.
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
 		<add name="Num 1" type="int">A count.</add>
-		<add name="Unknown Vectors 1" type="vector4" arr1="Num 1" >Unknown. Vertices?</add>
+		<add name="Unknown Vectors 1" type="vector4" arr1="Num 1">Unknown. Vertices?</add>
 		<add name="Num 2" type="int">A count.</add>
-		<add name="Unknown Vectors 2" type="vector4" arr1="Num 2" >Unknown. Vertices?</add>
+		<add name="Unknown Vectors 2" type="vector4" arr1="Num 2">Unknown. More vertices?</add>
 	</niblock>
 	<niblock name="bhkHingeConstraint">A hinge constraint.
 		<inherit name="AbhkConstraint"/>
@@ -978,9 +982,9 @@ test modes (glAlphaFunc):
 3: ALWAYS_FACE_CENTER
 4: RIGID_FACE_CENTER</add>
 	</niblock>
-	<niblock name="NiBinaryExtraData">Binary extra data block.
+	<niblock name="NiBinaryExtraData">Binary extra data block. Used to store normals and binormals in Oblivion.
 		<inherit name="AExtraData"/>
-		<add name="Binary Data" type="bytearray" >The binary data.</add>
+		<add name="Binary Data" type="bytearray">The binary data.</add>
 	</niblock>
 	<niblock name="NiBlendBoolInterpolator">An interpolator for a bool.
 		<inherit name="ABlendInterpolator"/>
