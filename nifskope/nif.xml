@@ -456,22 +456,27 @@ Describes physical properties of an object?
 		<add name="Flags 2" type="int">The flags, repeated?</add>
 		<add name="Unknown Shorts 2" type="short" arr1="6">Unknown.</add>
 		<add name="Translation" type="vector3">Translation.</add>
-		<add name="Rotation" type="quaternion">Rotation.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
+		<add name="Rotation" type="quaternion_xyzw">Rotation.</add>
 		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
-		<add name="Transform?" type="matrix44">Seems to be some kind of transformation matrix, scale or translation?</add>
+		<add name="Transform?" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
+		<add name="Center" type="vector3">The object's mass center.</add>
+		<add name="Unknown Float" type="float"/>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Unknown Float 0" type="float">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Elasticity" type="float">The object&#039;s elasticity.</add>
-		<add name="Friction" type="float">The object&#039;s friction.</add>
+		<add name="Friction" type="float">The object&#039;s elasticity.</add>
+		<add name="Elasticity" type="float">The object&#039;s friction.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown. Pi x 10?</add>
 		<add name="Inv Scale" type="float">1/scale?</add>
-		<add name="Unknown Float 5" type="float">Unknown.</add>
-		<add name="Unknown Float 6" type="float">Unknown.</add>
-		<add name="Unknown Float 7" type="float">Unknown.</add>
-		<add name="Unknown Float 8" type="float">Unknown.</add>
+		<add name="Unknown Byte 1" type="byte">Unknown.</add>
+		<add name="Unknown Byte 2" type="byte">Unknown.</add>
+		<add name="Unknown Byte 3" type="byte">Unknown.</add>
+		<add name="Unknown Byte 4" type="byte">Unknown.</add>
+		<add name="Unknown Float 6" type="int">Unknown.</add>
+		<add name="Unknown Float 7" type="int">Unknown.</add>
+		<add name="Unknown Float 8" type="int">Unknown.</add>
 		<add name="Constraints" type="linkgroup">Unknown.</add>
 		<add name="Unknown Int 6" type="int">Unknown.</add>
 	</ancestor>
@@ -746,21 +751,25 @@ Unknown.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown.</add>
+		<add name="Unknown Short 1" type="short">Unknown.</add>
+		<add name="Unknown Short 2" type="short">Unknown.</add>
+		<add name="Unknown Short 3" type="short">Unknown.</add>
+		<add name="Unknown Short 4" type="short">Unknown.</add>
 		<add name="Unknown Vector" type="vector3">Looks like this could be the box size.</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
+		<add name="Unknown Float 2" type="float">Unknown.</add>
 	</niblock>
 	<niblock name="bhkCapsuleShape">A capsule.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int 1" type="int">Unknown.</add>
 		<add name="Radius" type="float">Apparently the capsule&#039;s radius.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown.</add>
+		<add name="Unknown Short 1" type="short">Unknown.</add>
+		<add name="Unknown Short 2" type="short">Unknown.</add>
+		<add name="Unknown Short 3" type="short">Unknown.</add>
+		<add name="Unknown Short 4" type="short">Unknown.</add>
 		<add name="Unknown Vector 1" type="vector3">Unknown.</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
+		<add name="Radius 1" type="float">Unknown. Matches the Radius</add>
 		<add name="Unknown Vector 2" type="vector3">Unknown.</add>
-		<add name="Unknown Float 5" type="float">Unknown.</add>
+		<add name="Radius 2" type="float">Unknown. Matches the Radius</add>
 	</niblock>
 	<niblock name="bhkCollisionObject">Unknown.
 		<inherit name="ACollisionObject"/>
@@ -870,7 +879,7 @@ Unknown.
 	<niblock name="bhkSphereShape">A sphere.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int" type="int">Unknown.</add>
-		<add name="Unknown Float" type="float">Unknown, usually values around 1.0, so it&#039;s probably not the radius.</add>
+		<add name="Radius" type="float">This is the radius of the Sphere.</add>
 	</niblock>
 	<niblock name="bhkStiffSpringConstraint">A spring constraint.
 		<inherit name="AbhkConstraint"/>
