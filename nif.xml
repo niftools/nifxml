@@ -113,7 +113,7 @@ An unsigned 32-bit integer, describing the color depth of a texture.
 5:  Default
 	</basic>
 	<basic name="skeletonroot" count="0" niflibtype="uint" nifskopetype="uplink">
-A signed 32-bit integer, which refers to the skeleton root of a NiSkinInstance block; should refer to the first node in the ancestry of any of the bones that has the \&#039;not a skin influence\&#039; flag set.
+A signed 32-bit integer, which refers to the skeleton root of a NiSkinInstance block; should refer to the first node in the ancestry of any of the bones that has the &#039;not a skin influence&#039; flag set.
 	</basic>
 	<basic name="stringoffset" count="0" niflibtype="ushort" nifskopetype="stringoffset">
 A 16-bit signed integer, used to refer to strings in a NiStringPalette.
@@ -445,6 +445,13 @@ A quaternion.
 		<add name="y" type="float">The y-coordinate.</add>
 		<add name="z" type="float">The z-coordinate.</add>
 	</compound>
+	<compound name="quaternionxyzw" nifskopetype="quaternion_xyzw">
+A quaternion as it appears in the havok blocks.
+		<add name="x" type="float">The x-coordinate.</add>
+		<add name="y" type="float">The y-coordinate.</add>
+		<add name="z" type="float">The z-coordinate.</add>
+		<add name="w" type="float">The w-coordinate.</add>
+	</compound>
 	<compound name="shader">
 Describes a shader.
 		<add name="Has Shader" type="bool">Do we have a shader?</add>
@@ -646,22 +653,24 @@ Describes physical properties of an object?
 		<add name="Flags 2" type="int">The flags, repeated?</add>
 		<add name="Unknown Shorts 2" type="short" arr1="6">Unknown.</add>
 		<add name="Translation" type="vector3">Translation.</add>
-		<add name="Rotation" type="quaternion">Rotation.</add>
-		<add name="Unknown Float" type="float">Unknown.</add>
+		<add name="Unknown Float 00" type="float">Unknown.</add>
+		<add name="Rotation" type="quaternionxyzw">Rotation.</add>
 		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
-		<add name="Transform?" type="matrix44">Seems to be some kind of transformation matrix, scale or translation?</add>
+		<add name="Transform?" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
+		<add name="Center" type="vector3">The object&#039;s center.</add>
+		<add name="Unknown Float 01" type="float">Unknown float.</add>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Unknown Float 0" type="float">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Elasticity" type="float">The object&#039;s elasticity.</add>
 		<add name="Friction" type="float">The object&#039;s friction.</add>
+		<add name="Elasticity" type="float">The object&#039;s elasticity.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown. Pi x 10?</add>
 		<add name="Unknown Float 4" type="float">Unknown.</add>
-		<add name="Unknown Float 5" type="float">Unknown.</add>
-		<add name="Unknown Float 6" type="float">Unknown.</add>
-		<add name="Unknown Float 7" type="float">Unknown.</add>
-		<add name="Unknown Float 8" type="float">Unknown.</add>
+		<add name="Unknown Bytes 5" type="byte" arr1="4">Unknown.</add>
+		<add name="Unknown Int 6" type="int">Unknown.</add>
+		<add name="Unknown Int 7" type="int">Unknown.</add>
+		<add name="Unknown Int 8" type="int">Unknown.</add>
 		<add name="Constraints" type="linkgroup">Unknown.</add>
 		<add name="Unknown Int 6" type="int">Unknown.</add>
 	</ancestor>
@@ -940,22 +949,26 @@ A box.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown.</add>
+		<add name="Unknown Short 1" type="short">Unknown.</add>
+		<add name="Unknown Short 2" type="short">Unknown.</add>
+		<add name="Unknown Short 3" type="short">Unknown.</add>
+		<add name="Unknown Short 4" type="short">Unknown.</add>
 		<add name="Unknown Vector" type="vector3">Looks like this could be the box size.</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
+		<add name="Unknown Float 2" type="float">Unknown.</add>
 	</niblock>
 	<niblock name="bhkCapsuleShape" ver1="20.0.0.5">
 A capsule.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int 1" type="int">Unknown.</add>
 		<add name="Radius" type="float">Apparently the capsule&#039;s radius.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown.</add>
+		<add name="Unknown Short 1" type="short">Unknown.</add>
+		<add name="Unknown Short 2" type="short">Unknown.</add>
+		<add name="Unknown Short 3" type="short">Unknown.</add>
+		<add name="Unknown Short 4" type="short">Unknown.</add>
 		<add name="Unknown Vector 1" type="vector3">Unknown.</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
+		<add name="Radius 1" type="float">Unknown. Matches Radius.</add>
 		<add name="Unknown Vector 2" type="vector3">Unknown.</add>
-		<add name="Unknown Float 5" type="float">Unknown.</add>
+		<add name="Radius 2" type="float">Unknown. Matches Radius.</add>
 	</niblock>
 	<niblock name="bhkCollisionObject" ver1="20.0.0.5">
 Unknown.
@@ -1083,7 +1096,7 @@ Unknown.
 A sphere.
 		<inherit name="AbhkShape"/>
 		<add name="Unknown Int" type="int">Unknown.</add>
-		<add name="Unknown Float" type="float">Unknown, usually values around 1.0, so it&#039;s probably not the radius.</add>
+		<add name="Radius" type="float">This denotes the radius of the sphere.</add>
 	</niblock>
 	<niblock name="bhkStiffSpringConstraint">
 A spring constraint.
@@ -1160,7 +1173,7 @@ Time controller for transparency.
 	<niblock name="NiAlphaProperty">
 Transparency. Flags 0x00ED.
 		<inherit name="AProperty"/>
-		<add name="Flags" type="flags">Bit 0 : alpha blending enable
+		<add name="Flags" type="flags" default="237">Bit 0 : alpha blending enable
 Bits 1-4 : source blend mode
 Bits 5-8 : destination blend mode
 Bit 9 : alpha test enable
@@ -1976,7 +1989,7 @@ Skinning instance.
 		<inherit name="AData"/>
 		<add name="Data" type="link">Skinning data reference.</add>
 		<add name="Skin Partition" type="link" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
-		<add name="Skeleton Root" type="skeletonroot">Armature root node.</add>
+		<add name="Skeleton Root" type="crossref" function="SkeletonRoot">Armature root node.</add>
 		<add name="Bones" type="bones">List of all armature bones.</add>
 	</niblock>
 	<niblock name="NiSkinPartition" ver1="4.2.1.0">
@@ -2064,7 +2077,7 @@ Allows control of stencil testing.
 Apparently commands for an optimizer instructing it to keep things it would normally discard.
 Also refers to NiNode blocks (through their name) in animation .kf files.
 		<inherit name="AExtraData"/>
-		<add name="Bytes Remaining" type="int" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
+		<add name="Bytes Remaining" type="int" function="BytesRemaining" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
 		<add name="String Data" type="string">The string.</add>
 	</niblock>
 	<niblock name="NiStringPalette" ver1="10.2.0.0">
