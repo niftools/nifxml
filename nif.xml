@@ -124,32 +124,10 @@ An unsigned 32-bit integer, which describes how to apply vertex colors.
 1:  Source Emissive
 2:  Source Ambient Diffuse (default)
 	</basic>
-	<compound name="avobject">
-Used in NiDefaultAVObjectPalette.
-		<add name="Name" type="string">Object name.</add>
-		<add name="Object" type="crossref">Object reference.</add>
-	</compound>
-	<compound name="bbox">
-Bounding box.
-		<add name="Is Used" type="bool">This value determines whether this bounding box contains information.  If it is non-zero, the following information is present.
-At version 4.0.0.1 and above, it becomes a byte instead of an int.</add>
-		<add name="Unknown" type="int" cond="Is Used != 0">Usually 1.</add>
-		<add name="Translation" type="vector3" cond="Is Used != 0">Translation vector.</add>
-		<add name="Rotation" type="matrix33" cond="Is Used != 0">Rotation matrix.</add>
-		<add name="Radius" type="vector3" cond="Is Used != 0">Radius, per direction.</add>
-	</compound>
 	<compound name="bones">
 This is a list of bone influences.  It points to blocks higher in the hierarchy so ints are used to represent the indices.
 		<add name="Num Bones" type="int">The number of node bones referenced as influences.</add>
 		<add name="Bones" type="crossref" arr1="Num Bones">Block indicies of the bones.</add>
-	</compound>
-	<compound name="bumpmap">
-A texture that happens to be a bump map.  Contains extra data.
-		<add name="Is Used" type="bool">Determines whether this bumpmap contains any information. If Non-Zero the following data is present, otherwise it is not.</add>
-		<add name="Texture" type="texdesc" cond="Is Used != 0">The bump map texture description.</add>
-		<add name="Bump Map Luma Scale" type="float" cond="Is Used != 0">?</add>
-		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0">?</add>
-		<add name="Matrix" type="matrix22" cond="Is Used != 0">?</add>
 	</compound>
 	<compound name="bytearray" nifskopetype="bytearray">
 An array of bytes.
@@ -175,73 +153,6 @@ An integer value that may or may not be used.
 		<add name="Is Used" type="bool">Non-Zero if the following Integer appears.  Otherwise, the integer does not appear.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">An unknown integer.</add>
 	</compound>
-	<compound name="controllerlink" ver1="10.0.1.0">
-In a .kf file, this links to a controllable block, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable block, via links.
-		<add name="Name" type="string" ver2="10.1.0.0">Name of a controllable block in another NIF file.</add>
-		<add name="Interpolator" type="link">Link to an interpolator.</add>
-		<add name="Unknown Link 1" type="link" ver1="10.1.0.106">Unknown link. Usually -1.</add>
-		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Short 0" type="short" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Byte" type="byte" ver1="10.1.0.106">Unknown. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
-		<add name="String Palette" type="link" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
-		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
-		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
-		<add name="Unknown Short 1" type="short" ver1="10.2.0.0">Unknown, always 0.</add>
-		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
-		<add name="Property Type Offset" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
-		<add name="Unknown Short 2" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes also 0xFFFF.</add>
-		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the block type name of the controller in the NIF file that is child of the controlled block.</add>
-		<add name="Controller Type Offset" type="stringoffset" ver1="10.2.0.0">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled block, via its type name.</add>
-		<add name="Unknown Short 3" type="short" ver1="10.2.0.0">Unknown, always 0.</add>
-		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-		<add name="Variable Offset 1" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
-		<add name="Unknown Short 4" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
-		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
-		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
-		<add name="Unknown Short 5" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
-	</compound>
-	<compound name="extratexturegroup">
-Group of extra textures.
-		<add name="Num Textures" type="int">Number of textures in this group.</add>
-		<add name="Textures" type="texture2" arr1="Num Textures">The textures.</add>
-	</compound>
-	<compound name="footer">
-The NIF file footer.
-		<add name="Roots" type="linkgroup">List of root blocks. If there is a camera, for 1st person view, then this block is referred to as well in this list, even if it is not a root block (usually we want the camera to be attached to the Bip Head node).</add>
-	</compound>
-	<compound name="furnitureposition">
-Describes a furniture position?
-		<add name="Unknown Vector" type="vector3">Unknown. Position?</add>
-		<add name="Unknown Short" type="short">Unknown.</add>
-		<add name="Position Ref 1?" type="byte">This might refer to a furnituremarkerxx.nif file.</add>
-		<add name="Position Ref 2?" type="byte">This might also refer to a furnituremarkerxx.nif file.</add>
-	</compound>
-	<compound name="header">
-The NIF file header.
-		<add name="Header String" type="headerstring">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
-		<add name="Version" type="fileversion">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-		<add name="Endian Type" type="byte" ver1="20.0.0.4">Determines the endian-ness of the data.
-
-1 = little endian (default)
-0 = big endian</add>
-		<add name="User Version" type="int" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
-		<add name="Num Blocks" type="int">Number of file blocks.</add>
-		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
-		<add name="Unknown Int 3" type="int" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
-		<add name="Creator?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
-		<add name="Export Type?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
-		<add name="Export Script?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
-		<add name="Num Block Types" type="short" ver1="10.0.1.0">Number of block types in this NIF file.</add>
-		<add name="Block Types" type="string" arr1="Num Block Types" ver1="10.0.1.0">List of all block types used in this NIF file.</add>
-		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="10.0.1.0">Maps file blocks on their corresponding type: first file block is of type block_types[block_type_index[0]], the second of block_types[block_type_index[1]], etc.</add>
-		<add name="Unknown Int 2" type="int" ver1="10.0.1.0">Unknown.</add>
-	</compound>
-	<compound name="hktriangle">
-A triangle with extra data used for physics.
-		<add name="Triangle" type="triangle">The triangle.</add>
-		<add name="Unknown Short" type="short">Another short, doesn&#039;t look like a vertex index.</add>
-		<add name="Normal" type="vector3">This appears to be a normalized vector, so probably it is a normal or a tangent vector or something like that.</add>
-	</compound>
 	<compound name="key">
 A generic key type for anything that cannot be interpolated - currently, only used by string keys and visibility keys.
 		<add name="Time" type="float">Time of the key.</add>
@@ -252,53 +163,14 @@ An array of (untyped) keys.
 		<add name="Num Keys" type="int">Number of keys.</add>
 		<add name="Keys" type="key" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
-	<compound name="keyrot">
-A generic key type used for rotations (currently, only quaternion).
-		<add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
-		<add name="Time" type="float" cond="(ARG) != 4" ver1="10.2.0.0">Time the key applies.</add>
-		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4">Value of the key.</add>
-		<add name="TBC" type="tbc" cond="(ARG) == 3">The TBC of the key.</add>
-		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" cond="(ARG) == 4">Rotation sub keys.</add>
-	</compound>
-	<compound name="keyrotarray">
-Rotation key array.
-		<add name="Num Keys" type="int">Number of keys.</add>
-		<add name="Key Type" type="int" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
-		<add name="Keys" type="keyrot" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The rotation keys.</add>
-	</compound>
-	<compound name="keyvec">
-A generic key type used for vectors (float, vector3, color4, and also byte). Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
-		<add name="Time" type="float">Time of the key.</add>
-		<add name="Value" type="(TEMPLATE)">The key value.</add>
-		<add name="Forward" type="(TEMPLATE)" cond="(ARG) == 2">Key forward tangent.</add>
-		<add name="Backward" type="(TEMPLATE)" cond="(ARG) == 2">The key backward tangent.</add>
-		<add name="TBC" type="tbc" cond="(ARG) == 3">The key&#039;s TBC.</add>
-	</compound>
-	<compound name="keyvecarray">
-Array of vector keys (anything that can be interpolated, except rotations).
-		<add name="Num Keys" type="int">Number of keys in the array.</add>
-		<add name="Key Type" type="int" cond="Num Keys != 0">The key type.</add>
-		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
-	</compound>
-	<compound name="keyvecarraytyp">
-An array of keys. This one always has a Key Type.
-		<add name="Num Keys" type="int">Number of keys.</add>
-		<add name="Key Type" type="int">The key type.</add>
-		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
-	</compound>
 	<compound name="linkgroup">
 List of block indices.
 		<add name="Num Indices" type="int">Number of block indices.</add>
 		<add name="Indices" type="link" arr1="Num Indices">The list of block indices.</add>
 	</compound>
-	<compound name="lodinfo">
-Info about level of detail ranges.
-		<add name="LOD Type" type="int">Type of LOD info (0=regular, 1=info is in a NiRangeLODData block).</add>
-		<add name="LOD Center" type="vector3" cond="LOD Type == 0">?</add>
-		<add name="Num LOD Levels" type="int" cond="LOD Type == 0">Number of levels of detail.</add>
-		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
-		<add name="Unknown Short" type="short" cond="LOD Type == 1">Zero?</add>
-		<add name="Range Data" type="link" cond="LOD Type == 1">Refers to NiRangeLODData block.</add>
+	<compound name="footer">
+The NIF file footer.
+		<add name="Roots" type="linkgroup">List of root blocks. If there is a camera, for 1st person view, then this block is referred to as well in this list, even if it is not a root block (usually we want the camera to be attached to the Bip Head node).</add>
 	</compound>
 	<compound name="lodrange">
 The distance range where a specific level of detail applies.
@@ -359,36 +231,15 @@ A link group conditioned on a boolean value.
 		<add name="Has Modifiers" type="bool">Determines whether or not the link group is present.</add>
 		<add name="Modifiers" type="linkgroup">The list of particle modifiers.</add>
 	</compound>
-	<compound name="morphblock">
-Geometry morphing data component.
-		<add name="Frame Name" type="string" ver1="10.1.0.106">Name of the frame.</add>
-		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2">The morphing keyframes.</add>
-		<add name="Unknown Int" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Vectors" type="vector3" arr1="(ARG)">Morph vectors.</add>
-	</compound>
-	<compound name="ns keyarray">
-Array of keys, not interpolated (!!! for NifSkope only, use keyarray for regular use).
-		<add name="Num Keys" type="int">Number of keys.</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
-	</compound>
 	<compound name="ns keylin">
 Linear key type (!!! for NifSkope optimizer only, use key, keyrot, or keyvec for regular use).
 		<add name="Time" type="float">Key time.</add>
 		<add name="Value" type="(TEMPLATE)">The key value.</add>
 	</compound>
-	<compound name="ns keyrotarray">
-Array of rotation keys (!!! for NifSkope only, use keyrotarray for regular use).
-		<add name="Num Keys" type="int">Number of rotation keys.</add>
-		<add name="Key Type" type="int" cond="Num Keys != 0">The key type (1, 2, 3, or 4).</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linear keys.</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Linear keys (yes, rotations don&#039;t have type 2 tangent keys!).</add>
-		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">TBC keys.</add>
-		<add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4">Special rotation keys (3 float arrays, one for each axis).</add>
-	</compound>
-	<compound name="ns keyrotsub">
-Rotation subkey (!!! Nifskope only).
-		<add name="Time" type="float" ver2="10.1.0.0">Time.</add>
-		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3">The sub keys, one for every axis.</add>
+	<compound name="ns keyarray">
+Array of keys, not interpolated (!!! for NifSkope only, use keyarray for regular use).
+		<add name="Num Keys" type="int">Number of keys.</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="ns keytan">
 Key with tangents (!!! for NifSkope only, use keyvec instead for regular purposes).
@@ -396,47 +247,6 @@ Key with tangents (!!! for NifSkope only, use keyvec instead for regular purpose
 		<add name="Value" type="(TEMPLATE)">The key value.</add>
 		<add name="Forward" type="(TEMPLATE)">Forward tangent.</add>
 		<add name="Backward" type="(TEMPLATE)">Backward tangent.</add>
-	</compound>
-	<compound name="ns keytbc">
-A TBC key (!!! for NifSkope only, use keyvec for regular purposes).
-		<add name="Time" type="float">The key time.</add>
-		<add name="Value" type="(TEMPLATE)">The key value.</add>
-		<add name="TBC" type="tbc">Tension, bias, continuity.</add>
-	</compound>
-	<compound name="ns keyvecarray">
-Array of interpolable keys (!!! for NifSkope only, use keyvecarray for regular use).
-		<add name="Num Keys" type="int">Number of keys.</add>
-		<add name="Key Type" type="int" cond="Num Keys != 0">The key type (1, 2, or 3).</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
-		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
-		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 5">Another type of linear key?</add>
-	</compound>
-	<compound name="ns keyvecarraytyp">
-Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regular use)
-		<add name="Num Keys" type="int">Number of keys</add>
-		<add name="Key Type" type="int">The key type (1, 2, 3)</add>
-		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
-		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
-		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
-	</compound>
-	<compound name="particle">
-particle array entry
-		<add name="Velocity" type="vector3">Particle velocity</add>
-		<add name="Unknown Vector" type="vector3">Unknown</add>
-		<add name="Lifetime" type="float">The particle&#039;s age.</add>
-		<add name="Lifespan" type="float">Maximum age of the particle.</add>
-		<add name="Timestamp" type="float">Timestamp of the last update.</add>
-		<add name="Unknown Short" type="short">Unknown short (=0)</add>
-		<add name="Vertex ID" type="short">Particle/vertex index matches array index</add>
-	</compound>
-	<compound name="particlegroup">
-Data for several particles.
-		<add name="Num Particles" type="short">Size of the following array.
-(maximum number of simultaneous active particles)</add>
-		<add name="Num Valid" type="short">Number of valid entries in the following array.
-(number of active particles at the time the system was saved)</add>
-		<add name="Particles" type="particle" arr1="Num Particles">Individual particle modifiers?</add>
 	</compound>
 	<compound name="quaternion" nifskopetype="quaternion">
 A quaternion.
@@ -452,47 +262,10 @@ A quaternion as it appears in the havok blocks.
 		<add name="z" type="float">The z-coordinate.</add>
 		<add name="w" type="float">The w-coordinate.</add>
 	</compound>
-	<compound name="shader">
-Describes a shader.
-		<add name="Has Shader" type="bool">Do we have a shader?</add>
-		<add name="Shader Name" type="string" cond="Has Shader != 0">The shader name.</add>
-		<add name="Unknown Link" type="link" cond="Has Shader != 0">Unknown link, usually -1.</add>
-	</compound>
 	<compound name="shortstring" ver1="10.1.0.0" nifskopetype="shortstring">
 Another string format, for short strings.
 		<add name="Length" type="byte">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
-	</compound>
-	<compound name="skinblock">
-Skinning data component.
-		<add name="Rotation" type="matrix33">Rotation offset of the skin from this bone in bind position.</add>
-		<add name="Translation" type="vector3">Translation offset of the skin from this bone in bind position.</add>
-		<add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
-		<add name="Unknown 4 Floats" type="float" arr1="4">This has been verified not to be a normalized quaternion.  They may or may not be related to each other so their specification as an array of 4 floats may be misleading.</add>
-		<add name="Num Vertices" type="short">Number of weighted vertices.</add>
-		<add name="Vertex Weights" type="skinweight" arr1="Num Vertices">The vertex weights.</add>
-	</compound>
-	<compound name="skinpartitionblock" ver1="4.2.1.0">
-Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
-		<add name="Num Vertices" type="short">Number of vertices in this submesh.</add>
-		<add name="Num Triangles" type="short">Number of triangles in this submesh.</add>
-		<add name="Num Bones" type="short">Number of bones influencing this submesh.</add>
-		<add name="Num Strips" type="short">Number of strips in this submesh (zero if not stripped).</add>
-		<add name="Num Weights Per Vertex" type="short">Number of weight coefficients per vertex.</add>
-		<add name="Bones" type="short" arr1="Num Bones">List of bones.</add>
-		<add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
-		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned. </add>
-		<add name="Vertex Map" type="short" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
-		<add name="Has Vertex Weights" type="bool" ver1="10.1.0.0">Do we have vertex weights?</add>
-		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2">The vertex weights.</add>
-		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="10.1.0.0">The vertex weights.</add>
-		<add name="Strip Lengths" type="short" arr1="Num Strips">The strip lengths.</add>
-		<add name="Has Strips" type="bool" ver1="10.1.0.0">Do we have strip data?</add>
-		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The strips.</add>
-		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="10.1.0.0">The strips.</add>
-		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Num Strips == 0">The triangles.</add>
-		<add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
-		<add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0">Bone indices, they index into &#039;Bones&#039;.</add>
 	</compound>
 	<compound name="skinshapegroup" ver1="10.0.1.0">
 Unknown.
@@ -510,6 +283,62 @@ A string type.
 		<add name="Length" type="int">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself.</add>
 	</compound>
+	<compound name="avobject">
+Used in NiDefaultAVObjectPalette.
+		<add name="Name" type="string">Object name.</add>
+		<add name="Object" type="crossref">Object reference.</add>
+	</compound>
+	<compound name="controllerlink" ver1="10.0.1.0">
+In a .kf file, this links to a controllable block, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable block, via links.
+		<add name="Name" type="string" ver2="10.1.0.0">Name of a controllable block in another NIF file.</add>
+		<add name="Interpolator" type="link">Link to an interpolator.</add>
+		<add name="Unknown Link 1" type="link" ver1="10.1.0.106">Unknown link. Usually -1.</add>
+		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+		<add name="Unknown Short 0" type="short" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+		<add name="Unknown Byte" type="byte" ver1="10.1.0.106">Unknown. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
+		<add name="String Palette" type="link" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
+		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
+		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
+		<add name="Unknown Short 1" type="short" ver1="10.2.0.0">Unknown, always 0.</add>
+		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
+		<add name="Property Type Offset" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
+		<add name="Unknown Short 2" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes also 0xFFFF.</add>
+		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the block type name of the controller in the NIF file that is child of the controlled block.</add>
+		<add name="Controller Type Offset" type="stringoffset" ver1="10.2.0.0">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled block, via its type name.</add>
+		<add name="Unknown Short 3" type="short" ver1="10.2.0.0">Unknown, always 0.</add>
+		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
+		<add name="Variable Offset 1" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
+		<add name="Unknown Short 4" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
+		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
+		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
+		<add name="Unknown Short 5" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
+	</compound>
+	<compound name="header">
+The NIF file header.
+		<add name="Header String" type="headerstring">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
+		<add name="Version" type="fileversion">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
+		<add name="Endian Type" type="byte" ver1="20.0.0.4">Determines the endian-ness of the data.
+
+1 = little endian (default)
+0 = big endian</add>
+		<add name="User Version" type="int" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
+		<add name="Num Blocks" type="int">Number of file blocks.</add>
+		<add name="Unknown Int 1" type="int" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
+		<add name="Unknown Int 3" type="int" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
+		<add name="Creator?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
+		<add name="Export Type?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
+		<add name="Export Script?" type="shortstring" cond="User Version != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
+		<add name="Num Block Types" type="short" ver1="10.0.1.0">Number of block types in this NIF file.</add>
+		<add name="Block Types" type="string" arr1="Num Block Types" ver1="10.0.1.0">List of all block types used in this NIF file.</add>
+		<add name="Block Type Index" type="blocktypeindex" arr1="Num Blocks" ver1="10.0.1.0">Maps file blocks on their corresponding type: first file block is of type block_types[block_type_index[0]], the second of block_types[block_type_index[1]], etc.</add>
+		<add name="Unknown Int 2" type="int" ver1="10.0.1.0">Unknown.</add>
+	</compound>
+	<compound name="shader">
+Describes a shader.
+		<add name="Has Shader" type="bool">Do we have a shader?</add>
+		<add name="Shader Name" type="string" cond="Has Shader != 0">The shader name.</add>
+		<add name="Unknown Link" type="link" cond="Has Shader != 0">Unknown link, usually -1.</add>
+	</compound>
 	<compound name="stringpalette" nifskopetype="stringpalette">
 A list of \\0 terminated strings.
 		<add name="Palette" type="string">A bunch of 0x00 seperated strings.</add>
@@ -525,6 +354,77 @@ Tension, bias, continuity.
 		<add name="t" type="float">Tension.</add>
 		<add name="b" type="float">Bias.</add>
 		<add name="c" type="float">Continuity.</add>
+	</compound>
+	<compound name="keyvec">
+A generic key type used for vectors (float, vector3, color4, and also byte). Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
+		<add name="Time" type="float">Time of the key.</add>
+		<add name="Value" type="(TEMPLATE)">The key value.</add>
+		<add name="Forward" type="(TEMPLATE)" cond="(ARG) == 2">Key forward tangent.</add>
+		<add name="Backward" type="(TEMPLATE)" cond="(ARG) == 2">The key backward tangent.</add>
+		<add name="TBC" type="tbc" cond="(ARG) == 3">The key&#039;s TBC.</add>
+	</compound>
+	<compound name="keyvecarray">
+Array of vector keys (anything that can be interpolated, except rotations).
+		<add name="Num Keys" type="int">Number of keys in the array.</add>
+		<add name="Key Type" type="int" cond="Num Keys != 0">The key type.</add>
+		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
+	</compound>
+	<compound name="keyrot">
+A generic key type used for rotations (currently, only quaternion).
+		<add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
+		<add name="Time" type="float" cond="(ARG) != 4" ver1="10.2.0.0">Time the key applies.</add>
+		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4">Value of the key.</add>
+		<add name="TBC" type="tbc" cond="(ARG) == 3">The TBC of the key.</add>
+		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" cond="(ARG) == 4">Rotation sub keys.</add>
+	</compound>
+	<compound name="keyrotarray">
+Rotation key array.
+		<add name="Num Keys" type="int">Number of keys.</add>
+		<add name="Key Type" type="int" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
+		<add name="Keys" type="keyrot" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The rotation keys.</add>
+	</compound>
+	<compound name="keyvecarraytyp">
+An array of keys. This one always has a Key Type.
+		<add name="Num Keys" type="int">Number of keys.</add>
+		<add name="Key Type" type="int">The key type.</add>
+		<add name="Keys" type="keyvec" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
+	</compound>
+	<compound name="ns keytbc">
+A TBC key (!!! for NifSkope only, use keyvec for regular purposes).
+		<add name="Time" type="float">The key time.</add>
+		<add name="Value" type="(TEMPLATE)">The key value.</add>
+		<add name="TBC" type="tbc">Tension, bias, continuity.</add>
+	</compound>
+	<compound name="ns keyvecarray">
+Array of interpolable keys (!!! for NifSkope only, use keyvecarray for regular use).
+		<add name="Num Keys" type="int">Number of keys.</add>
+		<add name="Key Type" type="int" cond="Num Keys != 0">The key type (1, 2, or 3).</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
+		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 5">Another type of linear key?</add>
+	</compound>
+	<compound name="ns keyrotsub">
+Rotation subkey (!!! Nifskope only).
+		<add name="Time" type="float" ver2="10.1.0.0">Time.</add>
+		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3">The sub keys, one for every axis.</add>
+	</compound>
+	<compound name="ns keyrotarray">
+Array of rotation keys (!!! for NifSkope only, use keyrotarray for regular use).
+		<add name="Num Keys" type="int">Number of rotation keys.</add>
+		<add name="Key Type" type="int" cond="Num Keys != 0">The key type (1, 2, 3, or 4).</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linear keys.</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Linear keys (yes, rotations don&#039;t have type 2 tangent keys!).</add>
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">TBC keys.</add>
+		<add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4">Special rotation keys (3 float arrays, one for each axis).</add>
+	</compound>
+	<compound name="ns keyvecarraytyp">
+Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regular use)
+		<add name="Num Keys" type="int">Number of keys</add>
+		<add name="Key Type" type="int">The key type (1, 2, 3)</add>
+		<add name="Keys" type="ns keylin" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
+		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
+		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
 	</compound>
 	<compound name="texcoord" nifskopetype="vector2">
 Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
@@ -546,6 +446,14 @@ Texture description.
 		<add name="W Rotation" type="float" cond="Has Texture Transform != 0" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
 		<add name="Transform Type?" type="int" cond="Has Texture Transform != 0" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
 		<add name="Center Offset" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
+	</compound>
+	<compound name="bumpmap">
+A texture that happens to be a bump map.  Contains extra data.
+		<add name="Is Used" type="bool">Determines whether this bumpmap contains any information. If Non-Zero the following data is present, otherwise it is not.</add>
+		<add name="Texture" type="texdesc" cond="Is Used != 0">The bump map texture description.</add>
+		<add name="Bump Map Luma Scale" type="float" cond="Is Used != 0">?</add>
+		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0">?</add>
+		<add name="Matrix" type="matrix22" cond="Is Used != 0">?</add>
 	</compound>
 	<compound name="texsource">
 A texture source.
@@ -569,11 +477,38 @@ An extended version of texture.
 		<add name="Texture Data" type="texdesc" cond="Is Used != 0">The texture data.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">Unknown.</add>
 	</compound>
+	<compound name="extratexturegroup">
+Group of extra textures.
+		<add name="Num Textures" type="int">Number of textures in this group.</add>
+		<add name="Textures" type="texture2" arr1="Num Textures">The textures.</add>
+	</compound>
 	<compound name="triangle" nifskopetype="triangle">
 List of three vertex indices.
 		<add name="v1" type="short">First vertex index.</add>
 		<add name="v2" type="short">Second vertex index.</add>
 		<add name="v3" type="short">Third vertex index.</add>
+	</compound>
+	<compound name="skinpartitionblock" ver1="4.2.1.0">
+Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
+		<add name="Num Vertices" type="short">Number of vertices in this submesh.</add>
+		<add name="Num Triangles" type="short">Number of triangles in this submesh.</add>
+		<add name="Num Bones" type="short">Number of bones influencing this submesh.</add>
+		<add name="Num Strips" type="short">Number of strips in this submesh (zero if not stripped).</add>
+		<add name="Num Weights Per Vertex" type="short">Number of weight coefficients per vertex.</add>
+		<add name="Bones" type="short" arr1="Num Bones">List of bones.</add>
+		<add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
+		<add name="Vertex Map" type="short" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
+		<add name="Vertex Map" type="short" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
+		<add name="Has Vertex Weights" type="bool" ver1="10.1.0.0">Do we have vertex weights?</add>
+		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2">The vertex weights.</add>
+		<add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="10.1.0.0">The vertex weights.</add>
+		<add name="Strip Lengths" type="short" arr1="Num Strips">The strip lengths.</add>
+		<add name="Has Strips" type="bool" ver1="10.1.0.0">Do we have strip data?</add>
+		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The strips.</add>
+		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="10.1.0.0">The strips.</add>
+		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Num Strips == 0">The triangles.</add>
+		<add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
+		<add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0">Bone indices, they index into &#039;Bones&#039;.</add>
 	</compound>
 	<compound name="unk292bytes">
 Unknown.
@@ -584,6 +519,71 @@ A vector in 3D space (x,y,z).
 		<add name="x" type="float">First coordinate.</add>
 		<add name="y" type="float">Second coordinate.</add>
 		<add name="z" type="float">Third coordinate.</add>
+	</compound>
+	<compound name="bbox">
+Bounding box.
+		<add name="Is Used" type="bool">This value determines whether this bounding box contains information.  If it is non-zero, the following information is present.
+At version 4.0.0.1 and above, it becomes a byte instead of an int.</add>
+		<add name="Unknown" type="int" cond="Is Used != 0">Usually 1.</add>
+		<add name="Translation" type="vector3" cond="Is Used != 0">Translation vector.</add>
+		<add name="Rotation" type="matrix33" cond="Is Used != 0">Rotation matrix.</add>
+		<add name="Radius" type="vector3" cond="Is Used != 0">Radius, per direction.</add>
+	</compound>
+	<compound name="furnitureposition">
+Describes a furniture position?
+		<add name="Unknown Vector" type="vector3">Unknown. Position?</add>
+		<add name="Unknown Short" type="short">Unknown.</add>
+		<add name="Position Ref 1?" type="byte">This might refer to a furnituremarkerxx.nif file.</add>
+		<add name="Position Ref 2?" type="byte">This might also refer to a furnituremarkerxx.nif file.</add>
+	</compound>
+	<compound name="hktriangle">
+A triangle with extra data used for physics.
+		<add name="Triangle" type="triangle">The triangle.</add>
+		<add name="Unknown Short" type="short">Another short, doesn&#039;t look like a vertex index.</add>
+		<add name="Normal" type="vector3">This appears to be a normalized vector, so probably it is a normal or a tangent vector or something like that.</add>
+	</compound>
+	<compound name="lodinfo">
+Info about level of detail ranges.
+		<add name="LOD Type" type="int">Type of LOD info (0=regular, 1=info is in a NiRangeLODData block).</add>
+		<add name="LOD Center" type="vector3" cond="LOD Type == 0">?</add>
+		<add name="Num LOD Levels" type="int" cond="LOD Type == 0">Number of levels of detail.</add>
+		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
+		<add name="Unknown Short" type="short" cond="LOD Type == 1">Zero?</add>
+		<add name="Range Data" type="link" cond="LOD Type == 1">Refers to NiRangeLODData block.</add>
+	</compound>
+	<compound name="morphblock">
+Geometry morphing data component.
+		<add name="Frame Name" type="string" ver1="10.1.0.106">Name of the frame.</add>
+		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2">The morphing keyframes.</add>
+		<add name="Unknown Int" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+		<add name="Vectors" type="vector3" arr1="(ARG)">Morph vectors.</add>
+	</compound>
+	<compound name="particle">
+particle array entry
+		<add name="Velocity" type="vector3">Particle velocity</add>
+		<add name="Unknown Vector" type="vector3">Unknown</add>
+		<add name="Lifetime" type="float">The particle&#039;s age.</add>
+		<add name="Lifespan" type="float">Maximum age of the particle.</add>
+		<add name="Timestamp" type="float">Timestamp of the last update.</add>
+		<add name="Unknown Short" type="short">Unknown short (=0)</add>
+		<add name="Vertex ID" type="short">Particle/vertex index matches array index</add>
+	</compound>
+	<compound name="particlegroup">
+Data for several particles.
+		<add name="Num Particles" type="short">Size of the following array.
+(maximum number of simultaneous active particles)</add>
+		<add name="Num Valid" type="short">Number of valid entries in the following array.
+(number of active particles at the time the system was saved)</add>
+		<add name="Particles" type="particle" arr1="Num Particles">Individual particle modifiers?</add>
+	</compound>
+	<compound name="skinblock">
+Skinning data component.
+		<add name="Rotation" type="matrix33">Rotation offset of the skin from this bone in bind position.</add>
+		<add name="Translation" type="vector3">Translation offset of the skin from this bone in bind position.</add>
+		<add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
+		<add name="Unknown 4 Floats" type="float" arr1="4">This has been verified not to be a normalized quaternion.  They may or may not be related to each other so their specification as an array of 4 floats may be misleading.</add>
+		<add name="Num Vertices" type="short">Number of weighted vertices.</add>
+		<add name="Vertex Weights" type="skinweight" arr1="Num Vertices">The vertex weights.</add>
 	</compound>
 	<compound name="vector4" nifskopetype="vector4">
 A 4-dimensional vector.
@@ -1201,8 +1201,7 @@ test modes (glAlphaFunc):
 100 GL_GREATER
 101 GL_NOTEQUAL
 110 GL_GEQUAL
-111 GL_NEVER
-</add>
+111 GL_NEVER</add>
 		<add name="Threshold" type="byte">Threshold for alpha testing (see: glAlphaFunc)</add>
 	</niblock>
 	<niblock name="NiAmbientLight">
@@ -1418,7 +1417,7 @@ Texture flipping controller.
 		<add name="Texture Slot" type="int">Target texture slot (0=base, 4=glow).</add>
 		<add name="Unknown Int 2" type="int" ver2="10.1.0.0">0?</add>
 		<add name="Delta" type="float" ver2="10.1.0.0">Time between two flips.
-delta = (start_time - stop_time) / sources.num_indices </add>
+delta = (start_time - stop_time) / sources.num_indices</add>
 		<add name="Sources" type="linkgroup">The texture source indices.</add>
 	</niblock>
 	<niblock name="NiFloatData">
@@ -2009,8 +2008,7 @@ Describes texture source and properties.
 2=smooth (?)
 3=multiply texture alpha channel with the material alpha setting, or, if there is no texture alpha channel, use material alpha setting as alpha channel; this is the default setting in official Morrowind files
 
-Note: the NiTriShape linked to this block must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.
-</add>
+Note: the NiTriShape linked to this block must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
 		<add name="Unknown Byte" type="byte">Unknown, usually 1.</add>
 		<add name="Unknown Byte 2" type="byte" ver1="10.1.0.106">Unknown.</add>
 	</niblock>
