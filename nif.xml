@@ -729,6 +729,7 @@ Keyframes for mesh animation.
 	<ancestor name="ANode">
 Generic node block.
 		<inherit name="AControllable"/>
+		<interface name="INode"/>
 		<add name="Flags" type="flags">Some flags; commonly 0x000C or 0x000A.</add>
 		<add name="Translation" type="vector3">The translation vector.</add>
 		<add name="Rotation" type="matrix33">The rotation part of the transformation matrix.</add>
@@ -862,6 +863,7 @@ Generic particle system node.
 	<ancestor name="AShapeData">
 Mesh data: vertices, vertex normals, etc.
 		<inherit name="AData"/>
+		<interface name="IShapeData"/>
 		<add name="Name" type="string" ver1="10.2.0.0">Name of this block.</add>
 		<add name="Num Vertices" type="short">Number of vertices.</add>
 		<add name="Unknown Short 1" type="short" ver1="10.1.0.0">Unknown.</add>
@@ -1363,6 +1365,7 @@ Collision box.
 	<niblock name="NiColorData">
 Color data for material color controller.
 		<inherit name="AKeyedData"/>
+		<interface name="IColorData"/>
 		<add name="Data" type="ns keyvecarray" template="color4">The color keys.</add>
 	</niblock>
 	<niblock name="NiColorExtraData" ver1="20.0.0.4">
@@ -1423,6 +1426,7 @@ delta = (start_time - stop_time) / sources.num_indices</add>
 	<niblock name="NiFloatData">
 Possibly the 1D position along a 3D path.
 		<inherit name="AKeyedData"/>
+		<interface name="IFloatData"/>
 		<add name="Data" type="ns keyvecarray" template="float">The keys.</add>
 	</niblock>
 	<niblock name="NiFloatExtraData" ver1="20.0.0.4">
@@ -1499,6 +1503,7 @@ Keyframe controller block.
 	<niblock name="NiKeyframeData">
 Keyframe data for mesh transform.
 		<inherit name="AKeyframeData"/>
+		<interface name="IKeyframeData"/>
 	</niblock>
 	<niblock name="NiLightColorController" ver1="4.2.0.2">
 Light color animation controller.
@@ -1581,6 +1586,7 @@ Particle meshes data.
 	<niblock name="NiMorphData">
 Geometry morphing data.
 		<inherit name="AData"/>
+		<interface name="IMorphData"/>
 		<add name="Num Morphs" type="int">Number of morphing blocks.</add>
 		<add name="Num Vertices" type="int">Number of vertices.</add>
 		<add name="Unknown Byte" type="byte">This byte is always 1 in all official files.</add>
@@ -1750,6 +1756,7 @@ A point light.
 	<niblock name="NiPosData">
 Position data.
 		<inherit name="AKeyedData"/>
+		<interface name="IPosData"/>
 		<add name="Data" type="ns keyvecarray" template="vector3">The position keys.</add>
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier" ver1="10.1.0.0">
@@ -1974,6 +1981,7 @@ If 1&#039;s bit is not set, hard-edged flat shading will be used on this shape.<
 	<niblock name="NiSkinData">
 Skinning data.
 		<inherit name="AData"/>
+		<interface name="ISkinData"/>
 		<add name="Rotation" type="matrix33">The overall rotation offset of the skin from this bone in the bind position.
 (This is a guess, it has always been the identity matrix so far)</add>
 		<add name="Translation" type="vector3">The overall translation offset of the skin from this bone in the bind position. (This is a guess, it has always been (0.0, 0.0, 0.0) so far)</add>
@@ -2092,6 +2100,7 @@ List of strings; for example, a list of all bone names.
 	<niblock name="NiTextKeyExtraData">
 Extra data, used to name different animation sequences.
 		<inherit name="AExtraData"/>
+		<interface name="ITextKeyExtraData"/>
 		<add name="Unknown Int 1" type="int" ver2="4.2.2.0">Unknown.  Always equals zero in all official files.</add>
 		<add name="Text Keys" type="ns keyarray" template="string">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
 	</niblock>
@@ -2183,6 +2192,7 @@ A shape node that refers to singular triangle data.
 	<niblock name="NiTriShapeData">
 Holds mesh data using a list of singular triangles.
 		<inherit name="AShapeData"/>
+		<interface name="ITriShapeData"/>
 		<add name="Num Triangles" type="short">Number of triangles.</add>
 		<add name="Num Triangle Points" type="int">Num Triangles times 3.</add>
 		<add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
@@ -2198,6 +2208,7 @@ A shape node that refers to data organized into strips of triangles
 	<niblock name="NiTriStripsData" ver1="4.1.0.12">
 Holds mesh data using strips of triangles.
 		<inherit name="AShapeData"/>
+		<interface name="ITriStripsData"/>
 		<add name="Num Triangles" type="short">Number of triangles.</add>
 		<add name="Num Strips" type="short">Number of OpenGL triangle strips that are present.</add>
 		<add name="Strip Lengths" type="short" arr1="Num Strips">The number of points in each triangle strip.</add>
