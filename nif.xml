@@ -153,6 +153,11 @@ An integer value that may or may not be used.
 		<add name="Is Used" type="bool">Non-Zero if the following Integer appears.  Otherwise, the integer does not appear.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">An unknown integer.</add>
 	</compound>
+	<compound name="filepath" nifskopetype="filepath">
+A string that contains the path to a file.
+		<add name="Length" type="int">The string length.</add>
+		<add name="Value" type="char" arr1="Length">The string itself.</add>
+	</compound>
 	<compound name="key">
 A generic key type for anything that cannot be interpolated - currently, only used by string keys and visibility keys.
 		<add name="Time" type="float">Time of the key.</add>
@@ -458,7 +463,7 @@ A texture that happens to be a bump map.  Contains extra data.
 	<compound name="texsource">
 A texture source.
 		<add name="Use External" type="byte">Is the texture external?</add>
-		<add name="File Name" type="string" cond="Use External == 1">The external texture file name.
+		<add name="File Name" type="filepath" cond="Use External == 1">The external texture file name.
 
 Note: all original morrowind nifs use name.ext only for addressing the textures, but most mods use something like textures/[subdir/]name.ext. This is due to a feature in Morrowind resource manager: it loads name.ext, textures/name.ext and textures/subdir/name.ext but NOT subdir/name.ext.</add>
 		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
