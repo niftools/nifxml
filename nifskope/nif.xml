@@ -880,8 +880,8 @@ Mesh data: vertices, vertex normals, etc.
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
 		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
 		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
-		<add name="Center" type="vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
-		<add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
+		<add name="Center" type="vector3" function="Center">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
+		<add name="Radius" type="float" function="Radius">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
 		<add name="Has Vertex Colors" type="bool">Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
 Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty block as a property child of the root node. If this property block is not present, the vertex colors fine-tune lighting.
