@@ -321,8 +321,8 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 	<compound name="header">
 The NIF file header.
 		<add name="Header String" type="headerstring">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
-		<add name="Version" type="fileversion">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-		<add name="Endian Type" type="byte" ver1="20.0.0.4">Determines the endian-ness of the data.
+		<add name="Version" type="fileversion" default="0x04000002">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
+		<add name="Endian Type" type="byte" default="1" ver1="20.0.0.4">Determines the endian-ness of the data.
 
 1 = little endian (default)
 0 = big endian</add>
@@ -738,7 +738,7 @@ Generic node block.
 		<add name="Flags" type="flags">Some flags; commonly 0x000C or 0x000A.</add>
 		<add name="Translation" type="vector3">The translation vector.</add>
 		<add name="Rotation" type="matrix33">The rotation part of the transformation matrix.</add>
-		<add name="Scale" type="float">Scaling part (only uniform scaling is supported).</add>
+		<add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
 		<add name="Velocity" type="vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
 		<add name="Properties" type="linkgroup">List of node properties.</add>
 		<add name="Bounding Box" type="bbox" ver2="4.2.2.0">The bounding box.</add>
@@ -1396,8 +1396,11 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Unknown Float 1" type="float" ver1="10.1.0.106">Unknown. 1.0?</add>
 		<add name="Text Keys 2" type="link" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
 		<add name="Unknown Int 0" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown 4 Floats" type="float" arr1="4" ver1="10.1.0.106">Unknown.</add>
-		<add name="Unkown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
+		<add name="Unknown Float 3" type="float" ver1="10.1.0.106">Unknown.</add>
+		<add name="Unknown Float 4" type="float" ver1="10.1.0.106">Unknown.</add>
+		<add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
+		<add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
+		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Int 3" type="int" ver1="10.1.0.106">Unknown. Could be a link.</add>
 		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
