@@ -876,7 +876,7 @@ Mesh data: vertices, vertex normals, etc.
 		<add name="Vertices" type="vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
 		<add name="Num UV Sets 2" type="byte" ver1="10.0.1.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.0.1.0">Unknown. If bit 4 is set then extra vectors are present after the normals.</add>
-		<add name="Has Normals" type="byte">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light. (note: this is declared as a byte and not as a bool because it is used as an array size; might be fixed in future if we support multiple conditions)</add>
+		<add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
 		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
 		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
 		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
