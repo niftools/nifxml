@@ -300,7 +300,7 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 		<add name="Unknown Link 1" type="link" ver1="10.1.0.106">Unknown link. Usually -1.</add>
 		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Short 0" type="short" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Byte" type="byte" ver1="10.1.0.106">Unknown. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
+		<add name="Priority?" type="byte" ver1="10.1.0.106">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
 		<add name="String Palette" type="link" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
 		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
 		<add name="Node Name Offset" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
@@ -714,6 +714,12 @@ An extended type of interpolater.
 		<inherit name="AInterpolator"/>
 		<add name="Unknown Short" type="short">Unknown.</add>
 		<add name="Unknown Int" type="int">Unknown.</add>
+	</ancestor>
+	<ancestor name="ABSplineCompInterpolator">
+A B-spline (component?) interpolator.
+		<inherit name="AInterpolator"/>
+		<add name="Start Time" type="float">Animation start time.</add>
+		<add name="Stop Time" type="float">Animation stop time.</add>
 	</ancestor>
 	<ancestor name="AKeyedData">
 Single items of data linked to particular key times.
@@ -1308,22 +1314,19 @@ Unknown.
 	</niblock>
 	<niblock name="NiBSplineCompFloatInterpolator" ver1="20.0.0.4">
 Unknown.
-		<inherit name="AInterpolator"/>
-		<add name="Unknown Floats" type="float" arr1="8">Unknown.</add>
+		<inherit name="ABSplineCompInterpolator"/>
+		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineCompPoint3Interpolator" ver1="20.0.0.4">
 Unknown.
-		<inherit name="AInterpolator"/>
-		<add name="Unknown 1" type="int">Unknown (could also be a float).</add>
-		<add name="Unknown 2" type="float">Unknown.</add>
+		<inherit name="ABSplineCompInterpolator"/>
 		<add name="Data" type="link">Refers to NiBSplineData.</add>
 		<add name="Unknown Link" type="link">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineCompTransformInterpolator" ver1="20.0.0.4">
 Unknown.
-		<inherit name="AInterpolator"/>
-		<add name="Unknown1" type="float" arr1="2">Unknown.</add>
+		<inherit name="ABSplineCompInterpolator"/>
 		<add name="Data" type="link">Refers to NiBSplineData.</add>
 		<add name="Basis Data" type="link">Refers to NiBSPlineBasisData.</add>
 		<add name="Unknown4" type="float" arr1="17">Unknown.</add>
