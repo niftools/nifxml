@@ -177,7 +177,7 @@ List of block indices.
 The NIF file footer.
 		<add name="Roots" type="linkgroup">List of root blocks. If there is a camera, for 1st person view, then this block is referred to as well in this list, even if it is not a root block (usually we want the camera to be attached to the Bip Head node).</add>
 	</compound>
-	<compound name="LODRange" niflibtype="LODRange" nifskopetype="lodrange">
+	<compound name="LODRange" niflibtype="LODRange">
 The distance range where a specific level of detail applies.
 		<add name="Near" type="float">Begining of range.</add>
 		<add name="Far" type="float">End of Range.</add>
@@ -187,7 +187,7 @@ Group of vertex indices of vertices that match.
 		<add name="Num Vertices" type="short">Number of vertices in this group.</add>
 		<add name="Vertex Indices" type="short" arr1="Num Vertices">The vertex indices.</add>
 	</compound>
-	<compound name="Matrix22" niflibtype="Matrix22" nifskopetype="matrix22">
+	<compound name="Matrix22" niflibtype="Matrix22">
 A 2x2 matrix of float values.  Stored in OpenGL column-major format.
 		<add name="m11" type="float">Member 1,1 (top left)</add>
 		<add name="m21" type="float">Member 2,1 (bottom left)</add>
@@ -436,7 +436,7 @@ Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corne
 		<add name="u" type="float">First coordinate.</add>
 		<add name="v" type="float">Second coordinate.</add>
 	</compound>
-	<compound name="TexDesc" niflibtype="TexDesc" nifskopetype="texdesc">
+	<compound name="TexDesc" niflibtype="TexDesc">
 Texture description.
 		<add name="Source" type="link">NiTextureSource block index.</add>
 		<add name="Clamp Mode" type="int">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
@@ -460,7 +460,7 @@ A texture that happens to be a bump map.  Contains extra data.
 		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0">?</add>
 		<add name="Matrix" type="Matrix22" cond="Is Used != 0">?</add>
 	</compound>
-	<compound name="TexSource" niflibtype="TexSource" nifskopetype="texsource">
+	<compound name="TexSource" niflibtype="TexSource">
 A texture source.
 		<add name="Use External" type="byte">Is the texture external?</add>
 		<add name="File Name" type="filepath" cond="Use External == 1">The external texture file name.
@@ -525,7 +525,7 @@ A vector in 3D space (x,y,z).
 		<add name="y" type="float">Second coordinate.</add>
 		<add name="z" type="float">Third coordinate.</add>
 	</compound>
-	<compound name="BoundingBox" niflibtype="BoundingBox" nifskopetype="bbox">
+	<compound name="BoundingBox" niflibtype="BoundingBox">
 Bounding box.
 		<add name="Is Used" type="bool">This value determines whether this bounding box contains information.  If it is non-zero, the following information is present.
 At version 4.0.0.1 and above, it becomes a byte instead of an int.</add>
