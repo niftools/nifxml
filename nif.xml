@@ -380,7 +380,7 @@ A generic key type used for rotations (currently, only quaternion).
 		<add name="Time" type="float" cond="(ARG) != 4" ver1="10.2.0.0">Time the key applies.</add>
 		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4">Value of the key.</add>
 		<add name="TBC" type="tbc" cond="(ARG) == 3">The TBC of the key.</add>
-		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3" cond="(ARG) == 4">Rotation sub keys.</add>
+		<add name="Sub Keys" type="keyvecarray" template="float" arr1="3" cond="(ARG) == 4">Rotation sub keys.</add>
 	</compound>
 	<compound name="keyrotarray">
 Rotation key array.
@@ -559,7 +559,7 @@ Info about level of detail ranges.
 	<compound name="morphblock">
 Geometry morphing data component.
 		<add name="Frame Name" type="string" ver1="10.1.0.106">Name of the frame.</add>
-		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2">The morphing keyframes.</add>
+		<add name="Frames" type="keyvecarraytyp" template="float" ver2="10.0.1.2">The morphing keyframes.</add>
 		<add name="Unknown Int" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Vectors" type="Vector3" arr1="(ARG)">Morph vectors.</add>
 	</compound>
@@ -727,9 +727,9 @@ A time controller block for animation key frames.
 	<ancestor name="AKeyframeData">
 Keyframes for mesh animation.
 		<inherit name="AData"/>
-		<add name="Rotations" type="ns keyrotarray" template="Quaternion">Rotation keyframes.</add>
-		<add name="Translations" type="ns keyvecarray" template="Vector3">Translation keys.</add>
-		<add name="Scales" type="ns keyvecarray" template="float">Scale keys.</add>
+		<add name="Rotations" type="keyrotarray" template="Quaternion">Rotation keyframes.</add>
+		<add name="Translations" type="keyvecarray" template="Vector3">Translation keys.</add>
+		<add name="Scales" type="keyvecarray" template="float">Scale keys.</add>
 	</ancestor>
 	<ancestor name="ANode">
 Generic node block.
@@ -1266,7 +1266,7 @@ A LOD controller for bones?
 	<niblock name="NiBoolData" ver1="10.2.0.0">
 Timed boolean data.
 		<inherit name="AKeyedData"/>
-		<add name="Data" type="ns keyvecarray" template="byte">The boolean keys.</add>
+		<add name="Data" type="keyvecarray" template="byte">The boolean keys.</add>
 	</niblock>
 	<niblock name="NiBooleanExtraData" ver1="10.0.1.0">
 Boolean extra data.
@@ -1371,7 +1371,7 @@ Collision box.
 Color data for material color controller.
 		<inherit name="AKeyedData"/>
 		<interface name="IColorData"/>
-		<add name="Data" type="ns keyvecarray" template="Color4">The color keys.</add>
+		<add name="Data" type="keyvecarray" template="Color4">The color keys.</add>
 	</niblock>
 	<niblock name="NiColorExtraData" ver1="20.0.0.4">
 Unknown.
@@ -1435,7 +1435,7 @@ delta = (start_time - stop_time) / sources.num_indices</add>
 Possibly the 1D position along a 3D path.
 		<inherit name="AKeyedData"/>
 		<interface name="IFloatData"/>
-		<add name="Data" type="ns keyvecarray" template="float">The keys.</add>
+		<add name="Data" type="keyvecarray" template="float">The keys.</add>
 	</niblock>
 	<niblock name="NiFloatExtraData" ver1="20.0.0.4">
 Float extra data.
@@ -1765,7 +1765,7 @@ A point light.
 Position data.
 		<inherit name="AKeyedData"/>
 		<interface name="IPosData"/>
-		<add name="Data" type="ns keyvecarray" template="Vector3">The position keys.</add>
+		<add name="Data" type="keyvecarray" template="Vector3">The position keys.</add>
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier" ver1="10.1.0.0">
 Unknown particle modifier.
@@ -1835,8 +1835,8 @@ Particle system emitter controller.
 	<niblock name="NiPSysEmitterCtlrData" ver1="10.1.0.0">
 Particle system emitter controller data.
 		<inherit name="AData"/>
-		<add name="Float Keys?" type="ns keyvecarray" template="float">Unknown.</add>
-		<add name="Visibility Keys?" type="ns keyarray" template="byte">Unknown.</add>
+		<add name="Float Keys?" type="keyvecarray" template="float">Unknown.</add>
+		<add name="Visibility Keys?" type="keyarray" template="byte">Unknown.</add>
 	</niblock>
 	<niblock name="NiPSysEmitterDeclinationCtlr" ver1="20.0.0.5">
 Unknown.
@@ -2110,7 +2110,7 @@ Extra data, used to name different animation sequences.
 		<inherit name="AExtraData"/>
 		<interface name="ITextKeyExtraData"/>
 		<add name="Unknown Int 1" type="int" ver2="4.2.2.0">Unknown.  Always equals zero in all official files.</add>
-		<add name="Text Keys" type="ns keyarray" template="string">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
+		<add name="Text Keys" type="keyarray" template="string">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
 	</niblock>
 	<niblock name="NiTextureEffect">
 Enables environment mapping. Should be in both the children list and effects list of the NiTriShape block. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect block is present).
@@ -2233,7 +2233,7 @@ Time controller for texture coordinates.
 	<niblock name="NiUVData">
 Texture coordinate data.
 		<inherit name="AData"/>
-		<add name="UV Groups" type="ns keyvecarray" template="float" arr1="4">Four UV data groups.  Perhaps the first two control x and y.
+		<add name="UV Groups" type="keyvecarray" template="float" arr1="4">Four UV data groups.  Perhaps the first two control x and y.
 The existence of the second two is a guess - there are always two zero values following the first two in all official files.</add>
 	</niblock>
 	<niblock name="NiVectorExtraData" ver1="10.1.0.0">
@@ -2268,7 +2268,7 @@ Time controller for visibility.
 	<niblock name="NiVisData">
 Visibility data for a controller.
 		<inherit name="AKeyedData"/>
-		<add name="Data" type="ns keyarray" template="byte">The visibility keys.</add>
+		<add name="Data" type="keyarray" template="byte">The visibility keys.</add>
 	</niblock>
 	<niblock name="NiWireframeProperty">
 Unknown.
