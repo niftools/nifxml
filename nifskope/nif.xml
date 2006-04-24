@@ -29,14 +29,14 @@ An unsigned 32-bit integer.
 	<basic name="short" count="1" niflibtype="ushort" nifskopetype="short">
 An unsigned 16-bit integer.
 	</basic>
-	<basic name="alphaformat" count="0" niflibtype="AlphaFormat" nifskopetype="int">
+	<basic name="AlphaFormat" count="0" niflibtype="AlphaFormat" nifskopetype="int">
 An unsigned 32-bit integer, describing how transparency is handled in a texture.
 0:  None
 1:  Binary
 2:  Smooth
 3:  Default
 	</basic>
-	<basic name="applymode" count="0" niflibtype="ApplyMode" nifskopetype="int">
+	<basic name="ApplyMode" count="0" niflibtype="ApplyMode" nifskopetype="int">
 An unsigned 32-bit integer, describing the apply mode of a texture.
 0:  Replace
 1:  Decal
@@ -94,7 +94,7 @@ An unsigned 32-bit integer, describing how vertex colors influence lighting.
 	<basic name="link" count="0" niflibtype="link_ref" nifskopetype="link">
 A signed 32-bit integer, used to refer to another block; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to blocks higher up.
 	</basic>
-	<basic name="mipmapformat" count="0" niflibtype="MipMapFormat" nifskopetype="int">
+	<basic name="MipMapFormat" count="0" niflibtype="MipMapFormat" nifskopetype="int">
 An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
 0:  No
 1:  Yes
@@ -103,7 +103,7 @@ An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
 	<basic name="parent" count="0" niflibtype="uint" nifskopetype="uplink">
 A signed 32-bit integer, referring to the first ancestor.
 	</basic>
-	<basic name="pixellayout" count="0" niflibtype="nifPixelLayout" nifskopetype="int">
+	<basic name="PixelLayout" count="0" niflibtype="PixelLayout" nifskopetype="int">
 An unsigned 32-bit integer, describing the color depth of a texture.
 0:  Palettised
 1:  16-bit High Color
@@ -118,7 +118,7 @@ A signed 32-bit integer, which refers to the skeleton root of a NiSkinInstance b
 	<basic name="stringoffset" count="0" niflibtype="ushort" nifskopetype="stringoffset">
 A 16-bit signed integer, used to refer to strings in a NiStringPalette.
 	</basic>
-	<basic name="vertmode" count="0" niflibtype="VertMode" nifskopetype="int">
+	<basic name="VertMode" count="0" niflibtype="VertMode" nifskopetype="int">
 An unsigned 32-bit integer, which describes how to apply vertex colors.
 0:  Source Ingore
 1:  Source Emissive
@@ -135,13 +135,13 @@ An array of bytes.
 		<add name="Unknown Int" type="int" ver1="20.0.0.4">Unknown.</add>
 		<add name="Data" type="byte" arr1="Size">The bytes which make up the array</add>
 	</compound>
-	<compound name="color3" nifskopetype="color3">
+	<compound name="Color3" niflibtype="Color3" nifskopetype="color3">
 A color without alpha (red, green, blue).
 		<add name="r" type="float">Red color component.</add>
 		<add name="g" type="float">Green color component.</add>
 		<add name="b" type="float">Blue color component.</add>
 	</compound>
-	<compound name="color4" nifskopetype="color4">
+	<compound name="Color4" niflibtype="Color4" nifskopetype="color4">
 A color with alpha (red, green, blue, alpha).
 		<add name="r" type="float">Red component.</add>
 		<add name="g" type="float">Green component.</add>
@@ -153,12 +153,12 @@ An integer value that may or may not be used.
 		<add name="Is Used" type="bool">Non-Zero if the following Integer appears.  Otherwise, the integer does not appear.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">An unknown integer.</add>
 	</compound>
-	<compound name="filepath" nifskopetype="filepath">
+	<compound name="filepath" niflibtype="string" nifskopetype="filepath">
 A string that contains the path to a file.
 		<add name="Length" type="int">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself.</add>
 	</compound>
-	<compound name="key">
+	<compound name="Key" niflibtype="Key">
 A generic key type for anything that cannot be interpolated - currently, only used by string keys and visibility keys.
 		<add name="Time" type="float">Time of the key.</add>
 		<add name="Value" type="(TEMPLATE)">The key value.</add>
@@ -166,7 +166,7 @@ A generic key type for anything that cannot be interpolated - currently, only us
 	<compound name="keyarray">
 An array of (untyped) keys.
 		<add name="Num Keys" type="int">Number of keys.</add>
-		<add name="Keys" type="key" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
+		<add name="Keys" type="Key" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="linkgroup">
 List of block indices.
@@ -177,7 +177,7 @@ List of block indices.
 The NIF file footer.
 		<add name="Roots" type="linkgroup">List of root blocks. If there is a camera, for 1st person view, then this block is referred to as well in this list, even if it is not a root block (usually we want the camera to be attached to the Bip Head node).</add>
 	</compound>
-	<compound name="lodrange">
+	<compound name="LODRange" niflibtype="LODRange">
 The distance range where a specific level of detail applies.
 		<add name="Near" type="float">Begining of range.</add>
 		<add name="Far" type="float">End of Range.</add>
@@ -187,14 +187,14 @@ Group of vertex indices of vertices that match.
 		<add name="Num Vertices" type="short">Number of vertices in this group.</add>
 		<add name="Vertex Indices" type="short" arr1="Num Vertices">The vertex indices.</add>
 	</compound>
-	<compound name="matrix22">
+	<compound name="Matrix22" niflibtype="Matrix22">
 A 2x2 matrix of float values.  Stored in OpenGL column-major format.
 		<add name="m11" type="float">Member 1,1 (top left)</add>
 		<add name="m21" type="float">Member 2,1 (bottom left)</add>
 		<add name="m12" type="float">Member 1,2 (top right)</add>
 		<add name="m22" type="float">Member 2,2 (bottom right)</add>
 	</compound>
-	<compound name="matrix33" nifskopetype="matrix33">
+	<compound name="Matrix33" niflibtype="Matrix33" nifskopetype="matrix33">
 A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
 		<add name="m11" type="float">Member 1,1 (top left)</add>
 		<add name="m21" type="float">Member 2,1</add>
@@ -206,7 +206,7 @@ A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-majo
 		<add name="m23" type="float">Member 2,3</add>
 		<add name="m33" type="float">Member 3,3 (bottom left)</add>
 	</compound>
-	<compound name="matrix44" nifskopetype="matrix44">
+	<compound name="Matrix44" niflibtype="Matrix44" nifskopetype="matrix44">
 A 4x4 transformation matrix.
 		<add name="m11" type="float">The (1,1) element.</add>
 		<add name="m21" type="float">The (2,1) element.</add>
@@ -253,7 +253,7 @@ Key with tangents (!!! for NifSkope only, use keyvec instead for regular purpose
 		<add name="Forward" type="(TEMPLATE)">Forward tangent.</add>
 		<add name="Backward" type="(TEMPLATE)">Backward tangent.</add>
 	</compound>
-	<compound name="quaternion" nifskopetype="quaternion">
+	<compound name="Quaternion" niflibtype="Quaternion" nifskopetype="quaternion">
 A quaternion.
 		<add name="w" type="float">The w-coordinate.</add>
 		<add name="x" type="float">The x-coordinate.</add>
@@ -431,12 +431,12 @@ Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regula
 		<add name="Keys" type="ns keytan" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
 		<add name="Keys" type="ns keytbc" template="(TEMPLATE)" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
 	</compound>
-	<compound name="texcoord" nifskopetype="vector2">
+	<compound name="TexCoord" niflibtype="TexCoord" nifskopetype="vector2">
 Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
 		<add name="u" type="float">First coordinate.</add>
 		<add name="v" type="float">Second coordinate.</add>
 	</compound>
-	<compound name="texdesc">
+	<compound name="TexDesc" niflibtype="TexDesc">
 Texture description.
 		<add name="Source" type="link">NiTextureSource block index.</add>
 		<add name="Clamp Mode" type="int">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
@@ -446,21 +446,21 @@ Texture description.
 		<add name="PS2 K" type="short" ver2="10.2.0.0">0xFFB5?</add>
 		<add name="Unknown1" type="short" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
 		<add name="Has Texture Transform" type="bool" ver1="10.1.0.0">Determines whether or not the texture&#039;s coordinates are transformed.</add>
-		<add name="Translation" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
-		<add name="Tiling" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The number of times the texture is tiled in each direction?</add>
+		<add name="Translation" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
+		<add name="Tiling" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The number of times the texture is tiled in each direction?</add>
 		<add name="W Rotation" type="float" cond="Has Texture Transform != 0" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
 		<add name="Transform Type?" type="int" cond="Has Texture Transform != 0" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
-		<add name="Center Offset" type="texcoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
+		<add name="Center Offset" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
 	</compound>
 	<compound name="bumpmap">
 A texture that happens to be a bump map.  Contains extra data.
 		<add name="Is Used" type="bool">Determines whether this bumpmap contains any information. If Non-Zero the following data is present, otherwise it is not.</add>
-		<add name="Texture" type="texdesc" cond="Is Used != 0">The bump map texture description.</add>
+		<add name="Texture" type="TexDesc" cond="Is Used != 0">The bump map texture description.</add>
 		<add name="Bump Map Luma Scale" type="float" cond="Is Used != 0">?</add>
 		<add name="Bump Map Luma Offset" type="float" cond="Is Used != 0">?</add>
-		<add name="Matrix" type="matrix22" cond="Is Used != 0">?</add>
+		<add name="Matrix" type="Matrix22" cond="Is Used != 0">?</add>
 	</compound>
-	<compound name="texsource">
+	<compound name="TexSource" niflibtype="TexSource">
 A texture source.
 		<add name="Use External" type="byte">Is the texture external?</add>
 		<add name="File Name" type="filepath" cond="Use External == 1">The external texture file name.
@@ -474,12 +474,12 @@ Note: all original morrowind nifs use name.ext only for addressing the textures,
 	<compound name="texture">
 A texture that is not a bumpmap.
 		<add name="Is Used" type="bool">Determines whether this texture contains any information. If Non-Zero the following data is present, otherwise it is not.</add>
-		<add name="Texture Data" type="texdesc" cond="Is Used != 0">The texture description.</add>
+		<add name="Texture Data" type="TexDesc" cond="Is Used != 0">The texture description.</add>
 	</compound>
 	<compound name="texture2" ver1="10.0.1.0">
 An extended version of texture.
 		<add name="Is Used" type="bool">Is it used?</add>
-		<add name="Texture Data" type="texdesc" cond="Is Used != 0">The texture data.</add>
+		<add name="Texture Data" type="TexDesc" cond="Is Used != 0">The texture data.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">Unknown.</add>
 	</compound>
 	<compound name="extratexturegroup">
@@ -487,7 +487,7 @@ Group of extra textures.
 		<add name="Num Textures" type="int">Number of textures in this group.</add>
 		<add name="Textures" type="texture2" arr1="Num Textures">The textures.</add>
 	</compound>
-	<compound name="triangle" nifskopetype="triangle">
+	<compound name="Triangle" niflibtype="Triangle" nifskopetype="triangle">
 List of three vertex indices.
 		<add name="v1" type="short">First vertex index.</add>
 		<add name="v2" type="short">Second vertex index.</add>
@@ -511,7 +511,7 @@ Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPart
 		<add name="Has Strips" type="bool" ver1="10.1.0.0">Do we have strip data?</add>
 		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The strips.</add>
 		<add name="Strips" type="short" arr1="Num Strips" arr2="Strip Lengths" cond="Has Strips != 0" ver1="10.1.0.0">The strips.</add>
-		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Num Strips == 0">The triangles.</add>
+		<add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Num Strips == 0">The triangles.</add>
 		<add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
 		<add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0">Bone indices, they index into &#039;Bones&#039;.</add>
 	</compound>
@@ -519,40 +519,40 @@ Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPart
 Unknown.
 		<add name="Unknown 292 Bytes" type="byte" arr1="73" arr2="4">Unknown.</add>
 	</compound>
-	<compound name="vector3" nifskopetype="vector3">
+	<compound name="Vector3" niflibtype="Vector3" nifskopetype="vector3">
 A vector in 3D space (x,y,z).
 		<add name="x" type="float">First coordinate.</add>
 		<add name="y" type="float">Second coordinate.</add>
 		<add name="z" type="float">Third coordinate.</add>
 	</compound>
-	<compound name="bbox">
+	<compound name="BoundingBox" niflibtype="BoundingBox">
 Bounding box.
 		<add name="Is Used" type="bool">This value determines whether this bounding box contains information.  If it is non-zero, the following information is present.
 At version 4.0.0.1 and above, it becomes a byte instead of an int.</add>
 		<add name="Unknown" type="int" cond="Is Used != 0">Usually 1.</add>
-		<add name="Translation" type="vector3" cond="Is Used != 0">Translation vector.</add>
-		<add name="Rotation" type="matrix33" cond="Is Used != 0">Rotation matrix.</add>
-		<add name="Radius" type="vector3" cond="Is Used != 0">Radius, per direction.</add>
+		<add name="Translation" type="Vector3" cond="Is Used != 0">Translation vector.</add>
+		<add name="Rotation" type="Matrix33" cond="Is Used != 0">Rotation matrix.</add>
+		<add name="Radius" type="Vector3" cond="Is Used != 0">Radius, per direction.</add>
 	</compound>
 	<compound name="furnitureposition">
 Describes a furniture position?
-		<add name="Unknown Vector" type="vector3">Unknown. Position?</add>
+		<add name="Unknown Vector" type="Vector3">Unknown. Position?</add>
 		<add name="Unknown Short" type="short">Unknown.</add>
 		<add name="Position Ref 1?" type="byte">This might refer to a furnituremarkerxx.nif file.</add>
 		<add name="Position Ref 2?" type="byte">This might also refer to a furnituremarkerxx.nif file.</add>
 	</compound>
 	<compound name="hktriangle">
 A triangle with extra data used for physics.
-		<add name="Triangle" type="triangle">The triangle.</add>
+		<add name="Triangle" type="Triangle">The triangle.</add>
 		<add name="Unknown Short" type="short">Another short, doesn&#039;t look like a vertex index.</add>
-		<add name="Normal" type="vector3">This appears to be a normalized vector, so probably it is a normal or a tangent vector or something like that.</add>
+		<add name="Normal" type="Vector3">This appears to be a normalized vector, so probably it is a normal or a tangent vector or something like that.</add>
 	</compound>
 	<compound name="lodinfo">
 Info about level of detail ranges.
 		<add name="LOD Type" type="int">Type of LOD info (0=regular, 1=info is in a NiRangeLODData block).</add>
-		<add name="LOD Center" type="vector3" cond="LOD Type == 0">?</add>
+		<add name="LOD Center" type="Vector3" cond="LOD Type == 0">?</add>
 		<add name="Num LOD Levels" type="int" cond="LOD Type == 0">Number of levels of detail.</add>
-		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
+		<add name="LOD Levels" type="LODRange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
 		<add name="Unknown Short" type="short" cond="LOD Type == 1">Zero?</add>
 		<add name="Range Data" type="link" cond="LOD Type == 1">Refers to NiRangeLODData block.</add>
 	</compound>
@@ -561,12 +561,12 @@ Geometry morphing data component.
 		<add name="Frame Name" type="string" ver1="10.1.0.106">Name of the frame.</add>
 		<add name="Frames" type="ns keyvecarraytyp" template="float" ver2="10.0.1.2">The morphing keyframes.</add>
 		<add name="Unknown Int" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Vectors" type="vector3" arr1="(ARG)">Morph vectors.</add>
+		<add name="Vectors" type="Vector3" arr1="(ARG)">Morph vectors.</add>
 	</compound>
 	<compound name="particle">
 particle array entry
-		<add name="Velocity" type="vector3">Particle velocity</add>
-		<add name="Unknown Vector" type="vector3">Unknown</add>
+		<add name="Velocity" type="Vector3">Particle velocity</add>
+		<add name="Unknown Vector" type="Vector3">Unknown</add>
 		<add name="Lifetime" type="float">The particle&#039;s age.</add>
 		<add name="Lifespan" type="float">Maximum age of the particle.</add>
 		<add name="Timestamp" type="float">Timestamp of the last update.</add>
@@ -583,14 +583,14 @@ Data for several particles.
 	</compound>
 	<compound name="skinblock">
 Skinning data component.
-		<add name="Rotation" type="matrix33">Rotation offset of the skin from this bone in bind position.</add>
-		<add name="Translation" type="vector3">Translation offset of the skin from this bone in bind position.</add>
+		<add name="Rotation" type="Matrix33">Rotation offset of the skin from this bone in bind position.</add>
+		<add name="Translation" type="Vector3">Translation offset of the skin from this bone in bind position.</add>
 		<add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
 		<add name="Unknown 4 Floats" type="float" arr1="4">This has been verified not to be a normalized quaternion.  They may or may not be related to each other so their specification as an array of 4 floats may be misleading.</add>
 		<add name="Num Vertices" type="short">Number of weighted vertices.</add>
 		<add name="Vertex Weights" type="skinweight" arr1="Num Vertices">The vertex weights.</add>
 	</compound>
-	<compound name="vector4" nifskopetype="vector4">
+	<compound name="Vector4" niflibtype="Float4" nifskopetype="vector4">
 A 4-dimensional vector.
 		<add name="x" type="float">First coordinate.</add>
 		<add name="y" type="float">Second coordinate.</add>
@@ -657,12 +657,12 @@ Describes physical properties of an object?
 		<add name="Unknown Shorts 1" type="short" arr1="4">Unknown.</add>
 		<add name="Flags 2" type="int">The flags, repeated?</add>
 		<add name="Unknown Shorts 2" type="short" arr1="6">Unknown.</add>
-		<add name="Translation" type="vector3">Translation.</add>
+		<add name="Translation" type="Vector3">Translation.</add>
 		<add name="Unknown Float 00" type="float">Unknown.</add>
 		<add name="Rotation" type="quaternionxyzw">Rotation.</add>
 		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
 		<add name="Transform?" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
-		<add name="Center" type="vector3">The object&#039;s center.</add>
+		<add name="Center" type="Vector3">The object&#039;s center.</add>
 		<add name="Unknown Float 01" type="float">Unknown float.</add>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Unknown Float 0" type="float">Unknown.</add>
@@ -691,7 +691,7 @@ Shape modifier?
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Float 3" type="float">Unknown.</add>
-		<add name="Transform" type="matrix44">A transform matrix.</add>
+		<add name="Transform" type="Matrix44">A transform matrix.</add>
 	</ancestor>
 	<ancestor name="ACollisionObject" ver1="20.0.0.5">
 Unknown.
@@ -727,8 +727,8 @@ A time controller block for animation key frames.
 	<ancestor name="AKeyframeData">
 Keyframes for mesh animation.
 		<inherit name="AData"/>
-		<add name="Rotations" type="ns keyrotarray" template="quaternion">Rotation keyframes.</add>
-		<add name="Translations" type="ns keyvecarray" template="vector3">Translation keys.</add>
+		<add name="Rotations" type="ns keyrotarray" template="Quaternion">Rotation keyframes.</add>
+		<add name="Translations" type="ns keyvecarray" template="Vector3">Translation keys.</add>
 		<add name="Scales" type="ns keyvecarray" template="float">Scale keys.</add>
 	</ancestor>
 	<ancestor name="ANode">
@@ -736,12 +736,12 @@ Generic node block.
 		<inherit name="AControllable"/>
 		<interface name="INode"/>
 		<add name="Flags" type="flags">Some flags; commonly 0x000C or 0x000A.</add>
-		<add name="Translation" type="vector3">The translation vector.</add>
-		<add name="Rotation" type="matrix33">The rotation part of the transformation matrix.</add>
+		<add name="Translation" type="Vector3">The translation vector.</add>
+		<add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
 		<add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
-		<add name="Velocity" type="vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
+		<add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
 		<add name="Properties" type="linkgroup">List of node properties.</add>
-		<add name="Bounding Box" type="bbox" ver2="4.2.2.0">The bounding box.</add>
+		<add name="Bounding Box" type="BoundingBox" ver2="4.2.2.0">The bounding box.</add>
 		<add name="Collision Data" type="link" ver1="10.0.1.0">Bounding box: refers to NiCollisionData</add>
 	</ancestor>
 	<ancestor name="ADynamicEffect">
@@ -755,9 +755,9 @@ A dynamic effect such as a light or environment map.
 Light source.
 		<inherit name="ADynamicEffect"/>
 		<add name="Dimmer" type="float">Dimmer.</add>
-		<add name="Ambient Color" type="color3">Ambient color.</add>
-		<add name="Diffuse Color" type="color3">Diffuse color.</add>
-		<add name="Specular Color" type="color3">Specular color.</add>
+		<add name="Ambient Color" type="Color3">Ambient color.</add>
+		<add name="Diffuse Color" type="Color3">Diffuse color.</add>
+		<add name="Specular Color" type="Color3">Specular color.</add>
 	</ancestor>
 	<ancestor name="AParentNode">
 Generic node block for grouping.
@@ -803,7 +803,7 @@ A generic particle system time controller block.
 		<add name="Lifetime" type="float">Particle lifetime</add>
 		<add name="Lifetime Random" type="float">Particle lifetime random modifier</add>
 		<add name="Emit Flags" type="short">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
-		<add name="Start Random" type="vector3">Particle random start translation vector</add>
+		<add name="Start Random" type="Vector3">Particle random start translation vector</add>
 		<add name="Emitter" type="link">This index targets the particle emitter block.</add>
 		<add name="Unknown Short 2?" type="short">? short=0 ?</add>
 		<add name="Unknown Float 13?" type="float">? float=1.0 ?</add>
@@ -843,7 +843,7 @@ A particle emitter modifier?
 		<add name="Declination Variation" type="float">Unknown.</add>
 		<add name="Planar Angle" type="float">Unknown.</add>
 		<add name="Planar Angle Variation" type="float">Unknown.</add>
-		<add name="Initial Color" type="color4">Unknown.</add>
+		<add name="Initial Color" type="Color4">Unknown.</add>
 		<add name="Initial Radius" type="float">Unknown.</add>
 		<add name="Radius Variation" type="float">Unknown.</add>
 		<add name="Life Span" type="float">Unknown.</add>
@@ -873,27 +873,27 @@ Mesh data: vertices, vertex normals, etc.
 		<add name="Num Vertices" type="short">Number of vertices.</add>
 		<add name="Unknown Short 1" type="short" ver1="10.1.0.0">Unknown.</add>
 		<add name="Has Vertices" type="bool">Is the vertex array present? (Always non-zero.)</add>
-		<add name="Vertices" type="vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
+		<add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
 		<add name="Num UV Sets 2" type="byte" ver1="10.0.1.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.0.1.0">Unknown. If bit 4 is set then extra vectors are present after the normals.</add>
 		<add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
-		<add name="Normals" type="vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
-		<add name="Unknown Vectors 1" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
-		<add name="Unknown Vectors 2" type="vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
-		<add name="Center" type="vector3" function="Center">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
+		<add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
+		<add name="Unknown Vectors 1" type="Vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
+		<add name="Unknown Vectors 2" type="Vector3" arr1="Has Normals" arr2="Num Vertices" cond="Unknown Byte &amp; 16" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
+		<add name="Center" type="Vector3" function="Center">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
 		<add name="Radius" type="float" function="Radius">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
 		<add name="Has Vertex Colors" type="bool">Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
 Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty block as a property child of the root node. If this property block is not present, the vertex colors fine-tune lighting.
 
 Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.</add>
-		<add name="Vertex Colors" type="color4" arr1="Num Vertices" cond="Has Vertex Colors != 0">The vertex colors.</add>
+		<add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors != 0">The vertex colors.</add>
 		<add name="Num UV Sets" type="short" ver2="4.2.2.0">Number of texture sets.</add>
 		<add name="Has UV" type="bool" ver2="4.0.0.2">Do we have UV coordinates?
 
 Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.</add>
-		<add name="UV Sets" type="texcoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-		<add name="UV Sets 2" type="texcoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0">Same as above, but needs to be repeated due to &#039;UV Sets&#039; moving to a different position.</add>
+		<add name="UV Sets" type="TexCoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+		<add name="UV Sets 2" type="TexCoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0">Same as above, but needs to be repeated due to &#039;UV Sets&#039; moving to a different position.</add>
 		<add name="Unknown Short 2" type="short" ver1="10.0.1.0">Unknown. Usually zero.</add>
 		<add name="Unknown Link" type="link" ver1="20.0.0.4">Unknown.</add>
 	</ancestor>
@@ -924,7 +924,7 @@ Generic rotating particles data block.
 		<add name="Has Unknown Floats" type="bool" ver1="10.1.0.0">Unknown</add>
 		<add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="10.1.0.0">Unknown</add>
 		<add name="Has Rotations" type="bool">Is the particle rotation array present?</add>
-		<add name="Rotations" type="quaternion" arr1="Num Vertices" cond="Has Rotations != 0">The individual particle rotations.</add>
+		<add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations != 0">The individual particle rotations.</add>
 	</ancestor>
 	<ancestor name="ASingleInterpolatorController">
 A controller referring to an interpolator.
@@ -960,7 +960,7 @@ A box.
 		<add name="Unknown Short 2" type="short">Unknown.</add>
 		<add name="Unknown Short 3" type="short">Unknown.</add>
 		<add name="Unknown Short 4" type="short">Unknown.</add>
-		<add name="Unknown Vector" type="vector3">Looks like this could be the box size.</add>
+		<add name="Unknown Vector" type="Vector3">Looks like this could be the box size.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 	</niblock>
 	<niblock name="bhkCapsuleShape" ver1="20.0.0.5">
@@ -972,9 +972,9 @@ A capsule.
 		<add name="Unknown Short 2" type="short">Unknown.</add>
 		<add name="Unknown Short 3" type="short">Unknown.</add>
 		<add name="Unknown Short 4" type="short">Unknown.</add>
-		<add name="Unknown Vector 1" type="vector3">Unknown.</add>
+		<add name="Unknown Vector 1" type="Vector3">Unknown.</add>
 		<add name="Radius 1" type="float">Unknown. Matches Radius.</add>
-		<add name="Unknown Vector 2" type="vector3">Unknown.</add>
+		<add name="Unknown Vector 2" type="Vector3">Unknown.</add>
 		<add name="Radius 2" type="float">Unknown. Matches Radius.</add>
 	</niblock>
 	<niblock name="bhkCollisionObject" ver1="20.0.0.5">
@@ -991,9 +991,9 @@ A convex shape built from vertices?
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
 		<add name="Num 1" type="int">A count.</add>
-		<add name="Unknown Vectors 1" type="vector4" arr1="Num 1">Unknown. Vertices?</add>
+		<add name="Unknown Vectors 1" type="Vector4" arr1="Num 1">Unknown. Vertices?</add>
 		<add name="Num 2" type="int">A count.</add>
-		<add name="Unknown Vectors 2" type="vector4" arr1="Num 2">Unknown. More vertices?</add>
+		<add name="Unknown Vectors 2" type="Vector4" arr1="Num 2">Unknown. More vertices?</add>
 	</niblock>
 	<niblock name="bhkHingeConstraint" ver1="20.0.0.5">
 A hinge constraint.
@@ -1170,7 +1170,7 @@ NiTriStripsData for havok data?
 		<add name="Num Triangles" type="int">Number of triangles?</add>
 		<add name="Triangles?" type="hktriangle" arr1="Num Triangles">The physics triangles?</add>
 		<add name="Num Vertices" type="int">Number of vertices.</add>
-		<add name="Vertices?" type="vector3" arr1="Num Vertices">The vertices?</add>
+		<add name="Vertices?" type="Vector3" arr1="Num Vertices">The vertices?</add>
 	</niblock>
 	<niblock name="NiAlphaController">
 Time controller for transparency.
@@ -1250,7 +1250,7 @@ An interpolator for a float.
 	<niblock name="NiBlendPoint3Interpolator" ver1="20.0.0.5">
 Interpolates a point?
 		<inherit name="ABlendInterpolator"/>
-		<add name="Point" type="vector3">The interpolated point?</add>
+		<add name="Point" type="Vector3">The interpolated point?</add>
 	</niblock>
 	<niblock name="NiBlendTransformInterpolator" ver1="20.0.0.5">
 Unknown.
@@ -1363,7 +1363,7 @@ Collision box.
 		<add name="Unknown3" type="byte">Unknown.</add>
 		<add name="Collision Type" type="int">Type of collision data.</add>
 		<add name="Unknown5" type="int" cond="Collision Type == 0">Unknown.</add>
-		<add name="Unknown7" type="vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
+		<add name="Unknown7" type="Vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
 		<add name="Unknown6" type="float" arr1="8" cond="Collision Type == 2">Unknown.</add>
 		<add name="Unknown8" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
 	</niblock>
@@ -1371,12 +1371,12 @@ Collision box.
 Color data for material color controller.
 		<inherit name="AKeyedData"/>
 		<interface name="IColorData"/>
-		<add name="Data" type="ns keyvecarray" template="color4">The color keys.</add>
+		<add name="Data" type="ns keyvecarray" template="Color4">The color keys.</add>
 	</niblock>
 	<niblock name="NiColorExtraData" ver1="20.0.0.4">
 Unknown.
 		<inherit name="AExtraData"/>
-		<add name="Data" type="color4">RGBA Color?</add>
+		<add name="Data" type="Color4">RGBA Color?</add>
 	</niblock>
 	<niblock name="NiControllerManager" ver1="20.0.0.5">
 Unknown. Root of all controllers?
@@ -1469,7 +1469,7 @@ Describes... fog?
 
 If 2&#039;s and 4&#039;s bit are not set, but fog is enabled, Fog function is FOG_Z_LINEAR.</add>
 		<add name="Fog Depth" type="float">The thickness of the fog?  Default is 1.0</add>
-		<add name="Fog Color" type="color3">The color of the fog.</add>
+		<add name="Fog Color" type="Color3">The color of the fog.</add>
 	</niblock>
 	<niblock name="NiGeomMorpherController">
 Time controller for geometry morphing.
@@ -1490,8 +1490,8 @@ A particle modifier; applies a gravitational field on the particles.
 		<add name="Type" type="int">The force field&#039;s type. 
 0: Wind (fixed direction)
 1: Point (fixed origin)</add>
-		<add name="Position" type="vector3">The position of the mass point relative to the particle system.</add>
-		<add name="Direction" type="vector3">The direction of the applied acceleration.</add>
+		<add name="Position" type="Vector3">The position of the mass point relative to the particle system.</add>
+		<add name="Direction" type="Vector3">The direction of the applied acceleration.</add>
 	</niblock>
 	<niblock name="NiIntegerExtraData" ver1="10.0.1.0">
 Extra integer data.
@@ -1543,8 +1543,8 @@ Unknown.
 		<add name="Unknown Short" type="short">Unknown.</add>
 		<add name="Look At" type="link">Refers to a Node to focus on.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
-		<add name="Translation" type="vector3">Translate.</add>
-		<add name="Rotation" type="quaternion">Rotation.</add>
+		<add name="Translation" type="Vector3">Translate.</add>
+		<add name="Rotation" type="Quaternion">Rotation.</add>
 		<add name="Scale" type="float">Scale.</add>
 		<add name="Unknown Link 1" type="link">Refers to NiPoint3Interpolator.</add>
 		<add name="Unknown Link 2" type="link">Refers to a NiFloatInterpolator.</add>
@@ -1561,10 +1561,10 @@ Time controller for material color.
 Describes the material shading properties.
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags" ver2="10.0.1.2">Property flags.</add>
-		<add name="Ambient Color" type="color3">How much the material reflects ambient light.</add>
-		<add name="Diffuse Color" type="color3">How much the material reflects diffuse light.</add>
-		<add name="Specular Color" type="color3">How much light the material reflects in a specular manner.</add>
-		<add name="Emissive Color" type="color3">How much light the material emits.</add>
+		<add name="Ambient Color" type="Color3">How much the material reflects ambient light.</add>
+		<add name="Diffuse Color" type="Color3">How much the material reflects diffuse light.</add>
+		<add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
+		<add name="Emissive Color" type="Color3">How much light the material emits.</add>
 		<add name="Glossiness" type="float">The material&#039;s glossiness.</add>
 		<add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty block in this material&#039;s parent NiTriShape block, when alpha is not 1.</add>
 	</niblock>
@@ -1754,7 +1754,7 @@ Unknown.
 	<niblock name="NiPoint3Interpolator" ver1="10.2.0.0">
 Unknown.
 		<inherit name="AInterpolator"/>
-		<add name="Point 3 Value" type="vector3">Value when posed?  Value at time 0?</add>
+		<add name="Point 3 Value" type="Vector3">Value when posed?  Value at time 0?</add>
 		<add name="Data" type="link">Reference to NiPosData.</add>
 	</niblock>
 	<niblock name="NiPointLight" ver1="10.2.0.0">
@@ -1765,7 +1765,7 @@ A point light.
 Position data.
 		<inherit name="AKeyedData"/>
 		<interface name="IPosData"/>
-		<add name="Data" type="ns keyvecarray" template="vector3">The position keys.</add>
+		<add name="Data" type="ns keyvecarray" template="Vector3">The position keys.</add>
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier" ver1="10.1.0.0">
 Unknown particle modifier.
@@ -1862,7 +1862,7 @@ Unknown.
 Unknown particle system modifier.
 		<inherit name="APSysModifier"/>
 		<add name="Gravity Object" type="crossref">Refers to a NiNode.</add>
-		<add name="Gravity Axis" type="vector3">Unknown.</add>
+		<add name="Gravity Axis" type="Vector3">Unknown.</add>
 		<add name="Decay" type="float">Unknown.</add>
 		<add name="Strength" type="float">Unknown.</add>
 		<add name="Turbulence" type="float">Unknown.</add>
@@ -1910,8 +1910,8 @@ Unknown.
 		<add name="Collider Object" type="link">Link to a NiNode?</add>
 		<add name="Width" type="float">Unknown.</add>
 		<add name="Height" type="float">Unknown.</add>
-		<add name="X Axis" type="vector3">Unknown.</add>
-		<add name="Y Axis" type="vector3">Unknown.</add>
+		<add name="X Axis" type="Vector3">Unknown.</add>
+		<add name="Y Axis" type="Vector3">Unknown.</add>
 	</niblock>
 	<niblock name="NiPSysPositionModifier" ver1="10.1.0.0">
 Unknown particle system modifier.
@@ -1930,7 +1930,7 @@ Unknown particle system modifier.
 		<add name="Initial Rotation Angle Variation" type="float" ver1="20.0.0.4">Unknown.</add>
 		<add name="Random Rot Speed Sign" type="bool" ver1="20.0.0.4">Unknown</add>
 		<add name="Random Initial Axis" type="bool">Unknown.</add>
-		<add name="Initial Axis" type="vector3">Unknown.</add>
+		<add name="Initial Axis" type="Vector3">Unknown.</add>
 	</niblock>
 	<niblock name="NiPSysSpawnModifier" ver1="10.1.0.0">
 Unknown particle modifier.
@@ -1956,9 +1956,9 @@ Particle system controller, used for ???.
 	<niblock name="NiRangeLODData">
 Describes levels of detail.
 		<inherit name="AData"/>
-		<add name="LOD Center" type="vector3">?</add>
+		<add name="LOD Center" type="Vector3">?</add>
 		<add name="Num LOD Levels" type="int">Number of levels of detail.</add>
-		<add name="LOD Levels" type="lodrange" arr1="Num LOD Levels">The ranges of distance that each level of detail applies in.</add>
+		<add name="LOD Levels" type="LODRange" arr1="Num LOD Levels">The ranges of distance that each level of detail applies in.</add>
 	</niblock>
 	<niblock name="NiRotatingParticles">
 Unknown.
@@ -1990,9 +1990,9 @@ If 1&#039;s bit is not set, hard-edged flat shading will be used on this shape.<
 Skinning data.
 		<inherit name="AData"/>
 		<interface name="ISkinData"/>
-		<add name="Rotation" type="matrix33">The overall rotation offset of the skin from this bone in the bind position.
+		<add name="Rotation" type="Matrix33">The overall rotation offset of the skin from this bone in the bind position.
 (This is a guess, it has always been the identity matrix so far)</add>
-		<add name="Translation" type="vector3">The overall translation offset of the skin from this bone in the bind position. (This is a guess, it has always been (0.0, 0.0, 0.0) so far)</add>
+		<add name="Translation" type="Vector3">The overall translation offset of the skin from this bone in the bind position. (This is a guess, it has always been (0.0, 0.0, 0.0) so far)</add>
 		<add name="Scale" type="float">The scale offset of the skin from this bone in the bind position. (This is an assumption - it has always been 1.0 so far)</add>
 		<add name="Num Bones" type="int">Number of bones.</add>
 		<add name="Skin Partition" type="link" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
@@ -2016,10 +2016,10 @@ Skinning data, optimized for hardware skinning. The mesh is partitioned in subme
 	<niblock name="NiSourceTexture">
 Describes texture source and properties.
 		<inherit name="AControllable"/>
-		<add name="Texture Source" type="texsource">The source of the texture; an external file or an internal NiPixelData block.</add>
-		<add name="Pixel Layout" type="pixellayout">0=palettised, 1=16-bit, 2=32-bit, 3=compressed, 4=bumpmap, 5=default, 6=?</add>
-		<add name="Use Mipmaps" type="mipmapformat">0=no, 1=yes, 2=default</add>
-		<add name="Alpha Format" type="alphaformat">0=ignore texture alpha channel and use material alpha setting (?)
+		<add name="Texture Source" type="TexSource">The source of the texture; an external file or an internal NiPixelData block.</add>
+		<add name="Pixel Layout" type="PixelLayout">0=palettised, 1=16-bit, 2=32-bit, 3=compressed, 4=bumpmap, 5=default, 6=?</add>
+		<add name="Use Mipmaps" type="MipMapFormat">0=no, 1=yes, 2=default</add>
+		<add name="Alpha Format" type="AlphaFormat">0=ignore texture alpha channel and use material alpha setting (?)
 1=binary (?)
 2=smooth (?)
 3=multiply texture alpha channel with the material alpha setting, or, if there is no texture alpha channel, use material alpha setting as alpha channel; this is the default setting in official Morrowind files
@@ -2115,8 +2115,8 @@ Extra data, used to name different animation sequences.
 	<niblock name="NiTextureEffect">
 Enables environment mapping. Should be in both the children list and effects list of the NiTriShape block. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect block is present).
 		<inherit name="ADynamicEffect"/>
-		<add name="Model Projection Matrix" type="matrix33">Model projection matrix.  Always identity?</add>
-		<add name="Model Projection Transform" type="vector3">Model projection transform.  Always (0,0,0)?</add>
+		<add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
+		<add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
 		<add name="Texture Filtering" type="int">0: FILTER_NEAREST
 1: FILTER_BILERP
 2: FILTER_TRILERP (Usual value)
@@ -2139,7 +2139,7 @@ Enables environment mapping. Should be in both the children list and effects lis
 		<add name="Source Texture" type="link">Source texture index.</add>
 		<add name="Clipping Plane" type="byte">0: Disabled (Usual value)
 1: Enabled</add>
-		<add name="Unknown Vector" type="vector3">Unknown: (1,0,0)?</add>
+		<add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
 		<add name="Unknown Float" type="float">Unknown. 0?</add>
 		<add name="PS2 L" type="short" ver2="10.2.0.0">0?</add>
 		<add name="PS2 K" type="short" ver2="10.2.0.0">0xFFB5?</add>
@@ -2164,7 +2164,7 @@ Texture transformation controller.
 Describes an object&#039;s textures.
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags" ver2="10.0.1.2">Property flags.</add>
-		<add name="Apply Mode" type="applymode">0=replace, 1=decal, 2=modulate, 3=hilight, 4=hilight2</add>
+		<add name="Apply Mode" type="ApplyMode">0=replace, 1=decal, 2=modulate, 3=hilight, 4=hilight2</add>
 		<add name="Texture Count" type="int">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
 		<add name="Base Texture" type="texture">The base texture.</add>
 		<add name="Dark Texture" type="texture">The dark texture.</add>
@@ -2187,8 +2187,8 @@ Mesh animation keyframe data.
 	<niblock name="NiTransformInterpolator" ver1="10.2.0.0">
 Unknown.
 		<inherit name="AInterpolator"/>
-		<add name="Translation" type="vector3">Translate.</add>
-		<add name="Rotation" type="quaternion">Rotation.</add>
+		<add name="Translation" type="Vector3">Translate.</add>
+		<add name="Rotation" type="Quaternion">Rotation.</add>
 		<add name="Scale" type="float">Scale.</add>
 		<add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Data" type="link">Refers to NiTransformData.</add>
@@ -2204,8 +2204,8 @@ Holds mesh data using a list of singular triangles.
 		<add name="Num Triangles" type="short">Number of triangles.</add>
 		<add name="Num Triangle Points" type="int">Num Triangles times 3.</add>
 		<add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
-		<add name="Triangles" type="triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
-		<add name="Triangles" type="triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="10.1.0.0">Triangle face data.</add>
+		<add name="Triangles" type="Triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
+		<add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="10.1.0.0">Triangle face data.</add>
 		<add name="Num Match Groups" type="short">Number of vertex matching groups.</add>
 		<add name="Match Groups" type="matchgroup" arr1="Num Match Groups">The matching vertex groups.</add>
 	</niblock>
@@ -2239,14 +2239,14 @@ The existence of the second two is a guess - there are always two zero values fo
 	<niblock name="NiVectorExtraData" ver1="10.1.0.0">
 Extra vector data.
 		<inherit name="AExtraData"/>
-		<add name="Vector Data" type="vector3">The vector data.</add>
+		<add name="Vector Data" type="Vector3">The vector data.</add>
 		<add name="Unknown Float" type="float">Not sure whether this comes before or after the vector data.</add>
 	</niblock>
 	<niblock name="NiVertexColorProperty">
 Property of vertex colors. This block is referred to by the root block of the NIF file whenever some NiTriShapeData block has vertex colors with non-default settings; if not present, vertex colors have vertex_mode=2 and lighting_mode=1.
 		<inherit name="AProperty"/>
 		<add name="Flags" type="flags">Property flags.</add>
-		<add name="Vertex Mode" type="vertmode">0: SOURCE_IGNORE
+		<add name="Vertex Mode" type="VertMode">0: SOURCE_IGNORE
 1: SOURCE_EMISSIVE
 2: SOURCE_AMB_DIFF (Ambient/Diffuse)</add>
 		<add name="Lighting Mode" type="lightmode">0: LIGHTING_E (Emissive)
