@@ -124,7 +124,7 @@ An unsigned 32-bit integer, which describes how to apply vertex colors.
 1:  Source Emissive
 2:  Source Ambient Diffuse (default)
 	</basic>
-	<compound name="bones">
+	<compound name="Bones">
 This is a list of bone influences.  It points to blocks higher in the hierarchy so ints are used to represent the indices.
 		<add name="Num Bones" type="int">The number of node bones referenced as influences.</add>
 		<add name="Bones" type="crossref" arr1="Num Bones">Block indicies of the bones.</add>
@@ -2008,7 +2008,7 @@ Skinning instance.
 		<add name="Data" type="link">Skinning data reference.</add>
 		<add name="Skin Partition" type="link" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
 		<add name="Skeleton Root" type="crossref" function="SkeletonRoot">Armature root node.</add>
-		<add name="Bones" type="bones">List of all armature bones.</add>
+		<add name="Bones" type="Bones">List of all armature bones.</add>
 	</niblock>
 	<niblock name="NiSkinPartition" ver1="4.2.1.0">
 Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.
