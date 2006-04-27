@@ -124,12 +124,12 @@ An unsigned 32-bit integer, which describes how to apply vertex colors.
 1:  Source Emissive
 2:  Source Ambient Diffuse (default)
 	</basic>
-	<compound name="bones">
+	<compound name="Bones">
 This is a list of bone influences.  It points to blocks higher in the hierarchy so ints are used to represent the indices.
 		<add name="Num Bones" type="int">The number of node bones referenced as influences.</add>
 		<add name="Bones" type="crossref" arr1="Num Bones">Block indicies of the bones.</add>
 	</compound>
-	<compound name="bytearray" nifskopetype="bytearray">
+	<compound name="ByteArray" nifskopetype="bytearray">
 An array of bytes.
 		<add name="Size" type="int">The number of bytes in this array</add>
 		<add name="Unknown Int" type="int" ver1="20.0.0.4">Unknown.</add>
@@ -153,7 +153,7 @@ An integer value that may or may not be used.
 		<add name="Is Used" type="bool">Non-Zero if the following Integer appears.  Otherwise, the integer does not appear.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">An unknown integer.</add>
 	</compound>
-	<compound name="filepath" niflibtype="string" nifskopetype="filepath">
+	<compound name="FilePath" niflibtype="string" nifskopetype="filepath">
 A string that contains the path to a file.
 		<add name="Length" type="int">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself.</add>
@@ -173,7 +173,7 @@ List of block indices.
 		<add name="Num Indices" type="int">Number of block indices.</add>
 		<add name="Indices" type="link" arr1="Num Indices">The list of block indices.</add>
 	</compound>
-	<compound name="footer">
+	<compound name="Footer">
 The NIF file footer.
 		<add name="Roots" type="linkgroup">List of root blocks. If there is a camera, for 1st person view, then this block is referred to as well in this list, even if it is not a root block (usually we want the camera to be attached to the Bip Head node).</add>
 	</compound>
@@ -288,12 +288,12 @@ A string type.
 		<add name="Length" type="int">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself.</add>
 	</compound>
-	<compound name="avobject">
+	<compound name="AVObject">
 Used in NiDefaultAVObjectPalette.
 		<add name="Name" type="string">Object name.</add>
 		<add name="Object" type="crossref">Object reference.</add>
 	</compound>
-	<compound name="controllerlink" ver1="10.0.1.0">
+	<compound name="ControllerLink" ver1="10.0.1.0">
 In a .kf file, this links to a controllable block, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable block, via links.
 		<add name="Name" type="string" ver2="10.1.0.0">Name of a controllable block in another NIF file.</add>
 		<add name="Interpolator" type="link">Link to an interpolator.</add>
@@ -318,7 +318,7 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 		<add name="Variable Offset 2" type="stringoffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
 		<add name="Unknown Short 5" type="short" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
 	</compound>
-	<compound name="header">
+	<compound name="Header">
 The NIF file header.
 		<add name="Header String" type="headerstring">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
 		<add name="Version" type="fileversion" default="0x04000002">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
@@ -452,7 +452,7 @@ Texture description.
 		<add name="Transform Type?" type="int" cond="Has Texture Transform != 0" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
 		<add name="Center Offset" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
 	</compound>
-	<compound name="bumpmap">
+	<compound name="BumpMap">
 A texture that happens to be a bump map.  Contains extra data.
 		<add name="Is Used" type="bool">Determines whether this bumpmap contains any information. If Non-Zero the following data is present, otherwise it is not.</add>
 		<add name="Texture" type="TexDesc" cond="Is Used != 0">The bump map texture description.</add>
@@ -463,7 +463,7 @@ A texture that happens to be a bump map.  Contains extra data.
 	<compound name="TexSource" niflibtype="TexSource">
 A texture source.
 		<add name="Use External" type="byte">Is the texture external?</add>
-		<add name="File Name" type="filepath" cond="Use External == 1">The external texture file name.
+		<add name="File Name" type="FilePath" cond="Use External == 1">The external texture file name.
 
 Note: all original morrowind nifs use name.ext only for addressing the textures, but most mods use something like textures/[subdir/]name.ext. This is due to a feature in Morrowind resource manager: it loads name.ext, textures/name.ext and textures/subdir/name.ext but NOT subdir/name.ext.</add>
 		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
@@ -482,7 +482,7 @@ An extended version of texture.
 		<add name="Texture Data" type="TexDesc" cond="Is Used != 0">The texture data.</add>
 		<add name="Unknown Int" type="int" cond="Is Used != 0">Unknown.</add>
 	</compound>
-	<compound name="extratexturegroup">
+	<compound name="ExtraTextureGroup">
 Group of extra textures.
 		<add name="Num Textures" type="int">Number of textures in this group.</add>
 		<add name="Textures" type="texture2" arr1="Num Textures">The textures.</add>
@@ -534,7 +534,7 @@ At version 4.0.0.1 and above, it becomes a byte instead of an int.</add>
 		<add name="Rotation" type="Matrix33" cond="Is Used != 0">Rotation matrix.</add>
 		<add name="Radius" type="Vector3" cond="Is Used != 0">Radius, per direction.</add>
 	</compound>
-	<compound name="furnitureposition">
+	<compound name="FurniturePosition">
 Describes a furniture position?
 		<add name="Unknown Vector" type="Vector3">Unknown. Position?</add>
 		<add name="Unknown Short" type="short">Unknown.</add>
@@ -1132,7 +1132,7 @@ Unknown. Marks furniture sitting positions?
 		<inherit name="AData"/>
 		<add name="Name" type="string" ver2="20.0.0.5">Contains the string &#039;FRN&#039;?</add>
 		<add name="Num Positions" type="int">Number of positions.</add>
-		<add name="Positions" type="furnitureposition" arr1="Num Positions">Unknown. Probably has something to do with the furniture positions?</add>
+		<add name="Positions" type="FurniturePosition" arr1="Num Positions">Unknown. Probably has something to do with the furniture positions?</add>
 	</niblock>
 	<niblock name="BSKeyframeController" ver1="10.0.1.2">
 An extended keyframe controller.
@@ -1241,7 +1241,7 @@ These nodes will always be rotated to face the camera creating a billboard effec
 	<niblock name="NiBinaryExtraData" ver1="10.1.0.0">
 Binary extra data block. Used to store normals and binormals in Oblivion.
 		<inherit name="AExtraData"/>
-		<add name="Binary Data" type="bytearray">The binary data.</add>
+		<add name="Binary Data" type="ByteArray">The binary data.</add>
 	</niblock>
 	<niblock name="NiBlendBoolInterpolator" ver1="20.0.0.5">
 An interpolator for a bool.
@@ -1392,10 +1392,10 @@ Unknown. Root of all controllers?
 Root node in .kf files (version 10.0.1.0 and up).
 		<inherit name="AData"/>
 		<add name="Name" type="string">Name of this block. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
-		<add name="Text Keys" type="controllerlink" ver2="10.1.0.0">Refers to a NiTextKeyExtraData block.</add>
+		<add name="Text Keys" type="ControllerLink" ver2="10.1.0.0">Refers to a NiTextKeyExtraData block.</add>
 		<add name="Num Controlled Blocks" type="int">Number of controlled blocks.</add>
 		<add name="Unknown Int 1" type="int" ver1="10.1.0.106">Unknown.</add>
-		<add name="Controlled Blocks" type="controllerlink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
+		<add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
 		<add name="Unknown Float 1" type="float" ver1="10.1.0.106">Unknown. 1.0?</add>
 		<add name="Text Keys 2" type="link" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
 		<add name="Unknown Int 0" type="int" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
@@ -1414,7 +1414,7 @@ Unknown. Refers to a list of objects. Used by NiControllerManager.
 		<inherit name="AData"/>
 		<add name="Unknown Int" type="int">Unknown.</add>
 		<add name="Num Objects" type="int">Number of objects.</add>
-		<add name="Objects" type="avobject" arr1="Num Objects">The objects.</add>
+		<add name="Objects" type="AVObject" arr1="Num Objects">The objects.</add>
 	</niblock>
 	<niblock name="NiDirectionalLight">
 Directional light source.
@@ -1730,7 +1730,7 @@ A texture.
 		<add name="Num Mipmaps" type="int">Number of mipmaps in the texture.</add>
 		<add name="Bytes Per Pixel" type="int">Bytes per pixel (Bits Per Pixel / 8).</add>
 		<add name="Mipmaps" type="mipmap" arr1="Num Mipmaps">Mipmap descriptions (width, height, offset).</add>
-		<add name="Pixel Data" type="bytearray">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+		<add name="Pixel Data" type="ByteArray">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
 	</niblock>
 	<niblock name="NiPlanarCollider">
 Unknown.
@@ -2008,7 +2008,7 @@ Skinning instance.
 		<add name="Data" type="link">Skinning data reference.</add>
 		<add name="Skin Partition" type="link" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
 		<add name="Skeleton Root" type="crossref" function="SkeletonRoot">Armature root node.</add>
-		<add name="Bones" type="bones">List of all armature bones.</add>
+		<add name="Bones" type="Bones">List of all armature bones.</add>
 	</niblock>
 	<niblock name="NiSkinPartition" ver1="4.2.1.0">
 Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.
@@ -2174,10 +2174,10 @@ Describes an object&#039;s textures.
 		<add name="Detail Texture" type="texture">The detail texture.</add>
 		<add name="Gloss Texture" type="texture">The gloss texture.</add>
 		<add name="Glow Texture" type="texture">The glowing texture.</add>
-		<add name="Bump Map Texture" type="bumpmap">The bump map texture.</add>
+		<add name="Bump Map Texture" type="BumpMap">The bump map texture.</add>
 		<add name="Decal 0 Texture" type="texture">The decal texture.</add>
 		<add name="Decal Texture 1" type="texture" cond="Texture Count == 8" ver1="20.0.0.4">Another decal texture.  2 seems to be the limit.</add>
-		<add name="Shader Textures" type="extratexturegroup" ver1="10.0.1.0">Shader textures.</add>
+		<add name="Shader Textures" type="ExtraTextureGroup" ver1="10.0.1.0">Shader textures.</add>
 	</niblock>
 	<niblock name="NiTransformController" ver1="10.2.0.0">
 NiTransformController replaces the NiKeyframeController.
