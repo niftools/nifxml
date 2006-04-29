@@ -1151,7 +1151,7 @@ Unknown.
 	<niblock name="BSXFlags" ver1="20.0.0.5">
 Unknown.
 		<inherit name="AData"/>
-		<add name="Name" type="string">The string &#039;BSX&#039;?</add>
+		<add name="Name" type="string" default="BSX">The string &#039;BSX&#039;?</add>
 		<add name="Flags" type="uint">The flags.</add>
 	</niblock>
 	<niblock name="FxButton" ver1="10.0.1.0">
@@ -1174,9 +1174,9 @@ Unknown.
 NiTriStripsData for havok data?
 		<inherit name="AbhkShape"/>
 		<add name="Num Triangles" type="uint">Number of triangles?</add>
-		<add name="Triangles?" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
+		<add name="Triangles" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
 		<add name="Num Vertices" type="uint">Number of vertices.</add>
-		<add name="Vertices?" type="Vector3" arr1="Num Vertices">The vertices?</add>
+		<add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
 	</niblock>
 	<niblock name="NiAlphaController">
 Time controller for transparency.
@@ -2167,8 +2167,8 @@ Texture transformation controller.
 Describes an object&#039;s textures.
 		<inherit name="AProperty"/>
 		<add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-		<add name="Apply Mode" type="ApplyMode">0=replace, 1=decal, 2=modulate, 3=hilight, 4=hilight2</add>
-		<add name="Texture Count" type="uint">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
+		<add name="Apply Mode" type="ApplyMode" default="2">0=replace, 1=decal, 2=modulate, 3=hilight, 4=hilight2</add>
+		<add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
 		<add name="Base Texture" type="Texture">The base texture.</add>
 		<add name="Dark Texture" type="Texture">The dark texture.</add>
 		<add name="Detail Texture" type="Texture">The detail texture.</add>
@@ -2283,9 +2283,9 @@ Unknown.
 	<niblock name="NiZBufferProperty">
 This Property controlls the Z buffer (OpenGL: depth buffer).
 		<inherit name="AProperty"/>
-		<add name="Flags" type="Flags">Bit 0 enables the z test
+		<add name="Flags" type="Flags" default="3">Bit 0 enables the z test
 Bit 1 controlls wether the z buffer is read only (0) or read/write (1)</add>
-		<add name="Function" type="uint" ver1="4.1.0.12">Z-Test function (see: GlDepthFunc)
+		<add name="Function" type="uint" default="3" ver1="4.1.0.12">Z-Test function (see: GlDepthFunc)
 0: TEST_ALWAYS
 1: TEST_LESS
 2: TEST_EQUAL
