@@ -86,6 +86,13 @@ A variable length string that ends with a newline character (0x0A).  The string 
 Version &lt;= 10.0.1.0:  &#039;NetImmerse File Format&#039;
 Version &gt;= 10.1.0.0:  &#039;Gamebryo File Format&#039;
 	</basic>
+	<basic name="KeyType" count="0" niflibtype="KeyType" nifskopetype="uint">
+1: Linear
+2: Quadratic
+3: TBC
+4: XYZ Rotation
+5: Unknown. (Step function?)
+	</basic>
 	<basic name="LightMode" count="0" niflibtype="LightMode" nifskopetype="int">
 An unsigned 32-bit integer, describing how vertex colors influence lighting.
 0:  Emissive
@@ -567,7 +574,7 @@ A generic key type used for vectors (float, vector3, color4, and also byte). Typ
 	<compound name="TypedVectorKeyArray">
 An array of keys. This one always has a Key Type.
 		<add name="Num Keys" type="uint">Number of keys.</add>
-		<add name="Key Type" type="uint">The key type.</add>
+		<add name="Key Type" type="KeyType">The key type.</add>
 		<add name="Keys" type="VectorKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="Morph">
@@ -580,7 +587,7 @@ Geometry morphing data component.
 	<compound name="VectorKeyArray">
 Array of vector keys (anything that can be interpolated, except rotations).
 		<add name="Num Keys" type="uint">Number of keys in the array.</add>
-		<add name="Key Type" type="uint" cond="Num Keys != 0">The key type.</add>
+		<add name="Key Type" type="KeyType" cond="Num Keys != 0">The key type.</add>
 		<add name="Keys" type="VectorKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="RotationKey" niflibtype="Key">
@@ -594,7 +601,7 @@ A generic key type used for rotations (currently, only quaternion).
 	<compound name="RotationKeyArray">
 Rotation key array.
 		<add name="Num Keys" type="uint">Number of keys.</add>
-		<add name="Key Type" type="uint" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
+		<add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
 		<add name="Keys" type="RotationKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The rotation keys.</add>
 	</compound>
 	<ancestor name="AControllable">
