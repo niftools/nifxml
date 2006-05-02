@@ -47,7 +47,7 @@ An unsigned 32-bit integer, describing the apply mode of a texture.
 	<basic name="BlockTypeIndex" count="0" niflibtype="ushort" nifskopetype="blocktypeindex">
 A 16-bit (signed?) integer, which is used in the header to refer to a particular block type in a block type string array.
 	</basic>
-	<basic name="char" count="0" niflibtype="char" nifskopetype="char">
+	<basic name="char" count="0" niflibtype="byte" nifskopetype="char">
 An 8-bit character.
 	</basic>
 	<basic name="ControllerTarget" count="0" niflibtype="uint" nifskopetype="uplink">
