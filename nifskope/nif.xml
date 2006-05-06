@@ -47,13 +47,13 @@ An unsigned 32-bit integer, describing the apply mode of a texture.
 	<basic name="BlockTypeIndex" count="0" niflibtype="ushort" nifskopetype="blocktypeindex">
 A 16-bit (signed?) integer, which is used in the header to refer to a particular block type in a block type string array.
 	</basic>
-	<basic name="char" count="0" niflibtype="byte" nifskopetype="char">
+	<basic name="char" count="0" niflibtype="char" nifskopetype="char">
 An 8-bit character.
 	</basic>
 	<basic name="ControllerTarget" count="0" niflibtype="uint" nifskopetype="uplink">
 A signed 32-bit integer, used in time controllers to refer to the controllable block that they control (called, their target). This should be their first ancestor that is controllable.
 	</basic>
-	<basic name="CrossRef" count="0" niflibtype="CrossRef" nifskopetype="uplink">
+	<basic name="crossref" count="0" niflibtype="IBlock *" nifskopetype="uplink">
 A signed 32-bit integer, referring to a block before this one in the hierarchy.  Examples:  Bones, gravity objects.
 	</basic>
 	<basic name="EmitterObject" count="0" niflibtype="uint" nifskopetype="uplink">
@@ -86,19 +86,12 @@ A variable length string that ends with a newline character (0x0A).  The string 
 Version &lt;= 10.0.1.0:  &#039;NetImmerse File Format&#039;
 Version &gt;= 10.1.0.0:  &#039;Gamebryo File Format&#039;
 	</basic>
-	<basic name="KeyType" count="0" niflibtype="KeyType" nifskopetype="uint">
-1: Linear
-2: Quadratic
-3: TBC
-4: XYZ Rotation
-5: Unknown. (Step function?)
-	</basic>
 	<basic name="LightMode" count="0" niflibtype="LightMode" nifskopetype="int">
 An unsigned 32-bit integer, describing how vertex colors influence lighting.
 0:  Emissive
 1:  Emissive + Ambient + Diffuse (default)
 	</basic>
-	<basic name="Link" count="0" niflibtype="Link" nifskopetype="link">
+	<basic name="link" count="0" niflibtype="link_ref" nifskopetype="link">
 A signed 32-bit integer, used to refer to another block; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to blocks higher up.
 	</basic>
 	<basic name="MipMapFormat" count="0" niflibtype="MipMapFormat" nifskopetype="int">
@@ -134,7 +127,7 @@ An unsigned 32-bit integer, which describes how to apply vertex colors.
 	<compound name="Bones">
 This is a list of bone influences.  It points to blocks higher in the hierarchy so ints are used to represent the indices.
 		<add name="Num Bones" type="uint">The number of node bones referenced as influences.</add>
-		<add name="Bones" type="CrossRef" arr1="Num Bones">Block indicies of the bones.</add>
+		<add name="Bones" type="crossref" arr1="Num Bones">Block indicies of the bones.</add>
 	</compound>
 	<compound name="ByteArray" nifskopetype="bytearray">
 An array of bytes.
@@ -178,7 +171,7 @@ An array of (untyped) keys.
 	<compound name="LinkGroup">
 List of block indices.
 		<add name="Num Indices" type="uint">Number of block indices.</add>
-		<add name="Indices" type="Link" arr1="Num Indices">The list of block indices.</add>
+		<add name="Indices" type="link" arr1="Num Indices">The list of block indices.</add>
 	</compound>
 	<compound name="Footer">
 The NIF file footer.
@@ -282,7 +275,7 @@ Another string format, for short strings.  Specific to Bethesda-specific header 
 	<compound name="SkinShapeGroup" ver1="10.0.1.0">
 Unknown.
 		<add name="Num Link Pairs" type="uint">Counts unknown.</add>
-		<add name="Link Pairs" type="Link" arr1="Num Link Pairs" arr2="2">First link is a NiTriShape block.
+		<add name="Link Pairs" type="link" arr1="Num Link Pairs" arr2="2">First link is a NiTriShape block.
 Second link is a NiSkinInstance block.</add>
 	</compound>
 	<compound name="SkinWeight" niflibtype="SkinWeight">
@@ -298,17 +291,17 @@ A string type.
 	<compound name="AVObject">
 Used in NiDefaultAVObjectPalette.
 		<add name="Name" type="string">Object name.</add>
-		<add name="Object" type="CrossRef">Object reference.</add>
+		<add name="Object" type="crossref">Object reference.</add>
 	</compound>
 	<compound name="ControllerLink" ver1="10.0.1.0">
 In a .kf file, this links to a controllable block, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable block, via links.
 		<add name="Name" type="string" ver2="10.1.0.0">Name of a controllable block in another NIF file.</add>
-		<add name="Interpolator" type="Link">Link to an interpolator.</add>
-		<add name="Unknown Link 1" type="Link" ver1="10.1.0.106">Unknown link. Usually -1.</add>
-		<add name="Unknown Link 2" type="Link" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+		<add name="Interpolator" type="link">Link to an interpolator.</add>
+		<add name="Unknown Link 1" type="link" ver1="10.1.0.106">Unknown link. Usually -1.</add>
+		<add name="Unknown Link 2" type="link" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Priority?" type="byte" ver1="10.1.0.106">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
-		<add name="String Palette" type="Link" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
+		<add name="String Palette" type="link" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
 		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
 		<add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
 		<add name="Unknown Short 1" type="ushort" ver1="10.2.0.0">Unknown, always 0.</add>
@@ -349,7 +342,7 @@ The NIF file header.
 Describes a shader.
 		<add name="Has Shader" type="bool">Do we have a shader?</add>
 		<add name="Shader Name" type="string" cond="Has Shader != 0">The shader name.</add>
-		<add name="Unknown Link" type="Link" cond="Has Shader != 0">Unknown link, usually -1.</add>
+		<add name="Unknown Link" type="link" cond="Has Shader != 0">Unknown link, usually -1.</add>
 	</compound>
 	<compound name="StringPalette" nifskopetype="stringpalette">
 A list of \\0 terminated strings.
@@ -359,7 +352,7 @@ A list of \\0 terminated strings.
 	<compound name="TargetGroup">
 A list of node targets.
 		<add name="Num Indices" type="ushort">Number of block indices.</add>
-		<add name="Indices" type="CrossRef" arr1="Num Indices">The list of block indices.</add>
+		<add name="Indices" type="crossref" arr1="Num Indices">The list of block indices.</add>
 	</compound>
 	<compound name="TBC" nifskopetype="vector3">
 Tension, bias, continuity.
@@ -411,7 +404,7 @@ Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corne
 	</compound>
 	<compound name="TexDesc" niflibtype="TexDesc">
 Texture description.
-		<add name="Source" type="Link">NiTextureSource block index.</add>
+		<add name="Source" type="link">NiTextureSource block index.</add>
 		<add name="Clamp Mode" type="uint">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
 		<add name="Filter Mode" type="uint">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
 		<add name="Texture Set" type="uint">Texture set? Usually 0.</add>
@@ -439,10 +432,10 @@ A texture source.
 		<add name="File Name" type="FilePath" cond="Use External == 1">The external texture file name.
 
 Note: all original morrowind nifs use name.ext only for addressing the textures, but most mods use something like textures/[subdir/]name.ext. This is due to a feature in Morrowind resource manager: it loads name.ext, textures/name.ext and textures/subdir/name.ext but NOT subdir/name.ext.</add>
-		<add name="Unknown Link" type="Link" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
+		<add name="Unknown Link" type="link" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0">Unknown.</add>
 		<add name="Original File Name?" type="string" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData block.</add>
-		<add name="Pixel Data" type="Link" cond="Use External == 0">Pixel data block index.</add>
+		<add name="Pixel Data" type="link" cond="Use External == 0">Pixel data block index.</add>
 	</compound>
 	<compound name="Texture">
 A texture that is not a bumpmap.
@@ -527,7 +520,7 @@ Info about level of detail ranges.
 		<add name="Num LOD Levels" type="uint" cond="LOD Type == 0">Number of levels of detail.</add>
 		<add name="LOD Levels" type="LODRange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
 		<add name="Unknown Short" type="ushort" cond="LOD Type == 1">Zero?</add>
-		<add name="Range Data" type="Link" cond="LOD Type == 1">Refers to NiRangeLODData block.</add>
+		<add name="Range Data" type="link" cond="LOD Type == 1">Refers to NiRangeLODData block.</add>
 	</compound>
 	<compound name="Particle">
 particle array entry
@@ -574,7 +567,7 @@ A generic key type used for vectors (float, vector3, color4, and also byte). Typ
 	<compound name="TypedVectorKeyArray">
 An array of keys. This one always has a Key Type.
 		<add name="Num Keys" type="uint">Number of keys.</add>
-		<add name="Key Type" type="KeyType">The key type.</add>
+		<add name="Key Type" type="uint">The key type.</add>
 		<add name="Keys" type="VectorKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="Morph">
@@ -587,7 +580,7 @@ Geometry morphing data component.
 	<compound name="VectorKeyArray">
 Array of vector keys (anything that can be interpolated, except rotations).
 		<add name="Num Keys" type="uint">Number of keys in the array.</add>
-		<add name="Key Type" type="KeyType" cond="Num Keys != 0">The key type.</add>
+		<add name="Key Type" type="uint" cond="Num Keys != 0">The key type.</add>
 		<add name="Keys" type="VectorKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The keys.</add>
 	</compound>
 	<compound name="RotationKey" niflibtype="Key">
@@ -601,19 +594,19 @@ A generic key type used for rotations (currently, only quaternion).
 	<compound name="RotationKeyArray">
 Rotation key array.
 		<add name="Num Keys" type="uint">Number of keys.</add>
-		<add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
+		<add name="Key Type" type="uint" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
 		<add name="Keys" type="RotationKey" arg="Key Type" template="(TEMPLATE)" arr1="Num Keys">The rotation keys.</add>
 	</compound>
 	<ancestor name="AControllable">
 A block that can be controlled by a controller.
 		<add name="Name" type="string">Name of this controllable block, used to refer to the block in .kf files.</add>
-		<add name="Extra Data" type="Link" ver2="4.2.2.0">Extra data block index. (The first in a chain)</add>
+		<add name="Extra Data" type="link" ver2="4.2.2.0">Extra data block index. (The first in a chain)</add>
 		<add name="Extra Data List" type="LinkGroup" ver1="10.0.1.0">List of extra data indices.</add>
-		<add name="Controller" type="Link">Controller block index. (The first in a chain)</add>
+		<add name="Controller" type="link">Controller block index. (The first in a chain)</add>
 	</ancestor>
 	<ancestor name="AController">
 A generic time controller block.
-		<add name="Next Controller" type="Link">Index of the next controller.</add>
+		<add name="Next Controller" type="link">Index of the next controller.</add>
 		<add name="Flags" type="Flags">Controller flags (usually 0x000C).</add>
 		<add name="Frequency" type="float">Frequency (is usually 1.0).</add>
 		<add name="Phase" type="float">Phase (usually 0.0).</add>
@@ -636,7 +629,7 @@ A group of blocks that contain complex data.  Implemented using block-specific i
 Describes a physical constraint.
 		<inherit name="AData"/>
 		<add name="Num Bodies" type="uint">Number of bodies affected by this constraint.</add>
-		<add name="Bodies" type="CrossRef" arr1="Num Bodies">The bodies affected by this constraint.</add>
+		<add name="Bodies" type="crossref" arr1="Num Bodies">The bodies affected by this constraint.</add>
 		<add name="Unknown Int" type="uint">Usually 1.</add>
 	</ancestor>
 	<ancestor name="AbhkRagdollConstraint">
@@ -647,9 +640,9 @@ Ragdoll constraint.
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 	</ancestor>
 	<ancestor name="AbhkRigidBody" ver1="20.0.0.5">
-Describes physical properties of an object?
+Describes physical properties of an object.
 		<inherit name="AData"/>
-		<add name="Shape" type="Link">The rigid body&#039;s shape.</add>
+		<add name="Shape" type="link">The rigid body&#039;s shape.</add>
 		<add name="Flags" type="uint">The lower 4 bits select the color of the collision mesh in the construction set:
 
 1 : red (statics)
@@ -662,7 +655,23 @@ Describes physical properties of an object?
 8 : green (creatures)</add>
 		<add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
 		<add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
-		<add name="Flags 2" type="uint">The flags, repeated?</add>
+		<add name="Layer" type="uint">The flags, repeated?
+Sets mesh colour in CS
+0: Unidentified
+1: Static (red)
+2: AnimStatic (magenta)
+3: Transparent (light pink)
+4: Clutter (light blue)
+5: Weapon (orange)
+6: Projectile (light orange)
+7: Spell (cyan)
+8: Biped (green) Seems to apply to all creatures/NPCs
+9: Trees (light brown)
+10: Props
+11: Trigger (light grey)
+12: Terrain
+13: Trap (light grey)
+</add>
 		<add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
 		<add name="Translation" type="Vector3">Translation.</add>
 		<add name="Unknown Float 00" type="float">Unknown.</add>
@@ -672,13 +681,13 @@ Describes physical properties of an object?
 		<add name="Center" type="Vector3">The object&#039;s center.</add>
 		<add name="Unknown Float 01" type="float">Unknown float.</add>
 		<add name="Mass" type="float">Object mass.</add>
-		<add name="Unknown Float 0" type="float">Unknown.</add>
-		<add name="Unknown Float 1" type="float">Unknown.</add>
+		<add name="Linear Damping" type="float">Damping level.</add>
+		<add name="Angular Damping" type="float">Damping level.</add>
 		<add name="Friction" type="float">The object&#039;s friction.</add>
-		<add name="Elasticity" type="float">The object&#039;s elasticity.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
-		<add name="Unknown Float 3" type="float">Unknown. Pi x 10?</add>
-		<add name="Unknown Float 4" type="float">Unknown.</add>
+		<add name="Restitution" type="float">The object&#039;s restitution (elasticity).</add>
+		<add name="Max Linear Velocity" type="float">Limit</add>
+		<add name="Max Angular Velocity" type="float">Limit. Pi x 10?</add>
+		<add name="Pen Depth" type="float">Penetration Depth?</add>
 		<add name="Unknown Bytes 5" type="byte" arr1="4">Unknown.</add>
 		<add name="Unknown Int 6" type="uint">Unknown.</add>
 		<add name="Unknown Int 7" type="uint">Unknown.</add>
@@ -693,7 +702,7 @@ Havok shape.
 	<ancestor name="AbhkTransformShape">
 Shape modifier?
 		<inherit name="AbhkShape"/>
-		<add name="Sub Shape" type="Link">The shape affected by the transform?</add>
+		<add name="Sub Shape" type="link">The shape affected by the transform?</add>
 		<add name="Unknown Int" type="uint">Unknown.</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
@@ -705,13 +714,13 @@ Unknown.
 		<inherit name="AData"/>
 		<add name="Parent" type="Parent">Links to the node parent.</add>
 		<add name="Unknown Short" type="ushort">Unknown.</add>
-		<add name="Body" type="Link">Unknown. Links to the collision object data?</add>
+		<add name="Body" type="link">Unknown. Links to the collision object data?</add>
 	</ancestor>
 	<ancestor name="AExtraData">
 A generic extra data block.
 		<inherit name="AData"/>
 		<add name="Name" type="string" ver1="10.0.1.0">Name of this block.</add>
-		<add name="Next Extra Data" type="Link" ver2="4.2.2.0">Block number of the next extra data block.</add>
+		<add name="Next Extra Data" type="link" ver2="4.2.2.0">Block number of the next extra data block.</add>
 	</ancestor>
 	<ancestor name="AInterpolator" ver1="10.2.0.0">
 Interpolator blocks - function unknown.
@@ -735,7 +744,7 @@ Single items of data linked to particular key times.
 	<ancestor name="AKeyframeController">
 A time controller block for animation key frames.
 		<inherit name="AController"/>
-		<add name="Data" type="Link">Keyframe controller data index.</add>
+		<add name="Data" type="link">Keyframe controller data index.</add>
 	</ancestor>
 	<ancestor name="AKeyframeData">
 Keyframes for mesh animation.
@@ -755,7 +764,7 @@ Generic node block.
 		<add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
 		<add name="Properties" type="LinkGroup">List of node properties.</add>
 		<add name="Bounding Box" type="BoundingBox" ver2="4.2.2.0">The bounding box.</add>
-		<add name="Collision Data" type="Link" ver1="10.0.1.0">Bounding box: refers to NiCollisionData</add>
+		<add name="Collision Data" type="link" ver1="10.0.1.0">Bounding box: refers to NiCollisionData</add>
 	</ancestor>
 	<ancestor name="ADynamicEffect">
 A dynamic effect such as a light or environment map.
@@ -786,7 +795,7 @@ Firaxis-specific UI widgets?
 	</ancestor>
 	<ancestor name="AParticleModifier">
 A particle system modifier.
-		<add name="Next Modifier" type="Link">Next particle modifier.</add>
+		<add name="Next Modifier" type="link">Next particle modifier.</add>
 		<add name="Previous Modifier" type="Parent">Previous particle modifier.</add>
 	</ancestor>
 	<ancestor name="AParticleSystemController">
@@ -817,16 +826,16 @@ A generic particle system time controller block.
 		<add name="Lifetime Random" type="float">Particle lifetime random modifier</add>
 		<add name="Emit Flags" type="ushort">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
 		<add name="Start Random" type="Vector3">Particle random start translation vector</add>
-		<add name="Emitter" type="Link">This index targets the particle emitter block.</add>
+		<add name="Emitter" type="link">This index targets the particle emitter block.</add>
 		<add name="Unknown Short 2?" type="ushort">? short=0 ?</add>
 		<add name="Unknown Float 13?" type="float">? float=1.0 ?</add>
 		<add name="Unknown Int 1?" type="uint">? int=1 ?</add>
 		<add name="Unknown Int 2?" type="uint">? int=0 ?</add>
 		<add name="Unknown Short 3?" type="ushort">? short=0 ?</add>
 		<add name="Particles" type="ParticleGroup">Particle data.</add>
-		<add name="Unknown Link" type="Link">unknown int (=0xffffffff)</add>
-		<add name="Particle Extra" type="Link">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
-		<add name="Unknown Link 2" type="Link">Unknown int (=0xffffffff)</add>
+		<add name="Unknown Link" type="link">unknown int (=0xffffffff)</add>
+		<add name="Particle Extra" type="link">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
+		<add name="Unknown Link 2" type="link">Unknown int (=0xffffffff)</add>
 		<add name="Trailer" type="byte">Trailing null byte</add>
 	</ancestor>
 	<ancestor name="APointLight">
@@ -870,8 +879,8 @@ An emitter that emits meshes?
 	<ancestor name="AShape">
 Describes a mesh, built from triangles.
 		<inherit name="ANode"/>
-		<add name="Data" type="Link">Data index (NiTriShapeData/NiTriStripData).</add>
-		<add name="Skin Instance" type="Link">Skin instance index.</add>
+		<add name="Data" type="link">Data index (NiTriShapeData/NiTriStripData).</add>
+		<add name="Skin Instance" type="link">Skin instance index.</add>
 		<add name="Shader" type="Shader" ver1="10.0.1.0">Shader.</add>
 	</ancestor>
 	<ancestor name="AParticleNode">
@@ -908,7 +917,7 @@ Note: for compatibility with NifTexture, set this value to either 0x00000000 or 
 		<add name="UV Sets" type="TexCoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
 		<add name="UV Sets 2" type="TexCoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0">Same as above, but needs to be repeated due to &#039;UV Sets&#039; moving to a different position.</add>
 		<add name="Unknown Short 2" type="ushort" ver1="10.0.1.0">Unknown. Usually zero.</add>
-		<add name="Unknown Link" type="Link" ver1="20.0.0.4">Unknown.</add>
+		<add name="Unknown Link" type="link" ver1="20.0.0.4">Unknown.</add>
 	</ancestor>
 	<ancestor name="AParticlesData">
 Generic particle system data block.
@@ -942,7 +951,7 @@ Generic rotating particles data block.
 	<ancestor name="ASingleInterpolatorController">
 A controller referring to an interpolator.
 		<inherit name="AController"/>
-		<add name="Interpolator" type="Link" ver1="10.2.0.0">Link to interpolator.</add>
+		<add name="Interpolator" type="link" ver1="10.2.0.0">Link to interpolator.</add>
 	</ancestor>
 	<ancestor name="APSysCtlr" ver1="20.0.0.4">
 Unknown.
@@ -967,7 +976,39 @@ Unknown. Is apparently only used in skeleton.nif files.
 	<niblock name="bhkBoxShape" ver1="20.0.0.5">
 A box.
 		<inherit name="AbhkShape"/>
-		<add name="Unknown Int" type="uint">Unknown.</add>
+<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Short 1" type="ushort">Unknown.</add>
 		<add name="Unknown Short 2" type="ushort">Unknown.</add>
@@ -979,7 +1020,39 @@ A box.
 	<niblock name="bhkCapsuleShape" ver1="20.0.0.5">
 A capsule.
 		<inherit name="AbhkShape"/>
-		<add name="Unknown Int 1" type="uint">Unknown.</add>
+<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Radius" type="float">Apparently the capsule&#039;s radius.</add>
 		<add name="Unknown Short 1" type="ushort">Unknown.</add>
 		<add name="Unknown Short 2" type="ushort">Unknown.</add>
@@ -999,9 +1072,41 @@ A convex transformed shape?
 		<inherit name="AbhkTransformShape"/>
 	</niblock>
 	<niblock name="bhkConvexVerticesShape" ver1="20.0.0.5">
-A convex shape built from vertices?
+A convex shape built from vertices
 		<inherit name="AbhkShape"/>
-		<add name="Unknown Int" type="uint">Unknown.</add>
+<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
 		<add name="Num 1" type="uint">A count.</add>
 		<add name="Unknown Vectors 1" type="Vector4" arr1="Num 1">Unknown. Vertices?</add>
@@ -1022,7 +1127,39 @@ Hinge constraint.
 A list of shapes.
 		<inherit name="AbhkShape"/>
 		<add name="Sub Shapes" type="LinkGroup">List of shapes.</add>
-		<add name="Unknown Int" type="uint">Unknown.</add>
+<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
 		<add name="Num Unknown Ints" type="uint">Count.</add>
 		<add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -1032,8 +1169,8 @@ A malleable constraint.
 		<inherit name="AbhkConstraint"/>
 		<add name="Type" type="uint">Type of constraint.</add>
 		<add name="Unknown Int 2" type="uint">Unknown.</add>
-		<add name="Unknown Link 1" type="Link">Usually -1?</add>
-		<add name="Unknown Link 2" type="Link">Usually -1?</add>
+		<add name="Unknown Link 1" type="link">Usually -1?</add>
+		<add name="Unknown Link 2" type="link">Usually -1?</add>
 		<add name="Unknown Int 3" type="uint">Unknown. 1?</add>
 		<add name="Unknown Floats 1" type="float" arr1="3">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="7" arr2="4">Unknown.</add>
@@ -1043,8 +1180,40 @@ A malleable constraint.
 	<niblock name="bhkMoppBvTreeShape" ver1="20.0.0.5">
 Unknown.
 		<inherit name="AbhkShape"/>
-		<add name="Shape" type="Link">Links to another shape.</add>
-		<add name="Unknown Int" type="uint">Unknown. 0?</add>
+		<add name="Shape" type="link">Links to another shape.</add>
+<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Unknown Bytes 1" type="byte" arr1="8">Unknown.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
 		<add name="Num Unknown Bytes 2" type="uint">A count.</add>
@@ -1079,7 +1248,7 @@ A shape constructed from strips data.
 		<add name="Num Unknown Ints" type="ushort">Unknown, a count.</add>
 		<add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" arr2="3">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="13">Unknown.</add>
-		<add name="Data" type="Link">A link to the shape&#039;s NiTriStripsData.</add>
+		<add name="Data" type="link">A link to the shape&#039;s NiTriStripsData.</add>
 	</niblock>
 	<niblock name="bhkPrismaticConstraint" ver1="20.0.0.5">
 A prismatic constraint.
@@ -1102,7 +1271,7 @@ Unknown.
 	<niblock name="bhkSimpleShapePhantom">
 Unknown shape.
 		<inherit name="AbhkShape"/>
-		<add name="Shape" type="Link">Link to a shape.</add>
+		<add name="Shape" type="link">Link to a shape.</add>
 		<add name="Unknown Int 1" type="uint">Unknown.</add>
 		<add name="Unkown Floats" type="float" arr1="7">Unknown.</add>
 		<add name="Unknown Floats 2" type="float" arr1="3" arr2="5">Unknown. (1,0,0,0,0) x 3.</add>
@@ -1115,7 +1284,39 @@ Unknown.
 	<niblock name="bhkSphereShape" ver1="20.0.0.5">
 A sphere.
 		<inherit name="AbhkShape"/>
-		<add name="Unknown Int" type="uint">Unknown.</add>
+		<add name="Material" type="uint">Physics material
+0: Stone
+1: Cloth
+2: Dirt
+3: Glass
+4: Grass
+5: Metal
+6: Organic
+7: Skin
+8: Water
+9: Wood
+10: Heavy Stone
+11: Heavy Metal
+12: Heavy Wood
+13: Chain
+14: Snow
+15: Stone Stairs
+16: Cloth Stairs
+17: Dirt Stairs
+18: Glass Stairs
+19: Grass Stairs
+20: Metal Stairs
+21: Organic Stairs
+22: Skin Stairs
+23: Water Stairs
+24: Wood Stairs
+25: Heavy Stone Stairs
+26: Heavy Metal Stairs
+27: Heavy Wood Stairs
+28: Chain Stairs
+29: Snow Stairs
+30: Elevator
+</add>
 		<add name="Radius" type="float">This denotes the radius of the sphere.</add>
 	</niblock>
 	<niblock name="bhkStiffSpringConstraint">
@@ -1144,7 +1345,7 @@ Unknown. Marks furniture sitting positions?
 	<niblock name="BSKeyframeController" ver1="10.0.1.2">
 An extended keyframe controller.
 		<inherit name="AKeyframeController"/>
-		<add name="Data 2" type="Link">A link to more keyframe data.</add>
+		<add name="Data 2" type="link">A link to more keyframe data.</add>
 	</niblock>
 	<niblock name="BSParentVelocityModifier" ver1="20.0.0.5">
 Unknown.
@@ -1188,7 +1389,7 @@ NiTriStripsData for havok data?
 	<niblock name="NiAlphaController">
 Time controller for transparency.
 		<inherit name="ASingleInterpolatorController"/>
-		<add name="Data" type="Link" ver2="10.1.0.0">Alpha controller data index.</add>
+		<add name="Data" type="link" ver2="10.1.0.0">Alpha controller data index.</add>
 	</niblock>
 	<niblock name="NiAlphaProperty">
 Transparency. Flags 0x00ED.
@@ -1290,13 +1491,13 @@ Boolean extra data.
 Unknown.
 		<inherit name="AInterpolator"/>
 		<add name="Bool Value" type="bool">Value when posed?  At time 0?</add>
-		<add name="Data" type="Link">Refers to a NiBoolData block.</add>
+		<add name="Data" type="link">Refers to a NiBoolData block.</add>
 	</niblock>
 	<niblock name="NiBoolTimelineInterpolator" ver1="20.0.0.5">
 Unknown.
 		<inherit name="AInterpolator"/>
 		<add name="Bool" type="byte">The interpolated bool?</add>
-		<add name="Data" type="Link">The bool data.</add>
+		<add name="Data" type="link">The bool data.</add>
 	</niblock>
 	<niblock name="NiBSAnimationNode">
 Node for animated objects without armature.
@@ -1327,15 +1528,15 @@ Unknown.
 	<niblock name="NiBSplineCompPoint3Interpolator" ver1="20.0.0.4">
 Unknown.
 		<inherit name="ABSplineCompInterpolator"/>
-		<add name="Data" type="Link">Refers to NiBSplineData.</add>
-		<add name="Unknown Link" type="Link">Unknown.</add>
+		<add name="Data" type="link">Refers to NiBSplineData.</add>
+		<add name="Unknown Link" type="link">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineCompTransformInterpolator" ver1="20.0.0.4">
 Unknown.
 		<inherit name="ABSplineCompInterpolator"/>
-		<add name="Data" type="Link">Refers to NiBSplineData.</add>
-		<add name="Basis Data" type="Link">Refers to NiBSPlineBasisData.</add>
+		<add name="Data" type="link">Refers to NiBSplineData.</add>
+		<add name="Basis Data" type="link">Refers to NiBSPlineBasisData.</add>
 		<add name="Unknown4" type="float" arr1="17">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineData" ver1="20.0.0.4">
@@ -1361,7 +1562,7 @@ Camera object.
 		<add name="Viewport Top" type="float">Viewport top.</add>
 		<add name="Viewport Bottom" type="float">Viewport bottom.</add>
 		<add name="LOD Adjust" type="float">Level of detail adjust.</add>
-		<add name="Unknown Link?" type="Link">Unknown.</add>
+		<add name="Unknown Link?" type="link">Unknown.</add>
 		<add name="Unknown Int" type="uint">Unknown.  Changing value crashes viewer.</add>
 		<add name="Unknown Int 2" type="uint" ver1="4.2.1.0">Unknown.  Changing value crashes viewer.</add>
 	</niblock>
@@ -1393,7 +1594,7 @@ Unknown. Root of all controllers?
 		<inherit name="AController"/>
 		<add name="Unknown Byte" type="bool">Unknown.</add>
 		<add name="Controller Sequences" type="LinkGroup">Refers to a list of NiControllerSequence blocks.</add>
-		<add name="Object Palette" type="Link">Refers to a NiDefaultAVObjectPalette.</add>
+		<add name="Object Palette" type="link">Refers to a NiDefaultAVObjectPalette.</add>
 	</niblock>
 	<niblock name="NiControllerSequence" ver1="10.0.1.0">
 Root node in .kf files (version 10.0.1.0 and up).
@@ -1404,17 +1605,17 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
 		<add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
 		<add name="Unknown Float 1" type="float" ver1="10.1.0.106">Unknown. 1.0?</add>
-		<add name="Text Keys 2" type="Link" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
+		<add name="Text Keys 2" type="link" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
 		<add name="Unknown Int 0" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Float 3" type="float" ver1="10.1.0.106">Unknown.</add>
-		<add name="Unknown Float 4" type="float" ver1="10.1.0.106">Unknown.</add>
+		<add name="Frequency" type="float" ver1="10.1.0.106"></add>
 		<add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
 		<add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
 		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Int 3" type="uint" ver1="10.1.0.106">Unknown. Could be a link.</add>
 		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
-		<add name="String Palette" type="Link" ver1="10.2.0.0">Refers to NiStringPalette.</add>
+		<add name="String Palette" type="link" ver1="10.2.0.0">Refers to NiStringPalette.</add>
 	</niblock>
 	<niblock name="NiDefaultAVObjectPalette">
 Unknown. Refers to a list of objects. Used by NiControllerManager.
@@ -1455,14 +1656,14 @@ Float extra data.
 	<niblock name="NiFloatExtraDataController" ver1="20.0.0.4">
 Unknown.
 		<inherit name="AController"/>
-		<add name="Unknown Link" type="Link" ver1="20.0.0.4">Unknown.</add>
+		<add name="Unknown Link" type="link" ver1="20.0.0.4">Unknown.</add>
 		<add name="Unknown String" type="string" ver1="20.0.0.4">Unknown. Refers to some NiFloatExtraData name?</add>
 	</niblock>
 	<niblock name="NiFloatInterpolator" ver1="10.2.0.0">
 Unknown.
 		<inherit name="AInterpolator"/>
 		<add name="Float Value" type="float">Value when posed?  At time 0?</add>
-		<add name="Data" type="Link">Float data?</add>
+		<add name="Data" type="link">Float data?</add>
 	</niblock>
 	<niblock name="NiFloatsExtraData" ver1="20.0.0.4">
 Unknown.
@@ -1486,7 +1687,7 @@ Time controller for geometry morphing.
 		<inherit name="AController"/>
 		<add name="Unknown" type="ushort" ver1="10.1.0.0">Unknown.</add>
 		<add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Data" type="Link">Geometry morphing data index.</add>
+		<add name="Data" type="link">Geometry morphing data index.</add>
 		<add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
 		<add name="Interpolators" type="LinkGroup" ver1="10.1.0.106">List of interpolators.</add>
 		<add name="Num Unknown Ints" type="uint" ver1="10.2.0.0">A count.</add>
@@ -1527,14 +1728,14 @@ Keyframe data for mesh transform.
 Light color animation controller.
 		<inherit name="AController"/>
 		<add name="Unknown Short" type="ushort" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
-		<add name="Data" type="Link" ver2="10.1.0.0">Link to NiPosData</add>
-		<add name="Interpolator" type="Link" ver1="10.2.0.0">Link to NiPoint3Interpolator.</add>
+		<add name="Data" type="link" ver2="10.1.0.0">Link to NiPosData</add>
+		<add name="Interpolator" type="link" ver1="10.2.0.0">Link to NiPoint3Interpolator.</add>
 		<add name="Unknown Short" type="ushort" ver1="10.2.0.0">Unknown.</add>
 	</niblock>
 	<niblock name="NiLightDimmerController" ver1="20.0.0.4">
 Unknown controller.
 		<inherit name="AController"/>
-		<add name="Unknown Link" type="Link">Unknown link. Interpolator?</add>
+		<add name="Unknown Link" type="link">Unknown link. Interpolator?</add>
 	</niblock>
 	<niblock name="NiLODNode" ver1="4.2.2.0">
 Level of detail selector. Links to different levels of detail of the same model, used to switch a geometry at a specified distance.
@@ -1545,26 +1746,26 @@ Level of detail selector. Links to different levels of detail of the same model,
 Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
 		<inherit name="AController"/>
 		<add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
-		<add name="Look At Node" type="Link">Link to the node to look at?</add>
+		<add name="Look At Node" type="link">Link to the node to look at?</add>
 	</niblock>
 	<niblock name="NiLookAtInterpolator" ver1="10.2.0.0">
 Unknown.
 		<inherit name="AInterpolator"/>
 		<add name="Unknown Short" type="ushort">Unknown.</add>
-		<add name="Look At" type="Link">Refers to a Node to focus on.</add>
+		<add name="Look At" type="link">Refers to a Node to focus on.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
 		<add name="Translation" type="Vector3">Translate.</add>
 		<add name="Rotation" type="Quaternion">Rotation.</add>
 		<add name="Scale" type="float">Scale.</add>
-		<add name="Unknown Link 1" type="Link">Refers to NiPoint3Interpolator.</add>
-		<add name="Unknown Link 2" type="Link">Refers to a NiFloatInterpolator.</add>
-		<add name="Unknown Link 3" type="Link">Refers to a NiFloatInterpolator.</add>
+		<add name="Unknown Link 1" type="link">Refers to NiPoint3Interpolator.</add>
+		<add name="Unknown Link 2" type="link">Refers to a NiFloatInterpolator.</add>
+		<add name="Unknown Link 3" type="link">Refers to a NiFloatInterpolator.</add>
 	</niblock>
 	<niblock name="NiMaterialColorController">
 Time controller for material color.
 		<inherit name="AController"/>
 		<add name="Unknown" type="ushort" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
-		<add name="Data" type="Link">Material color controller data block index.</add>
+		<add name="Data" type="link">Material color controller data block index.</add>
 		<add name="Unknown Short" type="ushort" ver1="10.2.0.0">Unknown.</add>
 	</niblock>
 	<niblock name="NiMaterialProperty">
@@ -1591,7 +1792,7 @@ Particle meshes data.
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
 		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
 		<add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>
-		<add name="Modifier" type="Link" ver2="20.0.0.4">Link to a particle modifier?</add>
+		<add name="Modifier" type="link" ver2="20.0.0.4">Link to a particle modifier?</add>
 		<add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
 		<add name="Unknown Link Group" type="LinkGroup" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
 		<add name="Unknown Short 4" type="ushort" ver1="20.0.0.5">Unknown.</add>
@@ -1599,7 +1800,7 @@ Particle meshes data.
 		<add name="Unknown Byte 12" type="byte" ver1="20.0.0.5">Unknown.</add>
 		<add name="Unknown Int 3" type="uint" ver1="20.0.0.5">Unknown.</add>
 		<add name="Unknown Int 4" type="uint" ver1="20.0.0.5">Unknown.</add>
-		<add name="Unknown Link 2" type="Link" ver1="10.2.0.0">Links to a NiNode; but this NiNode doesn&#039;t seem to be a mesh?</add>
+		<add name="Unknown Link 2" type="link" ver1="10.2.0.0">Links to a NiNode; but this NiNode doesn&#039;t seem to be a mesh?</add>
 	</niblock>
 	<niblock name="NiMorphData">
 Geometry morphing data.
@@ -1645,7 +1846,7 @@ A particle modifier.
 	<niblock name="NiParticleColorModifier">
 Unknown.
 		<inherit name="AParticleModifier"/>
-		<add name="Color Data" type="Link">Color data index.</add>
+		<add name="Color Data" type="link">Color data index.</add>
 	</niblock>
 	<niblock name="NiParticleGrowFade">
 This particle system modifier controls the particle size. If it is present the particles start with size 0.0 . Then they grow to their original size and stay there until they fade to zero size again at the end of their lifetime cycle.
@@ -1660,7 +1861,7 @@ Mesh particle node?
 	<niblock name="NiParticleMeshesData" ver1="4.1.0.12">
 Particle meshes data.
 		<inherit name="ARotatingParticlesData"/>
-		<add name="Unknown Link 2" type="Link">Refers to the mesh that makes up a particle?</add>
+		<add name="Unknown Link 2" type="link">Refers to the mesh that makes up a particle?</add>
 	</niblock>
 	<niblock name="NiParticleMeshModifier" ver1="4.1.0.12">
 Unknown.
@@ -1701,8 +1902,8 @@ Time controller for a path.
 		<add name="Unknown Int 2" type="uint">Unknown, always 0?</add>
 		<add name="Unknown Int 3" type="uint">Unknown, always 0?</add>
 		<add name="Unknown Short" type="ushort">Unknown, always 0?</add>
-		<add name="Pos Data" type="Link">Path controller data index (position data). ?</add>
-		<add name="Float Data" type="Link">Path controller data index (float data). ?</add>
+		<add name="Pos Data" type="link">Path controller data index (position data). ?</add>
+		<add name="Float Data" type="link">Path controller data index (float data). ?</add>
 	</niblock>
 	<niblock name="NiPathInterpolator" ver1="20.0.0.5">
 Unknown interpolator.
@@ -1710,8 +1911,8 @@ Unknown interpolator.
 		<add name="Unknown Float 1" type="float">Unknown.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 		<add name="Unknown Short 2" type="ushort">Unknown. Zero.</add>
-		<add name="Pos Data" type="Link">Links to NiPosData.</add>
-		<add name="Float Data" type="Link">Links to NiFloatData.</add>
+		<add name="Pos Data" type="link">Links to NiPosData.</add>
+		<add name="Float Data" type="link">Links to NiFloatData.</add>
 	</niblock>
 	<niblock name="NiPixelData">
 A texture.
@@ -1733,7 +1934,7 @@ A texture.
 [4,0,0,0,0,0,0,0] if 0 (?) bits per pixel</add>
 		<add name="Unknown Int" type="uint" ver1="10.1.0.0" ver2="10.2.0.0">Seems to always be zero.</add>
 		<add name="Unknown 54 Bytes" type="byte" arr1="54" ver1="20.0.0.4">Unknown.</add>
-		<add name="Palette" type="Link">Link to NiPalette, for 8-bit textures.</add>
+		<add name="Palette" type="link">Link to NiPalette, for 8-bit textures.</add>
 		<add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
 		<add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
 		<add name="Mipmaps" type="MipMap" arr1="Num Mipmaps">Mipmap descriptions (width, height, offset).</add>
@@ -1765,7 +1966,7 @@ Unknown.
 Unknown.
 		<inherit name="AInterpolator"/>
 		<add name="Point 3 Value" type="Vector3">Value when posed?  Value at time 0?</add>
-		<add name="Data" type="Link">Reference to NiPosData.</add>
+		<add name="Data" type="link">Reference to NiPosData.</add>
 	</niblock>
 	<niblock name="NiPointLight" ver1="10.2.0.0">
 A point light.
@@ -1781,12 +1982,12 @@ Position data.
 Unknown particle modifier.
 		<inherit name="APSysModifier"/>
 		<add name="Spawn on Death" type="bool">Unknown.</add>
-		<add name="Spawn Modifier" type="Link">Link to NiPSysSpawnModifier block?</add>
+		<add name="Spawn Modifier" type="link">Link to NiPSysSpawnModifier block?</add>
 	</niblock>
 	<niblock name="NiPSysBombModifier" ver1="20.0.0.5">
 Unknown.
 		<inherit name="APSysModifier"/>
-		<add name="Unknown Link" type="CrossRef">Link to a node.</add>
+		<add name="Unknown Link" type="crossref">Link to a node.</add>
 		<add name="Unknown Ints 1" type="uint" arr1="2">Not sure, could be floats as well. Zero.</add>
 		<add name="Unknown Floats" type="float" arr1="3">Unknown.</add>
 		<add name="Unknown Ints 2" type="uint" arr1="2">Unknown.</add>
@@ -1806,12 +2007,12 @@ Unknown particle modifier.
 	<niblock name="NiPSysColliderManager" ver1="10.2.0.0">
 Unknown.
 		<inherit name="APSysModifier"/>
-		<add name="Collider" type="Link">Link to NiPSysPlanarCollider.</add>
+		<add name="Collider" type="link">Link to NiPSysPlanarCollider.</add>
 	</niblock>
 	<niblock name="NiPSysColorModifier" ver1="10.1.0.0">
 Unknown particle modifier.
 		<inherit name="APSysModifier"/>
-		<add name="Data" type="Link">Refers to NiColorData block.</add>
+		<add name="Data" type="link">Refers to NiColorData block.</add>
 	</niblock>
 	<niblock name="NiPSysCylinderEmitter" ver1="10.1.0.0">
 Unknown.
@@ -1835,12 +2036,15 @@ Particle system data.
 Unknown.
 		<inherit name="APSysModifier"/>
 		<add name="Parent" type="Parent">Parent reference.</add>
-		<add name="Unknown Floats" type="float" arr1="6">Unknown floats.</add>
+		<add name="Drag Axis" type="Vector3">Direction of the drag.</add>
+		<add name="Percentage" type="float"></add>
+		<add name="Range" type="float"></add>
+		<add name="Range Falloff" type="float"></add>
 	</niblock>
 	<niblock name="NiPSysEmitterCtlr" ver1="10.1.0.0">
 Particle system emitter controller.
 		<inherit name="APSysCtlr"/>
-		<add name="Data" type="Link">Particle system controller data.</add>
+		<add name="Data" type="link">Particle system controller data.</add>
 	</niblock>
 	<niblock name="NiPSysEmitterCtlrData" ver1="10.1.0.0">
 Particle system emitter controller data.
@@ -1871,7 +2075,7 @@ Unknown.
 	<niblock name="NiPSysGravityModifier" ver1="10.1.0.0">
 Unknown particle system modifier.
 		<inherit name="APSysModifier"/>
-		<add name="Gravity Object" type="CrossRef">Refers to a NiNode.</add>
+		<add name="Gravity Object" type="crossref">Refers to a NiNode.</add>
 		<add name="Gravity Axis" type="Vector3">Unknown.</add>
 		<add name="Decay" type="float">Unknown.</add>
 		<add name="Strength" type="float">Unknown.</add>
@@ -1914,10 +2118,10 @@ Unknown.
 		<add name="Bounce" type="float">Unknown.</add>
 		<add name="Spawn on Collide" type="bool">Unknown.</add>
 		<add name="Die on Collide" type="bool">Unknown.</add>
-		<add name="Spawn Modifier" type="Link">Link to NiPSysSpawnModifier block?</add>
+		<add name="Spawn Modifier" type="link">Link to NiPSysSpawnModifier block?</add>
 		<add name="Parent" type="Parent">Link to parent.</add>
-		<add name="Unknown Link?" type="Link">Unknown link?  Usually -1</add>
-		<add name="Collider Object" type="Link">Link to a NiNode?</add>
+		<add name="Unknown Link?" type="link">Unknown link?  Usually -1</add>
+		<add name="Collider Object" type="link">Link to a NiNode?</add>
 		<add name="Width" type="float">Unknown.</add>
 		<add name="Height" type="float">Unknown.</add>
 		<add name="X Axis" type="Vector3">Unknown.</add>
@@ -2005,16 +2209,16 @@ Skinning data.
 		<add name="Translation" type="Vector3">The overall translation offset of the skin from this bone in the bind position. (This is a guess, it has always been (0.0, 0.0, 0.0) so far)</add>
 		<add name="Scale" type="float">The scale offset of the skin from this bone in the bind position. (This is an assumption - it has always been 1.0 so far)</add>
 		<add name="Num Bones" type="uint">Number of bones.</add>
-		<add name="Skin Partition" type="Link" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
+		<add name="Skin Partition" type="link" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
 		<add name="Unknown Byte" type="byte" ver1="4.2.1.0">Unknown. Could be a bool conditioning the following block.</add>
 		<add name="Bone List" type="SkinData" arr1="Num Bones">Contains offset data for each node that this skin is influenced by.</add>
 	</niblock>
 	<niblock name="NiSkinInstance">
 Skinning instance.
 		<inherit name="AData"/>
-		<add name="Data" type="Link">Skinning data reference.</add>
-		<add name="Skin Partition" type="Link" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
-		<add name="Skeleton Root" type="CrossRef" function="SkeletonRoot">Armature root node.</add>
+		<add name="Data" type="link">Skinning data reference.</add>
+		<add name="Skin Partition" type="link" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
+		<add name="Skeleton Root" type="crossref" function="SkeletonRoot">Armature root node.</add>
 		<add name="Bones" type="Bones">List of all armature bones.</add>
 	</niblock>
 	<niblock name="NiSkinPartition" ver1="4.2.1.0">
@@ -2146,7 +2350,7 @@ Enables environment mapping. Should be in both the children list and effects lis
 2: SPHERE_MAP (Usual value)
 3: SPECULAR_CUBE_MAP
 4: DIFFUSE_CUBE_MAP</add>
-		<add name="Source Texture" type="Link">Source texture index.</add>
+		<add name="Source Texture" type="link">Source texture index.</add>
 		<add name="Clipping Plane" type="byte">0: Disabled (Usual value)
 1: Enabled</add>
 		<add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
@@ -2168,7 +2372,7 @@ Texture transformation controller.
 2: rotate ?
 3: tiling u
 4: tiling v</add>
-		<add name="Data" type="Link" ver2="10.1.0.0">Link to NiFloatData.</add>
+		<add name="Data" type="link" ver2="10.1.0.0">Link to NiFloatData.</add>
 	</niblock>
 	<niblock name="NiTexturingProperty">
 Describes an object&#039;s textures.
@@ -2201,7 +2405,7 @@ Unknown.
 		<add name="Rotation" type="Quaternion">Rotation.</add>
 		<add name="Scale" type="float">Scale.</add>
 		<add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Data" type="Link">Refers to NiTransformData.</add>
+		<add name="Data" type="link">Refers to NiTransformData.</add>
 	</niblock>
 	<niblock name="NiTriShape">
 A shape node that refers to singular triangle data.
@@ -2238,7 +2442,7 @@ Holds mesh data using strips of triangles.
 Time controller for texture coordinates.
 		<inherit name="AController"/>
 		<add name="Unknown Short" type="ushort">Always 0?</add>
-		<add name="Data" type="Link">Texture coordinate controller data index.</add>
+		<add name="Data" type="link">Texture coordinate controller data index.</add>
 	</niblock>
 	<niblock name="NiUVData">
 Texture coordinate data.
@@ -2273,7 +2477,7 @@ Unsure of use - perhaps for morphing animation or gravity.
 	<niblock name="NiVisController">
 Time controller for visibility.
 		<inherit name="AController"/>
-		<add name="Data" type="Link">Visibility controller data block index.</add>
+		<add name="Data" type="link">Visibility controller data block index.</add>
 	</niblock>
 	<niblock name="NiVisData">
 Visibility data for a controller.
