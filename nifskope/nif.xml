@@ -637,14 +637,23 @@ Describes a physical constraint.
 		<inherit name="AData"/>
 		<add name="Num Bodies" type="uint">Number of bodies affected by this constraint.</add>
 		<add name="Bodies" type="CrossRef" arr1="Num Bodies">The bodies affected by this constraint.</add>
-		<add name="Unknown Int" type="uint">Usually 1.</add>
+		<add name="Priority" type="uint">Usually 1.</add>
 	</ancestor>
 	<ancestor name="AbhkRagdollConstraint">
 Ragdoll constraint.
 		<inherit name="AbhkConstraint"/>
-		<add name="Unknown Floats" type="float" arr1="7" arr2="4">Unknown floats.</add>
-		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Float 2" type="float">Unknown.</add>
+		<add name="Pivot A" type="vector4"></add>
+		<add name="Plane A" type="vector4"></add>
+		<add name="Twist A" type="vector4"></add>
+		<add name="Pivot B" type="vector4"></add>
+		<add name="Plane B" type="vector4"></add>
+		<add name="Twist B" type="vector4"></add>
+		<add name="Cone Min Angle" type="float">Unknown.</add>
+		<add name="Plane Min Angle" type="float">Unknown.</add>
+		<add name="Plane Max Angle" type="float">Unknown.</add>
+		<add name="Twist Min Angle" type="float">Unknown.</add>
+		<add name="Twist Max Angle" type="float">Unknown.</add>
+		<add name="Max Friction" type="float">Unknown.</add>
 	</ancestor>
 	<ancestor name="AbhkRigidBody" ver1="20.0.0.5">
 Describes physical properties of an object.
