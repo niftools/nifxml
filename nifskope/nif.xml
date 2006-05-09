@@ -659,21 +659,9 @@ Ragdoll constraint.
 Describes physical properties of an object.
 		<inherit name="AData"/>
 		<add name="Shape" type="Link">The rigid body&#039;s shape.</add>
-		<add name="Flags" type="uint">The lower 4 bits select the color of the collision mesh in the construction set:
-
-1 : red (statics)
-2 : purple
-3 : white
-4 : light blue (clutter)
-5 : orange (weapons)
-6 : light orange
-7 : turkoise
-8 : green (creatures)</add>
-		<add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
-		<add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
 		<add name="Layer" type="uint">The flags, repeated?
 Sets mesh colour in CS
-0: Unidentified
+0: Unidentified (white)
 1: Static (red)
 2: AnimStatic (magenta)
 3: Transparent (light pink)
@@ -683,19 +671,69 @@ Sets mesh colour in CS
 7: Spell (cyan)
 8: Biped (green) Seems to apply to all creatures/NPCs
 9: Trees (light brown)
-10: Props
-11: Trigger (light grey)
-12: Terrain
-13: Trap (light grey)
+10: Props (magenta)
+11: Water (cyan)
+12: Trigger (light grey)
+13: Terrain (light yellow)
+14: Trap (light grey)
+15: NonCollidable (white)
+16: CloudTrap (greenish grey)
+17: Ground (none)
+18: Portal (green)
+19: Stairs (white)
+20: CharController (yellow)
+21: AvoidBox (dark yellow)
+22: ? (white)
+23: ? (white)
+24: CameraPick (white)
+25: ItemPick (white)
+26: LineOfSight (white)
+27: PathPick (white)
+28: CustomPick1 (white)
+29: CustomPick2 (white)
+30: SpellExplosion (white)
+31: DroppingPick (white)
+32: Other (white)
+33: Head
+34: Body
+35: Spine1
+36: Spine2
+37: LUpperArm
+38: LForeArm
+39: LHand
+40: LThigh
+41: LCalf
+42: LFoot
+43: RUpperArm
+44: RForeArm
+45: RHand
+46: RThigh
+47: RCalf
+48: RFoot
+49: Tail
+50: SideWeapon
+51: Shield
+52: Quiver
+53: BackWeapon
+54: BackWeapon (?)
+55: PonyTail
+56: Wing
+57+: Null
 </add>
+		<add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
+		<add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
+		<add name="Layer Copy?" type="uint">Unknown. Copy of layer value?</add>
 		<add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
 		<add name="Translation" type="Vector3">Translation.</add>
 		<add name="Unknown Float 00" type="float">Unknown.</add>
 		<add name="Rotation" type="QuaternionXYZW">Rotation.</add>
-		<add name="Unknown Floats 2" type="float" arr1="8">Unknown.</add>
+		<add name="LinearVelocity" type="Vector3"></add>
+		<add name="Unknown Float 01" type="float">Unknown.</add>
+		<add name="AngularVelocity" type="Vector3"></add>
+		<add name="Unknown Float 02" type="float">Unknown.</add>
 		<add name="Transform?" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
 		<add name="Center" type="Vector3">The object&#039;s center.</add>
-		<add name="Unknown Float 01" type="float">Unknown float.</add>
+		<add name="Unknown Float 03" type="float">Unknown float.</add>
 		<add name="Mass" type="float">Object mass.</add>
 		<add name="Linear Damping" type="float">Damping level.</add>
 		<add name="Angular Damping" type="float">Damping level.</add>
@@ -704,7 +742,29 @@ Sets mesh colour in CS
 		<add name="Max Linear Velocity" type="float">Limit</add>
 		<add name="Max Angular Velocity" type="float">Limit. Pi x 10?</add>
 		<add name="Pen Depth" type="float">Penetration Depth?</add>
-		<add name="Unknown Bytes 5" type="byte" arr1="4">Unknown.</add>
+		<add name="Motion" type="byte">Motion system? Overrides Quality when on Keyframed?
+0: Keyframed
+1: Box
+2: Sphere
+3: Sphere
+4: Box
+5: Box
+6: Keyframed
+7: Keyframed
+8: Box
+9+: Keyframed?
+</add>
+		<add name="Unknown Bytes 5" type="byte" arr1="2">Unknown.</add>
+		<add name="Quality Type" type="byte">Type of motion.
+0: Moving
+1: Fixed
+2: Keyframed
+3-4: Moving(?)
+5: Critical
+6: Bullet
+7: User
+8+: Null
+</add>
 		<add name="Unknown Int 6" type="uint">Unknown.</add>
 		<add name="Unknown Int 7" type="uint">Unknown.</add>
 		<add name="Unknown Int 8" type="uint">Unknown.</add>
