@@ -968,7 +968,7 @@ Mesh data: vertices, vertex normals, etc.
 		<inherit name="AData"/>
 		<interface name="IShapeData"/>
 		<add name="Name" type="string" ver1="10.2.0.0">Name of this block.</add>
-		<add name="Num Vertices" type="ushort">Number of vertices.</add>
+		<add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
 		<add name="Unknown Short 1" type="ushort" ver1="10.1.0.0">Unknown.</add>
 		<add name="Has Vertices" type="bool">Is the vertex array present? (Always non-zero.)</add>
 		<add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
@@ -1032,7 +1032,7 @@ A controller referring to an interpolator.
 	<ancestor name="APSysCtlr" ver1="20.0.0.4">
 Unknown.
 		<inherit name="ASingleInterpolatorController"/>
-		<add name="Unknown String" type="string">Unknown. Seems to refer to some block by its name?</add>
+		<add name="Modifier Name" type="string">Refers to modifier block by its name?</add>
 	</ancestor>
 	<niblock name="AvoidNode">
 Morrowind specific?
@@ -1348,7 +1348,67 @@ Unknown.
 Unknown shape.
 		<inherit name="AbhkShape"/>
 		<add name="Shape" type="Link">Link to a shape.</add>
-		<add name="Unknown Int 1" type="uint">Unknown.</add>
+		<add name="Layer" type="uint">The flags, repeated?
+Sets mesh colour in CS
+0: Unidentified (white)
+1: Static (red)
+2: AnimStatic (magenta)
+3: Transparent (light pink)
+4: Clutter (light blue)
+5: Weapon (orange)
+6: Projectile (light orange)
+7: Spell (cyan)
+8: Biped (green) Seems to apply to all creatures/NPCs
+9: Trees (light brown)
+10: Props (magenta)
+11: Water (cyan)
+12: Trigger (light grey)
+13: Terrain (light yellow)
+14: Trap (light grey)
+15: NonCollidable (white)
+16: CloudTrap (greenish grey)
+17: Ground (none)
+18: Portal (green)
+19: Stairs (white)
+20: CharController (yellow)
+21: AvoidBox (dark yellow)
+22: ? (white)
+23: ? (white)
+24: CameraPick (white)
+25: ItemPick (white)
+26: LineOfSight (white)
+27: PathPick (white)
+28: CustomPick1 (white)
+29: CustomPick2 (white)
+30: SpellExplosion (white)
+31: DroppingPick (white)
+32: Other (white)
+33: Head
+34: Body
+35: Spine1
+36: Spine2
+37: LUpperArm
+38: LForeArm
+39: LHand
+40: LThigh
+41: LCalf
+42: LFoot
+43: RUpperArm
+44: RForeArm
+45: RHand
+46: RThigh
+47: RCalf
+48: RFoot
+49: Tail
+50: SideWeapon
+51: Shield
+52: Quiver
+53: BackWeapon
+54: BackWeapon (?)
+55: PonyTail
+56: Wing
+57+: Null
+</add>
 		<add name="Unkown Floats" type="float" arr1="7">Unknown.</add>
 		<add name="Unknown Floats 2" type="float" arr1="3" arr2="5">Unknown. (1,0,0,0,0) x 3.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
@@ -1668,7 +1728,7 @@ Unknown.
 	<niblock name="NiControllerManager" ver1="20.0.0.5">
 Unknown. Root of all controllers?
 		<inherit name="AController"/>
-		<add name="Unknown Byte" type="bool">Unknown.</add>
+		<add name="Cumulative?" type="bool">Unknown.</add>
 		<add name="Controller Sequences" type="LinkGroup">Refers to a list of NiControllerSequence blocks.</add>
 		<add name="Object Palette" type="Link">Refers to a NiDefaultAVObjectPalette.</add>
 	</niblock>
@@ -1680,16 +1740,21 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Num Controlled Blocks" type="uint">Number of controlled blocks.</add>
 		<add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
 		<add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
-		<add name="Unknown Float 1" type="float" ver1="10.1.0.106">Unknown. 1.0?</add>
+		<add name="Weight" type="float" ver1="10.1.0.106">Weight/priority of animation?</add>
 		<add name="Text Keys 2" type="Link" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
 		<add name="Unknown Int 0" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Float 3" type="float" ver1="10.1.0.106">Unknown.</add>
+		<add name="Cycle Type" type="uint" ver1="10.1.0.106">Anim cycle type? Is part of "Flags" in other blocks..?
+0: Loop
+1: Reverse
+2: Clamp
+3+: x Invalid
+</add>
 		<add name="Frequency" type="float" ver1="10.1.0.106"></add>
 		<add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
 		<add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
 		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Int 3" type="uint" ver1="10.1.0.106">Unknown. Could be a link.</add>
+		<add name="Manager" type="Parent" ver1="10.1.0.106">Link to NiControllerManager</add>
 		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
 		<add name="String Palette" type="Link" ver1="10.2.0.0">Refers to NiStringPalette.</add>
 	</niblock>
@@ -2155,9 +2220,13 @@ Unknown particle system modifier.
 		<add name="Gravity Axis" type="Vector3">Unknown.</add>
 		<add name="Decay" type="float">Unknown.</add>
 		<add name="Strength" type="float">Unknown.</add>
+		<add name="Force Type" type="uint">
+0: FORCE_PLANAR
+1: FORCE_SPHERICAL
+2+: Unknown
+</add>
 		<add name="Turbulence" type="float">Unknown.</add>
 		<add name="Turbulence Scale" type="float">Unknown.</add>
-		<add name="Force Type" type="float">Unknown.  Can only get it to say FORCE_PLANAR or Unknown so far.  Usual value is 1.0.</add>
 	</niblock>
 	<niblock name="NiPSysGravityStrengthCtlr" ver1="20.0.0.5">
 Unknown.
@@ -2174,10 +2243,22 @@ Unknown particle system modifier.
 	<niblock name="NiPSysMeshEmitter" ver1="20.0.0.5">
 Unknown.
 		<inherit name="APSysEmitter"/>
-		<add name="Unknown Link Group" type="LinkGroup">Unknown.</add>
-		<add name="Unknown Ints 1" type="uint" arr1="2">Unknown.</add>
-		<add name="Unknown Float" type="float">Unknown.</add>
-		<add name="Unknown Ints 2" type="uint" arr1="2">Unknown.</add>
+		<add name="Emitter Mesh" type="LinkGroup">Links to mesh(es) used for emitting.</add>
+		<add name="Initial Velocity Type" type="uint">
+0: NI_VELOCITY_USE_NORMALS
+1: NI_VELOCITY_USE_RANDOM
+2: NI_VELOCITY_USE_DIRECTION
+3+: UNKNOWN!!!
+</add>
+		<add name="Emission Type" type="uint">Where it emits from.
+0: NI_EMIT_FROM_EDGE_SURFACE(?)
+1: NI_EMIT_FROM_FACE_CENTER
+2: NI_EMIT_FROM_EDGE_CENTER
+3: NI_EMIT_FROM_FACE_SURFACE
+4: NI_EMIT_FROM_EDGE_SURFACE
+5+: UNKNOWN!!!
+</add>
+		<add name="Emission Axis" type="Vector3">Unknown.</add>
 	</niblock>
 	<niblock name="NiPSysMeshUpdateModifier" ver1="10.2.0.0">
 Unknown.
