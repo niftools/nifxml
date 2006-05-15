@@ -139,7 +139,7 @@ An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
 	<basic name="Parent" count="0" niflibtype="uint" nifskopetype="uplink">
 A signed 32-bit integer, referring to the first ancestor.
 	</basic>
-	<basic name="PixelFormat" count="0" niflibtype="PixelFormat">
+	<basic name="PixelFormat" count="0" niflibtype="PixelFormat" nifskopetype="int">
 Specifies the pixel format used by the NiPixelData block to store a texture.
 0: PX_FMT_RGB8
 1: PX_FMT_RGBA8
@@ -166,14 +166,14 @@ A signed 32-bit integer, which refers to the skeleton root of a NiSkinInstance b
 	<basic name="StringOffset" count="0" niflibtype="ushort" nifskopetype="stringoffset">
 A 16-bit signed integer, used to refer to strings in a NiStringPalette.
 	</basic>
-	<basic name="TexClampMode" count="0" niflibtype="TexClampMode">
+	<basic name="TexClampMode" count="0" niflibtype="TexClampMode" nifskopetype="int">
 Specifies the availiable texture clamp modes.  That is, the behavior of pixels outside the range of the texture.
 0: CLAMP_S_CLAMP_T
 1: CLAMP_S_WRAP_T
 2: WRAP_S_CLAMP_T
 3: WRAP_S_WRAP_T
 	</basic>
-	<basic name="TexFilterMode" count="0" niflibtype="TexFilterMode">
+	<basic name="TexFilterMode" count="0" niflibtype="TexFilterMode" nifskopetype="int">
 Specifies the availiable texture filter modes.  That is, the way pixels within a texture are blended together when textures are displayed on the screen at a size other than their original dimentions.
 0: FILTER_NEAREST
 1: FILTER_BILERP
