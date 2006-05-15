@@ -2248,8 +2248,8 @@ Describes texture source and properties.
 3=multiply texture alpha channel with the material alpha setting, or, if there is no texture alpha channel, use material alpha setting as alpha channel; this is the default setting in official Morrowind files
 
 Note: the NiTriShape linked to this block must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
-		<add name="Unknown Byte" type="byte">Unknown, usually 1.</add>
-		<add name="Unknown Byte 2" type="byte" ver1="10.1.0.106">Unknown.</add>
+		<add name="Unknown Byte" type="byte" default="1">Unknown, usually 1.</add>
+		<add name="Unknown Byte 2" type="byte" default="1" ver1="10.1.0.106">Set to one if textures have mipmaps?</add>
 	</niblock>
 	<niblock name="NiSpecularProperty" abstract="0">
 Gives specularity to a shape. Flags 0x0001.
