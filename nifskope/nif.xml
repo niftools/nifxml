@@ -342,19 +342,14 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
 		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
 		<add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
-		<add name="Unknown Short 1" type="ushort" ver1="10.2.0.0">Unknown, always 0.</add>
 		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
 		<add name="Property Type Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
-		<add name="Unknown Short 2" type="ushort" ver1="10.2.0.0">Unknown, usually 0, but sometimes also 0xFFFF.</add>
 		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the block type name of the controller in the NIF file that is child of the controlled block.</add>
 		<add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled block, via its type name.</add>
-		<add name="Unknown Short 3" type="ushort" ver1="10.2.0.0">Unknown, always 0.</add>
 		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
 		<add name="Variable Offset 1" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
-		<add name="Unknown Short 4" type="ushort" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
 		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
 		<add name="Variable Offset 2" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
-		<add name="Unknown Short 5" type="ushort" ver1="10.2.0.0">Unknown, usually 0, but sometimes 0xFFFF.</add>
 	</compound>
 	<compound name="Header">
 The NIF file header.
