@@ -1001,7 +1001,9 @@ A malleable constraint.
 	</niblock>
 	<niblock name="bhkMoppBvTreeShape" abstract="0" ver1="20.0.0.5">
 Memory optimized partial polytope bounding volume tree shape.
-		<inherit name="bhkEntity"/>
+		<inherit name="bhkShape"/> (not entity..)
+		<add name="Shape" type="Ref" template="bhkShape">The body&#039;s shape.</add>
+		<add name="Material" type="Material">The shape&#039;s material.</add>
 		<add name="Unknown Bytes 1" type="byte" arr1="8">Unknown.</add>
 		<add name="Unknown Float" type="float">Unknown.</add>
 		<add name="Num Unknown Bytes 2" type="uint">A count.</add>
@@ -1033,9 +1035,11 @@ A shape constructed from a bunch of strips.
 	<niblock name="bhkPackedNiTriStripsShape" abstract="0" ver1="20.0.0.5">
 A shape constructed from strips data.
 		<inherit name="AbhkShapeCollection"/>
-		<add name="Num Unknown Ints" type="ushort">Unknown, a count.</add>
-		<add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" arr2="3">Unknown.</add>
-		<add name="Unknown Floats" type="float" arr1="13">Unknown.</add>
+		<add name="Num Subparts" type="ushort">Number of subparts</add>
+		<add name="Subparts" type="uint" arr1="Num Subparts" arr2="3">The subparts. First int in each set is Layer. Second is something to do with vertices/triangles?</add>
+		<add name="Unknown Floats" type="float" arr1="9">Unknown.</add>
+		<add name="Scale" type="float">Scale</add>
+		<add name="Unknown Floats" type="float" arr1="3">Unknown.</add>
 		<add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
 	</niblock>
 	<niblock name="bhkPrismaticConstraint" abstract="0" ver1="20.0.0.5">
