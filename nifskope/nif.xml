@@ -2428,9 +2428,8 @@ Unknown.
 0 - Wireframe Mode Disabled
 1 - Wireframe Mode Enabled</add>
 	</niblock>
-	<niblock name="NiZBufferProperty" abstract="0">
+	<niblock name="NiZBufferProperty" inherit="NiProperty" abstract="0">
 This Property controlls the Z buffer (OpenGL: depth buffer).
-		<inherit name="NiProperty"/>
 		<add name="Flags" type="Flags" default="3">Bit 0 enables the z test
 Bit 1 controlls wether the z buffer is read only (0) or read/write (1)</add>
 		<add name="Function" type="uint" default="3" ver1="4.1.0.12">Z-Test function (see: GlDepthFunc)
