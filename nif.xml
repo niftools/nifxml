@@ -642,7 +642,7 @@ Havok objects that can be saved and loaded from disk?
 Describes a physical constraint.
 		<inherit name="bhkSerializable"/>
 		<add name="Num Bodies" type="uint">Number of bodies affected by this constraint.</add>
-		<add name="Bodies" type="Ptr" arr1="Num Bodies">The bodies affected by this constraint.</add>
+		<add name="Bodies" type="Ptr" template="bhkShape" arr1="Num Bodies">The bodies affected by this constraint.</add>
 		<add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
 	</niblock>
 	<niblock name="AbhkRagdollConstraint" abstract="1">
