@@ -386,9 +386,9 @@ Tension, bias, continuity.
 A generic key with support for interpolation. Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
 		<add name="Time" type="float">Time of the key.</add>
 		<add name="Value" type="(TEMPLATE)">The key value.</add>
-		<add name="Forward" type="(TEMPLATE)" cond="(ARG) == 2">Key forward tangent.</add>
-		<add name="Backward" type="(TEMPLATE)" cond="(ARG) == 2">The key backward tangent.</add>
-		<add name="TBC" type="TBC" cond="(ARG) == 3">The key&#039;s TBC.</add>
+		<add name="Forward" type="(TEMPLATE)" cond="ARG == 2">Key forward tangent.</add>
+		<add name="Backward" type="(TEMPLATE)" cond="ARG == 2">The key backward tangent.</add>
+		<add name="TBC" type="TBC" cond="ARG == 3">The key&#039;s TBC.</add>
 	</compound>
 	<compound name="KeyGroup">
 Array of vector keys (anything that can be interpolated, except rotations).
@@ -436,9 +436,9 @@ Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regula
 	<compound name="QuatKey" niflibtype="Key">
 A special version of the key type used for quaternions.  Never has tangents.
 		<add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
-		<add name="Time" type="float" cond="(ARG) != 4" ver1="10.1.0.106">Time the key applies.</add>
-		<add name="Value" type="(TEMPLATE)" cond="(ARG) != 4">Value of the key.</add>
-		<add name="TBC" type="TBC" cond="(ARG) == 3">The TBC of the key.</add>
+		<add name="Time" type="float" cond="ARG != 4" ver1="10.1.0.106">Time the key applies.</add>
+		<add name="Value" type="(TEMPLATE)" cond="ARG != 4">Value of the key.</add>
+		<add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
 	</compound>
 	<compound name="RotationKeyArray">
 Rotation key array.
@@ -545,7 +545,7 @@ Geometry morphing data component.
 		<add name="Morph Interpolation" type="KeyType" ver2="10.0.1.2">Unlike most blocks, the presense of this value is not conditional on there being keys.</add>
 		<add name="Morph Keys" type="Key" arg="Morph Interpolation" template="float" arr1="Num Morph Keys" ver2="10.0.1.2">The morph key frames.</add>
 		<add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Vectors" type="Vector3" arr1="(ARG)">Morph vectors.</add>
+		<add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
 	</compound>
 	<compound name="Particle">
 particle array entry
