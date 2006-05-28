@@ -1236,17 +1236,17 @@ Binary extra data block. Used to store normals and binormals in Oblivion.
 	<niblock name="NiBlendBoolInterpolator" abstract="0" ver1="20.0.0.5">
 An interpolator for a bool.
 		<inherit name="ABlendInterpolator"/>
-		<add name="Value" type="byte">The interpolated bool?</add>
+		<add name="Bool Value" type="byte">The interpolated bool?</add>
 	</niblock>
 	<niblock name="NiBlendFloatInterpolator" abstract="0" ver1="20.0.0.5">
 An interpolator for a float.
 		<inherit name="ABlendInterpolator"/>
-		<add name="Value" type="float">The interpolated float?</add>
+		<add name="Float Value" type="float">The interpolated float?</add>
 	</niblock>
 	<niblock name="NiBlendPoint3Interpolator" abstract="0" ver1="20.0.0.5">
 Interpolates a point?
 		<inherit name="ABlendInterpolator"/>
-		<add name="Value" type="Vector3">The interpolated point?</add>
+		<add name="Point3 Value" type="Vector3">The interpolated point?</add>
 	</niblock>
 	<niblock name="NiBlendTransformInterpolator" abstract="0" ver1="20.0.0.5">
 Unknown.
@@ -1279,7 +1279,7 @@ Unknown.
 	<niblock name="NiBoolTimelineInterpolator" abstract="0" ver1="20.0.0.5">
 Unknown.
 		<inherit name="AInterpolator"/>
-		<add name="Bool" type="byte">The interpolated bool?</add>
+		<add name="Bool Value" type="byte">The interpolated bool?</add>
 		<add name="Data" type="Ref" template="NiBoolData">The bool data.</add>
 	</niblock>
 	<niblock name="NiBSBoneLODController" abstract="0">
@@ -1399,7 +1399,7 @@ Unknown. Refers to a list of objects. Used by NiControllerManager.
 		<inherit name="NiObject"/>
 		<add name="Unknown Int" type="uint">Unknown.</add>
 		<add name="Num Objects" type="uint">Number of objects.</add>
-		<add name="Objects" type="AVObject" arr1="Num Objects">The objects.</add>
+		<add name="The Objects" type="AVObject" arr1="Num Objects">The objects.</add>
 	</niblock>
 	<niblock name="NiDirectionalLight" abstract="0">
 Directional light source.
