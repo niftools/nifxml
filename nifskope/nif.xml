@@ -183,9 +183,9 @@ This is a list of bone influences.  It points to blocks higher in the hierarchy 
 	</compound>
 	<compound name="ByteArray" nifskopetype="bytearray">
 An array of bytes.
-		<add name="Size" type="uint">The number of bytes in this array</add>
+		<add name="Data Size" type="uint">The number of bytes in this array</add>
 		<add name="Unknown Int" type="uint" ver1="20.0.0.4">Unknown.</add>
-		<add name="Data" type="byte" arr1="Size">The bytes which make up the array</add>
+		<add name="Data" type="byte" arr1="Data Size">The bytes which make up the array</add>
 	</compound>
 	<compound name="Color3" niflibtype="Color3" nifskopetype="color3">
 A color without alpha (red, green, blue).
