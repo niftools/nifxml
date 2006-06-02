@@ -900,9 +900,35 @@ A convex shape built from vertices?
 A hinge constraint.
 		<add name="Unknown Floats" type="float" arr1="5" arr2="4">Unknown.</add>
 	</niblock>
-	<niblock name="bhkLimitedHingeConstraint" abstract="0" inherit="AbhkRagdollConstraint" ver1="20.0.0.5">
+	<compound name="RagDollDescriptor">
+		<add name="Pivot A" type="vector4">Unknown.</add>
+		<add name="Plane A" type="vector4">Unknown.</add>
+		<add name="Twist A" type="vector4">Unknown.</add>
+		<add name="Pivot B" type="vector4">Unknown.</add>
+		<add name="Plane B" type="vector4">Unknown.</add>
+		<add name="Twist B" type="vector4">Unknown.</add>
+		<add name="Cone Min Angle" type="float"></add>
+		<add name="Plane Min Angle" type="float"></add>
+		<add name="Plane Max Angle" type="float"></add>
+		<add name="Twist Min Angle" type="float"></add>
+		<add name="Twist Max Angle" type="float"></add>
+		<add name="Max Friction" type="float"></add>
+	</compound>
+	<compound name="LimitedHingeDescriptor">
+		<add name="Pivot A" type="vector4">Unknown.</add>
+		<add name="Axle A ?" type="vector4">Unknown.</add>
+		<add name="Perp2AxleInA1" type="vector4">Unknown.</add>
+		<add name="Perp2AxleInA2" type="vector4">Unknown.</add>
+		<add name="Pivot B" type="vector4">Unknown.</add>
+		<add name="Axle B" type="vector4">Unknown.</add>
+		<add name="Unknown Vector" type="vector4">Unknown.</add>
+		<add name="Min Angle" type="float"></add>
+		<add name="Max Angle" type="float"></add>
+		<add name="Max Friction" type="float"></add>
+	</compound>
+	<niblock name="bhkLimitedHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
 Hinge constraint.
-		<add name="Unknown Int" type="uint">Could also be a float. Zero usually.</add>
+		<add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
 	</niblock>
 	<niblock name="bhkListShape" abstract="0" inherit="AbhkShapeCollection">
 A list of shapes.
@@ -952,10 +978,10 @@ A malleable constraint.
 		<add name="Unknown Link 1" type="Ref" template="NiObject">Usually -1?</add>
 		<add name="Unknown Link 2" type="Ref" template="NiObject">Usually -1?</add>
 		<add name="Unknown Int 3" type="uint">Unknown. 1?</add>
-		<add name="Unknown Floats 1" type="float" arr1="3">Unknown.</add>
-		<add name="Unknown Floats" type="float" arr1="7" arr2="4">Unknown.</add>
-		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Float 2" type="float" cond="Type == 2">Unknown.</add>
+		<add name="Ragdoll" type="RagDollDescriptor" cond="Type == 7" />
+		<add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+		<add name="Tau" type="float" />
+		<add name="Damping" type="float" />
 	</niblock>
 	<niblock name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
 Memory optimized partial polytope bounding volume tree shape (not an entity).
@@ -998,7 +1024,7 @@ A shape constructed from strips data.
 	</niblock>
 	<niblock name="bhkPrismaticConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
 A prismatic constraint.
-		<add name="Unknown Floats" type="float" arr1="8" arr2="4">Unknown.</add>
+		<add name="Unknown Vectors" type="vector4" arr1="8" >Unknown.</add>
 		<add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
 	</niblock>
 	<niblock name="bhkRagdollConstraint" abstract="0" inherit="AbhkRagdollConstraint" ver1="20.0.0.5">
