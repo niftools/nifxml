@@ -901,12 +901,12 @@ A hinge constraint.
 		<add name="Unknown Floats" type="float" arr1="5" arr2="4">Unknown.</add>
 	</niblock>
 	<compound name="RagDollDescriptor">
-		<add name="Pivot A" type="vector4">Unknown.</add>
-		<add name="Plane A" type="vector4">Unknown.</add>
-		<add name="Twist A" type="vector4">Unknown.</add>
-		<add name="Pivot B" type="vector4">Unknown.</add>
-		<add name="Plane B" type="vector4">Unknown.</add>
-		<add name="Twist B" type="vector4">Unknown.</add>
+		<add name="Pivot A" type="Vector4">Unknown.</add>
+		<add name="Plane A" type="Vector4">Unknown.</add>
+		<add name="Twist A" type="Vector4">Unknown.</add>
+		<add name="Pivot B" type="Vector4">Unknown.</add>
+		<add name="Plane B" type="Vector4">Unknown.</add>
+		<add name="Twist B" type="Vector4">Unknown.</add>
 		<add name="Cone Min Angle" type="float"></add>
 		<add name="Plane Min Angle" type="float"></add>
 		<add name="Plane Max Angle" type="float"></add>
@@ -915,13 +915,13 @@ A hinge constraint.
 		<add name="Max Friction" type="float"></add>
 	</compound>
 	<compound name="LimitedHingeDescriptor">
-		<add name="Pivot A" type="vector4">Unknown.</add>
-		<add name="Axle A ?" type="vector4">Unknown.</add>
-		<add name="Perp2AxleInA1" type="vector4">Unknown.</add>
-		<add name="Perp2AxleInA2" type="vector4">Unknown.</add>
-		<add name="Pivot B" type="vector4">Unknown.</add>
-		<add name="Axle B" type="vector4">Unknown.</add>
-		<add name="Unknown Vector" type="vector4">Unknown.</add>
+		<add name="Pivot A" type="Vector4">Unknown.</add>
+		<add name="Axle A ?" type="Vector4">Unknown.</add>
+		<add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
+		<add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
+		<add name="Pivot B" type="Vector4">Unknown.</add>
+		<add name="Axle B" type="Vector4">Unknown.</add>
+		<add name="Unknown Vector" type="Vector4">Unknown.</add>
 		<add name="Min Angle" type="float"></add>
 		<add name="Max Angle" type="float"></add>
 		<add name="Max Friction" type="float"></add>
@@ -1024,7 +1024,7 @@ A shape constructed from strips data.
 	</niblock>
 	<niblock name="bhkPrismaticConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
 A prismatic constraint.
-		<add name="Unknown Vectors" type="vector4" arr1="8" >Unknown.</add>
+		<add name="Unknown Vectors" type="Vector4" arr1="8" >Unknown.</add>
 		<add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
 	</niblock>
 	<niblock name="bhkRagdollConstraint" abstract="0" inherit="AbhkRagdollConstraint" ver1="20.0.0.5">
