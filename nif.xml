@@ -338,7 +338,7 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 		<add name="Unknown Link 1" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
 		<add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Priority?" type="byte" ver1="10.1.0.106">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
+		<add name="Priority?" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
 		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
 		<add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
@@ -527,10 +527,10 @@ Bounding box.
 	</compound>
 	<compound name="FurniturePosition">
 Describes a furniture position?
-		<add name="Unknown Vector" type="Vector3">Unknown. Position?</add>
-		<add name="Unknown Short" type="ushort">Unknown.</add>
-		<add name="Position Ref 1?" type="byte">This might refer to a furnituremarkerxx.nif file.</add>
-		<add name="Position Ref 2?" type="byte">This might also refer to a furnituremarkerxx.nif file.</add>
+		<add name="Offset" type="Vector3">Offset of furniture marker.</add>
+		<add name="Orientation" type="ushort">Furniture marker orientation.</add>
+		<add name="Position Ref 1" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
+		<add name="Position Ref 2" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
 	</compound>
 	<compound name="hkTriangle">
 A triangle with extra data used for physics.
@@ -870,7 +870,7 @@ A box.
 		<add name="Unknown Short 2" type="ushort">Unknown.</add>
 		<add name="Unknown Short 3" type="ushort">Unknown.</add>
 		<add name="Unknown Short 4" type="ushort">Unknown.</add>
-		<add name="Unknown Vector" type="Vector3">Looks like this could be the box size.</add>
+		<add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
 		<add name="Unknown Float 2" type="float">Unknown.</add>
 	</niblock>
 	<niblock name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
@@ -880,9 +880,9 @@ A capsule.
 		<add name="Unknown Short 2" type="ushort">Unknown.</add>
 		<add name="Unknown Short 3" type="ushort">Unknown.</add>
 		<add name="Unknown Short 4" type="ushort">Unknown.</add>
-		<add name="Unknown Vector 1" type="Vector3">Unknown.</add>
+		<add name="First Point" type="Vector3">First point on the capsule's axis.</add>
 		<add name="Radius 1" type="float">Unknown. Matches Radius.</add>
-		<add name="Unknown Vector 2" type="Vector3">Unknown.</add>
+		<add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
 		<add name="Radius 2" type="float">Unknown. Matches Radius.</add>
 	</niblock>
 	<niblock name="bhkCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">

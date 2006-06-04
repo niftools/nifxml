@@ -338,7 +338,7 @@ In a .kf file, this links to a controllable block, via its name (or for version 
 		<add name="Unknown Link 1" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
 		<add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Priority?" type="byte" ver1="10.1.0.106">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation. WARNING: BREAKS CIV4 NIF FILES! Only observed in Oblivion NIF files so far.</add>
+		<add name="Priority?" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
 		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
 		<add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
