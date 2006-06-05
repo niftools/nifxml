@@ -748,10 +748,10 @@ A dynamic effect such as a light or environment map.
 	</niblock>
 	<niblock name="NiLight" abstract="1" inherit="NiDynamicEffect">
 Light source.
-		<add name="Dimmer" type="float">Dimmer.</add>
-		<add name="Ambient Color" type="Color3">Ambient color.</add>
-		<add name="Diffuse Color" type="Color3">Diffuse color.</add>
-		<add name="Specular Color" type="Color3">Specular color.</add>
+		<add name="Dimmer" type="float" public="1">Dimmer.</add>
+		<add name="Ambient Color" type="Color3" public="1">Ambient color.</add>
+		<add name="Diffuse Color" type="Color3" public="1">Diffuse color.</add>
+		<add name="Specular Color" type="Color3" public="1">Specular color.</add>
 	</niblock>
 	<niblock name="NiProperty" abstract="1" inherit="NiObjectNET">
 A generic property block.
