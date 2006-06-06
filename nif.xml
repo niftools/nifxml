@@ -789,7 +789,7 @@ A generic time controller block.
 		<add name="Phase" type="float">Phase (usually 0.0).</add>
 		<add name="Start Time" type="float">Controller start time.</add>
 		<add name="Stop Time" type="float">Controller stop time.</add>
-		<add name="Target" type="Ptr" template="NiObject">Controller target (block index of the first controllable ancestor of this block).</add>
+		<add name="Target" type="Ptr" template="NiObjectNET">Controller target (block index of the first controllable ancestor of this block).</add>
 	</niblock>
 	<niblock name="ABoneLODController" abstract="1" inherit="NiTimeController">
 Level of detail controller for bones?
