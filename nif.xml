@@ -688,7 +688,7 @@ A havok node, describes physical properties.
 	</niblock>
 	<niblock name="NiCollisionObject" abstract="1" inherit="NiObject" ver1="20.0.0.5">
 Unknown.
-		<add name="Parent" type="Ptr" template="NiAVObject" function="Parent">Links to the node parent.</add>
+		<add name="Parent" type="Ptr" template="NiAVObject">Links to the node parent.</add>
 		<add name="Unknown Short" type="ushort">Unknown.</add>
 		<add name="Body" type="Ref" template="NiObject">Unknown. Links to the collision object data?</add>
 	</niblock>
@@ -823,8 +823,8 @@ Mesh data: vertices, vertex normals, etc.
 		<add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
 		<add name="Unknown Vectors 1" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Unknown Byte &amp; 16)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
 		<add name="Unknown Vectors 2" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Unknown Byte &amp; 16)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
-		<add name="Center" type="Vector3" function="Center">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
-		<add name="Radius" type="float" function="Radius">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
+		<add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
+		<add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
 		<add name="Has Vertex Colors" type="bool">Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
 Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty block as a property child of the root node. If this property block is not present, the vertex colors fine-tune lighting.
@@ -1327,7 +1327,7 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
 		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Manager" type="Ptr" template="NiControllerManager" function="Parent" ver1="10.1.0.106">Refers to NiControllerManager parent.</add>
+		<add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager parent.</add>
 		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to NiStringPalette.</add>
 	</niblock>
@@ -1973,7 +1973,7 @@ Skinning data.
 Skinning instance.
 		<add name="Data" type="Ref" template="NiSkinData">Skinning data reference.</add>
 		<add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="10.2.0.0">Refers to a NiSkinPartition block, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
-		<add name="Skeleton Root" type="Ptr" template="NiNode" function="SkeletonRoot">Armature root node.</add>
+		<add name="Skeleton Root" type="Ptr" template="NiNode">Armature root node.</add>
 		<add name="Num Bones" type="uint">The number of node bones referenced as influences.</add>
 		<add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones">List of all armature bones.</add>
 	</niblock>
@@ -2059,7 +2059,7 @@ Allows control of stencil testing.
 	<niblock name="NiStringExtraData" abstract="0" inherit="NiExtraData">
 Apparently commands for an optimizer instructing it to keep things it would normally discard.
 Also refers to NiNode blocks (through their name) in animation .kf files.
-		<add name="Bytes Remaining" type="uint" function="BytesRemaining" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
+		<add name="Bytes Remaining" type="uint" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
 		<add name="String Data" type="string">The string.</add>
 	</niblock>
 	<niblock name="NiStringPalette" abstract="0" inherit="NiObject" ver1="10.2.0.0">
