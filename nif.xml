@@ -64,7 +64,7 @@ Known versions and their hex representation:
 10.2.0.0:  0x0A020000
 20.0.0.4:  0x14000004
 	</basic>
-	<basic name="Flags" count="0" niflibtype="unsigned short" nifskopetype="flags">
+	<basic name="Flags" count="0" niflibtype="ushort" nifskopetype="flags">
 A 16-bit integer, used for bit flags.
 0x0008: Not a skin influence
 	</basic>
