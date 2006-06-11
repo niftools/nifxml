@@ -145,10 +145,10 @@ An unsigned 32-bit integer, describing the color depth of a texture.
 4:  Bump Map
 5:  Default
 	</basic>
-	<basic name="Ptr" count="0" niflibtype="*" nifskopetype="uplink">
+	<basic name="Ptr" count="0" niflibtype="*" nifskopetype="uplink" istemplate="1">
 A signed 32-bit integer, referring to a block before this one in the hierarchy.  Examples:  Bones, gravity objects.
 	</basic>
-	<basic name="Ref" count="0" niflibtype="Ref" nifskopetype="link">
+	<basic name="Ref" count="0" niflibtype="Ref" nifskopetype="link" istemplate="1">
 A signed 32-bit integer, used to refer to another block; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to blocks higher up.
 	</basic>
 	<basic name="StringOffset" count="0" niflibtype="uint" nifskopetype="stringoffset">
@@ -264,17 +264,17 @@ A group of NiNodes references.
 		<add name="Num Nodes" type="uint">Number of node references that follow.</add>
 		<add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
 	</compound>
-	<compound name="ns keylin">
+	<compound name="ns keylin" istemplate="1">
 Linear key type (!!! for NifSkope optimizer only, use key, keyrot, or keyvec for regular use).
 		<add name="Time" type="float">Key time.</add>
 		<add name="Value" type="TEMPLATE">The key value.</add>
 	</compound>
-	<compound name="ns keyarray">
+	<compound name="ns keyarray" istemplate="1">
 Array of keys, not interpolated (!!! for NifSkope only, use keyarray for regular use).
 		<add name="Num Keys" type="uint">Number of keys.</add>
 		<add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys">The keys.</add>
 	</compound>
-	<compound name="ns keytan">
+	<compound name="ns keytan" istemplate="1">
 Key with tangents (!!! for NifSkope only, use keyvec instead for regular purposes).
 		<add name="Time" type="float">The key time.</add>
 		<add name="Value" type="TEMPLATE">The key value.</add>
@@ -377,7 +377,7 @@ Tension, bias, continuity.
 		<add name="b" type="float">Bias.</add>
 		<add name="c" type="float">Continuity.</add>
 	</compound>
-	<compound name="Key" niflibtype="Key">
+	<compound name="Key" niflibtype="Key" istemplate="1">
 A generic key with support for interpolation. Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
 		<add name="Time" type="float">Time of the key.</add>
 		<add name="Value" type="TEMPLATE">The key value.</add>
@@ -385,19 +385,19 @@ A generic key with support for interpolation. Type 1 is normal linear interpolat
 		<add name="Backward" type="TEMPLATE" cond="ARG == 2">The key backward tangent.</add>
 		<add name="TBC" type="TBC" cond="ARG == 3">The key&#039;s TBC.</add>
 	</compound>
-	<compound name="KeyGroup">
+	<compound name="KeyGroup" istemplate="1">
 Array of vector keys (anything that can be interpolated, except rotations).
 		<add name="Num Keys" type="uint">Number of keys in the array.</add>
 		<add name="Interpolation" type="KeyType" cond="Num Keys != 0">The key type.</add>
 		<add name="Keys" type="Key" arg="Interpolation" template="TEMPLATE" arr1="Num Keys">The keys.</add>
 	</compound>
-	<compound name="ns keytbc">
+	<compound name="ns keytbc" istemplate="1">
 A TBC key (!!! for NifSkope only, use keyvec for regular purposes).
 		<add name="Time" type="float">The key time.</add>
 		<add name="Value" type="TEMPLATE">The key value.</add>
 		<add name="TBC" type="TBC">Tension, bias, continuity.</add>
 	</compound>
-	<compound name="ns keyvecarray">
+	<compound name="ns keyvecarray" istemplate="1">
 Array of interpolable keys (!!! for NifSkope only, use keyvecarray for regular use).
 		<add name="Num Keys" type="uint">Number of keys.</add>
 		<add name="Key Type" type="uint" cond="Num Keys != 0">The key type (1, 2, or 3).</add>
@@ -411,7 +411,7 @@ Rotation subkey (!!! Nifskope only).
 		<add name="Time" type="float" ver2="10.1.0.0">Time.</add>
 		<add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3">The sub keys, one for every axis.</add>
 	</compound>
-	<compound name="ns keyrotarray">
+	<compound name="ns keyrotarray" istemplate="1">
 Array of rotation keys (!!! for NifSkope only, use keyrotarray for regular use).
 		<add name="Num Keys" type="uint">Number of rotation keys.</add>
 		<add name="Key Type" type="uint" cond="Num Keys != 0">The key type (1, 2, 3, or 4).</add>
@@ -420,7 +420,7 @@ Array of rotation keys (!!! for NifSkope only, use keyrotarray for regular use).
 		<add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">TBC keys.</add>
 		<add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4">Special rotation keys (3 float arrays, one for each axis).</add>
 	</compound>
-	<compound name="ns keyvecarraytyp">
+	<compound name="ns keyvecarraytyp" istemplate="1">
 Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regular use)
 		<add name="Num Keys" type="uint">Number of keys</add>
 		<add name="Key Type" type="uint">The key type (1, 2, 3)</add>
@@ -428,14 +428,14 @@ Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regula
 		<add name="Keys" type="ns keytan" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
 		<add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
 	</compound>
-	<compound name="QuatKey" niflibtype="Key">
+	<compound name="QuatKey" niflibtype="Key" istemplate="1">
 A special version of the key type used for quaternions.  Never has tangents.
 		<add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
 		<add name="Time" type="float" cond="ARG != 4" ver1="10.1.0.106">Time the key applies.</add>
 		<add name="Value" type="TEMPLATE" cond="ARG != 4">Value of the key.</add>
 		<add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
 	</compound>
-	<compound name="RotationKeyArray">
+	<compound name="RotationKeyArray" istemplate="1">
 Rotation key array.
 		<add name="Num Keys" type="uint">Number of keys.</add>
 		<add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
