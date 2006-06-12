@@ -568,7 +568,7 @@ A 4-dimensional vector.
 		<add name="z" type="float">Third coordinate.</add>
 		<add name="w" type="float">Fourth coordinate.</add>
 	</compound>
-	<niblock name="NiObject" abstract="1" niflibtype="NiObject">
+	<niblock name="NiObject" abstract="1">
 Abstract block type.
 	</niblock>
 	<niblock name="AKeyedData" abstract="1" inherit="NiObject">
