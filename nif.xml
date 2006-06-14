@@ -1585,7 +1585,7 @@ This particle system modifier controls the particle size. If it is present the p
 	<niblock name="NiParticleMeshModifier" abstract="0" inherit="AParticleModifier" ver1="4.1.0.12">
 Unknown.
 		<add name="Num Particle Meshes" type="uint">The number of particle mesh references that follow.</add>
-		<add name="Particle Meshes" type="Ref" template="NiAVObject">Links to nodes of particle meshes?</add>
+		<add name="Particle Meshes" arr1="Num Particle Meshes" type="Ref" template="NiAVObject">Links to nodes of particle meshes?</add>
 	</niblock>
 	<niblock name="NiParticleRotation" abstract="0" inherit="AParticleModifier">
 Unknown.
