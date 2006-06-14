@@ -1586,7 +1586,7 @@ This particle system modifier controls the particle size. If it is present the p
 	<niblock name="NiParticleMeshModifier" abstract="0" inherit="AParticleModifier" ver1="4.1.0.12">
 Unknown.
 		<add name="Num Particle Meshes" type="uint">The number of particle mesh references that follow.</add>
-		<add name="Particle Meshes" type="Ref" template="NiTriBasedGeom">Links to nodes of particle meshes?</add>
+		<add name="Particle Meshes" type="Ref" template="NiAVObject">Links to nodes of particle meshes?</add>
 	</niblock>
 	<niblock name="NiParticleRotation" abstract="0" inherit="AParticleModifier">
 Unknown.
@@ -1615,7 +1615,7 @@ Generic rotating particles data block.
 	</niblock>
 	<niblock name="NiParticleMeshesData" abstract="0" inherit="NiParticlesData" ver1="4.1.0.12">
 Particle meshes data.
-		<add name="Unknown Link 2" type="Ref" template="NiTriBasedGeom">Refers to the mesh that makes up a particle?</add>
+		<add name="Unknown Link 2" type="Ref" template="NiAVObject">Refers to the mesh that makes up a particle?</add>
 	</niblock>
 	<niblock name="NiParticleSystem" abstract="0" inherit="NiParticles" ver1="10.1.0.0">
 A particle system.
