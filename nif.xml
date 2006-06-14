@@ -179,7 +179,6 @@ An unsigned 32-bit integer, which describes how to apply vertex colors.
 	<compound name="ByteArray" nifskopetype="bytearray">
 An array of bytes.
 		<add name="Data Size" type="uint">The number of bytes in this array</add>
-		<add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.0.0.4">Unknown.</add>
 		<add name="Data" type="byte" arr1="Data Size">The bytes which make up the array</add>
 	</compound>
 	<compound name="Color3" niflibtype="Color3" nifskopetype="color3">
@@ -1712,6 +1711,7 @@ A texture.
 		<add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
 		<add name="Mipmaps" type="MipMap" arr1="Num Mipmaps">Mipmap descriptions (width, height, offset).</add>
 		<add name="Pixel Data" type="ByteArray">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+		<add name="Unknown Int 2" type="uint" ver1="20.0.0.4"></add>
 	</niblock>
 	<niblock name="NiPlanarCollider" abstract="0" inherit="AParticleModifier">
 Unknown.
