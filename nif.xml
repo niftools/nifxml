@@ -1481,10 +1481,10 @@ Particle meshes data.
 		<add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
 		<add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
 		<add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>
-		<add name="Modifier" type="Ref" template="AParticleModifier" ver2="20.0.0.4">Link to a particle modifier?</add>
+		<add name="Modifier" type="Ref" template="NiPSysModifier" ver2="20.0.0.4">Link to a particle modifier?</add>
 		<add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
 		<add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
-		<add name="Unknown Links" type="Ref" template="AParticleModifier" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
+		<add name="Unknown Links" type="Ref" template="NiPSysModifier" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
 		<add name="Unknown Short 4" type="ushort" ver1="20.0.0.5">Unknown.</add>
 		<add name="Unknown Int 2" type="uint" ver1="20.0.0.5">Unknown.</add>
 		<add name="Unknown Byte 12" type="byte" ver1="20.0.0.5">Unknown.</add>
@@ -1804,8 +1804,9 @@ Unknown.
 		<add name="Range Falloff" type="float">The range falloff.</add>
 	</niblock>
 	<niblock name="NiPSysEmitterCtlr" abstract="0" inherit="APSysCtlr" ver1="10.1.0.0">
-Particle system emitter controller.
-		<add name="Visibility Interpolator" type="Ref" template="NiInterpolator">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
+		Particle system emitter controller.
+		<add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
+		<add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
 	</niblock>
 	<niblock name="NiPSysEmitterCtlrData" abstract="0" inherit="NiObject" ver1="10.1.0.0">
 Particle system emitter controller data.
