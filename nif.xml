@@ -720,7 +720,6 @@ A block that can be controlled by a controller.
 	</niblock>
 	<niblock name="NiAVObject" abstract="1" inherit="NiObjectNET">
 Generic node block.
-		<interface name="INode"/>
 		<add name="Flags" type="Flags">Some flags; commonly 0x000C or 0x000A.</add>
 		<add name="Translation" type="Vector3">The translation vector.</add>
 		<add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -730,8 +729,8 @@ Generic node block.
 		<add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties">List of node properties.</add>
 		<add name="Has Bounding Box" type="bool" ver2="4.2.2.0">Do we have a bounding box?</add>
 		<add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box != 0" ver2="4.2.2.0">The bounding box.</add>
-		<add name="Collision Data" type="Ref" template="NiCollisionData" ver1="10.0.1.0" ver2="20.0.0.4">Bounding box: refers to NiCollisionData</add>
-		<add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="20.0.0.5">In Oblivion this links the havok objects.</add>
+		<add name="Collision Data" type="Ref" template="NiCollisionData" ver1="10.0.1.0" ver2="10.2.0.0"  userver="0">Bounding box: refers to NiCollisionData</add>
+		<add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="20.0.0.4">In Oblivion this links the havok objects.</add>
 	</niblock>
 	<niblock name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
 A dynamic effect such as a light or environment map.
@@ -811,7 +810,6 @@ Describes a mesh, built from triangles.
 	</niblock>
 	<niblock name="NiTriBasedGeomData" abstract="1" inherit="NiObject">
 Mesh data: vertices, vertex normals, etc.
-		<interface name="IShapeData"/>
 		<add name="Name" type="string" ver1="10.2.0.0">Name of this block.</add>
 		<add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
 		<add name="Unknown Short 1" type="ushort" ver1="10.1.0.0">Unknown.</add>
@@ -1292,7 +1290,6 @@ Collision box.
 	</niblock>
 	<niblock name="NiColorData" abstract="0" inherit="AKeyedData">
 Color data for material color controller.
-		<interface name="IColorData"/>
 		<add name="Data" type="KeyGroup" template="Color4">The color keys.</add>
 	</niblock>
 	<niblock name="NiColorExtraData" abstract="0" inherit="NiExtraData" ver1="20.0.0.4">
@@ -1355,7 +1352,6 @@ delta = (start_time - stop_time) / sources.num_indices</add>
 	</niblock>
 	<niblock name="NiFloatData" abstract="0" inherit="AKeyedData">
 Possibly the 1D position along a 3D path.
-		<interface name="IFloatData"/>
 		<add name="Data" type="KeyGroup" template="float">The keys.</add>
 	</niblock>
 	<niblock name="NiFloatExtraData" abstract="0" inherit="NiExtraData" ver1="20.0.0.4">
@@ -1498,7 +1494,6 @@ Particle meshes data.
 	</niblock>
 	<niblock name="NiMorphData" abstract="0" inherit="NiObject">
 Geometry morphing data.
-		<interface name="IMorphData"/>
 		<add name="Num Morphs" type="uint">Number of morphing blocks.</add>
 		<add name="Num Vertices" type="uint">Number of vertices.</add>
 		<add name="Unknown Byte" type="byte">This byte is always 1 in all official files.</add>
@@ -1752,7 +1747,6 @@ A point light.
 	</niblock>
 	<niblock name="NiPosData" abstract="0" inherit="AKeyedData">
 Position data.
-		<interface name="IPosData"/>
 		<add name="Data" type="KeyGroup" template="Vector3">The position keys.</add>
 	</niblock>
 	<niblock name="NiPSysAgeDeathModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -1959,7 +1953,6 @@ If 1&#039;s bit is not set, hard-edged flat shading will be used on this shape.<
 	</niblock>
 	<niblock name="NiSkinData" abstract="0" inherit="NiObject">
 Skinning data.
-		<interface name="ISkinData"/>
 		<add name="Rotation" type="Matrix33">The overall rotation offset of the skin from this bone in the bind position.
 (This is a guess, it has always been the identity matrix so far)</add>
 		<add name="Translation" type="Vector3">The overall translation offset of the skin from this bone in the bind position. (This is a guess, it has always been (0.0, 0.0, 0.0) so far)</add>
@@ -2073,7 +2066,6 @@ List of strings; for example, a list of all bone names.
 	</niblock>
 	<niblock name="NiTextKeyExtraData" abstract="0" inherit="NiExtraData">
 Extra data, used to name different animation sequences.
-		<interface name="ITextKeyExtraData"/>
 		<add name="Unknown Int 1" type="uint" ver2="4.2.2.0">Unknown.  Always equals zero in all official files.</add>
 		<add name="Num Text Keys" type="uint">The number of text keys that follow.</add>
 		<add name="Text Keys" type="Key" arg="1" template="string" arr1="Num Text Keys">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
@@ -2170,7 +2162,6 @@ A shape node that refers to singular triangle data.
 	</niblock>
 	<niblock name="NiTriShapeData" abstract="0" inherit="NiTriBasedGeomData">
 Holds mesh data using a list of singular triangles.
-		<interface name="ITriShapeData"/>
 		<add name="Num Triangles" type="ushort">Number of triangles.</add>
 		<add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
 		<add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
@@ -2184,7 +2175,6 @@ A shape node that refers to data organized into strips of triangles
 	</niblock>
 	<niblock name="NiTriStripsData" abstract="0" inherit="NiTriBasedGeomData" ver1="4.1.0.12">
 Holds mesh data using strips of triangles.
-		<interface name="ITriStripsData"/>
 		<add name="Num Triangles" type="ushort">Number of triangles.</add>
 		<add name="Num Strips" type="ushort">Number of OpenGL triangle strips that are present.</add>
 		<add name="Strip Lengths" type="ushort" arr1="Num Strips">The number of points in each triangle strip.</add>
