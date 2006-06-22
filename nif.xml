@@ -356,15 +356,15 @@ The NIF file header.
 0 = big endian</add>
 		<add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
 		<add name="Num Blocks" type="uint">Number of file blocks.</add>
-		<add name="Unknown Int 1" type="uint" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
-		<add name="Unknown Int 3" type="uint" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
+		<add name="Unknown Int 1" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
+		<add name="Unknown Int 3" type="uint" default="0" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
 		<add name="Creator?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
 		<add name="Export Type?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
 		<add name="Export Script?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
 		<add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of block types in this NIF file.</add>
 		<add name="Block Types" type="string" arr1="Num Block Types" ver1="10.0.1.0">List of all block types used in this NIF file.</add>
 		<add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file blocks on their corresponding type: first file block is of type block_types[block_type_index[0]], the second of block_types[block_type_index[1]], etc.</add>
-		<add name="Unknown Int 2" type="uint" ver1="10.0.1.0">Unknown.</add>
+		<add name="Unknown Int 2" type="uint" default="0" ver1="10.0.1.0">Unknown.</add>
 	</compound>
 	<compound name="StringPalette" nifskopetype="stringpalette">
 A list of \\0 terminated strings.
