@@ -294,7 +294,7 @@ A quaternion as it appears in the havok blocks.
 		<add name="z" type="float">The z-coordinate.</add>
 		<add name="w" type="float">The w-coordinate.</add>
 	</compound>
-	<compound name="ShortString" ver1="10.1.0.0" nifskopetype="shortstring">
+	<compound name="ShortString" ver1="10.1.0.0" niflibtype="ShortString" nifskopetype="shortstring">
 Another string format, for short strings.  Specific to Bethesda-specific header tags.
 		<add name="Length" type="byte">The string length.</add>
 		<add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
@@ -325,28 +325,29 @@ Used in NiDefaultAVObjectPalette.
 		<add name="Name" type="string">Object name.</add>
 		<add name="Object" type="Ptr" template="NiAVObject">Object reference.</add>
 	</compound>
-	<compound name="ControllerLink" ver1="10.0.1.0">
+  <compound name="ControllerLink" ver1="10.2.0.0">
 In a .kf file, this links to a controllable block, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable block, via links.
-		<add name="Name" type="string" ver2="10.1.0.0">Name of a controllable block in another NIF file.</add>
-		<add name="Interpolator" type="Ref" template="NiInterpolator">Link to an interpolator.</add>
-		<add name="Unknown Link 1" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
-		<add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Priority?" type="byte" ver1="10.1.0.106" userver="10">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
-		<add name="Priority?" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
-		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
-		<add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
-		<add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
-		<add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
-		<add name="Property Type Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
-		<add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the block type name of the controller in the NIF file that is child of the controlled block.</add>
-		<add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled block, via its type name.</add>
-		<add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-		<add name="Variable Offset 1" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
-		<add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
-		<add name="Variable Offset 2" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
-	</compound>
-	<compound name="Header">
+    <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
+    <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.106">Link to a controller.</add>
+    <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to an interpolator.</add>
+    <add name="Unknown Link 1" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
+    <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+    <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+    <add name="Priority?" type="byte" ver1="10.1.0.106" userver="10">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
+    <add name="Priority?" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
+    <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to the NiStringPalette which contains the name of the controlled block.</add>
+    <add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
+    <add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
+    <add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
+    <add name="Property Type Offset" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
+    <add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the block type name of the controller in the NIF file that is child of the controlled block.</add>
+    <add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled block, via its type name.</add>
+    <add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
+    <add name="Variable Offset 1" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
+    <add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
+    <add name="Variable Offset 2" type="StringOffset" ver1="10.2.0.0">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
+  </compound>
+  <compound name="Header">
 The NIF file header.
 		<add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
 		<add name="Version" type="FileVersion" default="0x04000002">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
@@ -1306,12 +1307,13 @@ Unknown. Root of all controllers?
 	<niblock name="NiControllerSequence" abstract="0" inherit="NiObject" ver1="10.0.1.0">
 Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Name" type="string">Name of this block. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
-		<add name="Text Keys" type="ControllerLink" ver2="10.1.0.0">Refers to a NiTextKeyExtraData block.</add>
-		<add name="Num Controlled Blocks" type="uint">Number of controlled blocks.</add>
+    <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
+    <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
+    <add name="Num Controlled Blocks" type="uint">Number of controlled blocks.</add>
 		<add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
 		<add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
 		<add name="Weight" type="float" default="1.0" ver1="10.1.0.106">Weight/priority of animation?</add>
-		<add name="Text Keys 2" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
+		<add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
 		<add name="Cycle Type" type="uint" ver1="10.1.0.106">Anim cycle type? Is part of &quot;Flags&quot; in other blocks?
 
 0: Loop
@@ -1324,7 +1326,7 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
 		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-		<add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager parent.</add>
+		<add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
 		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to NiStringPalette.</add>
 	</niblock>
