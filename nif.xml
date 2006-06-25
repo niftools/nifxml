@@ -998,9 +998,9 @@ Unknown.
 	</niblock>
 	<niblock name="bhkNiTriStripsShape" abstract="0" inherit="bhkSphereRepShape">
 A shape constructed from a bunch of strips.
-		<add name="Unknown Floats 1" type="float" arr1="2">Unknown.</add>
-		<add name="Unknown Ints 1" type="uint" arr1="5">Unknown.</add>
-		<add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
+		<add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
+		<add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add> 
+		<add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
 		<add name="Unknown Int 2" type="uint">Unknown.</add>
 		<add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
 		<add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData blocks that make up this shape.</add>
