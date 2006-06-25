@@ -206,8 +206,8 @@ The NIF file footer.
 	</compound>
 	<compound name="LODRange">
 The distance range where a specific level of detail applies.
-		<add name="Near" type="float">Begining of range.</add>
-		<add name="Far" type="float">End of Range.</add>
+		<add name="Near Extent" type="float">Begining of range.</add>
+		<add name="Far Extent" type="float">End of Range.</add>
 	</compound>
 	<compound name="MatchGroup">
 Group of vertex indices of vertices that match.
