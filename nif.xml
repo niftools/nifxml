@@ -489,7 +489,7 @@ List of three vertex indices.
 	<compound name="SkinPartition" ver1="4.2.1.0">
 Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
 		<add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
-		<add name="Num Triangles" type="ushort">Number of triangles in this submesh.</add>
+		<add name="Num Triangles" type="ushort" function="CalcNumTriangles">Number of triangles in this submesh.</add>
 		<add name="Num Bones" type="ushort">Number of bones influencing this submesh.</add>
 		<add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
 		<add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex.</add>
@@ -996,16 +996,18 @@ Unknown.
 		<add name="Unknown Int 2" type="uint">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="8">Unknown.</add>
 	</niblock>
-	<niblock name="bhkNiTriStripsShape" abstract="0" inherit="bhkSphereRepShape">
+  <niblock name="bhkNiTriStripsShape" abstract="0" inherit="bhkSphereRepShape">
 A shape constructed from a bunch of strips.
-		<add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
-		<add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add> 
-		<add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
-		<add name="Unknown Int 2" type="uint">Unknown.</add>
-		<add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
-		<add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData blocks that make up this shape.</add>
-		<add name="Num Unknown Ints 3" type="uint">Unknown.</add>
-		<add name="Unknown Ints 3" type="uint" arr1="Num Unknown Ints 3">Unknown.</add>
+    <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
+    <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add> 
+    <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
+    <add name="Unknown Int 2" type="uint" default="1">Unknown</add>
+    <add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
+    <add name="Unknown Int 3" type="uint">Unknown.</add>
+    <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
+    <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData blocks that make up this shape.</add>
+    <add name="Num Unknown Ints 2" type="uint">Unknown.</add>
+    <add name="Unknown Ints 2" type="uint" arr1="Num Unknown Ints 2">Unknown.</add>
 	</niblock>
 	<niblock name="bhkPackedNiTriStripsShape" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
 A shape constructed from strips data.
