@@ -29,6 +29,12 @@ An unsigned 32-bit integer.
 	<basic name="ushort" count="1" niflibtype="ushort" nifskopetype="short">
 An unsigned 16-bit integer.
 	</basic>
+	<basic name="int" count="1" niflibtype="int" nifskopetype="int">
+A signed 32-bit integer.
+	</basic>
+	<basic name="short" count="1" niflibtype="short" nifskopetype="short">
+A signed 16-bit integer.
+	</basic>  
 	<basic name="AlphaFormat" count="0" niflibtype="AlphaFormat" nifskopetype="int">
 An unsigned 32-bit integer, describing how transparency is handled in a texture.
 &lt;option value=&quot;0&quot; name=&quot;None&quot;/&gt;
@@ -1237,7 +1243,7 @@ A simple LOD controller for bones.
 	</niblock>
 	<niblock name="NiBSplineBasisData" abstract="0" inherit="NiObject" ver1="20.0.0.4">
 Unknown.
-		<add name="Unknown Int" type="uint">Unknown.</add>
+		<add name="Num Control Pt" type="uint">The number of control points (Usually number of frames for animation).</add>
 	</niblock>
 	<niblock name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
 Unknown.
@@ -1253,13 +1259,22 @@ Unknown.
 Unknown.
 		<add name="Data" type="Ref" template="NiBSplineData">Refers to NiBSplineData.</add>
 		<add name="Basis Data" type="Ref" template="NiBSplineBasisData">Refers to NiBSPlineBasisData.</add>
-		<add name="Unknown4" type="float" arr1="17">Unknown.</add>
-	</niblock>
+    <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
+    <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
+    <add name="Scale" type="float">Base scale when scale curve not defined.</add>
+    <add name="Unk Vector 1" type="Vector3">Always Zeros?</add>
+    <add name="Translate Bias" type="float">Translate Bias</add>
+    <add name="Translate Multiplier" type="float">Translate Multiplier</add>
+    <add name="Rotation Bias" type="float">Rotation Bias</add>
+    <add name="Rotation Multiplier" type="float">Rotation Multiplier</add>
+    <add name="Scale Bias" type="float">Scale Bias</add>
+    <add name="Scale Multiplier" type="float">Scale Multiplier</add>    
+  </niblock>
 	<niblock name="NiBSplineData" abstract="0" inherit="NiObject" ver1="20.0.0.4">
 Unknown.
 		<add name="Unknown Int" type="uint">Unknown. Zero?</add>
-		<add name="Count" type="uint">Unknown count.</add>
-		<add name="Unknown Data" type="byte" arr1="Count" arr2="2">Unknown data. Could be shorts or bytes or...</add>
+		<add name="Count" type="uint">Number of Data Points</add>
+      <add name="Control Points" type="short" arr1="Count">Signed shorts representing the data from 0 to 1 (scaled by SHRT_MAX).</add>
 	</niblock>
 	<niblock name="NiCamera" abstract="0" inherit="NiAVObject">
 Camera object.
@@ -1329,7 +1344,7 @@ Root node in .kf files (version 10.0.1.0 and up).
 		<add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
 		<add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
 		<add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
-		<add name="Unknown String" type="string" ver1="10.1.0.106">Unknown.</add>
+		<add name="Target Name" type="string" ver1="10.1.0.106">Name of target node Controller acts on.</add>
 		<add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to NiStringPalette.</add>
 	</niblock>
 	<niblock name="NiDefaultAVObjectPalette" abstract="0" inherit="NiObject">
