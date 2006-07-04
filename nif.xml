@@ -23,10 +23,10 @@ A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
 	<basic name="byte" count="1" niflibtype="byte" nifskopetype="byte">
 An unsigned 8-bit integer.
 	</basic>
-	<basic name="uint" count="1" niflibtype="uint" nifskopetype="int">
+	<basic name="uint" count="1" niflibtype="uint" nifskopetype="uint">
 An unsigned 32-bit integer.
 	</basic>
-	<basic name="ushort" count="1" niflibtype="ushort" nifskopetype="short">
+	<basic name="ushort" count="1" niflibtype="ushort" nifskopetype="ushort">
 An unsigned 16-bit integer.
 	</basic>
 	<basic name="int" count="1" niflibtype="int" nifskopetype="int">
