@@ -495,7 +495,7 @@ List of three vertex indices.
 	<compound name="SkinPartition" ver1="4.2.1.0">
 Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
 		<add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
-		<add name="Num Triangles" type="ushort" function="CalcNumTriangles">Number of triangles in this submesh.</add>
+		<add name="Num Triangles" type="ushort">Number of triangles in this submesh.</add>
 		<add name="Num Bones" type="ushort">Number of bones influencing this submesh.</add>
 		<add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
 		<add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex.</add>
