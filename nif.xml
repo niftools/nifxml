@@ -716,7 +716,9 @@ An extended type of interpolater.
 A B-spline (component?) interpolator.
 		<add name="Start Time" type="float">Animation start time.</add>
 		<add name="Stop Time" type="float">Animation stop time.</add>
-	</niblock>
+    <add name="Spline Data" type="Ref" template="NiBSplineData">Refers to NiBSplineData.</add>
+    <add name="Basis Data" type="Ref" template="NiBSplineBasisData">Refers to NiBSPlineBasisData.</add>
+  </niblock>
 	<niblock name="NiObjectNET" abstract="1" inherit="NiObject">
 A block that can be controlled by a controller.
 		<add name="Name" type="string">Name of this controllable block, used to refer to the block in .kf files.</add>
@@ -1247,18 +1249,14 @@ Unknown.
 	</niblock>
 	<niblock name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
 Unknown.
-		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
+		<add name="Unknown Floats" type="float" arr1="4">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
 Unknown.
-		<add name="Data" type="Ref" template="NiBSplineData">Refers to NiBSplineData.</add>
-		<add name="Unknown Link" type="Ref" template="NiObject">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
 	</niblock>
 	<niblock name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
 Unknown.
-		<add name="Data" type="Ref" template="NiBSplineData">Refers to NiBSplineData.</add>
-		<add name="Basis Data" type="Ref" template="NiBSplineBasisData">Refers to NiBSPlineBasisData.</add>
     <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
     <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
     <add name="Scale" type="float">Base scale when scale curve not defined.</add>
