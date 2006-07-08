@@ -627,9 +627,9 @@
     <compound name="Morph">
         Geometry morphing data component.
         <add name="Frame Name" type="string" ver1="10.1.0.106">Name of the frame.</add>
-        <add name="Num Morph Keys" type="uint" ver2="10.0.1.2">The number of morph keys that follow.</add>
-        <add name="Morph Interpolation" type="KeyType" ver2="10.0.1.2">Unlike most blocks, the presense of this value is not conditional on there being keys.</add>
-        <add name="Morph Keys" type="Key" arg="Morph Interpolation" template="float" arr1="Num Morph Keys" ver2="10.0.1.2">The morph key frames.</add>
+        <add name="Num Morph Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
+        <add name="Morph Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most blocks, the presense of this value is not conditional on there being keys.</add>
+        <add name="Morph Keys" type="Key" arg="Morph Interpolation" template="float" arr1="Num Morph Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
