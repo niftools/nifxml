@@ -1452,7 +1452,12 @@
         <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
         <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
         <add name="Scale" type="float">Base scale when scale curve not defined.</add>
-        <add name="Unk Vector 1" type="Vector3">Always Zeros?</add>
+        <add name="Translate Offset" type="ushort">Starting offset for the translation data. (USHRT_MAX for no data.)</add>
+        <add name="Unk Int 1" type="ushort">Unk 1. Always 0?</add>
+        <add name="Rotate Offset" type="ushort">Starting offset for the rotation data. (USHRT_MAX for no data.)</add>
+        <add name="Unk Int 2" type="ushort">Unk 2. Always 0?</add>
+        <add name="Scale Offset" type="ushort">Starting offset for the scale data. (USHRT_MAX for no data.)</add>
+        <add name="Unk Int 3" type="ushort">Unk 3. Always 0?</add>
         <add name="Translate Bias" type="float">Translate Bias</add>
         <add name="Translate Multiplier" type="float">Translate Multiplier</add>
         <add name="Rotation Bias" type="float">Rotation Bias</add>
