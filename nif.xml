@@ -807,7 +807,7 @@
         Unknown.
         <add name="Parent" type="Ptr" template="NiAVObject">Links to the node parent.</add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Body" type="Ref" template="NiObject">Unknown. Links to the collision object data?</add>
+        <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
     </niblock>
     
     <niblock name="NiExtraData" abstract="1" inherit="NiObject">
@@ -1020,9 +1020,9 @@
         <add name="Unknown Short 3" type="ushort">Unknown.</add>
         <add name="Unknown Short 4" type="ushort">Unknown.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
-        <add name="Radius 1" type="float">Unknown. Matches Radius.</add>
+        <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
-        <add name="Radius 2" type="float">Unknown. Matches Radius.</add>
+        <add name="Radius 2" type="float">Matches second capsule radius.</add>
     </niblock>
     
     <niblock name="bhkCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
@@ -1080,41 +1080,7 @@
         A list of shapes.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="uint">
-            The shape&#039;s material.
-
-            0: Stone
-            1: Cloth
-            2: Dirt
-            3: Glass
-            4: Grass
-            5: Metal
-            6: Organic
-            7: Skin
-            8: Water
-            9: Wood
-            10: Heavy Stone
-            11: Heavy Metal
-            12: Heavy Wood
-            13: Chain
-            14: Snow
-            15: Stone Stairs
-            16: Cloth Stairs
-            17: Dirt Stairs
-            18: Glass Stairs
-            19: Grass Stairs
-            20: Metal Stairs
-            21: Organic Stairs
-            22: Skin Stairs
-            23: Water Stairs
-            24: Wood Stairs
-            25: Heavy Stone Stairs
-            26: Heavy Metal Stairs
-            27: Heavy Wood Stairs
-            28: Chain Stairs
-            29: Snow Stairs
-            30: Elevator
-        </add>
+        <add name="Material" type="Material">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -1192,7 +1158,7 @@
         Describes physical properties of an object.
         <add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
         <add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
-        <add name="Layer Copy?" type="uint">Unknown. Copy of layer value?</add>
+        <add name="Layer Copy" type="uint">Copy of layer value?</add>
         <add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
         <add name="Translation" type="Vector3">Translation.</add>
         <add name="Unknown Float 00" type="float">Unknown.</add>
@@ -1201,7 +1167,7 @@
         <add name="Unknown Float 01" type="float">Unknown.</add>
         <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
         <add name="Unknown Float 02" type="float">Unknown.</add>
-        <add name="Transform?" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
+        <add name="Transform" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
         <add name="Center" type="Vector3">The object&#039;s center.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
         <add name="Mass" type="float">Object mass.</add>
@@ -1211,8 +1177,8 @@
         <add name="Restitution" type="float">The object&#039;s restitution (elasticity).</add>
         <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
-        <add name="Pen Depth" type="float">Penetration depth.</add>
-        <add name="Motion System?" type="byte">
+        <add name="Penetration Depth" type="float">Penetration depth.</add>
+        <add name="Motion System" type="byte">
             Motion system? Overrides Quality when on Keyframed?
 
             0: Keyframed
