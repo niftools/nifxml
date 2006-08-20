@@ -425,7 +425,7 @@
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint">Number of file blocks.</add>
         <add name="Unknown Int 1" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
-        <add name="Unknown Int 3" type="uint" default="0" cond="User Version != 0" ver1="10.1.0.0">Unknown.</add>
+        <add name="User Version 2" type="uint" default="0" cond="User Version != 0" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
         <add name="Creator?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
         <add name="Export Type?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
         <add name="Export Script?" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
@@ -2268,7 +2268,7 @@
         <add name="Scale" type="float">The scale offset of the skin from this bone in the bind position. (This is an assumption - it has always been 1.0 so far)</add>
         <add name="Num Bones" type="uint">Number of bones.</add>
         <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
-        <add name="Unknown Byte" type="byte" ver1="4.2.1.0">Unknown. Could be a bool conditioning the following block.</add>
+        <add name="Unknown Byte" type="byte" ver1="4.2.1.0" default="1">Unknown. Could be a bool conditioning the following block.</add>
         <add name="Bone List" type="SkinData" arr1="Num Bones">Contains offset data for each node that this skin is influenced by.</add>
     </niblock>
     
