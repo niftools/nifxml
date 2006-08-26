@@ -376,7 +376,7 @@
         <add name="Index" type="ushort">The vertex index, in the mesh.</add>
         <add name="Weight" type="float">The vertex weight - between 0.0 and 1.0</add>
     </compound>
-    
+	
     <compound name="string" niflibtype="string" nifskopetype="string">
         A string type.
         <add name="Length" type="uint">The string length.</add>
@@ -394,7 +394,7 @@
         <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.106">Link to a controller.</add>
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to an interpolator.</add>
-        <add name="Unknown Link 1" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
+        <add name="Controller" type="Ref" template="NiObject" ver1="10.1.0.106">Unknown link. Usually -1.</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Priority?" type="byte" ver1="10.1.0.106" userver="10">Idle animations tend to have low values for this, and blocks that have high values tend to correspond with the important parts of the animation.</add>
@@ -664,6 +664,12 @@
         <add name="w" type="float">Fourth coordinate.</add>
     </compound>
 
+	<compound name="Sphere">
+		A sphere.
+		<add name="Center" type="Vector3">The sphere's center.</add>
+		<add name="Radius" type="float">The sphere's radius.</add>
+	</compound>
+    
     <!-- NIF Classes
          These are the main units of data that NIF files are arranged in.
          They are like C classes and can contain many pieces of data.
@@ -1117,8 +1123,8 @@
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Float 2" type="float">Unknown.</add>
         <add name="Unknown Float 3" type="float">Unknown.</add>
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
-        <add name="Unknown Floats" type="float" arr1="8">Unknown.</add>
+        <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
+        <add name="Spheres" type="Sphere" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
     </niblock>
     
     <niblock name="bhkNiTriStripsShape" abstract="0" inherit="bhkSphereRepShape">
