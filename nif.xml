@@ -1685,7 +1685,7 @@
     
     <niblock name="NiMaterialColorController" abstract="0" inherit="NiSingleInterpolatorController">
         Time controller for material color.
-        <add name="Unknown" type="ushort" ver1="10.1.0.0">Selects which color to control?</add>
+        <add name="Target Color" type="ushort" ver1="10.1.0.0">Selects which color to control. 0 : ambient, 1 : diffuse, 2 : specular, 3 : self illum</add>
         <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data block index. Points to NiPosData.</add>
     </niblock>
     
