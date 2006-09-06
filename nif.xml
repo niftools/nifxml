@@ -46,19 +46,31 @@
     
     <basic name="AlphaFormat" count="0" niflibtype="AlphaFormat" nifskopetype="int">
         An unsigned 32-bit integer, describing how transparency is handled in a texture.
-        &lt;option value=&quot;0&quot; name=&quot;None&quot;/&gt;
-        &lt;option value=&quot;1&quot; name=&quot;Binary&quot;/&gt;
-        &lt;option value=&quot;2&quot; name=&quot;Smooth&quot;/&gt;
-        &lt;option value=&quot;3&quot; name=&quot;Default&quot;/&gt;
+        <option value="0" name="ALPHA_NONE">No alpha blending; the texture is fully opaque.</option>
+        <option value="1" name="ALPHA_BINARY">Texture is either fully transparent or fully opaque.  There are no partially transparent areas.</option>
+        <option value="2" name="ALPHA_SMOOTH">Full range of alpha values can be used from fully transparent to fully opaque including all partially transparent values in between.</option>
+        <option value="3" name="ALPHA_DEFAULT">Use default setting.</option>
     </basic>
     
     <basic name="ApplyMode" count="0" niflibtype="ApplyMode" nifskopetype="int">
         An unsigned 32-bit integer, describing the apply mode of a texture.
-        &lt;option value=&quot;0&quot; name=&quot;Replace&quot;/&gt;
-        &lt;option value=&quot;1&quot; name=&quot;Decal&quot;/&gt;
-        &lt;option value=&quot;2&quot; name=&quot;Modulate (default)&quot;/&gt;
-        &lt;option value=&quot;3&quot; name=&quot;Hilight&quot;/&gt;
-        &lt;option value=&quot;4&quot; name=&quot;Hilight2&quot;/&gt;
+        <option value="0" name="APPLY_REPLACE">Replaces existing color</option>
+        <option value="1" name="APPLY_DECAL">For placing images on the object like stickers.</option>
+        <option value="2" name="APPLY_MODULATE">Modulates existing color. (Default)</option>
+        <option value="3" name="APPLY_HILIGHT">PS2 Only.  Function Unknown.</option>
+        <option value="4" name="APPLY_HILIGHT2">PS2 Only.  Function Unknown.</option>
+    </basic>
+
+    <basic name="TexType" count="0" niflibtype="TexType" nifskopetype="int">
+        The type of texture.
+        <option value="0" name="BASE_MAP">The basic texture used by most meshes.</option>
+        <option value="1" name="DARK_MAP">Used to darken the model with false lighting.</option>
+        <option value="2" name="DETAIL_MAP">Combined with base map for added detail.  Usually tiled over the mesh many times for close-up view.</option>
+        <option value="3" name="GLOSS_MAP">Allows the specularity (glossyness) of an object to differ across its surface.</option>
+        <option value="4" name="GLOW_MAP">Creates a glowing effect.  Basically an incandescence map.</option>
+        <option value="5" name="BUMP_MAP">Used to make the object appear to have more detail than it really does.</option>
+        <option value="6" name="DECAL_0_MAP">For placing images on the object like stickers.</option>
+        <option value="7" name="DECAL_1_MAP">For placing images on the object like stickers.</option>
     </basic>
     
     <basic name="BlockTypeIndex" count="0" niflibtype="ushort" nifskopetype="blocktypeindex">
@@ -82,11 +94,11 @@
         10.1.0.0:  0x0A010000
         10.2.0.0:  0x0A020000
         20.0.0.4:  0x14000004
+        20.0.0.5:  0x14000005
     </basic>
     
     <basic name="Flags" count="0" niflibtype="ushort" nifskopetype="flags">
-        A 16-bit integer, used for bit flags.
-        0x0008: Not a skin influence
+        A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
     
     <basic name="float" count="0" niflibtype="float" nifskopetype="float">
@@ -101,77 +113,139 @@
     </basic>
     
     <basic name="KeyType" count="0" niflibtype="KeyType" nifskopetype="uint">
-        1: Linear
-        2: Quadratic
-        3: TBC
-        4: XYZ Rotation
-        5: Unknown. (Step function?)
+        The type of animation interpolation (blending) that will be used on the associated key frames.
+        <option value="1" name="LINEAR_KEY">Use linear interpolation.</option>
+        <option value="2" name="QUADRATIC_KEY">Use quadratic interpolation.  Forward and back tangents will be stored.</option>
+        <option value="3" name="TBC_KEY">Use Tension Bias Continuity interpolation.  Tension, bias, and continuity will be stored.</option>
+        <option value="4" name="XYZ_ROTATION_KEY">For use only with rotation data.  Separate X, Y, and Z keys will be stored instead of using quaternions.</option>
+        <option value="5" name="UNKNOWN_KEY">Unknown.  Step function?</option>
     </basic>
     
     <basic name="LightMode" count="0" niflibtype="LightMode" nifskopetype="int">
         An unsigned 32-bit integer, describing how vertex colors influence lighting.
-        0:  Emissive
-        1:  Emissive + Ambient + Diffuse (default)
+        <option value="0" name="LIGHT_MODE_EMISSIVE">Emissive.</option>
+        <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
     </basic>
     
-    <basic name="Material" count="0" niflibtype="uint" nifskopetype="int">
+    <basic name="HavokMaterial" count="0" niflibtype="uint" nifskopetype="int">
         A material, used by havok shape blocks.
+        <option value="0" name="HAV_MAT_STONE">Stone</option>
+        <option value="1" name="HAV_MAT_CLOTH">Cloth</option>
+        <option value="2" name="HAV_MAT_DIRT">Dirt</option>
+        <option value="3" name="HAV_MAT_GLASS">Glass</option>
+        <option value="4" name="HAV_MAT_GRASS">Grass</option>
+        <option value="5" name="HAV_MAT_METAL">Metal</option>
+        <option value="6" name="HAV_MAT_ORGANIC">Organic</option>
+        <option value="7" name="HAV_MAT_SKIN">Skin</option>
+        <option value="8" name="HAV_MAT_WATER">Water</option>
+        <option value="9" name="HAV_MAT_WOOD">Wood</option>
+        <option value="10" name="HAV_MAT_HEAVY_STONE">Heavy Stone</option>
+        <option value="11" name="HAV_MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="12" name="HAV_MAT_HEAVY_WOOD">Heavy Wood</option>
+        <option value="13" name="HAV_MAT_CHAIN">Chain</option>
+        <option value="14" name="HAV_MAT_SNOW">Snow</option>
+        <option value="15" name="HAV_MAT_STONE_STAIRS">Stone Stairs</option>
+        <option value="16" name="HAV_MAT_CLOTH_STAIRS">Cloth Stairs</option>
+        <option value="17" name="HAV_MAT_DIRT_STAIRS">Dirt Stairs</option>
+        <option value="18" name="HAV_MAT_GLASS_STAIRS">Glass Stairs</option>
+        <option value="19" name="HAV_MAT_GRASS_STAIRS">Grass Stairs</option>
+        <option value="20" name="HAV_MAT_METAL_STAIRS">Metal Stairs</option>
+        <option value="21" name="HAV_MAT_ORGANIC_STAIRS">Organic Stairs</option>
+        <option value="22" name="HAV_MAT_SKIN_STAIRS">Skin Stairs</option>
+        <option value="23" name="HAV_MAT_WATER_STAIRS">Water Stairs</option>
+        <option value="24" name="HAV_MAT_WOOD_STAIRS">Wood Stairs</option>
+        <option value="25" name="HAV_MAT_HEAVY_STONE_STAIRS">Heavy Stone Stairs</option>
+        <option value="26" name="HAV_MAT_HEAVY_METAL_STAIRS">Heavy Metal Stairs</option>
+        <option value="27" name="HAV_MAT_HEAVY_WOOD_STAIRS">Heavy Wood Stairs</option>
+        <option value="28" name="HAV_MAT_CHAIN_STAIRS">Chain Stairs</option>
+        <option value="29" name="HAV_MAT_SNOW_STAIRS">Snow Stairs</option>
+        <option value="30" name="HAV_MAT_ELEVATOR">Elevator</option>
+    </basic>
 
-        0: Stone
-        1: Cloth
-        2: Dirt
-        3: Glass
-        4: Grass
-        5: Metal
-        6: Organic
-        7: Skin
-        8: Water
-        9: Wood
-        10: Heavy Stone
-        11: Heavy Metal
-        12: Heavy Wood
-        13: Chain
-        14: Snow
-        15: Stone Stairs
-        16: Cloth Stairs
-        17: Dirt Stairs
-        18: Glass Stairs
-        19: Grass Stairs
-        20: Metal Stairs
-        21: Organic Stairs
-        22: Skin Stairs
-        23: Water Stairs
-        24: Wood Stairs
-        25: Heavy Stone Stairs
-        26: Heavy Metal Stairs
-        27: Heavy Wood Stairs
-        28: Chain Stairs
-        29: Snow Stairs
-        30: Elevator
+    <basic name="OblivionLayer" count="0" niflibtype="uint" nifskopetype="int">
+        Sets mesh color in Oblivion Construction Set.  Anything higher than 57 is also null.
+        <option value="0" name="OL_UNIDENTIFIED">Unidentified (white)</option>
+        <option value="1" name="OL_STATIC">Static (red)</option>
+        <option value="2" name="OL_ANIM_STATIC">AnimStatic (magenta)</option>
+        <option value="3" name="OL_TRANSPARENT">Transparent (light pink)</option>
+        <option value="4" name="OL_CLUTTER">Clutter (light blue)</option>
+        <option value="5" name="OL_WEAPON">Weapon (orange)</option>
+        <option value="6" name="OL_PROJECTILE">Projectile (light orange)</option>
+        <option value="7" name="OL_SPELL">Spell (cyan)</option>
+        <option value="8" name="OL_BIPED">Biped (green) Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="OL_TREES">Trees (light brown)</option>
+        <option value="10" name="OL_PROPS">Props (magenta)</option>
+        <option value="11" name="OL_WATER">Water (cyan)</option>
+        <option value="12" name="OL_TRIGGER">Trigger (light grey)</option>
+        <option value="13" name="OL_TERRAIN">Terrain (light yellow)</option>
+        <option value="14" name="OL_TRAP">Trap (light grey)</option>
+        <option value="15" name="OL_NONCOLLIDABLE">NonCollidable (white)</option>
+        <option value="16" name="OL_CLOUD_TRAP">CloudTrap (greenish grey)</option>
+        <option value="17" name="OL_GROUND">Ground (none)</option>
+        <option value="18" name="OL_PORTAL">Portal (green)</option>
+        <option value="19" name="OL_STAIRS">Stairs (white)</option>
+        <option value="20" name="OL_CHAR_CONTROLLER">CharController (yellow)</option>
+        <option value="21" name="OL_AVOID_BOX">AvoidBox (dark yellow)</option>
+        <option value="22" name="OL_UNKNOWN1">? (white)</option>
+        <option value="23" name="OL_UNKNOWN2">? (white)</option>
+        <option value="24" name="OL_CAMERA_PICK">CameraPick (white)</option>
+        <option value="25" name="OL_ITEM_PICK">ItemPick (white)</option>
+        <option value="26" name="OL_LINE_OF_SIGHT">LineOfSight (white)</option>
+        <option value="27" name="OL_PATH_PICK">PathPick (white)</option>
+        <option value="28" name="OL_CUSTOM_PICK_1">CustomPick1 (white)</option>
+        <option value="29" name="OL_CUSTOM_PICK_2">CustomPick2 (white)</option>
+        <option value="30" name="OL_SPELL_EXPLOSION">SpellExplosion (white)</option>
+        <option value="31" name="OL_DROPPING_PICK">DroppingPick (white)</option>
+        <option value="32" name="OL_OTHER">Other (white)</option>
+        <option value="33" name="OL_HEAD">Head</option>
+        <option value="34" name="OL_BODY">Body</option>
+        <option value="35" name="OL_SPINE1">Spine1</option>
+        <option value="36" name="OL_SPINE2">Spine2</option>
+        <option value="37" name="OL_L_UPPER_ARM">LUpperArm</option>
+        <option value="38" name="OL_L_FOREARM">LForeArm</option>
+        <option value="39" name="OL_L_HAND">LHand</option>
+        <option value="40" name="OL_L_THIGH">LThigh</option>
+        <option value="41" name="OL_L_CALF">LCalf</option>
+        <option value="42" name="OL_L_FOOT">LFoot</option>
+        <option value="43" name="OL_R_UPPER_ARM">RUpperArm</option>
+        <option value="44" name="OL_R_FOREARM">RForeArm</option>
+        <option value="45" name="OL_R_HAND">RHand</option>
+        <option value="46" name="OL_R_THIGH">RThigh</option>
+        <option value="47" name="OL_R_CALF">RCalf</option>
+        <option value="48" name="OL_R_FOOT">RFoot</option>
+        <option value="49" name="OL_TAIL">Tail</option>
+        <option value="50" name="OL_SIDE_WEAPON">SideWeapon</option>
+        <option value="51" name="OL_SHEILD">Shield</option>
+        <option value="52" name="OL_QUIVER">Quiver</option>
+        <option value="53" name="OL_BACK_WEAPON">BackWeapon</option>
+        <option value="54" name="OL_BACK_WEAPON2">BackWeapon (?)</option>
+        <option value="55" name="OL_PONYTAIL">PonyTail</option>
+        <option value="56" name="OL_WING">Wing</option>
+        <option value="57" name="OL_NULL">Null</option>
     </basic>
     
     <basic name="MipMapFormat" count="0" niflibtype="MipMapFormat" nifskopetype="int">
         An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
-        0:  No
-        1:  Yes
-        2:  Default
+        <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
+        <option value="1" name="MIP_FMT_YES">Texture uses mip maps.</option>
+        <option value="2" name="MIP_FMT_DEFAULT">Use default setting.</option>
     </basic>
     
     <basic name="PixelFormat" count="0" niflibtype="PixelFormat" nifskopetype="int">
-        Specifies the pixel format used by the NiPixelData block to store a texture.
-        0: PX_FMT_RGB8
-        1: PX_FMT_RGBA8
-        2: PX_FMT_PAL8
+        Specifies the pixel format used by the NiPixelData object to store a texture.
+        <option value="0" name="PX_FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
+        <option value="1" name="PX_FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
+        <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPallete block.</option>
     </basic>
     
     <basic name="PixelLayout" count="0" niflibtype="PixelLayout" nifskopetype="int">
         An unsigned 32-bit integer, describing the color depth of a texture.
-        0:  Palettised
-        1:  16-bit High Color
-        2:  32-bit True Color
-        3:  Compressed
-        4:  Bump Map
-        5:  Default
+        <option value="0" name="PIX_LAY_PALETTISED">Texture is in 8-bit paletized format.</option>
+        <option value="1" name="PIX_LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
+        <option value="2" name="PIX_LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
+        <option value="3" name="PIX_LAY_COMPRESSED">Texture is compressed.</option>
+        <option value="4" name="PIX_LAY_BUMPMAP">Texture is a grayscale bump map.</option>
+        <option value="5" name="PIX_LAY_DEFAULT">Use default setting.</option>
     </basic>
     
     <basic name="Ptr" count="0" niflibtype="*" nifskopetype="uplink" istemplate="1">
@@ -188,27 +262,69 @@
     
     <basic name="TexClampMode" count="0" niflibtype="TexClampMode" nifskopetype="int">
         Specifies the availiable texture clamp modes.  That is, the behavior of pixels outside the range of the texture.
-        0: CLAMP_S_CLAMP_T
-        1: CLAMP_S_WRAP_T
-        2: WRAP_S_CLAMP_T
-        3: WRAP_S_WRAP_T
+        <option value="0" name="CLAMP_S_CLAMP_T">Clamp in both directions.</option>
+        <option value="1" name="CLAMP_S_WRAP_T">Clamp in the S(U) direction but wrap in the T(V) direction.</option>
+        <option value="2" name="WRAP_S_CLAMP_T">Wrap in the S(U) direction but clamp in the T(V) direction.</option>
+        <option value="3" name="WRAP_S_WRAP_T">Wrap in both directions.</option>
     </basic>
     
     <basic name="TexFilterMode" count="0" niflibtype="TexFilterMode" nifskopetype="int">
         Specifies the availiable texture filter modes.  That is, the way pixels within a texture are blended together when textures are displayed on the screen at a size other than their original dimentions.
-        0: FILTER_NEAREST
-        1: FILTER_BILERP
-        2: FILTER_TRILERP
-        3: FILTER_NEAREST_MIPNEAREST
-        4: FILTER_NEAREST_MIPLERP
-        5: FILTER_BILERP_MIPNEAREST
+        <option value="0" name="FILTER_NEAREST">Simply uses the nearest pixel.  Very grainy.</option>
+        <option value="1" name="FILTER_BILERP">Uses bilinear filtering.</option>
+        <option value="2" name="FILTER_TRILERP">Uses trilinear filtering.</option>
+        <option value="3" name="FILTER_NEAREST_MIPNEAREST">Uses the nearest pixel from the mipmap that is closest to the display size.</option>
+        <option value="4" name="FILTER_NEAREST_MIPLERP">Blends the two mipmaps closest to the display size linearly, and then uses the nearest pixel from the result.</option>
+        <option value="5" name="FILTER_BILERP_MIPNEAREST">Uses the closest mipmap to the display size and then uses bilinear filtering on the pixels.</option>
     </basic>
     
     <basic name="VertMode" count="0" niflibtype="VertMode" nifskopetype="int">
         An unsigned 32-bit integer, which describes how to apply vertex colors.
-        0:  Source Ingore
-        1:  Source Emissive
-        2:  Source Ambient Diffuse (default)
+        <option value="0" name="VERT_MODE_SRC_IGNORE">Source Ignore.</option>
+        <option value="1" name="VERT_MODE_SRC_EMISSIVE">Source Emissive.</option>
+        <option value="2" name="VERT_MODE_SRC_AMB_DIF">Source Ambient/Diffuse. (Default)</option>
+    </basic>
+
+    <basic name="CycleType" count="0" niflibtype="uint" nifskopetype="int">
+        The animation cyle behavior.
+        <option value="0" name="CYCLE_LOOP">Loop</option>
+        <option value="1" name="CYCLE_REVERSE">Reverse</option>
+        <option value="2" name="CYCLE_CLAMP">Clamp</option>
+    </basic>
+
+    <basic name="ForceType" count="0" niflibtype="uint" nifskopetype="int">
+        The force field&#039;s type.
+        <option value="0" name="WIND_FORCE">Wind (fixed direction)</option>
+        <option value="1" name="POINT_FORCE">Point (fixed origin)</option>
+    </basic>
+
+    <basic name="BillboardMode" count="0" niflibtype="ushort" nifskopetype="short">
+        Determines the way the billboard will react to the camera.
+        <option value="0" name="ALWAYS_FACE_CAMERA">The billboard will always face the camera.</option>
+        <option value="1" name="ROTATE_ABOUT_UP">The billboard will only rotate around the up axis.</option>
+        <option value="2" name="RIGID_FACE_CAMERA">Rigid Face Camera.</option>
+        <option value="3" name="ALWAYS_FACE_CENTER">Always Face Center.</option>
+        <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
+    </basic>
+
+    <basic name="MotionQuality" count="0" niflibtype="byte" nifskopetype="byte">
+        The motion type. Determines quality of motion?
+        <option value="0" name="MO_QUAL_MOVING">Moving</option>
+        <option value="1" name="MO_QUAL_FIXED">Fixed</option>
+        <option value="2" name="MO_QUAL_KEYFRAMED">Keyframed</option>
+        <option value="3" name="MO_QUAL_MOVING2">Moving(?)</option>
+        <option value="4" name="MO_QUAL_MOVING3">Moving(?)</option>
+        <option value="5" name="MO_QUAL_CRITICAL">Critical</option>
+        <option value="6" name="MO_QUAL_BULLET">Bullet</option>
+        <option value="7" name="MO_QUAL_USER">User</option>
+        <option value="8" name="MO_QUAL_NULL">Null</option>
+    </basic>
+
+    <basic name="ForceType" count="0" niflibtype="uint" nifskopetype="int">
+        The type of force?  May be more valid values.
+        <option value="0" name="FORCE_PLANAR"></option>
+        <option value="1" name="FORCE_SPHERICAL"></option>
+        <option value="2" name="FORCE_UNKNOWN"></option>
     </basic>
 
     <!--Compounds
@@ -732,7 +848,7 @@
     
     <niblock name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
-        <add name="Material" type="Material">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
     </niblock>
     
     <niblock name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape">
@@ -746,68 +862,7 @@
     <niblock name="bhkEntity" abstract="1" inherit="bhkWorldObject">
         A havok node, describes physical properties.
         <add name="Shape" type="Ref" template="bhkShape">The body&#039;s shape.</add>
-        <add name="Layer" type="uint">
-            Sets mesh colour in CS.
-
-            0: Unidentified (white)
-            1: Static (red)
-            2: AnimStatic (magenta)
-            3: Transparent (light pink)
-            4: Clutter (light blue)
-            5: Weapon (orange)
-            6: Projectile (light orange)
-            7: Spell (cyan)
-            8: Biped (green) Seems to apply to all creatures/NPCs
-            9: Trees (light brown)
-            10: Props (magenta)
-            11: Water (cyan)
-            12: Trigger (light grey)
-            13: Terrain (light yellow)
-            14: Trap (light grey)
-            15: NonCollidable (white)
-            16: CloudTrap (greenish grey)
-            17: Ground (none)
-            18: Portal (green)
-            19: Stairs (white)
-            20: CharController (yellow)
-            21: AvoidBox (dark yellow)
-            22: ? (white)
-            23: ? (white)
-            24: CameraPick (white)
-            25: ItemPick (white)
-            26: LineOfSight (white)
-            27: PathPick (white)
-            28: CustomPick1 (white)
-            29: CustomPick2 (white)
-            30: SpellExplosion (white)
-            31: DroppingPick (white)
-            32: Other (white)
-            33: Head
-            34: Body
-            35: Spine1
-            36: Spine2
-            37: LUpperArm
-            38: LForeArm
-            39: LHand
-            40: LThigh
-            41: LCalf
-            42: LFoot
-            43: RUpperArm
-            44: RForeArm
-            45: RHand
-            46: RThigh
-            47: RCalf
-            48: RFoot
-            49: Tail
-            50: SideWeapon
-            51: Shield
-            52: Quiver
-            53: BackWeapon
-            54: BackWeapon (?)
-            55: PonyTail
-            56: Wing
-            57+: Null
-        </add>
+        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
     </niblock>
     
     <niblock name="NiCollisionObject" abstract="1" inherit="NiObject" ver1="20.0.0.5">
@@ -1087,7 +1142,7 @@
         A list of shapes.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="Material">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -1109,7 +1164,7 @@
     <niblock name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="Material">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Bytes 1" type="byte" arr1="8">Unknown.</add>
         <add name="Unknown Float" type="float">Unknown.</add>
         <add name="Num Unknown Bytes 2" type="uint">A count.</add>
@@ -1165,7 +1220,7 @@
         Describes physical properties of an object.
         <add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
         <add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
-        <add name="Layer Copy" type="uint">Copy of layer value?</add>
+        <add name="Layer Copy" type="OblivionLayer">Copy of layer value?</add>
         <add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
         <add name="Translation" type="Vector3">Translation.</add>
         <add name="Unknown Float 00" type="float">Unknown.</add>
@@ -1185,7 +1240,7 @@
         <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float">Penetration depth.</add>
-        <add name="Motion System" type="byte">
+        <add name="Motion System" type="MotionSystem">
             Motion system? Overrides Quality when on Keyframed?
 
             0: Keyframed
@@ -1201,18 +1256,7 @@
         </add>
         <add name="Unknown Byte 1" type="byte">Unknown.</add>
         <add name="Unknown Byte 2" type="byte">Unknown.</add>
-        <add name="Quality Type" type="byte">
-            The motion type. Determines quality of motion?
-
-            0: Moving
-            1: Fixed
-            2: Keyframed
-            3-4: Moving(?)
-            5: Critical
-            6: Bullet
-            7: User
-            8+: Null
-        </add>
+        <add name="Quality Type" type="MotionQuality">The motion type. Determines quality of motion?</add>
         <add name="Unknown Int 6" type="uint">Unknown.</add>
         <add name="Unknown Int 7" type="uint">Unknown.</add>
         <add name="Unknown Int 8" type="uint">Unknown.</add>
@@ -1506,14 +1550,7 @@
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled blocks.</add>
         <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">Weight/priority of animation?</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
-        <add name="Cycle Type" type="uint" ver1="10.1.0.106">
-            Anim cycle type? Is part of &quot;Flags&quot; in other blocks?
-
-            0: Loop
-            1: Reverse
-            2: Clamp
-            3+: Invalid
-        </add>
+        <add name="Cycle Type" type="CycleType" ver1="10.1.0.106">Anim cycle type? Is part of &quot;Flags&quot; in other blocks?</add>
         <add name="Unknown Int 0" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Frequency" type="float" ver1="10.1.0.106">The animation frequency.</add>
         <add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
@@ -1610,11 +1647,7 @@
         A particle modifier; applies a gravitational field on the particles.
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
-        <add name="Type" type="uint">
-            The force field&#039;s type.
-            0: Wind (fixed direction)
-            1: Point (fixed origin)
-        </add>
+        <add name="Type" type="ForceType">The force field&#039;s type.</add>
         <add name="Position" type="Vector3">The position of the mass point relative to the particle system.</add>
         <add name="Direction" type="Vector3">The direction of the applied acceleration.</add>
     </niblock>
@@ -1766,13 +1799,7 @@
     
     <niblock name="NiBillboardNode" abstract="0" inherit="NiNode">
         These nodes will always be rotated to face the camera creating a billboard effect for any attached objects.
-        <add name="Billboard Mode" type="ushort" ver1="10.1.0.0">
-            0: ALWAYS_FACE_CAMERA
-            1: ROTATE_ABOUT_UP
-            2: RIGID_FACE_CAMERA
-            3: ALWAYS_FACE_CENTER
-            4: RIGID_FACE_CENTER
-        </add>
+        <add name="Billboard Mode" type="BillboardMode" ver1="10.1.0.0">The way the billboard will react to the camera.</add>
     </niblock>
     
     <niblock name="NiBSAnimationNode" abstract="0" inherit="NiNode">
@@ -1949,14 +1976,7 @@
     
     <niblock name="NiPixelData" abstract="0" inherit="NiObject">
         A texture.
-        <add name="Pixel Format" type="PixelFormat">
-            0 = PX_FMT_RGB8
-            1 = PX_FMT_RGBA8
-            2 = PX_FMT_PAL8
-            4 = ???
-            5 = ??? (version 20.0.0.4)
-            6 = ??? (version 20.0.0.4)
-        </add>
+        <add name="Pixel Format" type="PixelFormat">The format of the pixels in this internally stored image.</add>
         <add name="Red Mask" type="uint" ver2="10.2.0.0">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
         <add name="Green Mask" type="uint" ver2="10.2.0.0">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
         <add name="Blue Mask" type="uint" ver2="10.2.0.0">0x00ff0000 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
@@ -2120,11 +2140,7 @@
         <add name="Gravity Axis" type="Vector3">Unknown.</add>
         <add name="Decay" type="float">Unknown.</add>
         <add name="Strength" type="float">Unknown.</add>
-        <add name="Force Type" type="uint">
-            0: FORCE_PLANAR
-            1: FORCE_SPHERICAL
-            2+: Unknown
-        </add>
+        <add name="Force Type" type="ForceType">The type of force?</add>
         <add name="Turbulence" type="float">Unknown.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Unknown.</add>
     </niblock>
@@ -2301,16 +2317,9 @@
         <add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0">Unknown.</add>
         <add name="Original File Name?" type="string" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData block.</add>
         <add name="Pixel Data" type="Ref" template="NiPixelData" cond="Use External == 0">Pixel data block index.</add>
-        <add name="Pixel Layout" type="PixelLayout" default="5">0=palettised, 1=16-bit, 2=32-bit, 3=compressed, 4=bumpmap, 5=default, 6=?</add>
-        <add name="Use Mipmaps" type="MipMapFormat" default="2">0=no, 1=yes, 2=default</add>
-        <add name="Alpha Format" type="AlphaFormat" default="3">
-            0=ignore texture alpha channel and use material alpha setting (?)
-            1=binary (?)
-            2=smooth (?)
-            3=multiply texture alpha channel with the material alpha setting, or, if there is no texture alpha channel, use material alpha setting as alpha channel; this is the default setting in official Morrowind files
-
-            Note: the NiTriShape linked to this block must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.
-        </add>
+        <add name="Pixel Layout" type="PixelLayout" default="5">Specifies the way the image will be stored.</add>
+        <add name="Use Mipmaps" type="MipMapFormat" default="2">Specifies whether mip maps are used.</add>
+        <add name="Alpha Format" type="AlphaFormat" default="3"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
         <add name="Unknown Byte" type="byte" default="1">Unknown, usually 1.</add>
         <add name="Unknown Byte 2" type="byte" default="1" ver1="10.1.0.106">Set to one if textures have mipmaps?</add>
     </niblock>
@@ -2421,12 +2430,7 @@
             4: FILTER_NEAREST_MIPLERP
             5: FILTER_BILERP_MIPNAREST
         </add>
-        <add name="Texture Clamping" type="uint">
-            0: CLAMP_S_CLAMP (Common value)
-            1: CLAMP_S_WRAP
-            2: WRAP_S_CLAMP_T
-            3: WRAP_S_WRAP_T (Common value)
-        </add>
+        <add name="Texture Clamping" type="TexClampMode">Texture Clamp mode.</add>
         <add name="Texture Type" type="uint">
             0: PROJECTED_LIGHT
             1: PROJECTED_SHADOW
@@ -2455,12 +2459,7 @@
     <niblock name="NiTextureTransformController" abstract="0" inherit="NiSingleInterpolatorController" ver1="10.1.0.0">
         Texture transformation controller.
         <add name="Unknown2" type="byte">Unknown.</add>
-        <add name="Texture Slot" type="uint">
-            The target texture slot.
-            0: base map
-            1: dark map
-            ...
-        </add>
+        <add name="Texture Slot" type="TexType"> The target texture slot.</add>
         <add name="Operation" type="uint">
             0: translate u
             1: translate v
@@ -2575,10 +2574,7 @@
 
             related gl function: glColorMaterial
         </add>
-        <add name="Lighting Mode" type="LightMode">
-            0: LIGHTING_E (Emissive)
-            1: LIGHTING_E_A_D (Emissive, ambient, diffuse)
-        </add>
+        <add name="Lighting Mode" type="LightMode">The light mode.</add>
     </niblock>
     
     <niblock name="NiVertWeightsExtraData" abstract="0" inherit="NiExtraData">
