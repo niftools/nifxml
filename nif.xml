@@ -292,10 +292,10 @@
         <option value="2" name="CYCLE_CLAMP">Clamp</option>
     </basic>
 
-    <basic name="ForceType" count="0" niflibtype="uint" nifskopetype="int">
+    <basic name="FieldType" count="0" niflibtype="uint" nifskopetype="int">
         The force field&#039;s type.
-        <option value="0" name="WIND_FORCE">Wind (fixed direction)</option>
-        <option value="1" name="POINT_FORCE">Point (fixed origin)</option>
+        <option value="0" name="FIELD_WIND">Wind (fixed direction)</option>
+        <option value="1" name="FIELD_POINT>Point (fixed origin)</option>
     </basic>
 
     <basic name="BillboardMode" count="0" niflibtype="ushort" nifskopetype="short">
@@ -1240,7 +1240,7 @@
         <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float">Penetration depth.</add>
-        <add name="Motion System" type="MotionSystem">
+        <add name="Motion System" type="byte">
             Motion system? Overrides Quality when on Keyframed?
 
             0: Keyframed
@@ -1647,7 +1647,7 @@
         A particle modifier; applies a gravitational field on the particles.
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
-        <add name="Type" type="ForceType">The force field&#039;s type.</add>
+        <add name="Type" type="FieldType">The force field&#039;s type.</add>
         <add name="Position" type="Vector3">The position of the mass point relative to the particle system.</add>
         <add name="Direction" type="Vector3">The direction of the applied acceleration.</add>
     </niblock>
