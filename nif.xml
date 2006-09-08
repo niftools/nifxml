@@ -311,6 +311,25 @@
         <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
     </enum>
 
+	<enum name="MotionSystem" storage="byte">
+		The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
+		
+		Oblivion's ssg commando reveals even more values:
+        0: Keyframed
+        1: Box
+        2: Sphere
+        3: Sphere
+        4: Box
+        5: Box
+        6: Keyframed
+        7: Keyframed
+        8: Box
+        9+: Keyframed?
+		
+		<option value="4" name="MO_SYS_BOX">Box</option>
+		<option value="7" name="MO_SYS_KEYFRAMED">Keyframed</option>
+	</enum>
+	
     <enum name="MotionQuality" storage="byte">
         The motion type. Determines quality of motion?
         <option value="0" name="MO_QUAL_MOVING">Moving</option>
@@ -1126,12 +1145,12 @@
 
     <compound name="LimitedHingeDescriptor">
         <add name="Pivot A" type="Vector4">Unknown.</add>
-        <add name="Axle A ?" type="Vector4">Unknown.</add>
+        <add name="Axle A" type="Vector4">Unknown.</add>
         <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
         <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
         <add name="Pivot B" type="Vector4">Unknown.</add>
         <add name="Axle B" type="Vector4">Unknown.</add>
-        <add name="Unknown Vector" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInB2" type="Vector4">Unknown.</add>
         <add name="Min Angle" type="float"></add>
         <add name="Max Angle" type="float"></add>
         <add name="Max Friction" type="float"></add>
@@ -1244,20 +1263,7 @@
         <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float">Penetration depth.</add>
-        <add name="Motion System" type="byte">
-            Motion system? Overrides Quality when on Keyframed?
-
-            0: Keyframed
-            1: Box
-            2: Sphere
-            3: Sphere
-            4: Box
-            5: Box
-            6: Keyframed
-            7: Keyframed
-            8: Box
-            9+: Keyframed?
-        </add>
+        <add name="Motion System" type="MotionSystem">Motion system? Overrides Quality when on Keyframed?</add>
         <add name="Unknown Byte 1" type="byte">Unknown.</add>
         <add name="Unknown Byte 2" type="byte">Unknown.</add>
         <add name="Quality Type" type="MotionQuality">The motion type. Determines quality of motion?</add>
