@@ -5,18 +5,19 @@
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
         0x04000002 and 10.1.0.0 is 0x0A010000.-->
-    <version num="67108866" games="Morrowind">4.0.0.2</version>
-    <version num="67174412" games="Dark Age of Camelot">4.1.0.12</version>
-    <version num="67239938" games="Civilization IV">4.2.0.2</version>
-    <version num="67240192" games="Dark Age of Camelot, Civilization IV">4.2.1.0</version>
-    <version num="67240448" games="Dark Age of Camelot, Civilization IV">4.2.2.0</version>
-    <version num="167772416" games="Zoo Tycoon 2, Civilization IV">10.0.1.0</version>
-    <version num="167772418" games="Oblivion">10.0.1.2</version>
-    <version num="167837696" games="Dark Age of Camelot, Civilization IV">10.1.0.0</version>
-    <version num="167837802" games="Oblivion">10.1.0.106</version>
-    <version num="167903232" games="Civilization IV, Oblivion">10.2.0.0</version>
-    <version num="335544324" games="Civilization IV, Oblivion">20.0.0.4</version>
-    <version num="335544325" games="Oblivion">20.0.0.5</version>
+	
+    <version num="4.0.0.2">  Morrowind  </version>
+    <version num="4.1.0.12">  Dark Age of Camelot  </version>
+    <version num="4.2.0.2">  Civilization IV  </version>
+    <version num="4.2.1.0">  Dark Age of Camelot, Civilization IV  </version>
+    <version num="4.2.2.0">  Dark Age of Camelot, Civilization IV  </version>
+    <version num="10.0.1.0">  Zoo Tycoon 2, Civilization IV  </version>
+    <version num="10.0.1.2">  Oblivion  </version>
+    <version num="10.1.0.0">  Dark Age of Camelot, Civilization IV  </version>
+    <version num="10.1.0.106">  Oblivion  </version>
+    <version num="10.2.0.0">  Civilization IV, Oblivion  </version>
+    <version num="20.0.0.4">  Civilization IV, Oblivion  </version>
+    <version num="20.0.0.5">  Oblivion  </version>
 
     <!--Basic Types-->
 
