@@ -1005,11 +1005,11 @@
     </niobject>
 
     <niobject name="ABoneLODController" abstract="1" inherit="NiTimeController">
-        Level of detail controller for bones?
+        Level of detail controller for bones.  Priority is arranged from low to high.
         <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Num Node Groups" type="uint">Number of node groups.</add>
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
-        <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones?).</add>
+        <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
+        <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
     </niobject>
 
     <niobject name="NiSingleInterpolatorController" abstract="1" inherit="NiTimeController">
@@ -1315,8 +1315,9 @@
     </niobject>
 
     <niobject name="BSBound" abstract="0" inherit="NiExtraData" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
+        Bethesda-specific collision bounding box for skeletons.
+        <add name="Center" type="Vector3">Center of the bounding box.</add>
+        <add name="Dimensions" type="Vector3">Dimensions of the bounding box from center.</add>
     </niobject>
 
     <niobject name="BSFurnitureMarker" abstract="0" inherit="NiExtraData" ver1="20.0.0.5">
