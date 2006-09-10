@@ -312,6 +312,36 @@
         <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
     </enum>
 
+	<enum name="CompareMode" storage="uint">
+		This enum contains the options for doing z buffer or stecil buffer tests.
+		<option value="0" name="TEST_NEVER">Test will allways return false. Nothing is drawn at all.</option>
+		<option value="1" name="TEST_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
+		<option value="2" name="TEST_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
+		<option value="3" name="TEST_LESSEQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
+		<option value="4" name="TEST_GREATER">Opposite of TEST_LESS.</option>
+		<option value="5" name="TEST_GREATEREQUAL">Opposite of TEST_LESSEQUAL.</option>
+		<option value="6" name="TEST_ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
+	</enum>
+	
+	<enum name="StencilAction" storage="uint">
+		This enum defines the various actions used in conjunction with the stencil buffer.
+		For a detailed description of the individual options please refer to the OpenGL docs.
+		<option value="0" name="ACTION_KEEP" />
+		<option value="1" name="ACTION_ZERO" />
+		<option value="2" name="ACTION_REPLACE" />
+		<option value="3" name="ACTION_INCREMENT" />
+		<option value="4" name="ACTION_DECREMENT" />
+		<option value="5" name="ACTION_INVERT" />
+	</enum>
+	
+	<enum name="FaceDrawMode" storage="uint">
+		This enum lists the different face culling options.
+		<option value="0" name="DRAW_CCW_OR_BOTH">use application defaults?</option>
+		<option value="1" name="DRAW_CCW">Draw counter clock wise faces, cull clock wise faces. This is the default for most (all?) Nif Games so far.</option>
+		<option value="2" name="DRAW_CW">Draw clock wise faces, cull counter clock wise faces. This will flip all the faces.</option>
+		<option value="3" name="DRAW_BOTH">Draw double sided faces.</option>
+	</enum>
+	
 	<enum name="MotionSystem" storage="byte">
 		The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
 		
@@ -1361,7 +1391,7 @@
             Bits 5-8 : destination blend mode
             Bit 9 : alpha test enable
             Bit 10-12 : alpha test mode
-            Bit 13 : Unknown ( 1 if test enabled ? )
+            Bit 13 : no sorter flag ( disables triangle sorting )
 
             blend modes (glBlendFunc):
             0000 GL_ONE
@@ -2356,53 +2386,18 @@
         <add name="Cutoff Angle" type="float">The opening angle of the spot.</add>
         <add name="Exponent" type="float">Describes the distribution of light. (see: glLight)</add>
     </niobject>
-
+	
     <niobject name="NiStencilProperty" abstract="0" inherit="NiProperty" ver1="4.1.0.12">
         Allows control of stencil testing.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
         <add name="Stencil Enabled" type="bool">Enables or disables the stencil test.</add>
-        <add name="Stencil Function" type="uint">
-            0: TEST_NEVER
-            1: TEST_LESS
-            2: TEST_EQUAL
-            3: TEST_LESSEQUAL
-            4: TEST_GREATER
-            5: TEST_NOTEQUAL
-            6: TEST_GREATEREQUAL
-            7: TEST_ALWAYS
-        </add>
+        <add name="Stencil Function" type="CompareMode">Selects the compare mode function.</add>
         <add name="Stencil Ref" type="uint">Unknown.  Default is 0.</add>
         <add name="Stencil Mask" type="uint" default="4294967295">A bit mask. The default is 0xffffffff.</add>
-        <add name="Fail Action" type="uint">
-            0: ACTION_KEEP
-            1: ACTION_ZERO
-            2: ACTION_REPLACE
-            3: ACTION_INCREMENT
-            4: ACTION_DECREMENT
-            5: ACTION_INVERT
-        </add>
-        <add name="Z Fail Action" type="uint">
-            0: ACTION_KEEP
-            1: ACTION_ZERO
-            2: ACTION_REPLACE
-            3: ACTION_INCREMENT
-            4: ACTION_DECREMENT
-            5: ACTION_INVERT
-        </add>
-        <add name="Pass Action" type="uint">
-            0: ACTION_KEEP
-            1: ACTION_ZERO
-            2: ACTION_REPLACE
-            3: ACTION_INCREMENT
-            4: ACTION_DECREMENT
-            5: ACTION_INVERT
-        </add>
-        <add name="Draw Mode" type="uint">
-            0: DRAW_CCW_OR_BOTH (? use application defaults ?)
-            1: DRAW_CCW (cull front facing faces)
-            2: DRAW_CW (Backface culling)
-            3: DRAW_BOTH (Double sided faces)
-        </add>
+        <add name="Fail Action" type="StencilAction" />
+        <add name="Z Fail Action" type="StencilAction" />
+        <add name="Pass Action" type="StencilAction" />
+        <add name="Draw Mode" type="FaceDrawMode">Used to enabled double sided faces.</add>
     </niobject>
 
     <niobject name="NiStringExtraData" abstract="0" inherit="NiExtraData">
@@ -2434,14 +2429,7 @@
         Enables environment mapping. Should be in both the children list and effects list of the NiTriShape object. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect object is present).
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
-        <add name="Texture Filtering" type="uint">
-            0: FILTER_NEAREST
-            1: FILTER_BILERP
-            2: FILTER_TRILERP (Usual value)
-            3: FILTER_NEAREST_MIPNEAREST
-            4: FILTER_NEAREST_MIPLERP
-            5: FILTER_BILERP_MIPNAREST
-        </add>
+        <add name="Texture Filtering" type="TexFilterMode">Texture Filtering mode.</add>
         <add name="Texture Clamping" type="TexClampMode">Texture Clamp mode.</add>
         <add name="Texture Type" type="uint">
             0: PROJECTED_LIGHT
@@ -2623,16 +2611,8 @@
             Bit 0 enables the z test
             Bit 1 controlls wether the z buffer is read only (0) or read/write (1)
         </add>
-        <add name="Function" type="uint" default="3" ver1="4.1.0.12">
-            Z-Test function (see: GlDepthFunc)
-            0: TEST_ALWAYS
-            1: TEST_LESS
-            2: TEST_EQUAL
-            3: TEST_LESSEQUAL
-            4: TEST_GREATER
-            5: TEST_NOTEQUAL
-            6: TEST_GREATEREQUAL
-            7: TEST_NEVER
+        <add name="Function" type="CompareMode" default="3" ver1="4.1.0.12">
+            Z-Test function (see: glDepthFunc)
         </add>
     </niobject>
 
