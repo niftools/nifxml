@@ -915,14 +915,17 @@
 
     <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
         A havok node, describes physical properties.
-        <add name="Shape" type="Ref" template="bhkShape">The body&#039;s shape.</add>
-        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
+        <add name="Layer" type="OblivionLayer"> A number representing the flags for several settings.  Sets mesh color in Oblivion Construction Set.</add>
     </niobject>
 
     <niobject name="NiCollisionObject" abstract="1" inherit="NiObject" ver1="20.0.0.5">
-        Unknown.
-        <add name="Parent" type="Ptr" template="NiAVObject">Links to the node parent.</add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        This is the most common collision object found in NIF files. It acts as a real object that
+is visible and possibly (if the body allows for it) interactive. The node itself
+is simple, it only has three properties.
+		For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
+        <add name="Parent" type="Ptr" template="NiAVObject">Link to the node this collision object belongs to</add>
+        <add name="Unknown Short" type="ushort" default="1"> Set to "1" for most objects.</add>
         <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
     </niobject>
 
@@ -1271,37 +1274,41 @@
     </niobject>
 
     <niobject name="bhkRigidBody" abstract="0" inherit="bhkEntity" ver1="20.0.0.5">
-        Describes physical properties of an object.
+        This is the default body type for all "normal" usable and static world objects. The "T" suffix
+marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
+properties. Because the properties are equal, a bhkRigidBody may be renamed
+into a bhkRigidBodyT and vice-versa.
         <add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
         <add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer">Copy of layer value?</add>
         <add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
-        <add name="Translation" type="Vector3">Translation.</add>
-        <add name="Unknown Float 00" type="float">Unknown.</add>
-        <add name="Rotation" type="QuaternionXYZW">Rotation.</add>
+        <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Unknown Float 00" type="float">This seems to often be 1 for single objects, or the first one in a
+a linked object group. This may be due to those objects often being bhkRigidBodyT as well.</add>
+        <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector3">Linear velocity.</add>
         <add name="Unknown Float 01" type="float">Unknown.</add>
         <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
         <add name="Unknown Float 02" type="float">Unknown.</add>
         <add name="Transform" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
-        <add name="Center" type="Vector3">The object&#039;s center.</add>
+        <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
-        <add name="Mass" type="float">Object mass.</add>
-        <add name="Linear Damping" type="float">Linear damping level.</add>
-        <add name="Angular Damping" type="float">Angular Dampling level.</add>
-        <add name="Friction" type="float">The object&#039;s friction.</add>
-        <add name="Restitution" type="float">The object&#039;s restitution (elasticity).</add>
+        <add name="Mass" type="float">The body's mass.</add>
+        <add name="Linear Damping" type="float"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
+        <add name="Angular Damping" type="float"> Damping value for angular movement.</add>
+        <add name="Friction" type="float">The body&#039;s friction.</add>
+        <add name="Restitution" type="float">The body&#039;s restitution (elasticity).</add>
         <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float">Penetration depth.</add>
         <add name="Motion System" type="MotionSystem">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Unknown Byte 1" type="byte">Unknown.</add>
-        <add name="Unknown Byte 2" type="byte">Unknown.</add>
+        <add name="Unknown Byte 1" type="byte"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
+        <add name="Unknown Byte 2" type="byte">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
         <add name="Quality Type" type="MotionQuality">The motion type. Determines quality of motion?</add>
         <add name="Unknown Int 6" type="uint">Unknown.</add>
         <add name="Unknown Int 7" type="uint">Unknown.</add>
         <add name="Unknown Int 8" type="uint">Unknown.</add>
-        <add name="Num Constraints" type="uint">The number of constraints</add>
+        <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="AbhkConstraint" arr1="Num Constraints">Unknown.</add>
         <add name="Unknown Int 6" type="uint">Unknown.</add>
     </niobject>
