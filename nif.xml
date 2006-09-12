@@ -916,8 +916,9 @@
     <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
         A havok node, describes physical properties.
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer"> A number representing the flags for several settings.  Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte" arr1="3">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Unknown Short" type="ushort">Unknown.</add>
     </niobject>
 
     <niobject name="NiCollisionObject" abstract="1" inherit="NiObject" ver1="20.0.0.5">
@@ -1279,11 +1280,11 @@ is simple, it only has three properties.
 marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
 properties. Because the properties are equal, a bhkRigidBody may be renamed
 into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown Floats 1" type="float" arr1="5">Unknown.</add>
-        <add name="Unknown Shorts 1" type="ushort" arr1="4">Unknown.</add>
+        <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
+        <add name="Unknown 4 Shorts" type="ushort" arr1="4">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" arr1="3">Copy of Col Filter value?</add>
-        <add name="Unknown Shorts 2" type="ushort" arr1="6">Unknown.</add>
+        <add name="Col Filter Copy" type="byte">Copy of Col Filter value?</add>
+        <add name="Unknown 7 Shorts" type="ushort" arr1="7">Unknown.</add>
         <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Unknown Float 00" type="float">This seems to often be 1 for single objects, or the first one in a
 a linked object group. This may be due to those objects often being bhkRigidBodyT as well.</add>
