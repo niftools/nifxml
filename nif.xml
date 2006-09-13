@@ -1859,14 +1859,14 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
     </niobject>
 
-    <niobject name="NiLODNode" abstract="0" inherit="NiNode" ver1="4.2.2.0">
+    <niobject name="NiLODNode" abstract="0" inherit="NiNode" ver1="4.0.0.2">
         Level of detail selector. Links to different levels of detail of the same model, used to switch a geometry at a specified distance.
-        <add name="LOD Type" type="uint">Type of LOD info (0=regular, 1=info is in a NiRangeLODData object).</add>
-        <add name="LOD Center" type="Vector3" cond="LOD Type == 0">?</add>
-        <add name="Num LOD Levels" type="uint" cond="LOD Type == 0">Number of levels of detail.</add>
-        <add name="LOD Levels" type="LODRange" arr1="Num LOD Levels" cond="LOD Type == 0">The ranges of distance that each level of detail applies in.</add>
-        <add name="Unknown Short" type="ushort" cond="LOD Type == 1">Zero?</add>
-        <add name="Range Data" type="Ref" template="NiRangeLODData" cond="LOD Type == 1">Refers to NiRangeLODData object.</add>
+        <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.  0,0,0,0 or 1,0,0,0.</add>
+        <add name="LOD Center" type="Vector3" ver2="10.0.1.0">Point to calculate distance from for switching?</add>
+        <add name="Num LOD Levels" type="uint" ver2="10.0.1.0">Number of levels of detail.</add>
+        <add name="LOD Levels" type="LODRange" arr1="Num LOD Levels" ver2="10.0.1.0">The ranges of distance that each level of detail applies in.</add>
+        <add name="Unknown Short" type="ushort" ver1="10.1.0.0">Zero?</add>
+        <add name="Range Data" type="Ref" template="NiLODData"  ver1="10.1.0.0">Refers to LOD level information, either distance or screen size based.</add>
     </niobject>
 
     <niobject name="NiPalette" abstract="0" inherit="NiObject" ver1="4.2.2.0">
@@ -2294,11 +2294,25 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Particle system controller, used for ???.
     </niobject>
 
-    <niobject name="NiRangeLODData" abstract="0" inherit="NiObject">
-        Describes levels of detail.
+    <niobject name ="NiLODData" abstract="1" inherit="NiObject">
+        Abstract class used for different types of LOD selections.
+    </niobject>
+
+    <niobject name="NiRangeLODData" abstract="0" inherit="NiLODData">
+        Describes levels of detail based on distance of object from camera.
         <add name="LOD Center" type="Vector3">?</add>
         <add name="Num LOD Levels" type="uint">Number of levels of detail.</add>
         <add name="LOD Levels" type="LODRange" arr1="Num LOD Levels">The ranges of distance that each level of detail applies in.</add>
+    </niobject>
+
+    <niobject name="NiScreenLODData" abstract="0" inherit="NiLODData" ver1="10.1.0.0">
+        Describes levels of detail based on size of object on screen?
+        <add name="Bound Center" type="Vector3">The center of the bounding sphere?</add>
+        <add name="Bound Radius" type="float">The radius of the bounding sphere?</add>
+        <add name="World Center" type="Vector3">The center of the bounding sphere in world space?</add>
+        <add name="World Radius" type="float">The radius of the bounding sphere in world space?</add>
+        <add name="Proportion Count" type="uint">The number of screen size based LOD levels.</add>
+        <add name="Proportion" type="float" arr1="Proportion Count">The LOD levels based on proportion of screen size?</add>
     </niobject>
 
     <niobject name="NiRotatingParticles" abstract="0" inherit="NiParticles">
@@ -2307,13 +2321,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
         Rotating particles data object.
-    </niobject>
-
-    <niobject name="NiScreenLODData" abstract="0" inherit="NiObject" ver1="10.1.0.0">
-        Unknown.
-        <add name="Unknown Floats" type="float" arr1="8">Unknown floats.</add>
-        <add name="Unknown Count" type="uint">Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="Unknown Count">Unknown.</add>
     </niobject>
 
     <niobject name="NiSequenceStreamHelper" abstract="0" inherit="NiObjectNET">
