@@ -2312,7 +2312,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="World Center" type="Vector3">The center of the bounding sphere in world space?</add>
         <add name="World Radius" type="float">The radius of the bounding sphere in world space?</add>
         <add name="Proportion Count" type="uint">The number of screen size based LOD levels.</add>
-        <add name="Proportion" type="float" arr1="Proportion Count">The LOD levels based on proportion of screen size?</add>
+        <add name="Proportion Levels" type="float" arr1="Proportion Count">The LOD levels based on proportion of screen size?</add>
     </niobject>
 
     <niobject name="NiRotatingParticles" abstract="0" inherit="NiParticles">
