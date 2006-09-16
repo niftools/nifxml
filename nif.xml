@@ -2559,6 +2559,20 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points != 0" ver1="10.1.0.0">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</add>
     </niobject>
 
+    <niobject name="NiClod" abstract="0" inherit="NiTriBasedGeom">
+        A shape node that refers to singular triangle data.
+    </niobject>
+
+    <niobject name="NiClodData" abstract="0" inherit="NiTriBasedGeomData">
+        A shape node that refers to singular triangle data.
+        <add name="Unknown 5 Shorts" type="ushort" arr1="5"></add>
+        <add name="Unknown Float" type="float"></add>
+        <add name="Unknown Int" type="uint"></add>
+        <add name="Unknown Clod Shorts" type="ushort" arr1="44" cond ="Unknown Int == 9"></add>
+        <add name="Unknown Clod Shorts" type="ushort" arr1="233" cond ="Unknown Int == 199"></add>
+        <add name="Unknown Clod Shorts" type="ushort" arr1="57" cond ="Unknown Int == 24"></add>
+    </niobject>
+
     <niobject name="NiUVController" abstract="0" inherit="NiTimeController">
         Time controller for texture coordinates.
         <add name="Unknown Short" type="ushort">Always 0?</add>
