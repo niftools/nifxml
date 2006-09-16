@@ -2508,7 +2508,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Has Decal 0 Texture" type="bool">Do we have a decal 0 texture?</add>
         <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture != 0">The decal texture.</add>
         <add name="Has Decal 1 Texture" type="bool" cond="Texture Count == 8">Do we have a decal 1 texture?</add>
-        <add name="Decal 1 Texture" type="TexDesc" cond="(Texture Count == 8) &amp;&amp; (Has Decal 1 Texture != 0)" ver1="20.0.0.4">Another decal texture. 2 seems to be the limit.</add>
+        <add name="Decal 1 Texture" type="TexDesc" cond="(Texture Count == 8) &amp;&amp; (Has Decal 1 Texture != 0)">Another decal texture. 2 seems to be the limit.</add>
         <add name="Num Shader Textures" type="uint" ver1="10.0.1.0">Number of Shader textures that follow.</add>
         <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
     </niobject>
