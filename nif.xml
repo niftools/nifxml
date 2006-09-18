@@ -2405,7 +2405,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     <niobject name="NiStencilProperty" abstract="0" inherit="NiProperty" ver1="4.1.0.12">
         Allows control of stencil testing.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-        <add name="Stencil Enabled" type="bool">Enables or disables the stencil test.</add>
+        <add name="Stencil Enabled" type="byte">Enables or disables the stencil test.</add>
         <add name="Stencil Function" type="CompareMode">Selects the compare mode function.</add>
         <add name="Stencil Ref" type="uint">Unknown.  Default is 0.</add>
         <add name="Stencil Mask" type="uint" default="4294967295">A bit mask. The default is 0xffffffff.</add>
