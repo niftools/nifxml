@@ -2560,11 +2560,16 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     </niobject>
 
     <niobject name="NiClod" abstract="0" inherit="NiTriBasedGeom">
-        A shape node that refers to singular triangle data.
+        A shape node that holds continuous level of detail information.
+        Seems to be specific to Freedom Force.
     </niobject>
 
     <niobject name="NiClodData" abstract="0" inherit="NiTriBasedGeomData">
-        A shape node that refers to singular triangle data.
+        Holds mesh data for continuous level of detail shapes.
+        Pesumably a progressive mesh with triangles specified by edge splits.
+        Seems to be specific to Freedom Force.
+        The structure of this is uncertain and highly experimental at this point.
+        No file with this data can currently be read properly.
         <add name="Unknown 5 Shorts" type="ushort" arr1="5"></add>
         <add name="Unknown Float" type="float"></add>
         <add name="Unknown Int" type="uint"></add>
