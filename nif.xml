@@ -1844,8 +1844,8 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Unknown Int  2" type="uint">Unknown.</add>
         <add name="Unknown Int 3" type="uint">Unknown.</add>
-        <add name="Num Unknown Links" type="uint">Number of unknown links.</add>
-        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links">Unknown links; options of the radio button?</add>
+        <add name="Num Buttons" type="uint">Number of unknown links.</add>
+        <add name="Buttons" type="Ptr" template="FxRadioButton" arr1="Num Buttons">Unknown pointers to other buttons.  Maybe other buttons in a group so they can be switch off if this one is switched on?</add>
     </niobject>
 
     <niobject name="NiBillboardNode" abstract="0" inherit="NiNode">
