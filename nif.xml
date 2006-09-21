@@ -586,7 +586,7 @@
     <compound name="Header">
         The NIF file header.
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
-        <add name="Version" type="FileVersion" default="0x04000002">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
+        <add name="Version" type="FileVersion" default="0x04000002" ver1="4.0.0.0">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
         <add name="Endian Type" type="byte" default="1" ver1="20.0.0.4">
             Determines the endian-ness of the data.
 
@@ -594,7 +594,7 @@
             0 = big endian
         </add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
-        <add name="Num Blocks" type="uint">Number of file objects.</add>
+        <add name="Num Blocks" type="uint" ver1="4.0.0.0">Number of file objects.</add>
         <add name="Unknown Int 1" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
         <add name="User Version 2" type="uint" default="0" cond="User Version != 0" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
         <add name="Creator" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
