@@ -6,19 +6,20 @@
         each part of the version in a byte.  For example, 4.0.0.2 is
         0x04000002 and 10.1.0.0 is 0x0A010000.-->
 
+    <version num="3.3.0.13">Oblivion</version>
     <version num="4.0.0.0">Freedom Force</version>
-    <version num="4.0.0.2">  Morrowind, Freedom Force</version>
-    <version num="4.1.0.12">  Dark Age of Camelot  </version>
-    <version num="4.2.0.2">  Civilization IV  </version>
-    <version num="4.2.1.0">  Dark Age of Camelot, Civilization IV  </version>
-    <version num="4.2.2.0">  Dark Age of Camelot, Civilization IV  </version>
-    <version num="10.0.1.0">  Zoo Tycoon 2, Civilization IV  </version>
-    <version num="10.0.1.2">  Oblivion  </version>
-    <version num="10.1.0.0">  Dark Age of Camelot, Civilization IV  </version>
-    <version num="10.1.0.106">  Oblivion  </version>
-    <version num="10.2.0.0">  Civilization IV, Oblivion  </version>
-    <version num="20.0.0.4">  Civilization IV, Oblivion  </version>
-    <version num="20.0.0.5">  Oblivion  </version>
+    <version num="4.0.0.2">Morrowind, Freedom Force</version>
+    <version num="4.1.0.12">Dark Age of Camelot</version>
+    <version num="4.2.0.2">Civilization IV</version>
+    <version num="4.2.1.0">Dark Age of Camelot, Civilization IV</version>
+    <version num="4.2.2.0">Dark Age of Camelot, Civilization IV</version>
+    <version num="10.0.1.0">Zoo Tycoon 2, Civilization IV</version>
+    <version num="10.0.1.2">Oblivion</version>
+    <version num="10.1.0.0">Dark Age of Camelot, Civilization IV</version>
+    <version num="10.1.0.106">Oblivion</version>
+    <version num="10.2.0.0">Civilization IV, Oblivion</version>
+    <version num="20.0.0.4">Civilization IV, Oblivion</version>
+    <version num="20.0.0.5">Oblivion</version>
 
     <!--Basic Types-->
 
@@ -586,7 +587,7 @@
     <compound name="Header">
         The NIF file header.
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
-        <add name="Version" type="FileVersion" default="0x04000002" ver1="4.0.0.0">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
+        <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
         <add name="Endian Type" type="byte" default="1" ver1="20.0.0.4">
             Determines the endian-ness of the data.
 
@@ -594,8 +595,8 @@
             0 = big endian
         </add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
-        <add name="Num Blocks" type="uint" ver1="4.0.0.0">Number of file objects.</add>
-        <add name="Unknown Int 1" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">Unknown.</add>
+        <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
+        <add name="User Version" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">May not really be user version, but it is convenient to treat it as such in the one file that uses this NIF version.</add>
         <add name="User Version 2" type="uint" default="0" cond="User Version != 0" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
         <add name="Creator" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Could be the name of the creator of the NIF file?</add>
         <add name="Export Info 1" type="ShortString" cond="User Version != 0" ver1="10.0.1.2">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
@@ -976,7 +977,7 @@ is simple, it only has three properties.
         <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties">List of node properties.</add>
         <add name="Has Bounding Box" type="bool" ver2="4.2.2.0">Do we have a bounding box?</add>
         <add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box != 0" ver2="4.2.2.0">The bounding box.</add>
-        <add name="Collision Data" type="Ref" template="NiCollisionData" ver1="10.0.1.0" ver2="10.2.0.0"  userver="0">Bounding box: refers to NiCollisionData</add>
+        <add name="Collision Data" type="Ref" template="NiCollisionData" ver1="10.0.1.0" ver2="10.2.0.0"  >Bounding box: refers to NiCollisionData</add>
         <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="20.0.0.4">In Oblivion this links the havok objects.</add>
     </niobject>
 
@@ -1791,10 +1792,10 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
         <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
         <add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>
-        <add name="Modifier" type="Ref" template="NiPSysModifier" ver2="20.0.0.4">Link to a particle modifier?</add>
+        <add name="Modifier" type="Ref" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.</add>
         <add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
         <add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
-        <add name="Unknown Links" type="Ref" template="NiPSysModifier" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
+        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
         <add name="Unknown Short 4" type="ushort" ver1="20.0.0.5">Unknown.</add>
         <add name="Unknown Int 2" type="uint" ver1="20.0.0.5">Unknown.</add>
         <add name="Unknown Byte 12" type="byte" ver1="20.0.0.5">Unknown.</add>
