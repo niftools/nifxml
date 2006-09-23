@@ -703,7 +703,7 @@
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
-        <add name="Texture Set" type="uint" default="0">Texture set? Usually 0.</add>
+        <add name="UV Set" type="uint" default="0">The texture coordinate set in NiTriBasedGeomData that this texture slot will use.</add>
         <add name="PS2 L" type="ushort" default="0" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="ushort" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
         <add name="Unknown1" type="ushort" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
