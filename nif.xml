@@ -1021,14 +1021,14 @@ is simple, it only has three properties.
         <add name="Planar Angle Variation" type="float">Unknown.</add>
         <add name="Initial Color" type="Color4">Unknown.</add>
         <add name="Initial Radius" type="float">Unknown.</add>
-        <add name="Radius Variation" type="float">Unknown.</add>
+        <add name="Radius Variation" type="float" ver1="20.0.0.4">Unknown."</add>
         <add name="Life Span" type="float">Unknown.</add>
         <add name="Life Span Variation" type="float">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="1" inherit="NiPSysEmitter" ver1="10.1.0.0">
         An emitter that emits meshes?
-        <add name="Emitter Object" type="Ptr" template="NiNode" ver1="20.0.0.4">Node parent of this modifier?</add>
+        <add name="Emitter Object" type="Ptr" template="NiNode" ver1="10.1.0.0">Node parent of this modifier?</add>
     </niobject>
 
     <niobject name="NiTimeController" abstract="1" inherit="NiObject">
@@ -1574,13 +1574,14 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     <niobject name="NiCollisionData" abstract="0" inherit="NiObject" ver1="10.0.1.0">
         Collision box.
         <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision data object.</add>
-        <add name="Unknown2" type="uint">Unknown.</add>
-        <add name="Unknown3" type="byte">Unknown.</add>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
+        <add name="Unknown Byte" type="byte">Unknown.</add>
         <add name="Collision Type" type="uint">Type of collision data.</add>
-        <add name="Unknown5" type="uint" cond="Collision Type == 0">Unknown.</add>
-        <add name="Unknown7" type="Vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
-        <add name="Unknown6" type="float" arr1="8" cond="Collision Type == 2">Unknown.</add>
-        <add name="Unknown8" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
+        <add name="Unknown Int 2" type="uint" cond="Collision Type == 0">Unknown.</add>
+        <add name="Unknown Vector" type="Vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
+        <add name="Unknown Float 1" type="float" arr1="8" cond="Collision Type == 2">Unknown.</add>
+        <add name="Unknown Float 2" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
     </niobject>
 
     <niobject name="NiColorData" abstract="0" inherit="AKeyedData">
@@ -2193,6 +2194,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiPSysEmitterSpeedCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
         Unknown.
+        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysGravityModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -2208,6 +2210,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiPSysGravityStrengthCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
         Unknown.
+        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0"></add>
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -2249,6 +2252,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiPSysModifierActiveCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
         Unknown.
+        <add name="Unknown Int" type="uint" ver2="10.1.0.0"></add>
     </niobject>
 
     <niobject name="NiPSysPlanarCollider" abstract="0" inherit="NiObject" ver1="10.2.0.0">
