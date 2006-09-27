@@ -1120,7 +1120,8 @@ is simple, it only has three properties.
         <add name="Unknown Short 3" type="ushort">Unknown.</add>
         <add name="Has Unknown Floats 2" type="bool">Unknown.</add>
         <add name="Unknown Floats 2" type="float" arr1="Num Vertices" cond="Has Unknown Floats 2 != 0">Unknown.</add>
-        <add name="Unknown Byte 1" type="byte">Unknown.</add>
+        <add name="Has Unknown Floats 3" type="byte">Unknown.</add>
+        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" cond="Has Unknown Floats 3 != 0">Unknown.</add>
     </niobject>
 
     <niobject name="bhkBlendCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
@@ -1798,7 +1799,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     <niobject name="NiMeshPSysData" abstract="0" inherit="APSysData" ver1="10.1.0.0">
         Particle meshes data.
         <add name="Unknown Byte 11" type="byte" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" ver2="20.0.0.4">Unknown. Repeatedly (1,0,0,0).</add>
         <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
         <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
         <add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>
@@ -2190,6 +2190,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiPSysEmitterLifeSpanCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
         Unknown.
+        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysEmitterSpeedCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
