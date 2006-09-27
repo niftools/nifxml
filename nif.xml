@@ -1997,7 +1997,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Lifetime Random" type="float">Particle lifetime random modifier</add>
         <add name="Emit Flags" type="ushort">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
         <add name="Start Random" type="Vector3">Particle random start translation vector</add>
-        <add name="Emitter" type="Ref" template="NiObject">This index targets the particle emitter object (TODO: find out what type of object this refers to).</add>
+        <add name="Emitter" type="Ptr" template="NiObject">This index targets the particle emitter object (TODO: find out what type of object this refers to).</add>
         <add name="Unknown Short 2?" type="ushort">? short=0 ?</add>
         <add name="Unknown Float 13?" type="float">? float=1.0 ?</add>
         <add name="Unknown Int 1?" type="uint">? int=1 ?</add>
