@@ -6,6 +6,7 @@
         each part of the version in a byte.  For example, 4.0.0.2 is
         0x04000002 and 10.1.0.0 is 0x0A010000.-->
 
+	<version num="3.1">Bridge Commander</version>
     <version num="3.3.0.13">Oblivion</version>
     <version num="4.0.0.0">Freedom Force</version>
     <version num="4.0.0.2">Morrowind, Freedom Force</version>
@@ -86,6 +87,10 @@
         Version &gt;= 10.1.0.0:  &#039;Gamebryo File Format&#039;
     </basic>
 
+    <basic name="LineString" count="0" niflibtype="LineString" nifskopetype="linestring">
+		A variable length string that ends with a newline character (0x0A).
+	</basic>
+	
     <basic name="Ptr" count="0" niflibtype="*" nifskopetype="uplink" istemplate="1">
         A signed 32-bit integer, referring to a object before this one in the hierarchy.  Examples:  Bones, gravity objects.
     </basic>
@@ -483,7 +488,7 @@
     <compound name="NodeGroup">
         A group of NiNodes references.
         <add name="Num Nodes" type="uint">Number of node references that follow.</add>
-        <add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
+        <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
     <compound name="ns keylin" istemplate="1">
@@ -564,8 +569,8 @@
     <compound name="ControllerLink" ver1="10.2.0.0">
         In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.
         <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
-        <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.106">Link to a controller.</add>
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to an interpolator.</add>
+        <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.0">Link to a controller.</add>
+        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106">Link to an interpolator.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
@@ -587,6 +592,7 @@
     <compound name="Header">
         The NIF file header.
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
+		<add name="Copyright" type="LineString" arr1="3" ver2="3.1" />
         <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
         <add name="Endian Type" type="byte" default="1" ver1="20.0.0.4">
             Determines the endian-ness of the data.
@@ -1063,7 +1069,7 @@ is simple, it only has three properties.
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance">Skin instance index.</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13">Skin instance index.</add>
         <add name="Has Shader" type="bool" ver1="10.0.1.0">Shader.</add>
         <add name="Shader Name" type="string" cond="Has Shader != 0" ver1="10.0.1.0">The shader name.</add>
         <add name="Unknown Link" type="Ref" template="NiObject" cond="Has Shader != 0" ver1="10.0.1.0">Unknown link, usually -1.</add>
@@ -2504,6 +2510,22 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         </add>
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
     </niobject>
+	
+	<niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
+		Unknown
+        <add name="short" type="short" arr1="3"></add>
+	</niobject>
+	
+	<niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.1" ver2="3.1">
+		<add name="External ?" type="byte" />
+		<add name="File" type="FilePath">The filepath to the texture.</add>
+		<add name="short" type="short" arr1="4" />
+	</niobject>
+	
+	<niobject name="NiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
+        <add name="Flags" type="Flags">Property flags.</add>
+        <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
+	</niobject>
 
     <niobject name="NiTexturingProperty" abstract="0" inherit="NiProperty">
         Describes an object&#039;s textures.
