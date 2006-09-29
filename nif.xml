@@ -6,7 +6,7 @@
         each part of the version in a byte.  For example, 4.0.0.2 is
         0x04000002 and 10.1.0.0 is 0x0A010000.-->
 
-	<version num="3.1">Bridge Commander</version>
+	<version num="3.1">Star Trek: Bridge Commander</version>
     <version num="3.3.0.13">Oblivion</version>
     <version num="4.0.0.0">Freedom Force</version>
     <version num="4.0.0.2">Morrowind, Freedom Force</version>
@@ -16,7 +16,7 @@
     <version num="4.2.2.0">Dark Age of Camelot, Civilization IV</version>
     <version num="10.0.1.0">Zoo Tycoon 2, Civilization IV</version>
     <version num="10.0.1.2">Oblivion</version>
-    <version num="10.1.0.0">Dark Age of Camelot, Civilization IV</version>
+    <version num="10.1.0.0">Dark Age of Camelot, Civilization IV, Freedom Force vs. the 3rd Reich</version>
     <version num="10.1.0.106">Oblivion</version>
     <version num="10.2.0.0">Civilization IV, Oblivion</version>
     <version num="20.0.0.4">Civilization IV, Oblivion</version>
@@ -488,7 +488,7 @@
     <compound name="NodeGroup">
         A group of NiNodes references.
         <add name="Num Nodes" type="uint">Number of node references that follow.</add>
-        <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
+        <add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
     <compound name="ns keylin" istemplate="1">
@@ -2513,13 +2513,13 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 	
 	<niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
 		Unknown
-        <add name="short" type="short" arr1="3"></add>
+        <add name="Unknown 3 Shorts" type="short" arr1="3"></add>
 	</niobject>
 	
 	<niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.1" ver2="3.1">
 		<add name="External ?" type="byte" />
 		<add name="File" type="FilePath">The filepath to the texture.</add>
-		<add name="short" type="short" arr1="4" />
+		<add name="Unknown 4 Shorts" type="short" arr1="4" />
 	</niobject>
 	
 	<niobject name="NiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
