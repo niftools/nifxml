@@ -2412,12 +2412,13 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Flags" type="Flags">1&#039;s Bit = Enable specular lighting on this shape.</add>
     </niobject>
 
-    <niobject name="NiSphericalCollider" abstract="0" inherit="AParticleModifier" ver1="4.2.1.0">
+    <niobject name="NiSphericalCollider" abstract="0" inherit="AParticleModifier" ver1="4.0.0.2">
         Unknown.
         <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
         <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Float 3" type="float">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort" ver2="4.2.0.2">Unknown.</add>
+        <add name="Unknown Float 3" type="float" ver1="4.2.1.0">Unknown.</add>
         <add name="Unknown Float 4" type="float">Unknown.</add>
         <add name="Unknown Float 5" type="float">Unknown.</add>
     </niobject>
@@ -2549,8 +2550,12 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Bump Map Matrix" type="Matrix22" cond="Has Bump Map Texture != 0">Unknown.</add>
         <add name="Has Decal 0 Texture" type="bool">Do we have a decal 0 texture?</add>
         <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture != 0">The decal texture.</add>
-        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count == 8">Do we have a decal 1 texture?</add>
-        <add name="Decal 1 Texture" type="TexDesc" cond="(Texture Count == 8) &amp;&amp; (Has Decal 1 Texture != 0)">Another decal texture. 2 seems to be the limit.</add>
+        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt;= 8">Do we have a decal 1 texture?</add>
+        <add name="Decal 1 Texture" type="TexDesc" cond="(Texture Count &gt;= 8) &amp;&amp; (Has Decal 1 Texture != 0)">Another decal texture.</add>
+        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt;= 9">Do we have a decal 2 texture?</add>
+        <add name="Decal 2 Texture" type="TexDesc" cond="(Texture Count &gt;= 9) &amp;&amp; (Has Decal 2 Texture != 0)">Another decal texture.</add>
+        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt;= 10">Do we have a decal 3 texture?</add>
+        <add name="Decal 3 Texture" type="TexDesc" cond="(Texture Count &gt;= 10) &amp;&amp; (Has Decal 3 Texture != 0)">Another decal texture. Who knows the limit.</add>
         <add name="Num Shader Textures" type="uint" ver1="10.0.1.0">Number of Shader textures that follow.</add>
         <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
     </niobject>
