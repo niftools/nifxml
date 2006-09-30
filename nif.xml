@@ -488,7 +488,7 @@
     <compound name="NodeGroup">
         A group of NiNodes references.
         <add name="Num Nodes" type="uint">Number of node references that follow.</add>
-        <add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
+        <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
     <compound name="ns keylin" istemplate="1">
