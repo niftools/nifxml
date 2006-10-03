@@ -421,8 +421,8 @@
 
     <compound name="Footer">
         The NIF file footer.
-        <add name="Num Roots" type="uint">The number of root references.</add>
-        <add name="Roots" type="Ref" template="NiObject" arr1="Num Roots">List of root NIF objects. If there is a camera, for 1st person view, then this NIF object is referred to as well in this list, even if it is not a root object (usually we want the camera to be attached to the Bip Head node).</add>
+        <add name="Num Roots" type="uint" ver1="3.3.0.13">The number of root references.</add>
+        <add name="Roots" type="Ref" template="NiObject" arr1="Num Roots" ver1="3.3.0.13">List of root NIF objects. If there is a camera, for 1st person view, then this NIF object is referred to as well in this list, even if it is not a root object (usually we want the camera to be attached to the Bip Head node).</add>
     </compound>
 
     <compound name="LODRange">
