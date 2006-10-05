@@ -847,6 +847,22 @@
         <add name="Center" type="Vector3">The sphere's center.</add>
         <add name="Radius" type="float">The sphere's radius.</add>
     </compound>
+    
+    <compound name="OblivionColFilter">
+        Oblivion's ColFilter property for Havok.
+        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+    </compound>
+    
+    <compound name="OblivionSubpart">
+        Havok Information for packed TriStrip shapes.
+        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Vertex Count (?)" type="uint">Seems to be the number of vertices that form this subpart.</add>
+        <add name="Material" type="HavokMaterial">The material of the subshape.</add>
+    </compound>
 
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -1270,14 +1286,14 @@ is simple, it only has three properties.
         <add name="Unknown Int 3" type="uint">Unknown.</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
-        <add name="Num Unknown Ints 2" type="uint">Unknown.</add>
-        <add name="Unknown Ints 2" type="uint" arr1="Num Unknown Ints 2">Unknown.</add>
+        <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
+        <add name="Data Layers" type="OblivionColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
         A shape constructed from strips data.
         <add name="Num Subparts" type="ushort">Number of subparts.</add>
-        <add name="Subparts" type="uint" arr1="Num Subparts" arr2="3">The subparts. First int in each set is Layer. Second is something to do with vertices/triangles?</add>
+        <add name="Subparts" type="OblivionSubpart" arr1="Num Subparts">The subparts.</add>
         <add name="Unknown Floats" type="float" arr1="9">Unknown. A rotation matrix?</add>
         <add name="Scale" type="float" default="1.0">Scale.</add>
         <add name="Unknown Floats 2" type="float" arr1="3">Unknown. Translation?</add>
