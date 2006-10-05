@@ -855,12 +855,12 @@
         <add name="Unknown Short" type="ushort">Unknown.</add>
     </compound>
     
-    <compound name="OblivionSubpart">
+    <compound name="OblivionSubShape">
         Havok Information for packed TriStrip shapes.
         <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Vertex Count (?)" type="uint">Seems to be the number of vertices that form this subpart.</add>
+        <add name="Vertex Count (?)" type="uint">Seems to be the number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
@@ -1292,8 +1292,8 @@ is simple, it only has three properties.
 
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
         A shape constructed from strips data.
-        <add name="Num Subparts" type="ushort">Number of subparts.</add>
-        <add name="Subparts" type="OblivionSubpart" arr1="Num Subparts">The subparts.</add>
+        <add name="Num Sub Shapes" type="ushort">Number of subparts.</add>
+        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes">The subparts.</add>
         <add name="Unknown Floats" type="float" arr1="9">Unknown. A rotation matrix?</add>
         <add name="Scale" type="float" default="1.0">Scale.</add>
         <add name="Unknown Floats 2" type="float" arr1="3">Unknown. Translation?</add>
