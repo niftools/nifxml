@@ -799,7 +799,7 @@
         A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
         <add name="Unknown Short" type="ushort">Another short, doesn&#039;t look like a vertex index.</add>
-        <add name="Normal" type="Vector3">This appears to be a normalized vector, so probably it is a normal or a tangent vector or something like that.</add>
+        <add name="Normal" type="Vector3">This is the triangle's normal.</add>
     </compound>
 
     <compound name="Morph">
