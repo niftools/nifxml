@@ -1188,10 +1188,10 @@ is simple, it only has three properties.
     <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
         A convex shape built from vertices?
         <add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
-        <add name="Num 1" type="uint">A count.</add>
-        <add name="Unknown Vectors 1" type="Vector4" arr1="Num 1">Unknown. Vertices?</add>
-        <add name="Num 2" type="uint">A count.</add>
-        <add name="Unknown Vectors 2" type="Vector4" arr1="Num 2">Unknown. More vertices?</add>
+        <add name="Num Vertices" type="uint">Number of vertices.</add>
+        <add name="Vertices" type="Vector4" arr1="Num Vertices">Vertices. Fourth component is 0.</add>
+        <add name="Num Normals" type="uint">The number of normals.</add>
+        <add name="Normals" type="Vector4" arr1="Num Normals">The normals of the shape's outer faces. Fourth component is the distance from center, negative.</add>
     </niobject>
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
