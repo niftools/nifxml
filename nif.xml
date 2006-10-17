@@ -1165,7 +1165,7 @@ is simple, it only has three properties.
         <add name="Unknown Short 3" type="ushort">Unknown.</add>
         <add name="Unknown Short 4" type="ushort">Unknown.</add>
         <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
+        <add name="Min. size" type="float">The smallest of the three sizes. Might be used for optimization.</add>
     </niobject>
 
     <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
