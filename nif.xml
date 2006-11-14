@@ -940,8 +940,8 @@
     <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
         A havok node, describes physical properties.
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Layer" type="OblivionLayer" default="1">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
     </niobject>
 
@@ -1317,8 +1317,8 @@ properties. Because the properties are equal, a bhkRigidBody may be renamed
 into a bhkRigidBodyT and vice-versa.
         <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
         <add name="Unknown 4 Shorts" type="ushort" arr1="4">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte">Copy of Col Filter value?</add>
+        <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
+        <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7">Unknown.</add>
         <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Unknown Float 00" type="float">This seems to often be 1 for single objects, or the first one in a
@@ -1332,17 +1332,17 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
         <add name="Mass" type="float">The body's mass.</add>
-        <add name="Linear Damping" type="float"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
-        <add name="Angular Damping" type="float"> Damping value for angular movement.</add>
-        <add name="Friction" type="float">The body&#039;s friction.</add>
-        <add name="Restitution" type="float">The body&#039;s restitution (elasticity).</add>
-        <add name="Max Linear Velocity" type="float">Maximal linear velocity.</add>
+        <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
+        <add name="Angular Damping" type="float" default="0.1"> Damping value for angular movement.</add>
+        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
+        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).</add>
+        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
-        <add name="Penetration Depth" type="float">Penetration depth.</add>
-        <add name="Motion System" type="MotionSystem">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Unknown Byte 1" type="byte"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
-        <add name="Unknown Byte 2" type="byte">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality">The motion type. Determines quality of motion?</add>
+        <add name="Penetration Depth" type="float" default="0.15">Penetration depth.</add>
+        <add name="Motion System" type="MotionSystem" default="7">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Unknown Byte 1" type="byte" default="1"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
+        <add name="Unknown Byte 2" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
         <add name="Unknown Int 6" type="uint">Unknown.</add>
         <add name="Unknown Int 7" type="uint">Unknown.</add>
         <add name="Unknown Int 8" type="uint">Unknown.</add>
