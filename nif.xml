@@ -32,11 +32,11 @@
         An unsigned 8-bit integer.
     </basic>
 
-    <basic name="uint" count="1" niflibtype="uint" nifskopetype="uint">
+    <basic name="uint" count="1" niflibtype="unsigned int" nifskopetype="uint">
         An unsigned 32-bit integer.
     </basic>
 
-    <basic name="ushort" count="1" niflibtype="ushort" nifskopetype="ushort">
+    <basic name="ushort" count="1" niflibtype="unsigned short" nifskopetype="ushort">
         An unsigned 16-bit integer.
     </basic>
 
@@ -48,7 +48,7 @@
         A signed 16-bit integer.
     </basic>
 
-    <basic name="BlockTypeIndex" count="0" niflibtype="ushort" nifskopetype="blocktypeindex">
+    <basic name="BlockTypeIndex" count="0" niflibtype="unsigned short" nifskopetype="blocktypeindex">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
     </basic>
 
@@ -56,7 +56,7 @@
         An 8-bit character.
     </basic>
 
-    <basic name="FileVersion" count="0" niflibtype="uint" nifskopetype="fileversion">
+    <basic name="FileVersion" count="0" niflibtype="unsigned int" nifskopetype="fileversion">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
         Known versions and their hex representation:
@@ -72,7 +72,7 @@
         20.0.0.5:  0x14000005
     </basic>
 
-    <basic name="Flags" count="0" niflibtype="ushort" nifskopetype="flags">
+    <basic name="Flags" count="0" niflibtype="unsigned short" nifskopetype="flags">
         A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
 
@@ -99,7 +99,7 @@
         A signed 32-bit integer, used to refer to another object; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to objects higher up.
     </basic>
 
-    <basic name="StringOffset" count="0" niflibtype="uint" nifskopetype="stringoffset">
+    <basic name="StringOffset" count="0" niflibtype="unsigned int" nifskopetype="stringoffset">
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
