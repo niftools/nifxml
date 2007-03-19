@@ -1255,7 +1255,7 @@ is simple, it only has three properties.
         <add name="Damping" type="float" />
     </niobject>
 
-    <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
+<!--    <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
@@ -1265,6 +1265,17 @@ is simple, it only has three properties.
         <add name="Unknown Bytes 2" type="byte" arr1="Num Unknown Bytes 2">Unknown.</add>
         <add name="Unknown Vector" type="Vector3">Unknown vector. Corner of the object?</add>
         <add name="Unknown Float 2" type="float">Unknown. Some kind of a scaling factor?</add>
+    </niobject>-->
+	<niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
+        Memory optimized partial polytope bounding volume tree shape (not an entity).
+        <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
+        <add name="Material" type="HavokMaterial">The shape's material.</add>
+        <add name="Unknown bytes 1" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
+        <add name="Unknown float 1" type="float">Unknown float, might be scale.</add>
+        <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
+        <add name="Object Corner" type="Vector3">Corner of the object with min. coordinates.</add>
+        <add name="Unknown bytes 2" type="byte" arr1="4">Unknown. Can be interpreted as float inversely proportional to shape size.</add>
+        <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
     <niobject name="bhkMultiSphereShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
@@ -1328,7 +1339,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float 01" type="float">Unknown.</add>
         <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
         <add name="Unknown Float 02" type="float">Unknown.</add>
-        <add name="Transform" type="float" arr1="12">Seems to be some kind of transformation matrix, scale or translation?</add>
+        <add name="Inertia" type="float" arr1="12">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
         <add name="Mass" type="float">The body's mass.</add>
@@ -1373,8 +1384,9 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="AbhkConstraint">
         A spring constraint.
-        <add name="Unknown Floats" type="float" arr1="2" arr2="4">Unknown.</add>
-        <add name="Unknown Float" type="float">Unknown.</add>
+        <add name="Pivot A" type="vector4">This is a guess.</add>
+        <add name="Pivot B" type="vector4">This is a guess.</add>
+        <add name="Stiffness" type="float">Measures the strength of the spring.</add>
     </niobject>
 
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkEntity">
