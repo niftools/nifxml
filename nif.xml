@@ -1255,26 +1255,15 @@ is simple, it only has three properties.
         <add name="Damping" type="float" />
     </niobject>
 
-<!--    <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
-        Memory optimized partial polytope bounding volume tree shape (not an entity).
-        <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
-        <add name="Unknown Bytes 1" type="byte" arr1="8">Unknown.</add>
-        <add name="Unknown Float" type="float">Unknown.</add>
-        <add name="Num Unknown Bytes 2" type="uint">A count.</add>
-        <add name="Unknown Bytes 2" type="byte" arr1="Num Unknown Bytes 2">Unknown.</add>
-        <add name="Unknown Vector" type="Vector3">Unknown vector. Corner of the object?</add>
-        <add name="Unknown Float 2" type="float">Unknown. Some kind of a scaling factor?</add>
-    </niobject>-->
 	<niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Material" type="HavokMaterial">The shape's material.</add>
-        <add name="Unknown bytes 1" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
-        <add name="Unknown float 1" type="float">Unknown float, might be scale.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
+        <add name="Unknown Float" type="float">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
         <add name="Object Corner" type="Vector3">Corner of the object with min. coordinates.</add>
-        <add name="Unknown bytes 2" type="byte" arr1="4">Unknown. Can be interpreted as float inversely proportional to shape size.</add>
+        <add name="Scaling Factor" type="float">The scaling factor to quantize the MOPP. Determined by 255*255*255 / size.</add>
         <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
