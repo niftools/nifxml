@@ -1373,9 +1373,9 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="AbhkConstraint">
         A spring constraint.
-        <add name="Pivot A" type="vector4">This is a guess.</add>
-        <add name="Pivot B" type="vector4">This is a guess.</add>
-        <add name="Stiffness" type="float">Measures the strength of the spring.</add>
+        <add name="Pivot A" type="Vector4">Pivot A.</add>
+        <add name="Pivot B" type="Vector4">Pivot B.</add>
+        <add name="Length" type="float">Length.</add>
     </niobject>
 
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkEntity">
