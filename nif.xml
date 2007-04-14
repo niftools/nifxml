@@ -902,24 +902,13 @@
 
     <niobject name="AbhkRagdollConstraint" abstract="1" inherit="AbhkConstraint">
         Ragdoll constraint.
-        <add name="Pivot A" type="Vector4">Pivot A.</add>
-        <add name="Plane A" type="Vector4">Plane A.</add>
-        <add name="Twist A" type="Vector4">Twist A.</add>
-        <add name="Pivot B" type="Vector4">Pivot B.</add>
-        <add name="Plane B" type="Vector4">Plane B.</add>
-        <add name="Twist B" type="Vector4">Twist B.</add>
-        <add name="Cone Min Angle" type="float">Minimal cone angle.</add>
-        <add name="Plane Min Angle" type="float">Minimal plane angle.</add>
-        <add name="Plane Max Angle" type="float">Maximal plane angle.</add>
-        <add name="Twist Min Angle" type="float">Minimal twist angle.</add>
-        <add name="Twist Max Angle" type="float">Maximal twist angle.</add>
-        <add name="Max Friction" type="float">Maximal friction.</add>
+		<add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
     </niobject>
 
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
         A Havok Shape?
     </niobject>
-
+	
     <niobject name="AbhkShapeCollection" abstract="1" inherit="bhkShape">
         Havok data, not sure where to put in the hierarchy.
     </niobject>
@@ -1200,10 +1189,14 @@ is simple, it only has three properties.
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
         A hinge constraint.
-        <add name="Unknown Floats" type="float" arr1="5" arr2="4">Unknown.</add>
+        <add name="Pivot A" type="Vector4">Pivot A.</add>
+        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
+        <add name="Pivot B" type="Vector4">Pivot B.</add>
+        <add name="Axle B" type="Vector4">Unknown.</add>
     </niobject>
 
-    <compound name="RagDollDescriptor">
+    <compound name="RagdollDescriptor">
         <add name="Pivot A" type="Vector4">Unknown.</add>
         <add name="Plane A" type="Vector4">Unknown.</add>
         <add name="Twist A" type="Vector4">Unknown.</add>
@@ -1253,7 +1246,7 @@ is simple, it only has three properties.
         <add name="Unknown Link 1" type="Ref" template="NiObject">Usually -1?</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject">Usually -1?</add>
         <add name="Unknown Int 3" type="uint">Unknown. 1?</add>
-        <add name="Ragdoll" type="RagDollDescriptor" cond="Type == 7" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
         <add name="Tau" type="float" />
         <add name="Damping" type="float" />
@@ -1266,8 +1259,8 @@ is simple, it only has three properties.
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
         <add name="Unknown Float" type="float">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
-        <add name="Object Corner" type="Vector3">Corner of the object with min. coordinates.</add>
-        <add name="Scaling Factor" type="float">The scaling factor to quantize the MOPP. Determined by 255*255*255 / size.</add>
+        <add name="Object Corner" type="Vector3" ver1="20.0.0.5">Corner of the object with min. coordinates.</add>
+        <add name="Scaling Factor" type="float" ver1="20.0.0.5">The scaling factor to quantize the MOPP. Determined by 255*255*255 / size.</add>
         <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
@@ -1294,6 +1287,15 @@ is simple, it only has three properties.
         <add name="Data Layers" type="OblivionColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
+	<niobject name="bhkMeshShape" abstract="0" inherit="bhkSphereRepShape">
+		<add name="unknown" type="int" arr1="8" />
+		<add name="unknown count" type="int" />
+		<add name="unknown floats" type="float" arr1="unknown count" arr2="3" />
+		<add name="unknown" type="int" arr1="3" />
+		<add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
+		<add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
+	</niobject>
+
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
         A shape constructed from strips data.
         <add name="Num Sub Shapes" type="ushort">Number of subparts.</add>
@@ -1314,16 +1316,16 @@ is simple, it only has three properties.
         Ragdoll constraint.
     </niobject>
 
-    <niobject name="bhkRigidBody" abstract="0" inherit="bhkEntity" ver1="20.0.0.5">
+    <niobject name="bhkRigidBody" abstract="0" inherit="bhkEntity" ver1="20.0.0.4">
         This is the default body type for all "normal" usable and static world objects. The "T" suffix
 marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
 properties. Because the properties are equal, a bhkRigidBody may be renamed
 into a bhkRigidBodyT and vice-versa.
         <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
-        <add name="Unknown 4 Shorts" type="ushort" arr1="4">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
-        <add name="Unknown 7 Shorts" type="ushort" arr1="7">Unknown.</add>
+        <add name="Unknown 4 Shorts" type="ushort" arr1="4" ver1="20.0.0.4">Unknown.</add>
+        <add name="Layer Copy" type="OblivionLayer" default="1" ver1="20.0.0.4">Copy of Layer value?</add>
+        <add name="Col Filter Copy" type="byte" default="0" ver1="20.0.0.4">Copy of Col Filter value?</add>
+        <add name="Unknown 7 Shorts" type="ushort" arr1="7" ver1="20.0.0.4">Unknown.</add>
         <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Unknown Float 00" type="float">This seems to often be 1 for single objects, or the first one in a
 a linked object group. This may be due to those objects often being bhkRigidBodyT as well.</add>
@@ -1332,6 +1334,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float 01" type="float">Unknown.</add>
         <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
         <add name="Unknown Float 02" type="float">Unknown.</add>
+
         <add name="Inertia" type="float" arr1="12">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
