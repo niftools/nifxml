@@ -641,6 +641,7 @@
         <add name="Interpolation" type="KeyType" cond="Num Keys != 0">The key type.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="TEMPLATE" arr1="Num Keys">The keys.</add>
     </compound>
+    
     <compound name="ns keytbc" istemplate="1">
         A TBC key (!!! for NifSkope only, use keyvec for regular purposes).
         <add name="Time" type="float">The key time.</add>
@@ -862,6 +863,34 @@
         <add name="Unknown Short" type="ushort">Unknown.</add>
         <add name="Vertex Count (?)" type="uint">Seems to be the number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
+    </compound>
+
+    <compound name="RagdollDescriptor">
+        <add name="Pivot A" type="Vector4">Unknown.</add>
+        <add name="Plane A" type="Vector4">Unknown.</add>
+        <add name="Twist A" type="Vector4">Unknown.</add>
+        <add name="Pivot B" type="Vector4">Unknown.</add>
+        <add name="Plane B" type="Vector4">Unknown.</add>
+        <add name="Twist B" type="Vector4">Unknown.</add>
+        <add name="Cone Min Angle" type="float"></add>
+        <add name="Plane Min Angle" type="float"></add>
+        <add name="Plane Max Angle" type="float"></add>
+        <add name="Twist Min Angle" type="float"></add>
+        <add name="Twist Max Angle" type="float"></add>
+        <add name="Max Friction" type="float"></add>
+    </compound>
+
+    <compound name="LimitedHingeDescriptor">
+        <add name="Pivot A" type="Vector4">Unknown.</add>
+        <add name="Axle A" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
+        <add name="Pivot B" type="Vector4">Unknown.</add>
+        <add name="Axle B" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInB2" type="Vector4">Unknown.</add>
+        <add name="Min Angle" type="float"></add>
+        <add name="Max Angle" type="float"></add>
+        <add name="Max Friction" type="float"></add>
     </compound>
 
     <!-- NIF Objects
@@ -1195,34 +1224,6 @@ is simple, it only has three properties.
         <add name="Pivot B" type="Vector4">Pivot B.</add>
         <add name="Axle B" type="Vector4">Unknown.</add>
     </niobject>
-
-    <compound name="RagdollDescriptor">
-        <add name="Pivot A" type="Vector4">Unknown.</add>
-        <add name="Plane A" type="Vector4">Unknown.</add>
-        <add name="Twist A" type="Vector4">Unknown.</add>
-        <add name="Pivot B" type="Vector4">Unknown.</add>
-        <add name="Plane B" type="Vector4">Unknown.</add>
-        <add name="Twist B" type="Vector4">Unknown.</add>
-        <add name="Cone Min Angle" type="float"></add>
-        <add name="Plane Min Angle" type="float"></add>
-        <add name="Plane Max Angle" type="float"></add>
-        <add name="Twist Min Angle" type="float"></add>
-        <add name="Twist Max Angle" type="float"></add>
-        <add name="Max Friction" type="float"></add>
-    </compound>
-
-    <compound name="LimitedHingeDescriptor">
-        <add name="Pivot A" type="Vector4">Unknown.</add>
-        <add name="Axle A" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
-        <add name="Pivot B" type="Vector4">Unknown.</add>
-        <add name="Axle B" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInB2" type="Vector4">Unknown.</add>
-        <add name="Min Angle" type="float"></add>
-        <add name="Max Angle" type="float"></add>
-        <add name="Max Friction" type="float"></add>
-    </compound>
 
     <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
         Hinge constraint.
