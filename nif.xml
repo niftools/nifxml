@@ -6,14 +6,14 @@
         each part of the version in a byte.  For example, 4.0.0.2 is
         0x04000002 and 10.1.0.0 is 0x0A010000.-->
 
-	<version num="3.1">Star Trek: Bridge Commander</version>
+    <version num="3.1">Star Trek: Bridge Commander</version>
     <version num="3.3.0.13">Oblivion</version>
     <version num="4.0.0.0">Freedom Force</version>
     <version num="4.0.0.2">Morrowind, Freedom Force</version>
     <version num="4.1.0.12">Dark Age of Camelot</version>
     <version num="4.2.0.2">Civilization IV</version>
     <version num="4.2.1.0">Dark Age of Camelot, Civilization IV</version>
-    <version num="4.2.2.0">Dark Age of Camelot, Civilization IV</version>
+    <version num="4.2.2.0">Dark Age of Camelot, Civilization IV, Empire Earth II</version>
     <version num="10.0.1.0">Zoo Tycoon 2, Civilization IV</version>
     <version num="10.0.1.2">Oblivion</version>
     <version num="10.1.0.0">Dark Age of Camelot, Civilization IV, Freedom Force vs. the 3rd Reich</version>
@@ -1641,14 +1641,18 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Object Palette" type="Ref" template="NiDefaultAVObjectPalette">Refers to a NiDefaultAVObjectPalette.</add>
     </niobject>
 
-    <niobject name="NiControllerSequence" abstract="0" inherit="NiObject" ver1="10.0.1.0">
-        Root node in .kf files (version 10.0.1.0 and up).
+    <niobject name="NiSequence" abstract="0" ver1="4.2.2.0">
+        Root node used in some Empire Earth II .kf files (version 4.2.2.0).
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
         <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
         <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
         <add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
+    </niobject>
+
+    <niobject name="NiControllerSequence" abstract="0" inherit="NiSequence" ver1="10.0.1.0">
+        Root node in .kf files (version 10.0.1.0 and up).
         <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">Weight/priority of animation?</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
         <add name="Cycle Type" type="CycleType" ver1="10.1.0.106">Anim cycle type? Is part of &quot;Flags&quot; in other objects?</add>
