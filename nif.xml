@@ -405,6 +405,12 @@
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
+    <compound name="ByteColor3">
+        <add name="r" type="byte">Red color component.</add>
+        <add name="g" type="byte">Green color component.</add>
+        <add name="b" type="byte">Blue color component.</add>
+    </compound>
+
     <compound name="Color4" niflibtype="Color4" nifskopetype="color4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="float">Red component.</add>
@@ -2724,10 +2730,10 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     </niobject>
 
     <niobject name="NiZBufferProperty" abstract="0" inherit="NiProperty">
-        This Property controlls the Z buffer (OpenGL: depth buffer).
+        This Property controls the Z buffer (OpenGL: depth buffer).
         <add name="Flags" type="Flags" default="3">
             Bit 0 enables the z test
-            Bit 1 controlls wether the z buffer is read only (0) or read/write (1)
+            Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
         </add>
         <add name="Function" type="CompareMode" default="3" ver1="4.1.0.12">
             Z-Test function (see: glDepthFunc)
@@ -2738,5 +2744,12 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Morrowind-specific node for collision mesh.
     </niobject>
 
-</niftoolsxml>
+    <niobject name="NiRawImageData" abstract="0" inherit="NiObject" ver1="3.1" ver2="3.1">
+        Raw image data.
+        <add name="Width" type="uint">Image width</add>
+        <add name="Height" type="uint">Image height</add>
+        <add name="Unknown Int" type="uint">Unknown. Image type?</add>
+	<add name="Image Data" type="ByteColor3" arr1="Width" arr2="Height">Image pixel data.</add>
+    </niobject>
 
+</niftoolsxml>
