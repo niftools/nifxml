@@ -1030,9 +1030,8 @@ is simple, it only has three properties.
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
         A dynamic effect such as a light or environment map.
         <add name="Switch State" type="bool" ver1="10.2.0.0">Turns effect on and off?  Switches list to list of unaffected nodes?</add>
-        <add name="Num Affected Nodes" type="uint" ver2="4.0.0.2">The number of affected nodes referenced.</add>
+        <add name="Num Affected Nodes" type="uint">The number of affected nodes referenced.</add>
         <add name="Affected Node List Pointers" type="uint" arr1="Num Affected Nodes" ver2="4.0.0.2">This is probably the list of affected nodes. For some reason i do not know the max exporter seems to write pointers instead of links. But it doesn&#039;t matter because at least in version 4.0.0.2 the list is automagically updated by the engine during the load stage.</add>
-        <add name="Num Affected Nodes" type="uint" ver1="10.1.0.0">The number of affected nodes referenced.</add>
         <add name="Affected Nodes" type="Ref" template="NiAVObject" arr1="Num Affected Nodes" ver1="10.1.0.0">The list of affected nodes?</add>
         
     </niobject>
@@ -1647,7 +1646,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Object Palette" type="Ref" template="NiDefaultAVObjectPalette">Refers to a NiDefaultAVObjectPalette.</add>
     </niobject>
 
-    <niobject name="NiSequence" abstract="0" ver1="4.2.2.0">
+    <niobject name="NiSequence" abstract="0" inherit="NiObject" ver1="4.2.2.0">
         Root node used in some Empire Earth II .kf files (version 4.2.2.0).
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
         <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
