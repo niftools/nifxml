@@ -2580,17 +2580,18 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
     </niobject>
 
+    <compound name="MultiTextureElement">
+        <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
+        <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
+        <add name="Unknown Ints 3" type="uint" arr1="3" cond="Has Image">Unkown. 3,2,1</add>
+        <add name="Unknown Shorts" type="short" arr1="3" cond="Has Image">Unknown. 0,-75,0</add>
+    </compound>
+
     <niobject name="NiMultiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
         (note: not quite complete yet... but already reads most of the DAoC ones)
         <add name="Flags" type="Flags">Property flags.</add>
-        <add name="Unknown Int 1" type="uint" default="5">Unknown. Always 5?</add>
-        <add name="Unknown Int 2" type="uint">Looks like a memory address. Maybe a bool?</add>
-        <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
-        <add name="Unknown Int 3" type="uint">Unknown. 3?</add>
-        <add name="Unknown Int 4" type="uint">Unknown. 2?</add>
-        <add name="Unknown Int 5" type="uint">Unknown. 1?</add>
-        <add name="Unknown Shorts" type="short" arr1="11">Unknown. (0,-75,0,0,...,0)?</add>
-	<add name="Unknown Extra Shorts" type="short" arr1="11" cond="Unknown Int 5 == 0">Unknown. (0,0,0,-75,0,...,0)?</add>
+        <add name="Num Texture Elements" type="uint">Just a guess. Always 5 for DAoC files, and always 6 for Freedom Force files</add>
+        <add name="Texture Elements" type="MultiTextureElement" arr1="Num Texture Elements" />
     </niobject>
 
     <niobject name="NiTexturingProperty" abstract="0" inherit="NiProperty">
