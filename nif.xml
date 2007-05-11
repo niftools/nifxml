@@ -2623,7 +2623,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     
     <niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.0" ver2="3.1">
         <add name="External" type="byte">0 if the texture is internal to the NIF file.</add>
-        <add name="File" type="FilePath" cond="External != 0">The filepath to the texture.</add>
+        <add name="File Name" type="FilePath" cond="External != 0">The filepath to the texture.</add>
         <add name="Image Data" type="Ref" template="NiRawImageData" cond="External == 0">Link to the internally stored image data.</add>
         <add name="Unknown Int 1" type="uint" default="7">Unknown.  Often seems to be 7.</add>
         <add name="Unknown Int 2" type="uint" ver1="3.1" default="0x43008000">Unknown.  Perhaps some flags?  Two shorts? Default seems to be 0x43008000</add>
