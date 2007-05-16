@@ -948,7 +948,7 @@
         <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="4.0.0.2">Points to the particle system controller parent.</add>
     </niobject>
     
-    <niobject name="ANiPSysCollider" abstract="1" inherit="NiObject">
+    <niobject name="NiPSysCollider" abstract="1" inherit="NiObject">
         Particle system collider.
         <add name="Bounce" type="float">Unknown.</add>
         <add name="Spawn on Collide" type="bool">Unknown.</add>
@@ -1940,7 +1940,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Effects" type="Ref" template="NiDynamicEffect" arr1="Num Effects">List of node effects. ADynamicEffect?</add>
     </niobject>
 
-    <niobject name="NiBone" abstract="0" inherit="NiNode" ver2="3.0">
+    <niobject name="NiBone" abstract="0" inherit="NiNode" ver2="3.03">
         A NiNode used as a skeleton bone?
     </niobject>
 
@@ -2369,7 +2369,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Int" type="uint" ver2="10.1.0.0"></add>
     </niobject>
 
-    <niobject name="NiPSysPlanarCollider" abstract="0" inherit="ANiPSysCollider" ver1="10.2.0.0">
+    <niobject name="NiPSysPlanarCollider" abstract="0" inherit="NiPSysCollider" ver1="10.2.0.0">
         Unknown.
         <add name="Width" type="float">Unknown.</add>
         <add name="Height" type="float">Unknown.</add>
@@ -2377,7 +2377,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Y Axis" type="Vector3">Unknown.</add>
     </niobject>
 
-    <niobject name="NiPSysSphericalCollider" abstract="0" inherit="ANiPSysCollider" ver1="10.2.0.0">
+    <niobject name="NiPSysSphericalCollider" abstract="0" inherit="NiPSysCollider" ver1="10.2.0.0">
         Unknown.
         <add name="Radius" type="float">Unknown.</add>
     </niobject>
@@ -2642,8 +2642,8 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     <niobject name="NiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.0" ver2="3.1">
         <add name="Flags" type="Flags">Property flags.</add>
         <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
-        <add name="Unknown Int 1" type ="uint" ver2="3.0">Unknown.  0?</add>
-        <add name="Unknown Int 2" type ="uint" ver2="3.0">Unknown.  0xFFFFFFFF?</add>
+        <add name="Unknown Int 1" type ="uint" ver2="3.03">Unknown.  0?</add>
+        <add name="Unknown Int 2" type ="uint" ver2="3.03">Unknown.  0xFFFFFFFF?</add>
     </niobject>
 
     <niobject name="NiMultiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.1" ver2="3.1">
