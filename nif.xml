@@ -938,10 +938,6 @@
         Abstract object type.
     </niobject>
 
-    <niobject name="AKeyedData" abstract="1" inherit="NiObject">
-        Single items of data linked to particular key times.
-    </niobject>
-
     <niobject name="AParticleModifier" abstract="1" inherit="NiObject">
         A particle system modifier.
         <add name="Next Modifier" type="Ref" template="AParticleModifier">Next particle modifier.</add>
@@ -1006,16 +1002,6 @@
         <add name="Layer" type="OblivionLayer" default="1">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiCollisionObject" abstract="1" inherit="NiObject" ver1="20.0.0.5">
-        This is the most common collision object found in NIF files. It acts as a real object that
-is visible and possibly (if the body allows for it) interactive. The node itself
-is simple, it only has three properties.
-        For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
-        <add name="Parent" type="Ptr" template="NiAVObject">Link to the node this collision object belongs to</add>
-        <add name="Unknown Short" type="ushort" default="1"> Set to "1" for most objects.</add>
-        <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
     </niobject>
 
     <niobject name="NiExtraData" abstract="1" inherit="NiObject">
@@ -1245,10 +1231,6 @@ is simple, it only has three properties.
         <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
         <add name="Radius 2" type="float">Matches second capsule radius.</add>
-    </niobject>
-
-    <niobject name="bhkCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
-        Unknown.
     </niobject>
 
     <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
@@ -1581,7 +1563,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Shape Groups 2" type="Ref" template="NiTriShape" arr1="Num Shape Groups 2">Group of NiTriShape indices.</add>
     </niobject>
 
-    <niobject name="NiBoolData" abstract="0" inherit="AKeyedData" ver1="10.2.0.0">
+    <niobject name="NiBoolData" abstract="0" inherit="NiObject" ver1="10.2.0.0">
         Timed boolean data.
         <add name="Data" type="KeyGroup" template="byte">The boolean keys.</add>
     </niobject>
@@ -1666,9 +1648,18 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Int 3" type ="uint" ver2="3.1">Unknown.</add>
     </niobject>
 
-    <niobject name="NiCollisionData" abstract="0" inherit="NiObject" ver1="10.0.1.0">
+    <niobject name="NiCollisionObject" abstract="0" inherit="NiObject" ver1="20.0.0.5">
+        This is the most common collision object found in NIF files. It acts as a real object that
+        is visible and possibly (if the body allows for it) interactive. The node itself
+        is simple, it only has three properties.
+        For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
+        <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision object.</add>
+        <add name="Unknown Short" type="ushort" default="1" ver1="20.0.0.5"> Set to "1" for most objects.</add>
+        <add name="Body" type="Ref" template="NiObject" ver1="20.0.0.5">Links to the collision object data</add>
+    </niobject>
+
+    <niobject name="NiCollisionData" abstract="0" inherit="NiCollisionObject" ver1="10.0.1.0">
         Collision box.
-        <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision data object.</add>
         <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
         <add name="Unknown Byte" type="byte">Unknown.</add>
@@ -1679,7 +1670,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float 2" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
     </niobject>
 
-    <niobject name="NiColorData" abstract="0" inherit="AKeyedData">
+    <niobject name="bhkCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiColorData" abstract="0" inherit="NiObject">
         Color data for material color controller.
         <add name="Data" type="KeyGroup" template="Color4">The color keys.</add>
     </niobject>
@@ -1757,7 +1752,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Data" type="Ref" template="NiFloatData">The data for the controller.</add>
     </niobject>
     
-    <niobject name="NiFloatData" abstract="0" inherit="AKeyedData">
+    <niobject name="NiFloatData" abstract="0" inherit="NiObject">
         Possibly the 1D position along a 3D path.
         <add name="Data" type="KeyGroup" template="float">The keys.</add>
     </niobject>
@@ -1840,7 +1835,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Data 2" type="Ref" template="NiKeyframeData">A link to more keyframe data.</add>
     </niobject>
 
-    <niobject name="NiKeyframeData" abstract="0" inherit="AKeyedData">
+    <niobject name="NiKeyframeData" abstract="0" inherit="NiObject">
         Keyframes for mesh animation.
         <add name="Num Rotation Keys" type="uint">The number of rotation keys.</add>
         <add name="Rotation Type" type="KeyType" default="0" cond="Num Rotation Keys != 0">The type of interpolation to use for rotation.  Can also be 4 to indicate that separate X, Y, and Z values are used for the rotation instead of Quaternions.</add>
@@ -2206,7 +2201,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Quadratic Attenuation" type="float">Quadratic Attenuation (see glLight)</add>
     </niobject>
 
-    <niobject name="NiPosData" abstract="0" inherit="AKeyedData">
+    <niobject name="NiPosData" abstract="0" inherit="NiObject">
         Position data.
         <add name="Data" type="KeyGroup" template="Vector3">The position keys.</add>
     </niobject>
@@ -2797,7 +2792,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">Visibility controller data object index.</add>
     </niobject>
 
-    <niobject name="NiVisData" abstract="0" inherit="AKeyedData">
+    <niobject name="NiVisData" abstract="0" inherit="NiObject">
         Visibility data for a controller.
         <add name="Num Vis Keys" type="uint">The number of visibility keys that follow.</add>
         <add name="Vis Keys" type="Key" arg="1" template="byte" arr1="Num Vis Keys">The visibility keys.</add>
