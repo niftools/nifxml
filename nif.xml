@@ -1038,6 +1038,50 @@
         <add name="Controller" type="Ref" template="NiTimeController">Controller object index. (The first in a chain)</add>
     </niobject>
 
+    <niobject name="NiCollisionObject" abstract="0" inherit="NiObject" ver1="20.0.0.5">
+        This is the most common collision object found in NIF files. It acts as a real object that
+        is visible and possibly (if the body allows for it) interactive. The node itself
+        is simple, it only has three properties.
+        For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
+        <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision object.</add>
+        <add name="Unknown Short" type="ushort" default="1" ver1="20.0.0.4"> Set to "1" for most objects.</add>
+        <add name="Body" type="Ref" template="NiObject" ver1="20.0.0.4">Links to the collision object data</add>
+    </niobject>
+
+    <niobject name="NiCollisionData" abstract="0" inherit="NiCollisionObject" ver1="10.0.1.0">
+        Collision box.
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
+        <add name="Unknown Byte" type="byte">Unknown.</add>
+        <add name="Collision Type" type="uint">Type of collision data.</add>
+        <add name="Unknown Int 2" type="uint" cond="Collision Type == 0">Unknown.</add>
+        <add name="Unknown Vector" type="Vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
+        <add name="Unknown Float 1" type="float" arr1="8" cond="Collision Type == 2">Unknown.</add>
+        <add name="Unknown Float 2" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject" ver1="20.0.0.5">
+        Havok related collision object?
+    </niobject>
+
+    <niobject name="bhkCollisionObject" abstract="0" inherit="bhkNiCollisionObject" ver1="20.0.0.5">
+        Havok related collision object?
+    </niobject>
+
+    <niobject name="bhkBlendCollisionObject" abstract="0" inherit="bhkCollisionObject" ver1="20.0.0.5">
+        Unknown.
+        <add name="Unknown Float 1" type="float">Blending parameter?</add>
+        <add name="Unknown Float 2" type="float">Another blending parameter?</add>
+    </niobject>
+
+    <niobject name="bhkPCollisionObject" abstract="1" inherit="bhkNiCollisionObject" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
+    <niobject name="bhkSPCollisionObject" abstract="0" inherit="bhkPCollisionObject" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Generic node object.
         <add name="Flags" type="Flags">Some flags; commonly 0x000C or 0x000A.</add>
@@ -1049,8 +1093,7 @@
         <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties">List of node properties.</add>
         <add name="Has Bounding Box" type="bool" ver2="4.2.2.0">Do we have a bounding box?</add>
         <add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box != 0" ver2="4.2.2.0">The bounding box.</add>
-        <add name="Collision Data" type="Ref" template="NiCollisionData" ver1="10.0.1.0" ver2="10.2.0.0"  >Bounding box: refers to NiCollisionData</add>
-        <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="20.0.0.4">In Oblivion this links the havok objects.</add>
+        <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="10.0.1.0">Refers to NiCollisionObject, which is usually a bounding box or other simple collision shape.  In Oblivion this links the Havok objects.</add>
     </niobject>
 
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
@@ -1188,32 +1231,32 @@
         <add name="Num Triangles" type="ushort">Number of triangles.</add>
     </niobject>
 
-    <niobject name="APSysData" abstract="1" inherit="NiGeometryData" ver1="10.1.0.0">
-        Particle system data.  Probably really NiPSysData.
-        <add name="Has Unknown Floats 1" type="bool">Unknown.</add>
-        <add name="Unknown Floats 1" type="float" arr1="Num Vertices" cond="Has Unknown Floats 1 != 0">Unknown.</add>
-        <add name="Unknown Short 3" type="ushort">Unknown.</add>
-        <add name="Has Unknown Floats 2" type="bool">Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="Num Vertices" cond="Has Unknown Floats 2 != 0">Unknown.</add>
-        <add name="Has Unknown Floats 3" type="byte">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" arr2="4" cond="Has Unknown Floats 3 != 0">Unknown.</add>
-    </niobject>
 
-    <niobject name="NiCollisionObject" abstract="0" inherit="NiObject" ver1="20.0.0.5">
-        This is the most common collision object found in NIF files. It acts as a real object that
-        is visible and possibly (if the body allows for it) interactive. The node itself
-        is simple, it only has three properties.
-        For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
-        <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision object.</add>
-        <add name="Unknown Short" type="ushort" default="1" ver1="20.0.0.5"> Set to "1" for most objects.</add>
-        <add name="Body" type="Ref" template="NiObject" ver1="20.0.0.5">Links to the collision object data</add>
-    </niobject>
 
-    <niobject name="bhkBlendCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Float 1" type="float">Blending parameter?</add>
-        <add name="Unknown Float 2" type="float">Another blending parameter?</add>
-    </niobject>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <niobject name="bhkBlendController" abstract="0" inherit="NiTimeController" ver1="20.0.0.5">
         Unknown. Is apparently only used in skeleton.nif files.
@@ -1398,10 +1441,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float" type="float">Unknown.</add>
     </niobject>
 
-    <niobject name="bhkSPCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
-        Unknown.
-    </niobject>
-
     <niobject name="bhkSphereShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
         A sphere.
         <add name="Radius" type="float">This denotes the radius of the sphere.</add>
@@ -1445,18 +1484,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="BSPSysArrayEmitter" abstract="0" inherit="NiPSysVolumeEmitter" ver1="20.0.0.5">
         Unknown.
-    </niobject>
-
-    <niobject name="BSXFlags" abstract="0" inherit="NiExtraData" ver1="20.0.0.5">
-        Controls animation and collision.
-        <add name="Flags" type="uint">The flags.
-             Bit 0 : enable animation
-             Bit 1 : enable collision
-             Bit 2 : unknown, usually zero
-             Bit 3 : toggable? unknown, set to 1 on oblivion signs
-             Bit 4 : unknown, usually zero
-             Bit 5 : trigger?
-        </add>
     </niobject>
 
     <niobject name="hkPackedNiTriStripsData" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
@@ -1512,14 +1539,59 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Ambient light source.
     </niobject>
 
-    <niobject name="NiAutoNormalParticlesData" abstract="0" inherit="NiGeometryData">
-        Particle system data object (with automatic normals?).
+    <niobject name="NiParticlesData" abstract="0" inherit="NiGeometryData">
+        Generic rotating particles data object.
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Size" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Num Active" type="ushort" ver2="4.0.0.2">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</add>
         <add name="Unknown Short" type="ushort" ver1="4.1.0.12" ver2="10.0.1.0">Unknown.</add>
         <add name="Has Sizes" type="bool">Is the particle size array present?</add>
         <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes != 0">The individual particel sizes.</add>
+        <add name="Num Active" type="ushort" ver1="10.1.0.0">The number of active/valid particle entries.</add>
+        <add name="Has Unknown Floats" type="bool" ver1="10.1.0.0">Unknown</add>
+        <add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="10.1.0.0">Unknown</add>
+        <add name="Has Rotations 1" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
+        <add name="Rotations 1" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 1 != 0" ver1="10.0.1.0">The individual particle rotations.</add>
+    </niobject>
+
+    <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
+        Rotating particles data object.
+        <add name="Has Rotations 2" type="bool" ver2="4.2.2.0">Is the particle rotation array present?</add>
+        <add name="Rotations 2" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 2 != 0" ver2="4.2.2.0">The individual particle rotations.</add>
+    </niobject>
+
+    <niobject name="NiAutoNormalParticlesData" abstract="0" inherit="NiParticlesData" ver2="4.2.2.0">
+        Particle system data object (with automatic normals?).
+    </niobject>
+
+    <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData" ver1="10.0.1.0">
+        Particle system data.
+        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="10.2.0.0">Unknown.</add>
+        <add name="Unknown Bool 1" type="bool" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Bool 1 != 0" ver1="20.0.0.4">Unknown</add>
+        <add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Bool 1 == 0" ver1="20.0.0.4">Unknown (this is a very wild guess!).</add>
+        <add name="Unknown Byte 3" type="byte" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Bool 2" type="bool" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
+    </niobject>
+
+    <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData" ver1="10.1.0.0">
+        Particle meshes data.
+        <!--<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
+        <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
+        <add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>-->
+        <add name="Modifier" type="Ref" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.</add>
+        <add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
+        <add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
+        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
+        <add name="Unknown Short 4" type="ushort" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Int 2" type="uint" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Byte 12" type="byte" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Int 3" type="uint" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Int 4" type="uint" ver1="20.0.0.5">Unknown.</add>
+        <add name="Unknown Link 2" type="Ref" template="NiNode" ver1="10.2.0.0">Links to a NiNode; but this NiNode doesn&#039;t seem to be a mesh?</add>
     </niobject>
 
     <niobject name="NiBinaryExtraData" abstract="0" inherit="NiExtraData" ver1="10.1.0.0">
@@ -1659,23 +1731,23 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Int 3" type ="uint" ver2="3.1">Unknown.</add>
     </niobject>
 
-    <niobject name="NiCollisionData" abstract="0" inherit="NiCollisionObject" ver1="10.0.1.0">
-        Collision box.
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
-        <add name="Unknown Byte" type="byte">Unknown.</add>
-        <add name="Collision Type" type="uint">Type of collision data.</add>
-        <add name="Unknown Int 2" type="uint" cond="Collision Type == 0">Unknown.</add>
-        <add name="Unknown Vector" type="Vector3" cond="Collision Type == 0">Unknown (can be negative, so not necessarily a radius).</add>
-        <add name="Unknown Float 1" type="float" arr1="8" cond="Collision Type == 2">Unknown.</add>
-        <add name="Unknown Float 2" type="float" arr1="15" cond="Collision Type == 1">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkCollisionObject" abstract="0" inherit="NiCollisionObject" ver1="20.0.0.5">
-        Unknown.
-    </niobject>
-
     <niobject name="NiColorData" abstract="0" inherit="NiObject">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         Color data for material color controller.
         <add name="Data" type="KeyGroup" template="Color4">The color keys.</add>
     </niobject>
@@ -1719,7 +1791,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0">Refers to NiStringPalette.</add>
     </niobject>
 
-    <niobject name="NiDefaultAVObjectPalette" abstract="0" inherit="NiObject">
+    <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
+        Unknown.
+    </niobject>
+    
+    <niobject name="NiDefaultAVObjectPalette" abstract="0" inherit="NiAVObjectPalette">
         Unknown. Refers to a list of objects. Used by NiControllerManager.
         <add name="Unknown Int" type="uint">Unknown.</add>
         <add name="Num Objs" type="uint">Number of objects.</add>
@@ -1820,6 +1896,16 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Integer Data" type="uint">The value of the extra data.</add>
     </niobject>
 
+    <niobject name="BSXFlags" abstract="0" inherit="NiIntegerExtraData" ver1="20.0.0.5">
+        Controls animation and collision.  Integer holds flags:
+        Bit 0 : enable animation
+        Bit 1 : enable collision
+        Bit 2 : unknown, usually zero
+        Bit 3 : toggable? unknown, set to 1 on oblivion signs
+        Bit 4 : unknown, usually zero
+        Bit 5 : trigger?
+    </niobject>
+
     <niobject name="NiIntegersExtraData" abstract="0" inherit="NiExtraData" ver1="10.1.0.0">
         Integers data.
         <add name="Num Integers" type="uint">Number of integers.</add>
@@ -1894,24 +1980,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Emissive Color" type="Color3">How much light the material emits.</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness.</add>
         <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>
-    </niobject>
-
-    <niobject name="NiMeshPSysData" abstract="0" inherit="APSysData" ver1="10.1.0.0">
-        Particle meshes data.
-        <add name="Unknown Byte 11" type="byte" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
-        <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
-        <add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>
-        <add name="Modifier" type="Ref" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.</add>
-        <add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
-        <add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
-        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
-        <add name="Unknown Short 4" type="ushort" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Byte 12" type="byte" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Int 3" type="uint" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Int 4" type="uint" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Link 2" type="Ref" template="NiNode" ver1="10.2.0.0">Links to a NiNode; but this NiNode doesn&#039;t seem to be a mesh?</add>
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
@@ -2047,16 +2115,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Mesh particle node?
     </niobject>
 
-    <niobject name="NiParticlesData" abstract="0" inherit="NiAutoNormalParticlesData">
-        Generic rotating particles data object.
-        <add name="Num Active" type="ushort" ver1="10.1.0.0">The number of active/valid particle entries.</add>
-        <add name="Has Unknown Floats" type="bool" ver1="10.1.0.0">Unknown</add>
-        <add name="Unknown Floats" type="float" arr1="Num Vertices" cond="Has Unknown Floats != 0" ver1="10.1.0.0">Unknown</add>
-        <add name="Has Rotations" type="bool">Is the particle rotation array present?</add>
-        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations != 0">The individual particle rotations.</add>
-    </niobject>
-
-    <niobject name="NiParticleMeshesData" abstract="0" inherit="NiParticlesData" ver1="4.1.0.12">
+    <niobject name="NiParticleMeshesData" abstract="0" inherit="NiRotatingParticlesData" ver1="4.1.0.12">
         Particle meshes data.
         <add name="Unknown Link 2" type="Ref" template="NiAVObject">Refers to the mesh that makes up a particle?</add>
     </niobject>
@@ -2249,18 +2308,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Height" type="float">Height of cylinders to emit?</add>
     </niobject>
 
-    <niobject name="NiPSysData" abstract="0" inherit="APSysData" ver1="10.0.1.0">
-        Particle system data.
-        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="10.2.0.0">Unknown.</add>
-        <add name="Unknown Bool 1" type="bool" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Bytes" type="byte" arr1="Num Vertices" arr2="32" cond="Unknown Bool 1 != 0" ver1="20.0.0.4">Unknown</add>
-        <add name="Unknown Bytes Alt" type="byte" arr1="Num Vertices" arr2="28" cond="Unknown Bool 1 == 0" ver1="20.0.0.4">Unknown (this is a very wild guess!).</add>
-        <add name="Unknown Byte 3" type="byte" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Bool 2" type="bool" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Bytes 2" type="byte" arr1="Num Vertices" arr2="4" cond="Unknown Bool 2 != 0" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-    </niobject>
-
     <niobject name="NiPSysDragModifier" abstract="0" inherit="NiPSysModifier" ver1="20.0.0.5">
         Unknown.
         <add name="Parent" type="Ptr" template="NiObject">Parent reference.</add>
@@ -2441,10 +2488,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
 
     <niobject name="NiRotatingParticles" abstract="0" inherit="NiParticles">
         Unknown.
-    </niobject>
-
-    <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
-        Rotating particles data object.
     </niobject>
 
     <niobject name="NiSequenceStreamHelper" abstract="0" inherit="NiObjectNET">
