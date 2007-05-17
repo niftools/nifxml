@@ -1486,6 +1486,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
     </niobject>
 
+    <niobject name="BSWindModifier" abstract="0" inherit="NiPSysModifier" ver1="20.0.0.5">
+        Unknown.
+        <add name="Unknown Float" type="float">Unknown.</add>
+    </niobject>
+
     <niobject name="hkPackedNiTriStripsData" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
         NiTriStripsData for havok data?
         <add name="Num Triangles" type="uint">Number of triangles?</add>
