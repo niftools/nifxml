@@ -976,7 +976,7 @@
         Havok object that do not react with other objects when they collide (causing deflection, etc.) but still trigger collision notifications to the game.  Possible uses are traps, portals, AI fields, etc.
     </niobject>
 
-    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkWorldObject">
+    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkPhantom">
         A Havok phantom that uses a Havok shape object for its collision volume instead of just a bounding box.
     </niobject>
 
