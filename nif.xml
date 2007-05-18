@@ -957,52 +957,267 @@
     </niobject>
 
     <niobject name="bhkRefObject" abstract="1" inherit="NiObject">
-        The base type of all Havok objects?
+        The base type of most Bethesda-specific Havok-related NIF objects.
     </niobject>
 
     <niobject name="bhkSerializable" abstract="1" inherit="bhkRefObject">
         Havok objects that can be saved and loaded from disk?
     </niobject>
 
-    <niobject name="AbhkConstraint" abstract="1" inherit="bhkSerializable">
+    <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
+        Havok objects that have a position in the world?
+        <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
+        <add name="Layer" type="OblivionLayer" default="1">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject">
+        Havok object that do not react with other objects when they collide (causing deflection, etc.) but still trigger collision notifications to the game.  Possible uses are traps, portals, AI fields, etc.
+    </niobject>
+
+    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkWorldObject">
+        A Havok phantom that uses a Havok shape object for its collision volume instead of just a bounding box.
+    </niobject>
+
+    <niobject name="bhkSimpleShapePhantom" abstract="0" inherit="bhkShapePhantom">
+        Unknown shape.
+        <add name="Unkown Floats" type="float" arr1="7">Unknown.</add>
+        <add name="Unknown Floats 2" type="float" arr1="3" arr2="5">Unknown. (1,0,0,0,0) x 3.</add>
+        <add name="Unknown Float" type="float">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
+        A havok node, describes physical properties.
+    </niobject>
+
+    <niobject name="bhkRigidBody" abstract="0" inherit="bhkEntity" ver1="20.0.0.4">
+        This is the default body type for all "normal" usable and static world objects. The "T" suffix
+        marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
+        properties. Because the properties are equal, a bhkRigidBody may be renamed
+        into a bhkRigidBodyT and vice-versa.
+        <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
+        <add name="Unknown 4 Shorts" type="ushort" arr1="4" ver1="20.0.0.4">Unknown.</add>
+        <add name="Layer Copy" type="OblivionLayer" default="1" ver1="20.0.0.4">Copy of Layer value?</add>
+        <add name="Col Filter Copy" type="byte" default="0" ver1="20.0.0.4">Copy of Col Filter value?</add>
+        <add name="Unknown 7 Shorts" type="ushort" arr1="7" ver1="20.0.0.4">Unknown.</add>
+        <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Unknown Float 00" type="float">
+            This seems to often be 1 for single objects, or the first one in a
+            a linked object group. This may be due to those objects often being bhkRigidBodyT as well.
+        </add>
+        <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Linear Velocity" type="Vector3">Linear velocity.</add>
+        <add name="Unknown Float 01" type="float">Unknown.</add>
+        <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
+        <add name="Unknown Float 02" type="float">Unknown.</add>
+
+        <add name="Inertia" type="float" arr1="12">Defines how the mass is distributed among the body.</add>
+        <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
+        <add name="Unknown Float 03" type="float">Unknown float.</add>
+        <add name="Mass" type="float">The body's mass.</add>
+        <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
+        <add name="Angular Damping" type="float" default="0.1"> Damping value for angular movement.</add>
+        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
+        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).</add>
+        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
+        <add name="Penetration Depth" type="float" default="0.15">Penetration depth.</add>
+        <add name="Motion System" type="MotionSystem" default="7">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Unknown Byte 1" type="byte" default="1"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
+        <add name="Unknown Byte 2" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
+        <add name="Unknown Int 6" type="uint">Unknown.</add>
+        <add name="Unknown Int 7" type="uint">Unknown.</add>
+        <add name="Unknown Int 8" type="uint">Unknown.</add>
+        <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
+        <add name="Constraints" type="Ref" template="bhkConstraint" arr1="Num Constraints">Unknown.</add>
+        <add name="Unknown Int 6" type="uint">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
+    <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable">
         Describes a physical constraint.
-        <add name="Num Bodies" type="uint">Number of bodies affected by this constraint.</add>
-        <add name="Bodies" type="Ptr" template="bhkShape" arr1="Num Bodies">The bodies affected by this constraint.</add>
+        <add name="Num Entities" type="uint">Number of bodies affected by this constraint.</add>
+        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">The entities affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
     </niobject>
 
-    <niobject name="AbhkRagdollConstraint" abstract="1" inherit="AbhkConstraint">
+    <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
+        Hinge constraint.
+        <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
+    </niobject>
+
+    <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
+        A malleable constraint.
+        <add name="Type" type="uint">Type of constraint.</add>
+        <add name="Unknown Int 2" type="uint">Unknown.</add>
+        <add name="Unknown Link 1" type="Ref" template="NiObject">Usually -1?</add>
+        <add name="Unknown Link 2" type="Ref" template="NiObject">Usually -1?</add>
+        <add name="Unknown Int 3" type="uint">Unknown. 1?</add>
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+        <add name="Tau" type="float" />
+        <add name="Damping" type="float" />
+    </niobject>
+
+    <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
+        A spring constraint.
+        <add name="Pivot A" type="Vector4">Pivot A.</add>
+        <add name="Pivot B" type="Vector4">Pivot B.</add>
+        <add name="Length" type="float">Length.</add>
+    </niobject>
+
+    <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
     </niobject>
 
+    <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
+        A prismatic constraint.
+        <add name="Unknown Vectors" type="Vector4" arr1="8" >Unknown.</add>
+        <add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
+        A hinge constraint.
+        <add name="Pivot A" type="Vector4">Pivot A.</add>
+        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
+        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
+        <add name="Pivot B" type="Vector4">Pivot B.</add>
+        <add name="Axle B" type="Vector4">Unknown.</add>
+    </niobject>
+
+
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
         A Havok Shape?
     </niobject>
-    
-    <niobject name="AbhkShapeCollection" abstract="1" inherit="bhkShape">
-        Havok data, not sure where to put in the hierarchy.
+
+    <niobject name="bhkTransformShape" abstract="0" inherit="bhkShape">
+        Transforms a shape.
+        <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
+        <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
     <niobject name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape">
         A havok shape.
     </niobject>
 
-    <niobject name="bhkWorldObject" abstract="1" inherit="bhkShape">
-        Havok objects that have a position in the world?
+    <niobject name="bhkSphereShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
+        A sphere.
+
     </niobject>
 
-    <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
-        A havok node, describes physical properties.
-        <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer" default="1">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+    <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
+        A capsule.
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown.</add>
+        <add name="Unknown Short 3" type="ushort">Unknown.</add>
+        <add name="Unknown Short 4" type="ushort">Unknown.</add>
+        <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
+        <add name="Radius 1" type="float">Matches first capsule radius.</add>
+        <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
+        <add name="Radius 2" type="float">Matches second capsule radius.</add>
+    </niobject>
+
+    <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
+        A box.
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown.</add>
+        <add name="Unknown Short 3" type="ushort">Unknown.</add>
+        <add name="Unknown Short 4" type="ushort">Unknown.</add>
+        <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
+        <add name="Min. size" type="float">The smallest of the three sizes. Might be used for optimization.</add>
+    </niobject>
+
+    <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
+        A convex shape built from vertices?
+        <add name="Unknown 6 Floats" type="float" arr1="6">Unknown.</add>
+        <add name="Num Vertices" type="uint">Number of vertices.</add>
+        <add name="Vertices" type="Vector4" arr1="Num Vertices">Vertices. Fourth component is 0.</add>
+        <add name="Num Normals" type="uint">The number of normals.</add>
+        <add name="Normals" type="Vector4" arr1="Num Normals">The normals of the shape's outer faces. Fourth component is the distance from center, negative.</add>
+    </niobject>
+
+    <!--Should inherit from bhkConvexShape according to hierarchy, but seems to be exactly the same as bhkTransformShape.-->
+    <niobject name="bhkConvexTransformShape" abstract="0" inherit="bhkTransformShape" ver1="20.0.0.5">
+        A convex transformed shape?
+    </niobject>
+
+    <niobject name="bhkMultiSphereShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
+        Unknown.
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown Float 2" type="float">Unknown.</add>
+        <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
+        <add name="Spheres" type="Sphere" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
+    </niobject>
+    
+    <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape">
+        A tree-like Havok data structure stored in an assembly-like binary code?
+    </niobject>
+
+    <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape" ver1="20.0.0.5">
+        Memory optimized partial polytope bounding volume tree shape (not an entity).
+        <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
+        <add name="Material" type="HavokMaterial">The shape's material.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
+        <add name="Unknown Float" type="float">Unknown float, might be scale.</add>
+        <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
+        <add name="Object Corner" type="Vector3" ver1="20.0.0.5">Corner of the object with min. coordinates.</add>
+        <add name="Scaling Factor" type="float" ver1="20.0.0.5">The scaling factor to quantize the MOPP. Determined by 255*255*255 / size.</add>
+        <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+    </niobject>
+
+
+    <niobject name="bhkShapeCollection" abstract="1" inherit="bhkShape">
+        Havok collision object that uses multiple shapes?
+    </niobject>
+
+    <niobject name="bhkListShape" abstract="0" inherit="bhkShapeCollection">
+        A list of shapes.
+        <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
+        <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
+        <add name="Num Unknown Ints" type="uint">Count.</add>
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
+    </niobject>
+
+    <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="bhkShapeCollection" ver1="20.0.0.5">
+        A shape constructed from strips data.
+        <add name="Num Sub Shapes" type="ushort">Number of subparts.</add>
+        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes">The subparts.</add>
+        <add name="Unknown Floats" type="float" arr1="9">Unknown. A rotation matrix?</add>
+        <add name="Scale" type="float" default="1.0">Scale.</add>
+        <add name="Unknown Floats 2" type="float" arr1="3">Unknown. Translation?</add>
+        <add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
+    </niobject>
+
+    <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
+        A shape constructed from a bunch of strips.
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
+        <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
+        <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
+        <add name="Unknown Int 2" type="uint" default="1">Unknown</add>
+        <add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
+        <add name="Unknown Int 3" type="uint">Unknown.</add>
+        <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
+        <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
+        <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
+        <add name="Data Layers" type="OblivionColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
     <niobject name="NiExtraData" abstract="1" inherit="NiObject">
@@ -1018,7 +1233,6 @@
     <niobject name="NiKeyBasedInterpolator" abstract="1" inherit="NiInterpolator" ver1="10.2.0.0">
         Interpolator objects that use keys?
     </niobject>
-
 
     <niobject name="NiFloatInterpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="10.2.0.0">
         Unknown.
@@ -1432,238 +1646,9 @@
         <add name="Num Triangles" type="ushort">Number of triangles.</add>
     </niobject>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <niobject name="bhkBlendController" abstract="0" inherit="NiTimeController" ver1="20.0.0.5">
         Unknown. Is apparently only used in skeleton.nif files.
         <add name="Unknown Int" type="uint">Seems to be always zero.</add>
-    </niobject>
-
-    <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
-        A box.
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Short 1" type="ushort">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown.</add>
-        <add name="Unknown Short 3" type="ushort">Unknown.</add>
-        <add name="Unknown Short 4" type="ushort">Unknown.</add>
-        <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
-        <add name="Min. size" type="float">The smallest of the three sizes. Might be used for optimization.</add>
-    </niobject>
-
-    <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
-        A capsule.
-        <add name="Radius" type="float">Apparently the capsule&#039;s radius.</add>
-        <add name="Unknown Short 1" type="ushort">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown.</add>
-        <add name="Unknown Short 3" type="ushort">Unknown.</add>
-        <add name="Unknown Short 4" type="ushort">Unknown.</add>
-        <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
-        <add name="Radius 1" type="float">Matches first capsule radius.</add>
-        <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
-        <add name="Radius 2" type="float">Matches second capsule radius.</add>
-    </niobject>
-
-    <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
-        A convex shape built from vertices?
-        <add name="Unknown Floats 1" type="float" arr1="7">Unknown.</add>
-        <add name="Num Vertices" type="uint">Number of vertices.</add>
-        <add name="Vertices" type="Vector4" arr1="Num Vertices">Vertices. Fourth component is 0.</add>
-        <add name="Num Normals" type="uint">The number of normals.</add>
-        <add name="Normals" type="Vector4" arr1="Num Normals">The normals of the shape's outer faces. Fourth component is the distance from center, negative.</add>
-    </niobject>
-
-    <niobject name="bhkHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
-        A hinge constraint.
-        <add name="Pivot A" type="Vector4">Pivot A.</add>
-        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
-        <add name="Pivot B" type="Vector4">Pivot B.</add>
-        <add name="Axle B" type="Vector4">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
-        Hinge constraint.
-        <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
-    </niobject>
-
-    <niobject name="bhkListShape" abstract="0" inherit="AbhkShapeCollection">
-        A list of shapes.
-        <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
-        <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
-        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
-        <add name="Num Unknown Ints" type="uint">Count.</add>
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkMalleableConstraint" abstract="0" inherit="AbhkConstraint">
-        A malleable constraint.
-        <add name="Type" type="uint">Type of constraint.</add>
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
-        <add name="Unknown Link 1" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Unknown Link 2" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Unknown Int 3" type="uint">Unknown. 1?</add>
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Tau" type="float" />
-        <add name="Damping" type="float" />
-    </niobject>
-
-    <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkShape" ver1="20.0.0.5">
-        Memory optimized partial polytope bounding volume tree shape (not an entity).
-        <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial">The shape's material.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
-        <add name="Unknown Float" type="float">Unknown float, might be scale.</add>
-        <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
-        <add name="Object Corner" type="Vector3" ver1="20.0.0.5">Corner of the object with min. coordinates.</add>
-        <add name="Scaling Factor" type="float" ver1="20.0.0.5">The scaling factor to quantize the MOPP. Determined by 255*255*255 / size.</add>
-        <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
-    </niobject>
-
-    <niobject name="bhkMultiSphereShape" abstract="0" inherit="bhkSphereRepShape" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Float 3" type="float">Unknown.</add>
-        <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
-        <add name="Spheres" type="Sphere" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
-    </niobject>
-
-    <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkSphereRepShape">
-        A shape constructed from a bunch of strips.
-        <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
-        <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
-        <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" default="1">Unknown</add>
-        <add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
-        <add name="Unknown Int 3" type="uint">Unknown.</add>
-        <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
-        <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
-        <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
-        <add name="Data Layers" type="OblivionColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
-    </niobject>
-
-    <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
-        A shape constructed from strips data.
-        <add name="Num Sub Shapes" type="ushort">Number of subparts.</add>
-        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes">The subparts.</add>
-        <add name="Unknown Floats" type="float" arr1="9">Unknown. A rotation matrix?</add>
-        <add name="Scale" type="float" default="1.0">Scale.</add>
-        <add name="Unknown Floats 2" type="float" arr1="3">Unknown. Translation?</add>
-        <add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
-    </niobject>
-
-    <niobject name="bhkPrismaticConstraint" abstract="0" inherit="AbhkConstraint" ver1="20.0.0.5">
-        A prismatic constraint.
-        <add name="Unknown Vectors" type="Vector4" arr1="8" >Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkRagdollConstraint" abstract="0" inherit="AbhkRagdollConstraint" ver1="20.0.0.5">
-        Ragdoll constraint.
-    </niobject>
-
-    <niobject name="bhkRigidBody" abstract="0" inherit="bhkEntity" ver1="20.0.0.4">
-        This is the default body type for all "normal" usable and static world objects. The "T" suffix
-marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
-properties. Because the properties are equal, a bhkRigidBody may be renamed
-into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
-        <add name="Unknown 4 Shorts" type="ushort" arr1="4" ver1="20.0.0.4">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="1" ver1="20.0.0.4">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" default="0" ver1="20.0.0.4">Copy of Col Filter value?</add>
-        <add name="Unknown 7 Shorts" type="ushort" arr1="7" ver1="20.0.0.4">Unknown.</add>
-        <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
-        <add name="Unknown Float 00" type="float">This seems to often be 1 for single objects, or the first one in a
-a linked object group. This may be due to those objects often being bhkRigidBodyT as well.</add>
-        <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
-        <add name="Linear Velocity" type="Vector3">Linear velocity.</add>
-        <add name="Unknown Float 01" type="float">Unknown.</add>
-        <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
-        <add name="Unknown Float 02" type="float">Unknown.</add>
-
-        <add name="Inertia" type="float" arr1="12">Defines how the mass is distributed among the body.</add>
-        <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
-        <add name="Unknown Float 03" type="float">Unknown float.</add>
-        <add name="Mass" type="float">The body's mass.</add>
-        <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
-        <add name="Angular Damping" type="float" default="0.1"> Damping value for angular movement.</add>
-        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
-        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).</add>
-        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
-        <add name="Penetration Depth" type="float" default="0.15">Penetration depth.</add>
-        <add name="Motion System" type="MotionSystem" default="7">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Unknown Byte 1" type="byte" default="1"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
-        <add name="Unknown Byte 2" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
-        <add name="Unknown Int 6" type="uint">Unknown.</add>
-        <add name="Unknown Int 7" type="uint">Unknown.</add>
-        <add name="Unknown Int 8" type="uint">Unknown.</add>
-        <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
-        <add name="Constraints" type="Ref" template="AbhkConstraint" arr1="Num Constraints">Unknown.</add>
-        <add name="Unknown Int 6" type="uint">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody" ver1="20.0.0.5">
-        Unknown.
-    </niobject>
-
-    <niobject name="bhkSimpleShapePhantom" abstract="0" inherit="bhkEntity">
-        Unknown shape.
-        <add name="Unkown Floats" type="float" arr1="7">Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="3" arr2="5">Unknown. (1,0,0,0,0) x 3.</add>
-        <add name="Unknown Float" type="float">Unknown.</add>
-    </niobject>
-
-    <niobject name="bhkSphereShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
-        A sphere.
-        <add name="Radius" type="float">This denotes the radius of the sphere.</add>
-    </niobject>
-
-    <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="AbhkConstraint">
-        A spring constraint.
-        <add name="Pivot A" type="Vector4">Pivot A.</add>
-        <add name="Pivot B" type="Vector4">Pivot B.</add>
-        <add name="Length" type="float">Length.</add>
-    </niobject>
-
-    <niobject name="bhkTransformShape" abstract="0" inherit="bhkEntity">
-        Transforms a shape.
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Float 3" type="float">Unknown.</add>
-        <add name="Transform" type="Matrix44">A transform matrix.</add>
-    </niobject>
-
-    <niobject name="bhkConvexTransformShape" abstract="0" inherit="bhkTransformShape" ver1="20.0.0.5">
-        A convex transformed shape?
     </niobject>
 
     <niobject name="BSBound" abstract="0" inherit="NiExtraData" ver1="20.0.0.5">
@@ -1692,7 +1677,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float" type="float">Unknown.</add>
     </niobject>
 
-    <niobject name="hkPackedNiTriStripsData" abstract="0" inherit="AbhkShapeCollection" ver1="20.0.0.5">
+    <niobject name="hkPackedNiTriStripsData" abstract="0" inherit="bhkShapeCollection" ver1="20.0.0.5">
         NiTriStripsData for havok data?
         <add name="Num Triangles" type="uint">Number of triangles?</add>
         <add name="Triangles" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
@@ -1922,22 +1907,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     </niobject>
 
     <niobject name="NiColorData" abstract="0" inherit="NiObject">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         Color data for material color controller.
         <add name="Data" type="KeyGroup" template="Color4">The color keys.</add>
     </niobject>
