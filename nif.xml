@@ -1015,6 +1015,53 @@
         Interpolator objects - function unknown.
     </niobject>
 
+    <niobject name="NiKeyBasedInterpolator" abstract="1" inherit="NiInterpolator" ver1="10.2.0.0">
+        Interpolator objects that use keys?
+    </niobject>
+
+
+    <niobject name="NiFloatInterpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="10.2.0.0">
+        Unknown.
+        <add name="Float Value" type="float">Value when posed?  At time 0?</add>
+        <add name="Data" type="Ref" template="NiFloatData">Float data?</add>
+    </niobject>
+
+    <niobject name="NiTransformInterpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="10.2.0.0">
+        Unknown.
+        <add name="Translation" type="Vector3">Translate.</add>
+        <add name="Rotation" type="Quaternion">Rotation.</add>
+        <add name="Scale" type="float">Scale.</add>
+        <add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+        <add name="Data" type="Ref" template="NiTransformData">Refers to NiTransformData.</add>
+    </niobject>
+
+    <niobject name="NiPoint3Interpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="10.2.0.0">
+        Unknown.
+        <add name="Point 3 Value" type="Vector3">Value when posed?  Value at time 0?</add>
+        <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
+    </niobject>
+
+    <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="20.0.0.5">
+        Unknown interpolator.
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Unknown Int" type="uint">Unknown.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown Float 2" type="float">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown. Zero.</add>
+        <add name="Pos Data" type="Ref" template="NiPosData">Links to NiPosData.</add>
+        <add name="Float Data" type="Ref" template="NiFloatData">Links to NiFloatData.</add>
+    </niobject>
+
+    <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator" ver1="10.2.0.0">
+        Unknown.
+        <add name="Bool Value" type="bool">Value when posed?  At time 0?</add>
+        <add name="Data" type="Ref" template="NiBoolData">Refers to a NiBoolData object.</add>
+    </niobject>
+
+    <niobject name="NiBoolTimelineInterpolator" abstract="0" inherit="NiBoolInterpolator" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator" ver1="20.0.0.5">
         An extended type of interpolater.
         <add name="Unknown Short" type="ushort">Unknown.</add>
@@ -1159,23 +1206,177 @@
         <add name="Stop Time" type="float">Controller stop time.</add>
         <add name="Target" type="Ptr" template="NiObjectNET">Controller target (object index of the first controllable ancestor of this object).</add>
     </niobject>
+    
 
-    <niobject name="ABoneLODController" abstract="1" inherit="NiTimeController">
+    <niobject name="NiInterpController" abstract="1" inherit="NiTimeController">
+        A controller capable of interpolation?        
+    </niobject>
+
+    <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiInterpController" ver1="10.2.0.0">
+        Unknown.
+        <add name="Num Extra Targets" type="ushort">The number of target pointers that follow.</add>
+        <add name="Extra Targets" type="Ptr" template="NiNode" arr1="Num Extra Targets">NiNode Targets to be controlled.</add>
+    </niobject>
+
+    <niobject name="NiGeomMorpherController" abstract="0" inherit="NiInterpController">
+        Time controller for geometry morphing.
+        <add name="Unknown" type="ushort" ver1="10.1.0.0">Unknown.</add>
+        <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+        <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
+        <add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
+        <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
+        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
+        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0">A count.</add>
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0">Unknown.</add>
+    </niobject>
+
+    <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
+        A controller referring to a single interpolator.
+        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to interpolator.</add>
+    </niobject>
+
+    <niobject name="NiTransformController" abstract="0" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        NiTransformController replaces the NiKeyframeController.
+    </niobject>
+
+    <niobject name="NiPSysModifierCtlr" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        A particle system modifier controller.
+        <add name="Modifier Name" type="string">Refers to modifier object by its name?</add>
+    </niobject>
+
+    <niobject name="NiPSysEmitterCtlr" abstract="0" inherit="NiPSysModifierCtlr" ver1="10.1.0.0">
+        Particle system emitter controller.
+        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
+    </niobject>
+
+    <niobject name="NiPSysModifierBoolCtlr" abstract="1" inherit="NiPSysModifierCtlr" ver1="10.2.0.0">
+        A particle system modifier controller that deals with boolean data?
+    </niobject>
+
+    <niobject name="NiPSysModifierActiveCtlr" abstract="0" inherit="NiPSysModifierBoolCtlr" ver1="20.0.0.5">
+        Unknown.
+        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">This controller's data.</add>
+    </niobject>
+
+    <niobject name="NiPSysModifierFloatCtlr" abstract="1" inherit="NiPSysModifierCtlr" ver1="10.2.0.0">
+        A particle system modifier controller that deals with floating point data?
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">This controller's data.</add>
+    </niobject>
+
+    <niobject name="NiPSysEmitterDeclinationCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="10.1.0.0">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiPSysEmitterDeclinationVarCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="20.0.0.4">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiPSysEmitterInitialRadiusCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="10.1.0.0">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiPSysEmitterLifeSpanCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiPSysEmitterSpeedCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiPSysGravityStrengthCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr" ver1="20.0.0.5">
+        Unknown.
+    </niobject>
+    
+
+    <niobject name="NiFloatInterpController" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        A controller that interpolates floating point numbers?
+    </niobject>
+
+    <niobject name="NiFlipController" abstract="0" inherit="NiFloatInterpController">
+        Texture flipping controller.
+        <add name="Texture Slot" type="uint">Target texture slot (0=base, 4=glow).</add>
+        <add name="Unknown Int 2" type="uint" ver1="4.0.0.0" ver2="10.1.0.0">0?</add>
+        <add name="Delta" type="float" ver2="10.1.0.0">
+            Time between two flips.
+            delta = (start_time - stop_time) / sources.num_indices
+        </add>
+        <add name="Num Sources" type="uint">The number of source objects.</add>
+        <add name="Sources" type="Ref" template="NiSourceTexture" arr1="Num Sources" ver1="4.0.0.0">The texture sources.</add>
+        <add name="Image" type="Ref" template="NiImage" arr1="Num Sources" ver2="3.1">The image sources</add>
+    </niobject>
+
+    <niobject name="NiAlphaController" abstract="0" inherit="NiFloatInterpController">
+        Time controller for transparency.
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Alpha controller data index.</add>
+    </niobject>
+
+    <niobject name="NiTextureTransformController" abstract="0" inherit="NiFloatInterpController" ver1="10.1.0.0">
+        Texture transformation controller.
+        <add name="Unknown2" type="byte">Unknown.</add>
+        <add name="Texture Slot" type="TexType"> The target texture slot.</add>
+        <add name="Operation" type="uint">
+            0: translate u
+            1: translate v
+            2: rotate ?
+            3: tiling u
+            4: tiling v
+        </add>
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
+    </niobject>
+
+    <niobject name="NiLightDimmerController" abstract="0" inherit="NiFloatInterpController" ver1="20.0.0.4">
+        Unknown controller.
+    </niobject>
+    
+    <niobject name="NiBoolInterpController" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        A controller that interpolates floating point numbers?
+    </niobject>
+
+    <niobject name="NiVisController" abstract="0" inherit="NiBoolInterpController">
+        Time controller for visibility.
+        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">Visibility controller data object index.</add>
+    </niobject>
+
+    <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        A controller that interpolates point 3 data?
+        <add name="Target Color" type="ushort" ver1="10.1.0.0">Selects which color to control. 0 : ambient, 1 : diffuse, 2 : specular, 3 : self illum</add>
+        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
+    </niobject>
+
+    <niobject name="NiMaterialColorController" abstract="0" inherit="NiPoint3InterpController">
+        Time controller for material color.
+    </niobject>
+
+    <niobject name="NiLightColorController" abstract="0" inherit="NiPoint3InterpController" ver1="4.2.0.2">
+        Light color animation controller.
+    </niobject>
+
+
+    <niobject name="NiExtraDataController" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
+        An controller for extra data.
+    </niobject>
+
+    <niobject name="NiFloatExtraDataController" abstract="0" inherit="NiExtraDataController" ver1="10.2.0.0">
+        Unknown.
+        <add name="Controller Data" type="string">Refers to a NiFloatExtraData name.</add>
+    </niobject>
+
+    <niobject name="NiBoneLODController" abstract="0" inherit="NiTimeController" ver1="10.0.1.0">
         Level of detail controller for bones.  Priority is arranged from low to high.
         <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Num Node Groups" type="uint">Number of node groups.</add>
         <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
         <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
+        
+        <add name="Num Shape Groups" type="uint" ver2="10.0.1.0">Number of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups" ver2="10.0.1.0">List of shape groups.</add>
+        <add name="Num Shape Groups 2" type="uint" ver2="10.0.1.0">The size of the second list of shape groups.</add>
+        <add name="Shape Groups 2" type="Ref" template="NiTriShape" arr1="Num Shape Groups 2" ver2="10.0.1.0">Group of NiTriShape indices.</add>
     </niobject>
 
-    <niobject name="NiSingleInterpolatorController" abstract="1" inherit="NiTimeController">
-        A controller referring to an interpolator.
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to interpolator.</add>
-    </niobject>
-
-    <niobject name="APSysCtlr" abstract="1" inherit="NiSingleInterpolatorController" ver1="20.0.0.4">
-        Unknown.
-        <add name="Modifier Name" type="string">Refers to modifier object by its name?</add>
+    <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
+        A simple LOD controller for bones.
     </niobject>
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
@@ -1499,11 +1700,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
     </niobject>
 
-    <niobject name="NiAlphaController" abstract="0" inherit="NiSingleInterpolatorController">
-        Time controller for transparency.
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Alpha controller data index.</add>
-    </niobject>
-
     <niobject name="NiAlphaProperty" abstract="0" inherit="NiProperty">
         Transparency. Flags 0x00ED.
         <add name="Flags" type="Flags" default="237">
@@ -1643,14 +1839,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
     </niobject>
 
-    <niobject name="NiBoneLODController" abstract="0" inherit="ABoneLODController" ver1="10.0.1.0">
-        A LOD controller for bones?
-        <add name="Num Shape Groups" type="uint">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups">List of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint">The size of the second list of shape groups.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriShape" arr1="Num Shape Groups 2">Group of NiTriShape indices.</add>
-    </niobject>
-
     <niobject name="NiBoolData" abstract="0" inherit="NiObject" ver1="10.2.0.0">
         Timed boolean data.
         <add name="Data" type="KeyGroup" template="byte">The boolean keys.</add>
@@ -1661,38 +1849,35 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Boolean Data" type="byte">The boolean extra data value.</add>
     </niobject>
 
-    <niobject name="NiBoolInterpolator" abstract="0" inherit="NiInterpolator" ver1="10.2.0.0">
-        Unknown.
-        <add name="Bool Value" type="bool">Value when posed?  At time 0?</add>
-        <add name="Data" type="Ref" template="NiBoolData">Refers to a NiBoolData object.</add>
-    </niobject>
-
-    <niobject name="NiBoolTimelineInterpolator" abstract="0" inherit="NiInterpolator" ver1="20.0.0.5">
-        Unknown.
-        <add name="Bool Value" type="byte">The interpolated bool?</add>
-        <add name="Data" type="Ref" template="NiBoolData">The bool data.</add>
-    </niobject>
-
-    <niobject name="NiBSBoneLODController" abstract="0" inherit="ABoneLODController">
-        A simple LOD controller for bones.
-    </niobject>
-
     <niobject name="NiBSplineBasisData" abstract="0" inherit="NiObject" ver1="20.0.0.4">
         Unknown.
         <add name="Num Control Pt" type="uint">The number of control points (Usually number of frames for animation).</add>
     </niobject>
 
-    <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+    <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+        Unknown.
+    </niobject>
+    
+    <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineFloatInterpolator" ver1="20.0.0.4">
         Unknown.
         <add name="Unknown Floats" type="float" arr1="4">Unknown.</add>
     </niobject>
 
-    <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+    <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
         Unknown.
         <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
     </niobject>
 
-    <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+    <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplinePoint3Interpolator" ver1="20.0.0.4">
+        Unknown.
+        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
+    </niobject>
+
+    <niobject name="NiBSplineTransformInterpolator" abstract="1" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+        Unknown.
+    </niobject>
+
+    <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineTransformInterpolator" ver1="20.0.0.4">
         Unknown.
         <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
         <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
@@ -1815,21 +2000,8 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
         <add name="Flags" type="Flags">1&#039;s Bit: Enable dithering</add>
     </niobject>
-
-    <niobject name="NiFlipController" abstract="0" inherit="NiSingleInterpolatorController">
-        Texture flipping controller.
-        <add name="Texture Slot" type="uint">Target texture slot (0=base, 4=glow).</add>
-        <add name="Unknown Int 2" type="uint" ver1="4.0.0.0" ver2="10.1.0.0">0?</add>
-        <add name="Delta" type="float" ver2="10.1.0.0">
-            Time between two flips.
-            delta = (start_time - stop_time) / sources.num_indices
-        </add>
-        <add name="Num Sources" type="uint">The number of source objects.</add>
-        <add name="Sources" type="Ref" template="NiSourceTexture" arr1="Num Sources" ver1="4.0.0.0">The texture sources.</add>
-        <add name="Image" type="Ref" template="NiImage" arr1="Num Sources" ver2="3.1">The image sources</add>
-    </niobject>
-
-    <niobject name="NiRollController" abstract="0" inherit="NiSingleInterpolatorController">
+    
+    <niobject name="NiRollController" abstract="0" inherit="NiSingleInterpController">
         Unknown.
         <add name="Data" type="Ref" template="NiFloatData">The data for the controller.</add>
     </niobject>
@@ -1842,18 +2014,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
     <niobject name="NiFloatExtraData" abstract="0" inherit="NiExtraData" ver1="20.0.0.4">
         Float extra data.
         <add name="Float Data" type="float">The float data.</add>
-    </niobject>
-
-    <niobject name="NiFloatExtraDataController" abstract="0" inherit="NiTimeController" ver1="10.2.0.0">
-        Unknown.
-        <add name="Unknown Link" type="Ref" template="NiObject" ver1="10.2.0.0">Unknown.</add>
-        <add name="Controller Data" type="string" ver1="10.2.0.0">Refers to a NiFloatExtraData name.</add>
-    </niobject>
-
-    <niobject name="NiFloatInterpolator" abstract="0" inherit="NiInterpolator" ver1="10.2.0.0">
-        Unknown.
-        <add name="Float Value" type="float">Value when posed?  At time 0?</add>
-        <add name="Data" type="Ref" template="NiFloatData">Float data?</add>
     </niobject>
 
     <niobject name="NiFloatsExtraData" abstract="0" inherit="NiExtraData" ver1="20.0.0.4">
@@ -1873,18 +2033,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         </add>
         <add name="Fog Depth" type="float">The thickness of the fog?  Default is 1.0</add>
         <add name="Fog Color" type="Color3">The color of the fog.</add>
-    </niobject>
-
-    <niobject name="NiGeomMorpherController" abstract="0" inherit="NiTimeController">
-        Time controller for geometry morphing.
-        <add name="Unknown" type="ushort" ver1="10.1.0.0">Unknown.</add>
-        <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
-        <add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
-        <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
-        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
-        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0">A count.</add>
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0">Unknown.</add>
     </niobject>
 
     <niobject name="NiGravity" abstract="0" inherit="AParticleModifier">
@@ -1938,19 +2086,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Scales" type="KeyGroup" template="float">Scale keys.</add>
     </niobject>
 
-    <niobject name="NiLightColorController" abstract="0" inherit="NiTimeController" ver1="4.2.0.2">
-        Light color animation controller.
-        <add name="Unknown Short" type="ushort" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
-        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Link to NiPosData</add>
-        <add name="Interpolator" type="Ref" template="NiPoint3Interpolator" ver1="10.2.0.0">Link to NiPoint3Interpolator.</add>
-        <add name="Unknown Short" type="ushort" ver1="10.2.0.0">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiLightDimmerController" abstract="0" inherit="NiTimeController" ver1="20.0.0.4">
-        Unknown controller.
-        <add name="Unknown Link" type="Ref" template="NiInterpolator">Unknown link. Interpolator?</add>
-    </niobject>
-
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController" ver1="4.1.0.12">
         Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
         <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
@@ -1970,12 +2105,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Link 3" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
     </niobject>
 
-    <niobject name="NiMaterialColorController" abstract="0" inherit="NiSingleInterpolatorController">
-        Time controller for material color.
-        <add name="Target Color" type="ushort" ver1="10.1.0.0">Selects which color to control. 0 : ambient, 1 : diffuse, 2 : specular, 3 : self illum</add>
-        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
-    </niobject>
-
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
         Describes the material shading properties.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
@@ -1993,12 +2122,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Num Vertices" type="uint">Number of vertices.</add>
         <add name="Unknown Byte" type="byte">This byte is always 1 in all official files.</add>
         <add name="Morphs" type="Morph" arg="Num Vertices" arr1="Num Morphs">The geometry morphing objects.</add>
-    </niobject>
-
-    <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiTimeController" ver1="10.2.0.0">
-        Unknown.
-        <add name="Num Extra Targets" type="ushort">The number of target pointers that follow.</add>
-        <add name="Extra Targets" type="Ptr" template="NiNode" arr1="Num Extra Targets">NiNode Targets to be controlled.</add>
     </niobject>
 
     <niobject name="NiNode" abstract="0" inherit="NiAVObject">
@@ -2049,7 +2172,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
     </niobject>
 
-    <niobject name="NiLODNode" abstract="0" inherit="NiNode" ver1="3.1">
+    <niobject name="NiSwitchNode" abstract="1" inherit="NiNode">
+        A node used to switch between branches, such as for LOD levels?
+    </niobject>
+
+    <niobject name="NiLODNode" abstract="0" inherit="NiSwitchNode" ver1="3.1">
         Level of detail selector. Links to different levels of detail of the same model, used to switch a geometry at a specified distance.
         <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.  0,0,0,0 or 1,0,0,0.</add>
         <add name="LOD Center" type="Vector3" ver1="4.0.0.2" ver2="10.0.1.0">Point to calculate distance from for switching?</add>
@@ -2198,15 +2325,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Float Data" type="Ref" template="NiFloatData">Path controller data index (float data). ?</add>
     </niobject>
 
-    <niobject name="NiPathInterpolator" abstract="0" inherit="NiBlendInterpolator" ver1="20.0.0.5">
-        Unknown interpolator.
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown. Zero.</add>
-        <add name="Pos Data" type="Ref" template="NiPosData">Links to NiPosData.</add>
-        <add name="Float Data" type="Ref" template="NiFloatData">Links to NiFloatData.</add>
-    </niobject>
-
     <niobject name="NiPixelData" abstract="0" inherit="NiObject">
         A texture.
         <add name="Pixel Format" type="PixelFormat">The format of the pixels in this internally stored image.</add>
@@ -2251,12 +2369,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Unknown Float 14" type="float">Unknown.</add>
         <add name="Unknown Float 15" type="float">Unknown.</add>
         <add name="Unknown Float 16" type="float">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiPoint3Interpolator" abstract="0" inherit="NiInterpolator" ver1="10.2.0.0">
-        Unknown.
-        <add name="Point 3 Value" type="Vector3">Value when posed?  Value at time 0?</add>
-        <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
     </niobject>
 
     <niobject name="NiPointLight" abstract="0" inherit="NiLight">
@@ -2322,41 +2434,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Range Falloff" type="float">The range falloff.</add>
     </niobject>
 
-    <niobject name="NiPSysEmitterCtlr" abstract="0" inherit="APSysCtlr" ver1="10.1.0.0">
-        Particle system emitter controller.
-        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
-    </niobject>
-
     <niobject name="NiPSysEmitterCtlrData" abstract="0" inherit="NiObject" ver1="10.1.0.0">
         Particle system emitter controller data.
         <add name="Float Keys?" type="KeyGroup" template="float">Unknown.</add>
         <add name="Num Visibility Keys?" type="uint">Number of keys.</add>
         <add name="Visibility Keys?" type="Key" arg="1" template="byte" arr1="Num Visibility Keys?">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiPSysEmitterDeclinationCtlr" abstract="0" inherit="APSysCtlr" ver1="10.1.0.0">
-        Unknown.
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">This controller's data</add>
-    </niobject>
-
-    <niobject name="NiPSysEmitterDeclinationVarCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.4">
-        Unknown.
-    </niobject>
-
-    <niobject name="NiPSysEmitterInitialRadiusCtlr" abstract="0" inherit="APSysCtlr" ver1="10.1.0.0">
-        Unknown.
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">This controller's data</add>
-    </niobject>
-
-    <niobject name="NiPSysEmitterLifeSpanCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiPSysEmitterSpeedCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysGravityModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -2368,11 +2450,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Force Type" type="ForceType">The type of force?</add>
         <add name="Turbulence" type="float">Unknown.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Unknown.</add>
-    </niobject>
-
-    <niobject name="NiPSysGravityStrengthCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Link" type="Ref" template="NiFloatData"  ver2="10.1.0.0"></add>
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -2410,11 +2487,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         Unknown.
         <add name="Num Meshes" type="uint">The number of object references that follow.</add>
         <add name="Meshes" type="Ref" template="NiNode" arr1="Num Meshes">Not sure here... Group of target NiNodes?</add>
-    </niobject>
-
-    <niobject name="NiPSysModifierActiveCtlr" abstract="0" inherit="APSysCtlr" ver1="20.0.0.5">
-        Unknown.
-        <add name="Unknown Int" type="uint" ver2="10.1.0.0"></add>
     </niobject>
 
     <niobject name="NiPSysPlanarCollider" abstract="0" inherit="NiPSysCollider" ver1="10.2.0.0">
@@ -2549,7 +2621,11 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks">Skin partition objects.</add>
     </niobject>
 
-    <niobject name="NiSourceTexture" abstract="0" inherit="NiObjectNET">
+    <niobject name="NiTexture" abstract="1" inherit="NiObjectNET">
+        A texture.
+    </niobject>
+
+    <niobject name="NiSourceTexture" abstract="0" inherit="NiTexture">
         Describes texture source and properties.
         <add name="Use External" type="byte" default="1">Is the texture external?</add>
         <add name="File Name" type="FilePath" cond="Use External == 1">The external texture file name.</add>
@@ -2654,20 +2730,6 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="PS2 K" type="ushort" ver2="10.2.0.0">0xFFB5?</add>
         <add name="Unknown Short" type="ushort" ver2="4.1.0.12">Unknown: 0.</add>
     </niobject>
-
-    <niobject name="NiTextureTransformController" abstract="0" inherit="NiSingleInterpolatorController" ver1="10.1.0.0">
-        Texture transformation controller.
-        <add name="Unknown2" type="byte">Unknown.</add>
-        <add name="Texture Slot" type="TexType"> The target texture slot.</add>
-        <add name="Operation" type="uint">
-            0: translate u
-            1: translate v
-            2: rotate ?
-            3: tiling u
-            4: tiling v
-        </add>
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
-    </niobject>
     
     <niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty" ver1="3.0" ver2="3.1">
         Unknown
@@ -2729,21 +2791,8 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
     </niobject>
 
-    <niobject name="NiTransformController" abstract="0" inherit="NiSingleInterpolatorController" ver1="10.2.0.0">
-        NiTransformController replaces the NiKeyframeController.
-    </niobject>
-
     <niobject name="NiTransformData" abstract="0" inherit="NiKeyframeData" ver1="10.2.0.0">
         Mesh animation keyframe data.
-    </niobject>
-
-    <niobject name="NiTransformInterpolator" abstract="0" inherit="NiInterpolator" ver1="10.2.0.0">
-        Unknown.
-        <add name="Translation" type="Vector3">Translate.</add>
-        <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float">Scale.</add>
-        <add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Data" type="Ref" template="NiTransformData">Refers to NiTransformData.</add>
     </niobject>
 
     <niobject name="NiTriShape" abstract="0" inherit="NiTriBasedGeom">
@@ -2835,12 +2884,7 @@ a linked object group. This may be due to those objects often being bhkRigidBody
         <add name="Num Vertices" type="ushort">Number of vertices.</add>
         <add name="Weight" type="float" arr1="Num Vertices">The vertex weights.</add>
     </niobject>
-
-    <niobject name="NiVisController" abstract="0" inherit="NiSingleInterpolatorController">
-        Time controller for visibility.
-        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">Visibility controller data object index.</add>
-    </niobject>
-
+    
     <niobject name="NiVisData" abstract="0" inherit="NiObject">
         Visibility data for a controller.
         <add name="Num Vis Keys" type="uint">The number of visibility keys that follow.</add>
