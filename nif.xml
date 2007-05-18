@@ -1304,7 +1304,7 @@
         is visible and possibly (if the body allows for it) interactive. The node itself
         is simple, it only has three properties.
         For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.
-        <add name="Target Node" type="Ptr" template="NiNode">Index of the node referring to this collision object.</add>
+        <add name="Target" type="Ptr" template="NiAVObject">Index of the AV object referring to this collision object.</add>
         <add name="Unknown Short" type="ushort" default="1" ver1="20.0.0.4"> Set to "1" for most objects.</add>
         <add name="Body" type="Ref" template="NiObject" ver1="20.0.0.4">Links to the collision object data</add>
     </niobject>
