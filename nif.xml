@@ -1010,9 +1010,9 @@
         Abstract object type.
     </niobject>
 
-    <niobject name="AParticleModifier" abstract="1" inherit="NiObject">
+    <niobject name="NiEmitterModifier" abstract="1" inherit="NiObject">
         A particle system modifier.
-        <add name="Next Modifier" type="Ref" template="AParticleModifier">Next particle modifier.</add>
+        <add name="Next Modifier" type="Ref" template="NiEmitterModifier">Next particle modifier.</add>
         <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="4.0.0.2">Points to the particle system controller parent.</add>
     </niobject>
     
@@ -2064,7 +2064,7 @@
         <add name="Fog Color" type="Color3">The color of the fog.</add>
     </niobject>
 
-    <niobject name="NiGravity" abstract="0" inherit="AParticleModifier">
+    <niobject name="NiGravity" abstract="0" inherit="NiEmitterModifier">
         A particle modifier; applies a gravitational field on the particles.
         <add name="Unknown Float 1" type="float" ver1="4.0.0.2">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
@@ -2222,7 +2222,7 @@
         <add name="Palette" type="byte" arr1="256" arr2="4">The color palette.</add>
     </niobject>
 
-    <niobject name="NiParticleBomb" abstract="0" inherit="AParticleModifier" ver1="4.1.0.12">
+    <niobject name="NiParticleBomb" abstract="0" inherit="NiEmitterModifier" ver1="4.1.0.12">
         A particle modifier.
         <add name="Decay?" type="float">Unknown.</add>
         <add name="Duration?" type="float">Unknown.</add>
@@ -2234,24 +2234,24 @@
         <add name="Direction?" type="Vector3">The direction of the applied acceleration?</add>
     </niobject>
 
-    <niobject name="NiParticleColorModifier" abstract="0" inherit="AParticleModifier">
+    <niobject name="NiParticleColorModifier" abstract="0" inherit="NiEmitterModifier">
         Unknown.
         <add name="Color Data" type="Ref" template="NiColorData">Color data index.</add>
     </niobject>
 
-    <niobject name="NiParticleGrowFade" abstract="0" inherit="AParticleModifier">
+    <niobject name="NiParticleGrowFade" abstract="0" inherit="NiEmitterModifier">
         This particle system modifier controls the particle size. If it is present the particles start with size 0.0 . Then they grow to their original size and stay there until they fade to zero size again at the end of their lifetime cycle.
         <add name="Grow" type="float">The time from the beginning of the particle lifetime during which the particle grows.</add>
         <add name="Fade" type="float">The time from the end of the particle lifetime during which the particle fades.</add>
     </niobject>
 
-    <niobject name="NiParticleMeshModifier" abstract="0" inherit="AParticleModifier" ver1="4.1.0.12">
+    <niobject name="NiParticleMeshModifier" abstract="0" inherit="NiEmitterModifier" ver1="4.1.0.12">
         Unknown.
         <add name="Num Particle Meshes" type="uint">The number of particle mesh references that follow.</add>
         <add name="Particle Meshes" arr1="Num Particle Meshes" type="Ref" template="NiAVObject">Links to nodes of particle meshes?</add>
     </niobject>
 
-    <niobject name="NiParticleRotation" abstract="0" inherit="AParticleModifier">
+    <niobject name="NiParticleRotation" abstract="0" inherit="NiEmitterModifier">
         Unknown.
         <add name="Unknown Byte" type="byte">Unknown.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -2328,7 +2328,7 @@
         <add name="Num Valid" type="ushort" ver1="4.0.0.2">Number of valid entries in the following array. (Number of active particles at the time the system was saved)</add>
         <add name="Particles" type="Particle" arr1="Num Particles" ver1="4.0.0.2">Individual particle modifiers?</add>
         <add name="Unknown Link" type="Ref" template="NiObject" ver1="4.0.0.2">unknown int (=0xffffffff)</add>
-        <add name="Particle Extra" type="Ref" template="AParticleModifier">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
+        <add name="Particle Extra" type="Ref" template="NiEmitterModifier">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject">Unknown int (=0xffffffff)</add>
         <add name="Trailer" type="byte" ver1="4.0.0.2">Trailing null byte</add>
         <add name="Color Data" type="Ref" template="NiColorData" ver2="3.1" />
@@ -2374,7 +2374,7 @@
         <add name="Unknown Int 2" type="uint" ver1="20.0.0.4"></add>
     </niobject>
 
-    <niobject name="NiPlanarCollider" abstract="0" inherit="AParticleModifier">
+    <niobject name="NiPlanarCollider" abstract="0" inherit="NiEmitterModifier">
         Unknown.
         <add name="Unknown Short" type="ushort" ver1="10.0.1.0">Usually 0?</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -2658,7 +2658,7 @@
         <add name="Flags" type="Flags">1&#039;s Bit = Enable specular lighting on this shape.</add>
     </niobject>
 
-    <niobject name="NiSphericalCollider" abstract="0" inherit="AParticleModifier" ver1="4.0.0.2">
+    <niobject name="NiSphericalCollider" abstract="0" inherit="NiEmitterModifier" ver1="4.0.0.2">
         Unknown.
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Short 1" type="ushort">Unknown.</add>
