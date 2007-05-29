@@ -1856,7 +1856,6 @@
 
     <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplinePoint3Interpolator" ver1="20.0.0.4">
         Unknown.
-        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
     </niobject>
 
     <niobject name="NiBSplineTransformInterpolator" abstract="1" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
