@@ -2224,18 +2224,14 @@
 
     <niobject name="NiParticleBomb" abstract="0" inherit="AParticleModifier" ver1="4.1.0.12">
         A particle modifier.
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Float 3" type="float">Unknown.</add>
-        <add name="Unknown Float 4" type="float">Unknown.</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
-        <add name="Unknown Float 5" type="float">Unknown.</add>
-        <add name="Unknown Float 6" type="float">Unknown.</add>
-        <add name="Unknown Float 7" type="float">Unknown.</add>
-        <add name="Unknown Float 8" type="float">Unknown.</add>
-        <add name="Unknown Float 9" type="float">Unknown.</add>
-        <add name="Unknown Float 10" type="float">Unknown.</add>
+        <add name="Decay?" type="float">Unknown.</add>
+        <add name="Duration?" type="float">Unknown.</add>
+        <add name="DeltaV?" type="float">Unknown.</add>
+        <add name="Start?" type="float">Unknown.</add>
+        <add name="Decay Type?" type="DecayType">Unknown.</add>
+        <add name="Symmetry Type?" type="SymmetryType">Unknown.</add>
+        <add name="Position?" type="Vector3">The position of the mass point relative to the particle system?</add>
+        <add name="Direction?" type="Vector3">The direction of the applied acceleration?</add>
     </niobject>
 
     <niobject name="NiParticleColorModifier" abstract="0" inherit="AParticleModifier">
