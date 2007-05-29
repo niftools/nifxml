@@ -452,20 +452,12 @@
         <option value="1" name="ENDIAN_LITTLE">The numbers are stored in little endian format, such as those used by Intel and AMD x86 processors.</option>
     </enum>
 
-
-    <enum name="VelocityType" storage="uint">
-        Controls the way the a particle mesh emitter determines the starting speed and direction of the particles that are emitted.
-        <option value="0" name="VELOCITY_USE_NORMALS">Uses the normals of the meshes to determine staring velocity.</option>
-        <option value="1" name="VELOCITY_USE_RANDOM">Starts particles with a random velocity.</option>
-        <option value="2" name="VELOCITY_USE_DIRECTION">Uses the emission axis to determine initial particle direction?</option>
-    </enum>
-
     <enum name="TargetColor" storage="ushort">
         Used by NiPoint3InterpControllers to select which type of color in the controlled object that will be animated.
-        <choice value="0" name="TC_AMBIENT">Control the ambient color.</choice>
-        <choice value="1" name="TC_DIFFUSE">Control the diffuse color.</choice>
-        <choice value="2" name="TC_SPECULAR">Control the specular color.</choice>
-        <choice value="3" name="TC_SELF_ILLUM">Control the self illumination color.</choice>
+        <option value="0" name="TC_AMBIENT">Control the ambient color.</option>
+        <option value="1" name="TC_DIFFUSE">Control the diffuse color.</option>
+        <option value="2" name="TC_SPECULAR">Control the specular color.</option>
+        <option value="3" name="TC_SELF_ILLUM">Control the self illumination color.</option>
     </enum>
 
     <!--Compounds
@@ -2432,7 +2424,7 @@
         <add name="Bomb Axis" type="Vector3">Unknown.</add>
         <add name="Decay" type="float">Unknown.</add>
         <add name="Delta V" type="float">Unknown.</add>
-        <add name="Decay Type" type="uint">Unknown.</add>
+        <add name="Decay Type" type="DecayType">Unknown.</add>
         <add name="Symmetry Type" type="SymmetryType">Unknown.</add>
     </niobject>
 
