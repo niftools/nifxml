@@ -391,6 +391,83 @@
         <option value="2" name="FORCE_UNKNOWN"></option>
     </enum>
 
+    <enum name="TexTransform" storage="uint">
+        Determines how a NiTextureTransformController animates the UV coordinates.
+        <option value ="0" name="TT_TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
+        <option value ="1" name="TT_TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
+        <option value ="2" name="TT_ROTATE">Means this controller roates the UV texture cooridnates.</option>
+        <option value ="3" name="TT_SCALE_U">Means this controller scales the U texture cooridnates.</option>
+        <option value ="4" name="TT_SCALE_V">Means this controller scales the V texture cooridnates.</option>
+    </enum>
+
+    <enum name="DecayType" storage="uint">
+        Determines decay function.  Used by NiPSysBombModifier.
+        <option value="0" name="DECAY_NONE">No decay.</option>
+        <option value="1" name="DECAY_LINEAR">Linear decay.</option>
+        <option value="2" name="DECAY_EXPONENTIAL">Exponential decay.</option>
+    </enum>
+
+    <enum name="SymmetryType" storage="uint">
+        Determines symetry type used by NiPSysBombModifier.
+        <option value="0" name="SPHERICAL_SYMMETRY">Spherical Symmetry.</option>
+        <option value="1" name="CYLINDRICAL_SYMMETRY">Cylindrical Symmetry.</option>
+        <option value="2" name="PLANAR_SYMMETRY">Planar Symmetry.</option>
+    </enum>
+
+    <enum name="VelocityType" storage="uint">
+        Controls the way the a particle mesh emitter determines the starting speed and direction of the particles that are emitted.
+        <option value="0" name="VELOCITY_USE_NORMALS">Uses the normals of the meshes to determine staring velocity.</option>
+        <option value="1" name="VELOCITY_USE_RANDOM">Starts particles with a random velocity.</option>
+        <option value="2" name="VELOCITY_USE_DIRECTION">Uses the emission axis to determine initial particle direction?</option>
+    </enum>
+
+    <enum name="EmitFrom" storage="uint">
+        Controls which parts of the mesh that the particles are emitted from.
+        <option value="0" name="EMIT_FROM_VERTICES">Emit particles from the vertices of the mesh.</option>
+        <option value="1" name="EMIT_FROM_FACE_CENTER">Emit particles from the center of the faces of the mesh.</option>
+        <option value="2" name="EMIT_FROM_EDGE_CENTER">Emit particles from the center of the edges of the mesh.</option>
+        <option value="3" name="EMIT_FROM_FACE_SURFACE">Perhaps randomly emit particles from anywhere on the faces of the mesh?</option>
+        <option value="4" name="EMIT_FROM_EDGE_SURFACE">Perhaps randomly emit particles from anywhere on the edges of the mesh?</option>
+    </enum>
+
+    <enum name="EffectType" storage="uint">
+        The type of information that's store in a texture used by a NiTextureEffect.
+        <option value="0" name="EFFECT_PROJECTED_LIGHT">Apply a projected light texture.</option>
+        <option value="1" name="EFFECT_PROJECTED_SHADOW">Apply a projected shaddow texture.</option>
+        <option value="2" name="EFFECT_ENVIRONMENT_MAP">Apply an environment map texture.</option>
+        <option value="3" name="EFFECT_FOG_MAP">Apply a fog map texture.</option>
+    </enum>
+
+    <enum name="CoordGenType" storage="uint">
+        Determines the way that UV texture coordinates are generated.
+        <option value="0" name="CG_WORLD_PARALLEL">Use plannar mapping.</option>
+        <option value="1" name="CG_WORLD_PERSPECTIVE">Use perspective mapping.</option>
+        <option value="2" name="CG_SPHERE_MAP">Use spherical mapping.</option>
+        <option value="3" name="CG_SPECULAR_CUBE_MAP">Use specular cube mapping.</option>
+        <option value="4" name="CG_DIFFUSE_CUBE_MAP">Use Diffuse cube mapping.</option>
+    </enum>
+
+    <enum name="EndianType" storage="byte">
+        <option value="0" name="ENDIAN_BIG">The numbers are stored in big endian format, such as those used by PowerPC Mac processors.</option>
+        <option value="1" name="ENDIAN_LITTLE">The numbers are stored in little endian format, such as those used by Intel and AMD x86 processors.</option>
+    </enum>
+
+
+    <enum name="VelocityType" storage="uint">
+        Controls the way the a particle mesh emitter determines the starting speed and direction of the particles that are emitted.
+        <option value="0" name="VELOCITY_USE_NORMALS">Uses the normals of the meshes to determine staring velocity.</option>
+        <option value="1" name="VELOCITY_USE_RANDOM">Starts particles with a random velocity.</option>
+        <option value="2" name="VELOCITY_USE_DIRECTION">Uses the emission axis to determine initial particle direction?</option>
+    </enum>
+
+    <enum name="TargetColor" storage="ushort">
+        Used by NiPoint3InterpControllers to select which type of color in the controlled object that will be animated.
+        <choice value="0" name="TC_AMBIENT">Control the ambient color.</choice>
+        <choice value="1" name="TC_DIFFUSE">Control the diffuse color.</choice>
+        <choice value="2" name="TC_SPECULAR">Control the specular color.</choice>
+        <choice value="3" name="TC_SELF_ILLUM">Control the self illumination color.</choice>
+    </enum>
+
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
@@ -611,12 +688,7 @@
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
         <add name="Copyright" type="LineString" arr1="3" ver2="3.1" />
         <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-        <add name="Endian Type" type="byte" default="1" ver1="20.0.0.4">
-            Determines the endian-ness of the data.
-
-            1 = little endian (default)
-            0 = big endian
-        </add>
+        <add name="Endian Type" type="EndianType" default="1" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
         <add name="User Version" type="uint" default="1" ver1="10.0.1.2" ver2="10.0.1.2">May not really be user version, but it is convenient to treat it as such in the one file that uses this NIF version.</add>
@@ -725,8 +797,8 @@
     <compound name="TexDesc">
         Texture description.
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
-        <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
-        <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
+        <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">Determines how UV coordinaes that are outside the 0-1 range will be mapped to the texture.</add>
+        <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP">Determines how the texture will be scaled up and down.</add>
         <add name="UV Set" type="uint" default="0">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
         <add name="PS2 L" type="ushort" default="0" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="ushort" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
@@ -928,6 +1000,12 @@
         <add name="Unknown Short 2" type="short" cond="Has Image" default="-75">Unknown.  Usually -75.</add>
         <add name="Unknown Short 3" type="short" cond="Has Image" default="0">Unknown.  Usually 0 but sometimes 257</add>
     </compound>
+
+    <enum name="ImageType" storage="uint">
+        Determines how the raw image data is stored in NiRawImageData.
+        <option value="1" name="RGB">Colors store red, blue, and green components.</option>
+        <option value="2" name="RGBA">Colors store red, blue, green, and alpha components.</option>
+    </enum>
 
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -1530,13 +1608,7 @@
         Texture transformation controller.
         <add name="Unknown2" type="byte">Unknown.</add>
         <add name="Texture Slot" type="TexType"> The target texture slot.</add>
-        <add name="Operation" type="uint">
-            0: translate u
-            1: translate v
-            2: rotate ?
-            3: tiling u
-            4: tiling v
-        </add>
+        <add name="Operation" type="TexTransform">Determines how this controller animates the UV Coordinates.</add>
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
     </niobject>
 
@@ -1555,7 +1627,7 @@
 
     <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController" ver1="10.2.0.0">
         A controller that interpolates point 3 data?
-        <add name="Target Color" type="ushort" ver1="10.1.0.0">Selects which color to control. 0 : ambient, 1 : diffuse, 2 : specular, 3 : self illum</add>
+        <add name="Target Color" type="TargetColor" ver1="10.1.0.0">Selects which color to control.</add>
         <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
     </niobject>
 
@@ -1766,10 +1838,6 @@
 
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData" ver1="10.1.0.0">
         Particle meshes data.
-        <!--<add name="Unknown Byte 11" type="byte" ver1="20.0.0.5">Unknown.</add>
-        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="10" ver2="20.0.0.4">Unknown. Repeatedly (0,0,0,1,0,0,0,0,0,0).</add>
-        <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="12" ver1="20.0.0.5">Unknown. Zero.</add>
-        <add name="Unknown Int 1" type="uint">Unknown. Usually 0.</add>-->
         <add name="Modifier" type="Ref" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.</add>
         <add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
         <add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
@@ -2360,10 +2428,12 @@
 
     <niobject name="NiPSysBombModifier" abstract="0" inherit="NiPSysModifier" ver1="20.0.0.5">
         Unknown.
-        <add name="Unknown Link" type="Ptr" template="NiNode">Link to a node.</add>
-        <add name="Unknown Ints 1" type="uint" arr1="2">Not sure, could be floats as well. Zero.</add>
-        <add name="Unknown Floats" type="float" arr1="3">Unknown.</add>
-        <add name="Unknown Ints 2" type="uint" arr1="2">Unknown.</add>
+        <add name="Bomb Object" type="Ptr" template="NiNode">Link to a node.  Exact function unknown.</add>
+        <add name="Bomb Axis" type="Vector3">Unknown.</add>
+        <add name="Decay" type="float">Unknown.</add>
+        <add name="Delta V" type="float">Unknown.</add>
+        <add name="Decay Type" type="uint">Unknown.</add>
+        <add name="Symmetry Type" type="SymmetryType">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysBoundUpdateModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
@@ -2433,22 +2503,8 @@
         Unknown.
         <add name="Num Emitter Meshes" type="uint">The number of references to emitter meshes that follow.</add>
         <add name="Emitter Meshes" type="Ref" template="NiTriBasedGeom" arr1="Num Emitter Meshes">Links to meshes used for emitting.</add>
-        <add name="Initial Velocity Type" type="uint">
-            0: NI_VELOCITY_USE_NORMALS
-            1: NI_VELOCITY_USE_RANDOM
-            2: NI_VELOCITY_USE_DIRECTION
-            3+: UNKNOWN
-        </add>
-        <add name="Emission Type" type="uint">
-            Where it emits from.
-
-            0: NI_EMIT_FROM_EDGE_SURFACE(?)
-            1: NI_EMIT_FROM_FACE_CENTER
-            2: NI_EMIT_FROM_EDGE_CENTER
-            3: NI_EMIT_FROM_FACE_SURFACE
-            4: NI_EMIT_FROM_EDGE_SURFACE
-            5+: UNKNOWN
-        </add>
+        <add name="Initial Velocity Type" type="VelocityType">The way the particles get their initial direction and speed.</add>
+        <add name="Emission Type" type="EmitFrom">The parts of the mesh that the particles emit from.</add>
         <add name="Emission Axis" type="Vector3">The emission axis.</add>
     </niobject>
 
@@ -2675,24 +2731,10 @@
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode">Texture Filtering mode.</add>
         <add name="Texture Clamping" type="TexClampMode">Texture Clamp mode.</add>
-        <add name="Texture Type" type="uint">
-            0: PROJECTED_LIGHT
-            1: PROJECTED_SHADOW
-            2: ENVIRONMENT_MAP (Usual value)
-            3: FOG_MAP
-        </add>
-        <add name="Coordinate Generation Type" type="uint">
-            0: WORLD_PARALLEL
-            1: WORLD_PERSPECTIVE
-            2: SPHERE_MAP (Usual value)
-            3: SPECULAR_CUBE_MAP
-            4: DIFFUSE_CUBE_MAP
-        </add>
+        <add name="Texture Type" default="2" type="EffectType">The type of effect that the texture is used for.</add>
+        <add name="Coordinate Generation Type" default="2" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture">Source texture index.</add>
-        <add name="Clipping Plane" type="byte">
-            0: Disabled (Usual value)
-            1: Enabled
-        </add>
+        <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
         <add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
         <add name="Unknown Float" type="float">Unknown. 0?</add>
         <add name="PS2 L" type="ushort" ver2="10.2.0.0">0?</add>
@@ -2731,7 +2773,7 @@
     <niobject name="NiTexturingProperty" abstract="0" inherit="NiProperty">
         Describes an object&#039;s textures.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-        <add name="Apply Mode" type="ApplyMode" default="2">0=replace, 1=decal, 2=modulate, 3=hilight, 4=hilight2</add>
+        <add name="Apply Mode" type="ApplyMode" default="2">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
         <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
         <add name="Base Texture" type="TexDesc" cond="Has Base Texture != 0">The base texture.</add>
@@ -2836,13 +2878,7 @@
     <niobject name="NiVertexColorProperty" abstract="0" inherit="NiProperty">
         Property of vertex colors. This object is referred to by the root object of the NIF file whenever some NiTriShapeData object has vertex colors with non-default settings; if not present, vertex colors have vertex_mode=2 and lighting_mode=1.
         <add name="Flags" type="Flags">Property flags.</add>
-        <add name="Vertex Mode" type="VertMode">
-            0: SOURCE_IGNORE (ignore vertex colors, use material defaults)
-            1: SOURCE_EMISSIVE (vertex colors override the material&#039;s emissive color)
-            2: SOURCE_AMB_DIFF (vertex colors are mapped to ambient and diffuse color)
-
-            related gl function: glColorMaterial
-        </add>
+        <add name="Vertex Mode" type="VertMode">Determines how vertex and material colors are mixed.</add>
         <add name="Lighting Mode" type="LightMode">The light mode.</add>
     </niobject>
 
@@ -2888,7 +2924,7 @@
         Raw image data.
         <add name="Width" type="uint">Image width</add>
         <add name="Height" type="uint">Image height</add>
-        <add name="Image Type" type="uint">Type of image.  1 = RGB, 2 = RGBA</add>
+        <add name="Image Type" type="ImageType">The format of the raw image data.</add>
         <add name="RGB Image Data" type="ByteColor3" arr1="Width" arr2="Height" cond="Image Type == 1" >Image pixel data.</add>
         <add name="RGBA Image Data" type="ByteColor4" arr1="Width" arr2="Height" cond="Image Type == 2" >Image pixel data.</add>
     </niobject>
