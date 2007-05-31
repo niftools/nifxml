@@ -2299,13 +2299,8 @@
         <add name="Vertical Angle" type="float">emitter&#039;s vertical opening angle [radians]</add>
         <add name="Horizontal Direction" type="float">horizontal emit direction</add>
         <add name="Horizontal Angle" type="float">emitter&#039;s horizontal opening angle</add>
-        <add name="Unknown Float 5" type="float">Unknown.</add>
-        <add name="Unknown Float 6" type="float">Unknown.</add>
-        <add name="Unknown Float 7" type="float">Unknown.</add>
-        <add name="Unknown Float 8" type="float">Unknown.</add>
-        <add name="Unknown Float 9" type="float">Unknown.</add>
-        <add name="Unknown Float 10" type="float">Unknown.</add>
-        <add name="Unknown Float 11" type="float">Unknown.</add>
+        <add name="Unknown Normal?" type="Vector3">Unknown.</add>
+        <add name="Unknown Color?" type="Color4">Unknown.</add>
         <add name="Size" type="float">Particle size</add>
         <add name="Emit Start Time" type="float">Particle emit start time</add>
         <add name="Emit Stop Time" type="float">Particle emit stop time</add>
