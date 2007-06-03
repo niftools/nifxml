@@ -1520,7 +1520,12 @@
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to interpolator.</add>
     </niobject>
 
-    <niobject name="NiTransformController" abstract="0" inherit="NiSingleInterpController" ver1="10.2.0.0">
+    <niobject name="NiKeyframeController" abstract="0" inherit="NiSingleInterpController">
+        A time controller object for animation key frames.
+        <add name="Data" type="Ref" template="NiKeyframeData" ver2="10.1.0.0">Keyframe controller data index.</add>
+    </niobject>
+
+    <niobject name="NiTransformController" abstract="0" inherit="NiKeyframeController" ver1="10.2.0.0">
         NiTransformController replaces the NiKeyframeController.
     </niobject>
 
@@ -2092,11 +2097,6 @@
         Integers data.
         <add name="Num Integers" type="uint">Number of integers.</add>
         <add name="Data" type="uint" arr1="Num Integers">Integers.</add>
-    </niobject>
-
-    <niobject name="NiKeyframeController" abstract="0" inherit="NiTimeController">
-        A time controller object for animation key frames.
-        <add name="Data" type="Ref" template="NiKeyframeData">Keyframe controller data index.</add>
     </niobject>
 
     <niobject name="BSKeyframeController" abstract="0" inherit="NiKeyframeController" ver1="10.0.1.2">
