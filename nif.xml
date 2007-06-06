@@ -985,11 +985,11 @@
     <compound name="MultiTextureElement">
         <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
         <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
-        <add name="Unknown Int 1" type="uint" cond="Has Image" default="3">Unkown.  Usually 3 but sometimes 0.</add>
-        <add name="Unknown Int 2" type="uint" cond="Has Image" default="2">Unkown. Usually 2.</add>
-        <add name="Unknown Int 3" type="uint" cond="Has Image" default="1">Unkown. Usually 1.</add>
-        <add name="Unknown Short 1" type="short" cond="Has Image" default="0">Unknown.  Usually 0.</add>
-        <add name="Unknown Short 2" type="short" cond="Has Image" default="-75">Unknown.  Usually -75.</add>
+        <add name="Clamp?" type="TexClampMode" cond="Has Image" default="3">May be texture clamp mode.</add>
+        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="2">May be texture filter mode.</add>
+        <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
+        <add name="PS2 L" type="ushort" cond="Has Image" default="0" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="ushort" cond="Has Image" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
         <add name="Unknown Short 3" type="short" cond="Has Image" default="0">Unknown.  Usually 0 but sometimes 257</add>
     </compound>
 
@@ -2726,15 +2726,16 @@
     <niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty" ver1="3.0" ver2="3.1">
         Unknown
         <add name="Unknown Short" type="short">Unknown. Either 210 or 194.</add>
-        <add name="Unknown 2 Shorts" type="short" arr1="2" ver1="3.1">Unknown. Either (0,-75) or (0,-75)</add>
+        <add name="PS2 L" type="ushort" default="0" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="ushort" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
     </niobject>
     
     <niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.0" ver2="3.1">
         <add name="External" type="byte">0 if the texture is internal to the NIF file.</add>
         <add name="File Name" type="FilePath" cond="External != 0">The filepath to the texture.</add>
         <add name="Image Data" type="Ref" template="NiRawImageData" cond="External == 0">Link to the internally stored image data.</add>
-        <add name="Unknown Int 1" type="uint" default="7">Unknown.  Often seems to be 7.</add>
-        <add name="Unknown Int 2" type="uint" ver1="3.1" default="0x43008000">Unknown.  Perhaps some flags?  Two shorts? Default seems to be 0x43008000</add>
+        <add name="Unknown Int" type="uint" default="7">Unknown.  Often seems to be 7. Perhaps m_uiMipLevels?</add>
+        <add name="Unknown Float" type="float" ver1="3.1" default="128.5">Unknown.  Perhaps fImageScale?</add>
     </niobject>
     
     <niobject name="NiTextureProperty" abstract="0" inherit="NiProperty" ver1="3.0" ver2="3.1">
