@@ -1149,8 +1149,14 @@
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         A prismatic constraint.
-        <add name="Unknown Vectors" type="Vector4" arr1="8" >Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="3">Unknown.</add>
+        <add name="Pivot A" type="Vector4" >Pivot A.</add>
+        <add name="Rotation" type="Vector4" arr1="4">4x4 rotation matrix, rotates the child entity.</add>
+        <add name="Pivot B" type="Vector4" >Pivot B.</add>
+        <add name="Sliding Axis" type="Vector4" >Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Plane" type="Vector4" >Plane normal. Describes the plane the object is able to move on.</add>
+        <add name="Min Distance" type="float" >Describe the min distance the object is able to travel.</add>
+        <add name="Max Distance" type="float" >Describe the max distance the object is able to travel.</add>
+        <add name="Friction" type="float" >Friction.</add>
     </niobject>
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
