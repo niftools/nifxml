@@ -1916,8 +1916,11 @@
     </niobject>
     
     <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineFloatInterpolator" ver1="20.0.0.4">
-        Unknown.
-        <add name="Unknown Floats" type="float" arr1="4">Unknown.</add>
+      Unknown.
+      <add name="Base" type="float">Base value when curve not defined.</add>
+      <add name="Offset" type="uint">Starting offset for the data. (USHRT_MAX for no data.)</add>
+      <add name="Bias" type="float">Bias</add>
+      <add name="Multiplier" type="float">Multiplier</add>
     </niobject>
 
     <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
