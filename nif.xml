@@ -460,7 +460,15 @@
         <option value="3" name="TC_SELF_ILLUM">Control the self illumination color.</option>
     </enum>
 
-    <!--Compounds
+    <enum name="ConsistencyType" storage="ushort">
+      Used by NiGeometryData to control the volatility of the mesh.  While they appear to be flags they behave as an enum.
+      <option value="0" name="CT_MUTABLE">Mutable Mesh</option>
+      <option value="16384" name="CT_STATIC">Static Mesh</option>
+      <option value="32768" name="CT_VOLATILE">Volatile Mesh</option>
+    </enum>
+  
+
+  <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
 
@@ -1713,7 +1721,7 @@
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0">Same as above, but needs to be repeated due to &#039;UV Sets&#039; moving to a different position.</add>
-        <add name="Unknown Short 2" type="ushort" ver1="10.0.1.0">Unknown. Usually zero.</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0">Consistency Flags</add>
         <add name="Unknown Link 1" type="Ref" template="NiObject" ver1="20.0.0.4">Unknown.</add>
     </niobject>
 
