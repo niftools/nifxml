@@ -898,7 +898,7 @@
         <add name="Num Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
-        <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+        <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="20.0.0.4">Unknown.</add>
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -1525,8 +1525,8 @@
         <add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
-        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0">A count.</add>
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0">Unknown.</add>
+        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">A count.</add>
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
     </niobject>
 
     <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
@@ -1721,7 +1721,7 @@
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets" arr2="Num Vertices" ver2="4.2.2.0">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets 2 &amp; 63" arr2="Num Vertices" ver1="10.0.1.0">Same as above, but needs to be repeated due to &#039;UV Sets&#039; moving to a different position.</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0">Consistency Flags</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="0">Consistency Flags</add>
         <add name="Unknown Link 1" type="Ref" template="NiObject" ver1="20.0.0.4">Unknown.</add>
     </niobject>
 
