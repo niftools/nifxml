@@ -1525,8 +1525,10 @@
         <add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
-        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">A count.</add>
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
+        <add name="Num Unknown Ints 1" type="uint" ver1="10.2.0.0" ver2="10.2.0.0">A count.</add>
+        <add name="Unknown Ints 1" type="uint" arr1="Num Unknown Ints 1" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
+        <add name="Num Unknown Ints 2" type="uint" ver1="20.0.0.5">A count.</add>
+        <add name="Unknown Ints 2" type="uint" arr1="Num Unknown Ints 2" ver1="20.0.0.5">Unknown.</add>
     </niobject>
 
     <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
