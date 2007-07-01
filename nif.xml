@@ -1700,7 +1700,7 @@
         <add name="Name" type="string" ver1="10.2.0.0">Name of this object.</add>
         <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
         <add name="Unknown Short 1" type="ushort" ver1="10.1.0.0">Unknown.</add>
-        <add name="Has Vertices" type="bool">Is the vertex array present? (Always non-zero.)</add>
+        <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
         <add name="Num UV Sets 2" type="byte" ver1="10.0.1.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits.</add>
         <add name="Unknown Byte 1" type="byte" ver1="10.0.1.0">Unknown. If bit 4 is set then extra vectors are present after the normals.</add>
@@ -2171,7 +2171,7 @@
         Geometry morphing data.
         <add name="Num Morphs" type="uint">Number of morphing object.</add>
         <add name="Num Vertices" type="uint">Number of vertices.</add>
-        <add name="Unknown Byte" type="byte">This byte is always 1 in all official files.</add>
+        <add name="Unknown Byte" type="byte" default="1">This byte is always 1 in all official files.</add>
         <add name="Morphs" type="Morph" arg="Num Vertices" arr1="Num Morphs">The geometry morphing objects.</add>
     </niobject>
 
