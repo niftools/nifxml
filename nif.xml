@@ -1953,7 +1953,7 @@
       <add name="Scale Offset" type="uint">Starting offset for the scale data. (USHRT_MAX for no data.)</add>
     </niobject>
 
-    <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator" ver1="20.0.0.4">
+    <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineTransformInterpolator" ver1="20.0.0.4">
         Unknown.
         <add name="Translate Bias" type="float">Translate Bias</add>
         <add name="Translate Multiplier" type="float">Translate Multiplier</add>
