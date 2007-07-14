@@ -898,7 +898,7 @@
         <add name="Num Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
-        <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+        <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
         <add name="Unknown Int" type="uint" ver1="20.0.0.4" userver="0">Unknown.</add>
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
@@ -1526,8 +1526,6 @@
         <add name="Unknown Byte" type="byte">Unknown byte (always zero?).</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
-        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="10.2.0.0">A count.</add>
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="10">A count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" userver="10">Unknown.</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="11">A count.</add>
@@ -1854,10 +1852,10 @@
 
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData" ver1="10.1.0.0">
         Particle meshes data.
-        <add name="Modifier" type="Ref" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.</add>
+        <add name="Unknown Modifier" type="uint" template="NiObject" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers, however at least one file has a NiNode here.  May indicate that this is really two separate links in different versions or some other problem.  Several files have number of verts here.</add>
         <add name="Unknown Byte 2" type="byte" ver1="10.2.0.0" ver2="20.0.0.4">Unknown.</add>
         <add name="Num Unknown Links" type="uint" ver1="10.2.0.0" ver2="20.0.0.4">The number of unknown links that follow.</add>
-        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.</add>
+        <add name="Unknown Links" type="uint" template="NiObject" arr1="Num Unknown Links" ver1="10.2.0.0" ver2="20.0.0.4">Unknown. Seems to refer to particle modifiers.  Sometimes matches vertices count.</add>
         <add name="Num Vertices 2" type="uint" ver1="20.0.0.5">Repeat of Vertex Count?</add>
         <add name="Unknown Byte 3" type="byte" default="0" ver1="20.0.0.5">Unknown. 0?</add>
         <add name="Unknown Int 2" type="uint" default="1" ver1="20.0.0.5">Unknown.  1?</add>
