@@ -1299,6 +1299,9 @@
 
     <niobject name="bhkListShape" abstract="0" inherit="bhkShapeCollection">
         A list of shapes.
+
+        Note: do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a
+        separate collision node without a list shape for those.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
