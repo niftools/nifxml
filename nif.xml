@@ -111,10 +111,6 @@
     <basic name="StringIndex" count="0" niflibtype="IndexString" nifskopetype="stringindex">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
-    
-    <basic name="Char8String" count="0" niflibtype="Char8String" nifskopetype="char8string">
-       A fixed length string that is 8 bytes long.
-    </basic>
 
     <!--Enumerations
         These are like C enums and consist of a list of options.  They can appear
@@ -1240,7 +1236,7 @@
 
     <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
         A capsule.
-        <add name="Unknown String" type="Char8String">Unknown.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
         <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
@@ -1249,7 +1245,7 @@
 
     <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape" ver1="20.0.0.5">
         A box.
-        <add name="Unknown String" type="Char8String">Unknown.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
         <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
         <add name="Minimum Size" type="float">The smallest of the three sizes. Might be used for optimization.</add>
     </niobject>
