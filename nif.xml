@@ -1086,8 +1086,8 @@
       <add name="Radius" type="float">Radius</add>-->
       <!-- direction and radius seem not present in ffvt3r 10.1.0.0 nifs 
       instead, there's two floats -->   
-      <add name="Unknown Float 1" type="float"</add>
-      <add name="Unknown Float 2" type="float"</add>
+      <add name="Unknown Float 1" type="float">Unknown.</add>
+      <add name="Unknown Float 2" type="float">Unknown.</add>
     </compound>
     
     <compound name="UnionBV">
