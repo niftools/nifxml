@@ -1797,15 +1797,15 @@
         Mesh data: vertices, vertex normals, etc.
         <add name="Name" type="string" ver1="10.2.0.0">Name of this object.</add>
         <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
-        <add name="Keep Flags" type="byte" ver1="10.1.0.107">Used with NiCollision objects when OBB or TRI is set.</add>
-        <add name="Compress Flags" type="byte" ver1="10.1.0.107">Unknown.</add>
+        <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
+        <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" ver1="10.0.1.0">Methods for saving binormals and tangents saved in upper byte.  Texture flags in lower byte.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
-        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Data Flags &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Data Flags &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
+        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Num UV Sets &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (Num UV Sets &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Has Vertex Colors" type="bool">
