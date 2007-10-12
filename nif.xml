@@ -997,7 +997,7 @@
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
     </compound>
 
-    <compound name="Sphere">
+    <compound name="SphereBV">
         A sphere.
         <add name="Center" type="Vector3">The sphere's center.</add>
         <add name="Radius" type="float">The sphere's radius.</add>
@@ -1082,8 +1082,12 @@
       Capsule Bounding Volume
       <add name="Center" type="Vector3">Center</add>
       <add name="Origin" type="Vector3">Origin</add>
-      <add name="Direction" type="Vector3">Direction</add>
-      <add name="Radius" type="float">Radius</add>      
+      <!--<add name="Direction" type="Vector3">Direction</add>
+      <add name="Radius" type="float">Radius</add>-->
+      <!-- direction and radius seem not present in ffvt3r 10.1.0.0 nifs 
+      instead, there's two floats -->   
+      <add name="Unknown Float 1" type="float"</add>
+      <add name="Unknown Float 2" type="float"</add>
     </compound>
     
     <compound name="UnionBV">
@@ -1098,7 +1102,7 @@
     
     <compound name="BoundingVolume">
         <add name="Collision Type" type="BoundVolumeType">Type of collision data.</add>
-        <add name="Sphere" type="Sphere" cond="Collision Type == 0">Sphere</add>
+        <add name="Sphere" type="SphereBV" cond="Collision Type == 0">Sphere</add>
         <add name="Box" type="BoxBV" cond="Collision Type == 1">Box</add>
         <add name="Capsule" type="CapsuleBV" cond="Collision Type == 2">Capsule</add>
         <!--<add name="Union" type="UnionBV" cond="Collision Type == 4">Union</add>-->
@@ -1339,7 +1343,7 @@
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Float 2" type="float">Unknown.</add>
         <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
-        <add name="Spheres" type="Sphere" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
+        <add name="Spheres" type="SphereBV" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
     </niobject>
     
     <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape">
@@ -1495,7 +1499,7 @@
         Collision box.
         <add name="Propagation Mode" type="PropagationMode">Propagation Mode</add>
         <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" ver2="10.1.0.0">Unknown.</add>
-        <add name="Collision Mode" type="CollisionMode">Collision Mode</add>
+        <!--<add name="Collision Mode" type="CollisionMode">Collision Mode</add>--><!-- not present in ffvt3r 10.1.0.0 nifs -->
         <add name="Use ABV" type="byte">Use Alternate Bounding Volume.</add>
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1">Collision data.</add>
     </niobject>
