@@ -2822,7 +2822,7 @@
         Apparently commands for an optimizer instructing it to keep things it would normally discard.
         Also refers to NiNode objects (through their name) in animation .kf files.
         <add name="Bytes Remaining" type="uint" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
-        <add name="String Data" type="Text">The string.</add>
+        <add name="String Data" type="string">The string.</add>
     </niobject>
 
     <niobject name="NiStringPalette" abstract="0" inherit="NiObject" ver1="10.2.0.0">
@@ -2833,7 +2833,7 @@
     <niobject name="NiStringsExtraData" abstract="0" inherit="NiExtraData">
         List of strings; for example, a list of all bone names.
         <add name="Num Strings" type="uint">Number of strings.</add>
-        <add name="Data" type="Text" arr1="Num Strings">The strings.</add>
+        <add name="Data" type="string" arr1="Num Strings">The strings.</add>
     </niobject>
 
     <niobject name="NiTextKeyExtraData" abstract="0" inherit="NiExtraData">
