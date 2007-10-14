@@ -115,10 +115,6 @@
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
-    <basic name="Text" niflibtype="string" nifskopetype="text">
-        A multiline string type.
-    </basic>
-
     <!--Enumerations
         These are like C enums and consist of a list of options.  They can appear
         as parts of compounts or niobjects.-->
