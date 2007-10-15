@@ -702,7 +702,7 @@
 
     <compound name="SkinShape">
         Reference to shape and skin instance.
-        <add name="Shape" type="Ref" template="NiTriShape">The shape.</add>
+        <add name="Shape" type="Ref" template="NiTriBasedGeom">The shape.</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance">Skinning instance for the shape?</add>
     </compound>
 
@@ -1773,10 +1773,10 @@
         <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
         <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
         
-        <add name="Num Shape Groups" type="uint" ver2="10.2.0.0">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups" ver2="10.2.0.0">List of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint" ver2="10.2.0.0">The size of the second list of shape groups.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriShape" arr1="Num Shape Groups 2" ver2="10.2.0.0">Group of NiTriShape indices.</add>
+        <add name="Num Shape Groups" type="uint">Number of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups">List of shape groups.</add>
+        <add name="Num Shape Groups 2" type="uint">The size of the second list of shape groups.</add>
+        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2">Group of NiTriShape indices.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
@@ -1793,7 +1793,7 @@
         <add name="Active Material" type="int" ver1="20.2.0.7" default="-1">Active Material.</add>
         <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.2.0.6">Shader.</add>
         <add name="Shader Name" type="string" cond="Has Shader != 0" ver1="10.0.1.0" ver2="20.2.0.6">The shader name.</add>
-        <add name="Unknown Link" type="Ptr" template="NiObject" cond="Has Shader != 0" ver1="10.0.1.0">Unknown link, usually -1.</add>
+        <add name="Unknown Link" type="int" template="NiObject" cond="Has Shader != 0" ver1="10.0.1.0">Unknown value, usually -1. (Not a link)</add>
         <add name="Dirty Flag?" type="bool" ver1="20.2.0.7">Dirty Flag?</add>        
     </niobject>
 
