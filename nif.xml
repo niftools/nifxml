@@ -3080,7 +3080,7 @@
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode" ver1="10.2.0.0">
         Unknown node.  Found in Loki.
         <add name="Sorting Mode" type="SortingMode" default="SORTING_MAX">Sorting</add>
-        <add name="Unknown Int 2" type="Ptr" default="-1">Unknown.</add>
+        <add name="Unknown Int 2" type="Ptr" default="-1" ver2="10.2.0.0">Unknown.</add>
     </niobject>
     
     <niobject name="NiPhysXProp" abstract="0" inherit="NiObjectNET" ver1="20.1.0.7">
