@@ -2501,7 +2501,7 @@
         <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
         <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>       
         <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.8">Unknown.</add>
+        <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
         <add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
         <add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
         <add name="Mipmaps" type="MipMap" arr1="Num Mipmaps">Mipmap descriptions (width, height, offset).</add>
@@ -3083,6 +3083,10 @@
         <add name="Unknown Int 2" type="Ptr" default="-1" ver2="10.2.0.0">Unknown.</add>
     </niobject>
     
+    <niobject name="NiSourceCubeMap" abstract="0" inherit="NiSourceTexture">
+        Unknown node.  Found in Emerge Demo.
+    </niobject>
+    
     <niobject name="NiPhysXProp" abstract="0" inherit="NiObjectNET" ver1="20.1.0.7">
         Unknown PhysX node.  
         <add name="Unknown Float 1" type="float">Unknown</add>
@@ -3170,6 +3174,14 @@
         <add name="Unknown Int" type="uint" arr1="12">Unknown</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
         <add name="Unknown Byte 2" type="byte">Unknown</add>
+    </niobject>
+    
+    <niobject name="NiPhysXKinematicSrc" inherit="NiObject" ver1="20.1.0.7">
+        Unknown node.  
+    </niobject>
+
+    <niobject name="NiPhysXTransformDest" inherit="NiObject" ver1="20.1.0.7">
+        Unknown node.  
     </niobject>
 
 </niftoolsxml>
