@@ -18,12 +18,14 @@
     <version num="4.2.2.0">Dark Age of Camelot, Civilization IV, Empire Earth II</version>
     <version num="10.0.1.0">Zoo Tycoon 2, Civilization IV</version>
     <version num="10.0.1.2">Oblivion</version>
+    <version num="10.0.1.3">?</version>
     <version num="10.1.0.0">Dark Age of Camelot, Civilization IV, Freedom Force vs. the 3rd Reich, Axis and Allies, Kohan 2</version>
     <version num="10.1.0.106">Oblivion</version>
     <version num="10.2.0.0">Civilization IV, Oblivion, Loki, Pro Cycling Manager</version>
     <version num="20.0.0.4">Civilization IV, Oblivion</version>
     <version num="20.0.0.5">Oblivion</version>
     <version num="20.1.0.3">Megami Tensei: Imagine</version>
+    <version num="20.2.0.6">?</version>
     <version num="20.2.0.7">Emerge</version>    
     <version num="20.2.0.8">Emerge</version>
     <version num="20.3.0.3">Emerge</version>
@@ -937,8 +939,8 @@
         <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="10.1.0.0">The vertex weights.</add>
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The strip lengths.</add>
         <add name="Has Faces" type="byte" ver1="10.1.0.0">Do we have triangle or strip data?</add>
-        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The strips.</add>
-        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Faces != 0" ver1="10.1.0.0">The strips.</add>
+        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Num Strips != 0" ver2="10.0.1.2">The strips.</add>
+        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces != 0) &amp;&amp; (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Num Strips == 0" ver2="10.0.1.2">The triangles.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces != 0) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="byte">Do we have bone indices?</add>
@@ -1095,11 +1097,6 @@
       <add name="Unknown Float 2" type="float">Unknown.</add>
     </compound>
     
-    <compound name="UnionBV">
-        <add name="Num BV" type="uint">Number of Bounding Volumes.</add>
-        <add name="Bounding Volumes" type="BoundingVolume" arr1="Num BV">Bounding Volume.</add>
-    </compound>
-    
     <compound name="HalfSpaceBV">
       <add name="Normal" type="Vector3">Normal</add>
       <add name="Center" type="Vector3">Center</add>
@@ -1114,6 +1111,11 @@
         <add name="HalfSpace" type="HalfSpaceBV" cond="Collision Type == 5">Half Space</add>
     </compound>
 
+    <compound name="UnionBV">
+        <add name="Num BV" type="uint">Number of Bounding Volumes.</add>
+        <add name="Bounding Volumes" type="BoundingVolume" arr1="Num BV">Bounding Volume.</add>
+    </compound>
+        
     
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -1789,11 +1791,11 @@
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
-        <add name="Extra Data" type="uint" arr1="Num Materials" ver1="20.2.0.7">Unknown integer.</add>
+        <add name="Material Extra Data" type="uint" arr1="Num Materials" ver1="20.2.0.7">Unknown integer.</add>
         <add name="Active Material" type="int" ver1="20.2.0.7" default="-1">Active Material.</add>
         <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.2.0.6">Shader.</add>
         <add name="Shader Name" type="string" cond="Has Shader != 0" ver1="10.0.1.0" ver2="20.2.0.6">The shader name.</add>
-        <add name="Unknown Link" type="int" template="NiObject" cond="Has Shader != 0" ver1="10.0.1.0">Unknown value, usually -1. (Not a link)</add>
+        <add name="Unknown Integer" type="int" cond="Has Shader != 0" ver1="10.0.1.0">Unknown value, usually -1. (Not a link)</add>
         <add name="Dirty Flag?" type="bool" ver1="20.2.0.7">Dirty Flag?</add>        
     </niobject>
 
