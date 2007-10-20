@@ -976,8 +976,8 @@
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
-        <add name="Unknown Int" type="uint" ver1="20.0.0.4" userver="0">Unknown.</add>
-        <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
+        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.2.0.8" userver="0">Unknown.</add>
+        <add name="Vectors" type="Vector3">Morph vectors.</add>
     </compound>
 
     <compound name="Particle">
@@ -1115,6 +1115,10 @@
         <add name="Bounding Volumes" type="BoundingVolume" arr1="Num BV">Bounding Volume.</add>
     </compound>
         
+    <compound name="MorphWeight">
+        <add name="Interpolator" type="Ref" template="NiInterpolator">Interpolator</add>
+        <add name="Weight?" type="float">Weight</add>
+    </compound>
     
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -1619,7 +1623,7 @@
     <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiInterpController" ver1="10.2.0.0">
         Unknown.
         <add name="Num Extra Targets" type="ushort">The number of target pointers that follow.</add>
-        <add name="Extra Targets" type="Ptr" template="NiNode" arr1="Num Extra Targets">NiNode Targets to be controlled.</add>
+        <add name="Extra Targets" type="Ptr" template="NiAVObject" arr1="Num Extra Targets">NiNode Targets to be controlled.</add>
     </niobject>
 
     <niobject name="NiGeomMorpherController" abstract="0" inherit="NiInterpController">
@@ -1629,7 +1633,8 @@
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte">Always Update</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
-        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106">List of interpolators.</add>
+        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.2.0.8">List of interpolators.</add>
+        <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.3.0.6">Weighted Interpolators?</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="10">A count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" userver="10">Unknown.</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="11">A count.</add>
@@ -2257,7 +2262,7 @@
         Unknown.
         <add name="Unknown Short" type="ushort">Unknown.</add>
         <add name="Look At" type="Ref" template="NiNode">Refers to a Node to focus on.</add>
-        <add name="Unknown Float" type="float">Unknown.</add>
+        <add name="Target" type="string">Target node name.</add>
         <add name="Translation" type="Vector3">Translate.</add>
         <add name="Rotation" type="Quaternion">Rotation.</add>
         <add name="Scale" type="float">Scale.</add>
@@ -2812,6 +2817,7 @@
     <niobject name="NiSpotLight" abstract="0" inherit="NiPointLight" ver1="20.0.0.4">
         A spot.
         <add name="Cutoff Angle" type="float">The opening angle of the spot.</add>
+        <add name="Unknown Float" type="float" ver1="20.3.0.6">Unknown</add>
         <add name="Exponent" type="float">Describes the distribution of light. (see: glLight)</add>
     </niobject>
     
