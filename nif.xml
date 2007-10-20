@@ -977,7 +977,7 @@
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
         <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.2.0.8" userver="0">Unknown.</add>
-        <add name="Vectors" type="Vector3">Morph vectors.</add>
+        <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
     <compound name="Particle">
@@ -1778,18 +1778,14 @@
         <add name="Num Node Groups" type="uint">Number of node groups.</add>
         <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
         <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
-        <add name="Num Shape Groups" type="uint">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups">List of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint">The size of the second list of shape groups.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2">Group of NiTriShape indices.</add>
+        <add name="Num Shape Groups" type="uint" ver1="10.0.1.0" userver="0">Number of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups" ver1="10.0.1.0" userver="0">List of shape groups.</add>
+        <add name="Num Shape Groups 2" type="uint" ver1="10.0.1.0" userver="0">The size of the second list of shape groups.</add>
+        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2" ver1="10.0.1.0" userver="0">Group of NiTriShape indices.</add>
     </niobject>
 
-    <niobject name="NiBSBoneLODController" abstract="0" inherit="NiTimeController">
+    <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
         A simple LOD controller for bones.
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Num Node Groups" type="uint">Number of node groups.</add>
-        <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
-        <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
     </niobject>
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
