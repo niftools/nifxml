@@ -2789,9 +2789,9 @@
         <add name="Pixel Layout" type="PixelLayout" default="5">Specifies the way the image will be stored.</add>
         <add name="Use Mipmaps" type="MipMapFormat" default="2">Specifies whether mip maps are used.</add>
         <add name="Alpha Format" type="AlphaFormat" default="3"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
-        <add name="Static" type="byte" default="1">Static</add>
-        <add name="Direct Render" type="byte" default="1" ver1="10.1.0.106">Load direct to renderer</add>
-        <add name="Persist Render Data" type="byte" default="0" ver1="20.2.0.7">Render data is persistant</add>
+        <add name="Is Static" type="bool" default="1">Is Static?</add>
+        <add name="Direct Render" type="bool" default="1" ver1="10.1.0.106">Load direct to renderer</add>
+        <add name="Persist Render Data" type="bool" default="0" ver1="20.2.0.7">Render data is persistant</add>
     </niobject>
 
     <niobject name="NiSpecularProperty" abstract="0" inherit="NiProperty">
@@ -3086,7 +3086,7 @@
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode" ver1="10.2.0.0">
         Unknown node.  Found in Loki.
         <add name="Sorting Mode" type="SortingMode" default="SORTING_MAX">Sorting</add>
-        <add name="Unknown Int 2" type="Ptr" default="-1" ver2="10.2.0.0">Unknown.</add>
+        <add name="Unknown Int 2" type="int" default="-1" ver2="10.2.0.0">Unknown.</add>
     </niobject>
     
     <niobject name="NiSourceCubeMap" abstract="0" inherit="NiSourceTexture">
@@ -3099,19 +3099,19 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
-        <add name="Prop Description" type="Ref" template="NiPhysXPropDesc" default="-1">PhysX Property Description.</add>
+        <add name="Prop Description" type="Ref" template="NiPhysXPropDesc">PhysX Property Description.</add>
     </niobject>
     
     <niobject name="NiPhysXPropDesc" abstract="0" inherit="NiObject" ver1="20.1.0.7">
         Unknown PhysX node.  
         <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Actor Description" type="Ref" template="NiPhysXActorDesc" default="-1">PhysX Actor Description</add>
+        <add name="Actor Description" type="Ref" template="NiPhysXActorDesc">PhysX Actor Description</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Unknown Int 3" type="uint">Unknown</add>
         <add name="Unknown Int 4" type="uint">Unknown</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
         <add name="Unknown Byte 2" type="byte">Unknown</add>
-        <add name="Material Description" type="Ref" template="NiPhysXMaterialDesc" default="-1">PhysX Material Description</add>
+        <add name="Material Description" type="Ref" template="NiPhysXMaterialDesc">PhysX Material Description</add>
         <add name="Unknown Int 5" type="uint">Unknown</add>
     </niobject>
     
@@ -3128,10 +3128,10 @@
         <add name="Unknown Byte 1" type="byte">Unknown</add>
         <add name="Unknown Byte 2" type="byte">Unknown</add>
         <add name="Unknown Int 6" type="int">Unknown</add>
-        <add name="Shape Description" type="Ref" template="NiPhysXShapeDesc" default="-1">PhysX Shape Description</add>
-        <add name="Unknown Ref 1" type="Ref" template="NiObject" default="-1">Unknown</add>
-        <add name="Unknown Ref 2" type="Ref" template="NiObject" default="-1">Unknown</add>
-        <add name="Unknown Ref 3" type="Ref" template="NiObject" default="-1">Unknown</add>
+        <add name="Shape Description" type="Ref" template="NiPhysXShapeDesc">PhysX Shape Description</add>
+        <add name="Unknown Ref 1" type="Ref" template="NiObject">Unknown</add>
+        <add name="Unknown Ref 2" type="Ref" template="NiObject">Unknown</add>
+        <add name="Unknown Ref 3" type="Ref" template="NiObject">Unknown</add>
     </niobject>
     
     <niobject name="NiPhysXShapeDesc" abstract="0" inherit="NiObject" ver1="20.1.0.7">
@@ -3151,7 +3151,7 @@
         <add name="Unknown Int 5" type="int">Unknown</add>
         <add name="Unknown Int 7" type="int">Unknown</add>
         <add name="Unknown Int 8" type="int">Unknown</add>
-        <add name="Mesh Description" type="Ref" template="NiPhysXMeshDesc" default="-1">PhysX Mesh Description</add>
+        <add name="Mesh Description" type="Ref" template="NiPhysXMeshDesc">PhysX Mesh Description</add>
     </niobject>
     
     <niobject name="NiPhysXMeshDesc" abstract="0" inherit="NiObject" ver1="20.1.0.7">
