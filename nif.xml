@@ -1224,7 +1224,7 @@
         <add name="Unknown Int 8" type="uint">Unknown.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkConstraint" arr1="Num Constraints">Unknown.</add>
-        <add name="Unknown Int 9" type="uint">Unknown.</add>
+        <add name="Unknown Int 9" type="uint">0 = do not respond to wind, 1 = respond to wind (?)</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody" ver1="20.0.0.5">
