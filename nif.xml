@@ -253,7 +253,7 @@
         <option value="48" name="OL_R_FOOT">RFoot</option>
         <option value="49" name="OL_TAIL">Tail</option>
         <option value="50" name="OL_SIDE_WEAPON">SideWeapon</option>
-        <option value="51" name="OL_SHEILD">Shield</option>
+        <option value="51" name="OL_SHIELD">Shield</option>
         <option value="52" name="OL_QUIVER">Quiver</option>
         <option value="53" name="OL_BACK_WEAPON">BackWeapon</option>
         <option value="54" name="OL_BACK_WEAPON2">BackWeapon (?)</option>
