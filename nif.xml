@@ -1212,7 +1212,6 @@
         <add name="Unknown Float 01" type="float">Unknown.</add>
         <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
         <add name="Unknown Float 02" type="float">Unknown.</add>
-
         <add name="Inertia" type="float" arr1="12">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Unknown Float 03" type="float">Unknown float.</add>
