@@ -333,6 +333,7 @@
         <option value="2" name="RIGID_FACE_CAMERA">Rigid Face Camera.</option>
         <option value="3" name="ALWAYS_FACE_CENTER">Always Face Center.</option>
         <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
+        <option value="9" name="ROTATE_ABOUT_UP">The billboard will only rotate around the up axis.</option>
     </enum>
 
     <enum name="CompareMode" storage="uint">
@@ -1813,10 +1814,10 @@
         <add name="Num Node Groups" type="uint">Number of node groups.</add>
         <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
         <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
-        <add name="Num Shape Groups" type="uint" ver1="10.0.1.0" userver="0">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups" ver1="10.0.1.0" userver="0">List of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint" ver1="10.0.1.0" userver="0">The size of the second list of shape groups.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2" ver1="10.0.1.0" userver="0">Group of NiTriShape indices.</add>
+        <add name="Num Shape Groups" type="uint" userver="0">Number of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"userver="0">List of shape groups.</add>
+        <add name="Num Shape Groups 2" type="uint" userver="0">The size of the second list of shape groups.</add>
+        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2" userver="0">Group of NiTriShape indices.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
@@ -2537,7 +2538,7 @@
         <add name="Flags" type="byte" ver1="20.0.0.4">Flags</add>
         <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
         <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>       
-        <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown.</add>
         <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
         <add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
         <add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
@@ -2910,16 +2911,16 @@
         <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
         <add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
         <add name="Unknown Float" type="float">Unknown. 0?</add>
-        <add name="PS2 L" type="ushort" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="ushort" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 L" type="short" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="short" ver2="10.2.0.0">0xFFB5?</add>
         <add name="Unknown Short" type="ushort" ver2="4.1.0.12">Unknown: 0.</add>
     </niobject>
     
     <niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty" ver1="3.0" ver2="3.1">
         Unknown
         <add name="Unknown Short" type="short">Unknown. Either 210 or 194.</add>
-        <add name="PS2 L" type="ushort" default="0" ver1="3.1" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="ushort" default="0xFFB5" ver1="3.1" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 L" type="short" default="0" ver1="3.1" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="short" default="0xFFB5" ver1="3.1" ver2="10.2.0.0">0xFFB5?</add>
     </niobject>
     
     <niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.0" ver2="3.1">
