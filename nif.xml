@@ -890,8 +890,8 @@
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags.</add>
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
-        <add name="PS2 L" type="ushort" default="0" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="ushort" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 L" type="short" default="0" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="short" default="-75" ver2="10.2.0.0">-75?</add>
         <add name="Unknown1" type="ushort" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
         <add name="Has Texture Transform" type="bool" default="false" ver1="10.1.0.0">Determines whether or not the texture&#039;s coordinates are transformed.</add>
         <add name="Translation" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
@@ -1073,8 +1073,8 @@
         <add name="Clamp?" type="TexClampMode" cond="Has Image" default="3">May be texture clamp mode.</add>
         <add name="Filter?" type="TexFilterMode" cond="Has Image" default="2">May be texture filter mode.</add>
         <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
-        <add name="PS2 L" type="ushort" cond="Has Image" default="0" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="ushort" cond="Has Image" default="0xFFB5" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 L" type="short" cond="Has Image" default="0" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="short" cond="Has Image" default="-75" ver2="10.2.0.0">-75?</add>
         <add name="Unknown Short 3" type="short" cond="Has Image" default="0">Unknown.  Usually 0 but sometimes 257</add>
     </compound>
 
@@ -2914,8 +2914,8 @@
         <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
         <add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
         <add name="Unknown Float" type="float">Unknown. 0?</add>
-        <add name="PS2 L" type="short" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="short" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 L" type="short" default="0" ver2="10.2.0.0">0?</add>
+        <add name="PS2 K" type="short" default="-75" ver2="10.2.0.0">-75?</add>
         <add name="Unknown Short" type="ushort" ver2="4.1.0.12">Unknown: 0.</add>
     </niobject>
     
@@ -2923,7 +2923,7 @@
         Unknown
         <add name="Unknown Short" type="short">Unknown. Either 210 or 194.</add>
         <add name="PS2 L" type="short" default="0" ver1="3.1" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="short" default="0xFFB5" ver1="3.1" ver2="10.2.0.0">0xFFB5?</add>
+        <add name="PS2 K" type="short" default="-75" ver1="3.1" ver2="10.2.0.0">-75?</add>
     </niobject>
     
     <niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.0" ver2="3.1">
