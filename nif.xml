@@ -3136,7 +3136,7 @@
         Unknown PhysX node.  
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Refs 1" type="Ref" template="NiObject" arr1="Unknown Ref 1">Unknown</add>
+        <add name="Unknown Refs 1" type="Ref" template="NiObject" arr1="Unknown Int 1">Unknown</add>
         <add name="Num Dests" type="int">Number of NiPhysXTransformDest references</add>
         <add name="Transform Dests" type="Ref" template="NiPhysXTransformDest" arr1="Num Dests">Unknown</add>
         <add name="Unknown Byte" type="byte">Unknown</add>
