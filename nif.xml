@@ -711,8 +711,8 @@
 
     <compound name="SkinShape">
         Reference to shape and skin instance.
-        <add name="Shape" type="Ref" template="NiTriBasedGeom">The shape.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance">Skinning instance for the shape?</add>
+        <add name="Shape" type="Ptr" template="NiTriBasedGeom">The shape.</add>
+        <add name="Skin Instance" type="Ptr" template="NiSkinInstance">Skinning instance for the shape?</add>
     </compound>
 
     <compound name="SkinShapeGroup" ver1="10.0.1.0">
@@ -2136,7 +2136,7 @@
         <add name="Viewport Top" type="float">Viewport top.</add>
         <add name="Viewport Bottom" type="float">Viewport bottom.</add>
         <add name="LOD Adjust" type="float">Level of detail adjust.</add>
-        <add name="Unknown Link?" type="Ref" template="NiObject">Unknown.</add>
+        <add name="Unknown Link" type="Ref" template="NiObject">Unknown.</add>
         <add name="Unknown Int" type="uint">Unknown.  Changing value crashes viewer.</add>
         <add name="Unknown Int 2" type="uint" ver1="4.2.1.0">Unknown.  Changing value crashes viewer.</add>
         <add name="Unknown Int 3" type ="uint" ver2="3.1">Unknown.</add>
