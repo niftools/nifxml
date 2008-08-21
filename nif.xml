@@ -280,6 +280,9 @@
         <option value="0" name="PX_FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
         <option value="1" name="PX_FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
         <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPallete object.</option>
+        <option value="4" name="PX_FMT_DXT1">DXT1 compressed texture.</option>
+        <option value="5" name="PX_FMT_DXT5">DXT5 compressed texture.</option>
+        <option value="6" name="PX_FMT_DXT5_ALT">DXT5 compressed texture. It is not clear what the difference is with PX_FMT_DXT5.</option>
     </enum>
 
     <enum name="PixelLayout" storage="uint">
@@ -1037,31 +1040,32 @@
     </compound>
 
     <compound name="RagdollDescriptor">
-        <add name="Pivot A" type="Vector4">Unknown.</add>
-        <add name="Plane A" type="Vector4">Unknown.</add>
-        <add name="Twist A" type="Vector4">Unknown.</add>
-        <add name="Pivot B" type="Vector4">Unknown.</add>
-        <add name="Plane B" type="Vector4">Unknown.</add>
-        <add name="Twist B" type="Vector4">Unknown.</add>
-        <add name="Cone Min Angle" type="float"></add>
-        <add name="Plane Min Angle" type="float"></add>
-        <add name="Plane Max Angle" type="float"></add>
-        <add name="Twist Min Angle" type="float"></add>
-        <add name="Twist Max Angle" type="float"></add>
-        <add name="Max Friction" type="float"></add>
+        This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions. 
+        <add name="Pivot A" type="Vector4">Point around which the object will rotate.</add>
+        <add name="Plane A" type="Vector4">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist A" type="Vector4">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Pivot B" type="Vector4">Pivot A in second entity coordinate system.</add>
+        <add name="Plane B" type="Vector4">Plane A in second entity coordinate system.</add>
+        <add name="Twist B" type="Vector4">Twist A in second entity coordinate system.</add>
+        <add name="Cone Min Angle" type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
+        <add name="Plane Min Angle" type="float">Minimum angle the object can rotate around Plane A, relative to Twist A.</add>
+        <add name="Plane Max Angle" type="float">Maximum angle the object can rotate around Plane A, relative to Twist A.</add>
+        <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
+        <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
+        <add name="Max Friction" type="float">Maximum friction, typically 0 or 10.</add>
     </compound>
 
     <compound name="LimitedHingeDescriptor">
-        <add name="Pivot A" type="Vector4">Unknown.</add>
-        <add name="Axle A" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInA1" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInA2" type="Vector4">Unknown.</add>
-        <add name="Pivot B" type="Vector4">Unknown.</add>
-        <add name="Axle B" type="Vector4">Unknown.</add>
-        <add name="Perp2AxleInB2" type="Vector4">Unknown.</add>
-        <add name="Min Angle" type="float"></add>
-        <add name="Max Angle" type="float"></add>
-        <add name="Max Friction" type="float"></add>
+        <add name="Pivot A" type="Vector4">Pivot point around which the object will rotate.</add>
+        <add name="Axle A" type="Vector4">Axis of rotation.</add>
+        <add name="Perp2AxleInA1" type="Vector4">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2AxleInA2" type="Vector4">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Pivot B" type="Vector4">Pivot A in second entity coordinate system.</add>
+        <add name="Axle B" type="Vector4">Axle A in second entity coordinate system.</add>
+        <add name="Perp2AxleInB2" type="Vector4">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Min Angle" type="float">Minimum rotation angle.</add>
+        <add name="Max Angle" type="float">Maximum rotation angle.</add>
+        <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10.</add>
     </compound>
 
     <compound name="OldSkinData">
