@@ -389,23 +389,47 @@
         8: Box
         9+: Keyframed?
         
+        <option value="0" name="MOTION_INVALID">Invalid</option>
+        
         <option value="2" name="MO_SYS_SPHERE">Sphere</option>
         <option value="4" name="MO_SYS_BOX">Box</option>
         <option value="6" name="MO_SYS_KEYFRAMED_BIPED">Keyframed (used for creatures)</option>
         <option value="7" name="MO_SYS_KEYFRAMED">Keyframed (used for weapons)</option>
     </enum>
     
+    <enum name="DeactivatorType" storage="byte">
+        <option value="0" name="DEACTIVATOR_INVALID">Invalid</option>
+        <option value="1" name="DEACTIVATOR_NEVER">This will force the rigid body to never deactivate.</option>
+        <option value="2" name="DEACTIVATOR_SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>   
+    </enum>
+    
+    <enum name="SolverDeactivation" storage="byte">
+        A list of possible solver deactivation settings. This value defines how the
+		solver deactivates objects. The solver works on a per object basis. 	
+		Note: Solver deactivation does not save CPU, but reduces creeping of
+		movable objects in a pile quite dramatically.
+        <option value="0" name="SOLVER_DEACTIVATION_INVALID">Invalid</option>
+        <option value="1" name="SOLVER_DEACTIVATION_OFF">No solver deactivation</option>
+        <option value="2" name="SOLVER_DEACTIVATION_LOW">Very conservative deactivation, typically no visible artifacts.</option>   
+        <option value="3" name="SOLVER_DEACTIVATION_MEDIUM">Normal deactivation, no serious visible artifacts in most cases</option>   
+        <option value="4" name="SOLVER_DEACTIVATION_HIGH">Fast deactivation, visible artifacts</option>   
+        <option value="5" name="SOLVER_DEACTIVATION_MAX">Very fast deactivation, visible artifacts</option>   
+    </enum>
+    
     <enum name="MotionQuality" storage="byte">
         The motion type. Determines quality of motion?
-        <option value="0" name="MO_QUAL_MOVING">Moving</option>
+        <option value="0" name="MO_QUAL_INVALID">Automatically assigned</option>
         <option value="1" name="MO_QUAL_FIXED">Fixed</option>
         <option value="2" name="MO_QUAL_KEYFRAMED">Keyframed</option>
-        <option value="3" name="MO_QUAL_MOVING2">Moving(?)</option>
-        <option value="4" name="MO_QUAL_MOVING3">Moving(?)</option>
+        <option value="3" name="MO_QUAL_DEBRIS">Debris</option>
+        <option value="4" name="MO_QUAL_MOVING">Moving</option>
         <option value="5" name="MO_QUAL_CRITICAL">Critical</option>
         <option value="6" name="MO_QUAL_BULLET">Bullet</option>
         <option value="7" name="MO_QUAL_USER">User</option>
-        <option value="8" name="MO_QUAL_NULL">Null</option>
+        <option value="8" name="MO_QUAL_CHARACTER">Rigid body character controllers</option>
+        <option value="9" name="MO_QUAL_KEYFRAMED_REPORT">
+        Use this for moving objects with infinite mass which should report contact points and Toi-collisions against all other bodies, including other fixed and keyframed bodies.
+        </option>
     </enum>
 
     <enum name="ForceType" storage="uint">
@@ -520,6 +544,13 @@
         <option value="5" name="HALFSPACE_BV">Half Space</option>
     </enum>
 
+    <enum name="hkResponseType" storage="byte">
+        <option value="0" name="RESPONSE_INVALID">Invalid Response</option>
+        <option value="1" name="RESPONSE_SIMPLE_CONTACT">Do normal collision resolution</option>
+        <option value="2" name="RESPONSE_REPORTING">No collision resolution is performed but listeners are called</option>
+        <option value="3" name="RESPONSE_NONE">Do nothing, ignore all the results.</option>
+    </enum>
+    
   <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
@@ -1271,38 +1302,40 @@
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
         <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
-        <add name="Unknown 4 Shorts" type="ushort" arr1="4">Unknown.</add>
+        <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
+        <add name="Collision Response?" type="byte" default="1">The collision response. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
+        <add name="Unknown 2 Shorts" type="ushort" arr1="2">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7">Unknown.</add>
-        <add name="Translation" type="Vector3"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
-        <add name="Unknown Float 00" type="float">
-            This seems to often be 1 for single objects, or the first one in a
-            a linked object group. This may be due to those objects often being bhkRigidBodyT as well.
-        </add>
+        <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
-        <add name="Linear Velocity" type="Vector3">Linear velocity.</add>
-        <add name="Unknown Float 01" type="float">Unknown.</add>
-        <add name="Angular Velocity" type="Vector3">Angular velocity.</add>
-        <add name="Unknown Float 02" type="float">Unknown.</add>
+        <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
+        <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
         <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
-        <add name="Center" type="Vector3"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
-        <add name="Unknown Float 03" type="float">Unknown float.</add>
+        <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float">The body's mass.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.1"> Damping value for angular movement.</add>
         <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
-        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).</add>
+        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).
+            If the restitution is not 0.0 the object will need extra CPU for all new collisions. 
+            Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
+        </add>
         <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
-        <add name="Penetration Depth" type="float" default="0.15">Penetration depth.</add>
+        <add name="Penetration Depth" type="float" default="0.15">The maximum allowed penetration for this object. 
+            This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
+            A good choice is 5% - 20% of the smallest diameter of the object.
+        </add>
         <add name="Motion System" type="MotionSystem" default="7">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Unknown Byte 1" type="byte" default="1"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
-        <add name="Unknown Byte 2" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Deactivator Type" type="DeactivatorType" default="1">The initial deactivator type of the body.</add>
+        <add name="Solver Deactivation" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
         <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
-        <add name="Unknown Int 6" type="uint">Unknown.</add>
-        <add name="Unknown Int 7" type="uint">Unknown.</add>
-        <add name="Unknown Int 8" type="uint">Unknown.</add>
+        <add name="Auto Remove Level" type="uint">This is a user flag which you can set to give you a hint as to which objects to remove from the simulation if the memory overhead becomes too high.</add>
+        <add name="User Datas In Contact Point Properties?" type="uint">Requests a number of extra fields in each hkpContactPointProperties for this rigid body.</add>
+        <add name="Force Collide Onto Ppu?" type="uint">Ps3 only</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkConstraint" arr1="Num Constraints">Unknown.</add>
         <add name="Unknown Int 9" type="uint">0 = do not respond to wind, 1 = respond to wind (?)</add>
@@ -2329,10 +2362,10 @@
         Controls animation and collision.  Integer holds flags:
         Bit 0 : enable animation
         Bit 1 : enable collision
-        Bit 2 : unknown, usually zero
+        Bit 2 : is skeleton nif?
         Bit 3 : toggable? unknown, set to 1 on oblivion signs
-        Bit 4 : unknown, usually zero
-        Bit 5 : trigger?
+        Bit 4 : FlameNodes present
+        Bit 5 : EditorMarkers present
     </niobject>
 
     <niobject name="NiIntegersExtraData" abstract="0" inherit="NiExtraData" ver1="10.1.0.0">
