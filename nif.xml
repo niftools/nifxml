@@ -377,24 +377,16 @@
     <enum name="MotionSystem" storage="byte">
         The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
         
-        Oblivion's ssg commando reveals even more values:
-        0: Keyframed
-        1: Box
-        2: Sphere
-        3: Sphere
-        4: Box
-        5: Box
-        6: Keyframed
-        7: Keyframed
-        8: Box
-        9+: Keyframed?
-        
-        <option value="0" name="MOTION_INVALID">Invalid</option>
-        
-        <option value="2" name="MO_SYS_SPHERE">Sphere</option>
-        <option value="4" name="MO_SYS_BOX">Box</option>
-        <option value="6" name="MO_SYS_KEYFRAMED_BIPED">Keyframed (used for creatures)</option>
-        <option value="7" name="MO_SYS_KEYFRAMED">Keyframed (used for weapons)</option>
+        <option value="0" name="MO_SYS_INVALID">Invalid</option>
+        <option value="1" name="MO_SYS_DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects MO_SYS_SPHERE_INERTIA or MO_SYS_BOX_INERTIA as appropriate.</option>       
+        <option value="2" name="MO_SYS_SPHERE">Simulation is performed using a sphere inertia tensor.</option>
+        <option value="3" name="MO_SYS_SPHERE_INERTIA">This is the same as MO_SYS_SPHERE_INERTIA, except that simulation of the rigid body is "softened".</option>
+        <option value="4" name="MO_SYS_BOX">Simulation is performed using a box inertia tensor.</option>
+        <option value="5" name="MO_SYS_BOX_STABILIZED">This is the same as MO_SYS_BOX_INERTIA, except that simulation of the rigid body is "softened".</option>
+        <option value="6" name="MO_SYS_KEYFRAMED">Simulation is not performed as a normal rigid body. The keyframed rigid body has an infinite mass when viewed by the rest of the system. (used for creatures)</option>
+        <option value="7" name="MO_SYS_FIXED">This motion type is used for the static elements of a game scene, e.g. the landscape. Faster than MO_SYS_KEYFRAMED at velocity 0. (used for weapons)</option>
+        <option value="8" name="MO_SYS_THIN_BOX">A box inertia motion which is optimized for thin boxes and has less stability problems</option>
+        <option value="9" name="MO_SYS_CHARACTER">A specialized motion used for character controllers</option>
     </enum>
     
     <enum name="DeactivatorType" storage="byte">
@@ -418,15 +410,15 @@
     
     <enum name="MotionQuality" storage="byte">
         The motion type. Determines quality of motion?
-        <option value="0" name="MO_QUAL_INVALID">Automatically assigned</option>
-        <option value="1" name="MO_QUAL_FIXED">Fixed</option>
-        <option value="2" name="MO_QUAL_KEYFRAMED">Keyframed</option>
-        <option value="3" name="MO_QUAL_DEBRIS">Debris</option>
-        <option value="4" name="MO_QUAL_MOVING">Moving</option>
-        <option value="5" name="MO_QUAL_CRITICAL">Critical</option>
-        <option value="6" name="MO_QUAL_BULLET">Bullet</option>
-        <option value="7" name="MO_QUAL_USER">User</option>
-        <option value="8" name="MO_QUAL_CHARACTER">Rigid body character controllers</option>
+        <option value="0" name="MO_QUAL_INVALID">Automatically assigned to MO_QUAL_FIXED, MO_QUAL_KEYFRAMED or MO_QUAL_DEBRIS</option>
+        <option value="1" name="MO_QUAL_FIXED">Use this for fixed bodies. </option>
+        <option value="2" name="MO_QUAL_KEYFRAMED">Use this for moving objects with infinite mass.</option>
+        <option value="3" name="MO_QUAL_DEBRIS">Use this for all your debris objects</option>
+        <option value="4" name="MO_QUAL_MOVING">Use this for moving bodies, which should not leave the world.</option>
+        <option value="5" name="MO_QUAL_CRITICAL">Use this for all objects, which you cannot afford to tunnel through the world at all</option>
+        <option value="6" name="MO_QUAL_BULLET">Use this for very fast objects </option>
+        <option value="7" name="MO_QUAL_USER">For user.</option>
+        <option value="8" name="MO_QUAL_CHARACTER">Use this for rigid body character controllers</option>
         <option value="9" name="MO_QUAL_KEYFRAMED_REPORT">
         Use this for moving objects with infinite mass which should report contact points and Toi-collisions against all other bodies, including other fixed and keyframed bodies.
         </option>
@@ -640,7 +632,7 @@
         <add name="z" type="float">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector4" niflibtype="Float4" nifskopetype="vector4">
+    <compound name="Vector4" niflibtype="Vector4" nifskopetype="vector4">
         A 4-dimensional vector.
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
@@ -1301,38 +1293,40 @@
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
+        <add name="Unknown Int 1" type="int">Unknown.</add>
+        <add name="Unknown Int 2" type="int" default="0x7c37a201">Unknown.</add>
+        <add name="Unknown 3 Ints" type="int" arr1="3">Unknown.</add>
+        <add name="Collision Response?" type="hkResponseType" default="1">The collision response. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
-        <add name="Collision Response?" type="byte" default="1">The collision response. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
-        <add name="Unknown 2 Shorts" type="ushort" arr1="2">Unknown.</add>
+        <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
-        <add name="Unknown 7 Shorts" type="ushort" arr1="7">Unknown.</add>
+        <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">Unknown.</add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
         <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
-        <add name="Mass" type="float">The body's mass.</add>
-        <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
-        <add name="Angular Damping" type="float" default="0.1"> Damping value for angular movement.</add>
-        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
-        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).
+        <add name="Mass" type="float" default="1.0">The body's mass.</add>
+        <add name="Linear Damping" type="float" default="0.0"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
+        <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
+        <add name="Friction" type="float" default="0.5">The body&#039;s friction.</add>
+        <add name="Restitution" type="float" default="0.4">The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions. 
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.415926535">Maximal angular velocity. Pi x 10?</add>
+        <add name="Max Linear Velocity" type="float" default="200.0">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="200.0">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float" default="0.15">The maximum allowed penetration for this object. 
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Motion System" type="MotionSystem" default="7">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Motion System" type="MotionSystem" default="1">Motion system? Overrides Quality when on Keyframed?</add>
         <add name="Deactivator Type" type="DeactivatorType" default="1">The initial deactivator type of the body.</add>
-        <add name="Solver Deactivation" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
+        <add name="Solver Deactivation" type="SolverDeactivation" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="0">The motion type. Determines quality of motion?</add>
         <add name="Auto Remove Level" type="uint">This is a user flag which you can set to give you a hint as to which objects to remove from the simulation if the memory overhead becomes too high.</add>
         <add name="User Datas In Contact Point Properties?" type="uint">Requests a number of extra fields in each hkpContactPointProperties for this rigid body.</add>
         <add name="Force Collide Onto Ppu?" type="uint">Ps3 only</add>
