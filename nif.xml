@@ -1013,7 +1013,7 @@
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
-        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.2.0.8" userver="0">Unknown.</add>
+        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.1.0.3" userver="0">Unknown.</add>
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -1294,8 +1294,8 @@
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
         <add name="Unknown Int 1" type="int">Unknown.</add>
-        <add name="Unknown Int 2" type="int" default="0x7c37a201">Unknown.</add>
-        <add name="Unknown 3 Ints" type="int" arr1="3">Unknown.</add>
+        <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
+        <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown.</add>
         <add name="Collision Response?" type="hkResponseType" default="1">The collision response. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
@@ -1310,15 +1310,15 @@
         <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float" default="1.0">The body's mass.</add>
-        <add name="Linear Damping" type="float" default="0.0"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
+        <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
-        <add name="Friction" type="float" default="0.5">The body&#039;s friction.</add>
-        <add name="Restitution" type="float" default="0.4">The body&#039;s restitution (elasticity).
+        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
+        <add name="Restitution" type="float" default="0.3">The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions. 
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Max Linear Velocity" type="float" default="200.0">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="200.0">Maximal angular velocity. Pi x 10?</add>
+        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float" default="0.15">The maximum allowed penetration for this object. 
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
@@ -1758,8 +1758,8 @@
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte">Always Update</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
-        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.2.0.8">List of interpolators.</add>
-        <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.3.0.6">Weighted Interpolators?</add>
+        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.2.0.7">List of interpolators.</add>
+        <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.2.0.8">Weighted Interpolators?</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="10">A count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" userver="10">Unknown.</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" userver="11">A count.</add>
@@ -2418,7 +2418,7 @@
         Geometry morphing data.
         <add name="Num Morphs" type="uint">Number of morphing object.</add>
         <add name="Num Vertices" type="uint">Number of vertices.</add>
-        <add name="Unknown Byte" type="byte" default="1">This byte is always 1 in all official files.</add>
+        <add name="Relative Targets" type="bool" default="1">This byte is always 1 in all official files.</add>
         <add name="Morphs" type="Morph" arg="Num Vertices" arr1="Num Morphs">The geometry morphing objects.</add>
     </niobject>
 
@@ -2632,10 +2632,25 @@
         <add name="Float Data" type="Ref" template="NiFloatData">Path controller data index (float data). ?</add>
     </niobject>
 
+    <enum name="ChannelType" storage="uint">
+        <option value="0" name="CHNL_RED">Red</option>
+        <option value="1" name="CHNL_GREEN">Green</option>
+        <option value="2" name="CHNL_BLUE">Blue</option>
+        <option value="3" name="CHNL_ALPHA">Alpha</option>
+        <option value="4" name="CHNL_COMPRESSED">Compressed</option>
+        <option value="16" name="CHNL_INDEX">Index</option>
+        <option value="19" name="CHNL_EMPTY">Empty</option>
+    </enum>
+    <enum name="ChannelConvention" storage="uint">
+        <option value="0" name="CC_FIXED">Fixed</option>
+        <option value="3" name="CC_INDEX">Palettized</option>
+        <option value="4" name="CC_COMPRESSED">Compressed</option>
+        <option value="5" name="CC_EMPTY">Empty</option>
+    </enum>
     <compound name="ChannelData">
         Channel data 
-        <add name="Type" type="uint">Channel Type</add>
-        <add name="Unknown Flag" type="uint">Unknown</add>
+        <add name="Type" type="ChannelType">Channel Type</add>
+        <add name="Convention" type="ChannelConvention">Data Storage Convention</add>
         <add name="Bits Per Channel" type="byte">Bits per channel</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
     </compound>
@@ -2661,8 +2676,8 @@
         <add name="Unknown Int 3" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
         <add name="Flags" type="byte" ver1="20.0.0.4">Flags</add>
         <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
-        <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>       
         <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
+        <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>       
         <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
         <add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
         <add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
