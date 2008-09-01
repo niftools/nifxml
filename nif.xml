@@ -776,8 +776,8 @@
         <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Priority?" type="byte" ver1="10.1.0.106" userver="10">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
-        <add name="Priority?" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
+        <add name="Priority" type="byte" ver1="10.1.0.106" userver="10">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
+        <add name="Priority" type="byte" ver1="10.1.0.106" userver="11">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to the NiStringPalette which contains the name of the controlled NIF object.</add>
         <add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
         <add name="Node Name" type="string" ver1="20.1.0.3">The name of the animated node.</add>
@@ -1926,7 +1926,7 @@
         <add name="Num Node Groups" type="uint">Number of node groups.</add>
         <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
         <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
-        <add name="Num Shape Groups" type="uint"  ver1="4.2.2.0" userver="0">Number of shape groups.</add>
+        <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" userver="0">Number of shape groups.</add>
         <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
         <add name="Num Shape Groups 2" type="uint"  ver1="4.2.2.0" userver="0">The size of the second list of shape groups.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
@@ -2652,12 +2652,14 @@
         <option value="16" name="CHNL_INDEX">Index</option>
         <option value="19" name="CHNL_EMPTY">Empty</option>
     </enum>
+
     <enum name="ChannelConvention" storage="uint">
         <option value="0" name="CC_FIXED">Fixed</option>
         <option value="3" name="CC_INDEX">Palettized</option>
         <option value="4" name="CC_COMPRESSED">Compressed</option>
         <option value="5" name="CC_EMPTY">Empty</option>
     </enum>
+
     <compound name="ChannelData">
         Channel data 
         <add name="Type" type="ChannelType">Channel Type</add>
@@ -2688,7 +2690,7 @@
         <add name="Flags" type="byte" ver1="20.0.0.4">Flags</add>
         <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
         <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
-        <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>       
+        <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>
         <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
         <add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
         <add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
