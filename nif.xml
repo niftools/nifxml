@@ -2696,7 +2696,7 @@
         <add name="Num Pixels" type="uint">Total number of pixels</add>
         <add name="Num Faces" type="uint" ver1="20.0.0.4" default="1">Unknown</add>
         <add name="Pixel Data" type="Blob" arr1="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
-        <add name="Pixel Data" type="Blob" arr1="Num Pixels" arr2="Num Faces" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="Blob" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
 
     <niobject name="NiPlanarCollider" abstract="0" inherit="NiParticleModifier">
@@ -3552,7 +3552,7 @@
         <add name="Unknown Int 6" type="uint">Unknown</add>
         <add name="Num Faces" type="uint">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown</add>
-        <add name="Pixel Data" type="Blob" arr1="Num Pixels" arr2="Num Faces">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="Blob" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
     
 </niftoolsxml>
