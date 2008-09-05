@@ -1479,7 +1479,7 @@
         <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
-        <add name="MOPP Data" type="byte" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="MOPP Data" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
 
@@ -2696,15 +2696,15 @@
         <add name="Unknown Int 6" type="uint">Unknown</add>
         <add name="Num Faces" type="uint">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown</add>
-        <add name="Pixel Data" type="byte" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte"  nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
 
     <niobject name="NiPixelData" abstract="0" inherit="ATextureRenderData">
         A texture.
         <add name="Num Pixels" type="uint">Total number of pixels</add>
         <add name="Num Faces" type="uint" ver1="20.0.0.4" default="1">Unknown</add>
-        <add name="Pixel Data" type="byte" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
-        <add name="Pixel Data" type="byte" arr1="1" arr2="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte" nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte" nifskopetype="blob" arr1="1" arr2="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
 
     <niobject name="NiPlanarCollider" abstract="0" inherit="NiParticleModifier">
