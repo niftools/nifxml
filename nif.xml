@@ -1167,7 +1167,7 @@
         <add name="Unknown Bytes" type="byte" arr1="9" />
     </compound>
 
-    <compound name="InertiaMatrix">
+    <compound name="InertiaMatrix" niflibtype="InertiaMatrix">
         An inertia matrix.
         <add name="m11" type="float" />
         <add name="m12" type="float" />
