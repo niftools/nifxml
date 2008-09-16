@@ -292,7 +292,8 @@
         <option value="2" name="PIX_LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
         <option value="3" name="PIX_LAY_COMPRESSED">Texture is compressed.</option>
         <option value="4" name="PIX_LAY_BUMPMAP">Texture is a grayscale bump map.</option>
-        <option value="5" name="PIX_LAY_DEFAULT">Use default setting.</option>
+        <option value="5" name="PIX_LAY_PALETTISED_4">Texture is in 4-bit paletized format.</option>
+        <option value="6" name="PIX_LAY_DEFAULT">Use default setting.</option>
     </enum>
 
     <enum name="TexClampMode" storage="uint">
@@ -2081,6 +2082,7 @@
         <add name="Unknown Floats 1" type="float" arr1="Num Vertices" cond="Has Unknown Floats 1 != 0" ver1="10.1.0.0">Unknown</add>
         <add name="Has Rotations 1" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
         <add name="Rotations 1" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 1 != 0" ver1="10.0.1.0">The individual particle rotations.</add>
+        <!--<add name="Unknown 1" type="short">Unknown in Warhammer</add>-->
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2485,8 +2487,10 @@
         Unknown.
     </niobject>
 
-    <niobject name="NiSwitchNode" abstract="1" inherit="NiNode">
+    <niobject name="NiSwitchNode" abstract="0" inherit="NiNode">
         A node used to switch between branches, such as for LOD levels?
+        <add name="Unknown Flags 1" type="ushort">Flags</add>
+        <add name="Unknown Int 1" type="int">Index?</add>
     </niobject>
 
     <niobject name="NiLODNode" abstract="0" inherit="NiSwitchNode" ver1="3.1">
@@ -2771,7 +2775,7 @@
 
     <niobject name="NiPSysColliderManager" abstract="0" inherit="NiPSysModifier" ver1="10.2.0.0">
         Particle modifier that adds a defined shape to act as a collision object for particles to interact with.
-        <add name="Collider" type="Ref" template="NiPSysPlanarCollider">Link to a NiPSysPlanarCollider or NiPSysSphericalCollider.</add>
+        <add name="Collider" type="Ref" template="NiPSysCollider">Link to a NiPSysPlanarCollider or NiPSysSphericalCollider.</add>
     </niobject>
 
     <niobject name="NiPSysColorModifier" abstract="0" inherit="NiPSysModifier" ver1="10.1.0.0">
