@@ -2082,7 +2082,10 @@
         <add name="Unknown Floats 1" type="float" arr1="Num Vertices" cond="Has Unknown Floats 1 != 0" ver1="10.1.0.0">Unknown</add>
         <add name="Has Rotations 1" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
         <add name="Rotations 1" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 1 != 0" ver1="10.0.1.0">The individual particle rotations.</add>
-        <!--<add name="Unknown 1" type="short">Unknown in Warhammer</add>-->
+        <add name="Has Unknown Floats 2" type="bool" ver1="20.0.0.4">Unknown in Warhammer. Guess at version.</add>        
+        <add name="Unknown Floats 2" type="float" arr1="Num Vertices" cond="Has Unknown Floats 2 != 0">Unknown</add>
+        <add name="Has Unknown Vertices 1" type="bool" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Vertices 1" type="Vector3" arr1="Num Vertices" cond="Has Unknown Vertices 1 != 0" ver1="20.0.0.4">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2095,25 +2098,31 @@
         Particle system data object (with automatic normals?).
     </niobject>
 
+    <compound name="ParticleDesc">
+        Particle Description.
+        <add name="Translation" type="Vector3">Unknown.</add>
+        <add name="Unknown Floats 1" type="float" arr1="3" ver2="10.2.0.0">Unknown.</add>
+        <add name="Unknown Float 1" type="float" default="0.9">Unknown.</add>
+        <add name="Unknown Float 2" type="float" default="0.9">Unknown.</add>
+        <add name="Unknown Float 3" type="float" default="3.0">Unknown.</add>
+        <add name="Unknown Int 1" type="int">Unknown.</add>
+    </compound>
+    
     <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData" ver1="10.0.1.0">
         Particle system data.
-        <add name="Unknown Floats 2" type="float" arr1="Num Vertices" arr2="10" ver2="10.2.0.0">Unknown.</add>
+        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3 != 0" ver1="20.0.0.4">Unknown</add>
-        <add name="Has Unknown Floats 4" type="bool" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Floats 4" type="float" arr1="Num Vertices" arr2="4" cond="Has Unknown Floats 4 != 0"></add>
-        <add name="Unknown Floats 5" type="float" arr1="Num Vertices" arr2="7" ver1="20.0.0.4">Unknown.</add>
-        <add name="Has Unknown Floats 6" type="bool" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Floats 6" type="float" arr1="Num Vertices" cond="Has Unknown Floats 6 != 0" ver1="20.0.0.4">Unknown.</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3 != 0" ver1="20.0.0.4">Unknown.</add>
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown.</add>
     </niobject>
 
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData" ver1="10.1.0.0">
         Particle meshes data.
-        <add name="Num Vertices 2" type="uint" ver1="10.2.0.0">Repeat of Vertex Count?</add>
+        <add name="Unknown Int 2" type="uint" ver1="10.2.0.0">Unknown. Possible vertex count but probably not.</add>
         <add name="Unknown Byte 3" type="byte" default="0" ver1="10.2.0.0">Unknown. 0?</add>
-        <add name="Unknown Int 2" type="uint" default="1" ver1="10.2.0.0">Unknown.  1?</add>
-        <add name="Num Vertices 3" type="uint" ver1="10.2.0.0">Repeat of Vertex Count?</add>
+        <add name="Num Unknown Ints 1" type="uint" ver1="10.2.0.0">Unknown.</add>
+        <add name="Unknown Ints 1" type="uint" ver1="10.2.0.0" arr1="Num Unknown Ints 1">Unknown integers</add>
         <add name="Unknown Node" type="Ref" template="NiNode">Unknown NiNode.</add>
     </niobject>
 
@@ -3532,6 +3541,34 @@
         Two dimensional screen elements.
     </niobject>
        
+    <niobject name="NiRoomGroup" inherit="NiNode">
+        Grouping node for nodes in a Portal
+        <add name="Shell Link" type="Ptr" template="NiNode" >Outer Shell Geometry Node?</add>
+        <add name="Num Rooms" type="int">Number of rooms in this group</add>
+        <add name="Rooms" type="Ptr" template="NiRoom" arr1="Num Rooms">Rooms associated with this group.</add>
+    </niobject>
+       
+    <niobject name="NiRoom" inherit="NiNode">
+        Grouping node for nodes in a Portal
+        <add name="Num Walls" type="int">Number of walls in a room?</add>
+        <add name="Wall Plane" type="Vector4" arr1="Num Walls">Face normal and unknown value.</add>
+        <add name="Num In Portals" type="int">Number of doors into room</add>
+        <add name="In Portals" type="Ptr" template="NiPortal" arr1="Num In Portals">Number of portals into room</add>
+        <add name="Num Portals 2" type="int">Number of doors out of room</add>
+        <add name="Portals 2" type="Ptr" template="NiPortal" arr1="Num Portals 2">Number of portals out of room</add>
+        <add name="Num Items" type="int">Number of unknowns</add>
+        <add name="Items" type="Ptr" template="NiAVObject" arr1="Num Items">All geometry associated with room.</add>
+    </niobject>
+    
+    <niobject name="NiPortal" inherit="NiAVObject">
+        A Portal
+        <add name="Unknown Flags" type="Flags">Unknown flags.</add>
+        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Num Vertices" type="ushort">Number of vertices in this polygon</add>
+        <add name="Vertices" type="Vector3" arr1="Num Vertices">Vertices</add>
+        <add name="Target" type="Ptr" template="NiNode">Target portal or room</add>
+    </niobject>
+    
     
 </niftoolsxml>
 
