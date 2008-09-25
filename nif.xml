@@ -3017,7 +3017,7 @@
     <niobject name="NiSpotLight" abstract="0" inherit="NiPointLight" ver1="20.0.0.4">
         A spot.
         <add name="Cutoff Angle" type="float">The opening angle of the spot.</add>
-        <add name="Unknown Float" type="float" ver1="20.3.0.1">Unknown</add>
+        <add name="Unknown Float" type="float" ver1="20.2.0.7">Unknown</add>
         <add name="Exponent" type="float">Describes the distribution of light. (see: glLight)</add>
     </niobject>
     
