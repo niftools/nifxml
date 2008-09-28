@@ -2898,6 +2898,55 @@
     <niobject name="NiPSysUpdateCtlr" abstract="0" inherit="NiTimeController">
         Particle system controller, used for ???.
     </niobject>
+    
+    <niobject name="NiPSysFieldModifier" abstract="1" inherit="NiPSysModifier">
+        Base for all force field particle modifiers.
+        <add name="Field Object" type="Ref" template="NiAVObject">Force Field Object</add>
+        <add name="Magnitude" type="float">Magnitude of the force</add>
+        <add name="Attenuation" type="float">Controls how quick the field diminishes</add>
+        <add name="Unknown Boolean 1" type="bool">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown value, perhaps maximum effect distance</add>
+    </niobject>
+    
+    <niobject name="NiPSysVortexFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle velocity in force field.
+        <add name="Direction" type="Vector3">Direction of the particle velocity</add>
+    </niobject>
+    
+    <niobject name="NiPSysGravityFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle velocity in gravity field.
+        <add name="Direction" type="Vector3">Direction of the particle velocity</add>
+    </niobject>
+    
+    <niobject name="NiPSysDragFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle velocity in drag space warp.
+        <add name="Use Direction?" type="bool">Whether to use the direction field?</add>
+        <add name="Direction" type="Vector3">Direction of the particle velocity</add>
+    </niobject>
+    
+    <niobject name="NiPSysTurbulenceFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle velocity in drag space warp.
+        <add name="Unknown Float 2" type="float">Unknown</add>
+    </niobject>
+    
+    <niobject name="NiPSysFieldMagnitudeCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller, used for ???.
+    </niobject>
+    
+    <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle velocity in a field like wind.
+        <add name="Direction" type="Vector3">Direction of the particle velocity</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Boolean 1" type="bool">Unknown</add>
+        <add name="Unknown Boolean 2" type="bool">Unknown</add>
+        <add name="Unknown Boolean 3" type="bool">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+    </niobject>
+    
+    <niobject name="NiLightIntensityController" inherit="NiFloatInterpController" ver1="10.2.0.0" ver2="10.2.0.0">
+        Unknown controller
+    </niobject>
 
     <niobject name ="NiLODData" abstract="1" inherit="NiObject">
         Abstract class used for different types of LOD selections.
@@ -3568,7 +3617,37 @@
         <add name="Vertices" type="Vector3" arr1="Num Vertices">Vertices</add>
         <add name="Target" type="Ptr" template="NiNode">Target portal or room</add>
     </niobject>
+
+    <!-- Red Ocean Custom Objects
+    <niobject name="Object" inherit="NiNode" ver1="10.2.0.0">
+        Red Ocean Object class
+        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Link 1" type="Ref" template="NiObject">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
+        <add name="Unknown Short 3" type="short">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+    </niobject>
     
+    <niobject name="BoundingBoxExtraData" inherit="NiExtraData" ver1="10.2.0.0">
+        Red Ocean Bounding Box
+        <add name="Flags" type="Flags">Unknown</add>
+        <add name="Center?" type="Vector3">Center of box?</add>
+        <add name="Extent?" type="Vector3">Extents of box?</add>
+    </niobject>
+    
+    <niobject name="Door" inherit="Object" ver1="10.2.0.0">
+        Red Ocean Object class
+        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknowns</add>
+        <add name="Unknown Float 2" type="float">Unknowns</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Short 3" type="short">Unknown</add>
+        <add name="Unknown Bool 1" type="bool">Unknown</add>
+        <add name="Unknown Short 4" type="short">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknowns</add>
+    </niobject>
+    -->
     
 </niftoolsxml>
 
