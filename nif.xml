@@ -936,7 +936,7 @@
         An extended texture description for shader textures.
         <add name="Is Used" type="bool">Is it used?</add>
         <add name="Texture Data" type="TexDesc" cond="Is Used != 0">The texture data.</add>
-        <add name="Unknown Int" type="uint" cond="Is Used != 0">Unknown.</add>
+        <add name="Map Index" type="uint" cond="Is Used != 0">Map Index</add>
     </compound>
 
     <compound name="TexSource">
