@@ -1004,7 +1004,7 @@
         A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
         <add name="Welding Information?" type="ushort">Additional welding info computed when subshapes are in use.</add>
-        <add name="Normal" type="Vector3">This is the triangle's normal.</add>
+        <add name="Normal" type="Vector3" ver2="20.0.0.5">This is the triangle's normal.</add>       
     </compound>
 
     <compound name="Morph">
@@ -1508,8 +1508,8 @@
 
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="bhkShapeCollection" ver1="20.0.0.5">
         A shape constructed from strips data.
-        <add name="Num Sub Shapes" type="ushort">Number of subparts.</add>
-        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes">The subparts.</add>
+        <add name="Num Sub Shapes" type="ushort" ver2="20.0.0.5">Number of subparts.</add>
+        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver2="20.0.0.5">The subparts.</add>
         <add name="Unknown Int 1" type="uint" default="0">Unknown.</add>
         <add name="Unknown Int 2" type="uint" default="0x014E9DD8">Unknown. Looks like a memory pointer and may be garbage.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown. Same as Unknown Float 3</add>
@@ -2030,6 +2030,9 @@
         <add name="Triangles" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
         <add name="Num Vertices" type="uint">Number of vertices.</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown.</add>
+        <add name="Num Sub Shapes" type="ushort" ver1="20.2.0.7">Number of subparts.</add>
+        <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver1="20.2.0.7">The subparts.</add>
     </niobject>
 
     <niobject name="NiAlphaProperty" abstract="0" inherit="NiProperty">
@@ -2428,10 +2431,13 @@
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
         <add name="Ambient Color" type="Color3">How much the material reflects ambient light.</add>
         <add name="Diffuse Color" type="Color3">How much the material reflects diffuse light.</add>
-        <add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
-        <add name="Emissive Color" type="Color3">How much light the material emits.</add>
+        <add name="Specular Color" type="Color3" ver1="3.0" userver="0">How much light the material reflects in a specular manner.</add>
+        <add name="Specular Color" type="Color3" ver2="20.0.0.5" userver="11">How much light the material reflects in a specular manner.</add>
+        <add name="Emissive Color" type="Color3" ver1="3.0" userver="0">How much light the material emits.</add>
+        <add name="Emissive Color" type="Color3" ver2="20.0.0.5" userver="11">How much light the material emits.</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness.</add>
-        <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>
+        <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>       
+        <add name="Unknown Float 1" type="float" ver1="20.2.0.7" userver="11">Unkonwn</add>       
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
@@ -3655,10 +3661,42 @@
         Bethesda-specific fade node.
     </niobject>
     
-    
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific fade node.
+        Bethesda-specific property.
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Ints 1" type="int" arr1="6">Unknowns</add>
     </niobject>
+    
+    <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific property.
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="Unknown Int 5" type="int">Unknown</add>
+        <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
+        <add name="Unknown Int 7" type="int">Unknown</add>
+        <add name="Unknown Int 8" type="int">Unknown</add>
+        <add name="Unknown Int 9" type="int">Unknown</add>
+        <add name="Unknown Int 10" type="int">Unknown</add>
+        
+    </niobject>
+    
+    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+        <add name="Num Textures" type="int">Object name.</add>
+        <add name="Textures" type="SizedString" arr1="Num Textures">Textures</add>
+    </niobject>
+    
+    <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+    </niobject>
+    
     
 </niftoolsxml>
 
