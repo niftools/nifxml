@@ -2429,15 +2429,15 @@
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
         Describes the material shading properties.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-        <add name="Ambient Color" type="Color3">How much the material reflects ambient light.</add>
-        <add name="Diffuse Color" type="Color3">How much the material reflects diffuse light.</add>
-        <add name="Specular Color" type="Color3" ver1="3.0" userver="0">How much light the material reflects in a specular manner.</add>
-        <add name="Specular Color" type="Color3" ver2="20.0.0.5" userver="11">How much light the material reflects in a specular manner.</add>
-        <add name="Emissive Color" type="Color3" ver1="3.0" userver="0">How much light the material emits.</add>
-        <add name="Emissive Color" type="Color3" ver2="20.0.0.5" userver="11">How much light the material emits.</add>
+        <add name="Ambient Color" type="Color3" ver2="20.0.0.5">How much the material reflects ambient light.</add>
+        <add name="Diffuse Color" type="Color3" ver2="20.0.0.5">How much the material reflects diffuse light.</add>
+
+        <add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
+
+        <add name="Emissive Color" type="Color3">How much light the material emits.</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness.</add>
-        <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>       
-        <add name="Unknown Float 1" type="float" ver1="20.2.0.7" userver="11">Unkonwn</add>       
+        <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>
+	<add name="EmitMulti" type="float" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
@@ -2994,6 +2994,12 @@
             If 1&#039;s bit is not set, hard-edged flat shading will be used on this shape.
         </add>
     </niobject>
+
+    <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7">
+	Bethesda-specific Property node
+    </niobject>
+
+
 
     <niobject name="NiSkinData" abstract="0" inherit="NiObject">
         Skinning data.
@@ -3661,17 +3667,24 @@
         Bethesda-specific fade node.
     </niobject>
     
+    
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
         Bethesda-specific property.
         <add name="Unknown Int 1" type="int">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Ints 1" type="int" arr1="6">Unknowns</add>
+        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="Unknown Int 5" type="int">Unknown</add>
+		<add name="String" type="SizedString" ver2="22.2.0.7">The normal string.</add>
+		<add name="Unknown Int 6" type="int">Unknown</add>
+		<add name="Unknown Int 6" type="int">Unknown</add>
+        <add name="Unknown Int 7" type="int">Unknown</add>
+        <add name="Unknown Int 8" type="int">Unknown</add>
     </niobject>
-    
+
+
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific property.
+        Bethesda-specific Shade node.
         <add name="Unknown Int 1" type="int">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown Int 3" type="int">Unknown</add>
