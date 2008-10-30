@@ -760,7 +760,7 @@
 
     <compound name="AVObject">
         Used in NiDefaultAVObjectPalette.
-        <add name="Name" type="string">Object name.</add>
+        <add name="Name" type="SizedString">Object name.</add>
         <add name="AV Object" type="Ptr" template="NiAVObject">Object reference.</add>
     </compound>
 
@@ -2305,6 +2305,7 @@
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
         <add name="Target Name" type="string" ver1="10.1.0.106">Name of target node Controller acts on.</add>
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
+        <add name="Unknown Short 1" type="short" ver1="20.2.0.7" userver="11">Unknown</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
