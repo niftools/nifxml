@@ -2029,8 +2029,8 @@
         <add name="Num Triangles" type="uint">Number of triangles?</add>
         <add name="Triangles" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
         <add name="Num Vertices" type="uint">Number of vertices.</add>
-        <add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
         <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown.</add>
+        <add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
         <add name="Num Sub Shapes" type="ushort" ver1="20.2.0.7">Number of subparts.</add>
         <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver1="20.2.0.7">The subparts.</add>
     </niobject>
@@ -3668,18 +3668,34 @@
     </niobject>
     
     
-    <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
+    <niobject name="BSShaderLightingProperty" abstract="1" inherit="NiProperty" ver1="20.2.0.7" userver="11">
         Bethesda-specific property.
+        <add name="Flags" type="Flags">Unknown</add>
         <add name="Unknown Int 1" type="int">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
-		<add name="String" type="SizedString" ver2="22.2.0.7">The normal string.</add>
+		<add name="String" type="SizedString">The normal string.</add>
 		<add name="Unknown Int 6" type="int">Unknown</add>
 		<add name="Unknown Int 6" type="int">Unknown</add>
         <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Int 8" type="int">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+    </niobject>
+    
+    <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific property.
+        <add name="Flags" type="Flags">Unknown</add>
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Int 5" type="int">Unknown</add>
+		<add name="String" type="SizedString">The normal string.</add>
+		<add name="Unknown Int 6" type="int">Unknown</add>
+		<add name="Unknown Int 6" type="int">Unknown</add>
+        <add name="Unknown Int 7" type="int">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
     </niobject>
 
 
@@ -3709,7 +3725,6 @@
         <add name="Unknown Int 1" type="int">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
     </niobject>
-    
-    
+        
 </niftoolsxml>
 
