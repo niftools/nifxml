@@ -1184,6 +1184,13 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
+    <compound name="DecalVectorArray" istemplate="1">
+	Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
+	<add name="Num Sets" type="short">Number of sets</add>
+	<add name="Vector XYZ" type="vector3" arr1="Num Sets">Vector XYZ coords</add>
+	<add name="Vector Normals"type="vector3" arr1="Num Sets">Vector Normals</add>
+     </compound>
+	
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
          They are like C classes and can contain many pieces of data.
@@ -3726,6 +3733,14 @@
         <add name="Unknown Int 1" type="int">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
     </niobject>
-        
+
+    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiExtraData" ver1="20.2.0.7" userver="11">
+	Bethesda-specific node. (for dynamic decal projection?)
+	<add name="Unknown Float 1" type="float">Unknown</add>
+	<add name="Num Vector Blocks" type="short">Number of groups</add>
+	<add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks">Number of Blocks</add>
+	</niobject>
+
+	
 </niftoolsxml>
 
