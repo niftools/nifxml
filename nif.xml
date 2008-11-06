@@ -1190,6 +1190,14 @@
 	<add name="Vector XYZ" type="vector3" arr1="Num Sets">Vector XYZ coords</add>
 	<add name="Vector Normals"type="vector3" arr1="Num Sets">Vector Normals</add>
      </compound>
+
+
+    <compound name="BodyPartList">
+	Body part list for DismemberSkinInstance
+        <add name="Unknown Short" type="short">Unknown</add>
+        <add name="Body Part" type="short">Unknown</add>
+    </compound>
+
 	
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -3764,8 +3772,9 @@
     
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Num Partitions" type="int">Unknown</add>
+
+        <add name="Partitions" type="BodyPartList" arr1="Num Partitions">Unknown</add>
     </niobject>
 
 
@@ -3829,7 +3838,7 @@
     <niobject name="BSStripPSysData" inherit="NiPSysData" ver1="20.2.0.7" userver="11">
 	Bethesda-Specific (mesh?) Particle System Data.
 	<add name="Unknown Short 1" type="short">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown byte 1" type="byte">Unknown</add>
     </niobject>
@@ -3843,6 +3852,25 @@
 
     <niobject name="BSMaterialEmittanceMultController" inherit="NiFloatInterpController" ver1="20.2.0.7" userver="11">
 	Bethesda-Specific node.
+    </niobject>
+
+
+
+    <niobject name="BSMasterParticleSystem" inherit="NiNode" ver1="20.2.0.7" userver="11">
+	Bethesda-Specific node.
+	<add name="Max Emitter Objects" type="ushort">Unknown</add>
+        <add name="Num Particle Systems" type="int">Unknown</add>
+        <add name="Particle Systems" type="Ref" template="NiAVObject" arr1="Num Particle Systems">Unknown</add>
+
+    </niobject>
+
+
+    <niobject name="BSPSysMultiTargetEmitterCtlr" inherit="NiPSysModifierCtlr" ver1="20.2.0.7" userver="11">
+	Particle system (multi?) emitter controller.
+        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
+        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Int 1" type="int">Unknown</add>
     </niobject>
 
 
