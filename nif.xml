@@ -1182,7 +1182,7 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
-    <compound name="DecalVectorArray" istemplate="1">
+    <compound name="DecalVectorArray">
     	Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
     	<add name="Num Sets" type="short">Number of sets</add>
     	<add name="Vector XYZ" type="Vector3" arr1="Num Sets">Vector XYZ coords</add>
@@ -3703,10 +3703,10 @@
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
 		<add name="String" type="SizedString">The normal string.</add>
-		<add name="Unknown Int 6" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 14)">Unknown</add>
-		<add name="Unknown Int 7" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 14)">Unknown</add>
-        <add name="Unknown Int 8" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 14)">Unknown</add>
-        <add name="Unknown Float 2" type="float" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 14)">Unknown</add>
+		<add name="Unknown Int 6" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+		<add name="Unknown Int 7" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Unknown Int 8" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Unknown Float 2" type="float" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
     </niobject>
 
 
@@ -3900,5 +3900,9 @@
     <niobject name="BSRefractionFirePeriodController" abstract="0" inherit="NiTimeController" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
     </niobject>
-            
+
+    <niobject name="bhkConvexListShape" abstract="0" inherit="bhkShape">
+        A havok shape.
+    </niobject>
+    
 </niftoolsxml>
