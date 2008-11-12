@@ -1363,6 +1363,11 @@
     <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Hinge constraint.
         <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Unknown Byte 1" type="byte">Unknown</add>
     </niobject>
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
@@ -1996,7 +2001,8 @@
 
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
-        <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices"  vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="0">Consistency Flags</add>
         <add name="Unknown Link 1" type="Ref" template="NiObject" ver1="20.0.0.4">Unknown.</add>
     </niobject>
@@ -3687,7 +3693,7 @@
         <add name="Unknown Int 3" type="int">Unknown</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
-		<add name="String" type="SizedString">The normal string.</add>
+		<add name="File Name" type="SizedString">The normal string.</add>
 		<add name="Unknown Int 6" type="int">Unknown</add>
         <add name="Unknown Int 7" type="int">Unknown</add>
         <add name="Unknown Int 8" type="int">Unknown</add>
@@ -3702,7 +3708,7 @@
         <add name="Unknown Int 3" type="int">Unknown</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
-		<add name="String" type="SizedString">The normal string.</add>
+		<add name="File Name" type="SizedString">The normal string.</add>
 		<add name="Unknown Int 6" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
 		<add name="Unknown Int 7" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
         <add name="Unknown Int 8" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
@@ -3766,7 +3772,7 @@
         <add name="Unknown Int 3" type="int">Unknown</add>
         <add name="Unknown Int 4" type="int">Unknown</add>
     	<add name="Unknown Short 3" type="short">Unknown</add>
-    	<add name="String" type="SizedString">The normal string.</add>
+    	<add name="File Name" type="SizedString">The normal string.</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
     </niobject>
 
@@ -3870,7 +3876,7 @@
         <add name="Unknown Int 3" type="int">Unknown</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
-		<add name="String" type="SizedString">The normal string.</add>
+		<add name="File Name" type="SizedString">The normal string.</add>
     </niobject>
     
     <niobject name="DistantLODShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
@@ -3903,6 +3909,19 @@
 
     <niobject name="bhkConvexListShape" abstract="0" inherit="bhkShape">
         A havok shape.
-    </niobject>
+         A list of shapes.
+
+        Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a
+        separate collision nodes without a list shape for those.
+
+        Also, shapes collected in a bhkListShape may not have the correct
+        walking noise, so only use it for non-walkable objects.
+        <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
+        <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
+        <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
+        <add name="Unknown Float 1" type="float">Unknown Flag</add>
+   </niobject>
     
 </niftoolsxml>
