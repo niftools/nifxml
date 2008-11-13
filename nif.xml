@@ -1396,7 +1396,14 @@
         Hinge constraint.
         <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
         <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Is Death Pose" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 1" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 2" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 3" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 4" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 5" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 6" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
@@ -1425,7 +1432,14 @@
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
         <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Is Death Pose" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 1" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 2" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 3" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 4" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 5" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 6" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
@@ -1438,6 +1452,7 @@
         <add name="Min Distance" type="float" >Describe the min distance the object is able to travel.</add>
         <add name="Max Distance" type="float" >Describe the max distance the object is able to travel.</add>
         <add name="Friction" type="float" >Friction.</add>
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
@@ -4128,9 +4143,22 @@
     </niobject>
 
     <niobject name="BSDebrisNode" inherit="NiNode" ver1="20.2.0.7" userver="11">
-	Bethesda-Specific node.
+        Bethesda-Specific node.
         <add name="Unknown byte 1" type="byte">Unknown</add>
         <add name="Unknown Short 1" type="short">Unknown</add>
     </niobject>
+    
+    <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
+        Bethesda-Specific node.
+        <add name="Unknown Ints 1" type="int" arr1="41" />
+        <add name="Unknown Short 1" type="short">Unknown</add>
+    </niobject>
+    
+    <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable" ver1="20.0.0.5">
+        Bethesda-Specific node.
+        <add name="Unknown Ints 1" type="int" arr1="17" />
+    </niobject>
+    
+    
     
 </niftoolsxml>
