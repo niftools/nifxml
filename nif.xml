@@ -3061,6 +3061,21 @@
         <add name="Unknown Boolean 3" type="bool">Unknown</add>
         <add name="Unknown Float 4" type="float">Unknown</add>
     </niobject>
+    
+    <niobject name="NiPSysTrailEmitter" abstract="0" inherit="NiPSysEmitter">
+        Guild 2-Specific node
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Float 5" type="float">Unknown</add>
+        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="Unknown Float 6" type="float">Unknown</add>
+        <add name="Unknown Float 7" type="float">Unknown</add>
+    </niobject>
 
     <niobject name="NiLightIntensityController" inherit="NiFloatInterpController" ver1="10.2.0.0" ver2="10.2.0.0">
         Unknown controller
@@ -4126,7 +4141,5 @@
         Bethesda-Specific node.
         <add name="Unknown Ints 1" type="int" arr1="17" />
     </niobject>
-
-
-
+   
 </niftoolsxml>
