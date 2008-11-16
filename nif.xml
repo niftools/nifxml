@@ -3767,59 +3767,98 @@
         Bethesda-specific fade node.
     </niobject>
 
-
-    <niobject name="BSShaderLightingProperty" abstract="1" inherit="NiProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific property.
-        <add name="Flags" type="Flags">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-        <add name="File Name" type="SizedString">The normal string.</add>
-        <add name="Unknown Int 6" type="int">Unknown</add>
-        <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Int 8" type="int">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
+    <enum name="BSShaderType" storage="uint">
+        The type of animation interpolation (blending) that will be used on the associated key frames.
+        <option value="0" name="Tall Grass">Tall Grass Shader</option>
+        <option value="1" name="Default">Standard Lighting Shader</option>
+        <option value="10" name="Sky">Sky Shader</option>
+        <option value="17" name="Water">Water Shader</option>
+        <option value="29" name="Lighting 30">Lighting 3.0 Shader</option>
+        <option value="32" name="Tile">Tiled Shader</option>
+        <option value="33" name="No Lighting">No Lighting Shader</option>
+    </enum>
+    
+    <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7">
+        Bethesda-specific Property node
+        <add name="Flags" type="Flags" default="1">Unknown</add>
+        <add name="Shader Type" type="BSShaderType" default="1">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
+        <add name="Unknown Flags 1" type="uint" default="0x82000000">Unknown</add>
+        <add name="Unknown Int 2" type="int" default="1">Unknown</add>
+        <add name="Unknown Float 1" type="float" default="1.0">Unknown</add>
     </niobject>
 
-    <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7" userver="11">
+    <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
         Bethesda-specific property.
-        <add name="Flags" type="Flags">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-        <add name="File Name" type="SizedString">The normal string.</add>
-        <add name="Unknown Int 6" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
-        <add name="Unknown Int 7" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
-        <add name="Unknown Int 8" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
-        <add name="Unknown Float 2" type="float" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+        <add name="Unknown Int 3" type="int" default="3">Unknown</add>
     </niobject>
 
+    <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific property.
+        <add name="File Name" type="SizedString">The texture glow map.</add>
+        <add name="Unknown Float 2" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+        <add name="Unknown Float 3" type="float" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">
+            Normally what appears to be a junk value (0xB33BBD2E). Appears to be related to glow when Unk Flags is (0x82000148).
+        </add>
+        <add name="Unknown Float 4" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+        <add name="Unknown Float 5" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+    </niobject>
 
-    <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
+    <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty" ver1="20.2.0.7" userver="11">
         Bethesda-specific Shade node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Int 4" type="int">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Unknown Int 6" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Unknown Int 7" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Unknown Int 8" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Unknown Int 9" type="int" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-
+        <add name="Unknown Float 2" type="float" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Unknown Float 3" type="float" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
     </niobject>
-
+    
     <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
-        <add name="Num Textures" type="int">Object name.</add>
+        <add name="Num Textures" type="int">Number of Textures</add>
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures</add>
     </niobject>
 
+    <niobject name="WaterShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node? Found in Fallout3
+    </niobject>
+
+    <niobject name="SkyShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node? Found in Fallout3
+        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="File Name" type="SizedString">The texture.</add>
+        <add name="Unknown Int 5" type="int" default="3">Unknown</add>
+    </niobject>
+
+    <niobject name="TileShaderProperty" abstract="0" inherit="BSShaderLightingProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+        <add name="File Name" type="SizedString">Texture file name</add>
+    </niobject>
+
+    <niobject name="DistantLODShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+    </niobject>
+
+    <niobject name="BSDistantTreeShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+    </niobject>
+
+    <niobject name="TallGrassShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+        <add name="File Name" type="SizedString">Texture file name</add>
+    </niobject>
+
+    <niobject name="VolumetricFogShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+    </niobject>
+
+    <niobject name="HairShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+    </niobject>
+
+    <niobject name="Lighting30ShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty" ver1="20.2.0.7" userver="11">
+        Bethesda-specific node.
+    </niobject>
+    
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
         <add name="Num Partitions" type="int">Unknown</add>
@@ -3827,38 +3866,12 @@
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions">Unknown</add>
     </niobject>
 
-
     <niobject name="BSDecalPlacementVectorExtraData" inherit="NiExtraData" ver1="20.2.0.7" userver="11">
         Bethesda-specific node. (for dynamic decal projection?)
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Num Vector Blocks" type="short">Number of groups</add>
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks">Number of Blocks</add>
     </niobject>
-
-    <niobject name="WaterShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node? Found in Fallout3
-        <add name="Unknown Short 1" type="short">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add>
-        <add name="Unknown ushort 1" type="ushort">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-    </niobject>
-
-
-    <niobject name="SkyShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node? Found in Fallout3
-        <add name="Unknown Short 1" type="short">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Int 4" type="int">Unknown</add>
-        <add name="Unknown Short 3" type="short">Unknown</add>
-        <add name="File Name" type="SizedString">The normal string.</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-    </niobject>
-
 
     <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier" ver1="20.2.0.7" userver="11">
         Bethesda-Specific Particle node.
@@ -3948,58 +3961,6 @@
         <add name="Unknown Short 1" type="short">Unknown</add>
     </niobject>
 
-    <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7">
-        Bethesda-specific Property node
-    </niobject>
-
-    <niobject name="TileShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-        <add name="File Name" type="SizedString">The normal string.</add>
-    </niobject>
-
-    <niobject name="DistantLODShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-    </niobject>
-
-    <niobject name="BSDistantTreeShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-    </niobject>
-
-    <niobject name="TallGrassShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="int">Unknown</add>
-        <add name="File Name" type="SizedString">The normal string.</add>
-    </niobject>
-
-    <niobject name="VolumetricFogShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-    </niobject>
-
-    <niobject name="HairShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-    </niobject>
-
-    <niobject name="Lighting30ShaderProperty" abstract="0" inherit="NiShadeProperty" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Int 4" type="int">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-        <add name="Unknown Int 6" type="int">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-    </niobject>
 
     <niobject name="BSRefractionFirePeriodController" abstract="0" inherit="NiTimeController" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
@@ -4017,7 +3978,7 @@
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
-        <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
+        <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
         <add name="Unknown Float 1" type="float">Unknown Flag</add>
     </niobject>
