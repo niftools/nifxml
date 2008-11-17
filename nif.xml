@@ -3833,7 +3833,7 @@
     
     <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
-        <add name="Num Textures" type="int">Number of Textures</add>
+        <add name="Num Textures" type="int" default="6">Number of Textures</add>
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures</add>
     </niobject>
 
