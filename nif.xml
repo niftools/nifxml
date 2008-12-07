@@ -1212,20 +1212,59 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
+	<compound name="UnknownMatrix1">
+		Unknown Matrix; for deathposes.psa
+		<add name="Unknown ushort 1" type="uint">Unknown uint 1</add>
+		<add name="m11" type="float" />
+        <add name="m12" type="float" />
+        <add name="m13" type="float" />
+        <add name="m21" type="float" />
+        <add name="m22" type="float" />
+        <add name="m23" type="float" />
+        <add name="m31" type="float" />
+        <add name="m32" type="float" />
+        <add name="m33" type="float" />
+    </compound>
+	
+	<compound name="BonePoseArray">
+		<add name="Unknown Array 2" type="int">Unknown</add>
+        <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
+	</compound>
+	
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <add name="Num Vectors" type="short">Number of sets</add>
         <add name="Points" type="Vector3" arr1="Num Vectors">Vector XYZ coords</add>
-        <add name="Normals" type="Vector3" arr1="Num Vectors">Vector Normals</add>
+        <add name="Vector" type="Vector3" arr1="Num Vectors">Vector Normals</add>
     </compound>
 
 
     <compound name="BodyPartList">
         Body part list for DismemberSkinInstance
-        <add name="Unknown Short" type="short">Unknown</add>
+        <add name="Unknown Flag" type="flags">Unknown</add>
         <add name="Body Part" type="short">Unknown</add>
     </compound>
 
+	
+	<compound name="RagdollTemplateSubData1">
+		Todo: Add route for secondary Ref set?
+		<add name="Unknown Flag 3" type="uint">Unknown</add>
+		<add name="Unknown 2" type="uint">Unknown</add>
+		<add name="Unknown Ref 1" type="Ref">Unknown</add>
+		<add name="Unknown Ref 2" type="Ref">Unknown</add>
+	</compound>
+	
+	
+	<compound name="RagdollTemplateSubData2">
+		Sub-list for bhkRagdollTemplateData. (not finished)
+		<add name="Unknown Flag 4" type="int">Unknown</add>
+		<add name="Unknown Set 1" type="Vector3" cond="Unknown Flag 3 == 7" arr1="12">Unknown</add>
+		<add name="Unknown XXX 1" type="int"/>
+		<add name="Unknown XXX 1" type="int"/>
+		<add name="Unknown float 2" type="float">Unknown</add>
+		<add name="Unknown float 3" type="float">Unknown</add>
+		<add name="Unknown byte 1" type="byte">Unknown</add>		
+	</compound>
 
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -3791,6 +3830,7 @@
         <option value="0" name="SHADER_TALL_GRASS">Tall Grass Shader</option>
         <option value="1" name="SHADER_DEFAULT">Standard Lighting Shader</option>
         <option value="10" name="SHADER_SKY">Sky Shader</option>
+		<option value="14" name="SHADER_SKIN">Skin Shader</option>
         <option value="17" name="SHADER_WATER">Water Shader</option>
         <option value="29" name="SHADER_LIGHTING30">Lighting 3.0 Shader</option>
         <option value="32" name="SHADER_TILE">Tiled Shader</option>
@@ -3801,9 +3841,42 @@
         Bethesda-specific Property node
         <add name="Flags" type="Flags" default="1">Unknown</add>
         <add name="Shader Type" type="BSShaderType" default="1">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
-        <add name="Unknown Flags 1" type="uint" default="0x82000000">Unknown</add>
+        <add name="Shader Flags" type="uint" default="0x82000000">
+		 0: ZBuffer Test (1=on)
+		 1: Shadow Map
+		 2: External Emittance
+		 3: Parallax Occlusion
+		 4: Dynamic Decal
+		 5: Decal
+		 6: Unknown\Light fade? (if 0 and envmap is on, "envmap light fade" is not present)
+		 7: Multiple Textures (base diff/norm become null)
+		 8: Shadow Frustum
+		 9: Tree Billboard
+		10: Window Environment Mapping
+		11: Localmap Hide Secret
+		12: Dynamic Alpha
+		13: Hair
+		14: Eye Environment Mapping (does not use envmap light fade or envmap scale)
+		15: Fire Refraction (switches on refraction power/period)
+		16: Refraction (switches on refraction power)
+		17: Unknown/Crash
+		18: Non-Projective Shadows
+		19: Unknown/Crash
+		20: Parallax
+		21: Facegen\Skin
+		22: Unknown (Always 0?)
+		23: Unknown (usually 1)
+		24: Environment mapping (uses Envmap Scale)
+		25: EMPTY (usually seen w/texture animation)
+		26: Single Pass (uses same default shader path as diff/norm/spec setup BSSM_ADTS10)
+		27: Unknown (Always 0?)
+		28: Vertex Alpha
+		29: Lowddetail (seems to use standard diff/norm/spec shader)
+		30: Skinned.
+		31: Unknown
+		</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
-        <add name="Unknown Float 1" type="float" default="1.0">Unknown</add>
+        <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
     </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
@@ -3826,7 +3899,7 @@
         Bethesda-specific Shade node.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Unknown Float 3" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Refraction Period" type="int" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
         <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
     </niobject>
@@ -3896,10 +3969,10 @@
         Bethesda-Specific Particle node.
         <add name="Fade In Percent" type="float">Unknown</add>
         <add name="Fade out Percent" type="float">Unknown</add>
-        <add name="Color 1 End Percent" type="int">Unknown</add>
-        <add name="Color 1 Start Percent" type="int">Unknown</add>
-        <add name="Color 2 End Percent" type="int">Unknown</add>
-        <add name="Color 2 Start Percent" type="int">Unknown</add>
+        <add name="Color 1 End Percent" type="float">Unknown</add>
+        <add name="Color 1 Start Percent" type="float">Unknown</add>
+        <add name="Color 2 End Percent" type="float">Unknown</add>
+        <add name="Color 2 Start Percent" type="float">Unknown</add>
         <add name="Colors" type="Color4" arr1="3">Colors</add>
     </niobject>
 
@@ -4141,5 +4214,35 @@
         Bethesda-Specific node.
         <add name="Unknown Ints 1" type="int" arr1="17" />
     </niobject>
-   
+
+	
+	<niobject name="bhkPoseArray" ver1="20.2.0.7">
+		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
+		<add name="Num Bones" type="int">Number of target bones</add>
+        <add name="Bones" type="string" arr1="Num Bones">Bones in index</add>
+        <add name="Num Poses" type="int">Unknown</add>
+		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
+	</niobject>
+
+	<niobject name="bhkRagdollTemplate" ver1="20.2.0.7" >
+		Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
+		<add name="Name" type="string"/>
+		<add name="Num Bones" type="int">Number of target bones</add>
+		<add name="Bones" type="Ref" arr1="Num Bones">Bones in index</add>
+	</niobject>
+	
+	<niobject name="bhkRagdollTemplateData" ver1="20.2.0.7">
+		Data for bhkRagdollTemplate
+		<add name="Name" type="string"/>
+		<add name="Unknown float 1" type="float" >Unknown</add>
+		<add name="Translation" type="Vector3">Unknown</add>
+		<add name="Unknown int 1" type="int" >Unknown</add>
+		<add name="Unknown Flag 1" type="flags">Unknown</add>
+		<add name="Unknown Flag 2" type="flags">Unknown</add>
+		<add name="Unknown Set 1" type="RagdollTemplateSubData1" cond="Unknown int 1 == 7 ">Unknown</add>
+		<add name="Unknown Set 2" type="RagdollTemplateSubData2" cond="Unknown Flag 1 != 0">Unknown</add>
+	</niobject>
+	
+	
+	
 </niftoolsxml>
