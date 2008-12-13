@@ -123,6 +123,25 @@
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
 
+    <!--
+    ******************
+    *** bitstructs ***
+    ******************
+    -->
+
+    <bitflags name="MtlFlags" storage="uint">
+        <option value="0" name="MTL_WIRE">Wire</option>
+        <option value="1" name="MTL_TWO_SIDED">Two Sided</option>
+        <option value="2" name="MTL_FACEMAP">Facemap</option>
+        <option value="3" name="MTL_FACETED">Faceted</option>
+        <option value="4" name="MTL_ADDITIVE">Additive</option>
+        <option value="5" name="MTL_SUBTRACTIVE">Subtractive</option>
+        <option value="6" name="MTL_CRY_SHADER">Cry Shader</option>
+        <option value="7" name="MTL_PHYSICALIZE">Physicalize</option>
+        <option value="8" name="MTL_ADDITIVE_DECAL">Additive Decal</option>
+        <option value="9" name="MTL_USE_GLOSSINESS">Use Glossiness</option>
+    </bitflags>
+    
     <!--Enumerations
         These are like C enums and consist of a list of options.  They can appear
         as parts of compounts or niobjects.-->
@@ -1241,7 +1260,7 @@
 
     <compound name="BodyPartList">
         Body part list for DismemberSkinInstance
-        <add name="Unknown Flag" type="flags">Unknown</add>
+        <add name="Unknown Flag" type="Flags">Unknown</add>
         <add name="Body Part" type="short">Unknown</add>
     </compound>
 
@@ -3837,44 +3856,47 @@
         <option value="33" name="SHADER_NOLIGHTING">No Lighting Shader</option>
     </enum>
     
+    <bitflags name="BSShaderFlags" storage="uint">
+        Shader Property Flags
+		<option value="0" name="SF_ZBUFFER_TEST">ZBuffer Test (1=on)</option>
+		<option value="1" name="SF_SHADOW_MAP">Shadow Map</option>
+		<option value="2" name="SF_EXTERNAL_EMITTANCE">External Emittance</option>
+		<option value="3" name="SF_PARALLAX_OCCLUSION">Parallax Occlusion</option>
+		<option value="4" name="SF_DYNAMIC_DECAL">Dynamic Decal</option>
+		<option value="5" name="SF_DECAL">Decal</option>
+		<option value="6" name="SF_UNKNOWN_6">Unknown\Light fade? (if 0 and envmap is on, "envmap light fade" is not present)</option>
+		<option value="7" name="SF_MULTIPLE_TEXTURES">Multiple Textures (base diff/norm become null)</option>
+		<option value="8" name="SF_SHADOW_FRUSTUM">Shadow Frustum</option>
+		<option value="9" name="SF_TREE_BILLBOARD">Tree Billboard</option>
+		<option value="10" name="SF_WINDOW_ENVIRONMENT_MAPPING">Window Environment Mapping</option>
+		<option value="11" name="SF_LOCALMAP_HIDE_SECRET">Localmap Hide Secret</option>
+		<option value="12" name="SF_DYNAMIC_ALPHA">Dynamic Alpha</option>
+		<option value="13" name="SF_HAIR">Hair</option>
+		<option value="14" name="SF_EYE_ENVIRONMENT_MAPPING">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
+		<option value="15" name="SF_FIRE_REFRACTION">Fire Refraction (switches on refraction power/period)</option>
+		<option value="16" name="SF_REFRACTION">Refraction (switches on refraction power)</option>
+		<option value="17" name="SF_UNKNOWN_17">Unknown/Crash</option>
+		<option value="18" name="NON_PROJECTIVE_SHADOWS">Non-Projective Shadows</option>
+		<option value="19" name="SF_UNKNOWN_19">Unknown/Crash</option>
+		<option value="20" name="SF_PARALLAX">Parallax</option>
+		<option value="21" name="SF_FACEGEN_SKIN">Facegen\Skin</option>
+		<option value="22" name="SF_UNKNOWN_22">Unknown (Always 0?)</option>
+		<option value="23" name="SF_UNKNOWN_23">Unknown (usually 1)</option>
+		<option value="24" name="SF_ENVIRONMENT_MAPPING">Environment mapping (uses Envmap Scale)</option>
+		<option value="25" name="SF_EMPTY">EMPTY (usually seen w/texture animation)</option>
+		<option value="26" name="SF_SINGLE_PASS">Single Pass (uses same default shader path as diff/norm/spec setup BSSM_ADTS10)</option>
+		<option value="27" name="SF_UNKNOWN_27">Unknown (Always 0?)</option>
+		<option value="28" name="SF_VERTEX_ALPHA">Vertex Alpha</option>
+		<option value="29" name="SF_LOWDDETAIL">Lowddetail (seems to use standard diff/norm/spec shader)</option>
+		<option value="30" name="SF_SKINNED">Skinned.</option>
+		<option value="31" name="SF_UNKNOWN_31">Unknown</option>
+    </bitflags>
+    
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7">
         Bethesda-specific Property node
         <add name="Flags" type="Flags" default="1">Unknown</add>
         <add name="Shader Type" type="BSShaderType" default="1">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
-        <add name="Shader Flags" type="uint" default="0x82000000">
-		 0: ZBuffer Test (1=on)
-		 1: Shadow Map
-		 2: External Emittance
-		 3: Parallax Occlusion
-		 4: Dynamic Decal
-		 5: Decal
-		 6: Unknown\Light fade? (if 0 and envmap is on, "envmap light fade" is not present)
-		 7: Multiple Textures (base diff/norm become null)
-		 8: Shadow Frustum
-		 9: Tree Billboard
-		10: Window Environment Mapping
-		11: Localmap Hide Secret
-		12: Dynamic Alpha
-		13: Hair
-		14: Eye Environment Mapping (does not use envmap light fade or envmap scale)
-		15: Fire Refraction (switches on refraction power/period)
-		16: Refraction (switches on refraction power)
-		17: Unknown/Crash
-		18: Non-Projective Shadows
-		19: Unknown/Crash
-		20: Parallax
-		21: Facegen\Skin
-		22: Unknown (Always 0?)
-		23: Unknown (usually 1)
-		24: Environment mapping (uses Envmap Scale)
-		25: EMPTY (usually seen w/texture animation)
-		26: Single Pass (uses same default shader path as diff/norm/spec setup BSSM_ADTS10)
-		27: Unknown (Always 0?)
-		28: Vertex Alpha
-		29: Lowddetail (seems to use standard diff/norm/spec shader)
-		30: Skinned.
-		31: Unknown
-		</add>
+        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
         <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
     </niobject>
@@ -4237,8 +4259,8 @@
 		<add name="Unknown float 1" type="float" >Unknown</add>
 		<add name="Translation" type="Vector3">Unknown</add>
 		<add name="Unknown int 1" type="int" >Unknown</add>
-		<add name="Unknown Flag 1" type="flags">Unknown</add>
-		<add name="Unknown Flag 2" type="flags">Unknown</add>
+		<add name="Unknown Flag 1" type="Flags">Unknown</add>
+		<add name="Unknown Flag 2" type="Flags">Unknown</add>
 		<add name="Unknown Set 1" type="RagdollTemplateSubData1" cond="Unknown int 1 == 7 ">Unknown</add>
 		<add name="Unknown Set 2" type="RagdollTemplateSubData2" cond="Unknown Flag 1 != 0">Unknown</add>
 	</niobject>
