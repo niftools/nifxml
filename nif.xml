@@ -28,7 +28,7 @@
     <version num="20.0.0.5">Oblivion</version>
     <version num="20.1.0.3">Megami Tensei: Imagine</version>
     <version num="20.2.0.7">Emerge, Empire Earth III, Fallout 3</version>    
-    <version num="20.2.0.8">Emerge, Empire Earth III</version>
+    <version num="20.2.0.8">Emerge, Empire Earth III, Atlantica</version>
     <!-- version 20.3.0.1 is found in Props/GDCLargeContainer.nif-->
     <version num="20.3.0.1">Emerge</version>
     <!-- version 20.3.0.2 is found in PFX/fx_muzzle_flash_example.nif -->
@@ -561,6 +561,65 @@
         <option value="1" name="RESPONSE_SIMPLE_CONTACT">Do normal collision resolution</option>
         <option value="2" name="RESPONSE_REPORTING">No collision resolution is performed but listeners are called</option>
         <option value="3" name="RESPONSE_NONE">Do nothing, ignore all the results.</option>
+    </enum>
+    
+    <enum name="BSDismemberBodyPartType" storage="ushort">
+        <option value="0" name="BP_TORSO">Torso</option>
+        <option value="1" name="BP_HEAD">Head</option>
+        <option value="2" name="BP_HEAD2">Head 2</option>
+        <option value="3" name="BP_LEFTARM">Left Arm</option>
+        <option value="4" name="BP_LEFTARM2">Left Arm 2</option>
+        <option value="5" name="BP_RIGHTARM">Right Arm</option>
+        <option value="6" name="BP_RIGHTARM2">Right Arm 2</option>
+        <option value="7" name="BP_LEFTLEG">Left Leg</option>
+        <option value="8" name="BP_LEFTLEG2">Left Leg 2</option>
+        <option value="9" name="BP_LEFTLEG3">Left Leg 3</option>
+        <option value="10" name="BP_RIGHTLEG">Right Leg</option>
+        <option value="11" name="BP_RIGHTLEG2">Right Leg 2</option>
+        <option value="12" name="BP_RIGHTLEG3">Right Leg 3</option>
+        <option value="13" name="BP_BRAIN">Brain</option>
+        
+        <option value="101" name="BP_SECTIONCAP_HEAD">Section Cap | Head</option>
+        <option value="102" name="BP_SECTIONCAP_HEAD2">Section Cap | Head 2</option>
+        <option value="103" name="BP_SECTIONCAP_LEFTARM">Section Cap | Left Arm</option>
+        <option value="104" name="BP_SECTIONCAP_LEFTARM2">Section Cap | Left Arm 2</option>
+        <option value="105" name="BP_SECTIONCAP_RIGHTARM">Section Cap | Right Arm</option>
+        <option value="106" name="BP_SECTIONCAP_RIGHTARM2">Section Cap | Right Arm 2</option>
+        <option value="107" name="BP_SECTIONCAP_LEFTLEG">Section Cap | Left Leg</option>
+        <option value="108" name="BP_SECTIONCAP_LEFTLEG2">Section Cap | Left Leg 2</option>
+        <option value="109" name="BP_SECTIONCAP_LEFTLEG3">Section Cap | Left Leg 3</option>
+        <option value="110" name="BP_SECTIONCAP_RIGHTLEG">Section Cap | Right Leg</option>
+        <option value="111" name="BP_SECTIONCAP_RIGHTLEG2">Section Cap | Right Leg 2</option>
+        <option value="112" name="BP_SECTIONCAP_RIGHTLEG3">Section Cap | Right Leg 3</option>
+        <option value="113" name="BP_SECTIONCAP_BRAIN">Section Cap | Brain</option>
+
+        <option value="201" name="BP_TORSOCAP_HEAD">Torso Cap | Head</option>
+        <option value="202" name="BP_TORSOCAP_HEAD2">Torso Cap | Head 2</option>
+        <option value="203" name="BP_TORSOCAP_LEFTARM">Torso Cap | Left Arm</option>
+        <option value="204" name="BP_TORSOCAP_LEFTARM2">Torso Cap | Left Arm 2</option>
+        <option value="205" name="BP_TORSOCAP_RIGHTARM">Torso Cap | Right Arm</option>
+        <option value="206" name="BP_TORSOCAP_RIGHTARM2">Torso Cap | Right Arm 2</option>
+        <option value="207" name="BP_TORSOCAP_LEFTLEG">Torso Cap | Left Leg</option>
+        <option value="208" name="BP_TORSOCAP_LEFTLEG2">Torso Cap | Left Leg 2</option>
+        <option value="209" name="BP_TORSOCAP_LEFTLEG3">Torso Cap | Left Leg 3</option>
+        <option value="210" name="BP_TORSOCAP_RIGHTLEG">Torso Cap | Right Leg</option>
+        <option value="211" name="BP_TORSOCAP_RIGHTLEG2">Torso Cap | Right Leg 2</option>
+        <option value="212" name="BP_TORSOCAP_RIGHTLEG3">Torso Cap | Right Leg 3</option>
+        <option value="213" name="BP_TORSOCAP_BRAIN">Torso Cap | Brain</option>
+
+        <option value="1000" name="BP_TORSOSECTION_HEAD">Torso Section | Head</option>
+        <option value="2000" name="BP_TORSOSECTION_HEAD2">Torso Section | Head 2</option>
+        <option value="3000" name="BP_TORSOSECTION_LEFTARM">Torso Section | Left Arm</option>
+        <option value="4000" name="BP_TORSOSECTION_LEFTARM2">Torso Section | Left Arm 2</option>
+        <option value="5000" name="BP_TORSOSECTION_RIGHTARM">Torso Section | Right Arm</option>
+        <option value="6000" name="BP_TORSOSECTION_RIGHTARM2">Torso Section | Right Arm 2</option>
+        <option value="7000" name="BP_TORSOSECTION_LEFTLEG">Torso Section | Left Leg</option>
+        <option value="8000" name="BP_TORSOSECTION_LEFTLEG2">Torso Section | Left Leg 2</option>
+        <option value="9000" name="BP_TORSOSECTION_LEFTLEG3">Torso Section | Left Leg 3</option>
+        <option value="10000" name="BP_TORSOSECTION_RIGHTLEG">Torso Section | Right Leg</option>
+        <option value="11000" name="BP_TORSOSECTION_RIGHTLEG2">Torso Section | Right Leg 2</option>
+        <option value="12000" name="BP_TORSOSECTION_RIGHTLEG3">Torso Section | Right Leg 3</option>
+        <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
 
     <!--Compounds
@@ -1244,12 +1303,12 @@
         <add name="m32" type="float" />
         <add name="m33" type="float" />
     </compound>
-	
+	<!--
 	<compound name="BonePoseArray">
 		<add name="Unknown Array 2" type="int">Unknown</add>
         <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
 	</compound>
-	
+	-->
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <add name="Num Vectors" type="short">Number of sets</add>
@@ -1261,16 +1320,16 @@
     <compound name="BodyPartList">
         Body part list for DismemberSkinInstance
         <add name="Unknown Flag" type="Flags">Unknown</add>
-        <add name="Body Part" type="short">Unknown</add>
+        <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
 
-	
+<!--	
 	<compound name="RagdollTemplateSubData1">
 		Todo: Add route for secondary Ref set?
 		<add name="Unknown Flag 3" type="uint">Unknown</add>
 		<add name="Unknown 2" type="uint">Unknown</add>
-		<add name="Unknown Ref 1" type="Ref">Unknown</add>
-		<add name="Unknown Ref 2" type="Ref">Unknown</add>
+		<add name="Unknown Ref 1" type="Ref" template="NiObject">Unknown</add>
+		<add name="Unknown Ref 2" type="Ref" template="NiObject">Unknown</add>
 	</compound>
 	
 	
@@ -1284,7 +1343,7 @@
 		<add name="Unknown float 3" type="float">Unknown</add>
 		<add name="Unknown byte 1" type="byte">Unknown</add>		
 	</compound>
-
+-->
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
          They are like C classes and can contain many pieces of data.
@@ -4237,8 +4296,9 @@
         <add name="Unknown Ints 1" type="int" arr1="17" />
     </niobject>
 
+<!--	
 	
-	<niobject name="bhkPoseArray" ver1="20.2.0.7">
+	<niobject name="bhkPoseArray" ver1="20.2.0.7" inherit="NiObject">
 		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
 		<add name="Num Bones" type="int">Number of target bones</add>
         <add name="Bones" type="string" arr1="Num Bones">Bones in index</add>
@@ -4246,14 +4306,13 @@
 		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
 	</niobject>
 
-	<niobject name="bhkRagdollTemplate" ver1="20.2.0.7" >
+	<niobject name="bhkRagdollTemplate" ver1="20.2.0.7" inherit="NiObject">
 		Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
 		<add name="Name" type="string"/>
 		<add name="Num Bones" type="int">Number of target bones</add>
-		<add name="Bones" type="Ref" arr1="Num Bones">Bones in index</add>
+		<add name="Bones" type="Ref" template="NiObject" arr1="Num Bones">Bones in index</add>
 	</niobject>
-	
-	<niobject name="bhkRagdollTemplateData" ver1="20.2.0.7">
+	<niobject name="bhkRagdollTemplateData" ver1="20.2.0.7" inherit="NiObject">
 		Data for bhkRagdollTemplate
 		<add name="Name" type="string"/>
 		<add name="Unknown float 1" type="float" >Unknown</add>
@@ -4264,7 +4323,7 @@
 		<add name="Unknown Set 1" type="RagdollTemplateSubData1" cond="Unknown int 1 == 7 ">Unknown</add>
 		<add name="Unknown Set 2" type="RagdollTemplateSubData2" cond="Unknown Flag 1 != 0">Unknown</add>
 	</niobject>
-	
+-->	
 	
 	
 </niftoolsxml>
