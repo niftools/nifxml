@@ -2137,7 +2137,7 @@
 
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
-        <add name="Name" type="string" ver1="10.2.0.0">Name of this object.</add>
+        <add name="Unknown ID" type="int" ver1="10.2.0.0">Unknown identifier. Always 0</add>
         <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
