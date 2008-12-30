@@ -1316,10 +1316,15 @@
         <add name="Vector" type="Vector3" arr1="Num Vectors">Vector Normals</add>
     </compound>
 
+    <bitflags name="BSPartFlag" storage="ushort">
+        Editor flags for the Body Partitions. Its unclear difference between PF_EDITOR_VISIBLE and PF_EDITOR_VISIBLE_2.
+        <option value="0" name="PF_EDITOR_VISIBLE">Visible in Editor</option>
+        <option value="8" name="PF_EDITOR_VISIBLE_2">Visible in Editor</option>
+    </bitflags>
 
     <compound name="BodyPartList">
         Body part list for DismemberSkinInstance
-        <add name="Unknown Flag" type="Flags">Unknown</add>
+        <add name="Part Flag" type="BSPartFlag">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
 
