@@ -1324,7 +1324,7 @@
 
     <compound name="BodyPartList">
         Body part list for DismemberSkinInstance
-        <add name="Part Flag" type="BSPartFlag">Flags related to the Body Partition</add>
+        <add name="Part Flag" type="BSPartFlag" default="1">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
 
@@ -3991,9 +3991,16 @@
     </niobject>
     
     <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject" ver1="20.2.0.7" userver="11">
-        Bethesda-specific node.
+        Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6">Number of Textures</add>
-        <add name="Textures" type="SizedString" arr1="Num Textures">Textures</add>
+        <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
+        0: Diffuse
+        1: Normal/Gloss
+        2: Environment Mask
+        3: Glow/Skin/Hair
+        4: Height
+        5: Environment
+        </add>
     </niobject>
 
     <niobject name="WaterShaderProperty" abstract="0" inherit="BSShaderProperty" ver1="20.2.0.7" userver="11">
