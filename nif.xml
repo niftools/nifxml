@@ -1852,7 +1852,7 @@
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Generic node object.
         <add name="Flags" type="Flags" ver1="3.0">Some flags; commonly 0x000C or 0x000A.</add>
-        <add name="Unknown Short 1" type="ushort" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
+        <add name="Unknown Short 1" type="ushort" default="8" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
