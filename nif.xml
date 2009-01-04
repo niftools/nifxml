@@ -122,25 +122,6 @@
     <basic name="StringIndex" count="0" niflibtype="IndexString" nifskopetype="stringindex">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
-
-    <!--
-    ******************
-    *** bitstructs ***
-    ******************
-    -->
-
-    <bitflags name="MtlFlags" storage="uint">
-        <option value="0" name="MTL_WIRE">Wire</option>
-        <option value="1" name="MTL_TWO_SIDED">Two Sided</option>
-        <option value="2" name="MTL_FACEMAP">Facemap</option>
-        <option value="3" name="MTL_FACETED">Faceted</option>
-        <option value="4" name="MTL_ADDITIVE">Additive</option>
-        <option value="5" name="MTL_SUBTRACTIVE">Subtractive</option>
-        <option value="6" name="MTL_CRY_SHADER">Cry Shader</option>
-        <option value="7" name="MTL_PHYSICALIZE">Physicalize</option>
-        <option value="8" name="MTL_ADDITIVE_DECAL">Additive Decal</option>
-        <option value="9" name="MTL_USE_GLOSSINESS">Use Glossiness</option>
-    </bitflags>
     
     <!--Enumerations
         These are like C enums and consist of a list of options.  They can appear
@@ -1078,7 +1059,7 @@
     <compound name="hkTriangle">
         A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
-        <add name="Welding Information?" type="ushort">Additional welding info computed when subshapes are in use.</add>
+        <add name="Welding Info" type="ushort">Additional havok information on how triangles are welded.</add>
         <add name="Normal" type="Vector3" ver2="20.0.0.5">This is the triangle's normal.</add>
     </compound>
 
@@ -1292,7 +1273,7 @@
 
 	<compound name="UnknownMatrix1">
 		Unknown Matrix; for deathposes.psa
-		<add name="Unknown ushort 1" type="uint">Unknown uint 1</add>
+		<add name="Unknown UInt 1" type="uint">Unknown uint 1</add>
 		<add name="m11" type="float" />
         <add name="m12" type="float" />
         <add name="m13" type="float" />
@@ -1313,7 +1294,7 @@
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <add name="Num Vectors" type="short">Number of sets</add>
         <add name="Points" type="Vector3" arr1="Num Vectors">Vector XYZ coords</add>
-        <add name="Vector" type="Vector3" arr1="Num Vectors">Vector Normals</add>
+        <add name="Normals" type="Vector3" arr1="Num Vectors">Vector Normals</add>
     </compound>
 
     <bitflags name="BSPartFlag" storage="ushort">
@@ -2344,7 +2325,7 @@
     </compound>
 
     <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData" ver1="10.0.1.0">
-        Particle system data.       
+        Particle system data.
         <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3 != 0" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
@@ -3994,12 +3975,12 @@
         Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6">Number of Textures</add>
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
-        0: Diffuse
-        1: Normal/Gloss
-        2: Environment Mask
-        3: Glow/Skin/Hair
-        4: Height
-        5: Environment
+            0: Diffuse
+            1: Normal/Gloss
+            2: Environment Mask
+            3: Glow/Skin/Hair
+            4: Height
+            5: Environment
         </add>
     </niobject>
 
@@ -4043,7 +4024,7 @@
     <niobject name="Lighting30ShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
     </niobject>
-    
+
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
         <add name="Num Partitions" type="int">Unknown</add>
