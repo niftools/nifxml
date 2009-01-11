@@ -152,8 +152,12 @@
         <option value="3" name="GLOSS_MAP">Allows the specularity (glossyness) of an object to differ across its surface.</option>
         <option value="4" name="GLOW_MAP">Creates a glowing effect.  Basically an incandescence map.</option>
         <option value="5" name="BUMP_MAP">Used to make the object appear to have more detail than it really does.</option>
-        <option value="6" name="DECAL_0_MAP">For placing images on the object like stickers.</option>
-        <option value="7" name="DECAL_1_MAP">For placing images on the object like stickers.</option>
+        <option value="6" name="NORMAL_MAP">Used to make the object appear to have more detail than it really does.</option>
+        <option value="7" name="UNKNOWN2_MAP">Unknown map.</option>
+        <option value="8" name="DECAL_0_MAP">For placing images on the object like stickers.</option>
+        <option value="9" name="DECAL_1_MAP">For placing images on the object like stickers.</option>
+        <option value="10" name="DECAL_2_MAP">For placing images on the object like stickers.</option>
+        <option value="11" name="DECAL_3_MAP">For placing images on the object like stickers.</option>
     </enum>
 
     <enum name="KeyType" storage="uint">
