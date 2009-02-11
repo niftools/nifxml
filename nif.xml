@@ -1896,7 +1896,7 @@
         <add name="Planar Angle Variation" type="float">Planar Angle randomness / Second axis .</add>
         <add name="Initial Color" type="Color4">Defines color of a birthed particle.</add>
         <add name="Initial Radius" type="float">Size of a birthed particle.</add>
-        <add name="Radius Variation" type="float" ver1="20.0.0.4">Particle Radius randomness.</add>
+        <add name="Radius Variation" type="float" ver1="10.4.0.1">Particle Radius randomness.</add>
         <add name="Life Span" type="float">Duration until a particle dies.</add>
         <add name="Life Span Variation" type="float">Adds randomness to Life Span.</add>
     </niobject>
@@ -2323,7 +2323,7 @@
     <compound name="ParticleDesc">
         Particle Description.
         <add name="Translation" type="Vector3">Unknown.</add>
-        <add name="Unknown Floats 1" type="float" arr1="3" ver2="10.2.0.0">Unknown.</add>
+        <add name="Unknown Floats 1" type="float" arr1="3" ver2="10.4.0.1">Unknown.</add>
         <add name="Unknown Float 1" type="float" default="0.9">Unknown.</add>
         <add name="Unknown Float 2" type="float" default="0.9">Unknown.</add>
         <add name="Unknown Float 3" type="float" default="3.0">Unknown.</add>
@@ -3116,6 +3116,7 @@
         <add name="Spawn Dir Chaos" type="float">Unknown.</add>
         <add name="Life Span" type="float">Unknown.</add>
         <add name="Life Span Variation" type="float">Unknown.</add>
+		<add name="Unknown int" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysSphereEmitter" abstract="0" inherit="NiPSysVolumeEmitter" ver1="20.0.0.4">
