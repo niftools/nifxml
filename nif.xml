@@ -867,7 +867,7 @@
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
         <add name="Copyright" type="LineString" arr1="3" ver2="3.1" />
         <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-        <add name="Endian Type" type="EndianType" default="1" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
+        <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
         <add name="User Version 2" type="uint" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
@@ -965,7 +965,7 @@
     <compound name="RotationKeyArray" istemplate="1">
         Rotation key array.
         <add name="Num Keys" type="uint">Number of keys.</add>
-        <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (1, 2, 3, or 4).</add>
+        <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
         <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
     </compound>
 
@@ -1194,8 +1194,8 @@
     <compound name="MultiTextureElement">
         <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
         <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
-        <add name="Clamp?" type="TexClampMode" cond="Has Image" default="3">May be texture clamp mode.</add>
-        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="2">May be texture filter mode.</add>
+        <add name="Clamp?" type="TexClampMode" cond="Has Image" default="WRAP_S_WRAP_T">May be texture clamp mode.</add>
+        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="FILTER_TRILERP">May be texture filter mode.</add>
         <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
         <add name="PS2 L" type="short" cond="Has Image" default="0" ver1="3.03" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="short" cond="Has Image" default="-75" ver1="3.03" ver2="10.2.0.0">-75?</add>
@@ -1416,7 +1416,7 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer" default="1">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Layer" type="OblivionLayer" default="OL_STATIC">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
     </niobject>
@@ -1448,11 +1448,11 @@
         <add name="Unknown Int 1" type="int">Unknown.</add>
         <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
         <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown.</add>
-        <add name="Collision Response?" type="hkResponseType" default="1">The collision response. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
+        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">Unknown.</add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
@@ -1477,10 +1477,10 @@
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Motion System" type="MotionSystem" default="1">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="1">The initial deactivator type of the body.</add>
-        <add name="Solver Deactivation" type="SolverDeactivation" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="0">The motion type. Determines quality of motion?</add>
+        <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
+        <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_INVALID">The motion type. Determines quality of motion?</add>
         <add name="Auto Remove Level" type="uint">This is a user flag which you can set to give you a hint as to which objects to remove from the simulation if the memory overhead becomes too high.</add>
         <add name="User Datas In Contact Point Properties?" type="uint">Requests a number of extra fields in each hkpContactPointProperties for this rigid body.</add>
         <add name="Force Collide Onto Ppu?" type="uint">Ps3 only</add>
@@ -2160,7 +2160,7 @@
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices"  vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="0">Consistency Flags</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
     </niobject>
 
@@ -2285,7 +2285,7 @@
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <!--<add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>-->
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="0">Consistency Flags</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
 
 
@@ -2704,13 +2704,22 @@
         These nodes will always be rotated to face the camera creating a billboard effect for any attached objects.
 
         In pre-10.1.0.0 the Flags field is used for BillboardMode.
-        Here is what alphax says about these Flags after checking SceneImmerse:
+        Bit 0: hidden
+        Bits 1-2: collision mode
+        Bit 3: unknown (set in most official meshes)
+        Bits 5-6: billboard mode
 
-        0x0000 - 0x0010 is ALWAYS_FACE_CAMERA (somewhat misleadingly named, but that is what the format calls it),
-        0x0020 is ROTATE_ABOUT_UP,
-        0x0040 is RIGID_FACE_CAMERA (always face the viewport), and
-        0x0060 is ALWAYS_FACE_CENTER.
-        That is where &quot;left shift the corresponding value from v10 NIFs 5 bits&quot; falls down - I do not know if v4 NIFs support the others, or if they actually mean anything, but these seem the most useful. The rotation of the node does seem to affect the axis of constraint.
+        Collision modes:
+        00 NONE
+        01 USE_TRIANGLES
+        10 USE_OBBS
+        11 CONTINUE
+
+        Billboard modes:
+        00 ALWAYS_FACE_CAMERA
+        01 ROTATE_ABOUT_UP
+        10 RIGID_FACE_CAMERA
+        11 ALWAYS_FACE_CENTER
         <add name="Billboard Mode" type="BillboardMode" ver1="10.1.0.0">The way the billboard will react to the camera.</add>
     </niobject>
 
@@ -3116,7 +3125,7 @@
         <add name="Spawn Dir Chaos" type="float">Unknown.</add>
         <add name="Life Span" type="float">Unknown.</add>
         <add name="Life Span Variation" type="float">Unknown.</add>
-		<add name="Unknown int" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown</add>
+        <add name="Unknown int" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysSphereEmitter" abstract="0" inherit="NiPSysVolumeEmitter" ver1="20.0.0.4">
@@ -3283,9 +3292,9 @@
         <add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0">Unknown.</add>
         <add name="File Name" type="FilePath" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData object.</add>
         <add name="Pixel Data" type="Ref" template="ATextureRenderData" cond="Use External == 0">Pixel data object index. NiPixelData or NiPersistentSrcTextureRendererData</add>
-        <add name="Pixel Layout" type="PixelLayout" default="5">Specifies the way the image will be stored.</add>
-        <add name="Use Mipmaps" type="MipMapFormat" default="2">Specifies whether mip maps are used.</add>
-        <add name="Alpha Format" type="AlphaFormat" default="3"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
+        <add name="Pixel Layout" type="PixelLayout" default="PIX_LAY_PALETTISED_4">Specifies the way the image will be stored.</add>
+        <add name="Use Mipmaps" type="MipMapFormat" default="MIP_FMT_DEFAULT">Specifies whether mip maps are used.</add>
+        <add name="Alpha Format" type="AlphaFormat" default="ALPHA_DEFAULT"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
         <add name="Is Static" type="byte" default="1">Is Static?</add>
         <add name="Direct Render" type="bool" default="1" ver1="10.1.0.106">Load direct to renderer</add>
         <add name="Persist Render Data" type="bool" default="0" ver1="20.2.0.7">Render data is persistant</add>
@@ -3324,7 +3333,7 @@
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Draw Mode" default="3" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
+        <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">
             Property flags:
             0.. 1 = Stencil Enable
@@ -3367,10 +3376,10 @@
         Enables environment mapping. Should be in both the children list and effects list of the NiTriShape object. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect object is present).
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
-        <add name="Texture Filtering" type="TexFilterMode">Texture Filtering mode.</add>
-        <add name="Texture Clamping" type="TexClampMode">Texture Clamp mode.</add>
-        <add name="Texture Type" default="2" type="EffectType">The type of effect that the texture is used for.</add>
-        <add name="Coordinate Generation Type" default="2" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
+        <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
+        <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
+        <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
+        <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
         <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
@@ -3414,7 +3423,7 @@
         Describes an object&#039;s textures.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Property flags.</add>
-        <add name="Apply Mode" type="ApplyMode" default="2" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
+        <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
         <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
         <add name="Base Texture" type="TexDesc" cond="Has Base Texture != 0">The base texture.</add>
@@ -3618,7 +3627,7 @@
             Bit 0 enables the z test
             Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
         </add>
-        <add name="Function" type="CompareMode" default="3" ver1="4.1.0.12" ver2="20.0.0.5">
+        <add name="Function" type="CompareMode" default="TEST_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
             Z-Test function (see: glDepthFunc). In Flags from 20.1.0.3 on.
         </add>
     </niobject>
@@ -3948,7 +3957,7 @@
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty" ver1="20.2.0.7">
         Bethesda-specific Property node
         <add name="Flags" type="Flags" default="1">Unknown</add>
-        <add name="Shader Type" type="BSShaderType" default="1">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
+        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
         <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
