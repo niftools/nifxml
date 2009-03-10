@@ -1686,10 +1686,10 @@
         <add name="Unknown Int 2" type="uint" default="0x014E9DD8">Unknown. Looks like a memory pointer and may be garbage.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown. Same as Unknown Float 3</add>
         <add name="Unknown Int 3" type="uint" default="0">Unknown. Sometimes 0.0f or -1.0f but sometimes really large number.  Suspect its garbage.</add>
-        <add name="Scale Copy?" type="Vector3" default="1.0f, 1.0f, 1.0f">Unknown. Same as scale below?</add>
+        <add name="Scale Copy?" type="Vector3" default="1.0, 1.0, 1.0">Unknown. Same as scale below?</add>
         <add name="Unknown Float 2" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 4</add>
         <add name="Unknown Float 3" type="float" default="0.1">Unknown. Same as Unknown Float 1</add>
-        <add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale.</add>
+        <add name="Scale" type="Vector3" default="1.0, 1.0, 1.0">Scale.</add>
         <add name="Unknown Float 4" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 2</add>
         <add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
     </niobject>
@@ -1701,7 +1701,7 @@
         <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
         <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
         <add name="Unknown Int 2" type="uint" default="1">Unknown</add>
-        <add name="Scale" type="Vector3" default="1.0f, 1.0f, 1.0f">Scale. Usually (1.0, 1.0, 1.0).</add>
+        <add name="Scale" type="Vector3" default="1.0, 1.0, 1.0">Scale. Usually (1.0, 1.0, 1.0).</add>
         <add name="Unknown Int 3" type="uint">Unknown.</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
@@ -3289,7 +3289,7 @@
         <add name="Use External" type="byte" default="1">Is the texture external?</add>
         <add name="File Name" type="FilePath" cond="Use External == 1">The external texture file name.</add>
         <add name="Unknown Link" type="Ref" template="NiObject" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
-        <add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0">Unknown.</add>
+        <add name="Unknown Byte" type="byte" default="1" cond="Use External == 0" ver2="10.0.1.0">Unknown. Seems to be set if Pixel Data is present?</add>
         <add name="File Name" type="FilePath" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData object.</add>
         <add name="Pixel Data" type="Ref" template="ATextureRenderData" cond="Use External == 0">Pixel data object index. NiPixelData or NiPersistentSrcTextureRendererData</add>
         <add name="Pixel Layout" type="PixelLayout" default="PIX_LAY_PALETTISED_4">Specifies the way the image will be stored.</add>
@@ -3383,7 +3383,7 @@
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
         <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
-        <add name="Unknown Vector" type="Vector3">Unknown: (1,0,0)?</add>
+        <add name="Unknown Vector" type="Vector3" default="1.0, 0.0, 0.0">Unknown: (1,0,0)?</add>
         <add name="Unknown Float" type="float">Unknown. 0?</add>
         <add name="PS2 L" type="short" default="0" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="short" default="-75" ver2="10.2.0.0">-75?</add>
