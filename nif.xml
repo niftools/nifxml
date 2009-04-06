@@ -982,8 +982,8 @@
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags.</add>
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
-        <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, "L values can range from 0 to 3 and are used to specify how fast a texture gets blurry".</add>
-        <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, "The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper." -75 for most v4.0.0.2 meshes.</add>
+        <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;L values can range from 0 to 3 and are used to specify how fast a texture gets blurry&quot;.</add>
+        <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.&quot; -75 for most v4.0.0.2 meshes.</add>
         <add name="Unknown1" type="ushort" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
         <add name="Has Texture Transform" type="bool" default="false" ver1="10.1.0.0">Determines whether or not the texture&#039;s coordinates are transformed.</add>
         <add name="Translation" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
@@ -1119,7 +1119,7 @@
         Havok Information for packed TriStrip shapes.
         <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
-        <add name="Wielding Type?" type="ushort">Vertex Wielding Type?</add>
+        <add name="Unknown Short" type="ushort">Unknown. Perhaps the vertex wielding type?</add>
         <add name="Num Vertices" type="uint">The number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
@@ -2129,7 +2129,7 @@
 
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
-        <add name="Unknown ID" type="int" ver1="10.2.0.0">Unknown identifier. Always 0</add>
+        <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
         <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
@@ -2290,16 +2290,14 @@
 
 
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
-        <add name="Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
+        <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
         <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii != 0" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
         <add name="Num Active" type="ushort">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</add>
-        <add name="Has Sizes 1" type="int" ver2="4.0.0.2">Unknown</add>
-        <add name="Has Sizes" type="bool" ver1="4.1.0.12">Unknown</add>
-        <add name="Sizes" type="float" arr1="Num Vertices" cond="(Has Sizes != 0) || (Has Sizes 1 != 0)" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown</add>
-        
-        <add name="Has Rotations 1" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
-        <add name="Rotations 1" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 1 != 0" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particle rotations.</add>
+        <add name="Has Sizes" type="bool">Is the particle size array present?</add>
+        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes != 0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
+        <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
+        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations != 0" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particle rotations.</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
         <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles != 0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
@@ -2307,7 +2305,7 @@
 
         <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown ushort</add>
         <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
-        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1 >= 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
+        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1 != 0" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2654,7 +2652,7 @@
         <add name="Emissive Color" type="Color3">How much light the material emits.</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness.</add>
         <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material&#039;s parent NiTriShape object, when alpha is not 1.</add>
-        <add name="EmitMulti" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 > 21)">Unknown</add>
+        <add name="Emit Multi" type="float" default="1.0" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 > 21)">Unknown</add>
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
@@ -3691,7 +3689,7 @@
         <add name="Unknown Quat 1" type="Quaternion">Unknown</add>
         <add name="Unknown Quat 2" type="Quaternion">Unknown</add>
         <add name="Unknown Quat 3" type="Quaternion">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Ref 0" type="Ref" template="NiPhysXBodyDesc">Unknown</add>
         <add name="Unknown Int 4" type="float">Unknown</add>
         <add name="Unknown Int 5" type="int">Unknown</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
@@ -3983,7 +3981,7 @@
         Bethesda-specific Shade node.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Refraction Period" type="int" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
+        <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
         <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
     </niobject>
@@ -4133,15 +4131,15 @@
 
     <niobject name="BSBlastNode" inherit="NiNode" ver1="20.2.0.7" userver="11">
         Bethesda-Specific node.
-        <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Byte 1" type="byte">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
     </niobject>
 
 
     <niobject name="BSDamageStage" inherit="NiNode" ver1="20.2.0.7" userver="11">
         Bethesda-Specific node.
-        <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Byte 1" type="byte">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
     </niobject>
 
 
@@ -4209,15 +4207,19 @@
 
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown Flag</add>
+        <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown Flag</add>
+        <add name="Data" type="Ref" template="BSMultiBoundData">Unknown.</add>
     </niobject>
 
-    <niobject name="BSMultiBoundSphere" inherit="NiObject">
+    <niobject name="BSMultiBoundData" inherit="NiObject">
+        Abstract base type for bounding data.
+    </niobject>
+
+    <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
         Bethesda-specific node.
         <add name="Unknown Int 1" type="int">Unknown Flag</add>
         <add name="Unknown Int 2" type="int">Unknown Flag</add>
@@ -4238,7 +4240,7 @@
         <add name="Seg Triangles" type="BSSegmentedTriangle" arr1="Num Seg Triangles">Unknown</add>
     </niobject>
 
-    <niobject name="BSMultiBoundAABB" inherit="NiObject">
+    <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
         Bethesda-specific node.
         <add name="Unknown Floats 1" type="float" arr1="6">Unknown</add>
     </niobject>
@@ -4286,7 +4288,7 @@
 
     <niobject name="BSFrustumFOVController" inherit="NiTimeController">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Interpolator" type="Ref" template="NiFloatInterpolator">Frustrum field of view animation interpolater and data.</add>
     </niobject>
 
     <niobject name="BSDebrisNode" inherit="NiNode" ver1="20.2.0.7" userver="11">
