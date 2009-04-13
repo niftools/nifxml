@@ -3593,6 +3593,7 @@
             Bits 0-2: Unknown
             Bit 3: Lighting Mode?
             Bits 4-5: Vertex Mode?
+        </add>
         <add name="Vertex Mode" type="VertMode" ver2="20.0.0.5">
             Determines how vertex and material colors are mixed.
             related gl function: glColorMaterial
