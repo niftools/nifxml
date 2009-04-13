@@ -3587,7 +3587,12 @@
 
     <niobject name="NiVertexColorProperty" abstract="0" inherit="NiProperty">
         Property of vertex colors. This object is referred to by the root object of the NIF file whenever some NiTriShapeData object has vertex colors with non-default settings; if not present, vertex colors have vertex_mode=2 and lighting_mode=1.
-        <add name="Flags" type="Flags">Property flags.</add>
+        <add name="Flags" type="Flags">
+            Property flags. Appears to be unused until 20.1.0.3.
+
+            Bits 0-2: Unknown
+            Bit 3: Lighting Mode?
+            Bits 4-5: Vertex Mode?
         <add name="Vertex Mode" type="VertMode" ver2="20.0.0.5">
             Determines how vertex and material colors are mixed.
             related gl function: glColorMaterial
