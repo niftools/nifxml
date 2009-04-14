@@ -36,7 +36,7 @@
     <version num="20.3.0.2">Emerge</version>
     <version num="20.3.0.3">Emerge</version>
     <version num="20.3.0.6">Emerge</version>
-    <version num="20.3.0.9">Warhammer</version>
+    <version num="20.3.0.9">Warhammer, Lazeska</version>
 
     <!--Basic Types-->
 
@@ -2522,6 +2522,7 @@
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
         <add name="Unknown Short 1" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24)">Unknown</add>
         <add name="Unknown Short 2" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
+        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9">Unknown, found in Lazeska .KFs (seems to be 64)</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
