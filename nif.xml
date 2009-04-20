@@ -2513,8 +2513,8 @@
         <add name="Unknown Int 0" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Frequency" type="float" ver1="10.1.0.106">The animation frequency.</add>
         <add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
-        <add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
         <add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.2.0.0">Unknown.</add>
+        <add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
         <add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Unknown Int 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
