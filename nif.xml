@@ -364,14 +364,14 @@
 
     <enum name="ZCompareMode" storage="uint">
         This enum contains the options for doing z buffer tests.
-        <option value="0" name="TEST_ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
-        <option value="1" name="TEST_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
-        <option value="2" name="TEST_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
-        <option value="3" name="TEST_LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
-        <option value="4" name="TEST_GREATER">Opposite of TEST_LESS.</option>
-        <option value="5" name="TEST_NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
-        <option value="6" name="TEST_GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
-        <option value="7" name="TEST_NEVER">Test will allways return false. Nothing is drawn at all.</option>
+        <option value="0" name="ZCOMP_ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
+        <option value="1" name="ZCOMP_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
+        <option value="2" name="ZCOMP_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
+        <option value="3" name="ZCOMP_LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
+        <option value="4" name="ZCOMP_GREATER">Opposite of TEST_LESS.</option>
+        <option value="5" name="ZCOMP_NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
+        <option value="6" name="ZCOMP_GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
+        <option value="7" name="ZCOMP_NEVER">Test will allways return false. Nothing is drawn at all.</option>
     </enum>
 
     <enum name="StencilAction" storage="uint">
@@ -3643,7 +3643,7 @@
             Bit 0 enables the z test
             Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
         </add>
-        <add name="Function" type="ZCompareMode" default="TEST_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
+        <add name="Function" type="ZCompareMode" default="ZCOMP_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
             Z-Test function (see: glDepthFunc). In Flags from 20.1.0.3 on.
         </add>
     </niobject>
