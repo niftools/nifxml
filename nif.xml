@@ -3625,7 +3625,7 @@
     <niobject name="NiVisData" abstract="0" inherit="NiObject">
         Visibility data for a controller.
         <add name="Num Vis Keys" type="uint">The number of visibility keys that follow.</add>
-        <add name="Vis Keys" type="Key" arg="1" template="byte" arr1="Num Vis Keys">The visibility keys.</add>
+        <add name="Keys" type="Key" arg="1" template="byte" arr1="Num Vis Keys">The visibility keys.</add>
     </niobject>
 
     <niobject name="NiWireframeProperty" abstract="0" inherit="NiProperty">
