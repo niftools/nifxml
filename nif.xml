@@ -2084,7 +2084,9 @@
     </niobject>
 
     <niobject name="NiMaterialColorController" abstract="0" inherit="NiPoint3InterpController">
-        Time controller for material color.
+        Time controller for material color. Flags are used for color selection in versions below 10.1.0.0.
+        
+        Bits 4-5: Target Color (00 = Ambient, 01 = Diffuse, 10 = Specular, 11 = Emissive)
     </niobject>
 
     <niobject name="NiLightColorController" abstract="0" inherit="NiPoint3InterpController" ver1="4.2.0.2">
