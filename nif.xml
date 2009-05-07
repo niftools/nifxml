@@ -883,9 +883,9 @@
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="uint" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
+        <add name="User Version 2" type="uint" default="0" vercond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
-        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version == 10) || (User Version == 11)" />
+        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" vercond="(User Version == 10) || (User Version == 11)" />
         <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
@@ -3347,14 +3347,14 @@
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
-        <add name="Flags" type="Flags" ver1="20.1.0.3">
+        <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
             Property flags:
             Bit 0: Stencil Enable
             Bits 1-3: Fail Action
             Bits 4-6: Z Fail Action
             Bits 7-9: Pass Action
             Bits 10-11: Draw Mode
-            Bits 12-15: Stencil Function
+            Bits 12-14: Stencil Function
         </add>
         <add name="Stencil Ref" type="uint" ver1="20.1.0.3">Unknown.  Default is 0.</add>
         <add name="Stencil Mask" type="uint" default="4294967295" ver1="20.1.0.3">A bit mask. The default is 0xffffffff.</add>
