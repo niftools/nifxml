@@ -2890,8 +2890,8 @@
         Time controller for a path.
         <add name="Unknown Short 2" type="ushort" ver1="10.1.0.0">Unknown.</add>
         <add name="Unknown Int 1" type="uint">Unknown, always 1?</add>
-        <add name="Unknown Int 2" type="uint">Unknown, often 0? Could be a float?</add>
-        <add name="Unknown Int 3" type="uint">Unknown, often 0? Could be a float?</add>
+        <add name="Unknown Float 2" type="float">Unknown, often 0?</add>
+        <add name="Unknown Float 3" type="float">Unknown, often 0?</add>
         <add name="Unknown Short" type="ushort">Unknown, always 0?</add>
         <add name="Pos Data" type="Ref" template="NiPosData">Path controller data index (position data). ?</add>
         <add name="Float Data" type="Ref" template="NiFloatData">Path controller data index (float data). ?</add>
