@@ -1692,6 +1692,23 @@
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
     </niobject>
 
+    <!--
+    bhkMeshShape appears in some old Oblivion nifs, for instance
+    meshes/architecture/basementsections/ungrdltraphingedoor.nif 
+    but only in some distributions of Oblivion
+
+    XXX not completely decoded, also the 4 dummy separator bytes seem
+    to be missing from nifs that have this block
+    -->
+    <niobject name="bhkMeshShape" abstract="0" inherit="bhkShape"> 	 
+      <add name="Unknown 1" type="int" arr1="8" /><!-- arr1="9" if no separator --> 
+      <add name="Num Unknown Floats" type="int" /> 	 
+      <add name="Unknown Floats" type="float" arr1="Num Unknown Floats" arr2="3" /> 	 
+      <add name="Unknown 2" type="int" arr1="3" />
+      <add name="Num Strips Data" type="uint" ver2="10.0.1.0">The number of strips data objects referenced.</add> 	 
+      <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add> 	 
+    </niobject>
+
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="bhkShapeCollection" ver1="20.0.0.5">
         A shape constructed from strips data.
         <add name="Num Sub Shapes" type="ushort" ver2="20.0.0.5">Number of subparts.</add>
