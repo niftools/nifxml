@@ -38,6 +38,7 @@
     <version num="20.3.0.3">Emerge</version>
     <version num="20.3.0.6">Emerge</version>
     <version num="20.3.0.9">Warhammer, Lazeska</version>
+    <version num="20.5.0.0">KrazyRain</version>
     <version num="30.0.0.2">Emerge</version>
 
     <!--Basic Types-->
@@ -4432,7 +4433,7 @@
         <add name="Unknown Int 4" type="int" />
     </compound>
 
-    <niobject name="NiMesh" ver1="30.0.0.2" inherit="NiAVObject">
+    <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiAVObject">
         <add name="Unknown Int 3" type="int" />
         <add name="Unknown Link" type="Ref" template="NiObject" />
         <add name="Unknown Int 4" type="int" />
@@ -4441,8 +4442,8 @@
         <add name="Num Mesh Data" type="uint" />
         <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
         <add name="Unknown Type" type="int" /><!-- just guessing that this denotes some sort of type -->
-        <add name="Unknown Int 7" type="int" />
-        <add name="Unknown Int 8" type="int" cond="Unknown Type != 1" /><!-- just guessing -->
+        <add name="Unknown Int 7" type="int" cond="Unknown Type >= 1" /><!-- just guessing -->
+        <add name="Unknown Int 8" type="int" cond="Unknown Type >= 2" /><!-- just guessing -->
         <add name="Unknown Int 9" type="int" cond="Unknown Int 8 != 0" /><!-- just guessing -->
         <add name="Unknown Int 10" type="int" cond="Unknown Int 8 != 0" /><!-- just guessing -->
     </niobject>
