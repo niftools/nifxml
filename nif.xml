@@ -4436,11 +4436,11 @@
 
     <compound name="MeshData">
         <add name="Data Stream" type="Ref" template="NiDataStreamBase" />
-        <add name="Unknown Byte" type="byte" />
-        <add name="Unknown Int 1" type="int" />
-        <add name="Unknown Int 2" type="int" />
-        <add name="Unknown Int 3" type="int" />
-        <add name="Unknown Int 4" type="int" />
+        <add name="Unknown Byte" type="byte" default="0" />
+        <add name="Unknown Int 1" type="int" default="1" />
+        <add name="Unknown Int 2" type="int" default="1" />
+        <add name="Data Type" type="string">Type of data (POSITION, INDEX, NORMAL, TEXCOORD)</add>
+        <add name="Unknown Int 4" type="int" default="0" />
     </compound>
 
     <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiAVObject">
