@@ -4381,7 +4381,7 @@
     </niobject>
 
     <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
-        Stores triangle data.
+        Triangle data.
         <add name="Num Triangle Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
         <add name="Unknown 3" type="uint" default="1" />
@@ -4394,7 +4394,24 @@
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
+    <compound name="VertexNormal">
+        <add name="Vertex" type="Vector3" />
+        <add name="Normal" type="Vector3" />
+    </compound>
+
     <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
+        Vertex and normal data.
+        <add name="Num Vertex Bytes" type="uint" />
+        <add name="Unknown 2" type="uint" default="0" />
+        <add name="Unknown 3" type="uint" default="1" />
+        <add name="Unknown 4" type="uint" default="0" />
+        <add name="Num Vertices" type="uint">Num  Vertex Bytes / 24</add>
+        <add name="Unknown 6" type="uint" default="2" />
+        <add name="Unknown 7" type="ushort" default="1079" />
+        <add name="Unknown 8" type="ushort" default="3" />
+        <add name="Unknown 10" type="uint" default="197687" />
+	<add name="Vertices" type="VertexNormal" arr1="Num Vertex Bytes / 24" />
+        <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x011\x0124" ver1="30.0.0.2" inherit="NiDataStreamBase">
