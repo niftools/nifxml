@@ -4420,4 +4420,37 @@
     <niobject name="NiMorphMeshModifier" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
+    <niobject name="NiPSParticleSystem" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSEmitParticlesCtlr" ver1="30.0.0.2" inherit="NiTimeController">
+    </niobject>
+
+    <niobject name="NiPSSimulator" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSSimulatorGeneralStep" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSSimulatorForcesStep" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSSimulatorCollidersStep" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSSimulatorFinalStep" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSFacingQuadGenerator" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSBoundUpdater" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSBoxEmitter" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSMeshParticleSystem" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
 </niftoolsxml>
