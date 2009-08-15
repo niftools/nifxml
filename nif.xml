@@ -4386,6 +4386,15 @@
     <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
     </niobject>
 
+    <niobject name="NiDataStream\x011\x0124" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
+    <niobject name="NiDataStream\x011\x013" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
+    <niobject name="NiDataStream\x013\x015" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
     <compound name="MeshData">
         <add name="Data Stream" type="Ref" template="NiDataStreamBase" />
         <add name="Unknown Byte 8" type="byte" />
@@ -4401,6 +4410,12 @@
         <add name="Num Mesh Data" type="uint" />
         <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
         <add name="Unknown Ints 7" type="int" arr1="3" />
+    </niobject>
+
+    <niobject name="NiMorphWeightsController" ver1="30.0.0.2" inherit="NiTimeController">
+    </niobject>
+
+    <niobject name="NiMorphMeshModifier" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
 </niftoolsxml>
