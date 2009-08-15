@@ -4395,11 +4395,6 @@
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
-    <compound name="VertexNormal">
-        <add name="Vertex" type="Vector3" />
-        <add name="Normal" type="Vector3" />
-    </compound>
-
     <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Float data (vertices, normals, uvs).
 
@@ -4427,6 +4422,9 @@
     </niobject>
 
     <niobject name="NiDataStream\x011\x013" ver1="20.5.0.0" inherit="NiDataStreamBase">
+    </niobject>
+
+    <niobject name="NiDataStream\x013\x013" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
     <niobject name="NiDataStream\x013\x015" ver1="20.5.0.0" inherit="NiDataStreamBase">
