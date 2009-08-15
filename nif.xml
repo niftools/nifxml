@@ -4377,13 +4377,30 @@
 	</niobject>
 -->	
 
-    <niobject name="NiMesh" ver1="30.0.0.2" inherit="NiTriBasedGeom">
+    <niobject name="NiDataStreamBase" ver1="30.0.0.2" inherit="NiObject" abstract="1">
     </niobject>
 
-    <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
     </niobject>
 
-    <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
+    <compound name="MeshData">
+        <add name="Data Stream" type="Ref" template="NiDataStreamBase" />
+        <add name="Unknown Byte 8" type="byte" />
+        <add name="Unknown Ints 9" type="int" arr1="4" />
+    </compound>
+
+    <niobject name="NiMesh" ver1="30.0.0.2" inherit="NiAVObject">
+        <add name="Unknown Int 3" type="int" />
+        <add name="Unknown Link" type="Ref" template="NiObject" />
+        <add name="Unknown Int 4" type="int" />
+        <add name="Unknown Int 5" type="int" />
+        <add name="Unknown Floats 6" type="float" arr1="4" />
+        <add name="Num Mesh Data" type="uint" />
+        <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
+        <add name="Unknown Ints 7" type="int" arr1="3" />
     </niobject>
 
 </niftoolsxml>
