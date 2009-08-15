@@ -4425,6 +4425,12 @@
     <niobject name="NiMorphMeshModifier" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
+    <niobject name="NiSkinningMeshModifier" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiSkinningLODController" ver1="30.0.0.2" inherit="NiTimeController">
+    </niobject>
+
     <niobject name="NiPSParticleSystem" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
