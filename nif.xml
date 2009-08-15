@@ -3774,6 +3774,7 @@
         <add name="Unknown Int 8" type="int">Unknown</add>
         <add name="Unknown Bytes 1" type="byte" arr1="8" ver1="20.3.0.6">Unknown. Wrong, but better than nothing.</add>
         <add name="Mesh Description" type="Ref" template="NiPhysXMeshDesc">PhysX Mesh Description</add>
+        <!-- todo: fix invalid link failure on Ficus.nif from the emerge demo -->
     </niobject>
 
     <niobject name="NiPhysXMeshDesc" abstract="0" inherit="NiObject" ver1="20.1.0.7">
@@ -4401,17 +4402,14 @@
     <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Float data (vertices, normals, uvs).
 
-        Data Size 1 * Data Size 2 == (Num Bytes / Num Data) / 4
         <add name="Num Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
         <add name="Unknown 3" type="uint" default="1" />
         <add name="Unknown 4" type="uint" default="0" />
         <add name="Num Data" type="uint" />
-        <add name="Data Size 1" type="uint" default="1" />
-        <add name="Unknown 7" type="ushort" default="1079" />
-        <add name="Data Size 2" type="ushort" default="3"></add>
-        <add name="Unknown 10" type="uint" default="197687" ver1="30.0.0.2" />
-        <add name="Data" type="float" arr1="Num Data" arr2="Data Size 1 * Data Size 2" />
+        <add name="Num Unknown Ints" type="uint" default="1" />
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" /><!-- flags? -->
+        <add name="Data" type="float" arr1="Num Bytes / 4" />
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
