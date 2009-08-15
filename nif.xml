@@ -4438,6 +4438,9 @@
     <niobject name="NiPSSimulatorCollidersStep" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
+    <niobject name="NiPSSimulatorMeshAlignStep" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
     <niobject name="NiPSSimulatorFinalStep" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
