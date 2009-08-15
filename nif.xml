@@ -4415,6 +4415,12 @@
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
+    <niobject name="NiDataStream\x010\x0119" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
+    <niobject name="NiDataStream\x011\x0119" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    </niobject>
+
     <niobject name="NiDataStream\x011\x0124" ver1="30.0.0.2" inherit="NiDataStreamBase">
     </niobject>
 
@@ -4491,6 +4497,9 @@
     </niobject>
 
     <niobject name="NiPSBoxEmitter" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSMeshEmitter" ver1="30.0.0.2" inherit="NiObject">
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" ver1="30.0.0.2" inherit="NiObject">
