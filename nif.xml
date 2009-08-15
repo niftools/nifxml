@@ -4409,7 +4409,9 @@
         <add name="Unknown Floats 6" type="float" arr1="4" />
         <add name="Num Mesh Data" type="uint" />
         <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
-        <add name="Unknown Ints 7" type="int" arr1="3" />
+        <add name="Unknown Int 6" type="int" />
+        <add name="Unknown Int 7" type="int" />
+        <add name="Unknown Int 8" type="int" cond="Unknown Int 6 != 1" /><!-- just guessing -->
     </niobject>
 
     <niobject name="NiMorphWeightsController" ver1="30.0.0.2" inherit="NiTimeController">
