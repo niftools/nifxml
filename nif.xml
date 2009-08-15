@@ -39,6 +39,7 @@
     <version num="20.3.0.6">Emerge</version>
     <version num="20.3.0.9">Warhammer, Lazeska</version>
     <version num="20.5.0.0">KrazyRain</version>
+    <version num="20.6.0.0">KrazyRain</version>
     <version num="30.0.0.2">Emerge</version>
 
     <!--Basic Types-->
@@ -79,17 +80,17 @@
     <basic name="FileVersion" count="0" niflibtype="unsigned int" nifskopetype="fileversion">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
-        Known versions and their hex representation:
-        4.0.0.2:  0x04000002
-        4.1.0.12:  0x0401000C
-        4.2.0.2:  0x04020002
-        4.2.1.0:  0x04020100
-        4.2.2.0:  0x04020200
-        10.0.1.0:  0x0A000100
-        10.1.0.0:  0x0A010000
-        10.2.0.0:  0x0A020000
-        20.0.0.4:  0x14000004
-        20.0.0.5:  0x14000005
+        Some widely-used versions and their hex representation:
+        4.0.0.2:    0x04000002
+        4.1.0.12:   0x0401000C
+        4.2.0.2:    0x04020002
+        4.2.1.0:    0x04020100
+        4.2.2.0:    0x04020200
+        10.0.1.0:   0x0A000100
+        10.1.0.0:   0x0A010000
+        10.2.0.0:   0x0A020000
+        20.0.0.4:   0x14000004
+        20.0.0.5:   0x14000005
     </basic>
 
     <basic name="Flags" count="0" niflibtype="unsigned short" nifskopetype="flags">
@@ -659,7 +660,8 @@
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
-    <compound name="ByteColor3">
+    <compound name="ByteColor3"><!-- niflibtype="Color3" nifskopetype="color3" -->
+        A color without alpha (red, green, blue).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
         <add name="b" type="byte">Blue color component.</add>
@@ -673,7 +675,8 @@
         <add name="a" type="float">Alpha.</add>
     </compound>
 
-    <compound name="ByteColor4">
+    <compound name="ByteColor4"><!-- niflibtype="Color4" nifskopetype="color4" -->
+        A color with alpha (red, green, blue, alpha).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
         <add name="b" type="byte">Blue color component.</add>
@@ -877,7 +880,7 @@
         <add name="Export Info 2" type="ShortString">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
     </compound>
 
-	<!-- Don't use vercond in Header, it breaks niflib -->
+    <!-- Don't use vercond in Header, it breaks niflib -->
     <compound name="Header">
         The NIF file header.
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
@@ -2782,7 +2785,7 @@
     <niobject name="NiPalette" abstract="0" inherit="NiObject" ver1="4.2.2.0">
         A color palette.
         <add name="Unknown Byte" type="byte">Unknown, Usually = 0.</add>
-        <add name="Num Entries" type="uint">The number of palette entries.  Always = 256.</add>
+        <add name="Num Entries" type="uint" default="256">The number of palette entries.  Always = 256.</add>
         <add name="Palette" type="ByteColor4" arr1="256">The color palette.</add>
     </niobject>
 
@@ -3432,9 +3435,9 @@
     </niobject>
 
     <niobject name="NiImage" abstract="0" inherit="NiObject" ver1="3.0" ver2="3.1">
-        <add name="External" type="byte">0 if the texture is internal to the NIF file.</add>
-        <add name="File Name" type="FilePath" cond="External != 0">The filepath to the texture.</add>
-        <add name="Image Data" type="Ref" template="NiRawImageData" cond="External == 0">Link to the internally stored image data.</add>
+        <add name="Use External" type="byte">0 if the texture is internal to the NIF file.</add>
+        <add name="File Name" type="FilePath" cond="Use External != 0">The filepath to the texture.</add>
+        <add name="Image Data" type="Ref" template="NiRawImageData" cond="Use External == 0">Link to the internally stored image data.</add>
         <add name="Unknown Int" type="uint" default="7">Unknown.  Often seems to be 7. Perhaps m_uiMipLevels?</add>
         <add name="Unknown Float" type="float" ver1="3.1" default="128.5">Unknown.  Perhaps fImageScale?</add>
     </niobject>
@@ -4466,16 +4469,45 @@
     <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiPSParticleSystem" ver1="20.5.0.0" inherit="NiObject">
+    <niobject name="NiPSParticleSystem" ver1="20.5.0.0" inherit="NiAVObject">
+		<add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="int"></add>
+        <add name="Unknown 4" type="int"></add>
+        <add name="Unknown 5" type="int"></add>
+        <add name="Unknown 6" type="int"></add>
+        <add name="Unknown 7" type="int"></add>
+        <add name="Unknown 8" type="int"></add>
+        <add name="Unknown 9" type="int"></add>
+        <add name="Unknown 10" type="int"></add>
+        <add name="Unknown 11" type="int"></add>
+        <add name="Unknown 12" type="int"></add>
+        <add name="Unknown 13" type="int"></add>
+        <add name="Unknown 14" type="int"></add>
+        <add name="Unknown 15" type="int"></add>
+        <add name="Unknown 16" type="int"></add>
+        <add name="Unknown 17" type="int"></add>
+        <add name="Unknown 18" type="int"></add>
+        <add name="Unknown 19" type="int"></add>
+        <add name="Unknown 20" type="int"></add>
+	</niobject>
+
+	<niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiPSParticleSystem">
     </niobject>
 
-    <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+    <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiPSysEmitterCtlr">
     </niobject>
 
     <niobject name="NiPSForceActiveCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
     <niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiObject">
+        Particle System Simulator?
+        <add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="int"></add>
+        <add name="Num modifiers" type="int"></add>
+        <add name="Modifiers" type="Ref" template="NiObject" arr1="Num modifiers">Modifiers?</add>
     </niobject>
 
     <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiObject">
@@ -4511,7 +4543,5 @@
     <niobject name="NiPSMeshEmitter" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiObject">
-    </niobject>
 
 </niftoolsxml>
