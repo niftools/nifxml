@@ -4381,6 +4381,17 @@
     </niobject>
 
     <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
+        Stores triangle data.
+        <add name="Num Triangle Bytes" type="uint" />
+        <add name="Unknown 2" type="uint" default="0" />
+        <add name="Unknown 3" type="uint" default="1" />
+        <add name="Unknown 4" type="uint" default="0" />
+        <add name="Num Triangle Points" type="uint">Num Triangle Bytes / 2</add>
+        <add name="Unknown 6" type="uint" default="1" />
+        <add name="Unknown 7" type="ushort" default="533" />
+        <add name="Unknown 8" type="ushort" default="1" />
+	<add name="Triangles" type="Triangle" arr1="Num Triangle Bytes / 6" />
+        <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
