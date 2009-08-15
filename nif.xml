@@ -4474,6 +4474,9 @@
     <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
+    <niobject name="NiPSForceActiveCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+    </niobject>
+
     <niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
@@ -4496,6 +4499,12 @@
     </niobject>
 
     <niobject name="NiPSBoundUpdater" ver1="20.5.0.0" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSDragForce" ver1="20.5.0.0" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSGravityForce" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
     <niobject name="NiPSBoxEmitter" ver1="20.5.0.0" inherit="NiObject">
