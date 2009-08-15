@@ -4376,6 +4376,14 @@
 		<add name="Unknown Set 2" type="RagdollTemplateSubData2" cond="Unknown Flag 1 != 0">Unknown</add>
 	</niobject>
 -->	
-	
-	
+
+    <niobject name="NiMesh" ver1="30.0.0.2" inherit="NiTriBasedGeom">
+    </niobject>
+
+    <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiObject">
+    </niobject>
+
 </niftoolsxml>
