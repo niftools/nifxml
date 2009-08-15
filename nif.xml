@@ -4378,10 +4378,10 @@
 	</niobject>
 -->	
 
-    <niobject name="NiDataStreamBase" ver1="30.0.0.2" inherit="NiObject" abstract="1">
+    <niobject name="NiDataStreamBase" ver1="20.5.0.0" inherit="NiObject" abstract="1">
     </niobject>
 
-    <niobject name="NiDataStream\x010\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x010\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Triangle data.
         <add name="Num Triangle Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
@@ -4400,7 +4400,7 @@
         <add name="Normal" type="Vector3" />
     </compound>
 
-    <niobject name="NiDataStream\x011\x0118" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Vertex and normal data.
         <add name="Num Vertex Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
@@ -4415,19 +4415,19 @@
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
-    <niobject name="NiDataStream\x010\x0119" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x010\x0119" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
-    <niobject name="NiDataStream\x011\x0119" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x011\x0119" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
-    <niobject name="NiDataStream\x011\x0124" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x011\x0124" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
-    <niobject name="NiDataStream\x011\x013" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x011\x013" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
-    <niobject name="NiDataStream\x013\x015" ver1="30.0.0.2" inherit="NiDataStreamBase">
+    <niobject name="NiDataStream\x013\x015" ver1="20.5.0.0" inherit="NiDataStreamBase">
     </niobject>
 
     <compound name="MeshData">
@@ -4454,55 +4454,55 @@
         <add name="Unknown Int 10" type="int" cond="Unknown Int 8 != 0" /><!-- just guessing -->
     </niobject>
 
-    <niobject name="NiMorphWeightsController" ver1="30.0.0.2" inherit="NiTimeController">
+    <niobject name="NiMorphWeightsController" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiMorphMeshModifier" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiSkinningMeshModifier" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiSkinningMeshModifier" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiSkinningLODController" ver1="30.0.0.2" inherit="NiTimeController">
+    <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiPSParticleSystem" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSParticleSystem" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSEmitParticlesCtlr" ver1="30.0.0.2" inherit="NiTimeController">
+    <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiPSSimulator" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSSimulatorGeneralStep" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSSimulatorForcesStep" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulatorForcesStep" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSSimulatorCollidersStep" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulatorCollidersStep" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSSimulatorMeshAlignStep" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulatorMeshAlignStep" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSSimulatorFinalStep" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSimulatorFinalStep" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSFacingQuadGenerator" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSFacingQuadGenerator" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSBoundUpdater" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSBoundUpdater" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSBoxEmitter" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSBoxEmitter" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSMeshEmitter" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSMeshEmitter" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiPSMeshParticleSystem" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
 </niftoolsxml>
