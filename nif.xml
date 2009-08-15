@@ -4382,7 +4382,7 @@
     </niobject>
 
     <niobject name="NiDataStream\x010\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
-        Triangle data.
+        Integer data (such as triangles).
         <add name="Num Triangle Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
         <add name="Unknown 3" type="uint" default="1" />
@@ -4401,17 +4401,17 @@
     </compound>
 
     <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
-        Vertex and normal data.
-        <add name="Num Vertex Bytes" type="uint" />
+        Float data (vertices, normals, uvs).
+        <add name="Num Bytes" type="uint" />
         <add name="Unknown 2" type="uint" default="0" />
         <add name="Unknown 3" type="uint" default="1" />
         <add name="Unknown 4" type="uint" default="0" />
-        <add name="Num Vertices" type="uint">Num  Vertex Bytes / 24</add>
+        <add name="Num Data" type="uint" />
         <add name="Unknown 6" type="uint" default="2" />
         <add name="Unknown 7" type="ushort" default="1079" />
         <add name="Unknown 8" type="ushort" default="3" />
-        <add name="Unknown 10" type="uint" default="197687" />
-	<add name="Vertices" type="VertexNormal" arr1="Num Vertex Bytes / 24" />
+        <add name="Unknown 10" type="uint" default="197687" ver1="30.0.0.2" />
+	<add name="Data" type="byte" arr1="Num Data" arr2="Num Bytes / Num Data" /><!-- nifskope does not (yet) support "(Num Bytes / Num Data) / 4" -->
         <add name="Unknown 9" type="byte" default="1" />
     </niobject>
 
