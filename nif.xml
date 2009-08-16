@@ -4470,10 +4470,29 @@
         <add name="Modifiers" type="Ref" template="NiObject" arr1="Num Modifiers" /><!-- see Zorsis Zombie_Boy.nif -->
     </niobject>
 
-    <niobject name="NiMorphWeightsController" ver1="20.5.0.0" inherit="NiTimeController">
+    <niobject name="NiMorphWeightsController" ver1="20.5.0.0" inherit="NiInterpController">
+        <add name="Unknown 2" type="int"></add>
+        <add name="Num Interpolators" type="int"></add>
+        <add name="Interpolators" type="Ref" template="NiObject" arr1="Num Interpolators"></add>
+        <add name="Unknown 3" type="int"></add>
+        <add name="Unknown 4" type="int"></add>
+        <add name="Unknown 5" type="int"></add>
     </niobject>
 
     <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiObject">
+        <add name="Unknown" type="int"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="int"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="byte"></add>
+        <add name="Unknown" type="int"></add>
+        <add name="Unknown" type="int"></add>
+        <add name="Unknown" type="int"></add>
+        <add name="Unknown" type="int"></add>
     </niobject>
 
     <compound name="BoneData">
