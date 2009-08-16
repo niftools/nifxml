@@ -4537,6 +4537,12 @@
 
     <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiObject">
         <add name="Unknown 1" type="byte"></add>
+	<add name="Unknown 11" type="int" cond="Unknown 1 == 3" />
+	<add name="Unknown 12" type="byte" arr1="4" cond="Unknown 1 == 3" />
+	<add name="Unknown 13" type="float" cond="Unknown 1 == 3" />
+	<add name="Unknown 14" type="float" cond="Unknown 1 == 3" /><!-- not sure, sometimes NaN -->
+	<add name="Unknown 15" type="float" cond="Unknown 1 == 3" />
+	<add name="Unknown 16" type="float" cond="Unknown 1 == 3" />
         <add name="Unknown 2" type="float"></add>
         <add name="Unknown 3" type="float"></add>
         <add name="Unknown 4" type="float"></add>
