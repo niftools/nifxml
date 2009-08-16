@@ -4476,7 +4476,24 @@
     <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
+    <compound name="BoneData">
+        <add name="Rotation" type="Matrix33" />
+	<add name="Unknown Floats" type="float" arr1="8" />
+    </compound>
+
     <niobject name="NiSkinningMeshModifier" ver1="20.5.0.0" inherit="NiObject">
+        <add name="Unknown Int 1" type="int" />
+        <add name="Unknown Short 1" type="short" />
+        <add name="Unknown Int 2" type="int" />
+        <add name="Unknown Short 2" type="short" />
+        <add name="Unknown Int 3" type="int" />
+        <add name="Unknown Short 3" type="short" />
+	<add name="Rotation" type="Matrix33" />
+	<add name="Translation" type="Vector3" />
+	<add name="Scale" type="float" />
+	<add name="Num Bones" type="uint" />
+	<add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones" />
+	<add name="Bone Datas" type="BoneData" arr1="Num Bones" />
     </niobject>
 
     <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
