@@ -4765,7 +4765,7 @@
         <add name="Unknown 27" type="byte"></add>
     </niobject>
 
-    <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0." inherit="NiObject">
+    <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
     <niobject name="NiPSPlanarCollider" ver1="20.5.0.0" inherit="NiObject">
