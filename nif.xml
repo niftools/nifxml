@@ -4548,10 +4548,8 @@
     </niobject>
 
     <niobject name="NiPSSimulatorCollidersStep" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="byte"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="byte"></add>
+        <add name="Num Unknown Links" type="uint"></add>
+        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links">Particle system colliders? (NiPSXXXCollider)</add>
     </niobject>
 
     <niobject name="NiPSSimulatorMeshAlignStep" ver1="20.5.0.0" inherit="NiObject">
@@ -4771,6 +4769,14 @@
     </niobject>
 
     <niobject name="NiPSPlanarCollider" ver1="20.5.0.0" inherit="NiObject">
+        <!-- inheritance? -->
+	<add name="Name" type="string" />
+	<add name="Unknown Int 1" type="int" />
+	<add name="Unknown Int 2" type="int" />
+	<add name="Unknown Short 3" type="short" />
+	<add name="Unknown Byte 4" type="byte" />
+	<add name="Unknown Floats 5" type="float" arr1="8" />
+	<add name="Unknown Link 6" type="Ref" template="NiNode" />
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
