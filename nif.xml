@@ -4567,9 +4567,9 @@
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiPSParticleSystem">
-        <add name="Unknown 21" type="int"></add>
-        <add name="Unknown 22" type="int"></add>
-        <add name="Unknown 23" type="byte"></add>
+        <add name="Unknown 23" type="int"></add>
+        <add name="Unknown 24" type="int"></add>
+        <add name="Unknown 25" type="byte"></add>
     </niobject>
 
     <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiPSysEmitterCtlr">
