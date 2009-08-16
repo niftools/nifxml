@@ -4576,6 +4576,19 @@
 
     <!-- from Zorsis demo (Scene.nif) -->
     <niobject name="NiShadowGenerator" ver1="20.5.0.0" inherit="NiObject">
+        <!-- inheritance? -->
+        <add name="Name" type="string" />
+        <add name="Unknown Flags" type="ushort" />
+	<add name="Num Unknown Links 1" type="uint" />
+	<add name="Unknown Links 1" type="Ref" template="NiNode" arr1="Num Unknown Links 1" />
+	<add name="Unkown Float 2" type="float" />
+        <add name="Unkown Int 3" type="int" />
+	<add name="Unkown Float 4" type="float" />
+	<add name="Unkown Byte 5" type="byte" />
+	<add name="Unkown Int 6" type="int" />
+	<add name="Unkown Int 7" type="int" />
+	<add name="Unkown Int 8" type="int" />
+	<add name="Unkown Byte 9" type="byte" />
     </niobject>
 
     <niobject name="NiPSBoundUpdater" ver1="20.5.0.0" inherit="NiObject">
@@ -4754,6 +4767,9 @@
     </niobject>
 
     <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0." inherit="NiObject">
+    </niobject>
+
+    <niobject name="NiPSPlanarCollider" ver1="20.5.0.0" inherit="NiObject">
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
