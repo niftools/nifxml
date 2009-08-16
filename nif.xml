@@ -1145,6 +1145,16 @@
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
+    <compound name="MotorDescriptor">
+        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Unknown Int 2" type="int">Unknown</add>
+        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Int 4" type="int">Unknown</add>
+        <add name="Unknown Int 5" type="int">Unknown</add>
+        <add name="Unknown Int 6" type="int">Unknown</add>
+        <add name="Unknown Byte 1" type="byte">Unknown</add>
+    </compound>
+
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
 	<!-- Oblivion -->
@@ -1171,6 +1181,9 @@
         <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
+
+        <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
+	<add name="Motor" type="MotorDescriptor" cond="Enable Motors" ver1="20.2.0.7" />
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1196,6 +1209,9 @@
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
         <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
+
+        <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
+	<add name="Motor" type="MotorDescriptor" cond="Enable Motors" ver1="20.2.0.7" />
     </compound>
 
     <compound name="HingeDescriptor">
@@ -1538,14 +1554,6 @@
     <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Hinge constraint.
         <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
-        <add name="Enable Motors" type="byte" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 1" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 2" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 3" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 4" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 5" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 6" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
@@ -1572,14 +1580,6 @@
     <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
-        <add name="Enable Motors" type="byte" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 1" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 2" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 3" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 4" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 5" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 6" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
