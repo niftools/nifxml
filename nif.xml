@@ -889,7 +889,7 @@
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="uint" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances.</add>
+        <add name="User Version 2" type="uint" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
         <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version == 10) || (User Version == 11)" />
@@ -1147,25 +1147,30 @@
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
-        <add name="Pivot A" type="Vector4">Point around which the object will rotate.</add>
-        <add name="Plane A" type="Vector4">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist A" type="Vector4">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Pivot B" type="Vector4">Pivot A in second entity coordinate system.</add>
-        <add name="Plane B" type="Vector4">Plane A in second entity coordinate system.</add>
-        <add name="Twist B" type="Vector4">Twist A in second entity coordinate system.</add>
+	<!-- Oblivion -->
+        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Point around which the object will rotate.</add>
+        <add name="Plane A" type="Vector4" ver2="20.0.0.5">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist A" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
+        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane A in second entity coordinate system.</add>
+        <add name="Twist B" type="Vector4" ver2="20.0.0.5">Twist A in second entity coordinate system.</add>
+
+	<!-- Fallout 3 -->
+        <add name="Twist A" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>	
+        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>	
+        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+
         <add name="Cone Max Angle" type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
         <add name="Plane Min Angle" type="float">Minimum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Plane Max Angle" type="float">Maximum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
-        <add name="Max Friction" type="float">Maximum friction, typically 0 or 10.</add>
-        <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 2" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 3" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 4" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 5" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 6" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Float 7" type="float" ver1="20.2.0.7">Unknown</add>
+        <add name="Max Friction" type="float" ver2="20.0.0.5">Maximum friction, typically 0 or 10.</add><!-- no longer in Fallout 3 -->
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1560,15 +1565,15 @@
     <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
-        <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Is Death Pose" type="byte" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 1" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 2" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 3" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 4" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 5" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 6" type="int" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" cond="Is Death Pose" ver1="20.2.0.7">Unknown</add>
+	<add name="Tau" type="float" ver1="20.2.0.7">Unknown</add>
+        <add name="Enable Motors" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 1" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 2" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 3" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 4" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 5" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Int 6" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
@@ -4459,7 +4464,8 @@
     </compound>
 
     <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiAVObject">
-        <add name="Unknown Int 3" type="int" />
+        <add name="Num Unknown Ints 3" type="uint" />
+        <add name="Unknown Ints 3" type="int" arr1="Num Unknown Ints 3" />
         <add name="Unknown Link" type="Ref" template="NiObject" />
         <add name="Unknown Int 4" type="int" />
         <add name="Unknown Int 5" type="int" default="256" />
