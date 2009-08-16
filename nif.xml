@@ -2673,11 +2673,11 @@
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator" ver1="10.2.0.0">
         Unknown.
         <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Look At" type="Ref" template="NiNode">Refers to a Node to focus on.</add>
+        <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
         <add name="Target" type="string">Target node name.</add>
-        <add name="Translation" type="Vector3">Translate.</add>
-        <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float">Scale.</add>
+        <add name="Translation" type="Vector3" ver2="20.5.0.0">Translate.</add>
+        <add name="Rotation" type="Quaternion" ver2="20.5.0.0">Rotation.</add>
+        <add name="Scale" type="float" ver2="20.5.0.0">Scale.</add>
         <add name="Unknown Link 1" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
         <add name="Unknown Link 2" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
         <add name="Unknown Link 3" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
