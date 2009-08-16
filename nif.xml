@@ -4581,14 +4581,14 @@
         <add name="Unknown Flags" type="ushort" />
 	<add name="Num Unknown Links 1" type="uint" />
 	<add name="Unknown Links 1" type="Ref" template="NiNode" arr1="Num Unknown Links 1" />
-	<add name="Unkown Float 2" type="float" />
-        <add name="Unkown Int 3" type="int" />
-	<add name="Unkown Float 4" type="float" />
-	<add name="Unkown Byte 5" type="byte" />
-	<add name="Unkown Int 6" type="int" />
-	<add name="Unkown Int 7" type="int" />
-	<add name="Unkown Int 8" type="int" />
-	<add name="Unkown Byte 9" type="byte" />
+	<add name="Unkown Int 2" type="int" default="0" />
+        <add name="Target" type="Ptr" template="NiLight" />
+	<add name="Unkown Float 4" type="float" default="0.98" />
+	<add name="Unkown Byte 5" type="byte" default="0" />
+	<add name="Unkown Int 6" type="int" default="2" />
+	<add name="Unkown Int 7" type="int" default="0" />
+	<add name="Unkown Int 8" type="int" default="0" />
+	<add name="Unkown Byte 9" type="byte" default="0" />
     </niobject>
 
     <niobject name="NiPSBoundUpdater" ver1="20.5.0.0" inherit="NiObject">
