@@ -4489,25 +4489,24 @@
         <add name="Unknown 2" type="int"></add>
         <add name="Num Interpolators" type="int"></add>
         <add name="Interpolators" type="Ref" template="NiObject" arr1="Num Interpolators"></add>
-        <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 4" type="int"></add>
-        <add name="Unknown 5" type="int"></add>
+        <add name="Num Unknown 3" type="int"></add>
+        <add name="Unknown 3" type="int" arr1="Num Unknown 3"></add>
     </niobject>
 
     <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
+        <add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="byte"></add>
+        <add name="Unknown 3" type="byte"></add>
+        <add name="Unknown 4" type="int"></add>
+        <add name="Unknown 5" type="byte"></add>
+        <add name="Unknown 6" type="byte"></add>
+        <add name="Unknown 7" type="byte"></add>
+        <add name="Unknown 8" type="byte"></add>
+        <add name="Unknown 9" type="byte"></add>
+        <add name="Unknown 10" type="int"></add>
+        <add name="Unknown 11" type="int"></add>
+        <add name="Unknown 12" type="int"></add>
+        <add name="Unknown 13" type="int"></add>
     </niobject>
 
     <compound name="BoneData">
@@ -4567,20 +4566,16 @@
     </niobject>
 
     <niobject name="NiPSForceActiveCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+        <add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
     </niobject>
 
     <niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiObject">
         Particle System Simulator?
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="byte"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="byte"></add>
+        <add name="Unknown 1" type="int"></add>
         <add name="Unknown 5" type="byte"></add>
         <add name="Unknown 6" type="byte"></add>
-        <add name="Unknown 7" type="byte"></add>
-        <add name="Unknown 8" type="byte"></add>
-        <add name="Unknown 9" type="byte"></add>
-        <add name="Unknown 10" type="byte"></add>
+        <add name="Unknown 7" type="int"></add>
         <add name="Unknown 11" type="byte"></add>
         <add name="Unknown 12" type="byte"></add>
         <add name="Num modifiers" type="int"></add>
@@ -4654,6 +4649,16 @@
     </niobject>
 
     <niobject name="NiPSDragForce" ver1="20.5.0.0" inherit="NiObject">
+        <add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="byte"></add>
+        <add name="Unknown 4" type="float"></add>
+        <add name="Unknown 5" type="float"></add>
+        <add name="Unknown 6" type="float"></add>
+        <add name="Unknown 7" type="float"></add>
+        <add name="Unknown 8" type="float"></add>
+        <add name="Unknown 9" type="float"></add>
+        <add name="Unknown 10" type="int"></add>
     </niobject>
 
     <niobject name="NiPSGravityForce" ver1="20.5.0.0" inherit="NiObject">
@@ -4823,7 +4828,9 @@
         <add name="Unknown 27" type="byte"></add>
     </niobject>
 
-    <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0" inherit="NiObject">
+    <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="int"></add>
     </niobject>
 
     <niobject name="NiPSPlanarCollider" ver1="20.5.0.0" inherit="NiObject">
@@ -4835,6 +4842,11 @@
 	<add name="Unknown Byte 4" type="byte" />
 	<add name="Unknown Floats 5" type="float" arr1="8" />
 	<add name="Unknown Link 6" type="Ref" template="NiNode" />
+    </niobject>
+
+    <niobject name="NiPSEmitterSpeedCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="int"></add>
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
