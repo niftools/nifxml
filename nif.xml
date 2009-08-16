@@ -1170,7 +1170,7 @@
         <add name="Plane Max Angle" type="float">Maximum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
-        <add name="Max Friction" type="float" ver2="20.0.0.5">Maximum friction, typically 0 or 10.</add><!-- no longer in Fallout 3 -->
+        <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1195,28 +1195,28 @@
 
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
-        <add name="Max Friction" type="float" ver2="20.0.0.5">Maximum friction, typically either 0 or 10.</add><!-- no longer in Fallout 3 -->
+        <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
     </compound>
 
     <compound name="HingeDescriptor">
-        <add name="Pivot A" type="Vector4">Pivot point around which the object will rotate.</add>
-        <add name="Perp2 Axle In A1" type="Vector4">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
-        <add name="Pivot B" type="Vector4">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4">Axle A (vector orthogonal on Perp2 Axles) in second entity coordinate system.</add>
-        <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 2" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 3" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 4" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 5" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 6" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 7" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 8" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 9" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Int 10" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 2" type="byte" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 3" type="byte" ver1="20.2.0.7">Unknown</add>
+        <!-- Oblivion -->
+        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
+        <add name="Perp2 Axle In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2 Axle In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
+        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
+        <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A (vector orthogonal on Perp2 Axles) in second entity coordinate system.</add>
+
+	<!-- Fallout 3 -->
+        <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
+        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot point around which the object will rotate.</add>
+        <add name="Axle B" type="Vector4" ver1="20.2.0.7">Axle A in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A1 in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot A in second entity coordinate system.</add>
+
+	<!-- no friction -->
     </compound>
 
     <compound name="OldSkinData">
@@ -1538,7 +1538,6 @@
     <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Hinge constraint.
         <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
-        <add name="Tau" type="float" ver1="20.2.0.7">Unknown</add>
         <add name="Enable Motors" type="byte" ver1="20.2.0.7">Unknown</add>
         <add name="Unknown Int 1" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
         <add name="Unknown Int 2" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
@@ -1559,8 +1558,7 @@
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Tau" type="float" />
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 -->
         <add name="Damping" type="float" />
     </niobject>
 
@@ -1574,7 +1572,6 @@
     <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
-	<add name="Tau" type="float" ver1="20.2.0.7">Unknown</add>
         <add name="Enable Motors" type="byte" ver1="20.2.0.7">Unknown</add>
         <add name="Unknown Int 1" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
         <add name="Unknown Int 2" type="int" cond="Enable Motors" ver1="20.2.0.7">Unknown</add>
@@ -1601,8 +1598,6 @@
     <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         A hinge constraint.
         <add name="Hinge" type="HingeDescriptor">Hinge constraing.</add>
-        <add name="Unknown Float 1" type="float" ver1="20.2.0.7">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown</add>
     </niobject>
 
 
