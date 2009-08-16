@@ -1001,6 +1001,7 @@
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags. Presumably stores Clamp Mode and Filter Mode?</add>
+        <add name="Unknown short" type="short" ver1="20.6.0.0">Unknown, seems to always be 1</add>
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
         <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;L values can range from 0 to 3 and are used to specify how fast a texture gets blurry&quot;.</add>
         <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.&quot; -75 for most v4.0.0.2 meshes.</add>
