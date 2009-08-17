@@ -1157,7 +1157,7 @@
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
-	<!-- Oblivion -->
+        <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Point around which the object will rotate.</add>
         <add name="Plane A" type="Vector4" ver2="20.0.0.5">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Twist A" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
@@ -1165,12 +1165,12 @@
         <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane A in second entity coordinate system.</add>
         <add name="Twist B" type="Vector4" ver2="20.0.0.5">Twist A in second entity coordinate system.</add>
 
-	<!-- Fallout 3 -->
-        <add name="Twist A" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>	
+        <!-- Fallout 3 -->
+        <add name="Twist A" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
         <add name="Plane A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Motor A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>	
+        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
         <add name="Plane B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Motor B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
@@ -1183,7 +1183,7 @@
         <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
 
         <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
-	<add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
+        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1196,7 +1196,7 @@
         <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A in second entity coordinate system.</add>
         <add name="Perp2 Axle In B2" type="Vector4" ver2="20.0.0.5">Perp2 Axle In A2 in second entity coordinate system.</add>
 
-	<!-- Fallout 3 -->
+        <!-- Fallout 3 -->
         <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
         <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
         <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
@@ -1211,7 +1211,7 @@
         <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
 
         <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
-	<add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
+        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
     </compound>
 
     <compound name="HingeDescriptor">
@@ -1222,7 +1222,7 @@
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
         <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A (vector orthogonal on Perp2 Axles) in second entity coordinate system.</add>
 
-	<!-- Fallout 3 -->
+        <!-- Fallout 3 -->
         <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
         <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
         <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
@@ -1232,7 +1232,7 @@
         <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A2 in second entity coordinate system.</add>
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot A in second entity coordinate system.</add>
 
-	<!-- no friction -->
+        <!-- no friction -->
     </compound>
 
     <compound name="OldSkinData">
@@ -1585,14 +1585,14 @@
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint" ver1="20.0.0.5">
         A prismatic constraint.
 
-	<!-- Oblivion -->
+        <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot A.</add>
         <add name="Rotation Matrix A" type="Vector4" arr1="4" ver2="20.0.0.5">4x4 rotation matrix, rotates the child entity.</add>
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot B.</add>
         <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
         <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
 
-	<!-- Fallout 3 -->
+        <!-- Fallout 3 -->
         <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
         <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
         <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
@@ -4521,7 +4521,7 @@
 
     <compound name="BoneData">
         <add name="Rotation" type="Matrix33" />
-	<add name="Unknown Floats" type="float" arr1="8" />
+        <add name="Unknown Floats" type="float" arr1="8" />
     </compound>
 
     <niobject name="NiSkinningMeshModifier" ver1="20.5.0.0" inherit="NiObject">
@@ -4531,12 +4531,12 @@
         <add name="Unknown Short 2" type="short" />
         <add name="Unknown Int 3" type="int" />
         <add name="Unknown Short 3" type="short" />
-	<add name="Rotation" type="Matrix33" />
-	<add name="Translation" type="Vector3" />
-	<add name="Scale" type="float" />
-	<add name="Num Bones" type="uint" />
-	<add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones" />
-	<add name="Bone Datas" type="BoneData" arr1="Num Bones" />
+        <add name="Rotation" type="Matrix33" />
+        <add name="Translation" type="Vector3" />
+        <add name="Scale" type="float" />
+        <add name="Num Bones" type="uint" />
+        <add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones" />
+        <add name="Bone Datas" type="BoneData" arr1="Num Bones" />
     </niobject>
 
     <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
@@ -4553,7 +4553,7 @@
         <add name="Unknown 9" type="int"></add>
         <add name="Unknown 10" type="int"></add>
         <add name="Unknown 11" type="int"></add>
-        <add name="Unknown 12" type="int"></add>
+        <add name="Unknown 12" type="int">Probably an array counter for an unknown compound</add>
         <add name="Unknown 13" type="int"></add>
         <add name="Unknown 14" type="int"></add>
         <add name="Unknown 15" type="int"></add>
@@ -4567,7 +4567,7 @@
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiPSParticleSystem">
-        <add name="Unknown 23" type="int"></add>
+        <add name="Unknown 23" type="Ref" template="NiObject">Emmitted mesh?</add>
         <add name="Unknown 24" type="int"></add>
         <add name="Unknown 25" type="byte"></add>
     </niobject>
@@ -4594,12 +4594,23 @@
 
     <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiObject">
         <add name="Unknown 1" type="byte"></add>
-	<add name="Unknown 11" type="int" cond="Unknown 1 == 3" />
-	<add name="Unknown 12" type="byte" arr1="4" cond="Unknown 1 == 3" />
-	<add name="Unknown 13" type="float" cond="Unknown 1 == 3" />
-	<add name="Unknown 14" type="float" cond="Unknown 1 == 3" /><!-- not sure, sometimes NaN -->
-	<add name="Unknown 15" type="float" cond="Unknown 1 == 3" />
-	<add name="Unknown 16" type="float" cond="Unknown 1 == 3" />
+        <add name="Unknown 11" type="int" cond="Unknown 1 == 3" />
+        <add name="Unknown 12" type="byte" arr1="4" cond="Unknown 1 == 3" />
+        <add name="Unknown 13" type="float" cond="Unknown 1 == 3" />
+        <add name="Unknown 14" type="float" cond="Unknown 1 == 3" /><!-- not sure, sometimes NaN -->
+        <add name="Unknown 15" type="float" cond="Unknown 1 == 3" />
+        <add name="Unknown 16" type="float" cond="Unknown 1 == 3" />
+
+        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="int" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="int" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="byte" arr1="4" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="short" cond="Unknown 1 == 4" />
+        <add name="Unknown 21" type="short" cond="Unknown 1 == 4" />
+
         <add name="Unknown 2" type="float"></add>
         <add name="Unknown 3" type="float"></add>
         <add name="Unknown 4" type="float"></add>
@@ -4641,16 +4652,16 @@
         <!-- inheritance? -->
         <add name="Name" type="string" />
         <add name="Unknown Flags" type="ushort" />
-	<add name="Num Unknown Links 1" type="uint" />
-	<add name="Unknown Links 1" type="Ref" template="NiNode" arr1="Num Unknown Links 1" />
-	<add name="Unkown Int 2" type="int" default="0" />
+        <add name="Num Unknown Links 1" type="uint" />
+        <add name="Unknown Links 1" type="Ref" template="NiNode" arr1="Num Unknown Links 1" />
+        <add name="Unkown Int 2" type="int" default="0" />
         <add name="Target" type="Ptr" template="NiLight" />
-	<add name="Unkown Float 4" type="float" default="0.98" />
-	<add name="Unkown Byte 5" type="byte" default="0" />
-	<add name="Unkown Int 6" type="int" default="2" />
-	<add name="Unkown Int 7" type="int" default="0" />
-	<add name="Unkown Int 8" type="int" default="0" />
-	<add name="Unkown Byte 9" type="byte" default="0" />
+        <add name="Unkown Float 4" type="float" default="0.98" />
+        <add name="Unkown Byte 5" type="byte" default="0" />
+        <add name="Unkown Int 6" type="int" default="2" />
+        <add name="Unkown Int 7" type="int" default="0" />
+        <add name="Unkown Int 8" type="int" default="0" />
+        <add name="Unkown Byte 9" type="byte" default="0" />
     </niobject>
 
     <niobject name="NiPSBoundUpdater" ver1="20.5.0.0" inherit="NiObject">
@@ -4812,30 +4823,29 @@
         <add name="Unknown 1" type="int"></add>
         <add name="Unknown 2" type="int"></add>
         <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 4" type="int"></add>
+        <add name="Unknown 4" type="float"></add>
         <add name="Unknown 5" type="int"></add>
-        <add name="Unknown 6" type="int"></add>
+        <add name="Unknown 6" type="float"></add>
         <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 8" type="int"></add>
-        <add name="Unknown 9" type="int"></add>
-        <add name="Unknown 10" type="int"></add>
-        <add name="Unknown 11" type="int"></add>
-        <add name="Unknown 12" type="int"></add>
+        <add name="Unknown 8" type="float"></add>
+        <add name="Unknown 9" type="float"></add>
+        <add name="Unknown 10" type="float"></add>
+        <add name="Unknown 11" type="float"></add>
+        <add name="Unknown 12" type="float"></add>
         <add name="Unknown 13" type="int"></add>
         <add name="Unknown 14" type="int"></add>
         <add name="Unknown 15" type="int"></add>
-        <add name="Unknown 16" type="int"></add>
+        <add name="Unknown 16" type="float"></add>
         <add name="Unknown 17" type="int"></add>
         <add name="Unknown 18" type="int"></add>
         <add name="Unknown 19" type="int"></add>
-        <add name="Unknown 20" type="int"></add>
+        <add name="Unknown 20" type="short"></add>
         <add name="Unknown 21" type="int"></add>
-        <add name="Unknown 22" type="int"></add>
+        <add name="Unknown 22" type="float"></add>
         <add name="Unknown 23" type="int"></add>
         <add name="Unknown 24" type="int"></add>
         <add name="Unknown 25" type="int"></add>
-        <add name="Unknown 26" type="byte"></add>
-        <add name="Unknown 27" type="byte"></add>
+        <add name="Unknown 26" type="int"></add>
     </niobject>
 
     <niobject name="NiPSGravityStrengthCtlr" ver1="20.5.0.0" inherit="NiTimeController">
@@ -4845,18 +4855,28 @@
 
     <niobject name="NiPSPlanarCollider" ver1="20.5.0.0" inherit="NiObject">
         <!-- inheritance? -->
-	<add name="Name" type="string" />
-	<add name="Unknown Int 1" type="int" />
-	<add name="Unknown Int 2" type="int" />
-	<add name="Unknown Short 3" type="short" />
-	<add name="Unknown Byte 4" type="byte" />
-	<add name="Unknown Floats 5" type="float" arr1="8" />
-	<add name="Unknown Link 6" type="Ref" template="NiNode" />
+        <add name="Name" type="string" />
+        <add name="Unknown Int 1" type="int" />
+        <add name="Unknown Int 2" type="int" />
+        <add name="Unknown Short 3" type="short" />
+        <add name="Unknown Byte 4" type="byte" />
+        <add name="Unknown Floats 5" type="float" arr1="8" />
+        <add name="Unknown Link 6" type="Ref" template="NiNode" />
     </niobject>
 
     <niobject name="NiPSEmitterSpeedCtlr" ver1="20.5.0.0" inherit="NiTimeController">
         <add name="Unknown 2" type="int"></add>
         <add name="Unknown 3" type="int"></add>
+    </niobject>
+
+    <!-- from Zorsis demo (hit_effect_meaty.nif) -->
+    <niobject name="NiPSEmitterRadiusCtlr" ver1="20.5.0.0" inherit="NiTimeController">
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
+    </niobject>
+
+    <!-- from Zorsis demo (hit_effect_metal.nif) -->
+    <niobject name="NiPSResetOnLoopCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
