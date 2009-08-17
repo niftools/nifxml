@@ -3440,6 +3440,7 @@
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
         <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
+        <add name="Unknown" type="short" ver1="30.0.0.2" />
         <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
@@ -4487,7 +4488,8 @@
         <add name="Unknown Ints 3" type="int" arr1="Num Unknown Ints 3" />
         <add name="Unknown Link" type="Ref" template="NiObject" />
         <add name="Unknown Int 4" type="int" />
-        <add name="Unknown Int 5" type="int" default="256" />
+        <add name="Unknown Int 7" type="int" ver1="30.0.0.2" cond="Num Unknown Ints 3 == 1"/>
+        <add name="Unknown Int 5" type="int" default="256">Always 256?</add>
         <add name="Unknown Floats 6" type="float" arr1="4" />
         <add name="Num Mesh Data" type="uint" />
         <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
@@ -4541,35 +4543,47 @@
 
     <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
-
+    
     <niobject name="NiPSParticleSystem" ver1="20.5.0.0" inherit="NiAVObject">
         <!-- note: Unknonw 1 and 2 already in use by NiAVObject -->
-        <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 4" type="int"></add>
-        <add name="Unknown 5" type="int"></add>
-        <add name="Unknown 6" type="int"></add>
-        <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 8" type="int"></add>
-        <add name="Unknown 9" type="int"></add>
-        <add name="Unknown 10" type="int"></add>
-        <add name="Unknown 11" type="int"></add>
-        <add name="Unknown 12" type="int">Probably an array counter for an unknown compound</add>
-        <add name="Unknown 13" type="int"></add>
-        <add name="Unknown 14" type="int"></add>
-        <add name="Unknown 15" type="int"></add>
-        <add name="Unknown 16" type="int"></add>
-        <add name="Unknown 17" type="int"></add>
-        <add name="Unknown 18" type="int"></add>
-        <add name="Unknown 19" type="int"></add>
-        <add name="Unknown 20" type="int"></add>
-        <add name="Unknown 21" type="int"></add>
-        <add name="Unknown 22" type="int"></add>
+        <add name="Unknown 3" type="int">0?</add>
+        <add name="Unknown 4" type="int">-1?</add>
+        <add name="Unknown 5" type="int">0?</add>
+        <add name="Unknown 6" type="int">256?</add>
+        <add name="Unknown 7" type="int">0?</add>
+        <add name="Unknown 8" type="int">0?</add>
+        <add name="Unknown 9" type="int">0?</add>
+        <add name="Unknown 10" type="int">0?</add>
+        <add name="Unknown 11" type="int">0?</add>
+        <add name="Unknown 12" type="int">Counter?</add>
+        <add name="Unknown 13" type="int">Simulator?</add>
+        <add name="Unknown 14" type="int" cond="Unknown 12 > 1">Generator?</add>
+        <add name="Unknown 15" type="int">Simulator?</add>
+        <add name="Unknown 16" type="int">Updater?</add>
+        <add name="Unknown 17" type="int">1?</add>
+        <add name="Unknown 18" type="int">Emitter?</add>
+        <add name="Unknown 19" type="int">0?</add>
+        <add name="Unknown 20" type="int">-1?</add>
+        <add name="Unknown 21" type="int">Unknown</add>
+        <add name="Unknown 22" type="byte" arr1="4">Unknown</add>
+        <add name="Unknown 27" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 28" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 29" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 30" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 31" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 32" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 33" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 34" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 35" type="byte" ver1="30.0.0.2"></add>
+        <add name="Unknown 36" type="int" ver1="30.0.0.2">-1?</add>
+        <add name="Unknown 37" type="short" ver1="30.0.0.2"></add>
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiPSParticleSystem">
-        <add name="Unknown 23" type="Ref" template="NiObject">Emmitted mesh?</add>
-        <add name="Unknown 24" type="int"></add>
-        <add name="Unknown 25" type="byte"></add>
+        <add name="Unknown 23" type="int"></add>
+        <add name="Unknown 24" type="Ref" template="NiObject">Emmitted mesh?</add>
+        <add name="Unknown 25" type="int"></add>
+        <add name="Unknown 26" type="byte"></add>
     </niobject>
 
     <niobject name="NiPSEmitParticlesCtlr" ver1="20.5.0.0" inherit="NiPSysEmitterCtlr">
@@ -4602,18 +4616,23 @@
         <add name="Unknown 16" type="float" cond="Unknown 1 == 3" />
 
         <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="int" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="int" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="byte" arr1="4" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="short" cond="Unknown 1 == 4" />
-        <add name="Unknown 21" type="short" cond="Unknown 1 == 4" />
+        <add name="Unknown 22" type="int" cond="Unknown 1 == 4" />
+        <add name="Unknown 23" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 24" type="int" cond="Unknown 1 == 4" />
+        <add name="Unknown 25" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 26" type="byte" arr1="4" cond="Unknown 1 == 4" />
+        <add name="Unknown 27" type="float" cond="Unknown 1 == 4" />
+        <add name="Unknown 28" type="short" cond="Unknown 1 == 4" />
+        <add name="Unknown 29" type="short" cond="Unknown 1 == 4" />
 
         <add name="Unknown 2" type="float"></add>
         <add name="Unknown 3" type="float"></add>
         <add name="Unknown 4" type="float"></add>
+
+        <add name="Unknown 30" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 31" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 32" type="int" ver1="30.0.0.2"></add>
+        <add name="Unknown 33" type="short" ver1="30.0.0.2"></add>
     </niobject>
 
     <niobject name="NiPSSimulatorForcesStep" ver1="20.5.0.0" inherit="NiObject">
