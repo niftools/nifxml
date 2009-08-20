@@ -4961,16 +4961,26 @@
 
     <niobject name="NiPSBombForce" ver1="30.0.0.2" inherit="NiObject">
         <add name="Name" type="string"></add>
-        <add name="Unknown" type="byte"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
-        <add name="Unknown" type="int"></add>
+        <add name="Unknown 1" type="byte"></add>
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="int"></add>
+        <add name="Unknown 4" type="int"></add>
+        <add name="Unknown 5" type="int"></add>
+        <add name="Unknown 6" type="int"></add>
+        <add name="Unknown 7" type="int"></add>
+        <add name="Unknown 8" type="int"></add>
+        <add name="Unknown 9" type="int"></add>
+        <add name="Unknown 10" type="int"></add>
+    </niobject>
+
+    <niobject name="NiPSSphericalCollider" ver1="30.0.0.2" inherit="NiObject"><!-- possibly inherit="NiPSysSphericalCollider"? -->
+        <add name="Unknown 1" type="int"></add>
+        <add name="Unknown 2" type="int"></add>
+        <add name="Unknown 3" type="byte"></add>
+        <add name="Unknown 4" type="float"></add>
+        <add name="Unknown 5" type="int"></add>
+        <add name="Unknown 6" type="short"></add>
+        <add name="Unknown 7" type="int"></add>
     </niobject>
     
     <!-- vim: set ts=4 sw=4 et: -->
