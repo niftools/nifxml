@@ -1874,7 +1874,7 @@
     <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
         Havok related collision object?
         <add name="Flags" type="Flags" default="1">
-            Set to "1" for most objects. Bits: 0=Active 2=Notify 3=Set Local 6=Reset
+            Set to 1 for most objects, and to 41 for animated objects (OL_ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
         <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
     </niobject>
