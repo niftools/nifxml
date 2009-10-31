@@ -37,7 +37,7 @@
     <version num="20.3.0.2">Emerge</version>
     <version num="20.3.0.3">Emerge</version>
     <version num="20.3.0.6">Emerge</version>
-    <version num="20.3.0.9">Warhammer, Lazeska</version>
+    <version num="20.3.0.9">Warhammer, Lazeska, Divinity 2</version>
     <version num="20.5.0.0">KrazyRain</version>
     <version num="20.6.0.0">KrazyRain</version>
     <version num="30.0.0.2">Emerge</version>
@@ -1118,6 +1118,7 @@
         <add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
+        <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
@@ -2169,6 +2170,8 @@
         <add name="Num Shape Groups 2" type="uint"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">The size of the second list of shape groups.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Group of NiTriShape indices.</add>
+        <add name="Unknown Int 2" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
+        <add name="Unknown Int 3" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
@@ -2211,6 +2214,7 @@
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; (TSpace Flag &amp; 240)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
+        <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
         <add name="Has Vertex Colors" type="bool">
             Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
@@ -2568,6 +2572,8 @@
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
         <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
+        <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
+        <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
         <add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
@@ -2589,7 +2595,7 @@
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
         <add name="Unknown Short 1" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24)">Unknown</add>
         <add name="Unknown Short 2" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
-        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
+        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown.</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
