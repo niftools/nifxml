@@ -1118,7 +1118,7 @@
         <add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
-        <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
+        <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
@@ -2595,7 +2595,7 @@
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
         <add name="Unknown Short 1" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24)">Unknown</add>
         <add name="Unknown Short 2" type="short" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (User Version 2 >= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
-        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown.</add>
+        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
@@ -4558,10 +4558,10 @@
 
     <niobject name="NiMorphWeightsController" ver1="20.5.0.0" inherit="NiInterpController">
         <add name="Unknown 2" type="int"></add>
-        <add name="Num Interpolators" type="int"></add>
+        <add name="Num Interpolators" type="uint"></add>
         <add name="Interpolators" type="Ref" template="NiObject" arr1="Num Interpolators"></add>
-        <add name="Num Unknown 3" type="int"></add>
-        <add name="Unknown 3" type="int" arr1="Num Unknown 3"></add>
+        <add name="Num Morph Names" type="uint"></add>
+        <add name="Morph Names" type="string" arr1="Num Morph Names"></add>
     </niobject>
 
     <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiMeshModifier">
