@@ -4487,32 +4487,73 @@
 
     <compound name="DataComponent">
         <add name="Data Type" type="string">
-            Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP, TEXCOORD, BLENDINDICIES, BLENDWEIGHT, BONE_PALETTE)
+            Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
+            TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE).
         </add>
-        <add name="Unknown Int" type="int" default="0" />
+        <add name="Index" type="uint" default="0">
+            An extra index of the data. For example, if there are 3 uv maps,
+            then the corresponding TEXCOORD data components would have indices
+            0, 1, and 2, respectively.
+        </add>
     </compound>
 
     <compound name="MeshData">
-        <add name="Data Stream" type="Ref" template="NiDataStreamBase" />
-        <add name="Unknown Byte" type="byte" default="0" />
-        <add name="Num Index Ranges" type="ushort" default="1" />
-        <add name="Index Range Slots" type="ushort" arr1="Num Index Ranges" /><!-- these must map into something but not sure what; see Zorsis Zombie_Boy.nif -->
+        <add name="Data Stream" type="Ref" template="NiDataStreamBase">
+            Reference to a data stream object which holds the data used by
+            this reference.
+        </add>
+        <add name="Is Per Instance" type="bool" default="0">
+            Sets whether this stream data is per-instance data for use in
+            hardware instancing.
+        </add>
+        <add name="Num Region Indices" type="ushort" default="1">
+            The number of submesh-to-region mappings that this data stream
+            has.
+        </add>
+        <add name="Region Indices" type="ushort" arr1="Num Region Indices">
+            <!-- see Zorsis Zombie_Boy.nif -->
+            A lookup table that maps submeshes to regions.
+        </add>
         <add name="Num Data Components" type="int" default="1" />
         <add name="Data Components" type="DataComponent" arr1="Num Data Components" />
     </compound>
 
-    <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiAVObject">
-        <add name="Num Unknown Ints 3" type="uint" />
-        <add name="Unknown Ints 3" type="int" arr1="Num Unknown Ints 3" />
-        <add name="Unknown Link" type="Ref" template="NiObject" />
-        <add name="Unknown Int 4" type="int" />
-        <add name="Unknown Int 7" type="int" ver1="30.0.0.2" cond="Num Unknown Ints 3 == 1"/>
-        <add name="Unknown Int 5" type="int" default="256">Always 256?</add>
-        <add name="Unknown Floats 6" type="float" arr1="4">Radius?</add>
+    <compound name="MaterialData" ver1="20.5.0.0">
+        Data stored per-material by NiRenderObject
+        <add name="Material Name" type="string">The name of the material.</add>
+        <add name="Material Extra Data" type ="uint">Extra data associated with the material?</add>
+    </compound>
+
+    <niobject name="NiRenderObject" ver1="20.5.0.0" inherit="NiAVObject">
+        An object that can be rendered.
+        <add name="Num Materials" type="uint">The number of materials affecting this renderable object.</add>
+        <add name="Material Data" type="MaterialData" arr1="Num Materials">Per-material data.</add>
+        <add name="Active Material" type="int" default="-1">The index of the currently active material.</add>
+        <add name="Material Needs Update Default" type="bool">The initial value for the flag that determines if the internal cached shader is valid.</add>
+    </niobject>
+
+    <enum name="MeshPrimitiveType" storage="uint">
+        Describes the type of primitives stored in a mesh object.
+        <option value="0" name="PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
+        <option value="1" name="PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
+        <option value="2" name="PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
+        <option value="3" name="PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
+        <option value="4" name="PRIMITIVE_POINTS">Point primitive type.</option>
+    </enum>
+
+    <niobject name="NiMeshModifier" ver1="20.5.0.0" inherit="NiObject">
+        Base class for mesh modifiers.
+    </niobject>
+
+    <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiRenderObject">
+        <add name="Mesh Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
+        <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
+        <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
+        <add name="Bound" type="SphereBV">The combined bounding volume of all submeshes.</add>
         <add name="Num Mesh Data" type="uint" />
         <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
         <add name="Num Modifiers" type="uint" />
-        <add name="Modifiers" type="Ref" template="NiObject" arr1="Num Modifiers" /><!-- see Zorsis Zombie_Boy.nif -->
+        <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" /><!-- see Zorsis Zombie_Boy.nif -->
     </niobject>
 
     <niobject name="NiMorphWeightsController" ver1="20.5.0.0" inherit="NiInterpController">
@@ -4523,7 +4564,7 @@
         <add name="Unknown 3" type="int" arr1="Num Unknown 3"></add>
     </niobject>
 
-    <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiObject">
+    <niobject name="NiMorphMeshModifier" ver1="20.5.0.0" inherit="NiMeshModifier">
         <add name="Unknown 1" type="int"></add>
         <add name="Unknown 2" type="byte"></add>
         <add name="Unknown 3" type="byte"></add>
@@ -4544,7 +4585,7 @@
         <add name="Unknown Floats" type="float" arr1="8" />
     </compound>
 
-    <niobject name="NiSkinningMeshModifier" ver1="20.5.0.0" inherit="NiObject">
+    <niobject name="NiSkinningMeshModifier" ver1="20.5.0.0" inherit="NiMeshModifier">
         <add name="Unknown Int 1" type="int" />
         <add name="Unknown Short 1" type="short" />
         <add name="Unknown Int 2" type="int" />
