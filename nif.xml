@@ -4428,7 +4428,7 @@
         <add name="Num Indices" type="uint" />
     </compound>
 
-    <enum name="DataComponentFlag" storage="uint">
+    <enum name="MeshDataComponentFlag" storage="uint">
         Describes what sort of data is stored in a NiDataStream
         <option value="66597" name="UINT_1">Single uint?</option>
         <option value="132150" name="FLOAT_2">2 floats / Vector2?</option>
@@ -4440,8 +4440,8 @@
         <add name="Unknown 2" type="uint" default="0" />
         <add name="Num Index Ranges" type="uint">Matches the parent NiMesh-&gt;Mesh Data-&gt;Num Index Ranges field.</add>
         <add name="Index Ranges" type="IndexRange" arr1="Num Index Ranges" />
-        <add name="Num Data Components" type="uint">Matches the parent NiMesh-&gt;Mesh Data-&gt;Num Data Components field.</add>
-        <add name="Data Component Flags" type="DataComponentFlag" arr1="Num Data Components">Flags per component?</add>
+        <add name="Num Components" type="uint">Matches the parent NiMesh-&gt;Mesh Data-&gt;Num Data Components field.</add>
+        <add name="Component Flags" type="MeshDataComponentFlag" arr1="Num Components">Flags per component?</add>
     </niobject>
 
     <niobject name="NiDataStreamUndecoded" ver1="20.5.0.0" inherit="NiDataStreamBase" abstract="1">
@@ -4485,8 +4485,8 @@
     <niobject name="NiDataStream\x013\x015" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
     </niobject>
 
-    <compound name="DataComponent">
-        <add name="Data Type" type="string">
+    <compound name="MeshDataComponent">
+        <add name="Type" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE).
         </add>
@@ -4498,7 +4498,7 @@
     </compound>
 
     <compound name="MeshData">
-        <add name="Data Stream" type="Ref" template="NiDataStreamBase">
+        <add name="Stream" type="Ref" template="NiDataStreamBase">
             Reference to a data stream object which holds the data used by
             this reference.
         </add>
@@ -4514,8 +4514,8 @@
             <!-- see Zorsis Zombie_Boy.nif -->
             A lookup table that maps submeshes to regions.
         </add>
-        <add name="Num Data Components" type="int" default="1" />
-        <add name="Data Components" type="DataComponent" arr1="Num Data Components" />
+        <add name="Num Components" type="int" default="1" />
+        <add name="Components" type="MeshDataComponent" arr1="Num Components" />
     </compound>
 
     <compound name="MaterialData" ver1="20.5.0.0">
@@ -4550,8 +4550,8 @@
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
         <add name="Bound" type="SphereBV">The combined bounding volume of all submeshes.</add>
-        <add name="Num Mesh Data" type="uint" />
-        <add name="Mesh Data" type="MeshData" arr1="Num Mesh Data" />
+        <add name="Num Datas" type="uint" />
+        <add name="Datas" type="MeshData" arr1="Num Datas" />
         <add name="Num Modifiers" type="uint" />
         <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" /><!-- see Zorsis Zombie_Boy.nif -->
     </niobject>
