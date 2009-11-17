@@ -4765,19 +4765,25 @@
 
     <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
         Encapsulates a floodgate kernel that updates particle size, colors, and rotations.
+        <!-- note: the ver2="30.0.0.2" conditions below are just guesses -->
         <add name="Num Size Keys" type="byte">The number of size animation keys.</add>
         <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys">The particle size keys.</add>
-        <add name="Size Loop Behavior" type="PSLoopBehavior">The loop behavior for the size keys.</add>
-        <add name="Num Color Keys" type="byte">The number of color animation keys.</add>
-        <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys">The particle color keys.</add>
-        <add name="Color Loop Behavior" type="PSLoopBehavior">The loop behavior for the color keys.</add>
-        <add name="Num Rotation Keys" type="byte">The number of rotatoin animation keys.</add>
-        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys">The particle rotation keys.</add>
-        <add name="Rotation Loop Behavior" type="PSLoopBehavior">The loop behavior for the rotation keys.</add>
-        <add name="Grow Time" type="float"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
-        <add name="Shrink Time" type="float">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
-        <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
-        <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
+        <add name="Size Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the size keys.</add>
+
+        <add name="Unknown 1" type="float" ver2="20.6.0.0" />
+        <add name="Unknown 2" type="float" ver2="20.6.0.0" />
+        <add name="Unknown 3" type="float" ver2="20.6.0.0" />
+
+        <add name="Num Color Keys" type="byte" ver1="30.0.0.2">The number of color animation keys.</add>
+        <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys" ver1="30.0.0.2">The particle color keys.</add>
+        <add name="Color Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the color keys.</add>
+        <add name="Num Rotation Keys" type="byte" ver1="30.0.0.2">The number of rotatoin animation keys.</add>
+        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys" ver1="30.0.0.2">The particle rotation keys.</add>
+        <add name="Rotation Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the rotation keys.</add>
+        <add name="Grow Time" type="float" ver1="30.0.0.2"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
+        <add name="Shrink Time" type="float" ver1="30.0.0.2">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
+        <add name="Grow Generation" type="ushort" ver1="30.0.0.2">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
+        <add name="Shrink Generation" type="ushort" ver1="30.0.0.2">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
     </niobject>
 
     <niobject name="NiPSSimulatorForcesStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
