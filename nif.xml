@@ -974,7 +974,7 @@
         <add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
     </compound>
 
-    <compound name="QuatKey" niflibtype="Key" istemplate="1">
+    <compound name="QuatKey" niflibtype="Key" istemplate="1"><!-- TEMPLATE should always be Quaternion -->
         A special version of the key type used for quaternions.  Never has tangents.
         <add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
         <add name="Time" type="float" cond="ARG != 4" ver1="10.1.0.106">Time the key applies.</add>
@@ -982,12 +982,14 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
+<!-- no longer used
     <compound name="RotationKeyArray" istemplate="1">
         Rotation key array.
         <add name="Num Keys" type="uint">Number of keys.</add>
         <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
         <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
     </compound>
+-->
 
     <compound name="TexCoord" niflibtype="TexCoord" nifskopetype="vector2">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
@@ -4675,107 +4677,62 @@
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
-    <niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiObject">
-        Particle System Simulator?
-        <add name="Unknown 1" type="int"></add>
-        <add name="Unknown 5" type="byte"></add>
-        <add name="Unknown 6" type="byte"></add>
-        <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 11" type="byte"></add>
-        <add name="Unknown 12" type="byte"></add>
-        <add name="Num modifiers" type="int"></add>
-        <add name="Modifiers" type="Ref" template="NiObject" arr1="Num modifiers">Modifiers?</add>
+<niobject name="NiPSSimulator" ver1="20.5.0.0" inherit="NiMeshModifier">
+        The mesh modifier that performs all particle system simulation.
+        <add name="Num Simulation Steps" type="uint">The number of simulation steps in this modifier.</add>
+        <add name="Simulation Steps" type="Ref" template="NiPSSimulatorStep" arr1="Num Simulation Steps">Links to the simulation steps.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 11" type="int" cond="Unknown 1 == 3" />
-        <add name="Unknown 12" type="byte" arr1="4" cond="Unknown 1 == 3" />
-        <add name="Unknown 13" type="float" cond="Unknown 1 == 3" />
-        <add name="Unknown 14" type="float" cond="Unknown 1 == 3" /><!-- not sure, sometimes NaN -->
-        <add name="Unknown 15" type="float" cond="Unknown 1 == 3" />
-        <add name="Unknown 16" type="float" cond="Unknown 1 == 3" />
-
-        <add name="Unknown 21" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 22" type="int" cond="Unknown 1 == 4" />
-        <add name="Unknown 23" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 24" type="int" cond="Unknown 1 == 4" />
-        <add name="Unknown 25" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 26" type="byte" arr1="4" cond="Unknown 1 == 4" />
-        <add name="Unknown 27" type="float" cond="Unknown 1 == 4" />
-        <add name="Unknown 28" type="short" cond="Unknown 1 == 4" />
-        <add name="Unknown 29" type="short" cond="Unknown 1 == 4" />
-
-        <add name="Unknown 2" type="float" ver2="20.6.0.0"></add>
-        <add name="Unknown 3" type="float" ver2="20.6.0.0"></add>
-        <add name="Unknown 4" type="float" ver2="20.6.0.0"></add>
-
-        <add name="Unknown 30" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 31" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 53" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 54" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 55" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 56" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 57" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 58" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 59" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 60" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 61" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 62" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 63" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 64" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 65" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 66" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 67" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 68" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 69" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 70" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 71" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 72" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 73" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 74" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 75" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 76" type="byte" ver1="30.0.0.2" cond="Unknown 31"></add>
-        <add name="Unknown 32" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 33" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 34" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 35" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 36" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 37" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 38" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 39" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 40" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 41" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 42" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 43" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 44" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 45" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 46" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 47" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 48" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 49" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 50" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 51" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 52" type="byte" ver1="30.0.0.2"></add>
-
+    <niobject name="NiPSSimulatorStep" ver1="20.5.0.0" inherit="NiObject" abstract="1">
+        Abstract base class for a single step in the particle system simulation process.  It has no seralized data.
     </niobject>
 
-    <niobject name="NiPSSimulatorForcesStep" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Num links" type="int"></add>
-        <add name="Link" type="Ref" template="NiObject" arr1="Num links"></add>
+    <enum name="PSLoopBehavior" ver1="20.5.0.0" storage="uint">
+        <option name="PS_LOOP_CLAMP_BIRTH" value="0">Key times map such that the first key occurs at the birth of the particle, and times later than the last key get the last key value.</option>
+        <option name="PS_LOOP_CLAMP_DEATH" value="1">Key times map such that the last key occurs at the death of the particle, and times before the initial key time get the value of the initial key.</option>
+        <option name="PS_LOOP_AGESCALE" value="2">Scale the animation to fit the particle lifetime, so that the first key is age zero, and the last key comes at the particle death.</option>
+        <option name="PS_LOOP_LOOP" value="3">The time is converted to one within the time range represented by the keys, as if the key sequence loops forever in the past and future.</option>
+        <option name="PS_LOOP_REFLECT" value="4">The time is reflection looped, as if the keys played forward then backward the forward then backward etc for all time.</option>
+    </enum>
+
+    <niobject name="NiPSSimulatorGeneralStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
+        Encapsulates a floodgate kernel that updates particle size, colors, and rotations.
+        <add name="Num Size Keys" type="byte">The number of size animation keys.</add>
+        <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys">The particle size keys.</add>
+        <add name="Size Loop Behavior" type="PSLoopBehavior">The loop behavior for the size keys.</add>
+        <add name="Num Color Keys" type="byte">The number of color animation keys.</add>
+        <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys">The particle color keys.</add>
+        <add name="Color Loop Behavior" type="PSLoopBehavior">The loop behavior for the color keys.</add>
+        <add name="Num Rotation Keys" type="byte">The number of rotatoin animation keys.</add>
+        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys">The particle rotation keys.</add>
+        <add name="Rotation Loop Behavior" type="PSLoopBehavior">The loop behavior for the rotation keys.</add>
+        <add name="Grow Time" type="float"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
+        <add name="Shrink Time" type="float">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
+        <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
+        <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorCollidersStep" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Num Unknown Links" type="uint"></add>
-        <add name="Unknown Links" type="Ref" template="NiObject" arr1="Num Unknown Links">Particle system colliders? (NiPSXXXCollider)</add>
+    <niobject name="NiPSSimulatorForcesStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
+        Encapsulates a floodgate kernel that simulates particle forces.
+        <add name="Num Forces" type="uint">The number of forces affecting the particle system.</add>
+        <add name="Forces" type="Ref" template="NiObject" arr1="Num Forces">The forces affecting the particle system.</add><!--Should be NiPSForce-->
     </niobject>
 
-    <niobject name="NiPSSimulatorMeshAlignStep" ver1="20.5.0.0" inherit="NiObject">
-        <add name="Unknown 1" type="int"></add>
-        <add name="Unknown 2" type="byte"></add>
+    <niobject name="NiPSSimulatorCollidersStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
+        Encapsulates a floodgate kernel that simulates particle colliders.
+        <add name="Num Colliders" type="uint">The number of colliders affecting the particle system.</add>
+        <add name="Colliders" type="Ref" template="NiObject" arr1="Num Colliders">The colliders affecting the particle system.</add><!--Should be NiPSCollider-->
     </niobject>
 
-    <niobject name="NiPSSimulatorFinalStep" ver1="20.5.0.0" inherit="NiObject">
+    <niobject name="NiPSSimulatorMeshAlignStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
+        Encapsulates a floodgate kernel that updates mesh particle alignment and transforms.
+        <add name="Num Rotation Keys" type="byte">The number of rotation keys.</add>
+        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys">The particle rotation keys.</add>
+        <add name="Rotation Loop Behavior" type="PSLoopBehavior">The loop behavior for the rotation keys.</add>
+    </niobject>
+
+    <niobject name="NiPSSimulatorFinalStep" ver1="20.5.0.0" inherit="NiPSSimulatorStep">
+        Encapsulates a floodgate kernel that updates particle positions and ages. As indicated by its name, this step should be attached last in the NiPSSimulator mesh modifier.
     </niobject>
 
     <niobject name="NiPSFacingQuadGenerator" ver1="20.5.0.0" inherit="NiObject">
