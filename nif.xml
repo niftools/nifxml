@@ -4425,49 +4425,117 @@
 	</niobject>
 -->	
 
-    <compound name="IndexRange">
-        <add name="First Index" type="uint" />
+    <compound name="Region">
+        A range of indices, which make up a region (such as a submesh).
+        <add name="Start Index" type="uint" />
         <add name="Num Indices" type="uint" />
     </compound>
 
-    <enum name="MeshDataComponentFlag" storage="uint">
-        Describes what sort of data is stored in a NiDataStream
-        <option value="66597" name="UINT_1">Single uint?</option>
-        <option value="132150" name="FLOAT_2">2 floats / Vector2?</option>
-        <option value="197687" name="FLOAT_3">3 floats / Vector3?</option>
+    <enum name="CloningBehavior" storage="uint">
+        Sets how objects are to be cloned.
+        <option value="0" name="CLONING_SHARE">Share this object pointer with the newly cloned scene.</option>
+        <option value="1" name="CLONING_COPY">Create an exact duplicate of this object for use with the newly cloned scene.</option>
+        <option value="2" name="CLONING_BLANK_COPY">Create a copy of this object for use with the newly cloned stream, leaving some of the data to be written later.</option>
+    </enum>
+
+    <enum name="ComponentFormat" storage="uint">
+        The data format of components.
+        <option value="0x00000000" name="F_UNKNOWN">Unknown, or don't care, format.</option>
+        <option value="0x00010101" name="F_INT8_1"></option>
+        <option value="0x00020102" name="F_INT8_2"></option>
+        <option value="0x00030103" name="F_INT8_3"></option>
+        <option value="0x00040104" name="F_INT8_4"></option>
+        <option value="0x00010105" name="F_UINT8_1"></option>
+        <option value="0x00020106" name="F_UINT8_2"></option>
+        <option value="0x00030107" name="F_UINT8_3"></option>
+        <option value="0x00040108" name="F_UINT8_4"></option>
+        <option value="0x00010109" name="F_NORMINT8_1"></option>
+        <option value="0x0002010A" name="F_NORMINT8_2"></option>
+        <option value="0x0003010B" name="F_NORMINT8_3"></option>
+        <option value="0x0004010C" name="F_NORMINT8_4"></option>
+        <option value="0x0001010D" name="F_NORMUINT8_1"></option>
+        <option value="0x0002010E" name="F_NORMUINT8_2"></option>
+        <option value="0x0003010F" name="F_NORMUINT8_3"></option>
+        <option value="0x00040110" name="F_NORMUINT8_4"></option>
+        <option value="0x00010211" name="F_INT16_1"></option>
+        <option value="0x00020212" name="F_INT16_2"></option>
+        <option value="0x00030213" name="F_INT16_3"></option>
+        <option value="0x00040214" name="F_INT16_4"></option>
+        <option value="0x00010215" name="F_UINT16_1"></option>
+        <option value="0x00020216" name="F_UINT16_2"></option>
+        <option value="0x00030217" name="F_UINT16_3"></option>
+        <option value="0x00040218" name="F_UINT16_4"></option>
+        <option value="0x00010219" name="F_NORMINT16_1"></option>
+        <option value="0x0002021A" name="F_NORMINT16_2"></option>
+        <option value="0x0003021B" name="F_NORMINT16_3"></option>
+        <option value="0x0004021C" name="F_NORMINT16_4"></option>
+        <option value="0x0001021D" name="F_NORMUINT16_1"></option>
+        <option value="0x0002021E" name="F_NORMUINT16_2"></option>
+        <option value="0x0003021F" name="F_NORMUINT16_3"></option>
+        <option value="0x00040220" name="F_NORMUINT16_4"></option>
+        <option value="0x00010421" name="F_INT32_1"></option>
+        <option value="0x00020422" name="F_INT32_2"></option>
+        <option value="0x00030423" name="F_INT32_3"></option>
+        <option value="0x00040424" name="F_INT32_4"></option>
+        <option value="0x00010425" name="F_UINT32_1"></option>
+        <option value="0x00020426" name="F_UINT32_2"></option>
+        <option value="0x00030427" name="F_UINT32_3"></option>
+        <option value="0x00040428" name="F_UINT32_4"></option>
+        <option value="0x00010429" name="F_NORMINT32_1"></option>
+        <option value="0x0002042A" name="F_NORMINT32_2"></option>
+        <option value="0x0003042B" name="F_NORMINT32_3"></option>
+        <option value="0x0004042C" name="F_NORMINT32_4"></option>
+        <option value="0x0001042D" name="F_NORMUINT32_1"></option>
+        <option value="0x0002042E" name="F_NORMUINT32_2"></option>
+        <option value="0x0003042F" name="F_NORMUINT32_3"></option>
+        <option value="0x00040430" name="F_NORMUINT32_4"></option>
+        <option value="0x00010231" name="F_FLOAT16_1"></option>
+        <option value="0x00020232" name="F_FLOAT16_2"></option>
+        <option value="0x00030233" name="F_FLOAT16_3"></option>
+        <option value="0x00040234" name="F_FLOAT16_4"></option>
+        <option value="0x00010435" name="F_FLOAT32_1"></option>
+        <option value="0x00020436" name="F_FLOAT32_2"></option>
+        <option value="0x00030437" name="F_FLOAT32_3"></option>
+        <option value="0x00040438" name="F_FLOAT32_4"></option>
+        <option value="0x00010439" name="F_UINT_10_10_10_L1"></option>
+        <option value="0x0001043A" name="F_NORMINT_10_10_10_L1"></option>
+        <option value="0x0001043B" name="F_NORMINT_11_11_10"></option>
+        <option value="0x0004013C" name="F_NORMUINT8_4_BGRA"></option>
+        <option value="0x0001043D" name="F_NORMINT_10_10_10_2"></option>
+        <option value="0x0001043E" name="F_UINT_10_10_10_2"></option>
     </enum>
 
     <niobject name="NiDataStreamBase" ver1="20.5.0.0" inherit="NiObject" abstract="1">
-        <add name="Num Bytes" type="uint" />
-        <add name="Unknown 2" type="uint" default="0" />
-        <add name="Num Index Ranges" type="uint">Matches the parent NiMesh-&gt;Mesh Data-&gt;Num Index Ranges field.</add>
-        <add name="Index Ranges" type="IndexRange" arr1="Num Index Ranges" />
-        <add name="Num Components" type="uint">Matches the parent NiMesh-&gt;Mesh Data-&gt;Num Data Components field.</add>
-        <add name="Component Flags" type="MeshDataComponentFlag" arr1="Num Components">Flags per component?</add>
+        <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
+        <add name="Cloning Behavior" type="CloningBehavior" default="0" />
+        <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
+        <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
+        <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
+        <add name="Component Formats" type="ComponentFormat" arr1="Num Components">The format of each component in this data stream.</add>
     </niobject>
 
     <niobject name="NiDataStreamUndecoded" ver1="20.5.0.0" inherit="NiDataStreamBase" abstract="1">
         For undecoded data. Temporarily defined until all streams are decoded.
         <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
-        <add name="Unknown 9" type="byte" default="1" />
+        <add name="Streamable" type="bool" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x010\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Triangles with short indices.
         <add name="Data" type="ushort" arr1="Num Bytes / 2" />
-        <add name="Unknown 9" type="byte" default="1" />
+        <add name="Streamable" type="bool" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Float data (used for vertices, normals, uvs).
         <add name="Data" type="float" arr1="Num Bytes / 4" />
-        <add name="Unknown 9" type="byte" default="1" />
+        <add name="Streamable" type="bool" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x010\x0119" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Triangles with integer indices.
         <add name="Data" type="uint" arr1="Num Bytes / 4" />
-        <add name="Unknown 9" type="byte" default="1" />
+        <add name="Streamable" type="bool" default="1" />
     </niobject>
 
     <niobject name="NiDataStream\x011\x0119" ver1="20.5.0.0" inherit="NiDataStream\x011\x0118" />
@@ -4508,16 +4576,16 @@
             Sets whether this stream data is per-instance data for use in
             hardware instancing.
         </add>
-        <add name="Num Region Indices" type="ushort" default="1">
+        <add name="Num Submeshes" type="ushort" default="1">
             The number of submesh-to-region mappings that this data stream
             has.
         </add>
-        <add name="Region Indices" type="ushort" arr1="Num Region Indices">
+        <add name="Submesh To Region Map" type="ushort" arr1="Num Submeshes">
             <!-- see Zorsis Zombie_Boy.nif -->
             A lookup table that maps submeshes to regions.
         </add>
-        <add name="Num Semantics" type="int" default="1" />
-        <add name="Semantics" type="SemanticData" arr1="Num Semantics" />
+        <add name="Num Components" type="int" default="1" />
+        <add name="Component Semantics" type="SemanticData" arr1="Num Components">Describes the semantic of each component.</add>
     </compound>
 
     <compound name="MaterialData" ver1="20.5.0.0">
@@ -4536,11 +4604,11 @@
 
     <enum name="MeshPrimitiveType" storage="uint">
         Describes the type of primitives stored in a mesh object.
-        <option value="0" name="PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
-        <option value="1" name="PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
-        <option value="2" name="PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
-        <option value="3" name="PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
-        <option value="4" name="PRIMITIVE_POINTS">Point primitive type.</option>
+        <option value="0" name="MESH_PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
+        <option value="1" name="MESH_PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
+        <option value="2" name="MESH_PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
+        <option value="3" name="MESH_PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
+        <option value="4" name="MESH_PRIMITIVE_POINTS">Point primitive type.</option>
     </enum>
 
     <enum name="SyncPoint" storage="ushort">
@@ -4564,7 +4632,7 @@
     </niobject>
 
     <niobject name="NiMesh" ver1="20.5.0.0" inherit="NiRenderObject">
-        <add name="Mesh Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
+        <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
         <add name="Bound" type="SphereBV">The combined bounding volume of all submeshes.</add>
