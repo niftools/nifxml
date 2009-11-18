@@ -5093,6 +5093,10 @@
         <add name="Unknown 7" type="int"></add>
     </niobject>
 
+    <niobject name="NiPSSpawner" ver1="30.0.0.2" inherit="NiObject">
+        <!-- not yet decoded -->
+    </niobject>
+
     <niobject name="NiFurSpringController" ver1="10.2.0.0" userver="1" inherit="NiTimeController"><!-- BloodBowl -->
         <add name="Unknown Float" type="float"></add>
         <add name="Unknown Float 2" type="float"></add>
