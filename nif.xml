@@ -288,7 +288,7 @@
         Specifies the pixel format used by the NiPixelData object to store a texture.
         <option value="0" name="PX_FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
         <option value="1" name="PX_FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
-        <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPallete object.</option>
+        <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
         <option value="4" name="PX_FMT_DXT1">DXT1 compressed texture.</option>
         <option value="5" name="PX_FMT_DXT5">DXT5 compressed texture.</option>
         <option value="6" name="PX_FMT_DXT5_ALT">DXT5 compressed texture. It is not clear what the difference is with PX_FMT_DXT5.</option>
@@ -455,11 +455,11 @@
 
     <enum name="TexTransform" storage="uint">
         Determines how a NiTextureTransformController animates the UV coordinates.
-        <option value ="0" name="TT_TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
-        <option value ="1" name="TT_TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
-        <option value ="2" name="TT_ROTATE">Means this controller roates the UV texture cooridnates.</option>
-        <option value ="3" name="TT_SCALE_U">Means this controller scales the U texture cooridnates.</option>
-        <option value ="4" name="TT_SCALE_V">Means this controller scales the V texture cooridnates.</option>
+        <option value="0" name="TT_TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
+        <option value="1" name="TT_TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
+        <option value="2" name="TT_ROTATE">Means this controller roates the UV texture cooridnates.</option>
+        <option value="3" name="TT_SCALE_U">Means this controller scales the U texture cooridnates.</option>
+        <option value="4" name="TT_SCALE_V">Means this controller scales the V texture cooridnates.</option>
     </enum>
 
     <enum name="DecayType" storage="uint">
@@ -524,9 +524,9 @@
 
     <enum name="ConsistencyType" storage="ushort">
         Used by NiGeometryData to control the volatility of the mesh.  While they appear to be flags they behave as an enum.
-        <option value="0" name="CT_MUTABLE">Mutable Mesh</option>
-        <option value="16384" name="CT_STATIC">Static Mesh</option>
-        <option value="32768" name="CT_VOLATILE">Volatile Mesh</option>
+        <option value="0x0000" name="CT_MUTABLE">Mutable Mesh</option>
+        <option value="0x4000" name="CT_STATIC">Static Mesh</option>
+        <option value="0x8000" name="CT_VOLATILE">Volatile Mesh</option>
     </enum>
 
     <enum name="SortingMode" storage="uint">
@@ -1115,9 +1115,7 @@
 
     <compound name="SkinData">
         Skinning data component.
-        <add name="Rotation" type="Matrix33">Rotation offset of the skin from this bone in bind position.</add>
-        <add name="Translation" type="Vector3">Translation offset of the skin from this bone in bind position.</add>
-        <add name="Scale" type="float">Scale offset of the skin from this bone in bind position. (Assumption - this is always 1.0 so far)</add>
+        <add name="Skin Transform" type="SkinTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
         <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -3013,7 +3011,7 @@
 
     <niobject name="NiPersistentSrcTextureRendererData" inherit="ATextureRenderData">
         <add name="Num Pixels" type="uint">Unknown</add>
-        <add name="Unknown Int 6" type="uint">Unknown</add>
+        <add name="Unknown Int 6" type="uint">Unknown, same as the number of pixels?</add>
         <add name="Num Faces" type="uint">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown</add>
         <add name="Pixel Data" type="byte"  nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
@@ -4543,7 +4541,9 @@
     <niobject name="NiDataStream\x011\x0120" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
     </niobject>
 
-    <niobject name="NiDataStream\x011\x0121" ver1="20.5.0.0" inherit="NiDataStream\x011\x0118" />
+    <niobject name="NiDataStream\x011\x0121" ver1="20.5.0.0" inherit="NiDataStream\x011\x0118">
+        Float data (used for vertices, normals, uvs).
+    </niobject>
     
     <niobject name="NiDataStream\x011\x0124" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
     </niobject>
@@ -4616,14 +4616,14 @@
 
     <enum name="SyncPoint" storage="ushort">
         Specifies the time when an application must syncronize for some reason.
-        <option value="32768" name="SYNC_ANY">Value used when no specific sync point is desired.</option>
-        <option value="32784" name="SYNC_UPDATE">Synchronize when an object is updated.</option>
-        <option value="32800" name="SYNC_POST_UPDATE">Synchronize when an entire scene graph has been updated.</option>
-        <option value="32816" name="SYNC_VISIBLE">Synchronize when an object is determined to be potentially visible.</option>
-        <option value="32832" name="SYNC_RENDER">Synchronize when an object is rendered.</option>
-        <option value="32848" name="SYNC_PHYSICS_SIMULATE">Synchronize when a physics simulation step is about to begin.</option>
-        <option value="32864" name="SYNC_PHYSICS_COMPLETED">Synchronize when a physics simulation step has produced results.</option>
-        <option value="32880" name="SYNC_REFLECTIONS">Syncronize after all data necessary to calculate reflections is ready.</option>
+        <option value="0x8000" name="SYNC_ANY">Value used when no specific sync point is desired.</option>
+        <option value="0x8010" name="SYNC_UPDATE">Synchronize when an object is updated.</option>
+        <option value="0x8020" name="SYNC_POST_UPDATE">Synchronize when an entire scene graph has been updated.</option>
+        <option value="0x8030" name="SYNC_VISIBLE">Synchronize when an object is determined to be potentially visible.</option>
+        <option value="0x8040" name="SYNC_RENDER">Synchronize when an object is rendered.</option>
+        <option value="0x8050" name="SYNC_PHYSICS_SIMULATE">Synchronize when a physics simulation step is about to begin.</option>
+        <option value="0x8060" name="SYNC_PHYSICS_COMPLETED">Synchronize when a physics simulation step has produced results.</option>
+        <option value="0x8070" name="SYNC_REFLECTIONS">Syncronize after all data necessary to calculate reflections is ready.</option>
     </enum>
 
     <niobject name="NiMeshModifier" ver1="20.5.0.0" inherit="NiObject">
@@ -4674,7 +4674,7 @@
         <add name="Elements" type="ElementReference" arr1="Num Elements">Semantics and normalization of the morphing data stream elements.</add>
     </niobject>
 
-    <compound name="Transform">
+    <compound name="SkinTransform">
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -4686,10 +4686,10 @@
             RECOMPUTE_BOUNDS = 0x0002
         </add>
         <add name="Skeleton Root" type="Ptr" template="NiAVObject">The root bone of the skeleton.</add><!-- Root Bone Parent -->
-        <add name="Skeleton Transform" type="Transform">The transform that takes the root bone parent coordinate system into the skin coordinate system.</add><!-- Root Bone Parent To Skin Transform -->
+        <add name="Skeleton Transform" type="SkinTransform">The transform that takes the root bone parent coordinate system into the skin coordinate system.</add><!-- Root Bone Parent To Skin Transform -->
         <add name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</add>
         <add name="Bones" type="Ptr" template="NiAVObject" arr1="Num Bones">Pointers to the bone nodes that affect this skin.</add>
-        <add name="Bone Transforms" type="Transform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
+        <add name="Bone Transforms" type="SkinTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
         <add name="Bone Bounds" type="SphereBV" cond="Flags &amp; 2" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add> <!-- Note, "SphereBV" is actually "NiBound."-->
     </niobject>
 
