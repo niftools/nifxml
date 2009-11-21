@@ -4503,21 +4503,44 @@
         <option value="0x0001043E" name="F_UINT_10_10_10_2"></option>
     </enum>
 
-    <niobject name="NiDataStreamBase" ver1="20.5.0.0" inherit="NiObject" abstract="1">
+    <enum name="DataStreamUsage" storage="uint">
+        Determines how a data stream is used?
+        <option value="0" name="USAGE_VERTEX_INDEX"></option>
+        <option value="1" name="USAGE_VERTEX"></option>
+        <option value="2" name="USAGE_SHADER_CONSTANT"></option>
+        <option value="3" name="USAGE_USER"></option>
+    </enum>
+    
+    <bitflags name="DataStreamAccess" storage="uint">
+        Determines how the data stream is accessed?
+        <option value="0" name="CPU Read"></option>
+        <option value="1" name="CPU Write Static"></option>
+        <option value="2" name="CPU Write Mutable"></option>
+        <option value="3" name="CPU Write Volatile"></option>
+        <option value="4" name="GPU Read"></option>
+        <option value="5" name="GPU Write"></option>
+        <option value="6" name="CPU Write Static Inititialized"></option>
+    </bitflags>
+
+
+    <niobject name="NiDataStream" ver1="20.5.0.0" inherit="NiObject" abstract="0">
+        <!-- add name="Usage" type="DataStreamUsage" abstract="1"></add>
+        <add name="Access" type="DataStreamAccess" abstract="1"></add -->
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
         <add name="Cloning Behavior" type="CloningBehavior" default="0" />
         <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
         <add name="Component Formats" type="ComponentFormat" arr1="Num Components">The format of each component in this data stream.</add>
-    </niobject>
+    <!-- /niobject>
 
-    <niobject name="NiDataStreamUndecoded" ver1="20.5.0.0" inherit="NiDataStreamBase" abstract="1">
-        For undecoded data. Temporarily defined until all streams are decoded.
+    <niobject name="NiDataStream" ver1="20.5.0.0" inherit="NiDataStreamBase" abstract="0" -->
+        <!-- For undecoded data. Temporarily defined until all streams are decoded. -->
         <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
+    <!--    
     <niobject name="NiDataStream\x010\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
         Triangles with short indices.
         <add name="Data" type="ushort" arr1="Num Bytes / 2" />
@@ -4558,6 +4581,7 @@
     <niobject name="NiDataStream\x013\x015" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
     </niobject>
 
+    -->
     <compound name="SemanticData">
         <add name="Name" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
@@ -4571,7 +4595,7 @@
     </compound>
 
     <compound name="MeshData">
-        <add name="Stream" type="Ref" template="NiDataStreamBase">
+        <add name="Stream" type="Ref" template="NiDataStream">
             Reference to a data stream object which holds the data used by
             this reference.
         </add>
