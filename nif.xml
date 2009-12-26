@@ -1500,14 +1500,9 @@
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown Int 1" type="int">Unknown. Could be 2 shorts corresponding to Unknown 7 Shorts[1] and [2].</add>
-        <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
-        <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown. Could be 3 floats.</add>
-        <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
-        <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
-        <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
-        <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC">Copy of Layer value?</add>
+        <add name="Unknown 5 Floats" type="float" arr1="5">Unknown.</add>
+        <add name="Unknown 4 Shorts" type="ushort" arr1="4">Unknown.</add>
+        <add name="Layer Copy" type="OblivionLayer" default="1">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">Unknown.</add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
@@ -1532,13 +1527,13 @@
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
-        <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_INVALID">The motion type. Determines quality of motion?</add>
-        <add name="Auto Remove Level" type="uint">This is a user flag which you can set to give you a hint as to which objects to remove from the simulation if the memory overhead becomes too high.</add>
-        <add name="User Datas In Contact Point Properties?" type="uint">Requests a number of extra fields in each hkpContactPointProperties for this rigid body.</add>
-        <add name="Force Collide Onto Ppu?" type="uint">Ps3 only</add>
+        <add name="Motion System" type="MotionSystem" default="1">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Unknown Byte 1" type="byte" default="1"> Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 2.</add>
+        <add name="Unknown Byte 2" type="byte" default="1">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="1">The motion type. Determines quality of motion?</add>
+        <add name="Unknown Int 6" type="uint">Unknown.</add>
+        <add name="Unknown Int 7" type="uint">Unknown.</add>
+        <add name="Unknown Int 8" type="uint">Unknown.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
         <add name="Unknown Int 9" type="uint">0 = do not respond to wind, 1 = respond to wind (?)</add>
