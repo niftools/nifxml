@@ -1741,15 +1741,9 @@
         A shape constructed from strips data.
         <add name="Num Sub Shapes" type="ushort" ver2="20.0.0.5">Number of subparts.</add>
         <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver2="20.0.0.5">The subparts.</add>
-        <add name="Unknown Int 1" type="uint" default="0">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" default="0x014E9DD8">Unknown. Looks like a memory pointer and may be garbage.</add>
-        <add name="Unknown Float 1" type="float" default="0.1">Unknown. Same as Unknown Float 3</add>
-        <add name="Unknown Int 3" type="uint" default="0">Unknown. Sometimes 0.0f or -1.0f but sometimes really large number.  Suspect its garbage.</add>
-        <add name="Scale Copy?" type="Vector3" default="1.0, 1.0, 1.0">Unknown. Same as scale below?</add>
-        <add name="Unknown Float 2" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 4</add>
-        <add name="Unknown Float 3" type="float" default="0.1">Unknown. Same as Unknown Float 1</add>
-        <add name="Scale" type="Vector3" default="1.0, 1.0, 1.0">Scale.</add>
-        <add name="Unknown Float 4" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 2</add>
+        <add name="Unknown Floats" type="float" arr1="9">Unknown. A rotation matrix?</add>
+        <add name="Scale" type="float" default="1.0">Scale.</add>
+        <add name="Unknown Floats 2" type="float" arr1="3">Unknown. Translation?</add>
         <add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
     </niobject>
 
