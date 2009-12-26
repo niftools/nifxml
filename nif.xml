@@ -4077,10 +4077,10 @@
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
             0: Diffuse
             1: Normal/Gloss
-            2: Environment Mask
-            3: Glow/Skin/Hair
-            4: Height
-            5: Environment
+            2: Glow/Skin/Hair
+            3: Height/Parallax
+            4: Environment
+            5: Environment Mask
         </add>
     </niobject>
 
