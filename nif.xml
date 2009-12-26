@@ -1328,6 +1328,7 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
+<!-- nowhere used currently
 	<compound name="UnknownMatrix1">
 		Unknown Matrix; for deathposes.psa
 		<add name="Unknown UInt 1" type="uint">Unknown uint 1</add>
@@ -1341,12 +1342,13 @@
         <add name="m32" type="float" />
         <add name="m33" type="float" />
     </compound>
-	<!--
+
 	<compound name="BonePoseArray">
 		<add name="Unknown Array 2" type="int">Unknown</add>
         <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
 	</compound>
-	-->
+-->
+
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <add name="Num Vectors" type="short">Number of sets</add>
@@ -1366,7 +1368,7 @@
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
 
-<!--	
+<!-- nowhere used currently
 	<compound name="RagdollTemplateSubData1">
 		Todo: Add route for secondary Ref set?
 		<add name="Unknown Flag 3" type="uint">Unknown</add>
@@ -1374,7 +1376,6 @@
 		<add name="Unknown Ref 1" type="Ref" template="NiObject">Unknown</add>
 		<add name="Unknown Ref 2" type="Ref" template="NiObject">Unknown</add>
 	</compound>
-	
 	
 	<compound name="RagdollTemplateSubData2">
 		Sub-list for bhkRagdollTemplateData. (not finished)
@@ -1387,6 +1388,7 @@
 		<add name="Unknown byte 1" type="byte">Unknown</add>		
 	</compound>
 -->
+
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
          They are like C classes and can contain many pieces of data.
