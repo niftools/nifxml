@@ -1691,9 +1691,7 @@
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Material" type="HavokMaterial">The shape's material.</add>
-        <!--<add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>-->
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
