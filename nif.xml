@@ -146,7 +146,7 @@
         <option value="1" name="APPLY_DECAL">For placing images on the object like stickers.</option>
         <option value="2" name="APPLY_MODULATE">Modulates existing color. (Default)</option>
         <option value="3" name="APPLY_HILIGHT">PS2 Only.  Function Unknown.</option>
-        <option value="4" name="APPLY_HILIGHT2">PS2 Only.  Function Unknown.</option>
+        <option value="4" name="APPLY_HILIGHT2">Parallax Flag in some Oblivion meshes.</option>
     </enum>
 
     <enum name="TexType" storage="uint">
@@ -2180,7 +2180,7 @@
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
-        <add name="Data" type="Ref" template="NiObject">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="Ref" template="NiGeometryData">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
@@ -2811,9 +2811,11 @@
 
     <niobject name="NiLODNode" abstract="0" inherit="NiSwitchNode" ver1="3.1">
         Level of detail selector. Links to different levels of detail of the same model, used to switch a geometry at a specified distance.
+        <!--<add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.  0,0,0,0 or 1,0,0,0.</add>-->
         <add name="LOD Center" type="Vector3" ver1="4.0.0.2" ver2="10.0.1.0">Point to calculate distance from for switching?</add>
         <add name="Num LOD Levels" type="uint" ver2="10.0.1.0">Number of levels of detail.</add>
         <add name="LOD Levels" type="LODRange" arr1="Num LOD Levels" ver2="10.0.1.0">The ranges of distance that each level of detail applies in.</add>
+        <!--<add name="Unknown Short" type="ushort" ver1="10.1.0.0">Zero?</add>-->
         <add name="LOD Level Data" type="Ref" template="NiLODData"  ver1="10.1.0.0">Refers to LOD level information, either distance or screen size based.</add>
     </niobject>
 
@@ -4527,56 +4529,11 @@
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
         <add name="Component Formats" type="ComponentFormat" arr1="Num Components">The format of each component in this data stream.</add>
-    <!-- /niobject>
-
-    <niobject name="NiDataStream" ver1="20.5.0.0" inherit="NiDataStreamBase" abstract="0" -->
-        <!-- For undecoded data. Temporarily defined until all streams are decoded. -->
+        <!-- temporarily defined as blob until we have a way to handle this -->
         <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
-    <!--    
-    <niobject name="NiDataStream\x010\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
-        Triangles with short indices.
-        <add name="Data" type="ushort" arr1="Num Bytes / 2" />
-        <add name="Streamable" type="bool" default="1" />
-    </niobject>
-
-    <niobject name="NiDataStream\x011\x0118" ver1="20.5.0.0" inherit="NiDataStreamBase">
-        Float data (used for vertices, normals, uvs).
-        <add name="Data" type="float" arr1="Num Bytes / 4" />
-        <add name="Streamable" type="bool" default="1" />
-    </niobject>
-
-    <niobject name="NiDataStream\x010\x0119" ver1="20.5.0.0" inherit="NiDataStreamBase">
-        Triangles with integer indices.
-        <add name="Data" type="uint" arr1="Num Bytes / 4" />
-        <add name="Streamable" type="bool" default="1" />
-    </niobject>
-
-    <niobject name="NiDataStream\x011\x0119" ver1="20.5.0.0" inherit="NiDataStream\x011\x0118" />
-
-    <niobject name="NiDataStream\x011\x0120" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
-    </niobject>
-
-    <niobject name="NiDataStream\x011\x0121" ver1="20.5.0.0" inherit="NiDataStream\x011\x0118">
-        Float data (used for vertices, normals, uvs).
-    </niobject>
-    
-    <niobject name="NiDataStream\x011\x0124" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
-    </niobject>
-
-    <niobject name="NiDataStream\x011\x013" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
-    </niobject>
-
-    <niobject name="NiDataStream\x013\x013" ver1="20.5.0.0" inherit="NiDataStream\x010\x0118">
-        Short data (used for bone palette).
-    </niobject>
-
-    <niobject name="NiDataStream\x013\x015" ver1="20.5.0.0" inherit="NiDataStreamUndecoded">
-    </niobject>
-
-    -->
     <compound name="SemanticData">
         <add name="Name" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
