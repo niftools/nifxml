@@ -725,59 +725,59 @@
 
     <compound name="Quaternion" niflibtype="Quaternion" nifskopetype="quaternion">
         A quaternion.
-        <add name="w" type="float">The w-coordinate.</add>
-        <add name="x" type="float">The x-coordinate.</add>
-        <add name="y" type="float">The y-coordinate.</add>
-        <add name="z" type="float">The z-coordinate.</add>
+        <add name="w" type="float" default="1.0">The w-coordinate.</add>
+        <add name="x" type="float" default="0.0">The x-coordinate.</add>
+        <add name="y" type="float" default="0.0">The y-coordinate.</add>
+        <add name="z" type="float" default="0.0">The z-coordinate.</add>
     </compound>
 
     <compound name="QuaternionXYZW" nifskopetype="quaternion_xyzw">
         A quaternion as it appears in the havok objects.
-        <add name="x" type="float">The x-coordinate.</add>
-        <add name="y" type="float">The y-coordinate.</add>
-        <add name="z" type="float">The z-coordinate.</add>
-        <add name="w" type="float">The w-coordinate.</add>
+        <add name="x" type="float" default="0.0">The x-coordinate.</add>
+        <add name="y" type="float" default="0.0">The y-coordinate.</add>
+        <add name="z" type="float" default="0.0">The z-coordinate.</add>
+        <add name="w" type="float" default="1.0">The w-coordinate.</add>
     </compound>
 
     <compound name="Matrix22" niflibtype="Matrix22">
         A 2x2 matrix of float values.  Stored in OpenGL column-major format.
-        <add name="m11" type="float">Member 1,1 (top left)</add>
-        <add name="m21" type="float">Member 2,1 (bottom left)</add>
-        <add name="m12" type="float">Member 1,2 (top right)</add>
-        <add name="m22" type="float">Member 2,2 (bottom right)</add>
+        <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
+        <add name="m21" type="float" default="0.0">Member 2,1 (bottom left)</add>
+        <add name="m12" type="float" default="0.0">Member 1,2 (top right)</add>
+        <add name="m22" type="float" default="1.0">Member 2,2 (bottom right)</add>
     </compound>
 
     <compound name="Matrix33" niflibtype="Matrix33" nifskopetype="matrix33">
         A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
-        <add name="m11" type="float">Member 1,1 (top left)</add>
-        <add name="m21" type="float">Member 2,1</add>
-        <add name="m31" type="float">Member 3,1 (bottom left)</add>
-        <add name="m12" type="float">Member 1,2</add>
-        <add name="m22" type="float">Member 2,2</add>
-        <add name="m32" type="float">Member 3,2</add>
-        <add name="m13" type="float">Member 1,3 (top right)</add>
-        <add name="m23" type="float">Member 2,3</add>
-        <add name="m33" type="float">Member 3,3 (bottom left)</add>
+        <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
+        <add name="m21" type="float" default="0.0">Member 2,1</add>
+        <add name="m31" type="float" default="0.0">Member 3,1 (bottom left)</add>
+        <add name="m12" type="float" default="0.0">Member 1,2</add>
+        <add name="m22" type="float" default="1.0">Member 2,2</add>
+        <add name="m32" type="float" default="0.0">Member 3,2</add>
+        <add name="m13" type="float" default="0.0">Member 1,3 (top right)</add>
+        <add name="m23" type="float" default="0.0">Member 2,3</add>
+        <add name="m33" type="float" default="1.0">Member 3,3 (bottom left)</add>
     </compound>
 
     <compound name="Matrix44" niflibtype="Matrix44" nifskopetype="matrix44">
         A 4x4 transformation matrix.
-        <add name="m11" type="float">The (1,1) element.</add>
-        <add name="m21" type="float">The (2,1) element.</add>
-        <add name="m31" type="float">The (3,1) element.</add>
-        <add name="m41" type="float">The (4,1) element.</add>
-        <add name="m12" type="float">The (1,2) element.</add>
-        <add name="m22" type="float">The (2,2) element.</add>
-        <add name="m32" type="float">The (3,2) element.</add>
-        <add name="m42" type="float">The (4,2) element.</add>
-        <add name="m13" type="float">The (1,3) element.</add>
-        <add name="m23" type="float">The (2,3) element.</add>
-        <add name="m33" type="float">The (3,3) element.</add>
-        <add name="m43" type="float">The (4,3) element.</add>
-        <add name="m14" type="float">The (1,4) element.</add>
-        <add name="m24" type="float">The (2,4) element.</add>
-        <add name="m34" type="float">The (3,4) element.</add>
-        <add name="m44" type="float">The (4,4) element.</add>
+        <add name="m11" type="float" default="1.0">The (1,1) element.</add>
+        <add name="m21" type="float" default="0.0">The (2,1) element.</add>
+        <add name="m31" type="float" default="0.0">The (3,1) element.</add>
+        <add name="m41" type="float" default="0.0">The (4,1) element.</add>
+        <add name="m12" type="float" default="0.0">The (1,2) element.</add>
+        <add name="m22" type="float" default="1.0">The (2,2) element.</add>
+        <add name="m32" type="float" default="0.0">The (3,2) element.</add>
+        <add name="m42" type="float" default="0.0">The (4,2) element.</add>
+        <add name="m13" type="float" default="0.0">The (1,3) element.</add>
+        <add name="m23" type="float" default="0.0">The (2,3) element.</add>
+        <add name="m33" type="float" default="1.0">The (3,3) element.</add>
+        <add name="m43" type="float" default="0.0">The (4,3) element.</add>
+        <add name="m14" type="float" default="0.0">The (1,4) element.</add>
+        <add name="m24" type="float" default="0.0">The (2,4) element.</add>
+        <add name="m34" type="float" default="0.0">The (3,4) element.</add>
+        <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
     <compound name="MipMap">
