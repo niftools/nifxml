@@ -1002,7 +1002,7 @@
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
-        <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags. Presumably stores Clamp Mode and Filter Mode?</add>
+        <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
         <add name="Unknown short" type="short" ver1="20.6.0.0">Unknown, seems to always be 1</add>
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
         <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;L values can range from 0 to 3 and are used to specify how fast a texture gets blurry&quot;.</add>
@@ -3449,7 +3449,7 @@
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
         <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
-        <add name="Unknown" type="short" ver1="30.0.0.2" />
+        <add name="Unknown" type="short" ver1="20.6.0.0" />
         <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
@@ -4539,7 +4539,8 @@
     <compound name="SemanticData">
         <add name="Name" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
-            TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE).
+            TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
+            MORPH_POSITION, BINORMAL_BP, TANGENT_BP).
         </add>
         <add name="Index" type="uint" default="0">
             An extra index of the data. For example, if there are 3 uv maps,
@@ -4678,6 +4679,7 @@
     <niobject name="NiSkinningLODController" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
     
+    <!-- This and NiPSMeshParticleSystem may inherit from something else -->
     <niobject name="NiPSParticleSystem" ver1="20.5.0.0" inherit="NiAVObject">
         <!-- note: Unknonw 1 and 2 already in use by NiAVObject -->
         <add name="Unknown 3" type="int">0?</add>
@@ -4689,17 +4691,17 @@
         <add name="Unknown 7" type="int">0?</add>
         <add name="Unknown 8" type="int">0?</add>
         <add name="Unknown 9" type="int">0?</add>
-        <add name="Unknown 10" type="int">0?</add>
+        <add name="Unknown 10" type="float">0?</add>
         <add name="Unknown 11" type="int">0?</add>
         <add name="Unknown 12" type="int">Counter?</add>
-        <add name="Unknown 13" type="int">Simulator?</add>
-        <add name="Unknown 14" type="int" cond="Unknown 12 > 1">Generator?</add>
+        <add name="Simulator" type="Ref">Simulator?</add>
+        <add name="Generator" type="Ref" cond="Unknown 12 > 1">Generator?</add>
         <add name="Unknown 15" type="int">Simulator?</add>
         <add name="Unknown 16" type="int">Updater?</add>
         <add name="Unknown 17" type="int">1?</add>
-        <add name="Unknown 18" type="int">Emitter?</add>
+        <add name="Emitter" type="Ref">Emitter?</add>
         <add name="Unknown 19" type="int">0?</add>
-        <add name="Unknown 20" type="int">-1?</add>
+        <add name="Unknown 20" type="int">Spawner?</add>
         <add name="Unknown 21" type="int">Unknown</add>
         <add name="Unknown 22" type="byte" arr1="4">Unknown</add>
         <add name="Unknown 27" type="int" ver1="30.0.0.2"></add>
@@ -4717,7 +4719,7 @@
 
     <niobject name="NiPSMeshParticleSystem" ver1="20.5.0.0" inherit="NiPSParticleSystem">
         <add name="Unknown 23" type="int"></add>
-        <add name="Unknown 24" type="Ref" template="NiObject">Emmitted mesh?</add>
+        <add name="Unknown 24" type="int">Unknown - may or may not be emitted mesh?</add>
         <add name="Unknown 25" type="int"></add>
         <add name="Unknown 26" type="byte"></add>
     </niobject>
@@ -4726,7 +4728,7 @@
     </niobject>
 
     <niobject name="NiPSForceActiveCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Unknown 1" type="int"></add>
+        <add name="Interpolator" type="Ref"></add>
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
@@ -4984,13 +4986,13 @@
     </niobject>
 
     <niobject name="NiPSEmitterSpeedCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Unknown 2" type="int"></add>
+        <add name="Interpolator" type="Ref"></add>
         <add name="Unknown 3" type="int"></add>
     </niobject>
 
     <!-- from Zorsis demo (hit_effect_meaty.nif) -->
     <niobject name="NiPSEmitterRadiusCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Unknown 2" type="int"></add>
+        <add name="Interpolator" type="Ref"></add>
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
@@ -5078,7 +5080,7 @@
         <add name="Unknown 7" type="int"></add>
     </niobject>
 
-    <niobject name="NiPSSpawner" ver1="30.0.0.2" inherit="NiObject">
+    <niobject name="NiPSSpawner" ver1="20.6.0.0" inherit="NiObject">
         <!-- not yet decoded -->
     </niobject>
 
