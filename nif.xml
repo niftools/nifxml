@@ -1098,7 +1098,7 @@
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
-        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.1.0.3" userver="0">Unknown.</add>
+        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" userver="0">Unknown.</add>
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -2007,8 +2007,8 @@
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte">Always Update</add>
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
-        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.2.0.6">List of interpolators.</add>
-        <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.2.0.7">Weighted Interpolators?</add>
+        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.0.0.5">List of interpolators.</add>
+        <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.1.0.3">Weighted Interpolators?</add>
         <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version == 10) || (User Version == 11)">A count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version == 10) || (User Version == 11)">Unknown.</add>
     </niobject>
