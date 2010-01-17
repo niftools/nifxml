@@ -4651,12 +4651,12 @@
         <add name="Unknown 10" type="float">0?</add>
         <add name="Unknown 11" type="int">0?</add>
         <add name="Unknown 12" type="int">Counter?</add>
-        <add name="Simulator" type="Ref">Simulator?</add>
-        <add name="Generator" type="Ref" cond="Unknown 12 > 1">Generator?</add>
+        <add name="Simulator" type="Ref" template="NiObject">Simulator?</add>
+        <add name="Generator" type="Ref" template="NiObject" cond="Unknown 12 > 1">Generator?</add>
         <add name="Unknown 15" type="int">Simulator?</add>
         <add name="Unknown 16" type="int">Updater?</add>
         <add name="Unknown 17" type="int">1?</add>
-        <add name="Emitter" type="Ref">Emitter?</add>
+        <add name="Emitter" type="Ref" template="NiObject">Emitter?</add>
         <add name="Unknown 19" type="int">0?</add>
         <add name="Unknown 20" type="int">Spawner?</add>
         <add name="Unknown 21" type="int">Unknown</add>
@@ -4685,7 +4685,7 @@
     </niobject>
 
     <niobject name="NiPSForceActiveCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref"></add>
+        <add name="Interpolator" type="Ref" template="NiObject"></add>
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
@@ -4943,13 +4943,13 @@
     </niobject>
 
     <niobject name="NiPSEmitterSpeedCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref"></add>
+        <add name="Interpolator" type="Ref" template="NiObject"></add>
         <add name="Unknown 3" type="int"></add>
     </niobject>
 
     <!-- from Zorsis demo (hit_effect_meaty.nif) -->
     <niobject name="NiPSEmitterRadiusCtlr" ver1="20.5.0.0" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref"></add>
+        <add name="Interpolator" type="Ref" template="NiObject"></add>
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
