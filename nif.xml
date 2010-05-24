@@ -56,6 +56,10 @@
         An unsigned 32-bit integer.
     </basic>
 
+    <basic name="ulittle32" count="1" niflibtype="unsigned int" nifskopetype="uint">
+        A litte-endian unsigned 32-bit integer.
+    </basic>
+
     <basic name="ushort" count="1" niflibtype="unsigned short" nifskopetype="ushort">
         An unsigned 16-bit integer.
     </basic>
@@ -887,9 +891,9 @@
         <add name="Copyright" type="LineString" arr1="3" ver2="3.1" />
         <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
-        <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
-        <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="uint" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
+        <add name="User Version" type="ulittle32" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
+        <add name="Num Blocks" type="ulittle32" ver1="3.3.0.13">Number of file objects.</add>
+        <add name="User Version 2" type="ulittle32" default="0" cond="(User Version == 10) || (User Version == 11)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
         <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version == 10) || (User Version == 11)" />
