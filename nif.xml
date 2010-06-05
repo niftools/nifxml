@@ -2207,8 +2207,8 @@
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) | (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) | (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2963,7 +2963,7 @@
         <add name="Unknown Int 2" type="int" ver1="20.0.0.4">Unknown.  Could be reference pointer.</add>
         <add name="Unknown Int 3" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
         <add name="Flags" type="byte" ver1="20.0.0.4">Flags</add>
-        <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
+        <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Unkown. Often zero.</add>
         <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
         <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>
         <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
@@ -2974,7 +2974,7 @@
 
     <niobject name="NiPersistentSrcTextureRendererData" inherit="ATextureRenderData">
         <add name="Num Pixels" type="uint">Unknown</add>
-        <add name="Unknown Int 6" type="uint">Unknown, same as the number of pixels?</add>
+        <add name="Unknown Int 6" type="uint">Unknown, same as the number of pixels? / number of blocks?</add>
         <add name="Num Faces" type="uint">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown</add>
         <add name="Pixel Data" type="byte"  nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
