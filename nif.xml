@@ -5005,7 +5005,7 @@
     <niobject name="NiPSResetOnLoopCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiPSSphereEmitter" ver1="30.0.0.2">
+    <niobject name="NiPSSphereEmitter" ver1="30.0.0.2" inherit="NiObject">
         <add name="Name" type="string"></add>
         <add name="Unknown 2" type="int"></add>
         <add name="Unknown 3" type="int"></add>
