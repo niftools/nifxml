@@ -2480,6 +2480,9 @@
         <add name="Scale Bias" type="float">Scale Bias</add>
         <add name="Scale Multiplier" type="float">Scale Multiplier</add>
     </niobject>
+	
+	<niobject name="BSRotAccumTransfInterpolator" ver1="20.2.0.7" userver="11" inherit="NiTransformInterpolator">
+	</niobject>
 
     <niobject name="NiBSplineData" abstract="0" inherit="NiObject" ver1="20.0.0.4">
         B-spline data points as floats, or as shorts for compressed B-splines.
@@ -4192,6 +4195,8 @@
 
     <niobject name="BSRefractionFirePeriodController" abstract="0" inherit="NiTimeController" ver1="20.2.0.7" userver="11">
         Bethesda-specific node.
+        <!-- interpolator present in fallout new vegas; potential issues with fallout 3? -->
+		<add name="Interpolator" type="Ref" ver1="20.2.0.7">Link to Interpolator.</add>
     </niobject>
 
     <niobject name="bhkConvexListShape" abstract="0" inherit="bhkShape">
@@ -4962,7 +4967,7 @@
     <niobject name="NiPSResetOnLoopCtlr" ver1="20.5.0.0" inherit="NiTimeController">
     </niobject>
 
-    <niobject name="NiPSSphereEmitter" ver1="30.0.0.2">
+    <niobject name="NiPSSphereEmitter" ver1="30.0.0.2" inherit="NiObject">
         <add name="Name" type="string"></add>
         <add name="Unknown 2" type="int"></add>
         <add name="Unknown 3" type="int"></add>
@@ -5016,6 +5021,21 @@
     </niobject>
 
     <niobject name="NiPSEmitterLifeSpanCtlr" ver1="30.0.0.2" inherit="NiPSysModifierCtlr">
+    </niobject>
+	
+    <niobject name="NiPSysInitialRotAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
+    </niobject>
+	
+    <niobject name="NiPSysInitialRotSpeedVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
+    </niobject>
+	
+    <niobject name="NiPSysEmitterPlanarAngleVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
+    </niobject>
+	
+    <niobject name="NiPSysEmitterPlanarAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
+    </niobject>
+	
+    <niobject name="NiPSysInitialRotSpeedCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
     </niobject>
 
     <niobject name="NiPSBombForce" ver1="30.0.0.2" inherit="NiObject">
