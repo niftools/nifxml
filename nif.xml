@@ -3247,7 +3247,7 @@
     </niobject>
 
     <niobject name="NiPSysFieldMagnitudeCtlr" inherit="NiPSysModifierFloatCtlr">
-        Particle system controller, used for ???.
+        Particle system controller for force field magnitude.
     </niobject>
 
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
