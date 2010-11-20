@@ -3250,6 +3250,10 @@
         Particle system controller for force field magnitude.
     </niobject>
 
+    <niobject name="NiPSysFieldAttenuationCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for force field attenuation.
+    </niobject>
+
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, used for controlling the particle velocity in a field like wind.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
