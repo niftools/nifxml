@@ -3280,6 +3280,12 @@
         Unknown controller
     </niobject>
 
+    <niobject name="NiPSysRadialFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle
+        velocity in force field.
+        <add name="Radial Type" type="int">Unknown Enums?</add>
+    </niobject>
+
     <niobject name ="NiLODData" abstract="1" inherit="NiObject">
         Abstract class used for different types of LOD selections.
     </niobject>
