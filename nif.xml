@@ -3178,8 +3178,8 @@
         <add name="Field Object" type="Ref" template="NiAVObject">Force Field Object</add>
         <add name="Magnitude" type="float">Magnitude of the force</add>
         <add name="Attenuation" type="float">Controls how quick the field diminishes</add>
-        <add name="Unknown Boolean 1" type="bool">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown value, perhaps maximum effect distance</add>
+        <add name="Use Max Distance" type="bool">Use maximum distance</add>
+        <add name="Max Distance" type="float">Maximum distance</add>
     </niobject>
 
     <niobject name="NiPSysVortexFieldModifier" inherit="NiPSysFieldModifier">
@@ -3200,11 +3200,55 @@
 
     <niobject name="NiPSysTurbulenceFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, used for controlling the particle velocity in drag space warp.
-        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Frequency" type="float">Frequency (of ???).</add>
     </niobject>
 
     <niobject name="NiPSysFieldMagnitudeCtlr" inherit="NiPSysModifierFloatCtlr">
-        Particle system controller, used for ???.
+        Particle system controller for force field magnitude.
+    </niobject>
+
+    <niobject name="NiPSysFieldAttenuationCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for force field attenuation.
+    </niobject>
+
+    <niobject name="NiPSysFieldMaxDistanceCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for force field maximum distance.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldAirFrictionCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field air friction.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldInheritVelocityCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field inherit velocity.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldSpreadCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field spread.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotSpeedCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation speed.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotSpeedVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation speed variation.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotAngleCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation angle.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotAngleVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation angle variation.
+    </niobject>
+
+    <niobject name="NiPSysEmitterPlanarAngleCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter planar angle.
+    </niobject>
+
+    <niobject name="NiPSysEmitterPlanarAngleVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter planar angle variation.
     </niobject>
 
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
@@ -3235,6 +3279,12 @@
 
     <niobject name="NiLightIntensityController" inherit="NiFloatInterpController" ver1="10.2.0.0" ver2="10.2.0.0">
         Unknown controller
+    </niobject>
+
+    <niobject name="NiPSysRadialFieldModifier" inherit="NiPSysFieldModifier">
+        Particle system modifier, used for controlling the particle
+        velocity in force field.
+        <add name="Radial Type" type="int">Unknown Enums?</add>
     </niobject>
 
     <niobject name ="NiLODData" abstract="1" inherit="NiObject">
@@ -5021,21 +5071,6 @@
     </niobject>
 
     <niobject name="NiPSEmitterLifeSpanCtlr" ver1="30.0.0.2" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotSpeedVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysEmitterPlanarAngleVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysEmitterPlanarAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotSpeedCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
     </niobject>
 
     <niobject name="NiPSBombForce" ver1="30.0.0.2" inherit="NiObject">
