@@ -3254,6 +3254,46 @@
         Particle system controller for force field attenuation.
     </niobject>
 
+    <niobject name="NiPSysFieldMaxDistanceCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for force field maximum distance.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldAirFrictionCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field air friction.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldInheritVelocityCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field inherit velocity.
+    </niobject>
+
+    <niobject name="NiPSysAirFieldSpreadCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for air field spread.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotSpeedCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation speed.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotSpeedVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation speed variation.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotAngleCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation angle.
+    </niobject>
+
+    <niobject name="NiPSysInitialRotAngleVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter initial rotation angle variation.
+    </niobject>
+
+    <niobject name="NiPSysEmitterPlanarAngleCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter planar angle.
+    </niobject>
+
+    <niobject name="NiPSysEmitterPlanarAngleVarCtlr" inherit="NiPSysModifierFloatCtlr">
+        Particle system controller for emitter planar angle variation.
+    </niobject>
+
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, used for controlling the particle velocity in a field like wind.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
@@ -5069,21 +5109,6 @@
     </niobject>
 
     <niobject name="NiPSEmitterLifeSpanCtlr" ver1="30.0.0.2" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotSpeedVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysEmitterPlanarAngleVarCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysEmitterPlanarAngleCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
-    </niobject>
-	
-    <niobject name="NiPSysInitialRotSpeedCtlr" ver1="20.2.0.7" inherit="NiPSysModifierCtlr">
     </niobject>
 
     <niobject name="NiPSBombForce" ver1="30.0.0.2" inherit="NiObject">
