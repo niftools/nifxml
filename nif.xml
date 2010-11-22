@@ -3200,7 +3200,7 @@
 
     <niobject name="NiPSysTurbulenceFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, used for controlling the particle velocity in drag space warp.
-        <add name="Frequency" type="float">Frequency (of ???).</add>
+        <add name="Frequency" type="float">Frequency of the update.</add>
     </niobject>
 
     <niobject name="NiPSysFieldMagnitudeCtlr" inherit="NiPSysModifierFloatCtlr">
