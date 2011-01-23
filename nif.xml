@@ -213,6 +213,7 @@
         <option value="28" name="HAV_MAT_CHAIN_STAIRS">Chain Stairs</option>
         <option value="29" name="HAV_MAT_SNOW_STAIRS">Snow Stairs</option>
         <option value="30" name="HAV_MAT_ELEVATOR">Elevator</option>
+        <option value="31" name="HAV_MAT_RUBBER">Rubber</option>
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
