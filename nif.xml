@@ -171,7 +171,7 @@
         <option value="2" name="QUADRATIC_KEY">Use quadratic interpolation.  Forward and back tangents will be stored.</option>
         <option value="3" name="TBC_KEY">Use Tension Bias Continuity interpolation.  Tension, bias, and continuity will be stored.</option>
         <option value="4" name="XYZ_ROTATION_KEY">For use only with rotation data.  Separate X, Y, and Z keys will be stored instead of using quaternions.</option>
-        <option value="5" name="UNKNOWN_KEY">Unknown.  Step function?</option>
+        <option value="5" name="CONST_KEY">Step function. Used for visibility keys in NiBoolData.</option>
     </enum>
 
     <enum name="LightMode" storage="uint">
