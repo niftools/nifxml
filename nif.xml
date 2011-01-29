@@ -5164,7 +5164,13 @@
         <add name="Num Bones 2" type="uint">The number of node bones referenced as influences.</add>
         <add name="Bones 2" type="Ptr" template="NiNode" arr1="Num Bones 2">List of all armature bones.</add>
     </niobject>
-    
+
+    <!-- Divinity 2 (P_Island_VerySmall_A.item) -->
+    <niobject name="CStreamableAssetData" inherit="NiObject">
+        <add name="Root" type="Ref" template="NiNode" />
+        <add name="Unknown Bytes" type="byte" arr1="5" />
+    </niobject>
+
     <!-- vim: set ts=4 sw=4 et: -->
 
 </niftoolsxml>
