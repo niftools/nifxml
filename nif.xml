@@ -2236,7 +2236,10 @@
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="UV Sets" type="TexCoord" arr1="BS Num UV Sets &amp; 1" arr2="Num Vertices"  vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
-        <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
+        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
+    </niobject>
+
+    <niobject name="AbstractAdditionalGeometryData" abstract="1" inherit="NiObject">
     </niobject>
 
     <niobject name="NiTriBasedGeomData" abstract="1" inherit="NiGeometryData">
@@ -4407,7 +4410,7 @@
         <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" cond="Has Data">Unknown</add>
     </compound>
 
-    <niobject name="NiAdditionalGeometryData" inherit="NiObject">
+    <niobject name="NiAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
         <add name="Num Vertices" type="ushort">Number of vertices</add>
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
         <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
@@ -4415,6 +4418,9 @@
         <add name="Blocks" type="AdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
+    <!-- Fallout NV (nvdlc01vaultposter01.nif) -->
+    <niobject name="BSPackedAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
+    </niobject>
 
     <niobject name="BSWArray" inherit="NiExtraData">
         Bethesda-specific node.
