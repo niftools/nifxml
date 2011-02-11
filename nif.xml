@@ -4410,6 +4410,19 @@
         <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" cond="Has Data">Unknown</add>
     </compound>
 
+    <compound name="BSPackedAdditionalDataBlock">
+        <add name="Has Data" type="bool">Has data</add>
+        <add name="Block Size" type="int" cond="Has Data">Size of Block</add>
+        <add name="Num Blocks" type="int" cond="Has Data">Unknown</add>
+        <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data">Unknown</add>
+
+        <add name="Num Data" type="int" cond="Has Data">Unknown</add>
+        <add name="Data Sizes" type="int" arr1="Num Data" cond="Has Data">Unknown</add>
+        <add name="Data" type="byte" arr1="Block Size" cond="Has Data">Unknown</add>
+        <add name="Unknown Int 1" type="int" />
+        <add name="Unknown Int 2" type="int" />
+    </compound>
+
     <niobject name="NiAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
         <add name="Num Vertices" type="ushort">Number of vertices</add>
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
@@ -4420,6 +4433,11 @@
 
     <!-- Fallout NV (nvdlc01vaultposter01.nif) -->
     <niobject name="BSPackedAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
+        <add name="Num Vertices" type="ushort" />
+        <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
+        <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
+        <add name="Num Blocks" type="int">Number of additional data blocks</add>
+        <add name="Blocks" type="BSPackedAdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
     <niobject name="BSWArray" inherit="NiExtraData">
