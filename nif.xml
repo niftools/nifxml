@@ -4352,16 +4352,17 @@
     </niobject>
 
     <compound name="AdditionalDataInfo">
-        <add name="Data Type" type="int" >Type of data</add>
-        <add name="Block Size" type="int" >Size of Block</add>
-        <add name="Num Blocks" type="int" >Unknown</add>
-        <add name="Block Size 2" type="int" >Unknown</add>
-        <add name="Block Index" type="int" >Unknown</add>
-        <add name="Unknown Int 1" type="int" >Unknown</add>
-        <add name="Unknown Byte 1" type="byte" >Unknown</add>
+        <add name="Data Type" type="int" >Type of data in this channel</add>
+        <add name="Num Channel Bytes Per Element" type="int" >Number of bytes per element of this channel</add>
+        <add name="Num Channel Bytes" type="int" >Total number of bytes of this channel (num vertices times num bytes per element)</add>
+        <add name="Num Total Bytes Per Element" type="int" >Number of bytes per element in all channels together. Sum of num channel bytes per element over all block infos.</add>
+        <add name="Block Index" type="int" >Unsure. The block in which this channel is stored? Usually there is only one block, and so this is zero.</add>
+        <add name="Channel Offset" type="int" >Offset (in bytes) of this channel. Sum of all num channel bytes per element of all preceeding block infos.</add>
+        <add name="Unknown Byte 1" type="byte" default="2">Unknown, usually equal to 2.</add>
     </compound>
 
     <compound name="AdditionalDataBlock">
+        <!-- todo: check if this is essentially the same as BSPackedAdditionalData, i.e. if this is identical to BSPackedAdditionalData minus its last two fields -->
         <add name="Has Data" type="bool">Has data</add>
         <add name="Block Size" type="int" cond="Has Data">Size of Block</add>
         <add name="Num Blocks" type="int" cond="Has Data">Unknown</add>
@@ -4373,16 +4374,17 @@
     </compound>
 
     <compound name="BSPackedAdditionalDataBlock">
+        <!-- see Fallout NV (nvdlc01vaultposter01.nif) -->
         <add name="Has Data" type="bool">Has data</add>
-        <add name="Block Size" type="int" cond="Has Data">Size of Block</add>
-        <add name="Num Blocks" type="int" cond="Has Data">Unknown</add>
-        <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data">Unknown</add>
+        <add name="Num Total Bytes" type="int" cond="Has Data">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</add>
+        <add name="Num Blocks" type="int" cond="Has Data">Number of blocks? Usually equal to one.</add>
+        <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data">Block offsets in the data? Usually equal to zero.</add>
 
-        <add name="Num Data" type="int" cond="Has Data">Unknown</add>
-        <add name="Data Sizes" type="int" arr1="Num Data" cond="Has Data">Unknown</add>
-        <add name="Data" type="byte" arr1="Block Size" cond="Has Data">Unknown</add>
+        <add name="Num Atoms" type="int" cond="Has Data">Number of atoms?</add>
+        <add name="Atom Sizes" type="int" arr1="Num Atoms" cond="Has Data">The sum of all of these equal num total bytes per element, so this probably describes how each data element breaks down into smaller chunks (i.e. atoms).</add>
+        <add name="Data" type="byte" arr1="Num Total Bytes" cond="Has Data">Unknown</add>
         <add name="Unknown Int 1" type="int" />
-        <add name="Unknown Int 2" type="int" />
+        <add name="Num Total Bytes Per Element" type="int">Unsure, but this seems to correspond again to the number of total bytes per element.</add>
     </compound>
 
     <niobject name="NiAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
@@ -4398,7 +4400,7 @@
         <add name="Num Vertices" type="ushort" />
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
         <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
-        <add name="Num Blocks" type="int">Number of additional data blocks</add>
+        <add name="Num Blocks" type="int">Number of additional data blocks. Usually there is exactly one block.</add>
         <add name="Blocks" type="BSPackedAdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
