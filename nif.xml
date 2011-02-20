@@ -3841,7 +3841,7 @@
         <add name="Unknown Short 1" type="short">Unknown</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Short 2" type="short">Unknown</add>
-        <add name="Unknown Bytes 1" type="byte" arr1="3">NXS</add>
+        <add name="Unknown Bytes 0" type="byte" arr1="3">NXS</add>
         <add name="Unknown Byte 1" type="byte">Unknown</add>
         <add name="Unknown Bytes 1" type="byte" arr1="4">MESH</add>
         <add name="Unknown Bytes 2" type="byte" arr1="8">Unknown</add>
