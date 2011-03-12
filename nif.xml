@@ -3452,7 +3452,7 @@
     <niobject name="NiStringsExtraData" abstract="0" inherit="NiExtraData">
         List of strings; for example, a list of all bone names.
         <add name="Num Strings" type="uint">Number of strings.</add>
-        <add name="Data" type="string" arr1="Num Strings">The strings.</add>
+        <add name="Data" type="SizedString" arr1="Num Strings">The strings.</add>
     </niobject>
 
     <niobject name="NiTextKeyExtraData" abstract="0" inherit="NiExtraData">
