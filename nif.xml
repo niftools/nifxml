@@ -4658,6 +4658,21 @@
         <add name="Complete Points" type="SyncPoint" arr1="Num Complete Points">The complete points used by this mesh modifier</add>
     </niobject>
 
+    <compound name="ExtraMeshDataEpicMickey">
+        <add name="Unknown Int 1" type="int" />
+        <add name="Unknown Int 2" type="int" />
+        <add name="Unknown Int 3" type="int" />
+        <add name="Unknown Int 4" type="float" />
+        <add name="Unknown Int 5" type="float" />
+        <add name="Unknown Int 6" type="float" />
+    </compound>
+
+    <compound name="ExtraMeshDataEpicMickey2">
+        <add name="Start" type="int" />
+        <add name="End" type="int" />
+        <add name="Unknown Shorts" type="short" arr1="10" />
+    </compound>
+
     <niobject name="NiMesh" inherit="NiRenderObject">
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
 
@@ -4683,6 +4698,17 @@
         <add name="Unknown 101" type="int" userver="15">Unknown.</add>
         <add name="Unknown 102" type="uint" userver="15">Size of additional data.</add>
         <add name="Unknown 103" type="float" arr1="Unknown 102" userver="15" />
+        <add name="Unknown 200" type="int" userver="15" />
+        <add name="Unknown 201" type="ExtraMeshDataEpicMickey" arr1="Unknown 200" userver="15" />
+        <add name="Unknown 250" type="int" userver="15" />
+        <add name="Unknown 251" type="int" arr1="Unknown 250" userver="15" />
+        <add name="Unknown 300" type="int" userver="15" />
+        <add name="Unknown 301" type="short" userver="15" />
+        <add name="Unknown 302" type="int" userver="15" />
+        <add name="Unknown 303" type="byte" arr1="Unknown 302" userver="15" />
+        <add name="Unknown 350" type="int" userver="15" />
+        <add name="Unknown 351" type="ExtraMeshDataEpicMickey2" arr1="Unknown 350" userver="15" />
+        <add name="Unknown 400" type="int" userver="15" />
         <!-- end: epic mickey (user version 15) unknowns -->
     </niobject>
 
