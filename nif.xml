@@ -4700,12 +4700,12 @@
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
 
         <!-- start: epic mickey (user version 15) unknowns -->
-        <add name="Unknown 1" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 2" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 3" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 4" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 5" type="float" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 6" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 51" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 52" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 53" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 54" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 55" type="float" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 56" type="int" userver="15" /><!-- could also be some other type -->
         <!-- end: epic mickey (user version 15) unknowns -->
 
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
