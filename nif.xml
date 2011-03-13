@@ -4696,6 +4696,15 @@
         <add name="Complete Points" type="SyncPoint" arr1="Num Complete Points">The complete points used by this mesh modifier</add>
     </niobject>
 
+    <compound name="ExtraMeshDataEpicMickey">
+        <add name="Unknown Int 1" type="int" />
+        <add name="Unknown Int 2" type="int" />
+        <add name="Unknown Int 3" type="int" />
+        <add name="Unknown Int 4" type="float" />
+        <add name="Unknown Int 5" type="float" />
+        <add name="Unknown Int 6" type="float" />
+    </compound>
+
     <niobject name="NiMesh" inherit="NiRenderObject">
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
 
@@ -4721,6 +4730,8 @@
         <add name="Unknown 101" type="int" userver="15">Unknown.</add>
         <add name="Unknown 102" type="uint" userver="15">Size of additional data.</add>
         <add name="Unknown 103" type="float" arr1="Unknown 102" userver="15" />
+        <add name="Unknown 200" type="int" userver="15" />
+        <add name="Unknown 201" type="ExtraMeshDataEpicMickey" arr1="Unknown 200" userver="15" />
         <!-- end: epic mickey (user version 15) unknowns -->
     </niobject>
 
