@@ -4660,6 +4660,16 @@
 
     <niobject name="NiMesh" inherit="NiRenderObject">
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
+
+        <!-- start: epic mickey (user version 15) unknowns -->
+        <add name="Unknown 1" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 2" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 3" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 4" type="int" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 5" type="float" userver="15" /><!-- could also be some other type -->
+        <add name="Unknown 6" type="int" userver="15" /><!-- could also be some other type -->
+        <!-- end: epic mickey (user version 15) unknowns -->
+
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
         <add name="Bound" type="SphereBV">The combined bounding volume of all submeshes.</add>
@@ -4667,6 +4677,13 @@
         <add name="Datas" type="MeshData" arr1="Num Datas" />
         <add name="Num Modifiers" type="uint" />
         <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" /><!-- see Zorsis Zombie_Boy.nif -->
+
+        <!-- start: epic mickey (user version 15) unknowns -->
+        <add name="Unknown 100" type="byte" userver="15">Unknown.</add>
+        <add name="Unknown 101" type="int" userver="15">Unknown.</add>
+        <add name="Unknown 102" type="uint" userver="15">Size of additional data.</add>
+        <add name="Unknown 103" type="float" arr1="Unknown 102" userver="15" />
+        <!-- end: epic mickey (user version 15) unknowns -->
     </niobject>
 
     <niobject name="NiMorphWeightsController" inherit="NiInterpController">
