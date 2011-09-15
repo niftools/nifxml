@@ -1038,7 +1038,7 @@
     <compound name="SkinPartition" ver1="4.2.1.0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
-        <add name="Num Triangles" type="ushort">Number of triangles in this submesh.</add>
+        <add name="Num Triangles" type="ushort" calculated="1">Number of triangles in this submesh.</add>
         <add name="Num Bones" type="ushort">Number of bones influencing this submesh.</add>
         <add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
         <add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
