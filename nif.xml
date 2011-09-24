@@ -4609,7 +4609,7 @@
         <add name="Usage" type="DataStreamUsage" abstract="1"></add>
         <add name="Access" type="DataStreamAccess" abstract="1"></add>
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
-        <add name="Cloning Behavior" type="CloningBehavior" default="0" />
+        <add name="Cloning Behavior" type="CloningBehavior" default="CLONING_SHARE" />
         <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
