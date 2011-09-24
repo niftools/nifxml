@@ -1016,18 +1016,18 @@
         <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.&quot; -75 for most v4.0.0.2 meshes.</add>
         <add name="Unknown1" type="ushort" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
         <add name="Has Texture Transform" type="bool" default="false" ver1="10.1.0.0">Determines whether or not the texture&#039;s coordinates are transformed.</add>
-        <add name="Translation" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
-        <add name="Tiling" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0" default="1.0, 1.0">The number of times the texture is tiled in each direction?</add>
-        <add name="W Rotation" type="float" default="0.0" cond="Has Texture Transform != 0" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
-        <add name="Transform Type?" type="uint" default="0" cond="Has Texture Transform != 0" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
-        <add name="Center Offset" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
+        <add name="Translation" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
+        <add name="Tiling" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="1.0, 1.0">The number of times the texture is tiled in each direction?</add>
+        <add name="W Rotation" type="float" default="0.0" cond="Has Texture Transform" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
+        <add name="Transform Type?" type="uint" default="0" cond="Has Texture Transform" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
+        <add name="Center Offset" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The offset from the origin?</add>
     </compound>
 
     <compound name="ShaderTexDesc" ver1="10.0.1.0">
         An extended texture description for shader textures.
         <add name="Is Used" type="bool">Is it used?</add>
-        <add name="Texture Data" type="TexDesc" cond="Is Used != 0">The texture data.</add>
-        <add name="Map Index" type="uint" cond="Is Used != 0">Map Index</add>
+        <add name="Texture Data" type="TexDesc" cond="Is Used">The texture data.</add>
+        <add name="Map Index" type="uint" cond="Is Used">Map Index</add>
     </compound>
 
     <compound name="TexSource">
@@ -1059,20 +1059,20 @@
         <add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
         <add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
         <add name="Bones" type="ushort" arr1="Num Bones">List of bones.</add>
-        <add name="Has Vertex Map" type="byte" ver1="10.1.0.0">Do we have a vertex map?</add>
+        <add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
-        <add name="Vertex Map" type="ushort" arr1="Num Vertices" cond="Has Vertex Map != 0" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
+        <add name="Vertex Map" type="ushort" arr1="Num Vertices" cond="Has Vertex Map" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
         <add name="Has Vertex Weights" type="bool" ver1="10.1.0.0">Do we have vertex weights?</add>
         <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2">The vertex weights.</add>
-        <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights != 0" ver1="10.1.0.0">The vertex weights.</add>
+        <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights" ver1="10.1.0.0">The vertex weights.</add>
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The strip lengths.</add>
-        <add name="Has Faces" type="byte" ver1="10.1.0.0">Do we have triangle or strip data?</add>
+        <add name="Has Faces" type="bool" ver1="10.1.0.0">Do we have triangle or strip data?</add>
         <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Num Strips != 0" ver2="10.0.1.2">The strips.</add>
-        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces != 0) &amp;&amp; (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
+        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces) &amp;&amp; (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Num Strips == 0" ver2="10.0.1.2">The triangles.</add>
-        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces != 0) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
-        <add name="Has Bone Indices" type="byte">Do we have bone indices?</add>
-        <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices != 0">Bone indices, they index into &#039;Bones&#039;.</add>
+        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
+        <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
+        <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into &#039;Bones&#039;.</add>
     </compound>
 
     <compound name="BoundingBox">
@@ -1192,7 +1192,7 @@
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Enable Motor" type="bool" ver1="20.2.0.7">Unknown</add>
         <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
     </compound>
 
@@ -1220,7 +1220,7 @@
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
         <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="byte" ver1="20.2.0.7">Unknown</add>
+        <add name="Enable Motor" type="bool" ver1="20.2.0.7">Unknown</add>
         <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
     </compound>
 
@@ -1910,7 +1910,7 @@
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
         <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0">Do we have a bounding box?</add>
-        <add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box != 0" ver1="3.0" ver2="4.2.2.0">The bounding box.</add>
+        <add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box" ver1="3.0" ver2="4.2.2.0">The bounding box.</add>
         <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="10.0.1.0">Refers to NiCollisionObject, which is usually a bounding box or other simple collision shape.  In Oblivion this links the Havok objects.</add>
     </niobject>
 
@@ -2186,8 +2186,8 @@
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
         <add name="Active Material" type="int" ver1="20.2.0.7" default="0">Active Material; often -1. (Is this a link, array index?)</add>
         <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.1.0.3">Shader.</add>
-        <add name="Shader Name" type="string" cond="Has Shader != 0" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
-        <add name="Unknown Integer" type="int" cond="Has Shader != 0" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
+        <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
+        <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
@@ -2204,13 +2204,13 @@
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
-        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices != 0">The mesh vertices.</add>
+        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))))">Methods for saving binormals and tangents saved in upper byte.  Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
-        <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals != 0">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals != 0) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2221,7 +2221,7 @@
 
             Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
         </add>
-        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors != 0">The vertex colors.</add>
+        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
         <add name="Num UV Sets" type="ushort" ver2="4.2.2.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits. For versions 10.1.0.0 and up, if bit 12 is set then extra vectors are present after the normals.</add>
         <add name="Has UV" type="bool" ver2="4.0.0.2">
             Do we have UV coordinates?
@@ -2330,26 +2330,26 @@
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
-        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii != 0" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
+        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
         <add name="Num Active" type="ushort">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</add>
         <add name="Has Sizes" type="bool">Is the particle size array present?</add>
-        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes != 0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
+        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particel sizes.</add>
         <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
-        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations != 0" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particle rotations.</add>
+        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">The individual particle rotations.</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
-        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles != 0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Angles of rotation</add>
+        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
-        <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes != 0" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown</add>
+        <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown</add>
 
         <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown ushort</add>
         <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
-        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1 != 0" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
+        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
         Rotating particles data object.
         <add name="Has Rotations 2" type="bool" ver2="4.2.2.0">Is the particle rotation array present?</add>
-        <add name="Rotations 2" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 2 != 0" ver2="4.2.2.0">The individual particle rotations.</add>
+        <add name="Rotations 2" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 2" ver2="4.2.2.0">The individual particle rotations.</add>
     </niobject>
 
     <niobject name="NiAutoNormalParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2370,7 +2370,7 @@
         Particle system data.
         <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3 != 0" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
+        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
         <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
     </niobject>
@@ -2724,7 +2724,7 @@
 
     <niobject name="FxWidget" abstract="0" inherit="NiNode">
         Firaxis-specific UI widgets?
-        <add name="Unknown1" type="byte">Unknown.</add>
+        <add name="Unknown 3" type="byte">Unknown.</add>
         <add name="Unknown 292 Bytes" type="byte" arr1="292">Looks like 9 links and some string data.</add>
     </niobject>
 
@@ -3518,36 +3518,36 @@
         <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
         <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
-        <add name="Base Texture" type="TexDesc" cond="Has Base Texture != 0">The base texture.</add>
+        <add name="Base Texture" type="TexDesc" cond="Has Base Texture">The base texture.</add>
         <add name="Has Dark Texture" type="bool">Do we have a dark texture?</add>
-        <add name="Dark Texture" type="TexDesc" cond="Has Dark Texture != 0">The dark texture.</add>
+        <add name="Dark Texture" type="TexDesc" cond="Has Dark Texture">The dark texture.</add>
         <add name="Has Detail Texture" type="bool">Do we have a detail texture?</add>
-        <add name="Detail Texture" type="TexDesc" cond="Has Detail Texture != 0">The detail texture.</add>
+        <add name="Detail Texture" type="TexDesc" cond="Has Detail Texture">The detail texture.</add>
         <add name="Has Gloss Texture" type="bool">Do we have a gloss texture?</add>
-        <add name="Gloss Texture" type="TexDesc" cond="Has Gloss Texture != 0">The gloss texture.</add>
+        <add name="Gloss Texture" type="TexDesc" cond="Has Gloss Texture">The gloss texture.</add>
         <add name="Has Glow Texture" type="bool">Do we have a glow texture?</add>
-        <add name="Glow Texture" type="TexDesc" cond="Has Glow Texture != 0">The glowing texture.</add>
+        <add name="Glow Texture" type="TexDesc" cond="Has Glow Texture">The glowing texture.</add>
         <add name="Has Bump Map Texture" type="bool">Do we have a bump map texture?</add>
-        <add name="Bump Map Texture" type="TexDesc" cond="Has Bump Map Texture != 0">The bump map texture.</add>
-        <add name="Bump Map Luma Scale" type="float" cond="Has Bump Map Texture != 0">Unknown.</add>
-        <add name="Bump Map Luma Offset" type="float" cond="Has Bump Map Texture != 0">Unknown.</add>
-        <add name="Bump Map Matrix" type="Matrix22" cond="Has Bump Map Texture != 0">Unknown.</add>
+        <add name="Bump Map Texture" type="TexDesc" cond="Has Bump Map Texture">The bump map texture.</add>
+        <add name="Bump Map Luma Scale" type="float" cond="Has Bump Map Texture">Unknown.</add>
+        <add name="Bump Map Luma Offset" type="float" cond="Has Bump Map Texture">Unknown.</add>
+        <add name="Bump Map Matrix" type="Matrix22" cond="Has Bump Map Texture">Unknown.</add>
         <add name="Has Normal Texture" type="bool" ver1="20.2.0.7">Do we have a normal texture?  (Noraml guess based on file suffix in sample files)</add>
-        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture != 0" ver1="20.2.0.7">Normal texture.</add>
+        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture" ver1="20.2.0.7">Normal texture.</add>
         <add name="Has Unknown2 Texture" type="bool" ver1="20.2.0.7">Do we have a unknown texture 2?</add>
-        <add name="Unknown2 Texture" type="TexDesc" cond="Has Unknown2 Texture != 0" ver1="20.2.0.7">Unknown texture 2.</add>
-        <add name="Unknown2 Float" type="float" cond="Has Unknown2 Texture != 0">Unknown.</add>
+        <add name="Unknown2 Texture" type="TexDesc" cond="Has Unknown2 Texture" ver1="20.2.0.7">Unknown texture 2.</add>
+        <add name="Unknown2 Float" type="float" cond="Has Unknown2 Texture">Unknown.</add>
         <add name="Has Decal 0 Texture" type="bool">Do we have a decal 0 texture?</add>
-        <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture != 0">The decal texture.</add>
+        <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture">The decal texture.</add>
         <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt;= 8" ver2="20.1.0.3">Do we have a decal 1 texture?</add>
         <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt;= 10" ver1="20.2.0.7">Do we have a decal 1 texture?</add>
-        <add name="Decal 1 Texture" type="TexDesc" cond="Has Decal 1 Texture != 0">Another decal texture.</add>
+        <add name="Decal 1 Texture" type="TexDesc" cond="Has Decal 1 Texture">Another decal texture.</add>
         <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt;= 9" ver2="20.1.0.3">Do we have a decal 2 texture?</add>
         <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt;= 11" ver1="20.2.0.7">Do we have a decal 2 texture?</add>
-        <add name="Decal 2 Texture" type="TexDesc" cond="Has Decal 2 Texture != 0">Another decal texture.</add>
+        <add name="Decal 2 Texture" type="TexDesc" cond="Has Decal 2 Texture">Another decal texture.</add>
         <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt;= 10" ver2="20.1.0.3">Do we have a decal 3 texture?</add>
         <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt;= 12" ver1="20.2.0.7">Do we have a decal 3 texture?</add>
-        <add name="Decal 3 Texture" type="TexDesc" cond="Has Decal 3 Texture != 0">Another decal texture. Who knows the limit.</add>
+        <add name="Decal 3 Texture" type="TexDesc" cond="Has Decal 3 Texture">Another decal texture. Who knows the limit.</add>
         <add name="Num Shader Textures" type="uint" ver1="10.0.1.0">Number of Shader textures that follow.</add>
         <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
     </niobject>
@@ -3565,7 +3565,7 @@
         <add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
         <add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
-        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles != 0" ver1="10.0.1.3">Triangle face data.</add>
+        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles" ver1="10.0.1.3">Triangle face data.</add>
         <add name="Num Match Groups" type="ushort" ver1="3.1">Number of shared normals groups.</add>
         <add name="Match Groups" type="MatchGroup" arr1="Num Match Groups" ver1="3.1">The shared normals.</add>
     </niobject>
@@ -3580,7 +3580,7 @@
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The number of points in each triangle strip.</add>
         <add name="Has Points" type="bool" ver1="10.0.1.3">Do we have strip point data?</add>
         <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The points in the Triangle strips.  Size is the sum of all entries in Strip Lengths.</add>
-        <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points != 0" ver1="10.0.1.3">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</add>
+        <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points" ver1="10.0.1.3">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</add>
     </niobject>
 
     <niobject name="NiEnvMappedTriShape" abstract="0" inherit="NiObjectNET">
@@ -3624,13 +3624,13 @@
         Unknown
         <add name="Num Bezier Triangles" type="uint">references.</add>
         <add name="Bezier Triangle" type="Ref" template="NiBezierTriangle4" arr1="Num Bezier Triangles">unknown</add>
-        <add name="Unknown 1" type="uint">Unknown.</add>
+        <add name="Unknown 3" type="uint">Unknown.</add>
         <add name="Count 1" type="ushort">Data count.</add>
-        <add name="Unknown 2" type="ushort">Unknown.</add>
+        <add name="Unknown 4" type="ushort">Unknown.</add>
         <add name="Points 1" type="Vector3" arr1="Count 1">data.</add>
-        <add name="Unknown 3" type="uint">Unknown (illegal link?).</add>
+        <add name="Unknown 5" type="uint">Unknown (illegal link?).</add>
         <add name="Points 2" type="float" arr1="Count 1" arr2="2">data.</add>
-        <add name="Unknown 4" type="uint">unknown</add>
+        <add name="Unknown 6" type="uint">unknown</add>
         <add name="Count 2" type="ushort">data count 2.</add>
         <add name="Data 2" type="ushort" arr1="Count 2" arr2="4">data count.</add>
     </niobject>
@@ -3969,7 +3969,7 @@
     <niobject name="NiPortal" inherit="NiAVObject">
         A Portal
         <add name="Unknown Flags" type="Flags">Unknown flags.</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
         <add name="Num Vertices" type="ushort">Number of vertices in this polygon</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices">Vertices</add>
         <add name="Target" type="Ptr" template="NiNode">Target portal or room</add>
@@ -4185,7 +4185,7 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 3" type="short">Unknown</add>
         <add name="Unknown byte 1" type="byte">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown Int 3" type="int">Unknown</add>
@@ -4424,7 +4424,7 @@
     <niobject name="BSDebrisNode" inherit="NiNode">
         Bethesda-Specific node.
         <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
     </niobject>
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
@@ -4571,7 +4571,7 @@
         <add name="Usage" type="DataStreamUsage" abstract="1"></add>
         <add name="Access" type="DataStreamAccess" abstract="1"></add>
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
-        <add name="Cloning Behavior" type="CloningBehavior" default="0" />
+        <add name="Cloning Behavior" type="CloningBehavior" default="CLONING_SHARE" />
         <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
