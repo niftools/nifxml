@@ -2765,7 +2765,7 @@
 
     <niobject name="FxWidget" abstract="0" inherit="NiNode">
         Firaxis-specific UI widgets?
-        <add name="Unknown1" type="byte">Unknown.</add>
+        <add name="Unknown 3" type="byte">Unknown.</add>
         <add name="Unknown 292 Bytes" type="byte" arr1="292">Looks like 9 links and some string data.</add>
     </niobject>
 
@@ -3662,13 +3662,13 @@
         Unknown
         <add name="Num Bezier Triangles" type="uint">references.</add>
         <add name="Bezier Triangle" type="Ref" template="NiBezierTriangle4" arr1="Num Bezier Triangles">unknown</add>
-        <add name="Unknown 1" type="uint">Unknown.</add>
+        <add name="Unknown 3" type="uint">Unknown.</add>
         <add name="Count 1" type="ushort">Data count.</add>
-        <add name="Unknown 2" type="ushort">Unknown.</add>
+        <add name="Unknown 4" type="ushort">Unknown.</add>
         <add name="Points 1" type="Vector3" arr1="Count 1">data.</add>
-        <add name="Unknown 3" type="uint">Unknown (illegal link?).</add>
+        <add name="Unknown 5" type="uint">Unknown (illegal link?).</add>
         <add name="Points 2" type="float" arr1="Count 1" arr2="2">data.</add>
-        <add name="Unknown 4" type="uint">unknown</add>
+        <add name="Unknown 6" type="uint">unknown</add>
         <add name="Count 2" type="ushort">data count 2.</add>
         <add name="Data 2" type="ushort" arr1="Count 2" arr2="4">data count.</add>
     </niobject>
@@ -4007,7 +4007,7 @@
     <niobject name="NiPortal" inherit="NiAVObject">
         A Portal
         <add name="Unknown Flags" type="Flags">Unknown flags.</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
         <add name="Num Vertices" type="ushort">Number of vertices in this polygon</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices">Vertices</add>
         <add name="Target" type="Ptr" template="NiNode">Target portal or room</add>
@@ -4223,7 +4223,7 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 3" type="short">Unknown</add>
         <add name="Unknown byte 1" type="byte">Unknown</add>
         <add name="Unknown Int 2" type="int">Unknown</add>
         <add name="Unknown Int 3" type="int">Unknown</add>
@@ -4462,7 +4462,7 @@
     <niobject name="BSDebrisNode" inherit="NiNode">
         Bethesda-Specific node.
         <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Short 2" type="short">Unknown</add>
     </niobject>
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
