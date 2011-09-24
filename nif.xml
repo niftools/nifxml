@@ -1054,7 +1054,7 @@
         <add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
         <add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
         <add name="Bones" type="ushort" arr1="Num Bones">List of bones.</add>
-        <add name="Has Vertex Map" type="byte" ver1="10.1.0.0">Do we have a vertex map?</add>
+        <add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" cond="Has Vertex Map" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
         <add name="Has Vertex Weights" type="bool" ver1="10.1.0.0">Do we have vertex weights?</add>
