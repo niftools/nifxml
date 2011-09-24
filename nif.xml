@@ -1011,11 +1011,11 @@
         <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.&quot; -75 for most v4.0.0.2 meshes.</add>
         <add name="Unknown1" type="ushort" ver2="4.1.0.12">Unknown, 0 or 0x0101?</add>
         <add name="Has Texture Transform" type="bool" default="false" ver1="10.1.0.0">Determines whether or not the texture&#039;s coordinates are transformed.</add>
-        <add name="Translation" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
-        <add name="Tiling" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0" default="1.0, 1.0">The number of times the texture is tiled in each direction?</add>
-        <add name="W Rotation" type="float" default="0.0" cond="Has Texture Transform != 0" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
-        <add name="Transform Type?" type="uint" default="0" cond="Has Texture Transform != 0" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
-        <add name="Center Offset" type="TexCoord" cond="Has Texture Transform != 0" ver1="10.1.0.0">The offset from the origin?</add>
+        <add name="Translation" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
+        <add name="Tiling" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="1.0, 1.0">The number of times the texture is tiled in each direction?</add>
+        <add name="W Rotation" type="float" default="0.0" cond="Has Texture Transform" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
+        <add name="Transform Type?" type="uint" default="0" cond="Has Texture Transform" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
+        <add name="Center Offset" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The offset from the origin?</add>
     </compound>
 
     <compound name="ShaderTexDesc" ver1="10.0.1.0">
@@ -2227,7 +2227,7 @@
 
             Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
         </add>
-        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors != 0">The vertex colors.</add>
+        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
         <add name="Num UV Sets" type="ushort" ver2="4.2.2.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits. For versions 10.1.0.0 and up, if bit 12 is set then extra vectors are present after the normals.</add>
         <add name="Has UV" type="bool" ver2="4.0.0.2">
             Do we have UV coordinates?
