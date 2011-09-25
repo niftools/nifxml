@@ -2729,7 +2729,7 @@
 
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
         Describes the material shading properties.
-        <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
+        <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
         <add name="Ambient Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects ambient light.</add>
         <add name="Diffuse Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects diffuse light.</add>
         <add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
