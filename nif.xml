@@ -3524,7 +3524,8 @@
 
     <niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty">
         Unknown
-        <add name="Unknown Short" type="short">Unknown. Either 210 or 194.</add>
+        <add name="Unknown Ints" type="uint" arr1="3" ver2="2.3" />
+        <add name="Unknown Short" type="short" ver1="3.0">Unknown. Either 210 or 194.</add>
         <add name="PS2 L" type="short" default="0" ver1="3.1" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="short" default="-75" ver1="3.1" ver2="10.2.0.0">-75?</add>
     </niobject>
