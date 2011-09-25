@@ -1850,7 +1850,7 @@
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
-        <add name="Has Old Extra Data" type="uint" ver2="2.3">Extra data for pre-3.0 versions.</add>
+        <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
         <add name="Old Extra Internal Id" cond="Has Old Extra Data" ver2="2.3" type="uint">ref</add>
         <add name="Old Extra String" cond="Has Old Extra Data" ver2="2.3" type="string">Extra string data.</add>
