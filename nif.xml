@@ -1410,7 +1410,7 @@
     </niobject>
 
     <niobject name="Ni3dsAlphaAnimator" abstract="0" inherit="NiObject">
-        Unknown!
+        Unknown.
         <add name="Unknown 1" type="byte" arr1="40">Unknown.</add>
         <add name="Parent" type="Ref" template="NiObject">The parent?</add>
         <add name="Num 1" type="uint">Unknown.</add>
@@ -1419,9 +1419,9 @@
     </niobject>
 
     <niobject name="Ni3dsAnimationNode" abstract="0" inherit="NiObject">
-        Unknown!
+        Unknown. Only found in 2.3 nifs.
         <add name="Name" type="string">Name of this object.</add>
-        <add name="Has Data" type="uint">Unknown.</add>
+        <add name="Has Data" type="bool">Unknown.</add>
         <add name="Unknown Floats 1" type="float" arr1="21" cond="Has Data">Unknown. Matrix?</add>
         <add name="Unknown Short" type="ushort" cond="Has Data">Unknown.</add>
         <add name="Child" type="Ref" template="NiObject" cond="Has Data">Child?</add>
@@ -1844,7 +1844,7 @@
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
-        <add name="Has Old Extra Data" type="uint" ver2="2.3">Extra data for pre-3.0 versions.</add>
+        <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
         <add name="Old Extra Internal Id" cond="Has Old Extra Data" ver2="2.3" type="uint">ref</add>
         <add name="Old Extra String" cond="Has Old Extra Data" ver2="2.3" type="string">Extra string data.</add>
