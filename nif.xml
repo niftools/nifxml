@@ -2324,6 +2324,8 @@
             111 GL_NEVER
         </add>
         <add name="Threshold" type="byte">Threshold for alpha testing (see: glAlphaFunc)</add>
+        <add name="Unknown Short 1" type="ushort" ver2="2.3">Unknown</add>
+        <add name="Unknown Int 2" type="uint" ver2="2.3">Unknown</add>
     </niobject>
 
     <niobject name="NiAmbientLight" abstract="0" inherit="NiLight">
