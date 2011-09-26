@@ -1536,7 +1536,7 @@
         <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
         <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
         <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_INVALID">The motion type. Determines quality of motion?</add>
+        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_FIXED">The motion type. Determines quality of motion?</add>
         <add name="Unknown Int 6" type="uint" default="512">Unknown.</add>
         <add name="Unknown Int 7" type="uint" default="160">Unknown.</add>
         <add name="Unknown Int 8" type="uint" default="161">Unknown.</add>
