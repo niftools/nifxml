@@ -1911,8 +1911,8 @@
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
         <add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
-        <add name="Num Properties" type="uint">The number of property objects referenced.</add>
-        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties">List of node properties.</add>
+        <add name="Num Properties" type="uint" vercond="(User Version  &lt;= 11)">The number of property objects referenced.</add>
+        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="(User Version &lt;= 11)">List of node properties.</add>
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
         <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0">Do we have a bounding box?</add>
