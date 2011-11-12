@@ -1526,6 +1526,9 @@
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
+        <add name="Unknown Float 51" type="float" vercond="(User Version >= 12)" />
+        <add name="Unknown Float 52" type="float" vercond="(User Version >= 12)" />
+        <add name="Unknown Float 53" type="float" vercond="(User Version >= 12)" />
         <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float" default="0.15">
@@ -1540,9 +1543,11 @@
         <add name="Unknown Int 6" type="uint" default="512">Unknown.</add>
         <add name="Unknown Int 7" type="uint" default="160">Unknown.</add>
         <add name="Unknown Int 8" type="uint" default="161">Unknown.</add>
+        <add name="Unknown Int 81" type="uint" vercond="(User Version >= 12)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Unknown Int 9" type="uint">0 = do not respond to wind, 1 = respond to wind (?)</add>
+        <add name="Unknown Int 9" type="uint" vercond="(User Version &lt;= 11)">0 = do not respond to wind, 1 = respond to wind (?)</add>
+        <add name="Unknown Int 91" type="ushort" vercond="(User Version >= 12)"></add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
