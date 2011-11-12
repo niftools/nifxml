@@ -4201,6 +4201,12 @@
         Bethesda-specific node.
     </niobject>
 
+    <!-- Skyrim specific property -->
+    <!-- not sure about inheritance, just guessing for now -->
+    <niobject name="BSLightingShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty">
+        Bethesda-specific node.
+    </niobject>
+
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
         Bethesda-specific node.
         <add name="Num Partitions" type="int">Unknown</add>
@@ -5257,6 +5263,14 @@
     <niobject name="CStreamableAssetData" inherit="NiObject">
         <add name="Root" type="Ref" template="NiNode" />
         <add name="Unknown Bytes" type="byte" arr1="5" />
+    </niobject>
+
+    <!-- Skyrim specific havok block -->
+    <niobject name="bhkCompressedMeshShape" inherit="NiObject">
+    </niobject>
+
+    <!-- Skyrim specific havok block -->
+    <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
