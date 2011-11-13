@@ -2207,6 +2207,8 @@
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
+		<add name="Property Link 1" type="Ref" ver1="20.2.0.7" userver="12"> Property Link 1</add>
+		<add name="Property Link 2" type="Ref" ver1="20.2.0.7" userver="12"> Property Link 2</add>
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -2223,6 +2225,7 @@
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))">Methods for saving binormals and tangents saved in upper byte.  Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
+		<add name="Unknown Int" type="uint" ver1="20.2.0.7" vercond="(User Version == 12)"> Unknown,Skyrim.</add>	
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
@@ -5284,5 +5287,14 @@
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
-
+	
+	<!-- Skyrim specific block -->
+	<niobject name="BSInvMarker" inherit="NiObject">
+		<add name="Name" type="string">Object name.</add>
+		<add name="Unknown" type="uint"> </add>
+		<add name="Unknown" type="uint"> </add>
+		<add name="Unknown" type="ushort"> </add>
+		</niobject>
+	
+	
 </niftoolsxml>
