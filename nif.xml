@@ -1069,6 +1069,7 @@
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into &#039;Bones&#039;.</add>
+		<add name="Unknown Short" type="ushort" vercond="User Version >= 12">Unknown</add>
     </compound>
 
     <compound name="BoundingBox">
@@ -4116,6 +4117,7 @@
         <add name="Flags" type="Flags" default="1">Unknown</add>
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
+        <add name="Unknown Short 1" type="ushort" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
         <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
     </niobject>
@@ -4215,9 +4217,13 @@
     </niobject>
 
     <!-- Skyrim specific property -->
-    <!-- not sure about inheritance, just guessing for now -->
     <niobject name="BSLightingShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty">
         Bethesda-specific node.
+		<add name="Unknown Int 1" type="uint" vercond="(User Version == 12)">Unknown.</add>
+		<add name="Unknown Floats" type="float" arr1="9" vercond="(User Version == 12)">Skyrim, MaterialProperty might be merged in some form here.</add>
+		<add name="Unknown Float Set(?)" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set(?)" type="float" arr1="3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set(?)" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -5284,17 +5290,32 @@
 
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
+	
     </niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
 	
-	<!-- Skyrim specific block -->
+	<!-- Skyrim specific blocks -->
 	<niobject name="BSInvMarker" inherit="NiObject">
 		<add name="Name" type="string">Object name.</add>
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="ushort"> </add>
-		</niobject>
+	</niobject>
+
+	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
+		<add name="Unknown Int 1" type="uint"> </add>
+		<add name="Unknown Int 2" type="uint"> </add>
+		<add name="Unknown Int 3" type="uint"> </add>
+		<add name="Unknown Int 4" type="uint" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 5" type="uint" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 6" type="uint" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 7" type="uint" vercond="User Version >= 12"> </add>
+	</niobject>
 	
+	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
+		<add name="Unknown Int 1" type="uint">Unknown, possibly a link</add>
+		<add name="Unknown Byte 1" type="byte">Unknown</add>
+	</niobject>
 	
 </niftoolsxml>
