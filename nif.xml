@@ -4523,8 +4523,16 @@
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
         Bethesda-Specific node.
-        <add name="Unknown Ints 1" type="int" arr1="41" />
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Unknown Ints 1" type="int" arr1="41" vercond="User Version &lt;= 11"> </add>
+        <add name="Unknown Short 1" type="short" vercond="User Version &lt;= 11">Unknown</add>
+		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown -Num Links?</add>
+		<add name="Unknown Int 3" type="Ref" vercond="User Version == 12">Unknown -Links?</add>
+		<add name="Unknown Int 4" type="Ref" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Int 5" type="uint" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Floats" type="Matrix33" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Floats" type="float" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Byte" type="byte" vercond="User Version == 12">Unknown</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
@@ -5336,5 +5344,11 @@
 		<add name="Unknown Float 4" type="float">Unknown</add>
 	</niobject>
 
+	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
+		<add name="Unknown Int 1" type="uint">Unknown</add>
+		<add name="Unknown Int 2" type="uint">Unknown</add>
+		<add name="Unknown Int 3" type="uint">Unknown</add>
+		
+	</niobject>
 	
 </niftoolsxml>
