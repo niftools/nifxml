@@ -4147,8 +4147,8 @@
         <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
     </niobject>
 
+	<!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Bethesda-specific property, seen in Skyrim.
         <add name="Unknown Byte 1" type="byte">8/16?</add>
         <add name="Unknown Short 1" type="ushort"> </add>
         <add name="Unknown Byte 2" type="byte">always 80?</add>
@@ -4167,6 +4167,11 @@
 	<!-- Skyrim specific Node -->
 	<niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController">
 		<add name="Target" type="Ref">Unknown</add>
+	</niobject>
+	
+	<!-- Skyrim specific Node -->
+	<niobject name="BSLightingShaderPropertyFloatController" inherit="NiFloatInterpController">
+		<add name="Target(?)" type="uint">Unknown</add>
 	</niobject>
 	
 	
@@ -5304,8 +5309,7 @@
     <!-- vim: set ts=4 sw=4 et: -->
 	
 	<!-- Skyrim specific blocks -->
-	<niobject name="BSInvMarker" inherit="NiObject">
-		<add name="Name" type="string">Object name.</add>
+	<niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="ushort"> </add>
@@ -5326,13 +5330,7 @@
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 	</niobject>
 
-	<niobject name="BSLagBoneController" inherit="NiObject">
-		<add name="Name" type="string">Object name.</add>
-		<add name="Unknown Short 1" type="ushort">Unknown</add>
-		<add name="Unknown Float 1" type="float">Unknown</add>
-		<add name="Unknown Int 1" type="uint">Unknown</add>
-		<add name="Unknown Set" type="ushort" arr1="4">Unknown</add>
-		<add name="Target(?)" type="uint">Unknown</add>
+	<niobject name="BSLagBoneController" inherit="NiTimeController">
 		<add name="Unknown Float 2" type="float">Unknown</add>
 		<add name="Unknown Float 3" type="float">Unknown</add>
 		<add name="Unknown Float 4" type="float">Unknown</add>
