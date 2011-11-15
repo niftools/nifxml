@@ -4159,9 +4159,17 @@
         <add name="Unknown Int 2" type="uint"> </add>
         <add name="Unknown Floats 1" type="Matrix33">Not correct or finished, but it fits for now.</add>
         <add name="Unknown Float" type="float"> </add>
-        <add name="Unknown Int 3" type="uint"> </add>
+        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
+		
+		
     </niobject>
 
+	<!-- Skyrim specific Node -->
+	<niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController">
+		<add name="Target" type="Ref">Unknown</add>
+	</niobject>
+	
+	
     <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
         Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6">Number of Textures</add>
@@ -5317,5 +5325,18 @@
 		<add name="Unknown Int 1" type="uint">Unknown, possibly a link</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 	</niobject>
+
+	<niobject name="BSLagBoneController" inherit="NiObject">
+		<add name="Name" type="string">Object name.</add>
+		<add name="Unknown Short 1" type="ushort">Unknown</add>
+		<add name="Unknown Float 1" type="float">Unknown</add>
+		<add name="Unknown Int 1" type="uint">Unknown</add>
+		<add name="Unknown Set" type="ushort" arr1="4">Unknown</add>
+		<add name="Target(?)" type="uint">Unknown</add>
+		<add name="Unknown Float 2" type="float">Unknown</add>
+		<add name="Unknown Float 3" type="float">Unknown</add>
+		<add name="Unknown Float 4" type="float">Unknown</add>
+	</niobject>
+
 	
 </niftoolsxml>
