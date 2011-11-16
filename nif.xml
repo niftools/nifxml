@@ -4230,7 +4230,7 @@
     </niobject>
 
     <!-- Skyrim specific property -->
-    <niobject name="BSLightingShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty">
+    <niobject name="BSLightingShaderProperty" inherit="BSShaderPPLightingProperty">
         Bethesda-specific node.
 		<add name="Unknown Int 1" type="uint" vercond="(User Version == 12)">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="9" vercond="(User Version == 12)">Skyrim, MaterialProperty might be merged in some form here.</add>
@@ -4409,6 +4409,7 @@
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
         <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
+		<add name="Unknown Int" type="uint">Unknown</add>
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
@@ -5306,13 +5307,69 @@
     </niobject>
 
     <!-- Skyrim specific havok block -->
-    <niobject name="bhkCompressedMeshShape" inherit="NiObject">
+    <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
+        <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
+        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
+		<add name="Unknown Floats" type="float" arr1="8">Unknown</add>
+		<add name="Data" type="Ptr">Data Link</add>
     </niobject>
 
+	
+	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
+	<compound name="bhkCMSD Something">
+		<add name="Large Int" type="uint">Unknown</add>
+		<add name="Unknown Integer" type="uint">Always 1?</add>
+	</compound>
+	
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
-	
-    </niobject>
+		<add name="Unknown Int 1" type="uint">Unknown</add>
+		<add name="Unknown Int 2" type="uint">Unknown</add>
+		<add name="Unknown Short 1" type="Flags">Unknown</add>
+		<add name="Unknown Short 2" type="Flags">Unknown</add>
+		<add name="Unknown Short 3" type="Flags">Unknown</add>
+		<add name="Unknown Short 4" type="Flags">Unknown</add>
+		<add name="Unknown Float 1" type="float">Unknown.</add>
+		<add name="Unknown Floats 1" type="Vector4">Unknown.</add>
+		<add name="Unknown Floats 2" type="Vector4">Unknown.</add>
+		<add name="Unknown Byte 1" type="byte">Unknown</add>
+		<add name="Unknown Int Set 1" type="uint" arr1="3">Unknown</add>
+		<add name="Unknown Byte 2" type="byte">Unknown</add>
+		
+		<add name="Something Count" type="uint">Number of bhkCMSDSomething</add>
+		<add name="Unknown Int Something" type="bhkCMSD Something" arr1="Something Count">Unknown</add>
+		
+		<add name="Unknown Int 6" type="uint">Unknown</add>
+		<add name="Storage Format" type="uint">Format for vertices/?</add>
+		<add name="Unknown Int 8" type="uint">Unknown</add>
+		<add name="Unknown Int 9" type="uint">Unknown</add>
+		<add name="Unknown Int 10" type="uint">Unknown</add>
+		
+		<add name="Unknown Floats 3" type="Vector3">Unknown.</add>
+		<add name="Unknown Int 11" type="uint">Unknown</add>
+		<add name="Unknown Floats 4" type="Vector3">Unknown.</add>
+		<add name="Unknown Int 12" type="uint">Unknown</add>
+		<add name="Unknown Floats 5" type="Vector3">Unknown.</add>
+		<add name="Unknown Int 13" type="uint">Unknown</add>
+		<add name="Unknown float 2" type="float">Unknown</add>
+		
+		<add name="Unknown Floats 5" type="Vector3" cond="Storage Format >= 3">Unknown.</add>
+		<add name="Unknown Floats 6" type="Vector3" cond="Storage Format >= 3">Unknown</add>		
+		<add name="Unknown float 3" type="float" cond="Storage Format >= 3">Unknown</add>
+		<add name="Unknown Int 14" type="uint" cond="Storage Format >= 3">Unknown</add>
+		
+		<add name="Unknown Int 14" type="uint" cond="Storage Format &lt;= 1">Unknown</add>
+		
+		<add name="Num Vertices" type="uint" cond="Storage Format >= 2">Unknown</add>
+		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Storage Format >= 2">Compressed Vertices?</add>
+		
+		
+		<add name="Num Triangles" type="uint">Unknown</add>
+		<add name="Triangle Faces" type="Triangle" arr1="Num Triangles"></add>
+		
+	</niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
 	
