@@ -2430,19 +2430,13 @@
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        
         <add name="Unknown Byte 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
         <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Byte 3" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Data Size" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Num bytes per</add>
+        <add name="Has Vertex Colors 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Num Vertex Colors 2" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Num bytes per</add>
         <add name="Unknown Int 3" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 1" type="float" arr1="16" cond="Data Size == 4" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 2" type="float" arr1="32" cond="Data Size == 8" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 3" type="float" arr1="64" cond="Data Size == 16" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 4" type="float" arr1="128" cond="Data Size == 32" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 5" type="float" arr1="256" cond="Data Size == 64" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 5" type="float" arr1="512" cond="Data Size == 128" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Vertex Colors" type="Color4" arr1="Num Vertex Colors 2" cond="Has Vertex Colors 2 == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
