@@ -2380,10 +2380,8 @@
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <!--<add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>-->
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
-        <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
-
-
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version &lt;= 11))">Consistency Flags</add>
+        <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version &lt;= 11))">Unknown.</add>
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
@@ -2393,14 +2391,16 @@
         <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
         <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
         <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particle rotations.</add>
+        <add name="Unknown Byte 1" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Unknown Link" type="Ref" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
         <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
         <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
 
-        <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown ushort</add>
-        <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
-        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
+        <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown ushort</add>
+        <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
+        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2430,8 +2430,26 @@
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        
+        <add name="Unknown Byte 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Byte 3" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Data Size" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Num bytes per</add>
+        <add name="Unknown Int 3" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 1" type="float" arr1="16" cond="Data Size == 4" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 2" type="float" arr1="32" cond="Data Size == 8" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 3" type="float" arr1="64" cond="Data Size == 16" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 4" type="float" arr1="128" cond="Data Size == 32" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 5" type="float" arr1="256" cond="Data Size == 64" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Floats 5" type="float" arr1="512" cond="Data Size == 128" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 3" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Byte 4" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
     </niobject>
-
+    
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData">
         Particle meshes data.
         <add name="Unknown Int 2" type="uint" ver1="10.2.0.0">Unknown. Possible vertex count but probably not.</add>
@@ -2907,7 +2925,10 @@
 
     <niobject name="NiParticleSystem" abstract="0" inherit="NiParticles">
         A particle system.
-        <add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
+		<add name="Unknown Short 1" type="ushort" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
+		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
     </niobject>
@@ -3156,7 +3177,7 @@
         <add name="Force Type" type="ForceType">Planar or Spherical type</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Range for turbulence.</add>
-        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" userver="11">Unknown</add>
+        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" vercond="User Version >= 11">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier">
@@ -3182,7 +3203,40 @@
         <add name="Num Meshes" type="uint">The number of object references that follow.</add>
         <add name="Meshes" type="Ref" template="NiAVObject" arr1="Num Meshes">Group of target NiNodes or NiTriShapes?</add>
     </niobject>
+    
+    <niobject name="BSPSysInheritVelocityModifier"  abstract="0" inherit="NiPSysModifier">
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+    </niobject>
+    
+    <niobject name="BSPSysHavokUpdateModifier"  abstract="0" inherit="NiPSysModifier">
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Unknown Int 3" type="uint">Unknown</add>
+    </niobject>   
 
+    <niobject name="BSPSysRecycleBoundModifier"  abstract="0" inherit="NiPSysModifier">
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Unknown Float 5" type="float">Unknown</add>
+        <add name="Unknown Float 6" type="float">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+    </niobject> 
+    
+    <niobject name="BSPSysSubTexModifier"  abstract="0" inherit="NiPSysModifier">
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Float 1" type="float">These seem to relate to the texture slots in a TextureSet</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Unknown Float 5" type="float">Unknown</add>
+        <add name="Unknown Float 6" type="float">Unknown</add>
+    </niobject>
+    
     <niobject name="NiPSysPlanarCollider" abstract="0" inherit="NiPSysCollider">
         Particle Collider object which particles will interact with.
         <add name="Width" type="float">Defines the width of the plane.</add>
@@ -3267,6 +3321,19 @@
         <add name="Frequency" type="float">Frequency of the update.</add>
     </niobject>
 
+    <niobject name="BSPSysLODModifier" inherit="NiPSysModifier">
+        <add name="Uknown Float 1" type="float">Unknown</add>
+        <add name="Uknown Float 2" type="float">Unknown</add>
+        <add name="Uknown Float 3" type="float">Unknown</add>
+        <add name="Uknown Float 4" type="float">Unknown</add>
+    </niobject>
+    
+    <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier">
+        <add name="Num Floats" type="uint"></add>
+        <add name="Floats" type="float" arr1="Num Floats">Unknown</add>
+    </niobject>
+    
+    
     <niobject name="NiPSysFieldMagnitudeCtlr" inherit="NiPSysModifierFloatCtlr">
         Particle system controller for force field magnitude.
     </niobject>
@@ -4174,7 +4241,33 @@
 		<add name="Target(?)" type="uint">Unknown</add>
 	</niobject>
 	
+	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
+		<add name="Target(?)" type="uint">Unknown</add>
+	</niobject>
 	
+	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
+		<add name="Target(?)" type="uint">Unknown</add>
+        <add name="Target(?)1" type="uint">Unknown</add>
+        <add name="Target(?)2" type="uint">Unknown</add>
+        <add name="Target(?)3" type="uint">Unknown</add>
+        <add name="Target(?)4" type="uint">Unknown</add>
+        <add name="Target(?)5" type="uint">Unknown</add>
+        <add name="Target(?)6" type="uint">Unknown</add>
+        <add name="Target(?)7" type="uint">Unknown</add>
+        <add name="Unknown Short 1" type="ushort">Unknown</add>
+        <add name="Unknown Short 2" type="ushort">Unknown</add>
+        <add name="Unknown Short 3" type="ushort">Unknown</add>
+        <add name="Float 1" type="float">Unknown</add>
+        <add name="Float 2" type="float">Unknown</add>
+        <add name="Float 3" type="float">Unknown</add>
+        <add name="Float 4" type="float">Unknown</add>
+        <add name="Float 5" type="float">Unknown</add>
+        <add name="Byte 1" type="byte">Unknown</add>
+        <add name="Byte 2" type="byte">Unknown</add>
+        <add name="Byte 3" type="byte">Unknown</add>
+        <add name="Target(?)8" type="uint">Unknown</add>
+	</niobject>
+    
     <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
         Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6">Number of Textures</add>
