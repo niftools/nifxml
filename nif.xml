@@ -4165,12 +4165,12 @@
     </niobject>
 
 	<!-- Skyrim specific Node -->
-	<niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController">
-		<add name="Target" type="Ref">Unknown</add>
+	<niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
+		<add name="Target?" type="uint">NifSkope throws infinite loop if type=Ref.</add>
 	</niobject>
 	
 	<!-- Skyrim specific Node -->
-	<niobject name="BSLightingShaderPropertyFloatController" inherit="NiFloatInterpController">
+	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
 		<add name="Target(?)" type="uint">Unknown</add>
 	</niobject>
 	
@@ -4238,6 +4238,7 @@
 		<add name="Unknown Float Set(?)" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Float Set(?)" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Float Set(?)" type="Vector3" cond="Unknown Flag == 6" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set(?)" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -5385,8 +5386,8 @@
 		<add name="Unknown Int 1" type="uint"> </add>
 		<add name="Unknown Int 2" type="uint"> </add>
 		<add name="Unknown Int 3" type="uint"> </add>
-		<add name="Unknown Int 4" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int 5" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 4" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 5" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
 		<add name="Unknown Int 6" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
 		<add name="Unknown Int 7" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
 	</niobject>
@@ -5406,7 +5407,14 @@
 		<add name="Unknown Int 1" type="uint">Unknown</add>
 		<add name="Unknown Int 2" type="uint">Unknown</add>
 		<add name="Unknown Int 3" type="uint">Unknown</add>
-		
 	</niobject>
+	
+	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
+	</niobject>
+	
+	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
+		<add name="Unknown Int 1" type="uint">Unknown</add>
+	</niobject>
+	
 	
 </niftoolsxml>
