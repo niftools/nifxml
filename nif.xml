@@ -1086,6 +1086,8 @@
         <add name="Orientation" type="ushort">Furniture marker orientation.</add>
         <add name="Position Ref 1" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
         <add name="Position Ref 2" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
+        <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
     </compound>
 
     <compound name="hkTriangle">
@@ -5503,5 +5505,7 @@
 		<add name="Unknown Int 1" type="uint">Unknown</add>
 	</niobject>
 	
+	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
+    </niobject>
 	
 </niftoolsxml>
