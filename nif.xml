@@ -1641,6 +1641,21 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
     </niobject>
 
+    <niobject name="bhkBallSocketConstraintChain" abstract="0" inherit="bhkSerializable">
+        A Ball and Socket Constraint chain.
+        <add name="Num Floats" type="uint">Unknown</add>
+        <add name="Floats 1" type="Vector4" arr1="Num Floats">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Num Links" type="uint">Number of links in the chain</add>
+        <add name="Links" type="Ptr" arr1="Num Links" cond="Num Links >= 1">Unknown</add>
+        <add name="Num Links 2" type="uint">Number of links in the chain</add>
+        <add name="Links 2" type="Ptr" arr1="Num Links 2" cond="Num Links 2 >= 1">Unknown</add>
+        <add name="Unknown Int 3" type="uint">Unknown</add>
+    </niobject>
+
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
         A Havok Shape?
     </niobject>
@@ -4630,15 +4645,16 @@
         Bethesda-Specific node.
         <add name="Unknown Ints 1" type="int" arr1="41" vercond="User Version &lt;= 11"> </add>
         <add name="Unknown Short 1" type="short" vercond="User Version &lt;= 11">Unknown</add>
-		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">Unknown</add>
+		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">A count or flag?</add>
         <add name="Num Entities 2" type="uint">Number of bodies affected by this constraint.</add>
         <add name="Entities 2" type="Ptr" template="bhkEntity" arr1="Num Entities 2" vercond="User Version == 12">The entities affected by this constraint.</add>
         <add name="Priority 2" type="uint" default="1" vercond="User Version == 12">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Unknown 4 bytes" type="byte" arr1="4" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Floats 1" type="Vector3" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Floats 2" type="Vector3" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Int 3" type="uint" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Float 1" type="float" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Float 1" type="float" cond="Unknown Int 1 >= 1" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Byte 1" type="byte" vercond="User Version == 12">Unknown</add>
     </niobject>
 
