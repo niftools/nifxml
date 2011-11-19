@@ -876,6 +876,7 @@
     </compound>
 
     <compound name="ExportInfo" ver1="10.0.1.2">
+    	Information about how the file was exported
         <add name="Unknown" type="uint" ver2="10.0.1.2" default="3">Probably the number of strings that follow.</add>
         <add name="Creator" type="ShortString">Could be the name of the creator of the NIF file?</add>
         <add name="Export Info 1" type="ShortString">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
