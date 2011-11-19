@@ -5421,18 +5421,25 @@
 	</compound>
     
 	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
+    Uknown, used in bhkCompressedMeshShapeData
 	<compound name="bhkCMSD Shape">
         <add name="Num Shape" type="uint">Unknown</add>
         <add name="Shape" type="ushort" arr1="Num Shape" cond="Num Shape >= 1">Unknown</add>
 	</compound>
 
 	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
-	<compound name="bhkCMSD Shape v2">
-        <add name="Unknown Floats 7" type="Vector4">Unknown</add>
-        <add name="Unknown Int 24" type="uint">Unknown</add>
-        <add name="Unknown Short 7" type="Flags">Unknown</add>
-		<add name="Unknown Short 8" type="Flags">Unknown</add>
+    Used for Subshapes in a bhkCompressedMeshShapeData?
+	<compound name="bhkCMSDContainer">
+        <add name="Unknown Floats" type="Vector4">Unknown</add>
+        <add name="Unknown Int" type="uint">Unknown</add>
+        <add name="Unknown Short 1" type="Flags">Unknown</add>
+		<add name="Unknown Short 2" type="Flags">Unknown</add>
         <add name="Shape" type="bhkCMSD Shape" arr1="4">Unknown</add>
+    </compound>
+    
+    <compound name="bhkCMSDData">
+        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
     </compound>
     
     <!-- Skyrim specific havok block -->
@@ -5448,59 +5455,34 @@
 		<add name="Unknown Floats 1" type="Vector4">Unknown.</add>
 		<add name="Unknown Floats 2" type="Vector4">Unknown.</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
-		<add name="Unknown Int 20" type="uint">Unknown</add>
-        <add name="Unknown Int 21" type="uint">Unknown</add>
-        <add name="Unknown Int 22" type="uint">Unknown</add>
+		<add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Unknown Int 4" type="uint">Unknown</add>
+        <add name="Unknown Int 5" type="uint">Unknown</add>
 		<add name="Unknown Byte 2" type="byte">Unknown</add>
-		
 		<add name="Something Count" type="uint">Number of bhkCMSDSomething</add>
 		<add name="Unknown Int Something" type="bhkCMSD Something" arr1="Something Count">Unknown</add>
-		
 		<add name="Unknown Int 6" type="uint">Unknown</add>
-		<add name="Storage Format" type="uint">Format for vertices/?</add>
+		<add name="Num Data Set" type="uint">Format for vertices/?</add>
+		<add name="Unknown Int 7" type="uint">Unknown</add>
 		<add name="Unknown Int 8" type="uint">Unknown</add>
 		<add name="Unknown Int 9" type="uint">Unknown</add>
-		<add name="Unknown Int 10" type="uint">Unknown</add>
-		
-		<add name="Unknown Floats 3" type="Vector4">Unknown.</add>
-		<add name="Unknown Floats 4" type="Vector4">Unknown.</add>
-		<add name="Unknown Floats 5" type="Vector4">Unknown.</add>
-		
-		<add name="Unknown float 2" type="float">Unknown</add>
-		
-		<add name="Unknown Floats 5" type="Vector3" cond="Storage Format >= 3">Unknown.</add>
-		<add name="Unknown Floats 6" type="Vector3" cond="Storage Format >= 3">Unknown</add>		
-		<add name="Unknown float 3" type="float" cond="Storage Format >= 3">Unknown</add>
-		<add name="Unknown Int 14" type="uint" cond="Storage Format >= 3">Unknown</add>
-		
-		<add name="Unknown Short 33" type="ushort" cond="Storage Format &lt;= 1">Unknown</add>
-        <add name="Unknown Short 34" type="ushort" cond="Storage Format &lt;= 1">Unknown</add>
-		
-		<add name="Num Vertices" type="uint" cond="Storage Format >= 2">Unknown</add>
-		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Storage Format >= 2">Compressed Vertices?</add>
-		
-        <add name="Num Bytes 2" type="uint" cond="Storage Format >= 2">Unknown</add>
+        
+        <add name="Data Set 1" type="bhkCMSDData" arr1="((Num Data Set * 2) - 1)" cond="Num Data Set >= 2">Unknown, The first set is always present if 1.</add>
+        <!-- This data set is always twice the size of the array, minus one -->
+        
+        <add name="Unknown Float 2" type="float">Unknown</add>
+		<add name="Num Vertices" type="uint">Unknown</add>
+		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Num Vertices >= 1">Compressed Vertices?</add>
+        <add name="Num Bytes 2" type="uint">Unknown</add>
         <add name="Unknown Bytes" type="byte" arr1="Num Bytes 2" arr2="12" cond="Num Bytes 2 >= 1">Unknown</add>
-        <add name="Num Subshapes" type="uint" cond="Storage Format >= 2">Unknown</add>
-        <add name="Unknown Floats 6" type="Vector4" cond="Storage Format >= 2">Unknown</add>
-        <add name="Unknown Int 23" type="uint" cond="Storage Format >= 2">Unknown</add>
-        <add name="Unknown Short 5" type="Flags" cond="Storage Format >= 2">Unknown</add>
-		<add name="Unknown Short 6" type="Flags" cond="Storage Format >= 2">Unknown</add>
-		
+        <add name="Num Subshapes" type="uint">Unknown</add>
+        <add name="Unknown Floats 3" type="Vector3">Unknown</add>
+        <add name="Unknown Int 10" type="uint">Unknown</add>
+        <add name="Unknown Int 11" type="uint">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Shape Set 1" type="bhkCMSD Shape" arr1="4">Unknown</add>
-        
-        <add name="Shape Set 2" type="bhkCMSD Shape v2" arr1="Num Subshapes - 1" cond="Storage Format >= 2">Unknown, not sure why shapes -1 works, but it does.</add>
-        <!--
-        <add name="Unknown Floats 7" type="Vector4" cond="Storage Format >= 2">Unknown</add>
-        <add name="Unknown Int 24" type="uint" cond="Storage Format >= 2">Unknown</add>
-        <add name="Unknown Short 7" type="Flags" cond="Storage Format >= 2">Unknown</add>
-		<add name="Unknown Short 8" type="Flags" cond="Storage Format >= 2">Unknown</add>
-        
-        <add name="Shape Set 2" type="bhkCMSD Shape" arr1="4" cond="Storage Format >= 2">Unknown</add>
--->
-        
-        
-        <add name="Unknown Int 15" type="uint">Unknown, end of block.</add>
+        <add name="Shape Set 2" type="bhkCMSDContainer" arr1="Num Subshapes - 1" cond="Num Subshapes >= 1">Unknown, The first set is always present if 1.</add>
+        <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
 	</niobject>
 
     <!-- vim: set ts=4 sw=4 et: -->
