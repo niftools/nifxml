@@ -1191,7 +1191,7 @@
     </compound>
 
     <compound name="LimitedHingeDescriptor">
-    	This constraint allows only rotation around a specified axis, limited by specified boundaries.
+    	This constraint allows rotation about a specified axis, limited by specified boundaries.
     
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
@@ -1221,6 +1221,8 @@
     </compound>
 
     <compound name="HingeDescriptor">
+    	This constraint allows rotation about a specified axis. 
+    	
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
         <add name="Perp2 Axle In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
