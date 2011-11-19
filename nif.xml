@@ -1741,6 +1741,7 @@
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="Unknown Byte 1" type="byte">Unknown</add>
     </niobject>
 
 
@@ -5431,7 +5432,7 @@
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
     Unknown
-        <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
+        <add name="Root" type="Ptr">Points to root node?</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
@@ -5494,21 +5495,20 @@
 		<add name="Unknown Int 7" type="uint">Unknown</add>
 		<add name="Unknown Int 8" type="uint">Unknown</add>
 		<add name="Unknown Int 9" type="uint">Unknown</add>
-        
-        <add name="Data Set 1" type="bhkCMSDData" arr1="((Num Data Set * 2) - 1)" cond="Num Data Set >= 2">Unknown, The first set is always present if 1.</add>
+        <add name="Data Set 1" type="bhkCMSDData" arr1="Num Data Set" cond="Num Data Set >= 1">Unknown</add>
+        <add name="Data Set 2" type="bhkCMSDData" arr1="Num Data Set - 1" cond="Num Data Set >= 2">Unknown</add>
         <!-- This data set is always twice the size of the array, minus one -->
-        
         <add name="Unknown Float 2" type="float">Unknown</add>
 		<add name="Num Vertices" type="uint">Unknown</add>
 		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Num Vertices >= 1">Compressed Vertices?</add>
         <add name="Num Bytes 2" type="uint">Unknown</add>
         <add name="Unknown Bytes" type="byte" arr1="Num Bytes 2" arr2="12" cond="Num Bytes 2 >= 1">Unknown</add>
         <add name="Num Subshapes" type="uint">Unknown</add>
-        <add name="Unknown Floats 3" type="Vector3">Unknown</add>
-        <add name="Unknown Int 10" type="uint">Unknown</add>
-        <add name="Unknown Int 11" type="uint">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Shape Set 1" type="bhkCMSD Shape" arr1="4">Unknown</add>
+        <add name="Unknown Floats 3" type="Vector3" cond="Num Subshapes >= 1">Unknown</add>
+        <add name="Unknown Int 10" type="uint" cond="Num Subshapes >= 1">Unknown</add>
+        <add name="Unknown Int 11" type="uint" cond="Num Subshapes >= 1">Unknown</add>
+        <add name="Unknown Float 3" type="float" cond="Num Subshapes >= 1">Unknown</add>
+        <add name="Shape Set 1" type="bhkCMSD Shape" arr1="4" cond="Num Subshapes >= 1">Unknown</add>
         <add name="Shape Set 2" type="bhkCMSDContainer" arr1="Num Subshapes - 1" cond="Num Subshapes >= 1">Unknown, The first set is always present if 1.</add>
         <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
 	</niobject>
