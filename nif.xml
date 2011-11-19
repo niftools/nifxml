@@ -5557,4 +5557,13 @@
         <add name="Bones" type="Ref" arr1="Num Bones 2" template="NiNode">Unknown</add>
     </niobject>
     
+    <niobject name="BSSkyShaderProperty" inherit="NiProperty">
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Unknown Floats" type="Vector3">Unknown</add>
+        <add name="Texture" type="SizedString">Unknown</add>
+        <add name="Unknown Int 3" type="uint">Unknown</add>
+    </niobject>
+    
 </niftoolsxml>
