@@ -5405,6 +5405,7 @@
 
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
+    Unknown
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -5416,12 +5417,13 @@
 	
 	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
 	<compound name="bhkCMSD Something">
+    Unknown, used in bhkCompressedMeshShapeData
 		<add name="Large Int" type="uint">Unknown</add>
 		<add name="Unknown Integer" type="uint">Always 1?</add>
 	</compound>
     
 	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
-    Uknown, used in bhkCompressedMeshShapeData
+    Unknown, used in bhkCompressedMeshShapeData
 	<compound name="bhkCMSD Shape">
         <add name="Num Shape" type="uint">Unknown</add>
         <add name="Shape" type="ushort" arr1="Num Shape" cond="Num Shape >= 1">Unknown</add>
@@ -5438,6 +5440,7 @@
     </compound>
     
     <compound name="bhkCMSDData">
+    Unknown, used in bhkCompressedMeshShapeData
         <add name="Unknown Floats 1" type="Vector3">Unknown</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
     </compound>
@@ -5489,12 +5492,14 @@
 	
 	<!-- Skyrim specific blocks -->
 	<niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
+    Unkown
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="uint"> </add>
 		<add name="Unknown" type="ushort"> </add>
 	</niobject>
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
+    Unkown
 		<add name="Unknown Int 1" type="uint"> </add>
 		<add name="Unknown Int 2" type="uint"> </add>
 		<add name="Unknown Int 3" type="uint"> </add>
@@ -5505,36 +5510,44 @@
 	</niobject>
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
+    Unkown
 		<add name="Unknown Int 1" type="uint">Unknown, possibly a link</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 	</niobject>
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController">
+    A controller that trails a bone behind an actor.
 		<add name="Unknown Float 2" type="float">Unknown</add>
 		<add name="Unknown Float 3" type="float">Unknown</add>
 		<add name="Unknown Float 4" type="float">Unknown</add>
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
+    Unkown
 		<add name="Unknown Int 1" type="uint">Unknown</add>
 		<add name="Unknown Int 2" type="uint">Unknown</add>
 		<add name="Unknown Int 3" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
+    Unkown
 	</niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
+    Unkown
 		<add name="Unknown Int 1" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
+    Furniture Marker for actors
     </niobject>
 	
     <niobject name="BSLeafAnimNode" inherit="NiNode">
+    Unkown, related to trees.
     </niobject>
     
     <niobject name="BSTreeNode" inherit="NiAVObject">
+    Node for handling Trees, Switches branch configurations for variation?
         <add name="Num Children" type="uint">The number of child objects.</add>
         <add name="Children" type="Ref" template="NiAVObject" arr1="Num Children">List of child node object indices.</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
