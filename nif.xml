@@ -1633,6 +1633,13 @@
         <add name="Hinge" type="HingeDescriptor">Hinge constraing.</add>
     </niobject>
 
+    <niobject name="bhkBallAndSocketConstraint" abstract="0" inherit="bhkConstraint">
+        A Ball and Socket Constraint.
+        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
+        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
+        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+    </niobject>
 
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
         A Havok Shape?
@@ -4624,13 +4631,15 @@
         <add name="Unknown Ints 1" type="int" arr1="41" vercond="User Version &lt;= 11"> </add>
         <add name="Unknown Short 1" type="short" vercond="User Version &lt;= 11">Unknown</add>
 		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">Unknown</add>
-		<add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown -Num Links?</add>
-		<add name="Unknown Int 3" type="Ref" vercond="User Version == 12">Unknown -Links?</add>
-		<add name="Unknown Int 4" type="Ref" vercond="User Version == 12">Unknown</add>
-		<add name="Unknown Int 5" type="uint" vercond="User Version == 12">Unknown</add>
-		<add name="Unknown Floats" type="Matrix33" vercond="User Version == 12">Unknown</add>
-		<add name="Unknown Floats" type="float" vercond="User Version == 12">Unknown</add>
-		<add name="Unknown Byte" type="byte" vercond="User Version == 12">Unknown</add>
+        <add name="Num Entities 2" type="uint">Number of bodies affected by this constraint.</add>
+        <add name="Entities 2" type="Ptr" template="bhkEntity" arr1="Num Entities 2" vercond="User Version == 12">The entities affected by this constraint.</add>
+        <add name="Priority 2" type="uint" default="1" vercond="User Version == 12">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Unknown 4 bytes" type="byte" arr1="4" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Floats 1" type="Vector3" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Floats 2" type="Vector3" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Float 1" type="float" vercond="User Version == 12">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" vercond="User Version == 12">Unknown</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
