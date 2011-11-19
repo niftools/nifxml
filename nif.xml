@@ -5591,4 +5591,18 @@
         <add name="Unknown Int 3" type="uint">Unknown</add>
     </niobject>
     
+    <niobject name="BSWaterShaderProperty" inherit="NiProperty">
+        Water Shader Property, different from "WaterShaderProperty"
+        <add name="Unknown Short 1" type="ushort">Unknown, flag?</add>
+        <add name="Unknown Short 2" type="ushort">Unknown, flag?</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>
+        <add name="Unknown Short 4" type="ushort">Unknown, flag?</add>  
+    </niobject>
+    
+    
 </niftoolsxml>
