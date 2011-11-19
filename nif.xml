@@ -1156,35 +1156,35 @@
         <add name="Unknown Float 4" type="float" default="1.0">Unknown</add>
         <add name="Unknown Float 5" type="float" default="2.0">Unknown</add>
         <add name="Unknown Float 6" type="float" default="1.0">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" default="0">Unknown</add>
+        <add name="Unknown Byte 1"  type="byte"  default="0">Unknown</add>
     </compound>
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
         <!-- Oblivion -->
-        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Point around which the object will rotate.</add>
-        <add name="Plane A" type="Vector4" ver2="20.0.0.5">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">The point where the constraint is attached to its parent rigidbody.</add>
+        <add name="Plane A" type="Vector4" ver2="20.0.0.5">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
         <add name="Twist A" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
-        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane A in second entity coordinate system.</add>
-        <add name="Twist B" type="Vector4" ver2="20.0.0.5">Twist A in second entity coordinate system.</add>
+        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">The point where the constraint is attached to the other rigidbody.</add>
+        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Defines the orthogonal plane in which the shape can be controlled (the direction orthogonal on this one and Twist B).</add>
+        <add name="Twist B" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
 
         <!-- Fallout 3 -->
         <add name="Twist A" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
         <add name="Motor A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
         <add name="Motor B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
 
-        <add name="Cone Max Angle" type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
+        <add name="Cone Max Angle" 	type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
         <add name="Plane Min Angle" type="float">Minimum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Plane Max Angle" type="float">Maximum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
-        <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
+        <add name="Max Friction" 	type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
 
         <add name="Enable Motor" type="bool" ver1="20.2.0.7">Unknown</add>
         <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
