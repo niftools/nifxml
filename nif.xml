@@ -2233,8 +2233,7 @@
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
-        <add name="Property 1" type="Ref" ver1="20.2.0.7" userver="12">Property 1</add>
-        <add name="Property 2" type="Ref" ver1="20.2.0.7" userver="12">Property 2</add>
+		<add name="Properties" type="Ref" arr1="2" ver1="20.2.0.7" userver="12"> Property Links 1 and 2</add>
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -4239,7 +4238,7 @@
         <add name="Unknown Short 1" type="ushort"> </add>
         <add name="Unknown Byte 2" type="byte">always 80?</add>
         <add name="Unknown Int 1" type="uint"> </add>
-        <add name="Unknown Floats 1"  type="vector4"> </add>
+        <add name="Unknown Floats 1"  type="Vector4"> </add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
 
         <add name="Unknown Int 2" type="uint"> </add>
@@ -4352,6 +4351,7 @@
 		<add name="Unknown Float Set(?)" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Float Set(?)" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
         <add name="Unknown Float Set(?)" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set(?)" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -4524,7 +4524,7 @@
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
         <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
-        <add name="Unknown Int" type="uint" userver="12">Unknown</add>
+		<add name="Unknown Int" type="uint" ver1="20.2.0.7" vercond="(User Version >= 12)">Unknown</add>
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
@@ -4648,7 +4648,7 @@
         <add name="Unknown Ints 1" type="int" arr1="41" vercond="User Version &lt;= 11"> </add>
         <add name="Unknown Short 1" type="short" vercond="User Version &lt;= 11">Unknown</add>
 		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">A count or flag?</add>
-        <add name="Num Entities 2" type="uint">Number of bodies affected by this constraint.</add>
+		<add name="Num Entities 2" type="uint" vercond="User Version == 12">Number of bodies affected by this constraint.</add>
         <add name="Entities 2" type="Ptr" template="bhkEntity" arr1="Num Entities 2" vercond="User Version == 12">The entities affected by this constraint.</add>
         <add name="Priority 2" type="uint" default="1" vercond="User Version == 12">Usually 1. Higher values indicate higher priority of this constraint?</add>
         <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
@@ -5527,12 +5527,14 @@
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
     Unkown
 		<add name="Unknown Int 1" type="uint"> </add>
-		<add name="Unknown Int 2" type="uint"> </add>
+		<add name="Unknown Int A1" type="uint" arr1="Unknown Int 1" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int A2" type="uint" arr1="Unknown Int 1" vercond="User Version >= 12"> </add>
+		<!--<add name="Unknown Int 2" type="uint"> </add>
 		<add name="Unknown Int 3" type="uint"> </add>
 		<add name="Unknown Int 4" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
 		<add name="Unknown Int 5" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
 		<add name="Unknown Int 6" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int 7" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
+		<add name="Unknown Int 7" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>-->
 	</niobject>
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
