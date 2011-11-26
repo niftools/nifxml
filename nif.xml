@@ -5499,8 +5499,8 @@
 	</niobject>
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown, possibly a link</add>
+            Unknown. Links to a hkx file.
+		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 	</niobject>
 
