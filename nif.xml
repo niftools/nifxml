@@ -1741,7 +1741,7 @@
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
 
