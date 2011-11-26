@@ -5393,13 +5393,13 @@
 
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
-    Unknown
-        <add name="Root" type="Ptr">Points to root node?</add>
+        Compressed collision mesh.
+        <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="8">Unknown</add>
-		<add name="Data" type="Ptr">Data Link</add>
+		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
 	
