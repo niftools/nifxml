@@ -4256,15 +4256,15 @@
 	
 	<!-- Skyrim specific Node -->
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target(?)" type="uint">Unknown</add>
+		<add name="Unknown Int 2" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target(?)" type="uint">Unknown</add>
+		<add name="Unknown Int 2" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target(?)" type="uint">Unknown</add>
+		<add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Target(?)1" type="uint">Unknown</add>
         <add name="Target(?)2" type="uint">Unknown</add>
         <add name="Target(?)3" type="uint">Unknown</add>
