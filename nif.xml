@@ -4409,7 +4409,7 @@
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
         <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
-		<add name="Unknown Int" type="uint">Unknown</add>
+        <add name="Unknown Int" type="uint" userver="12">Unknown</add>
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
