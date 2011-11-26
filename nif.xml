@@ -4216,7 +4216,7 @@
 
 	<!-- Skyrim specific Node -->
 	<niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target?" type="Ptr">Unknown link.</add>
+		<add name="Unknown Int 2" type="uint">Unknown. Does not appear to be a link.</add>
 	</niobject>
 	
 	<!-- Skyrim specific Node -->
