@@ -4351,6 +4351,7 @@
 		<add name="Unknown Vector3 Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Float Set 3" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
         <add name="Unknown Vector4 Set 3" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 4" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
