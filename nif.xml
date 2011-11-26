@@ -1652,9 +1652,9 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Num Links" type="uint">Number of links in the chain</add>
-        <add name="Links" type="Ptr" arr1="Num Links" cond="Num Links >= 1">Unknown</add>
+        <add name="Links" type="Ptr" template="NiObject" arr1="Num Links" cond="Num Links >= 1">Unknown</add>
         <add name="Num Links 2" type="uint">Number of links in the chain</add>
-        <add name="Links 2" type="Ptr" arr1="Num Links 2" cond="Num Links 2 >= 1">Unknown</add>
+        <add name="Links 2" type="Ptr" template="NiObject" arr1="Num Links 2" cond="Num Links 2 >= 1">Unknown</add>
         <add name="Unknown Int 3" type="uint">Unknown</add>
     </niobject>
 
@@ -4310,13 +4310,13 @@
         Bethesda-specific node.
 		<add name="Unknown Int 1" type="uint" vercond="(User Version == 12)">Unknown.</add>
 		<add name="Unknown Floats" type="float" arr1="9" vercond="(User Version == 12)">Skyrim, MaterialProperty might be merged in some form here.</add>
-		<add name="Unknown Float Set(?)" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set(?)" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set(?)" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set(?)" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set(?)" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
-        <add name="Unknown Float Set(?)" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set(?)" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 1" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Vector3 Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 2" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Vector3 Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 3" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Vector4 Set 3" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 4" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
