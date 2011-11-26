@@ -4166,7 +4166,7 @@
 
 	<!-- Skyrim specific Node -->
 	<niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target?" type="uint">NifSkope throws infinite loop if type=Ref.</add>
+		<add name="Target?" type="Ptr">Unknown link.</add>
 	</niobject>
 	
 	<!-- Skyrim specific Node -->
