@@ -5515,9 +5515,9 @@
 	<!-- Skyrim specific blocks -->
 	<niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
     Unkown
-		<add name="Unknown" type="uint"> </add>
-		<add name="Unknown" type="uint"> </add>
-		<add name="Unknown" type="ushort"> </add>
+		<add name="Unknown 1" type="uint"> </add>
+		<add name="Unknown 2" type="uint"> </add>
+		<add name="Unknown 3" type="ushort"> </add>
 	</niobject>
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
