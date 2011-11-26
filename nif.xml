@@ -4498,7 +4498,7 @@
         Bethesda-specific node.
         <add name="Num Tread Transforms" type="int">Unknown.</add>
         <add name="Tread Transforms" type="BSTreadTransform" arr1="Num Tread Transforms">Unknown.</add>
-        <add name="Unknown Int 1" type="int">Unknown.</add>
+        <add name="Data" type="Ref" template="NiFloatData">Unknown float data.</add>
     </niobject>
 
     <niobject name="BSAnimNotes" abstract="0" inherit="NiObject">
