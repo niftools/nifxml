@@ -4480,29 +4480,25 @@
         <add name="Unknown Float 1" type="float">Unknown Flag</add>
     </niobject>
 
-    <compound name="BSTreadTransfSubInfo">
+    <compound name="BSTreadTransformData">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
-        <add name="Unknown Int 4" type="int">Unknown</add>
-        <add name="Unknown Int 5" type="int">Unknown</add>
-        <add name="Unknown Int 6" type="int">Unknown</add>
-        <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Int 8" type="int">Unknown</add>
+        <add name="Translation" type="Vector3">Translation.</add>
+        <add name="Rotation" type="Quaternion">Rotation.</add>
+        <add name="Scale" type="float">Scale (usually float_min).</add>
     </compound>
 
-    <compound name="BSTreadTransfInfo">
+    <compound name="BSTreadTransform">
         Bethesda-specific node.
-        <add name="Unknown Float 1" type="float">Unknown Flag</add>
-        <add name="Data" type="BSTreadTransfSubInfo" arr1="2">Data</add>
+        <add name="Name" type="string">Name of affected node?</add>
+        <add name="Transform 1" type="BSTreadTransformData">Transform data.</add>
+        <add name="Transform 2" type="BSTreadTransformData">Transform data.</add>
     </compound>
 
     <niobject name="BSTreadTransfInterpolator" abstract="0" inherit="NiInterpolator">
         Bethesda-specific node.
-        <add name="Num Transfers" type="int">Unknown</add>
-        <add name="Tread Transfer Info" type="BSTreadTransfInfo" arr1="Num Transfers">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Num Tread Transforms" type="int">Unknown.</add>
+        <add name="Tread Transforms" type="BSTreadTransform" arr1="Num Tread Transforms">Unknown.</add>
+        <add name="Unknown Int 1" type="int">Unknown.</add>
     </niobject>
 
     <niobject name="BSAnimNotes" abstract="0" inherit="NiObject">
