@@ -4227,10 +4227,11 @@
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific Shade node.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Refraction Period" type="int" default="0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
-        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
+        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
 	<!-- Skyrim specific Node -->
