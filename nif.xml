@@ -4205,12 +4205,13 @@
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Unknown Short 1" type="ushort" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
-        <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
-    </niobject>
+        <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
+        <add name="Texture Translation" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
+	    </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Unknown Int 3" type="int" default="3">Unknown</add>
+        <add name="Unknown Int 3" type="int" default="3" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
