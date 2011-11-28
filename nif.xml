@@ -4344,15 +4344,23 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderPPLightingProperty">
         Bethesda-specific node.
-		<add name="Unknown Int 1" type="uint" vercond="(User Version == 12)" default="3">Unknown.</add>
-		<add name="Unknown Floats" type="float" arr1="9" vercond="(User Version == 12)" default="1.0,0.0,226.0,0.8353,0.8824,0.8902,2.72,5.4,2.8">Skyrim, MaterialProperty might be merged in some form here.</add>
-		<add name="Unknown Float Set 1" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Vector3 Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 2" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Vector3 Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 3" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
-        <add name="Unknown Vector4 Set 3" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 4" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float 6" type="uint" vercond="(User Version == 12)">Unknown, always 3?</add>
+		<add name="Transparency" type="float" vercond="(User Version == 12)">The material transparency (1=non-transparent).</add>
+        <add name="Unknown Float 2" type="float" vercond="(User Version == 12)">Unknown</add>
+        <add name="Glossiness" type="float" vercond="(User Version == 12)">The material&#039;s glossiness. (0-999)</add>
+        <add name="Specular Color/Strength" type="Color3" vercond="(User Version == 12)">Adds a colored highlight.</add>
+        <add name="Specular Strength" type="float" vercond="(User Version == 12)">Brightness of specular highlight. (0=not visible) (0-999)</add>
+        <add name="Unknown Float 7" type="float" vercond="(User Version == 12)">Unknown, always .3?</add>
+        <add name="Unknown Float 8" type="float" vercond="(User Version == 12)">Unknown, always 2?</add>
+		<add name="Environment Map Strength" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">How strong the environment/cube map is. (0-??)</add>
+		<add name="Unknown Float Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown, related to skin?</add>
+		<add name="Unknown Float Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Float Set 3" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 4" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Float Set 5" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+        <add name="Eye Cubemap Scale" type="float" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)</add>
+        <add name="Left Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Left Unknown</add>
+        <add name="Right Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Right Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
