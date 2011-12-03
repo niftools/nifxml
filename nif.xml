@@ -5529,6 +5529,7 @@
         Typically attached to the root node of the nif tree.
         If not present, then Skyrim will still show the nif in inventory,
         using the default values.
+        Name should be 'INV' (without the quotes).
 
         <add name="Rotation 1" type="uint" default="0">Up-down rotation, in radians * 1000.</add>
         <add name="Rotation 2" type="uint" default="0">Left-right rotation, in radians * 1000.</add>
