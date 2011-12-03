@@ -5523,13 +5523,17 @@
 
     <!-- vim: set ts=4 sw=4 et: -->
 	
-	<!-- Skyrim specific blocks -->
-	<niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
-    Unkown
-		<add name="Unknown 1" type="uint"> </add>
-		<add name="Unknown 2" type="uint"> </add>
-		<add name="Unknown 3" type="ushort"> </add>
-	</niobject>
+    <!-- Skyrim specific blocks -->
+    <niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
+        How to show the nif in the player's inventory.
+        Typically attached to the root node of the nif tree.
+        If not present, then Skyrim will still show the nif in inventory,
+        using the default values.
+
+        <add name="Rotation 1" type="uint" default="0">Up-down rotation, in radians * 1000.</add>
+        <add name="Rotation 2" type="uint" default="0">Left-right rotation, in radians * 1000.</add>
+        <add name="Zoom" type="ushort" default="16256">Zoom factor. 16000 is really far away, 16600 is really close by.</add>
+    </niobject>
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
     Unkown
