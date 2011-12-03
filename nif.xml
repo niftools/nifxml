@@ -5532,9 +5532,10 @@
 	</niobject>
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
+    Links a nif with a Havok Behavior .hkx animation file
             Unknown. Links to a hkx file.
 		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
-		<add name="Unknown Byte 1" type="byte">Unknown</add>
+		<add name="Unknown Byte 1" type="byte">Unknown, has to do with blending on an actor.</add>
 	</niobject>
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController">
