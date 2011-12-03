@@ -2228,7 +2228,7 @@
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
-        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
+        <add name="BS Properties" nifskopename="Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -2238,7 +2238,10 @@
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
-        <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
+        <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
+        <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
+        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="Version &lt; 20.2.0.7 || User Version &lt; 11">Number of vertices.</add>
+        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="Version >= 20.2.0.7 &amp;&amp; User Version >= 11">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
@@ -2365,8 +2368,6 @@
     </niobject>
 
     <niobject name="NiParticlesData" abstract="0" inherit="NiGeometryData">
-        <!-- for fallout 3 it seems that the vertices list has
-             vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))" ? -->
         Generic rotating particles data object.
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
@@ -2411,7 +2412,7 @@
 
     <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData">
         Particle system data.
-        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
@@ -4128,38 +4129,38 @@
     
     <bitflags name="BSShaderFlags" storage="uint">
         Shader Property Flags
-		<option value="0" name="Zbuffer Test">ZBuffer Test (1=on)</option>
-		<option value="1" name="Shadow Map">Shadow Map</option>
-		<option value="2" name="External Emittance">External Emittance</option>
-		<option value="3" name="Parallax Occlusion">Parallax Occlusion</option>
-		<option value="4" name="Dynamic Decal">Dynamic Decal</option>
-		<option value="5" name="Decal">Decal</option>
-		<option value="6" name="Unknown 6">Unknown\Light fade? (if 0 and envmap is on, "envmap light fade" is not present)</option>
-		<option value="7" name="Multiple Textures">Multiple Textures (base diff/norm become null)</option>
-		<option value="8" name="Shadow Frustum">Shadow Frustum</option>
-		<option value="9" name="Tree Billboard">Tree Billboard</option>
-		<option value="10" name="Window Environment Mapping">Window Environment Mapping</option>
-		<option value="11" name="Localmap Hide Secret">Localmap Hide Secret</option>
-		<option value="12" name="Dynamic Alpha">Dynamic Alpha</option>
-		<option value="13" name="Hair">Hair</option>
-		<option value="14" name="Eye Environment Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
-		<option value="15" name="Fire Refraction">Fire Refraction (switches on refraction power/period)</option>
-		<option value="16" name="Refraction">Refraction (switches on refraction power)</option>
-		<option value="17" name="Unknown 17">Unknown/Crash</option>
-		<option value="18" name="Non Projective Shadows">Non-Projective Shadows</option>
-		<option value="19" name="Unknown 19">Unknown/Crash</option>
-		<option value="20" name="Parallax">Parallax</option>
-		<option value="21" name="Facegen Skin">Facegen\Skin</option>
-		<option value="22" name="Unknown 22">Unknown (Always 0?)</option>
-		<option value="23" name="Unknown 23">Unknown (usually 1)</option>
-		<option value="24" name="Environment Mapping">Environment mapping (uses Envmap Scale)</option>
-		<option value="25" name="Empty" default="1">EMPTY (usually seen w/texture animation)</option>
-		<option value="26" name="Single Pass">Single Pass (uses same default shader path as diff/norm/spec setup BSSM_ADTS10)</option>
-		<option value="27" name="Unknown 27">Unknown (Always 0?)</option>
-		<option value="28" name="Vertex Alpha">Vertex Alpha</option>
-		<option value="29" name="Low Detail">Low detail (seems to use standard diff/norm/spec shader)</option>
-		<option value="30" name="Skinned">Skinned.</option>
-		<option value="31" name="Unknown 31" default="1">Unknown</option>
+        <option value="0" name="SF_Specular">Enables Specularity</option>
+        <option value="1" name="SF_Skinned">Required For Skinned Meshes</option>
+        <option value="2" name="SF_LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
+        <option value="3" name="SF_Vertex_Alpha">Vertex Alpha</option>
+        <option value="4" name="SF_Unknown_1">Unknown</option>
+        <option value="5" name="SF_Single_Pass">Single Pass</option>
+        <option value="6" name="SF_Empty">Unknown</option>
+        <option value="7" name="SF_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
+        <option value="8" name="SF_Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
+        <option value="9" name="SF_Unknown_2">Unknown</option>
+        <option value="10" name="SF_FaceGen">FaceGen</option>
+        <option value="11" name="SF_Parallax/Shader_Index=15">Parallax</option>
+        <option value="12" name="SF_Unknown_3">Unknown/Crash</option>
+        <option value="13" name="SF_Non-Projective_Shadows">Non-Projective Shadows</option>
+        <option value="14" name="SF_Unknown_4">Unknown/Crash</option>
+        <option value="15" name="SF_Refraction">Refraction (switches on refraction power)</option>
+        <option value="16" name="SF_Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
+        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
+        <option value="18" name="SF_Hair">Hair</option>
+        <option value="19" name="SF_Dynamic_Alpha">Dynamic Alpha</option>
+        <option value="20" name="SF_Localmap_Hide_Secret">Localmap Hide Secret</option>
+        <option value="21" name="SF_Window_Environment_Mapping">Window Environment Mapping</option>
+        <option value="22" name="SF_Tree_Billboard">Tree Billboard</option>
+        <option value="23" name="SF_Shadow_Frustum">Shadow Frustum</option>
+        <option value="24" name="SF_Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
+        <option value="25" name="SF_Remappable_Textures" default="1">usually seen w/texture animation</option>
+        <option value="26" name="SF_Decal/Single_Pass">Decal</option>
+        <option value="27" name="SF_Dynamic_Decal/Single_Pass">Dynamic Decal</option>
+        <option value="28" name="SF_Parallax_Occulsion">Parallax Occlusion</option>
+        <option value="29" name="SF_External_Emittance">External Emittance</option>
+        <option value="30" name="SF_Shadow_Map">Shadow Map</option>
+        <option value="31" name="SF_ZBuffer_Test" default="1">ZBuffer Test (1=on)</option>
     </bitflags>
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
@@ -4169,12 +4170,13 @@
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Unknown Short 1" type="ushort" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Int 2" type="int" default="1">Unknown</add>
-        <add name="Envmap Scale" type="float" default="1.0">Unknown</add>
-    </niobject>
+        <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
+        <add name="Texture Translation" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
+	    </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Unknown Int 3" type="int" default="3">Unknown</add>
+        <add name="Unknown Int 3" type="int" default="3" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
@@ -4191,10 +4193,11 @@
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific Shade node.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Refraction Period" type="int" default="0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
-        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
+        <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
+        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
 	<!-- Skyrim specific Node -->
@@ -4308,15 +4311,23 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderPPLightingProperty">
         Bethesda-specific node.
-		<add name="Unknown Int 1" type="uint" vercond="(User Version == 12)" default="3">Unknown.</add>
-		<add name="Unknown Floats" type="float" arr1="9" vercond="(User Version == 12)" default="1.0,0.0,226.0,0.8353,0.8824,0.8902,2.72,5.4,2.8">Skyrim, MaterialProperty might be merged in some form here.</add>
-		<add name="Unknown Float Set 1" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Vector3 Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 2" type="float" arr1="7" cond="Unknown Flag == 16" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Vector3 Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 3" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
-        <add name="Unknown Vector4 Set 3" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 4" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float 6" type="uint" vercond="(User Version == 12)">Unknown, always 3?</add>
+		<add name="Transparency" type="float" vercond="(User Version == 12)">The material transparency (1=non-transparent).</add>
+        <add name="Unknown Float 2" type="float" vercond="(User Version == 12)">Unknown</add>
+        <add name="Glossiness" type="float" vercond="(User Version == 12)">The material&#039;s glossiness. (0-999)</add>
+        <add name="Specular Color/Strength" type="Color3" vercond="(User Version == 12)">Adds a colored highlight.</add>
+        <add name="Specular Strength" type="float" vercond="(User Version == 12)">Brightness of specular highlight. (0=not visible) (0-999)</add>
+        <add name="Unknown Float 7" type="float" vercond="(User Version == 12)">Unknown, always .3?</add>
+        <add name="Unknown Float 8" type="float" vercond="(User Version == 12)">Unknown, always 2?</add>
+		<add name="Environment Map Strength" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">How strong the environment/cube map is. (0-??)</add>
+		<add name="Unknown Float Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown, related to skin?</add>
+		<add name="Unknown Float Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Float Set 3" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 4" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Float Set 5" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+        <add name="Eye Cubemap Scale" type="float" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)</add>
+        <add name="Left Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Left Unknown</add>
+        <add name="Right Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Right Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -5477,13 +5488,18 @@
 
     <!-- vim: set ts=4 sw=4 et: -->
 	
-	<!-- Skyrim specific blocks -->
-	<niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
-    Unkown
-		<add name="Unknown 1" type="uint"> </add>
-		<add name="Unknown 2" type="uint"> </add>
-		<add name="Unknown 3" type="ushort"> </add>
-	</niobject>
+    <!-- Skyrim specific blocks -->
+    <niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
+        How to show the nif in the player's inventory.
+        Typically attached to the root node of the nif tree.
+        If not present, then Skyrim will still show the nif in inventory,
+        using the default values.
+        Name should be 'INV' (without the quotes).
+
+        <add name="Rotation 1" type="uint" default="0">Up-down rotation, in radians * 1000.</add>
+        <add name="Rotation 2" type="uint" default="0">Left-right rotation, in radians * 1000.</add>
+        <add name="Zoom" type="ushort" default="16256">Zoom factor. 16000 is really far away, 16600 is really close by.</add>
+    </niobject>
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
     Unkown
