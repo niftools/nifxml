@@ -2244,7 +2244,10 @@
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
-        <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles.</add>
+        <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
+        <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
+        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="Version &lt; 20.2.0.7 || User Version &lt; 11">Number of vertices.</add>
+        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="Version >= 20.2.0.7 &amp;&amp; User Version >= 11">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
@@ -2372,8 +2375,6 @@
     </niobject>
 
     <niobject name="NiParticlesData" abstract="0" inherit="NiGeometryData">
-        <!-- for fallout 3 it seems that the vertices list has
-             vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))" ? -->
         Generic rotating particles data object.
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
@@ -2418,7 +2419,7 @@
 
     <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData">
         Particle system data.
-        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
