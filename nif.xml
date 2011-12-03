@@ -4169,13 +4169,15 @@
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
         Bethesda-specific Property node
-        <add name="Flags" type="Flags" default="1">Unknown</add>
-        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
-        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
-        <add name="Unknown Short 1" type="ushort" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Int 2" type="int" default="1">Unknown</add>
+        <add name="Flags" type="Flags" default="1" vercond="User Version == 11">Unknown</add>
+		<add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" vercond="User Version == 11">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
+        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" vercond="User Version == 11">Shader Property Flags</add>
+		<add name="Shader Flags 1" type="uint" >DeleteMe, used for quick gathering</add>
+        <add name="Shader Flags 2" type="uint" default="0x82000000">Shader Property Flags</add>
+        <add name="Unknown Int 2" type="int" default="1" vercond="User Version == 11">Unknown</add>
         <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
-        <add name="Texture Translation" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
+        <add name="Texture Translation 1" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
+        <add name="Texture Translation 2" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
 	    </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
@@ -4324,11 +4326,12 @@
         <add name="Unknown Float 7" type="float" vercond="(User Version == 12)">Unknown, always .3?</add>
         <add name="Unknown Float 8" type="float" vercond="(User Version == 12)">Unknown, always 2?</add>
 		<add name="Environment Map Strength" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">How strong the environment/cube map is. (0-??)</add>
-		<add name="Unknown Float Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown, related to skin?</add>
-		<add name="Unknown Float Set 2" type="Vector3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown, related to skin</add>
+		<add name="Unknown Color" type="Color3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown, related to hair</add>
         <add name="Unknown Float Set 3" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float Set 4" type="float"  arr1="5" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown</add>
-        <add name="Unknown Float Set 5" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Float 9" type="float" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown, related to ice or parallax</add>
+        <add name="Unknown Color" type="Color4" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown, related to ice parallax</add>
+        <add name="Unknown Float Set 5" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown, also related to ice?</add>
         <add name="Eye Cubemap Scale" type="float" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)</add>
         <add name="Left Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Left Unknown</add>
         <add name="Right Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Right Unknown</add>
