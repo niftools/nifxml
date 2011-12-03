@@ -4207,19 +4207,25 @@
 
 	<!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        <add name="Unknown Byte 1" type="byte">8/16?</add>
-        <add name="Unknown Short 1" type="ushort"> </add>
-        <add name="Unknown Byte 2" type="byte">always 80?</add>
         <add name="Unknown Int 1" type="uint"> </add>
-        <add name="Unknown Floats 1"  type="Vector4"> </add>
-        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-
         <add name="Unknown Int 2" type="uint"> </add>
-        <add name="Unknown Matrix 1" type="Matrix33">Not correct or finished, but it fits for now.</add>
-        <add name="Unknown Float" type="float"> </add>
+        <add name="Unknown Float 1" type="float">Unknown</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Unknown Int 2" type="uint"> </add>
+        <add name="Unknown Float 5" type="float">Unknown</add>
+        <add name="Unknown Float 6" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 7" type="float">Unknown</add>
+        <add name="Unknown Float 8" type="float">Unknown</add>
+        <add name="Unknown Float 9" type="float">Unknown</add>
+        <add name="Unknown Float 10" type="float">Unknown</add>
+        <add name="Unknown Float 11" type="float">Unknown</add>
+        <add name="Unknown Float 12" type="float">Unknown</add>
+        <add name="Unknown Float 13" type="float"> </add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
-		
-		
     </niobject>
 
 	<!-- Skyrim specific Node -->
@@ -5500,6 +5506,7 @@
 	
     <!-- Skyrim specific blocks -->
     <niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
+    Orientation marker for Skyrim's inventory view.
         How to show the nif in the player's inventory.
         Typically attached to the root node of the nif tree.
         If not present, then Skyrim will still show the nif in inventory,
