@@ -2246,8 +2246,8 @@
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
         <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
         <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
-        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="Version &lt; 20.2.0.7 || User Version &lt; 11">Number of vertices.</add>
-        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="Version >= 20.2.0.7 &amp;&amp; User Version >= 11">Bethesda uses this for max number of particles in NiPSysData.</add>
+        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(Version &lt; 20.2.0.7) || (User Version &lt; 11)">Number of vertices.</add>
+        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
