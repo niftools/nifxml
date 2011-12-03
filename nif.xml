@@ -4203,7 +4203,6 @@
         <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
         <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
-        <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
 	<!-- Skyrim specific Node -->
@@ -4317,6 +4316,8 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderPPLightingProperty">
         Bethesda-specific node.
+        <add name="Emissive Color" type="Color3" vercond="User Version >= 12">Glow color and alpha</add>
+        <add name="Unknown Float 1" type="float" vercond="(User Version == 12)">Unknown</add>
 		<add name="Unknown Float 6" type="uint" vercond="(User Version == 12)">Unknown, always 3?</add>
 		<add name="Transparency" type="float" vercond="(User Version == 12)">The material transparency (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float" vercond="(User Version == 12)">Unknown</add>
@@ -5531,9 +5532,9 @@
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController">
     A controller that trails a bone behind an actor.
-		<add name="Unknown Float 2" type="float">Unknown</add>
+		<add name="Rotation Lag" type="float">How long it takes to rotate about an actor back to rest position.</add>
 		<add name="Unknown Float 3" type="float">Unknown</add>
-		<add name="Unknown Float 4" type="float">Unknown</add>
+		<add name="Length" type="float">How far bone will tail an actor.</add>
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
