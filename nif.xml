@@ -4508,9 +4508,11 @@
         <add name="Data" type="Ref" template="BSMultiBoundData">Unknown.</add>
     </niobject>
     
-    <niobject name="BSMultiBoundOBB" inherit="NiObject">
-        Bethesda-specific node.
-        <add name="Unknown Floats" type="float" arr1="15">Unknown</add>
+    <niobject name="BSMultiBoundOBB" inherit="BSMultiBoundData">
+        Oriented bounding box.
+        <add name="Center" type="Vector3">Center of the box.</add>
+        <add name="Size" type="Vector3">Size of the box along each axis.</add>
+        <add name="Rotation" type="Matrix33">Rotation of the bounding box.</add>
     </niobject>
     
 
