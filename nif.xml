@@ -4180,7 +4180,7 @@
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Unknown Int 3" type="int" default="3" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+        <add name="Unknown Int 3" type="int" default="3">Unknown</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
