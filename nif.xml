@@ -4508,6 +4508,11 @@
         <add name="Data" type="Ref" template="BSMultiBoundData">Unknown.</add>
     </niobject>
     
+
+    <niobject name="BSMultiBoundData" inherit="NiObject">
+        Abstract base type for bounding data.
+    </niobject>
+
     <niobject name="BSMultiBoundOBB" inherit="BSMultiBoundData">
         Oriented bounding box.
         <add name="Center" type="Vector3">Center of the box.</add>
@@ -4515,11 +4520,6 @@
         <add name="Rotation" type="Matrix33">Rotation of the bounding box.</add>
     </niobject>
     
-
-    <niobject name="BSMultiBoundData" inherit="NiObject">
-        Abstract base type for bounding data.
-    </niobject>
-
     <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
         Bethesda-specific node.
         <add name="Unknown Int 1" type="int">Unknown Flag</add>
