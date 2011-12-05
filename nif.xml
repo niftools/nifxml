@@ -4315,11 +4315,83 @@
         Bethesda-specific node.
     </niobject>
 
+    <bitflags name="SkyrimShaderFlags1" storage="uint">
+        Skyrim Shader Property Flags 1
+        <option value="0" name="SF_Specular">Enables Specularity</option>
+        <option value="1" name="SF_1"></option>
+        <option value="2" name="SF_2"></option>
+        <option value="3" name="SF_3"></option>
+        <option value="4" name="SF_4"></option>
+        <option value="5" name="SF_5"></option>
+        <option value="6" name="SF_6"></option>
+        <option value="7" name="SF_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
+        <option value="8" name="SF_8"></option>
+        <option value="9" name="SF_9"></option>
+        <option value="10" name="SF_10"></option>
+        <option value="11" name="SF_11"></option>
+        <option value="12" name="SF_Specular_Map">Use Specular Map</option>
+        <option value="13" name="SF_13"></option>
+        <option value="14" name="SF_14"></option>
+        <option value="15" name="SF_15"></option>
+        <option value="16" name="SF_16"></option>
+        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)c</option>
+        <option value="18" name="SF_18"></option>
+        <option value="19" name="SF_19"></option>
+        <option value="20" name="SF_20"></option>
+        <option value="21" name="SF_21"></option>
+        <option value="22" name="SF_22"></option>
+        <option value="23" name="SF_23"></option>
+        <option value="24" name="SF_24"></option>
+        <option value="25" name="SF_25"></option>
+        <option value="26" name="SF_26"></option>
+        <option value="27" name="SF_27"></option>
+        <option value="28" name="SF_28"></option>
+        <option value="29" name="SF_29"></option>
+        <option value="30" name="SF_30"></option>
+        <option value="31" name="SF_ZBuffer_Test">ZBuffer Test (1=on)</option>
+    </bitflags>
+    
+    <bitflags name="SkyrimShaderFlags2" storage="uint">
+        Skyrim Shader Property Flags 2
+        <option value="0" name="SF_ZBuffer_Write">Enables writing to the Z-Buffer</option>
+        <option value="1" name="SF_1"></option>
+        <option value="2" name="SF_2"></option>
+        <option value="3" name="SF_3"></option>
+        <option value="4" name="SF_4"></option>
+        <option value="5" name="SF_Vertex_Color_Enable">Has Vertex Colors (Maybe, could be Vertex Alpha?)</option>
+        <option value="6" name="SF_Glow_Map">Use Glow Map</option>
+        <option value="7" name="SF_7"></option>
+        <option value="8" name="SF_8"></option>
+        <option value="9" name="SF_9"></option>
+        <option value="10" name="SF_10"></option>
+        <option value="11" name="SF_11"></option>
+        <option value="12" name="SF_12"></option>
+        <option value="13" name="SF_13"></option>
+        <option value="14" name="SF_14"></option>
+        <option value="15" name="SF_15"></option>
+        <option value="16" name="SF_16">Wireframe (Seems to only work on particles)</option>
+        <option value="17" name="SF_17"></option>
+        <option value="18" name="SF_18"></option>
+        <option value="19" name="SF_19"></option>
+        <option value="20" name="SF_20"></option>
+        <option value="21" name="SF_21"></option>
+        <option value="22" name="SF_22"></option>
+        <option value="23" name="SF_23"></option>
+        <option value="24" name="SF_Multi_Layer">Use Multilayer (inner-layer) Map</option>
+        <option value="25" name="SF_Soft_Light">Use Soft Lighting Map</option>
+        <option value="26" name="SF_Rim_Light">Use Rim Lighting Map</option>
+        <option value="27" name="SF_Back_Light">Use Back Lighting Map</option>
+        <option value="28" name="SF_28"></option>
+        <option value="29" name="SF_Vertex_Animation">Enables Vertex Animation</option>
+        <option value="30" name="SF_30"></option>
+        <option value="31" name="SF_31"></option>
+    </bitflags>
+
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
-        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1</add>
-        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2</add>
+        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1 (will use SkyrimShaderFlags1)</add>
+        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2 (will use SkyrimShaderFlags2)</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
         <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
@@ -4331,8 +4403,8 @@
         <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
         <add name="Specular Color" type="Vector3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float">Unknown, always .3?</add>
-        <add name="Lighting Effect 2" type="float">Unknown, always 2?</add>
+        <add name="Lighting Effect 1" type="float">Unknown, related to backlight/rim/softlight effect</add>
+        <add name="Lighting Effect 2" type="float">Unknown, related to backlight/rim/softlight effect</add>
         <add name="Environment Map Strength" type="float" cond="Skyrim Shader Type == 1">How strong the environment/cube map is. (0-??)</add>
         <add name="Unknown Float Set 1" type="Vector3" cond="Skyrim Shader Type == 5">Unknown, related to skin</add>
         <add name="Unknown Color 1" type="Color3" cond="Skyrim Shader Type == 6">Unknown, related to hair</add>
