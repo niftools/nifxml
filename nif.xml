@@ -1885,7 +1885,7 @@
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
-        <add name="Unknown Flag" type="uint" vercond="User Version >= 12" cond="BSShaderProperty">Unknown</add>
+        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12" cond="BSLightingShaderProperty">Skyrim's shaders: 0=default 1=EnvMap, 2=Glow, 5=Skin, 6=Hair, 7=Unknown, 11=Ice/Parallax, 15=Eye.</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
@@ -4169,16 +4169,12 @@
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
         Bethesda-specific Property node
-        <add name="Flags" type="Flags" default="1" vercond="User Version == 11">Unknown</add>
-		<add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" vercond="User Version == 11">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
-        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" vercond="User Version == 11">Shader Property Flags</add>
-		<add name="Shader Flags 1" type="uint" >DeleteMe, used for quick gathering</add>
-        <add name="Shader Flags 2" type="uint" default="0x82000000">Shader Property Flags</add>
-        <add name="Unknown Int 2" type="int" default="1" vercond="User Version == 11">Unknown</add>
+        <add name="Flags" type="Flags" default="1">Unknown</add>
+        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
+        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
+        <add name="Unknown Int 2" type="int" default="1">Unknown</add>
         <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
-        <add name="Texture Translation 1" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
-        <add name="Texture Translation 2" type="TexCoord" vercond="User Version >= 12">Offset UVs</add>
-	    </niobject>
+    </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
@@ -4320,28 +4316,33 @@
     </niobject>
 
     <!-- Skyrim specific property -->
-    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderPPLightingProperty">
-        Bethesda-specific node.
-        <add name="Emissive Color" type="Color3" vercond="User Version >= 12">Glow color and alpha</add>
-        <add name="Unknown Float 1" type="float" vercond="(User Version == 12)">Unknown</add>
-		<add name="Unknown Float 6" type="uint" vercond="(User Version == 12)">Unknown, always 3?</add>
-		<add name="Transparency" type="float" vercond="(User Version == 12)">The material transparency (1=non-transparent).</add>
-        <add name="Unknown Float 2" type="float" vercond="(User Version == 12)">Unknown</add>
-        <add name="Glossiness" type="float" vercond="(User Version == 12)">The material&#039;s glossiness. (0-999)</add>
-        <add name="Specular Color/Strength" type="Color3" vercond="(User Version == 12)">Adds a colored highlight.</add>
-        <add name="Specular Strength" type="float" vercond="(User Version == 12)">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Unknown Float 7" type="float" vercond="(User Version == 12)">Unknown, always .3?</add>
-        <add name="Unknown Float 8" type="float" vercond="(User Version == 12)">Unknown, always 2?</add>
-		<add name="Environment Map Strength" type="float" cond="Unknown Flag == 1" vercond="User Version >= 12">How strong the environment/cube map is. (0-??)</add>
-		<add name="Unknown Float Set 1" type="Vector3" cond="Unknown Flag == 5" vercond="User Version >= 12">Unknown, related to skin</add>
-		<add name="Unknown Color 1" type="Color3" cond="(Unknown Flag == 6)" vercond="User Version >= 12">Unknown, related to hair</add>
-        <add name="Unknown Float Set 3" type="float" arr1="2" cond="(Unknown Flag == 7)" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Float 9" type="float" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown, related to ice or parallax</add>
-        <add name="Unknown Color 2" type="Color4" cond="Unknown Flag == 11" vercond="User Version >= 12">Unknown, related to ice parallax</add>
-        <add name="Unknown Float Set 5" type="Vector4" cond="(Unknown Flag == 14)" vercond="User Version >= 12">Unknown, also related to ice?</add>
-        <add name="Eye Cubemap Scale" type="float" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)</add>
-        <add name="Left Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Left Unknown</add>
-        <add name="Right Eye Reflection Angle" type="Vector3" cond="Unknown Flag == 16" vercond="User Version >= 12">Eye(Skyrim)Right Unknown</add>
+    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
+        Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
+        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1</add>
+        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2</add>
+        <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
+        <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
+        <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
+        <add name="Emissive Color" type="Color3">Glow color and alpha</add>
+        <add name="Saturation" type="float">Unknown</add>
+        <add name="Unknown Int 7" type="uint">Unknown, always 3?</add>
+        <add name="Transparency" type="float">The material transparency (1=non-transparent).</add>
+        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
+        <add name="Specular Color" type="Vector3">Adds a colored highlight.</add>
+        <add name="Specular Strength" type="float">Brightness of specular highlight. (0=not visible) (0-999)</add>
+        <add name="Lighting Effect 1" type="float">Unknown, always .3?</add>
+        <add name="Lighting Effect 2" type="float">Unknown, always 2?</add>
+        <add name="Environment Map Strength" type="float" cond="Skyrim Shader Type == 1">How strong the environment/cube map is. (0-??)</add>
+        <add name="Unknown Float Set 1" type="Vector3" cond="Skyrim Shader Type == 5">Unknown, related to skin</add>
+        <add name="Unknown Color 1" type="Color3" cond="Skyrim Shader Type == 6">Unknown, related to hair</add>
+        <add name="Unknown Float Set 3" type="float" arr1="2" cond="Skyrim Shader Type == 7">Unknown</add>
+        <add name="Unknown Float 9" type="float" cond="Skyrim Shader Type == 11">Unknown, related to ice or parallax</add>
+        <add name="Unknown Color 2" type="Color4" cond="Skyrim Shader Type == 11">Unknown, related to ice parallax</add>
+        <add name="Unknown Float Set 5" type="Vector4" cond="Skyrim Shader Type == 14">Unknown, also related to ice?</add>
+        <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye(Skyrim)</add>
+        <add name="Left Eye Reflection Angle" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Left Unknown</add>
+        <add name="Right Eye Reflection Angle" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Right Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
