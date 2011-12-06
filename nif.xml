@@ -4202,32 +4202,44 @@
     </niobject>
 
 	<!-- Skyrim specific Node -->
+    
+    <bitflags name="SkyrimEffectShaderFlags" storage="uint">
+        Skyrim Shader Property Flags 1
+        <option value="0" name="SF_Texture_Transform_U">Has Texture Transform (U?)</option>
+        <option value="1" name="SF_Texture_Transform_V">Has Texture Transform (V?)</option>
+        <option value="2" name="SF_2"></option>
+        <option value="3" name="SF_3"></option>
+        <option value="4" name="SF_4"></option>
+        <option value="5" name="SF_5"></option>
+        <option value="6" name="SF_6"></option>
+        <option value="7" name="SF_7"></option>
+    </bitflags>
+
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
+        <add name="Unknown Byte 1" type="byte">8/16? (nope, also 122,atronachflame)</add>
+        <add name="Unknown Short 1" type="ushort"> </add>
+        <add name="Unknown Byte 2" type="byte">always 80?</add>
         <add name="Unknown Int 1" type="uint"> </add>
-        <add name="Unknown Int 2" type="uint"> </add>
+        <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
+        <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
+        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown, flags?</add>
+        <add name="Effect Shader Flags" type="ushort">Will use SkyrimEffectShaderFlags</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Unknown Int 2" type="uint"> </add>
+        <add name="Emissive Color" type="Color3">Emissive color</add>
+        <add name="Emissive Saturation" type="float">Adds fill to the glow effect</add>
+        <add name="Emissive Strength" type="float">How bright the glow will be</add>
         <add name="Unknown Float 5" type="float">Unknown</add>
-        <add name="Unknown Float 6" type="float">Unknown</add>
-        <add name="Unknown Float 7" type="float">Unknown</add>
-        <add name="Unknown Float 8" type="float">Unknown</add>
-        <add name="Unknown Float 9" type="float">Unknown</add>
-        <add name="Unknown Float 10" type="float">Unknown</add>
-        <add name="Unknown Float 11" type="float">Unknown</add>
-        <add name="Unknown Float 12" type="float">Unknown</add>
-        <add name="Unknown Float 13" type="float">Unknown</add>
-        <add name="Unknown Float 14" type="float">Unknown</add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
     </niobject>
 
-	<!-- Skyrim specific Node -->
-	<niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Unknown Int 2" type="uint">Unknown. Does not appear to be a link.</add>
-	</niobject>
+    <!-- Skyrim specific Node -->
+    <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
+        <add name="Unknown Int 2" type="uint">Unknown. Does not appear to be a link.</add>
+    </niobject>
 	
 	<!-- Skyrim specific Node -->
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
@@ -4260,8 +4272,8 @@
         <add name="Byte 3" type="byte">Unknown</add>
         <add name="Target(?)8" type="uint">Unknown</add>
 	</niobject>
-    
-    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
+
+   <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
         Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6">Number of Textures</add>
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
@@ -4315,10 +4327,10 @@
         Bethesda-specific node.
     </niobject>
 
-    <bitflags name="SkyrimShaderFlags1" storage="uint">
+    <bitflags name="SkyrimLightingShaderFlags1" storage="uint">
         Skyrim Shader Property Flags 1
         <option value="0" name="SF_Specular">Enables Specularity</option>
-        <option value="1" name="SF_1"></option>
+        <option value="1" name="SF_Skinned">Required For Skinned Meshes</option>
         <option value="2" name="SF_2"></option>
         <option value="3" name="SF_3"></option>
         <option value="4" name="SF_4"></option>
@@ -4326,7 +4338,7 @@
         <option value="6" name="SF_6"></option>
         <option value="7" name="SF_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
         <option value="8" name="SF_8"></option>
-        <option value="9" name="SF_9"></option>
+        <option value="9" name="SF_Cast_Shadows">Can cast shadows</option>
         <option value="10" name="SF_10"></option>
         <option value="11" name="SF_11"></option>
         <option value="12" name="SF_Specular_Map">Use Specular Map</option>
@@ -4334,7 +4346,7 @@
         <option value="14" name="SF_14"></option>
         <option value="15" name="SF_15"></option>
         <option value="16" name="SF_16"></option>
-        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)c</option>
+        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
         <option value="18" name="SF_18"></option>
         <option value="19" name="SF_19"></option>
         <option value="20" name="SF_20"></option>
@@ -4351,14 +4363,14 @@
         <option value="31" name="SF_ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
     
-    <bitflags name="SkyrimShaderFlags2" storage="uint">
+    <bitflags name="SkyrimLightingShaderFlags2" storage="uint">
         Skyrim Shader Property Flags 2
         <option value="0" name="SF_ZBuffer_Write">Enables writing to the Z-Buffer</option>
         <option value="1" name="SF_1"></option>
         <option value="2" name="SF_2"></option>
         <option value="3" name="SF_3"></option>
-        <option value="4" name="SF_4"></option>
-        <option value="5" name="SF_Vertex_Color_Enable">Has Vertex Colors (Maybe, could be Vertex Alpha?)</option>
+        <option value="4" name="SF_Double_Sided">Double-sided rendering</option>
+        <option value="5" name="SF_Vertex_Color">Has Vertex Colors (Maybe, could be Vertex Alpha?)</option>
         <option value="6" name="SF_Glow_Map">Use Glow Map</option>
         <option value="7" name="SF_7"></option>
         <option value="8" name="SF_8"></option>
@@ -4390,18 +4402,18 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
-        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1 (will use SkyrimShaderFlags1)</add>
-        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2 (will use SkyrimShaderFlags2)</add>
+        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
+        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
         <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
-        <add name="Saturation" type="float">Unknown</add>
+        <add name="Emissive Saturation" type="float">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown, always 3?</add>
         <add name="Transparency" type="float">The material transparency (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
-        <add name="Specular Color" type="Vector3">Adds a colored highlight.</add>
+        <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Unknown, related to backlight/rim/softlight effect</add>
         <add name="Lighting Effect 2" type="float">Unknown, related to backlight/rim/softlight effect</add>
@@ -4413,8 +4425,8 @@
         <add name="Unknown Color 2" type="Color4" cond="Skyrim Shader Type == 11">Unknown, related to ice parallax</add>
         <add name="Unknown Float Set 5" type="Vector4" cond="Skyrim Shader Type == 14">Unknown, also related to ice?</add>
         <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye(Skyrim)</add>
-        <add name="Left Eye Reflection Angle" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Left Unknown</add>
-        <add name="Right Eye Reflection Angle" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Right Unknown</add>
+        <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Left Unknown</add>
+        <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Right Unknown</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
