@@ -2706,6 +2706,8 @@
         Bit 3 : enable animation
         Bit 4 : FlameNodes present
         Bit 5 : EditorMarkers present
+        Bit 6 : ? (Skyrim)
+        Bit 7 : ? (Skyrim)
     </niobject>
 
     <niobject name="NiIntegersExtraData" abstract="0" inherit="NiExtraData">
@@ -4203,7 +4205,19 @@
 
 	<!-- Skyrim specific Node -->
     
-    <bitflags name="SkyrimEffectShaderFlags" storage="uint">
+    <bitflags name="SkyrimEffectShaderFlags1" storage="uint">
+        Skyrim Shader Property Flags 1
+        <option value="0" name="SF_0"></option>
+        <option value="1" name="SF_1"></option>
+        <option value="2" name="SF_2"></option>
+        <option value="3" name="SF_3"></option>
+        <option value="4" name="SF_Double_Sided">Draw textures double-sided</option>
+        <option value="5" name="SF_5"></option>
+        <option value="6" name="SF_6"></option>
+        <option value="7" name="SF_7"></option>
+    </bitflags>
+
+    <bitflags name="SkyrimEffectShaderFlags2" storage="uint">
         Skyrim Shader Property Flags 1
         <option value="0" name="SF_Texture_Transform_U">Has Texture Transform (U?)</option>
         <option value="1" name="SF_Texture_Transform_V">Has Texture Transform (V?)</option>
@@ -4219,19 +4233,19 @@
         <add name="Unknown Byte 1" type="byte">8/16? (nope, also 122,atronachflame)</add>
         <add name="Unknown Short 1" type="ushort"> </add>
         <add name="Unknown Byte 2" type="byte">always 80?</add>
-        <add name="Unknown Int 1" type="uint"> </add>
+        <add name="Effect Shader Flags 1" type="uint">Shader options, will use SkyrimEffectShaderFlags1</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
         <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown, flags?</add>
-        <add name="Effect Shader Flags" type="ushort">Will use SkyrimEffectShaderFlags</add>
+        <add name="Effect Shader Flags 2" type="ushort">hader options, will use SkyrimEffectShaderFlags12</add>
+        <add name="Unknown Short 2" type="ushort">Unknown</add>
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Emissive Color" type="Color3">Emissive color</add>
-        <add name="Emissive Saturation" type="float">Adds fill to the glow effect</add>
-        <add name="Emissive Strength" type="float">How bright the glow will be</add>
+        <add name="Diffuse Color" type="Color3">Color</add>
+        <add name="Alpha" type="float">The material's transparency</add>
+        <add name="Emissive" type="float">Adds a glow effect</add>
         <add name="Unknown Float 5" type="float">Unknown</add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
     </niobject>
@@ -4243,7 +4257,12 @@
 	
 	<!-- Skyrim specific Node -->
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Unknown Int 2" type="uint">Unknown</add>
+    This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
+    5: Texture Translation U
+    6: Texture Translation V
+    7: Texture Repeat U
+    8: Texture Repeat V
+		<add name="Target Variable" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
@@ -4405,12 +4424,12 @@
         <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
         <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
-        <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
+        <add name="Texture Repeat" type="TexCoord">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Saturation" type="float">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown, always 3?</add>
-        <add name="Transparency" type="float">The material transparency (1=non-transparent).</add>
+        <add name="Alpha" type="float">The material transparency (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
