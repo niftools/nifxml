@@ -4217,14 +4217,14 @@
         <add name="Unknown Int 2" type="uint"> </add>
         <add name="Unknown Float 5" type="float">Unknown</add>
         <add name="Unknown Float 6" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Unknown Float 7" type="float">Unknown</add>
         <add name="Unknown Float 8" type="float">Unknown</add>
         <add name="Unknown Float 9" type="float">Unknown</add>
         <add name="Unknown Float 10" type="float">Unknown</add>
         <add name="Unknown Float 11" type="float">Unknown</add>
         <add name="Unknown Float 12" type="float">Unknown</add>
-        <add name="Unknown Float 13" type="float"> </add>
+        <add name="Unknown Float 13" type="float">Unknown</add>
+        <add name="Unknown Float 14" type="float">Unknown</add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
     </niobject>
 
