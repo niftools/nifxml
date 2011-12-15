@@ -5700,17 +5700,29 @@
         <add name="Unknown Int 3" type="uint">Unknown</add>
     </niobject>
     
+    <bitflags name="SkyrimWaterShaderFlags" storage="byte">
+        Skyrim Water Shader Property Flags
+        <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
+        <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
+        <option value="2" name="SWSF1_Water_Toggle">Main water Layer on/off</option>
+        <option value="3" name="SWSF1_UNKNOWN3">Unknown</option>
+        <option value="4" name="SWSF1_UNKNOWN4">Unknown</option>
+        <option value="5" name="SWSF1_UNKNOWN5">Unknown</option>
+        <option value="6" name="SWSF1_Highlight_Layer_Toggle">Reflection layer 2 on/off. (is this scene reflection?)</option>
+        <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
+    </bitflags>
+    
     <niobject name="BSWaterShaderProperty" inherit="NiProperty">
-        Water Shader Property, different from "WaterShaderProperty"
+        Water Shader Property, different from "WaterShaderProperty" seen in Fallout.
+        <add name="Unknown Byte 1" type="byte">Unknown, flag?</add>
         <add name="Unknown Short 1" type="ushort">Unknown, flag?</add>
-        <add name="Unknown Short 2" type="ushort">Unknown, flag?</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Unknown Int 3" type="uint">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>
-        <add name="Unknown Short 4" type="ushort">Unknown, flag?</add>  
+        <add name="Unknown Byte 2" type="byte">Unknown, flag?</add>
+        <add name="Texture Translation 1" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
+        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
+        <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
+        <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
     </niobject>
     
     
