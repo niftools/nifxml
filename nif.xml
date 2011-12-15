@@ -4235,7 +4235,7 @@
         <add name="Unknown Byte 2" type="byte">always 80?</add>
         <add name="Effect Shader Flags 1" type="uint">Shader options, will use SkyrimEffectShaderFlags1</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
-        <add name="Texture Translation 2" type="TexCoord">Offset UVs</add>
+        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Effect Shader Flags 2" type="ushort">hader options, will use SkyrimEffectShaderFlags12</add>
         <add name="Unknown Short 2" type="ushort">Unknown</add>
@@ -4244,7 +4244,7 @@
         <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Unknown Float 4" type="float">Unknown</add>
         <add name="Diffuse Color" type="Color3">Color</add>
-        <add name="Alpha" type="float">The material's transparency</add>
+        <add name="Alpha" type="float" default="1.0">The material's transparency</add>
         <add name="Emissive" type="float">Adds a glow effect</add>
         <add name="Unknown Float 5" type="float">Unknown</add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
@@ -4252,7 +4252,18 @@
 
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-        <add name="Unknown Int 2" type="uint">Unknown. Does not appear to be a link.</add>
+    This controller is used to animate variables in BSEffectShaderPropertyFloatController, target is a number in order they appear:
+    0: Visibility?
+    1: 
+    2: 
+    3: 
+    4: Emissive or Saturation?
+    5: Alpha Transparency
+    6: Texture Translation U
+    7: Texture Repeat U
+    8: Texture Translate V
+    9: Texture Repeat V
+        <add name="Target Variable" type="uint">Unknown</add>
     </niobject>
 	
 	<!-- Skyrim specific Node -->
@@ -4270,21 +4281,22 @@
 	</niobject>
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Target(?)1" type="uint">Unknown</add>
-        <add name="Target(?)2" type="uint">Unknown</add>
-        <add name="Target(?)3" type="uint">Unknown</add>
-        <add name="Target(?)4" type="uint">Unknown</add>
-        <add name="Target(?)5" type="uint">Unknown</add>
-        <add name="Target(?)6" type="uint">Unknown</add>
-        <add name="Target(?)7" type="uint">Unknown</add>
+    Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
+		<add name="Interpolator 2" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 4" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 5" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 6" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 7" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 8" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 9" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 10" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Unknown Short 1" type="ushort">Unknown</add>
         <add name="Unknown Short 2" type="ushort">Unknown</add>
         <add name="Unknown Short 3" type="ushort">Unknown</add>
-        <add name="Float 1" type="float">Unknown</add>
+        <add name="Distance Weight" type="float">How far lightning will be generated (along Y?)</add>
         <add name="Float 2" type="float">Unknown</add>
-        <add name="Float 3" type="float">Unknown</add>
-        <add name="Float 4" type="float">Unknown</add>
+        <add name="Vertex Deformation 1" type="float">How far vertices will stray from the strip path (x?)</add>
+        <add name="Vertex Deformation 2" type="float">How far vertices will stray from the strip path (y?)</add>
         <add name="Float 5" type="float">Unknown</add>
         <add name="Byte 1" type="byte">Unknown</add>
         <add name="Byte 2" type="byte">Unknown</add>
@@ -4421,19 +4433,19 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
-        <add name="Shader Flags 1" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
-        <add name="Shader Flags 2" type="uint" vercond="User Version == 12">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
+        <add name="Shader Flags 1" type="uint" vercond="User Version == 12" default="2185233153">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
+        <add name="Shader Flags 2" type="uint" vercond="User Version == 12" default="32801">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
         <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
-        <add name="Texture Repeat" type="TexCoord">Offset UVs</add>
+        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
-        <add name="Emissive Saturation" type="float">Unknown</add>
-        <add name="Unknown Int 7" type="uint">Unknown, always 3?</add>
-        <add name="Alpha" type="float">The material transparency (1=non-transparent).</add>
+        <add name="Emissive Saturation" type="float" default="1.0">Unknown</add>
+        <add name="Unknown Int 7" type="uint" default="3">Unknown, always 3?</add>
+        <add name="Alpha" type="float" default="1.0">The material transparency (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
-        <add name="Specular Strength" type="float">Brightness of specular highlight. (0=not visible) (0-999)</add>
+        <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Unknown, related to backlight/rim/softlight effect</add>
         <add name="Lighting Effect 2" type="float">Unknown, related to backlight/rim/softlight effect</add>
         <add name="Environment Map Strength" type="float" cond="Skyrim Shader Type == 1">How strong the environment/cube map is. (0-??)</add>
