@@ -4276,26 +4276,27 @@
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
-		<add name="Interpolator 2" type="Ref" template="NiInterpolator">Unknown</add>
+    First interpolator controls Generation.
+		<add name="Interpolator 2: Mutation" type="Ref" template="NiInterpolator">References interpolator for Mutation of strips</add>
         <add name="Interpolator 3" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 4" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 5" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 6" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 7" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 8" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 9" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for Amplitutde control. 0=straight, 50=wide</add>
         <add name="Unknown Short 1" type="ushort">Unknown</add>
         <add name="Unknown Short 2" type="ushort">Unknown</add>
         <add name="Unknown Short 3" type="ushort">Unknown</add>
-        <add name="Distance Weight" type="float">How far lightning will be generated (along Y?)</add>
+        <add name="Distance Weight" type="float">How far lightning will stretch to.</add>
         <add name="Float 2" type="float">Unknown</add>
-        <add name="Vertex Deformation 1" type="float">How far vertices will stray from the strip path (x?)</add>
-        <add name="Vertex Deformation 2" type="float">How far vertices will stray from the strip path (y?)</add>
+        <add name="Strip Width" type="float">How wide the bolt will be</add>
+        <add name="Fork" type="float">Influences forking behavior</add>
         <add name="Float 5" type="float">Unknown</add>
         <add name="Byte 1" type="byte">Unknown</add>
         <add name="Byte 2" type="byte">Unknown</add>
         <add name="Byte 3" type="byte">Unknown</add>
-        <add name="Target(?)8" type="uint">Unknown</add>
+        <add name="Interpolator 10?" type="Ref" template="NiInterpolator">Unknown, unsure if this is actually another interpolator link.</add>
 	</niobject>
 
    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
