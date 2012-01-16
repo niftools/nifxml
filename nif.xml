@@ -5694,8 +5694,8 @@
     <niobject name="BSSkyShaderProperty" inherit="NiProperty">
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Unknown Floats" type="Vector3">Unknown</add>
+        <add name="Texture Translation 1" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
+        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture" type="SizedString">Unknown</add>
         <add name="Unknown Int 3" type="uint">Unknown</add>
     </niobject>
