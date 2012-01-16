@@ -892,10 +892,10 @@
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="uint" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="uint" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="uint" default="0" cond="(User Version >= 10)" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
+        <add name="User Version 2" type="uint" default="0" vercond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
-        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version >= 10)" />
+        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" vercond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
         <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
@@ -1070,6 +1070,39 @@
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into &#039;Bones&#039;.</add>
 		<add name="Unknown Short" type="ushort" vercond="User Version >= 12">Unknown</add>
+
+        <!-- related to the file posted in tracker item #3117836:
+            http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
+        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
+        <add name="Unknown 00 00 1" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Num Vertices 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Unknown 00 00 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Unknown 00 00 3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Unknown 00 00 4" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Unknown Arr 1" type="SkinPartitionUnknownItem1" arr1="Num Vertices 2" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+    </compound>
+
+    <!-- related to the file posted in tracker item #3117836:
+        http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
+    <compound name="SkinPartitionUnknownItem1">
+        <add name="Unknown Flags" type="uint"></add>
+        <add name="f1" type="float"></add>
+        <add name="f2" type="float"></add>
+        <add name="f3" type="float"></add>
+        <add name="f4" type="float"></add>
+        <add name="f5" type="float"></add>
+    </compound>
+
+    <compound name="QTransform">
+        <add name="Translation" type="Vector3">Translation.</add>
+        <add name="Rotation" type="Quaternion">Rotation.</add>
+        <add name="Scale" type="float">Scale.</add>
+    </compound>
+
+    <compound name="MTransform">
+        <add name="Translation" type="Vector3">Translation.</add>
+        <add name="Rotation" type="Matrix33">Rotation.</add>
+        <add name="Scale" type="float">Scale.</add>
     </compound>
 
     <compound name="BoundingBox">
@@ -1741,7 +1774,7 @@
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
-        <add name="Unknown Byte 1" type="byte" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
 
@@ -1885,7 +1918,6 @@
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
-        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12" cond="BSLightingShaderProperty">Skyrim's shaders: 0=default 1=EnvMap, 2=Glow, 5=Skin, 6=Hair, 7=Unknown, 11=Ice/Parallax, 15=Eye.</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
@@ -1948,8 +1980,8 @@
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
         <add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
-        <add name="Num Properties" type="uint" vercond="(User Version  &lt;= 11)">The number of property objects referenced.</add>
-        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="(User Version &lt;= 11)">List of node properties.</add>
+        <add name="Num Properties" type="uint" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))">The number of property objects referenced.</add>
+        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))">List of node properties.</add>
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
         <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0">Do we have a bounding box?</add>
@@ -2025,7 +2057,8 @@
         <add name="Phase" type="float">Phase (usually 0.0).</add>
         <add name="Start Time" type="float">Controller start time.</add>
         <add name="Stop Time" type="float">Controller stop time.</add>
-        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13">Controller target (object index of the first controllable ancestor of this object).</add>
+        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12))">Controller target (object index of the first controllable ancestor of this object).</add>
+        <add name="Target" type="Ptr" template="NiObject" ver1="3.3.0.13" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version &lt;= 12))">Controller target (object index of the first controllable ancestor of this object).</add>
         <add name="Unknown Integer" type="uint" ver2="3.1">Unknown integer.</add>
     </niobject>
 
@@ -2231,10 +2264,10 @@
         <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.1.0.3">Shader.</add>
         <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
         <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
-        <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
+        <add name="Unknown Byte" type="byte" default="255" userver="1" vercond="(Version == 10.2.0.0) || ((Version != 20.0.0.5) &amp;&amp; (User Version 2 == 1))">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
-        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
+        <add name="Properties" type="Ref" template="NiObject" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used in Skyrim nifs.</add>
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -2244,21 +2277,18 @@
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
-        <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
-        <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
-        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(Version &lt; 20.2.0.7) || (User Version &lt; 11)">Number of vertices.</add>
-        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
+        <add name="Num Vertices" type="ushort" >Number of vertices. For NiPSysData this is max particles.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))">Methods for saving binormals and tangents saved in upper byte.  Texture flags in lower byte.</add>
-        <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
+        <add name="Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
         <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12">Unknown, seen in Skyrim.</add>	
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
-        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Num UV Sets &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
+        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Num UV Sets &amp; 61440)" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2277,7 +2307,7 @@
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
         <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="UV Sets" type="TexCoord" arr1="BS Num UV Sets &amp; 1" arr2="Num Vertices"  vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices"  vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
     </niobject>
@@ -2374,8 +2404,41 @@
         Ambient light source.
     </niobject>
 
-    <niobject name="NiParticlesData" abstract="0" inherit="NiGeometryData">
+    <niobject name="NiParticlesData" abstract="0" inherit="NiObject">
         Generic rotating particles data object.
+        <add name="Name" type="string" ver1="10.2.0.0">Name of this object.</add>
+        <add name="Num Vertices" type="ushort">Number of vertices. For NiPSysData this is max particles. (For Fallout 3 this is always zero)</add>
+        <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
+        <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
+        <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
+        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The mesh vertices.</add>
+        <add name="Num UV Sets" type="byte" ver1="10.0.1.0">Texture flags in lower byte.</add>
+        <add name="TSpace Flag" type="byte" ver1="10.0.1.0">Methods for saving binormals and tangents saved in upper byte.</add>
+        <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
+        <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The lighting normals.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (TSpace Flag &amp; 240)" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown. Binormal &amp; tangents?</add>
+        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (TSpace Flag &amp; 240)" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
+        <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
+        <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
+        <add name="Has Vertex Colors" type="bool">
+            Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
+
+            Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty object as a property child of the root node. If this property object is not present, the vertex colors fine-tune lighting.
+
+            Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
+        </add>
+        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The vertex colors.</add>
+        <add name="Num UV Sets" type="byte" ver2="4.2.2.0">Texture flags in lower byte.</add>
+        <add name="TSpace Flag" type="byte" ver2="4.2.2.0">Methods for saving binormals and tangents saved in upper byte.</add>
+        <add name="Has UV" type="bool" ver2="4.0.0.2">
+            Do we have UV coordinates?
+
+            Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
+        </add>
+        <add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 63" arr2="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <!--<add name="UV Sets" type="TexCoord" arr1="Num UV Sets &amp; 1" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>-->
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt;= 11">Consistency Flags</add>
+        <add name="Additional Data" type="Ref" template="NiAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt;= 11">Unknown.</add>
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
@@ -2385,6 +2448,8 @@
         <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
         <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
         <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particle rotations.</add>
+        <add name="Unknown Byte 1" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Unknown Link" type="Ref" template="NiObject" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
         <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
@@ -2422,13 +2487,17 @@
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Unknown Byte 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
+        <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Has Vertex Colors 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Num Vertex Colors 2" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, particle bit depth?</add>
+        <add name="Num Vertex Colors 2" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Num bytes per</add>
         <add name="Unknown Int 3" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Vertex Colors" type="Color4" arr1="Num Vertex Colors 2" cond="Has Vertex Colors 2 == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Byte 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Byte 3" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Floats 4" type="Vector3" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 3" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Byte 4" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
     </niobject>
     
@@ -2596,7 +2665,8 @@
     <niobject name="NiSequence" abstract="0" inherit="NiObject">
         Root node used in some Empire Earth II .kf files (version 4.2.2.0).
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
-        <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
+        <!--<add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>-->
+        <add name="Target Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
         <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
@@ -4195,6 +4265,7 @@
         <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
         <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
 	<!-- Skyrim specific Node -->
@@ -4227,19 +4298,19 @@
         <add name="Unknown Byte 1" type="byte">8/16? (nope, also 122,atronachflame)</add>
         <add name="Unknown Short 1" type="ushort"> </add>
         <add name="Unknown Byte 2" type="byte">always 80?</add>
-        <add name="Effect Shader Flags 1" type="uint">Shader options, will use SkyrimEffectShaderFlags1</add>
+        <add name="Effect Shader Flags 1" type="SkyrimEffectShaderFlags1">Shader options</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Effect Shader Flags 2" type="ushort">hader options, will use SkyrimEffectShaderFlags12</add>
-        <add name="Unknown Short 2" type="ushort">Unknown</add>
+        <add name="Effect Shader Flags 2" type="SkyrimEffectShaderFlags2">Shader options</add>
+
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Unknown Float 3" type="float">Unknown</add>
         <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Diffuse Color" type="Color3">Color</add>
-        <add name="Alpha" type="float" default="1.0">The material's transparency</add>
-        <add name="Emissive" type="float">Adds a glow effect</add>
+        <add name="Emissive Color" type="Color3">Emissive color</add>
+        <add name="Emissive Saturation" type="float">Adds fill to the glow effect</add>
+        <add name="Emissive Strength" type="float">How bright the glow will be</add>
         <add name="Unknown Float 5" type="float">Unknown</add>
         <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
     </niobject>
@@ -4260,18 +4331,17 @@
         <add name="Target Variable" type="uint">Unknown</add>
     </niobject>
 	
-	<!-- Skyrim specific Node -->
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
     5: U Offset
     6: V Offset
     7: U Scale
     8: V Scale
-		<add name="Target Variable" type="uint">Unknown</add>
+		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Unknown Int 2" type="uint">Unknown</add>
+		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
 	</niobject>
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
@@ -4426,8 +4496,13 @@
     </bitflags>
 
     <!-- Skyrim specific property -->
-    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
+    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiObject">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
+        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12">Skyrim's shaders: 0=default 1=EnvMap, 2=Glow, 5=Skin, 6=Hair, 7=Unknown, 11=Ice/Parallax, 14= Unknown, 16=Eye.</add>
+        <add name="Name" type="string">Object Name</add>
+        <add name="Num Extra Data List" type="uint" ver1="10.0.1.0">The number of Extra Data objects referenced through the list.</add>
+        <add name="Extra Data List" type="Ref" template="NiExtraData" arr1="Num Extra Data List" ver1="10.0.1.0">List of extra data indices.</add>
+        <add name="Controller" type="Ref" template="NiTimeController" ver1="3.0">Controller object index. (The first in a chain)</add>
         <add name="Shader Flags 1" type="uint" vercond="User Version == 12" default="2185233153">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
         <add name="Shader Flags 2" type="uint" vercond="User Version == 12" default="32801">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
@@ -5612,8 +5687,6 @@
         <add name="Shape Set 2" type="bhkCMSDContainer" arr1="Num Subshapes - 1" cond="Num Subshapes >= 1">Unknown, The first set is always present if 1.</add>
         <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
 	</niobject>
-
-    <!-- vim: set ts=4 sw=4 et: -->
 	
     <!-- Skyrim specific blocks -->
     <niobject name="BSInvMarker" abstract="0" inherit="NiExtraData">
@@ -5644,7 +5717,6 @@
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
     Links a nif with a Havok Behavior .hkx animation file
-            Unknown. Links to a hkx file.
 		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
 		<add name="Unknown Byte 1" type="byte">Unknown, has to do with blending on an actor.</add>
 	</niobject>
@@ -5692,6 +5764,7 @@
     </niobject>
     
     <niobject name="BSSkyShaderProperty" inherit="NiProperty">
+        Skyrim Sky ahader block.
         <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
@@ -5701,7 +5774,7 @@
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
-        Skyrim Water Shader Property Flags
+        Skyrim water shader property flags
         <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
         <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
         <option value="2" name="SWSF1_Water_Toggle">Main water Layer on/off</option>
@@ -5713,7 +5786,7 @@
     </bitflags>
     
     <niobject name="BSWaterShaderProperty" inherit="NiProperty">
-        Water Shader Property, different from "WaterShaderProperty" seen in Fallout.
+        Skyrim water ahader property, different from "WaterShaderProperty" seen in Fallout.
         <add name="Unknown Byte 1" type="byte">Unknown, flag?</add>
         <add name="Unknown Short 1" type="ushort">Unknown, flag?</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
