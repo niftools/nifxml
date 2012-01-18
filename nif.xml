@@ -4468,8 +4468,8 @@
     <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
-        <add name="Shader Flags 1" type="uint" vercond="User Version == 12" default="2185233153">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
-        <add name="Shader Flags 2" type="uint" vercond="User Version == 12" default="32801">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
+        <add name="Shader Flags 1" type="SkyrimLightingShaderFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" type="SkyrimLightingShaderFlags2" vercond="User Version == 12" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
