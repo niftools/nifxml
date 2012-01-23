@@ -625,6 +625,11 @@
         <option value="12000" name="BP_TORSOSECTION_RIGHTLEG3">Torso Section | Right Leg 3</option>
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
+    
+    <enum name="BSSegmentFlags" storage="uint">
+        An unsigned 32-bit integer, describing what's inside the segment.
+        <option value="9" name="BSSEG_WATER">Contains water.</option>
+    </enum>
 
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
@@ -1410,6 +1415,13 @@
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
+    
+    <compound name="BSSegment">
+        Bethesda-specific node.
+        <add name="Internal index" type="int" >Index multiplied by 1536 (0x0600)</add>
+        <add name="Flags" type="BSSegmentFlags" default="0x00000000">Geometry present in the segment</add>
+        <add name="Unknown Byte 1" type="byte" >Unknown</add>
+    </compound>
 
 <!-- nowhere used currently
 	<compound name="RagdollTemplateSubData1">
@@ -1918,7 +1930,29 @@
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
-        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12" cond="BSLightingShaderProperty">Skyrim's shaders: 0=default 1=EnvMap, 2=Glow, 5=Skin, 6=Hair, 7=Unknown, 11=Ice/Parallax, 15=Eye.</add>
+        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12" cond="BSLightingShaderProperty">
+            Skyrim's shaders:
+            0=default
+            1=EnvMap
+            2=Glow
+            3=Heightmap
+            4=Face
+            5=Skin
+            6=Hair
+            7=Unknown/Unused(?)
+            8=World Multitexture
+            9=WorldMap1
+            10=Unknown/Unused
+            11=Inner Layer/Parallax
+            12=Unknown/Unused
+            13=WorldMap2
+            14=Sparkle
+            15=WorldMap3
+            16=Eye
+            17=Unknown/Unused
+            18=WorldMap4
+            19=World LOD Multitexture</add>
+        </add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
@@ -4398,22 +4432,22 @@
         <option value="0" name="SLSF1_Specular">Enables Specularity</option>
         <option value="1" name="SLSF1_Skinned">Required For Skinned Meshes</option>
         <option value="2" name="SLSF1_2"></option>
-        <option value="3" name="SLSF1_3"></option>
+        <option value="3" name="SLSF1_3">Unknown, Related to hair</option>
         <option value="4" name="SLSF1_4"></option>
         <option value="5" name="SLSF1_5"></option>
         <option value="6" name="SLSF1_6"></option>
         <option value="7" name="SLSF1_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
         <option value="8" name="SLSF1_8"></option>
         <option value="9" name="SLSF1_Cast_Shadows">Can cast shadows</option>
-        <option value="10" name="SLSF1_10"></option>
+        <option value="10" name="SLSF1_Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
         <option value="11" name="SLSF1_11"></option>
-        <option value="12" name="SLSF1_Specular_Map">Use Specular Map</option>
+        <option value="12" name="SLSF1_External_Specular_Map">Use an external Specular Map.  Specular maps are typically stored in the alpha channel of a normal map.</option>
         <option value="13" name="SLSF1_13"></option>
         <option value="14" name="SLSF1_14"></option>
         <option value="15" name="SLSF1_15"></option>
         <option value="16" name="SLSF1_16"></option>
         <option value="17" name="SLSF1_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
-        <option value="18" name="SLSF1_18"></option>
+        <option value="18" name="SLSF1_Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
         <option value="19" name="SLSF1_19"></option>
         <option value="20" name="SLSF1_20"></option>
         <option value="21" name="SLSF1_21"></option>
@@ -4465,7 +4499,6 @@
         <option value="31" name="SLSF2_31"></option>
     </bitflags>
 
-    <!-- Skyrim specific property -->
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
         <add name="Shader Flags 1" type="SkyrimLightingShaderFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
@@ -4481,15 +4514,17 @@
         <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float">Unknown, related to backlight/rim/softlight effect</add>
-        <add name="Lighting Effect 2" type="float">Unknown, related to backlight/rim/softlight effect</add>
+        <add name="Lighting Effect 1" type="float">Controls strength for soft lighting effect</add>
+        <add name="Lighting Effect 2" type="float">Controls strength for rim lighting effect</add>
         <add name="Environment Map Strength" type="float" cond="Skyrim Shader Type == 1">How strong the environment/cube map is. (0-??)</add>
-        <add name="Unknown Float Set 1" type="Vector3" cond="Skyrim Shader Type == 5">Unknown, related to skin</add>
-        <add name="Unknown Color 1" type="Color3" cond="Skyrim Shader Type == 6">Unknown, related to hair</add>
+        <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
+        <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Unknown Float Set 3" type="float" arr1="2" cond="Skyrim Shader Type == 7">Unknown</add>
-        <add name="Unknown Float 9" type="float" cond="Skyrim Shader Type == 11">Unknown, related to ice or parallax</add>
-        <add name="Unknown Color 2" type="Color4" cond="Skyrim Shader Type == 11">Unknown, related to ice parallax</add>
-        <add name="Unknown Float Set 5" type="Vector4" cond="Skyrim Shader Type == 14">Unknown, also related to ice?</add>
+        <add name="Inner Layer Depth" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
+        <add name="Parallax Strength" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
+        <add name="Inner Layer Texture Repeat" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
+        <add name="Persistent Specular" type="float" cond="Skyrim Shader Type == 11">Specular highlight becomes more apparent, even if no point lights are present.</add>
+        <add name="Sparkle shader variables" type="Vector4" cond="Skyrim Shader Type == 14">Unknown</add>
         <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye(Skyrim)</add>
         <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Left Unknown</add>
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Right Unknown</add>
@@ -4689,22 +4724,16 @@
         <add name="Radius" type="float">Radius</add>
     </niobject>
 
-    <compound name="BSSegmentedTriangle">
-        Bethesda-specific node.
-        <add name="Unknown Int 1" type="int" >Unknown</add>
-        <add name="Unknown Int 2" type="int" >Unknown</add>
-        <add name="Unknown Byte 1" type="byte" >Unknown</add>
-    </compound>
-
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
         Bethesda-specific node.
-        <add name="Num Seg Triangles" type="int" >Unknown</add>
-        <add name="Seg Triangles" type="BSSegmentedTriangle" arr1="Num Seg Triangles">Unknown</add>
+        <add name="Num Segments" type="int" >Number of segments in the square grid</add>
+        <add name="Segment" type="BSSegment" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
     <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
         Bethesda-specific node.
-        <add name="Unknown Floats 1" type="float" arr1="6">Unknown</add>
+        <add name="Position" type="Vector3">Position of the AABB's center</add>
+        <add name="Extent" type="Vector3">Extent of the AABB in all directions</add>
     </niobject>
 
     <compound name="AdditionalDataInfo">
