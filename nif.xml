@@ -568,6 +568,8 @@
     </enum>
     
     <enum name="BSDismemberBodyPartType" storage="ushort">
+        Biped bodypart data used for visibility control of triangles.  Options are Fallout 3, except where marked for Skyrim (uses SBP prefix)
+        Skyrim BP names are listed only for vanilla names, different creatures have different defnitions for naming.
         <option value="0" name="BP_TORSO">Torso</option>
         <option value="1" name="BP_HEAD">Head</option>
         <option value="2" name="BP_HEAD2">Head 2</option>
@@ -583,6 +585,28 @@
         <option value="12" name="BP_RIGHTLEG3">Right Leg 3</option>
         <option value="13" name="BP_BRAIN">Brain</option>
         
+        <option value="30" name="SBP_30_HEAD">Skyrim, Head(Human), Body(Atronachs,Beasts), Mask(Dragonpriest)</option>
+        <option value="31" name="SBP_31_HAIR">Skyrim, Hair(human), Far(Dragon), Mask2(Dragonpriest),SkinnedFX(Spriggan)</option>
+        <option value="32" name="SBP_32_BODY">Skyrim, Main body, extras(Spriggan)</option>
+        <option value="33" name="SBP_33_HANDS">Skyrim, Hands L/R, BodyToo(Dragonpriest), Legs(Draugr), Arms(Giant)</option>
+        <option value="34" name="SBP_34_FOREARMS">Skyrim, Forearms L/R, Beard(Draugr)</option>
+        <option value="35" name="SBP_35_AMULET">Skyrim, Amulet</option>
+        <option value="36" name="SBP_36_RING">Skyrim, Ring</option>
+        <option value="37" name="SBP_37_FEET">Skyrim, Feet L/R</option>
+        <option value="38" name="SBP_38_CALVES">Skyrim, Calves L/R</option>
+        <option value="39" name="SBP_39_SHIELD">Skyrim, Shield</option>
+        <option value="40" name="SBP_40_TAIL">Skyrim, Tail(Argonian/Khajiit), Skeleton01(Dragon), FX01(AtronachStorm),FXMist (Dragonpriest), Spit(Chaurus,Spider),SmokeFins(IceWraith)</option>
+        <option value="41" name="SBP_41_LONGHAIR">Skyrim, Long Hair(Human), Skeleton02(Dragon),FXParticles(Dragonpriest)</option>
+        <option value="42" name="SBP_42_CIRCLET">Skyrim, Circlet(Human, MouthFireEffect(Dragon)</option>
+        <option value="43" name="SBP_43_EARS">Skyrim, Ears</option>
+        <option value="44" name="SBP_44_BLOODHEAD">Skyrim, Bloodied dragon head</option>
+        <option value="45" name="SBP_45_BLOODWINGL">Skyrim, Left Bloodied dragon wing, Saddle(Horse)</option>
+        <option value="46" name="SBP_46_BLOODWINGR">Skyrim, Right Bloodied dragon wing</option>
+        <option value="47" name="SBP_47_BLOODTAIL">Skyrim, Bloodied dragon tail</option>
+        <option value="50" name="SBP_50_DECAPITATEDHEAD">Skyrim, Decapitated Head</option>
+        <option value="51" name="SBP_51_DECAPITATE">Skyrim, Decapitate, neck gore</option>
+        <option value="61" name="SBP_61_FX01">Skyrim, FX01(Humanoid)</option>
+        
         <option value="101" name="BP_SECTIONCAP_HEAD">Section Cap | Head</option>
         <option value="102" name="BP_SECTIONCAP_HEAD2">Section Cap | Head 2</option>
         <option value="103" name="BP_SECTIONCAP_LEFTARM">Section Cap | Left Arm</option>
@@ -596,6 +620,13 @@
         <option value="111" name="BP_SECTIONCAP_RIGHTLEG2">Section Cap | Right Leg 2</option>
         <option value="112" name="BP_SECTIONCAP_RIGHTLEG3">Section Cap | Right Leg 3</option>
         <option value="113" name="BP_SECTIONCAP_BRAIN">Section Cap | Brain</option>
+        
+        <option value="130" name="SBP_130_HEAD">Skyrim, Head slot, use on full-face helmets</option>
+        <option value="131" name="SBP_131_HAIR">Skyrim, Hair slot 1, use on hoods</option>
+        <option value="141" name="SBP_141_LONGHAIR">Skyrim, Hair slot 2, use for longer hair</option>
+        <option value="142" name="SBP_142_CIRCLET">Skyrim, Circlet slot 1, use for circlets</option>
+        <option value="143" name="SBP_143_EARS">Skyrim, Ear slot</option>
+        <option value="150" name="SBP_150_DECAPITATEDHEAD">Skyrim, neck gore on head side</option>
 
         <option value="201" name="BP_TORSOCAP_HEAD">Torso Cap | Head</option>
         <option value="202" name="BP_TORSOCAP_HEAD2">Torso Cap | Head 2</option>
@@ -610,6 +641,8 @@
         <option value="211" name="BP_TORSOCAP_RIGHTLEG2">Torso Cap | Right Leg 2</option>
         <option value="212" name="BP_TORSOCAP_RIGHTLEG3">Torso Cap | Right Leg 3</option>
         <option value="213" name="BP_TORSOCAP_BRAIN">Torso Cap | Brain</option>
+
+        <option value="230" name="SBP_230_HEAD">Skyrim, Head slot, use for neck on character head</option>
 
         <option value="1000" name="BP_TORSOSECTION_HEAD">Torso Section | Head</option>
         <option value="2000" name="BP_TORSOSECTION_HEAD2">Torso Section | Head 2</option>
@@ -629,6 +662,30 @@
     <enum name="BSSegmentFlags" storage="uint">
         An unsigned 32-bit integer, describing what's inside the segment.
         <option value="9" name="BSSEG_WATER">Contains water.</option>
+    </enum>
+    
+    <enum name="BSLightingShaderPropertyShaderType" storage="uint">
+        Values for configuring the shader type in a BSLightingShaderProperty
+        <option value="0" name="Default"></option>
+        <option value="1" name="Environment Map"></option>
+        <option value="2" name="Glow Shader"></option>
+        <option value="3" name="Heightmap"></option>
+        <option value="4" name="Face Tint"></option>
+        <option value="5" name="Skin Tint"></option>
+        <option value="6" name="Hair Tint"></option>
+        <option value="7" name="Unknown/Unused"></option>
+        <option value="8" name="World Multitexture"></option>
+        <option value="9" name="WorldMap1"></option>
+        <option value="10" name="Unknown/Unused"></option>
+        <option value="11" name="Inner Layer/Parallax"></option>
+        <option value="12" name="Unknown/Unused"></option>
+        <option value="13" name="WorldMap2"></option>
+        <option value="14" name="Sparkle"></option>
+        <option value="15" name="WorldMap3"></option>
+        <option value="16" name="Eye Envmap"></option>
+        <option value="17" name="Unknown/Unused"></option>
+        <option value="18" name="WorldMap4"></option>
+        <option value="19" name="World LOD Multitexture"></option>
     </enum>
 
     <!--Compounds
@@ -1121,11 +1178,12 @@
     <compound name="FurniturePosition">
         Describes a furniture position?
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
-        <add name="Orientation" type="ushort">Furniture marker orientation.</add>
-        <add name="Position Ref 1" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
-        <add name="Position Ref 2" type="byte">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
-        <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Orientation" type="ushort" vercond="User Version &lt;= 11">Furniture marker orientation.</add>
+        <add name="Position Ref 1" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
+        <add name="Position Ref 2" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
+        <add name="Heading" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Similar to Orientation, in float form.</add>
+        <add name="Animation Type" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Entry Properties" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
     </compound>
 
     <compound name="hkTriangle">
@@ -1422,6 +1480,12 @@
         <add name="Flags" type="BSSegmentFlags" default="0x00000000">Geometry present in the segment</add>
         <add name="Unknown Byte 1" type="byte" >Unknown</add>
     </compound>
+    
+    <compound name="BoneLOD">
+        Stores Bone Level of Detail info in a BSBoneLODExtraData
+        <add name="Distance" type="uint">Distance to cull?</add>
+        <add name="Bone Name" type="string">The bones name</add>
+    </compound>
 
 <!-- nowhere used currently
 	<compound name="RagdollTemplateSubData1">
@@ -1579,9 +1643,9 @@
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Unknown Float 51" type="float" vercond="(User Version >= 12)" />
+        <add name="Friction 2" type="float" vercond="(User Version >= 12)">Skyrim, ignores previous friction setting?</add>
         <add name="Unknown Float 52" type="float" vercond="(User Version >= 12)" />
-        <add name="Unknown Float 53" type="float" vercond="(User Version >= 12)" />
+        <add name="Restitution 2" type="float" vercond="(User Version >= 12)">Skyrim, ignores previous restitution setting?</add>
         <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float" default="0.15">
@@ -1930,29 +1994,7 @@
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         An object that can be controlled by a controller.
-        <add name="Skyrim Shader Type" type="uint" vercond="User Version >= 12" cond="BSLightingShaderProperty">
-            Skyrim's shaders:
-            0=default
-            1=EnvMap
-            2=Glow
-            3=Heightmap
-            4=Face
-            5=Skin
-            6=Hair
-            7=Unknown/Unused(?)
-            8=World Multitexture
-            9=WorldMap1
-            10=Unknown/Unused
-            11=Inner Layer/Parallax
-            12=Unknown/Unused
-            13=WorldMap2
-            14=Sparkle
-            15=WorldMap3
-            16=Eye
-            17=Unknown/Unused
-            18=WorldMap4
-            19=World LOD Multitexture</add>
-        </add>
+        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="User Version >= 12" cond="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
@@ -2459,9 +2501,9 @@
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
         <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
 
-        <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown ushort</add>
+        <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown ushort</add>
         <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
-        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
+        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2489,15 +2531,13 @@
         <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Byte 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Unknown Short 1" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Short 2" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Has Vertex Colors 2" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Num Vertex Colors 2" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Num bytes per</add>
-        <add name="Unknown Int 3" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Vertex Colors" type="Color4" arr1="Num Vertex Colors 2" cond="Has Vertex Colors 2 == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
+
+        <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
+        <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
+        <add name="Aspect Ratio" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
+        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
         <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
@@ -2768,14 +2808,16 @@
 
     <niobject name="BSXFlags" abstract="0" inherit="NiIntegerExtraData">
         Controls animation and collision.  Integer holds flags:
-        Bit 0 : enable havok
-        Bit 1 : enable collision
-        Bit 2 : is skeleton nif?
-        Bit 3 : enable animation
-        Bit 4 : FlameNodes present
+        Bit 0 : enable havok, bAnimated(Skyrim)
+        Bit 1 : enable collision, bHavok(Skyrim)
+        Bit 2 : is skeleton nif?, bRagdoll(Skyrim)
+        Bit 3 : enable animation, bComplex(Skyrim)
+        Bit 4 : FlameNodes present, bAddon(Skyrim)
         Bit 5 : EditorMarkers present
-        Bit 6 : ? (Skyrim)
-        Bit 7 : ? (Skyrim)
+        Bit 6 : bDynamic(Skyrim)
+        Bit 7 : bArticulated(Skyrim)
+        Bit 8 : bIKTarget(Skyrim)
+        Bit 9 : Unknown(Skyrim)
     </niobject>
 
     <niobject name="NiIntegersExtraData" abstract="0" inherit="NiExtraData">
@@ -3286,13 +3328,14 @@
     </niobject> 
     
     <niobject name="BSPSysSubTexModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Float 1" type="float">These seem to relate to the texture slots in a TextureSet</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-        <add name="Unknown Float 6" type="float">Unknown</add>
+    Similar to a Flip Controller, this handles particle texture animation on a single texture atlas
+        <add name="Start Frame" type="uint">Starting frame/position on atlas</add>
+        <add name="Start Frame Fudge" type="float">Random chance to start on a different frame?</add>
+        <add name="End Frame" type="float">Ending frame/position on atlas</add>
+        <add name="Loop Start Frame" type="float">Frame to start looping</add>
+        <add name="Loop Start Frame Fudge" type="float"></add>
+        <add name="Frame Count" type="float">Unknown</add>
+        <add name="Frame Count Fudge" type="float">Unknown</add>
     </niobject>
     
     <niobject name="NiPSysPlanarCollider" abstract="0" inherit="NiPSysCollider">
@@ -4272,51 +4315,23 @@
         <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
-	<!-- Skyrim specific Node -->
-    
-    <bitflags name="SkyrimEffectShaderFlags1" storage="uint">
-        Skyrim Shader Property Flags 1
-        <option value="0" name="SESF1_0"></option>
-        <option value="1" name="SESF1_1"></option>
-        <option value="2" name="SESF1_2"></option>
-        <option value="3" name="SESF1_3"></option>
-        <option value="4" name="SESF1_Double_Sided">Draw textures double-sided</option>
-        <option value="5" name="SESF1_5"></option>
-        <option value="6" name="SESF1_6"></option>
-        <option value="7" name="SESF1_7"></option>
-    </bitflags>
-
-    <bitflags name="SkyrimEffectShaderFlags2" storage="uint">
-        Skyrim Shader Property Flags 2
-        <option value="0" name="SESF2_Texture_Transform_U">Has Texture Transform (U?)</option>
-        <option value="1" name="SESF2_Texture_Transform_V">Has Texture Transform (V?)</option>
-        <option value="2" name="SESF2_2"></option>
-        <option value="3" name="SESF2_3"></option>
-        <option value="4" name="SESF2_4"></option>
-        <option value="5" name="SESF2_5"></option>
-        <option value="6" name="SESF2_6"></option>
-        <option value="7" name="SESF2_7"></option>
-    </bitflags>
-
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        <add name="Unknown Byte 1" type="byte">8/16? (nope, also 122,atronachflame)</add>
-        <add name="Unknown Short 1" type="ushort"> </add>
-        <add name="Unknown Byte 2" type="byte">always 80?</add>
-        <add name="Effect Shader Flags 1" type="SkyrimEffectShaderFlags1">Shader options</add>
+        Skyrim non-PP shader model, used primarily for transparency effects.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Effect Shader Flags 2" type="SkyrimEffectShaderFlags2">Shader options</add>
-
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Emissive Color" type="Color3">Emissive color</add>
-        <add name="Emissive Saturation" type="float">Adds fill to the glow effect</add>
-        <add name="Emissive Strength" type="float">How bright the glow will be</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-        <add name="Gradient Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
+        <!-- Seems to behave the same, but needs flags instead? -->
+        <add name="Falloff Start Angle" type="float"></add>
+        <add name="Falloff Stop Angle" type="float"></add>
+        <add name="Falloff Start Opacity" type="float"></add>
+        <add name="Falloff Stop Opacity" type="float"></add>
+        <add name="Emissive Color" type="Color4">Emissive color</add>
+        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
+        <add name="Soft Falloff Depth" type="float"></add>
+        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
     </niobject>
 
     <!-- Skyrim specific Node -->
@@ -4427,107 +4442,108 @@
         Bethesda-specific node.
     </niobject>
 
-    <bitflags name="SkyrimLightingShaderFlags1" storage="uint">
+    <bitflags name="SkyrimShaderPropertyFlags1" storage="uint">
         Skyrim Shader Property Flags 1
         <option value="0" name="SLSF1_Specular">Enables Specularity</option>
-        <option value="1" name="SLSF1_Skinned">Required For Skinned Meshes</option>
-        <option value="2" name="SLSF1_2"></option>
-        <option value="3" name="SLSF1_3">Unknown, Related to hair</option>
-        <option value="4" name="SLSF1_4"></option>
-        <option value="5" name="SLSF1_5"></option>
-        <option value="6" name="SLSF1_6"></option>
-        <option value="7" name="SLSF1_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
-        <option value="8" name="SLSF1_8"></option>
+        <option value="1" name="SLSF1_Skinned">Required For Skinned Meshes.</option>
+        <option value="2" name="SLSF1_Temp_Refraction">Unknown</option>
+        <option value="3" name="SLSF1_Vertex_Alpha">Enables using alpha component of vertex colors.</option>
+        <option value="4" name="SLSF1_Greyscale_To_PaletteColor">in EffectShaderProperty</option>
+        <option value="5" name="SLSF1_Greyscale_To_PaletteAlpha">in EffectShaderProperty</option>
+        <option value="6" name="SLSF1_Use_Falloff">Use Falloff value in EffectShaderProperty</option>
+        <option value="7" name="SLSF1_Environment_Mapping">Environment mapping (uses Envmap Scale).</option>
+        <option value="8" name="SLSF1_Recieve_Shadows">Object can recieve shadows.</option>
         <option value="9" name="SLSF1_Cast_Shadows">Can cast shadows</option>
         <option value="10" name="SLSF1_Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
-        <option value="11" name="SLSF1_11"></option>
+        <option value="11" name="SLSF1_Parallax">Unused?</option>
         <option value="12" name="SLSF1_External_Specular_Map">Use an external Specular Map.  Specular maps are typically stored in the alpha channel of a normal map.</option>
-        <option value="13" name="SLSF1_13"></option>
-        <option value="14" name="SLSF1_14"></option>
-        <option value="15" name="SLSF1_15"></option>
-        <option value="16" name="SLSF1_16"></option>
+        <!-- might be model space normals, needs verified-->
+        <option value="13" name="SLSF1_Non-Projective_Shadows">Unknown.</option>
+        <option value="14" name="SLSF1_Landscape">Unknown.</option>
+        <option value="15" name="SLSF1_Refraction">Use normal map for refraction effect.</option>
+        <option value="16" name="SLSF1_Fire_Refraction"></option>
         <option value="17" name="SLSF1_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
         <option value="18" name="SLSF1_Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
-        <option value="19" name="SLSF1_19"></option>
-        <option value="20" name="SLSF1_20"></option>
-        <option value="21" name="SLSF1_21"></option>
-        <option value="22" name="SLSF1_22"></option>
-        <option value="23" name="SLSF1_23"></option>
-        <option value="24" name="SLSF1_24"></option>
-        <option value="25" name="SLSF1_25"></option>
-        <option value="26" name="SLSF1_26"></option>
-        <option value="27" name="SLSF1_27"></option>
-        <option value="28" name="SLSF1_28"></option>
-        <option value="29" name="SLSF1_29"></option>
-        <option value="30" name="SLSF1_30"></option>
+        <option value="19" name="SLSF1_Screendoor_Alpha_Fade"></option>
+        <option value="20" name="SLSF1_Localmap_Hide_Secret">Object and anything it is positioned above will not render on local map view.</option>
+        <option value="21" name="SLSF1_FaceGen_RGB_Tint">Use tintmask for Face.</option>
+        <option value="22" name="SLSF1_Own_Emit">Provides its own emittance color. (will not absorb light/ambient color?)</option>
+        <option value="23" name="SLSF1_Projected_UV">Used for decalling?</option>
+        <option value="24" name="SLSF1_Multiple_Textures"></option>
+        <option value="25" name="SLSF1_Remappable_Textures"></option>
+        <option value="26" name="SLSF1_Decal"></option>
+        <option value="27" name="SLSF1_Dynamic_Decal"></option>
+        <option value="28" name="SLSF1_Parallax_Occlusion"></option>
+        <option value="29" name="SLSF1_External_Emittance"></option>
+        <option value="30" name="SLSF1_Soft_Effect"></option>
         <option value="31" name="SLSF1_ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
     
-    <bitflags name="SkyrimLightingShaderFlags2" storage="uint">
+    <bitflags name="SkyrimShaderPropertyFlags2" storage="uint">
         Skyrim Shader Property Flags 2
         <option value="0" name="SLSF2_ZBuffer_Write">Enables writing to the Z-Buffer</option>
-        <option value="1" name="SLSF2_1"></option>
-        <option value="2" name="SLSF2_2"></option>
-        <option value="3" name="SLSF2_3"></option>
-        <option value="4" name="SLSF2_Double_Sided">Double-sided rendering</option>
-        <option value="5" name="SLSF2_Vertex_Color">Has Vertex Colors (Maybe, could be Vertex Alpha?)</option>
-        <option value="6" name="SLSF2_Glow_Map">Use Glow Map</option>
-        <option value="7" name="SLSF2_7"></option>
-        <option value="8" name="SLSF2_8"></option>
-        <option value="9" name="SLSF2_9"></option>
-        <option value="10" name="SLSF2_10"></option>
-        <option value="11" name="SLSF2_11"></option>
-        <option value="12" name="SLSF2_12"></option>
-        <option value="13" name="SLSF2_13"></option>
-        <option value="14" name="SLSF2_14"></option>
-        <option value="15" name="SLSF2_15"></option>
+        <option value="1" name="SLSF2_LOD_Landscape"></option>
+        <option value="2" name="SLSF2_LOD_Objects"></option>
+        <option value="3" name="SLSF2_No_Fade"></option>
+        <option value="4" name="SLSF2_Double_Sided">Double-sided rendering.</option>
+        <option value="5" name="SLSF2_Vertex_Color">Has Vertex Colors.</option>
+        <option value="6" name="SLSF2_Glow_Map">Use Glow Map in the third texture slot.</option>
+        <option value="7" name="SLSF2_Assume_Shadowmask"></option>
+        <option value="8" name="SLSF2_Packed_Tangent"></option>
+        <option value="9" name="SLSF2_Multi_Index_Snow"></option>
+        <option value="10" name="SLSF2_Vertex_Lighting"></option>
+        <option value="11" name="SLSF2_Uniform_Scale"></option>
+        <option value="12" name="SLSF2_Fit_Slope"></option>
+        <option value="13" name="SLSF2_Billboard"></option>
+        <option value="14" name="SLSF2_No_LOD_Land_Blend"></option>
+        <option value="15" name="SLSF2_EnvMap_Light_Fade"></option>
         <option value="16" name="SLSF2_16">Wireframe (Seems to only work on particles)</option>
-        <option value="17" name="SLSF2_17"></option>
-        <option value="18" name="SLSF2_18"></option>
-        <option value="19" name="SLSF2_19"></option>
-        <option value="20" name="SLSF2_20"></option>
-        <option value="21" name="SLSF2_21"></option>
-        <option value="22" name="SLSF2_22"></option>
-        <option value="23" name="SLSF2_23"></option>
-        <option value="24" name="SLSF2_Multi_Layer">Use Multilayer (inner-layer) Map</option>
-        <option value="25" name="SLSF2_Soft_Light">Use Soft Lighting Map</option>
-        <option value="26" name="SLSF2_Rim_Light">Use Rim Lighting Map</option>
-        <option value="27" name="SLSF2_Back_Light">Use Back Lighting Map</option>
-        <option value="28" name="SLSF2_28"></option>
-        <option value="29" name="SLSF2_Vertex_Animation">Enables Vertex Animation</option>
-        <option value="30" name="SLSF2_30"></option>
-        <option value="31" name="SLSF2_31"></option>
+        <option value="17" name="SLSF2_Weapon_Blood">Used for blood decals on weapons.</option>
+        <option value="18" name="SLSF2_Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
+        <option value="19" name="SLSF2_Premult_Alpha"></option>
+        <option value="20" name="SLSF2_Cloud_LOD"></option>
+        <option value="21" name="SLSF2_Anisotropic_Lighting"></option>
+        <option value="22" name="SLSF2_No_Transparency_Multisampling"></option>
+        <option value="23" name="SLSF2_Unused01">Unused?</option>
+        <option value="24" name="SLSF2_Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
+        <option value="25" name="SLSF2_Soft_Lighting">Use Soft Lighting Map</option>
+        <option value="26" name="SLSF2_Rim_Lighting">Use Rim Lighting Map</option>
+        <option value="27" name="SLSF2_Back_Lighting">Use Back Lighting Map</option>
+        <option value="28" name="SLSF2_Unused02">Unused?</option>
+        <option value="29" name="SLSF2_Tree_Anim">Enables Vertex Animation, Flutter Animation</option>
+        <option value="30" name="SLSF2_Effect_Lighting"></option>
+        <option value="31" name="SLSF2_HD_LOD_Objects"></option>
     </bitflags>
 
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
-        Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
-        <add name="Shader Flags 1" type="SkyrimLightingShaderFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" type="SkyrimLightingShaderFlags2" vercond="User Version == 12" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
+        Skyrim PP shader for assigning material/shader/texture.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="User Version == 12" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UVs</add>
-        <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
-        <add name="Emissive Saturation" type="float" default="1.0">Unknown</add>
-        <add name="Unknown Int 7" type="uint" default="3">Unknown, always 3?</add>
-        <add name="Alpha" type="float" default="1.0">The material transparency (1=non-transparent).</add>
+        <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
+        <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
+        <add name="Alpha" type="float" default="1.0">The materials opacity (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
+        <add name="Specular Power - Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float">Controls strength for soft lighting effect</add>
-        <add name="Lighting Effect 2" type="float">Controls strength for rim lighting effect</add>
-        <add name="Environment Map Strength" type="float" cond="Skyrim Shader Type == 1">How strong the environment/cube map is. (0-??)</add>
+        <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Unknown Float Set 3" type="float" arr1="2" cond="Skyrim Shader Type == 7">Unknown</add>
-        <add name="Inner Layer Depth" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
-        <add name="Parallax Strength" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
-        <add name="Inner Layer Texture Repeat" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
-        <add name="Persistent Specular" type="float" cond="Skyrim Shader Type == 11">Specular highlight becomes more apparent, even if no point lights are present.</add>
-        <add name="Sparkle shader variables" type="Vector4" cond="Skyrim Shader Type == 14">Unknown</add>
-        <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye(Skyrim)</add>
-        <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Left Unknown</add>
-        <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Eye(Skyrim)Right Unknown</add>
+        <add name="Parallax Inner Layer Thickness" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
+        <add name="Parallax Refraction Scale" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
+        <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
+        <add name="Parallax Envmap Strength" type="float" cond="Skyrim Shader Type == 11">How strong the environment/cube map is. (0-??)</add>
+        <add name="Sparkle Paramaters" type="Vector4" cond="Skyrim Shader Type == 14">Unknown/unused?  CK lists "snow material" when used.</add>
+        <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
+        <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
+        <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -4820,12 +4836,12 @@
         <add name="Entities 2" type="Ptr" template="bhkEntity" arr1="Num Entities 2" vercond="User Version == 12">The entities affected by this constraint.</add>
         <add name="Priority 2" type="uint" default="1" vercond="User Version == 12">Usually 1. Higher values indicate higher priority of this constraint?</add>
         <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Floats 1" type="Vector3" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector3" vercond="User Version == 12">Unknown</add>
+        <add name="Position" type="Vector3" vercond="User Version == 12">Unknown</add>
+        <add name="Rotation" type="Vector3" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Int 3" type="uint" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Float 1" type="float" vercond="User Version == 12">Unknown</add>
+        <add name="Threshold" type="float" vercond="User Version == 12">Unknown</add>
         <add name="Unknown Float 1" type="float" cond="Unknown Int 1 >= 1" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Byte 1" type="byte" vercond="User Version == 12">Unknown</add>
+        <add name="Remove if Broken" type="byte" vercond="User Version == 12">Unknown</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
@@ -5690,43 +5706,37 @@
         If not present, then Skyrim will still show the nif in inventory,
         using the default values.
         Name should be 'INV' (without the quotes).
-
-        <add name="Rotation 1" type="uint" default="0">Up-down rotation, in radians * 1000.</add>
-        <add name="Rotation 2" type="uint" default="0">Left-right rotation, in radians * 1000.</add>
-        <add name="Zoom" type="ushort" default="16256">Zoom factor. 16000 is really far away, 16600 is really close by.</add>
+        For rotations, a short of "4712" appears as "4.712" but "959" appears as "0.959"  meshes\weapons\daedric\daedricbowskinned.nif
+        <add name="Rotation X" type="ushort" default="4712"></add>
+        <add name="Rotation Y" type="ushort" default="6283"></add>
+        <add name="Rotation Z" type="ushort" default="0"></add>
+        <add name="Zoom" type="float" default="1.0">Zoom factor.</add>
     </niobject>
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
-    Unkown
-		<add name="Unknown Int 1" type="uint"> </add>
-		<add name="Unknown Int A1" type="uint" arr1="Unknown Int 1" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int A2" type="uint" arr1="Unknown Int 1" vercond="User Version >= 12"> </add>
-		<!--<add name="Unknown Int 2" type="uint"> </add>
-		<add name="Unknown Int 3" type="uint"> </add>
-		<add name="Unknown Int 4" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int 5" type="uint" cond="Unknown Int 1 >= 2" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int 6" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>
-		<add name="Unknown Int 7" type="uint" cond="Unknown Int 1 == 3" vercond="User Version >= 12"> </add>-->
+    Unknown
+		<add name="BoneLOD Count" type="uint">Number of bone entries</add>
+        <add name="BoneLOD Info" type="BoneLOD" arr1="BoneLOD Count">Bone Entry</add>
 	</niobject>
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
     Links a nif with a Havok Behavior .hkx animation file
 		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
-		<add name="Unknown Byte 1" type="byte">Unknown, has to do with blending on an actor.</add>
+		<add name="Controls Base Skeleton" type="byte">Unknown, has to do with blending appended bones onto an actor.</add>
 	</niobject>
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController">
     A controller that trails a bone behind an actor.
-		<add name="Rotation Lag" type="float">How long it takes to rotate about an actor back to rest position.</add>
-		<add name="Unknown Float 3" type="float">Unknown</add>
-		<add name="Length" type="float">How far bone will tail an actor.</add>
+		<add name="Linear Velocity" type="float">How long it takes to rotate about an actor back to rest position.</add>
+		<add name="Linear Rotation" type="float">How the bone lags rotation</add>
+		<add name="Maximum Distance" type="float">How far bone will tail an actor.</add>
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown</add>
-		<add name="Unknown Int 2" type="uint">Unknown</add>
-		<add name="Unknown Int 3" type="uint">Unknown</add>
+    A variation on NiTriShape, for visibility control over vertex groups.
+		<add name="Level 0 Size" type="uint">Unknown</add>
+		<add name="Level 1 Size" type="uint">Unknown</add>
+		<add name="Level 2 Size" type="uint">Unknown</add>
 	</niobject>
 	
 	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
@@ -5743,7 +5753,7 @@
     </niobject>
 	
     <niobject name="BSLeafAnimNode" inherit="NiNode">
-    Unkown, related to trees.
+    Unknown, related to trees.
     </niobject>
     
     <niobject name="BSTreeNode" inherit="NiAVObject">
@@ -5757,14 +5767,26 @@
         <add name="Bones" type="Ref" arr1="Num Bones 2" template="NiNode">Unknown</add>
     </niobject>
     
+    <enum name="SkyObjectType" storage="uint">
+        Skyrim, sets what sky function this object fulfills in BSSkyShaderProperty.
+        <option value="0" name="0"></option>
+        <option value="1" name="1"></option>
+        <option value="2" name="BSSM_Sky">BSSM_Sky</option>
+        <option value="3" name="3"></option>
+        <option value="4" name="4"></option>
+        <option value="5" name="BSSM_Sky_Stars">BSSM_Sky_Stars</option>
+        <option value="6" name="6"></option>
+        <option value="7" name="BSSM_Sky_Moon_Stars_Mask">BSSM_Sky_Moon_Stars_Mask</option>
+    </enum>
+
     <niobject name="BSSkyShaderProperty" inherit="NiProperty">
-        Skyrim Sky ahader block.
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        Skyrim Sky shader block.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Texture" type="SizedString">Unknown</add>
-        <add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Source Texture" type="SizedString">Unknown</add>
+        <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
@@ -5780,11 +5802,9 @@
     </bitflags>
     
     <niobject name="BSWaterShaderProperty" inherit="NiProperty">
-        Skyrim water ahader property, different from "WaterShaderProperty" seen in Fallout.
-        <add name="Unknown Byte 1" type="byte">Unknown, flag?</add>
-        <add name="Unknown Short 1" type="ushort">Unknown, flag?</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Byte 2" type="byte">Unknown, flag?</add>
+        Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
