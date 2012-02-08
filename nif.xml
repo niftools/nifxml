@@ -215,6 +215,26 @@
         <option value="29" name="HAV_MAT_SNOW_STAIRS">Snow Stairs</option>
         <option value="30" name="HAV_MAT_ELEVATOR">Elevator</option>
         <option value="31" name="HAV_MAT_RUBBER">Rubber</option>
+        <!-- Skyrim Specific Options -->
+        <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
+        <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
+        <option value="790784366" name="SKY_HAV_MAT_MATERIAL_BASKET">Material Basket</option>
+        <option value="1060167844" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
+        <option value="1264672850" name="SKY_HAV_MAT_MATERIALBOOK">Material Book</option>
+        <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
+        <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
+        <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
+        <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
+        <option value="2022742644" name="SKY_HAV_MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
+        <!-- NifSkope Has some issues reading UInt above 2.02Billion, Commented out all errored reads
+        <option value="2229413539" name="SKY_HAV_MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small,</option>
+        <option value="2974920155" name="SKY_HAV_MAT_ORGANIC">Organic</option>
+        <option value="3070783559" name="SKY_HAV_MAT_HEAVY_WOOD">Heavy Wood</option>
+        <option value="3725505938" name="SKY_HAV_MAT_MATERIALARROW">MaterialArrow</option>
+        <option value="3741512247" name="SKY_HAV_MAT_STONE">Stone</option>
+        <option value="3839073443" name="SKY_HAV_MAT_CLOTH">Cloth</option>
+        <option value="3969592277" name="SKY_HAV_MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option> -->
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
@@ -667,22 +687,22 @@
     <enum name="BSLightingShaderPropertyShaderType" storage="uint">
         Values for configuring the shader type in a BSLightingShaderProperty
         <option value="0" name="Default"></option>
-        <option value="1" name="Environment Map"></option>
-        <option value="2" name="Glow Shader"></option>
-        <option value="3" name="Heightmap"></option>
-        <option value="4" name="Face Tint"></option>
-        <option value="5" name="Skin Tint"></option>
-        <option value="6" name="Hair Tint"></option>
-        <option value="7" name="Unknown/Unused"></option>
+        <option value="1" name="Environment Map">Enables EnvMap Mask(TS6), EnvMap Scale</option>
+        <option value="2" name="Glow Shader">Enables Glow(TS3)</option>
+        <option value="3" name="Heightmap">Enables Height(TS4)</option>
+        <option value="4" name="Face Tint">Enables SubSurface(TS3), Detail(TS4), Tint(TS7)</option>
+        <option value="5" name="Skin Tint">Enables Skin Tint Color</option>
+        <option value="6" name="Hair Tint">Enables Hair Tint Color</option>
+        <option value="7" name="Parallax Occ Material">Enables Height(TS4), Max Passes, Scale.  Unused?</option>
         <option value="8" name="World Multitexture"></option>
         <option value="9" name="WorldMap1"></option>
         <option value="10" name="Unknown/Unused"></option>
-        <option value="11" name="Inner Layer/Parallax"></option>
+        <option value="11" name="MultiLayer Parallax">Enables EnvMap Mask(TS6), Layer(TS7), Parallax Layer Thickness, Parallax Refraction Scale, Parallax Inner Layer U Scale, Parallax Inner Layer V Scale, EnvMap Scale</option>
         <option value="12" name="Unknown/Unused"></option>
         <option value="13" name="WorldMap2"></option>
-        <option value="14" name="Sparkle"></option>
+        <option value="14" name="Sparkle/Snow">Enables SparkleParams</option>
         <option value="15" name="WorldMap3"></option>
-        <option value="16" name="Eye Envmap"></option>
+        <option value="16" name="Eye Envmap">Enables EnvMap Mask(TS6), Eye EnvMap Scale</option>
         <option value="17" name="Unknown/Unused"></option>
         <option value="18" name="WorldMap4"></option>
         <option value="19" name="World LOD Multitexture"></option>
@@ -1632,20 +1652,20 @@
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
-        <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
+        <add name="Inertia Tensors" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
+        <add name="TimeFactor or GravityFactor?" type="float" vercond="(User Version >= 12)" />
+        <add name="TimeFactor or GravityFactor?" type="float" vercond="(User Version >= 12)" />
         <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
+        <add name="RollingFrictionMultiplier?" type="float" vercond="(User Version >= 12)" />
         <add name="Restitution" type="float" default="0.3">
             The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Friction 2" type="float" vercond="(User Version >= 12)">Skyrim, ignores previous friction setting?</add>
-        <add name="Unknown Float 52" type="float" vercond="(User Version >= 12)" />
-        <add name="Restitution 2" type="float" vercond="(User Version >= 12)">Skyrim, ignores previous restitution setting?</add>
         <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
         <add name="Penetration Depth" type="float" default="0.15">
@@ -2500,10 +2520,10 @@
         <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
         <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
-
-        <add name="Has Unknown Stuff 1" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown ushort</add>
-        <add name="Num Unknown Stuff 1" type="short" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
-        <add name="Unknown Stuff 1" type="Vector4" arr1="Num Unknown Stuff 1" cond="Has Unknown Stuff 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
+        <add name="Has UV Quadrants" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">if value is no, a single image rendered</add>
+        <add name="Num UV Quadrants" type="byte" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
+        <add name="UV Quadrants" type="Vector4" arr1="Num UV Quadrants" cond="Has UV Quadrants >= 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)"></add>
+        <add name="Unknown Byte 2" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -4323,10 +4343,10 @@
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
-        <!-- Seems to behave the same, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float"></add>
-        <add name="Falloff Stop Angle" type="float"></add>
-        <add name="Falloff Start Opacity" type="float"></add>
+        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
+        <add name="Falloff Start Angle" type="float" default="1.0"></add>
+        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
+        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
         <add name="Falloff Stop Opacity" type="float"></add>
         <add name="Emissive Color" type="Color4">Emissive color</add>
         <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
@@ -4456,8 +4476,7 @@
         <option value="9" name="SLSF1_Cast_Shadows">Can cast shadows</option>
         <option value="10" name="SLSF1_Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
         <option value="11" name="SLSF1_Parallax">Unused?</option>
-        <option value="12" name="SLSF1_External_Specular_Map">Use an external Specular Map.  Specular maps are typically stored in the alpha channel of a normal map.</option>
-        <!-- might be model space normals, needs verified-->
+        <option value="12" name="SLSF1_Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
         <option value="13" name="SLSF1_Non-Projective_Shadows">Unknown.</option>
         <option value="14" name="SLSF1_Landscape">Unknown.</option>
         <option value="15" name="SLSF1_Refraction">Use normal map for refraction effect.</option>
@@ -4486,7 +4505,7 @@
         <option value="2" name="SLSF2_LOD_Objects"></option>
         <option value="3" name="SLSF2_No_Fade"></option>
         <option value="4" name="SLSF2_Double_Sided">Double-sided rendering.</option>
-        <option value="5" name="SLSF2_Vertex_Color">Has Vertex Colors.</option>
+        <option value="5" name="SLSF2_Vertex_Colors">Has Vertex Colors.</option>
         <option value="6" name="SLSF2_Glow_Map">Use Glow Map in the third texture slot.</option>
         <option value="7" name="SLSF2_Assume_Shadowmask"></option>
         <option value="8" name="SLSF2_Packed_Tangent"></option>
@@ -4497,12 +4516,12 @@
         <option value="13" name="SLSF2_Billboard"></option>
         <option value="14" name="SLSF2_No_LOD_Land_Blend"></option>
         <option value="15" name="SLSF2_EnvMap_Light_Fade"></option>
-        <option value="16" name="SLSF2_16">Wireframe (Seems to only work on particles)</option>
+        <option value="16" name="SLSF2_Wireframe">Wireframe (Seems to only work on particles)</option>
         <option value="17" name="SLSF2_Weapon_Blood">Used for blood decals on weapons.</option>
         <option value="18" name="SLSF2_Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
-        <option value="19" name="SLSF2_Premult_Alpha"></option>
+        <option value="19" name="SLSF2_Premult_Alpha">Has Premultiplied Alpha</option>
         <option value="20" name="SLSF2_Cloud_LOD"></option>
-        <option value="21" name="SLSF2_Anisotropic_Lighting"></option>
+        <option value="21" name="SLSF2_Anisotropic_Lighting">Hair only?</option>
         <option value="22" name="SLSF2_No_Transparency_Multisampling"></option>
         <option value="23" name="SLSF2_Unused01">Unused?</option>
         <option value="24" name="SLSF2_Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
@@ -4535,7 +4554,8 @@
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
-        <add name="Unknown Float Set 3" type="float" arr1="2" cond="Skyrim Shader Type == 7">Unknown</add>
+        <add name="Max Passes" type="float" cond="Shader Type == 7">Max Passes</add>
+        <add name="Scale" type="float" cond="Shader Type == 7">Scale</add>
         <add name="Parallax Inner Layer Thickness" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
         <add name="Parallax Refraction Scale" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
         <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
@@ -5769,14 +5789,12 @@
     
     <enum name="SkyObjectType" storage="uint">
         Skyrim, sets what sky function this object fulfills in BSSkyShaderProperty.
-        <option value="0" name="0"></option>
-        <option value="1" name="1"></option>
-        <option value="2" name="BSSM_Sky">BSSM_Sky</option>
-        <option value="3" name="3"></option>
-        <option value="4" name="4"></option>
-        <option value="5" name="BSSM_Sky_Stars">BSSM_Sky_Stars</option>
-        <option value="6" name="6"></option>
-        <option value="7" name="BSSM_Sky_Moon_Stars_Mask">BSSM_Sky_Moon_Stars_Mask</option>
+        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
+        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
+        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
+        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
+        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
+        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
     </enum>
 
     <niobject name="BSSkyShaderProperty" inherit="NiProperty">
@@ -5785,7 +5803,7 @@
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Source Texture" type="SizedString">Unknown</add>
+        <add name="Source Texture" type="SizedString">points to an external texture.</add>
         <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
     
