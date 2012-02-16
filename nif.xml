@@ -932,7 +932,8 @@
 
     <compound name="ControllerLink" ver1="10.2.0.0">
         In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.
-        <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
+        <!--<add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>-->
+        <add name="Node Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.0">Link to a controller.</add>
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106">Link to an interpolator.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
@@ -2154,7 +2155,8 @@
         <add name="Phase" type="float">Phase (usually 0.0).</add>
         <add name="Start Time" type="float">Controller start time.</add>
         <add name="Stop Time" type="float">Controller stop time.</add>
-        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13">Controller target (object index of the first controllable ancestor of this object).</add>
+        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13" vercond="(Version &lt; 20.2.0.7)">Controller target (object index of the first controllable ancestor of this object).</add>
+        <add name="Target" type="Ptr" template="NiObject" ver1="3.3.0.13" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version &lt;= 12))">Controller target (object index of the first controllable ancestor of this object).</add>
         <add name="Unknown Integer" type="uint" ver2="3.1">Unknown integer.</add>
     </niobject>
 
@@ -4554,8 +4556,8 @@
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
-        <add name="Max Passes" type="float" cond="Shader Type == 7">Max Passes</add>
-        <add name="Scale" type="float" cond="Shader Type == 7">Scale</add>
+        <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
+        <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
         <add name="Parallax Inner Layer Thickness" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
         <add name="Parallax Refraction Scale" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
         <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
@@ -5640,34 +5642,26 @@
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
-		<add name="Unknown Floats" type="float" arr1="8">Unknown</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="4">Unknown.</add>
+		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
+        <add name="Unknown Floats 2" type="Vector4">Unknown</add>
+        <add name="Unknown Float  1" type="float">Unknown</add>
 		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
-	
-	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
-	<compound name="bhkCMSD Something">
-    Unknown, used in bhkCompressedMeshShapeData
-		<add name="Large Int" type="uint">Unknown</add>
+	<compound name="bhkCMSDMaterial">
+    per-chunk material, used in bhkCompressedMeshShapeData
+		<add name="Material ID" type="uint">Unknown</add>
 		<add name="Unknown Integer" type="uint">Always 1?</add>
 	</compound>
-    
-	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
-    Unknown, used in bhkCompressedMeshShapeData
-	<compound name="bhkCMSD Shape">
-        <add name="Num Shape" type="uint">Unknown</add>
-        <add name="Shape" type="ushort" arr1="Num Shape" cond="Num Shape >= 1">Unknown</add>
-	</compound>
 
-	<!-- Quick out of place compound for testing bhkCompressedMeshShapeData -->
-    Used for Subshapes in a bhkCompressedMeshShapeData?
-	<compound name="bhkCMSDContainer">
-        <add name="Unknown Floats" type="Vector4">Unknown</add>
-        <add name="Unknown Int" type="uint">Unknown</add>
-        <add name="Unknown Short 1" type="Flags">Unknown</add>
-		<add name="Unknown Short 2" type="Flags">Unknown</add>
-        <add name="Shape" type="bhkCMSD Shape" arr1="4">Unknown</add>
+    <compound name="bhkCMSDBigTris">
+    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
+        <add name="Triangle 1" type="ushort"></add>
+        <add name="Triangle 2" type="ushort"></add>
+        <add name="Triangle 3" type="ushort"></add>
+		<add name="Unknown Int 1" type="uint">Always 0?</add>
+        <add name="Unknown Short 1" type="ushort"></add>
     </compound>
     
     <compound name="bhkCMSDData">
@@ -5676,9 +5670,22 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
     </compound>
     
-    <!-- Skyrim specific havok block -->
-    A compressed mesh shape for collision.
+    <compound name="bhkCMSDChunk">
+    Defines subshape chunks in bhkCompressedMeshShapeData
+		<add name="Unknown Floats 1" type="Vector3">Origin?</add>
+		<add name="Unknown Floats 2" type="Vector3">Rotation?</add>
+        <add name="Num Vertices" type="uint">Number of compressed vertices</add>
+        <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
+        <add name="Num Indices" type="uint"></add>
+        <add name="Indices" type="ushort" arr1="Num Indices"></add>
+        <add name="Num Strips" type="uint">Number of compressed strips</add>
+        <add name="Strips" type="ushort" arr1="Num Strips">Compressed strips</add>
+        <add name="Num Indices 2" type="uint">Number of </add>
+        <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
+    </compound>
+
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
+         A compressed mesh shape for collision in Skyrim.
 		<add name="Unknown Int 1" type="uint">Unknown</add>
 		<add name="Unknown Int 2" type="uint">Unknown</add>
 		<add name="Unknown Short 1" type="Flags">Unknown</add>
@@ -5686,15 +5693,15 @@
 		<add name="Unknown Short 3" type="Flags">Unknown</add>
 		<add name="Unknown Short 4" type="Flags">Unknown</add>
 		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Floats 1" type="Vector4">Unknown.</add>
-		<add name="Unknown Floats 2" type="Vector4">Unknown.</add>
+		<add name="Unknown Floats 1" type="Vector4">Seems to define bounding shape, this is lower left corner?</add>
+		<add name="Unknown Floats 2" type="Vector4">see above, upper right?</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 		<add name="Unknown Int 3" type="uint">Unknown</add>
         <add name="Unknown Int 4" type="uint">Unknown</add>
         <add name="Unknown Int 5" type="uint">Unknown</add>
 		<add name="Unknown Byte 2" type="byte">Unknown</add>
-		<add name="Something Count" type="uint">Number of bhkCMSDSomething</add>
-		<add name="Unknown Int Something" type="bhkCMSD Something" arr1="Something Count">Unknown</add>
+		<add name="Num Materials" type="uint">Number of chunk materials</add>
+		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Assigns materials to individual chunks?</add>
 		<add name="Unknown Int 6" type="uint">Unknown</add>
 		<add name="Num Data Set" type="uint">Format for vertices/?</add>
 		<add name="Unknown Int 7" type="uint">Unknown</add>
@@ -5704,17 +5711,12 @@
         <add name="Data Set 2" type="bhkCMSDData" arr1="Num Data Set - 1" cond="Num Data Set >= 2">Unknown</add>
         <!-- This data set is always twice the size of the array, minus one -->
         <add name="Unknown Float 2" type="float">Unknown</add>
-		<add name="Num Vertices" type="uint">Unknown</add>
-		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Num Vertices >= 1">Compressed Vertices?</add>
-        <add name="Num Bytes 2" type="uint">Unknown</add>
-        <add name="Unknown Bytes" type="byte" arr1="Num Bytes 2" arr2="12" cond="Num Bytes 2 >= 1">Unknown</add>
-        <add name="Num Subshapes" type="uint">Unknown</add>
-        <add name="Unknown Floats 3" type="Vector3" cond="Num Subshapes >= 1">Unknown</add>
-        <add name="Unknown Int 10" type="uint" cond="Num Subshapes >= 1">Unknown</add>
-        <add name="Unknown Int 11" type="uint" cond="Num Subshapes >= 1">Unknown</add>
-        <add name="Unknown Float 3" type="float" cond="Num Subshapes >= 1">Unknown</add>
-        <add name="Shape Set 1" type="bhkCMSD Shape" arr1="4" cond="Num Subshapes >= 1">Unknown</add>
-        <add name="Shape Set 2" type="bhkCMSDContainer" arr1="Num Subshapes - 1" cond="Num Subshapes >= 1">Unknown, The first set is always present if 1.</add>
+		<add name="Num Big Verts" type="uint">Unknown</add>
+		<add name="Big Verts" type="Vector4" arr1="Num Big Verts" cond="Num Big Verts >= 1">Compressed Vertices?</add>
+        <add name="Num Big Tris" type="uint">Unknown</add>
+        <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris" cond="Num Big Tris >= 1">Unknown</add>
+        <add name="Num Chunks" type="uint">Unknown</add>
+        <add name="Chunks" type="bhkCMSDChunk" cond="Num Chunks >= 1" arr1="Num Chunks"></add>
         <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
 	</niobject>
 	
