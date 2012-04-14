@@ -5640,7 +5640,7 @@
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
         <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="4">Unknown.</add>
+        <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
 		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
         <add name="Unknown Floats 2" type="Vector4">Unknown</add>
         <add name="Unknown Float  1" type="float">Unknown</add>
@@ -5668,6 +5668,12 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
     </compound>
     
+    <compound name="bhkCMSDTransform">
+    A set of transformation data: translation and rotation
+        <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
+        <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
+    </compound>
+    
     <compound name="bhkCMSDChunk">
     Defines subshape chunks in bhkCompressedMeshShapeData
 		<add name="Unknown Floats 1" type="Vector3">Origin?</add>
@@ -5684,37 +5690,29 @@
 
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
          A compressed mesh shape for collision in Skyrim.
-		<add name="Unknown Int 1" type="uint">Unknown</add>
-		<add name="Unknown Int 2" type="uint">Unknown</add>
-		<add name="Unknown Short 1" type="Flags">Unknown</add>
-		<add name="Unknown Short 2" type="Flags">Unknown</add>
-		<add name="Unknown Short 3" type="Flags">Unknown</add>
-		<add name="Unknown Short 4" type="Flags">Unknown</add>
-		<add name="Unknown Float 1" type="float">Unknown.</add>
-		<add name="Unknown Floats 1" type="Vector4">Seems to define bounding shape, this is lower left corner?</add>
-		<add name="Unknown Floats 2" type="Vector4">see above, upper right?</add>
+		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
+		<add name="Bits Per WIndex" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
+		<add name="WIndexMask" type="uint">Mask used to get the triangle index and winding from a shape-key (common: 262143 = 0x3ffff)</add>
+		<add name="IndexMask" type="uint">Mask used to get the triangle index from a shape-key (common: 131071 = 0x1ffff)</add>
+		<add name="Radius?Error?" type="float">The radius of the storage mesh shape? Quantization error?</add>
+		<add name="Bound Min" type="Vector4">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</add>
+		<add name="Bound Max" type="Vector4">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 		<add name="Unknown Int 3" type="uint">Unknown</add>
         <add name="Unknown Int 4" type="uint">Unknown</add>
         <add name="Unknown Int 5" type="uint">Unknown</add>
 		<add name="Unknown Byte 2" type="byte">Unknown</add>
 		<add name="Num Materials" type="uint">Number of chunk materials</add>
-		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Assigns materials to individual chunks?</add>
+		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Table (array) with sets of materials. Chunks refers to this table by index.</add>
 		<add name="Unknown Int 6" type="uint">Unknown</add>
-		<add name="Num Data Set" type="uint">Format for vertices/?</add>
-		<add name="Unknown Int 7" type="uint">Unknown</add>
-		<add name="Unknown Int 8" type="uint">Unknown</add>
-		<add name="Unknown Int 9" type="uint">Unknown</add>
-        <add name="Data Set 1" type="bhkCMSDData" arr1="Num Data Set" cond="Num Data Set >= 1">Unknown</add>
-        <add name="Data Set 2" type="bhkCMSDData" arr1="Num Data Set - 1" cond="Num Data Set >= 2">Unknown</add>
-        <!-- This data set is always twice the size of the array, minus one -->
-        <add name="Unknown Float 2" type="float">Unknown</add>
+		<add name="Num Transforms" type="uint">Number of chunk transformations</add>
+        <add name="Chunk Transforms" type="bhkCMSDTransform" arr1="Num Transforms" cond="Num Transforms >= 1">Table (array) with sets of transformations. Chunks refers to this table by index.</add>
 		<add name="Num Big Verts" type="uint">Unknown</add>
 		<add name="Big Verts" type="Vector4" arr1="Num Big Verts" cond="Num Big Verts >= 1">Compressed Vertices?</add>
         <add name="Num Big Tris" type="uint">Unknown</add>
         <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris" cond="Num Big Tris >= 1">Unknown</add>
         <add name="Num Chunks" type="uint">Unknown</add>
-        <add name="Chunks" type="bhkCMSDChunk" cond="Num Chunks >= 1" arr1="Num Chunks"></add>
+        <add name="Chunks" type="bhkCMSDChunk" arr1="Num Chunks"></add>
         <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
 	</niobject>
 	
