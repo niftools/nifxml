@@ -5718,8 +5718,8 @@
         <add name="Unknown Short 1" type="ushort">Unknown, flag?</add>
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Byte 2" type="byte">Unknown, flag?</add>
-        <add name="Texture Translation 1" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
-        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
         <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
         <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
