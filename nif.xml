@@ -4234,8 +4234,8 @@
         <add name="Unknown Short 1" type="ushort"> </add>
         <add name="Unknown Byte 2" type="byte">always 80?</add>
         <add name="Effect Shader Flags 1" type="uint">Shader options, will use SkyrimEffectShaderFlags1</add>
-        <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
-        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
+        <add name="UV Offset" type="TexCoord">Offset UVs</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Effect Shader Flags 2" type="ushort">hader options, will use SkyrimEffectShaderFlags12</add>
         <add name="Unknown Short 2" type="ushort">Unknown</add>
@@ -4283,13 +4283,13 @@
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
 		<add name="Interpolator 2" type="Ref" template="NiInterpolator">Unknown</add>
+        <add name="Interpolator 3" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 4" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 5" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 6" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 7" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 8" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Interpolator 9" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 10" type="Ref" template="NiInterpolator">Unknown</add>
         <add name="Unknown Short 1" type="ushort">Unknown</add>
         <add name="Unknown Short 2" type="ushort">Unknown</add>
         <add name="Unknown Short 3" type="ushort">Unknown</add>
@@ -4435,8 +4435,8 @@
         Bethesda-specific node, used in Skyrim to configure material/shader/texture properties.
         <add name="Shader Flags 1" type="uint" vercond="User Version == 12" default="2185233153">Skyrim Shader Flag field 1 (will use SkyrimLightingShaderFlags1)</add>
         <add name="Shader Flags 2" type="uint" vercond="User Version == 12" default="32801">Skyrim Shader Flag field 2 (will use SkyrimLightingShaderFlags2)</add>
-        <add name="Texture Translation 1" type="TexCoord">Offset UVs</add>
-        <add name="Texture Repeat" type="TexCoord" default="1.0, 1.0">Offset UVs</add>
+        <add name="UV Offset" type="TexCoord">Offset UVs</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UVs</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Saturation" type="float" default="1.0">Unknown</add>
