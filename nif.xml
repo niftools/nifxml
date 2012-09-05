@@ -932,8 +932,7 @@
 
     <compound name="ControllerLink" ver1="10.2.0.0">
         In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.
-        <!--<add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>-->
-        <add name="Node Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
+        <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.0">Link to a controller.</add>
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106">Link to an interpolator.</add>
         <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
@@ -2155,8 +2154,7 @@
         <add name="Phase" type="float">Phase (usually 0.0).</add>
         <add name="Start Time" type="float">Controller start time.</add>
         <add name="Stop Time" type="float">Controller stop time.</add>
-        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13" vercond="(Version &lt; 20.2.0.7)">Controller target (object index of the first controllable ancestor of this object).</add>
-        <add name="Target" type="Ptr" template="NiObject" ver1="3.3.0.13" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version &lt;= 12))">Controller target (object index of the first controllable ancestor of this object).</add>
+        <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13">Controller target (object index of the first controllable ancestor of this object).</add>
         <add name="Unknown Integer" type="uint" ver2="3.1">Unknown integer.</add>
     </niobject>
 
