@@ -1545,6 +1545,43 @@
         <add name="Bone Name" type="string">The bones name</add>
     </compound>
 
+	<compound name="bhkCMSDMaterial">
+    per-chunk material, used in bhkCompressedMeshShapeData
+		<add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+		<add name="Unknown Integer" type="uint">Always 1?</add>
+	</compound>
+
+    <compound name="bhkCMSDBigTris">
+    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
+        <add name="Triangle 1" type="ushort"></add>
+        <add name="Triangle 2" type="ushort"></add>
+        <add name="Triangle 3" type="ushort"></add>
+		<add name="Unknown Int 1" type="uint">Always 0?</add>
+        <add name="Unknown Short 1" type="ushort"></add>
+    </compound>
+    
+    <compound name="bhkCMSDTransform">
+    A set of transformation data: translation and rotation
+        <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
+        <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
+    </compound>
+    
+    <compound name="bhkCMSDChunk">
+    Defines subshape chunks in bhkCompressedMeshShapeData
+		<add name="Translation" type="Vector4">Local translation</add>
+		<add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
+		<add name="Unknown Short 1" type="ushort">Always 65535?</add>
+		<add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
+        <add name="Num Vertices" type="uint">Number of compressed vertices</add>
+        <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
+        <add name="Num Indices" type="uint"></add>
+        <add name="Indices" type="ushort" arr1="Num Indices"></add>
+        <add name="Num Strips" type="uint">Number of compressed strips</add>
+        <add name="Strips" type="ushort" arr1="Num Strips">Compressed strips</add>
+        <add name="Num Indices 2" type="uint">Number of </add>
+        <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
+    </compound>
+
 <!-- nowhere used currently
 	<compound name="RagdollTemplateSubData1">
 		Todo: Add route for secondary Ref set?
@@ -4373,25 +4410,6 @@
         <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
-    <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Skyrim non-PP shader model, used primarily for transparency effects.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
-        <add name="UV Offset" type="TexCoord">Offset UVs</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
-        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
-        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float" default="1.0"></add>
-        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
-        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
-        <add name="Falloff Stop Opacity" type="float"></add>
-        <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
-        <add name="Soft Falloff Depth" type="float"></add>
-        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
-    </niobject>
-
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSEffectShaderPropertyFloatController, target is a number in order they appear:
@@ -4408,6 +4426,11 @@
         <add name="Target Variable" type="uint">Unknown</add>
     </niobject>
 	
+	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
+    Unkown
+		<add name="Unknown Int 1" type="uint">Unknown</add>
+	</niobject>
+	
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
     5: U Offset
@@ -4419,6 +4442,10 @@
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
 		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
+	</niobject>	
+	
+	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
+    Unkown
 	</niobject>
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
@@ -4602,6 +4629,67 @@
         <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
         <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
+    </niobject>
+
+    <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
+        Skyrim non-PP shader model, used primarily for transparency effects.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        <add name="UV Offset" type="TexCoord">Offset UVs</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
+        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
+        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
+        <add name="Falloff Start Angle" type="float" default="1.0"></add>
+        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
+        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
+        <add name="Falloff Stop Opacity" type="float"></add>
+        <add name="Emissive Color" type="Color4">Emissive color</add>
+        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
+        <add name="Soft Falloff Depth" type="float"></add>
+        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
+    </niobject>
+    
+    <bitflags name="SkyrimWaterShaderFlags" storage="byte">
+        Skyrim water shader property flags
+        <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
+        <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
+        <option value="2" name="SWSF1_Water_Toggle">Main water Layer on/off</option>
+        <option value="3" name="SWSF1_UNKNOWN3">Unknown</option>
+        <option value="4" name="SWSF1_UNKNOWN4">Unknown</option>
+        <option value="5" name="SWSF1_UNKNOWN5">Unknown</option>
+        <option value="6" name="SWSF1_Highlight_Layer_Toggle">Reflection layer 2 on/off. (is this scene reflection?)</option>
+        <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
+    </bitflags>
+    
+    <niobject name="BSWaterShaderProperty" inherit="NiProperty">
+        Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
+        <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
+        <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
+    </niobject>
+    
+    <enum name="SkyObjectType" storage="uint">
+        Skyrim, sets what sky function this object fulfills in BSSkyShaderProperty.
+        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
+        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
+        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
+        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
+        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
+        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
+    </enum>
+    <niobject name="BSSkyShaderProperty" inherit="NiProperty">
+        Skyrim Sky shader block.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
+        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="Source Texture" type="SizedString">points to an external texture.</add>
+        <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
@@ -5688,43 +5776,6 @@
 		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
-	<compound name="bhkCMSDMaterial">
-    per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
-		<add name="Unknown Integer" type="uint">Always 1?</add>
-	</compound>
-
-    <compound name="bhkCMSDBigTris">
-    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
-        <add name="Triangle 1" type="ushort"></add>
-        <add name="Triangle 2" type="ushort"></add>
-        <add name="Triangle 3" type="ushort"></add>
-		<add name="Unknown Int 1" type="uint">Always 0?</add>
-        <add name="Unknown Short 1" type="ushort"></add>
-    </compound>
-    
-    <compound name="bhkCMSDTransform">
-    A set of transformation data: translation and rotation
-        <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
-        <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
-    </compound>
-    
-    <compound name="bhkCMSDChunk">
-    Defines subshape chunks in bhkCompressedMeshShapeData
-		<add name="Translation" type="Vector4">Local translation</add>
-		<add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
-		<add name="Unknown Short 1" type="ushort">Always 65535?</add>
-		<add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
-        <add name="Num Vertices" type="uint">Number of compressed vertices</add>
-        <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
-        <add name="Num Indices" type="uint"></add>
-        <add name="Indices" type="ushort" arr1="Num Indices"></add>
-        <add name="Num Strips" type="uint">Number of compressed strips</add>
-        <add name="Strips" type="ushort" arr1="Num Strips">Compressed strips</add>
-        <add name="Num Indices 2" type="uint">Number of </add>
-        <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
-    </compound>
-
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
          A compressed mesh shape for collision in Skyrim.
 		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
@@ -5793,16 +5844,7 @@
 		<add name="Level 1 Size" type="uint">Unknown</add>
 		<add name="Level 2 Size" type="uint">Unknown</add>
 	</niobject>
-	
-	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
-    Unkown
-	</niobject>
-	
-	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown</add>
-	</niobject>
-	
+
 	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
     Furniture Marker for actors
     </niobject>
@@ -5820,49 +5862,6 @@
         <add name="Bones 1" type="Ref" arr1="Num Bones 1" template="NiNode">Unknown</add>
         <add name="Num Bones 2" type="uint">Unknown</add>
         <add name="Bones" type="Ref" arr1="Num Bones 2" template="NiNode">Unknown</add>
-    </niobject>
-    
-    <enum name="SkyObjectType" storage="uint">
-        Skyrim, sets what sky function this object fulfills in BSSkyShaderProperty.
-        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
-        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
-        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
-        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
-        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
-        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
-    </enum>
-
-    <niobject name="BSSkyShaderProperty" inherit="NiProperty">
-        Skyrim Sky shader block.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
-        <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Source Texture" type="SizedString">points to an external texture.</add>
-        <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
-    </niobject>
-    
-    <bitflags name="SkyrimWaterShaderFlags" storage="byte">
-        Skyrim water shader property flags
-        <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
-        <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
-        <option value="2" name="SWSF1_Water_Toggle">Main water Layer on/off</option>
-        <option value="3" name="SWSF1_UNKNOWN3">Unknown</option>
-        <option value="4" name="SWSF1_UNKNOWN4">Unknown</option>
-        <option value="5" name="SWSF1_UNKNOWN5">Unknown</option>
-        <option value="6" name="SWSF1_Highlight_Layer_Toggle">Reflection layer 2 on/off. (is this scene reflection?)</option>
-        <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
-    </bitflags>
-    
-    <niobject name="BSWaterShaderProperty" inherit="NiProperty">
-        Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
-        <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
-        <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
-        <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
     </niobject>
     
     
