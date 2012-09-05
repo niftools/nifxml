@@ -1732,8 +1732,8 @@
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
-        <add name="TimeFactor or GravityFactor?" type="float" vercond="(User Version >= 12)" />
-        <add name="TimeFactor or GravityFactor?" type="float" vercond="(User Version >= 12)" />
+        <add name="Unknown TimeFactor or GravityFactor 1" type="float" vercond="(User Version >= 12)" />
+        <add name="Unknown TimeFactor or GravityFactor 2" type="float" vercond="(User Version >= 12)" />
         <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
         <add name="RollingFrictionMultiplier?" type="float" vercond="(User Version >= 12)" />
         <add name="Restitution" type="float" default="0.3">
