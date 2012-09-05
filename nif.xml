@@ -4253,20 +4253,20 @@
     3: 
     4: Emissive or Saturation?
     5: Alpha Transparency
-    6: Texture Translation U
-    7: Texture Repeat U
-    8: Texture Translate V
-    9: Texture Repeat V
+    6: U Offset
+    7: U Scale
+    8: V Offset
+    9: V Scale
         <add name="Target Variable" type="uint">Unknown</add>
     </niobject>
 	
 	<!-- Skyrim specific Node -->
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
-    5: Texture Translation U
-    6: Texture Translation V
-    7: Texture Repeat U
-    8: Texture Repeat V
+    5: U Offset
+    6: V Offset
+    7: U Scale
+    8: V Scale
 		<add name="Target Variable" type="uint">Unknown</add>
 	</niobject>
 	
