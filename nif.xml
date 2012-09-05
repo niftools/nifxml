@@ -1217,6 +1217,22 @@
         <add name="Radius" type="Vector3">Radius, per direction.</add>
     </compound>
 
+	<bitflags name="FurnitureEntryPoints" storage="ushort">
+		Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
+		<option value="0" name="Front">front entry point</option>
+		<option value="1" name="Behind">behind entry point</option>
+		<option value="2" name="Right">right entry point</option>
+		<option value="3" name="Left">left entry point</option>
+		<option value="4" name="Up">up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
+	</bitflags>
+
+	<enum name="AnimationType" storage="ushort">
+		Animation type used on this position. This specifies the function of this position.
+		<option value="1" name="Sit">Actor use sit animation.</option>
+		<option value="2" name="Sleep">Actor use sleep animation.</option>
+		<option value="4" name="Lean?">Used for lean animations?</option>
+	</enum>
+
     <compound name="FurniturePosition">
         Describes a furniture position?
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
@@ -1224,8 +1240,8 @@
         <add name="Position Ref 1" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
         <add name="Position Ref 2" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
         <add name="Heading" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Similar to Orientation, in float form.</add>
-        <add name="Animation Type" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Entry Properties" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
+        <add name="Animation Type" type="AnimationType" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Entry Properties" type="FurnitureEntryPoints" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
     </compound>
 
     <compound name="hkTriangle">
@@ -5664,7 +5680,10 @@
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
 		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector4">Unknown</add>
+        <add name="Radius" type="float">A shell with that radius is added around the shape.</add>
+        <add name="Scale" type="float">Scale</add>
+        <add name="Unknown Float  3" type="float">Unknown</add>
+        <add name="Unknown Float  4" type="float">Unknown</add>
         <add name="Unknown Float  1" type="float">Unknown</add>
 		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
