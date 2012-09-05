@@ -5770,9 +5770,9 @@
 		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
         <add name="Radius" type="float">A shell with that radius is added around the shape.</add>
         <add name="Scale" type="float">Scale</add>
-        <add name="Unknown Float  3" type="float">Unknown</add>
-        <add name="Unknown Float  4" type="float">Unknown</add>
-        <add name="Unknown Float  1" type="float">Unknown</add>
+        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Unknown Float 5" type="float">Unknown</add>
 		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
