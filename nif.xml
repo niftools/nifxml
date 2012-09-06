@@ -2804,8 +2804,7 @@
     <niobject name="NiSequence" abstract="0" inherit="NiObject">
         Root node used in some Empire Earth II .kf files (version 4.2.2.0).
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
-        <!--<add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>-->
-        <add name="Target Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
+        <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
         <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
