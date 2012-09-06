@@ -1854,9 +1854,9 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Num Links" type="uint">Number of links in the chain</add>
-        <add name="Links" type="Ptr" template="NiObject" arr1="Num Links" cond="Num Links >= 1">Unknown</add>
+        <add name="Links" type="Ptr" template="NiObject" arr1="Num Links">Unknown</add>
         <add name="Num Links 2" type="uint">Number of links in the chain</add>
-        <add name="Links 2" type="Ptr" template="NiObject" arr1="Num Links 2" cond="Num Links 2 >= 1">Unknown</add>
+        <add name="Links 2" type="Ptr" template="NiObject" arr1="Num Links 2">Unknown</add>
         <add name="Unknown Int 3" type="uint">Unknown</add>
     </niobject>
 
@@ -2597,7 +2597,7 @@
         <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
         <add name="Has UV Quadrants" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">if value is no, a single image rendered</add>
         <add name="Num UV Quadrants" type="byte" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
-        <add name="UV Quadrants" type="Vector4" arr1="Num UV Quadrants" cond="Has UV Quadrants >= 1" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)"></add>
+        <add name="UV Quadrants" type="Vector4" arr1="Num UV Quadrants" cond="Has UV Quadrants" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)"></add>
         <add name="Unknown Byte 2" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
     </niobject>
 
@@ -5793,11 +5793,11 @@
 		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Table (array) with sets of materials. Chunks refers to this table by index.</add>
 		<add name="Unknown Int 6" type="uint">Unknown</add>
 		<add name="Num Transforms" type="uint">Number of chunk transformations</add>
-        <add name="Chunk Transforms" type="bhkCMSDTransform" arr1="Num Transforms" cond="Num Transforms >= 1">Table (array) with sets of transformations. Chunks refers to this table by index.</add>
+        <add name="Chunk Transforms" type="bhkCMSDTransform" arr1="Num Transforms">Table (array) with sets of transformations. Chunks refers to this table by index.</add>
 		<add name="Num Big Verts" type="uint">Unknown</add>
-		<add name="Big Verts" type="Vector4" arr1="Num Big Verts" cond="Num Big Verts >= 1">Compressed Vertices?</add>
+		<add name="Big Verts" type="Vector4" arr1="Num Big Verts">Compressed Vertices?</add>
         <add name="Num Big Tris" type="uint">Unknown</add>
-        <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris" cond="Num Big Tris >= 1">Unknown</add>
+        <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris">Unknown</add>
         <add name="Num Chunks" type="uint">Unknown</add>
         <add name="Chunks" type="bhkCMSDChunk" arr1="Num Chunks"></add>
         <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
