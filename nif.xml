@@ -718,14 +718,14 @@
         <option value="7" name="Parallax Occ Material">Enables Height(TS4), Max Passes, Scale.  Unused?</option>
         <option value="8" name="World Multitexture"></option>
         <option value="9" name="WorldMap1"></option>
-        <option value="10" name="Unknown/Unused"></option>
+        <option value="10" name="Unknown 10"></option>
         <option value="11" name="MultiLayer Parallax">Enables EnvMap Mask(TS6), Layer(TS7), Parallax Layer Thickness, Parallax Refraction Scale, Parallax Inner Layer U Scale, Parallax Inner Layer V Scale, EnvMap Scale</option>
-        <option value="12" name="Unknown/Unused"></option>
+        <option value="12" name="Unknown 12"></option>
         <option value="13" name="WorldMap2"></option>
-        <option value="14" name="Sparkle/Snow">Enables SparkleParams</option>
+        <option value="14" name="Sparkle Snow">Enables SparkleParams</option>
         <option value="15" name="WorldMap3"></option>
         <option value="16" name="Eye Envmap">Enables EnvMap Mask(TS6), Eye EnvMap Scale</option>
-        <option value="17" name="Unknown/Unused"></option>
+        <option value="17" name="Unknown 17"></option>
         <option value="18" name="WorldMap4"></option>
         <option value="19" name="World LOD Multitexture"></option>
     </enum>
@@ -1230,7 +1230,7 @@
 		Animation type used on this position. This specifies the function of this position.
 		<option value="1" name="Sit">Actor use sit animation.</option>
 		<option value="2" name="Sleep">Actor use sleep animation.</option>
-		<option value="4" name="Lean?">Used for lean animations?</option>
+		<option value="4" name="Lean">Used for lean animations?</option>
 	</enum>
 
     <compound name="FurniturePosition">
@@ -4352,9 +4352,9 @@
         <option value="8" name="SF_Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
         <option value="9" name="SF_Unknown_2">Unknown</option>
         <option value="10" name="SF_FaceGen">FaceGen</option>
-        <option value="11" name="SF_Parallax/Shader_Index=15">Parallax</option>
+        <option value="11" name="SF_Parallax_Shader_Index_15">Parallax</option>
         <option value="12" name="SF_Unknown_3">Unknown/Crash</option>
-        <option value="13" name="SF_Non-Projective_Shadows">Non-Projective Shadows</option>
+        <option value="13" name="SF_Non_Projective_Shadows">Non-Projective Shadows</option>
         <option value="14" name="SF_Unknown_4">Unknown/Crash</option>
         <option value="15" name="SF_Refraction">Refraction (switches on refraction power)</option>
         <option value="16" name="SF_Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
@@ -4367,8 +4367,8 @@
         <option value="23" name="SF_Shadow_Frustum">Shadow Frustum</option>
         <option value="24" name="SF_Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
         <option value="25" name="SF_Remappable_Textures">usually seen w/texture animation</option>
-        <option value="26" name="SF_Decal/Single_Pass">Decal</option>
-        <option value="27" name="SF_Dynamic_Decal/Single_Pass">Dynamic Decal</option>
+        <option value="26" name="SF_Decal_Single_Pass">Decal</option>
+        <option value="27" name="SF_Dynamic_Decal_Single_Pass">Dynamic Decal</option>
         <option value="28" name="SF_Parallax_Occulsion">Parallax Occlusion</option>
         <option value="29" name="SF_External_Emittance">External Emittance</option>
         <option value="30" name="SF_Shadow_Map">Shadow Map</option>
@@ -4542,7 +4542,7 @@
         <option value="10" name="SLSF1_Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
         <option value="11" name="SLSF1_Parallax">Unused?</option>
         <option value="12" name="SLSF1_Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
-        <option value="13" name="SLSF1_Non-Projective_Shadows">Unknown.</option>
+        <option value="13" name="SLSF1_Non_Projective_Shadows">Unknown.</option>
         <option value="14" name="SLSF1_Landscape">Unknown.</option>
         <option value="15" name="SLSF1_Refraction">Use normal map for refraction effect.</option>
         <option value="16" name="SLSF1_Fire_Refraction"></option>
