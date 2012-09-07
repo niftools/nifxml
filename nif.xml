@@ -5854,11 +5854,8 @@
     Unknown, related to trees.
     </niobject>
     
-    <niobject name="BSTreeNode" inherit="NiAVObject">
+    <niobject name="BSTreeNode" inherit="NiNode">
     Node for handling Trees, Switches branch configurations for variation?
-        <add name="Num Children" type="uint">The number of child objects.</add>
-        <add name="Children" type="Ref" template="NiAVObject" arr1="Num Children">List of child node object indices.</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Num Bones 1" type="uint">Unknown</add>
         <add name="Bones 1" type="Ref" arr1="Num Bones 1" template="NiNode">Unknown</add>
         <add name="Num Bones 2" type="uint">Unknown</add>
