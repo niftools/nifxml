@@ -4733,10 +4733,10 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 3" type="short">Unknown</add>
-        <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Int 2" type="int">Unknown</add>
-        <add name="Unknown Int 3" type="int">Unknown</add>
+        <add name="Unknown Short 5" type="short">Unknown</add>
+        <add name="Unknown Byte 6" type="byte">Unknown</add>
+        <add name="Unknown Int 7" type="int">Unknown</add>
+        <add name="Unknown Float 8" type="float">Unknown</add>
     </niobject>
 
 
