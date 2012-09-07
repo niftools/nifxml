@@ -5780,12 +5780,12 @@
     <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
          A compressed mesh shape for collision in Skyrim.
 		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
-		<add name="Bits Per WIndex" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
-		<add name="WIndexMask" type="uint">Mask used to get the triangle index and winding from a shape-key (common: 262143 = 0x3ffff)</add>
-		<add name="IndexMask" type="uint">Mask used to get the triangle index from a shape-key (common: 131071 = 0x1ffff)</add>
-		<add name="Radius?Error?" type="float">The radius of the storage mesh shape? Quantization error?</add>
-		<add name="Bound Min" type="Vector4">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</add>
-		<add name="Bound Max" type="Vector4">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</add>
+		<add name="Bits Per W Index" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
+		<add name="Mask W Index" type="uint">Mask used to get the triangle index and winding from a shape-key (common: 262143 = 0x3ffff)</add>
+		<add name="Mask Index" type="uint">Mask used to get the triangle index from a shape-key (common: 131071 = 0x1ffff)</add>
+		<add name="Error" type="float">The radius of the storage mesh shape? Quantization error?</add>
+		<add name="Bounds Min" type="Vector4">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</add>
+		<add name="Bounds Max" type="Vector4">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</add>
 		<add name="Unknown Byte 1" type="byte">Unknown</add>
 		<add name="Unknown Int 3" type="uint">Unknown</add>
         <add name="Unknown Int 4" type="uint">Unknown</add>
