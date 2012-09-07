@@ -3121,8 +3121,8 @@
 
     <niobject name="NiParticleSystem" abstract="0" inherit="NiParticles">
         A particle system.
-		<add name="Unknown Short 1" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Short 3" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
 		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
