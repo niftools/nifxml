@@ -4612,7 +4612,7 @@
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The materials opacity (1=non-transparent).</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Specular Power - Glossiness" type="float">The material&#039;s glossiness. (0-999)</add>
+        <add name="Glossiness" type="float">The material&#039;s specular power, or glossiness (0-999).</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
