@@ -4626,7 +4626,7 @@
         <add name="Parallax Refraction Scale" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
         <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
         <add name="Parallax Envmap Strength" type="float" cond="Skyrim Shader Type == 11">How strong the environment/cube map is. (0-??)</add>
-        <add name="Sparkle Paramaters" type="Vector4" cond="Skyrim Shader Type == 14">Unknown/unused?  CK lists "snow material" when used.</add>
+        <add name="Sparkle Parameters" type="Vector4" cond="Skyrim Shader Type == 14">Unknown/unused?  CK lists "snow material" when used.</add>
         <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
         <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
