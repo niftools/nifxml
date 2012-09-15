@@ -3411,9 +3411,9 @@
     </niobject>
     
     <niobject name="BSPSysHavokUpdateModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Num Nodes" type="uint">Unknown</add>
+        <add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes">Group of target NiNodes?</add>
+        <add name="Modifier" type="Ref" template="NiPSysModifier">Unknown</add>
     </niobject>   
 
     <niobject name="BSPSysRecycleBoundModifier"  abstract="0" inherit="NiPSysModifier">
