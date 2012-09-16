@@ -2944,7 +2944,7 @@
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController">
         Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
         <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
-        <add name="Look At Node" type="Ref" template="NiNode">Link to the node to look at?</add>
+        <add name="Look At Node" type="Ptr" template="NiNode">Link to the node to look at?</add>
     </niobject>
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
