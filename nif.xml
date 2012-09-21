@@ -244,7 +244,6 @@
         <option value="1886078335" name="SKY_HAV_MAT_MATERIALSTONEASSTAIRS">Material Stone As Stairs</option>
         <option value="2022742644" name="SKY_HAV_MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
         <option value="2025794648" name="SKY_HAV_MAT_MATERIAL_BOTTLE_SMALL">MaterialBottleSmall</option>
-        <!-- NifSkope Has some issues reading UInt above 2.02Billion, Commented out all errored reads
         <option value="2168343821" name="SKY_HAV_MAT_SAND">Sand</option>
         <option value="2229413539" name="SKY_HAV_MAT_HEAVY_METAL">Heavy Metal</option>
         <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small,</option>
@@ -260,7 +259,6 @@
         <option value="3839073443" name="SKY_HAV_MAT_CLOTH">Cloth</option>
         <option value="3969592277" name="SKY_HAV_MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
         <option value="4283869410" name="SKY_HAV_MAT_MATERIAL_BOULDER_MEDIUM">MaterialBoulderMedium</option>
--->
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
@@ -598,7 +596,7 @@
     </enum>
 
     <enum name="BoundVolumeType" storage="uint">
-        <option value="-1" name="BASE_BV">Default</option>
+        <option value="0xffffffff" name="BASE_BV">Default</option>
         <option value="0" name="SPHERE_BV">Sphere</option>
         <option value="1" name="BOX_BV">Box</option>
         <option value="2" name="CAPSULE_BV">Capsule</option>
