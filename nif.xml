@@ -1942,7 +1942,7 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
-        <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
+        <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
@@ -3883,7 +3883,7 @@
     <niobject name="NiTriShapeData" abstract="0" inherit="NiTriBasedGeomData">
         Holds mesh data using a list of singular triangles.
         <add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
-        <add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
+        <add name="Has Triangles" type="bool" ver1="10.1.0.0" calculated="1">Do we have triangle data?</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles" ver1="10.0.1.3">Triangle face data.</add>
         <add name="Num Match Groups" type="ushort" ver1="3.1">Number of shared normals groups.</add>
