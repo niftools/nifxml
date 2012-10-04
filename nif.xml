@@ -1559,7 +1559,7 @@
 
 	<compound name="bhkCMSDMaterial">
     per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
+		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
 		<add name="Unknown Integer" type="uint">Always 1?</add>
 	</compound>
 
@@ -1880,7 +1880,7 @@
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
@@ -1889,7 +1889,7 @@
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
@@ -1950,7 +1950,7 @@
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <!--<add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>-->
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
@@ -1979,7 +1979,7 @@
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -2021,7 +2021,7 @@
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
         <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
         <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
@@ -4830,7 +4830,7 @@
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
-        <add name="Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
         <add name="Unknown Float 1" type="float">Unknown Flag</add>
@@ -5782,7 +5782,7 @@
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
-        <add name="Material" type="SkyrimHavokMaterial">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
 		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
