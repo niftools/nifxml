@@ -219,7 +219,9 @@
         <option value="29" name="HAV_MAT_SNOW_STAIRS">Snow Stairs</option>
         <option value="30" name="HAV_MAT_ELEVATOR">Elevator</option>
         <option value="31" name="HAV_MAT_RUBBER">Rubber</option>
-        <!-- Skyrim Specific Options -->
+    </enum>
+
+    <enum name="SkyrimHavokMaterial" storage="uint">
         <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
         <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
@@ -227,33 +229,41 @@
         <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">MaterialChainMetal</option>
         <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
         <option value="732141076" name="SKY_HAV_MAT_BARREL">Barrel</option>
+        <option value="781661019" name="SKY_HAV_MAT_MATERIAL_CERAMIC_MEDIUM">MaterialCeramicMedium</option>
         <option value="790784366" name="SKY_HAV_MAT_MATERIAL_BASKET">Material Basket</option>
         <option value="873356572" name="SKY_HAV_MAT_ICE">Ice</option>
-        <option value="899511101" name="SKY_HAV_MAT_STAIRSSTONE">Stairs Stone</option>
+        <option value="899511101" name="SKY_HAV_MAT_STAIRS_STONE">Stairs Stone</option>
         <option value="1060167844" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
-        <option value="1264672850" name="SKY_HAV_MAT_MATERIALBOOK">Material Book</option>
+        <option value="1024582599" name="SKY_HAV_MAT_WATER">Water</option>
+        <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
         <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
         <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
+        <option value="1440721808" name="UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
-        <option value="1560365355" name="SKY_HAV_MAT_STAIRSSNOW">Stairs Snow</option>
-        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN">Unknown material in Creation Kit v1.5.24.0. Found in trap objects.</option>
+        <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
+        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif.</option>
         <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
+        <option value="1803571212" name="SKY_HAV_MAT_MATERIAL_WOOD_AS_STAIRS">MaterialWoodAsStairs</option>
         <option value="1848600814" name="SKY_HAV_MAT_GRASS">Grass</option>
         <option value="1885326971" name="SKY_HAV_MAT_MATERIAL_BOULDER_LARGE">MaterialBoulderLarge</option>
-        <option value="1886078335" name="SKY_HAV_MAT_MATERIALSTONEASSTAIRS">Material Stone As Stairs</option>
+        <option value="1886078335" name="SKY_HAV_MAT_MATERIAL_STONE_AS_STAIRS">Material Stone As Stairs</option>
         <option value="2022742644" name="SKY_HAV_MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
         <option value="2025794648" name="SKY_HAV_MAT_MATERIAL_BOTTLE_SMALL">MaterialBottleSmall</option>
         <option value="2168343821" name="SKY_HAV_MAT_SAND">Sand</option>
         <option value="2229413539" name="SKY_HAV_MAT_HEAVY_METAL">Heavy Metal</option>
         <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small,</option>
-        <option value="2892392795" name="SKY_HAV_MAT_STAIRSBROKENSTONE">Stairs Broken Stone</option>
+        <option value="2892392795" name="SKY_HAV_MAT_STAIRS_BROKEN_STONE">Stairs Broken Stone</option>
         <option value="2974920155" name="SKY_HAV_MAT_ORGANIC">Organic</option>
         <option value="3070783559" name="SKY_HAV_MAT_HEAVY_WOOD">Heavy Wood</option>
         <option value="3074114406" name="SKY_HAV_MAT_MATERIAL_CHAIN">MaterialChain</option>
         <option value="3106094762" name="SKY_HAV_MAT_DIRT">Dirt</option>
-        <option value="3589100606" name="SKY_HAV_MAT_MATERIALCOIN">Material Coin</option>
-        <option value="3725505938" name="SKY_HAV_MAT_MATERIALARROW">MaterialArrow</option>
+        <option value="3424720541" name="SKY_HAV_MAT_MATERIAL_ARMOR_LIGHT">MaterialArmorLight</option>
+        <option value="3448167928" name="SKY_HAV_MAT_MATERIAL_SHIELD_LIGHT">MaterialShieldLight</option>
+        <option value="3589100606" name="SKY_HAV_MAT_MATERIAL_COIN">Material Coin</option>
+        <option value="3702389584" name="SKY_HAV_MAT_MATERIAL_SHIELD_HEAVY">MaterialShieldHeavy</option>
+        <option value="3708432437" name="SKY_HAV_MAT_MATERIAL_ARMOR_HEAVY">MaterialArmorHeavy</option>
+        <option value="3725505938" name="SKY_HAV_MAT_MATERIAL_ARROW">MaterialArrow</option>
         <option value="3739830338" name="SKY_HAV_MAT_GLASS">GLASS</option>
         <option value="3741512247" name="SKY_HAV_MAT_STONE">Stone</option>
         <option value="3839073443" name="SKY_HAV_MAT_CLOTH">Cloth</option>
@@ -1549,7 +1559,7 @@
 
 	<compound name="bhkCMSDMaterial">
     per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
 		<add name="Unknown Integer" type="uint">Always 1?</add>
 	</compound>
 
@@ -1869,7 +1879,8 @@
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkShape">
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
@@ -1877,7 +1888,8 @@
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
@@ -1937,7 +1949,8 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial">The shape's material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <!--<add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>-->
         <add name="Unknown Int 1" type="uint">Unknown</add>
         <add name="Unknown Int 2" type="uint">Unknown</add>
@@ -1965,7 +1978,8 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -2006,7 +2020,8 @@
 
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
         <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
         <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
@@ -4814,7 +4829,8 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
         <add name="Unknown Float 1" type="float">Unknown Flag</add>
@@ -5766,7 +5782,7 @@
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
-        <add name="Material" type="HavokMaterial">The shape&#039;s material.</add>
+        <add name="Skyrim Material" type="SkyrimHavokMaterial">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
 		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
