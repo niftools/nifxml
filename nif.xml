@@ -653,12 +653,23 @@
         <option value="41" name="SBP_41_LONGHAIR">Skyrim, Long Hair(Human), Skeleton02(Dragon),FXParticles(Dragonpriest)</option>
         <option value="42" name="SBP_42_CIRCLET">Skyrim, Circlet(Human, MouthFireEffect(Dragon)</option>
         <option value="43" name="SBP_43_EARS">Skyrim, Ears</option>
-        <option value="44" name="SBP_44_BLOODHEAD">Skyrim, Bloodied dragon head</option>
-        <option value="45" name="SBP_45_BLOODWINGL">Skyrim, Left Bloodied dragon wing, Saddle(Horse)</option>
-        <option value="46" name="SBP_46_BLOODWINGR">Skyrim, Right Bloodied dragon wing</option>
-        <option value="47" name="SBP_47_BLOODTAIL">Skyrim, Bloodied dragon tail</option>
+        <option value="44" name="SBP_44_DRAGON_BLOODHEAD_OR_MOD_MOUTH">Skyrim, Bloodied dragon head, or NPC face/mouth</option>
+        <option value="45" name="SBP_45_DRAGON_BLOODWINGL_OR_MOD_NECK">Skyrim, Left Bloodied dragon wing, Saddle(Horse), or NPC cape, scarf, shawl, neck-tie, etc.</option>
+        <option value="46" name="SBP_46_DRAGON_BLOODWINGR_OR_MOD_CHEST_PRIMARY">Skyrim, Right Bloodied dragon wing, or NPC chest primary or outergarment</option>
+        <option value="47" name="SBP_47_DRAGON_BLOODTAIL_OR_MOD_BACK">Skyrim, Bloodied dragon tail, or NPC backpack/wings/...</option>
+        <option value="48" name="SBP_48_MOD_MISC1">Anything that does not fit in the list</option>
+        <option value="49" name="SBP_49_MOD_PELVIS_PRIMARY">Pelvis primary or outergarment</option>
         <option value="50" name="SBP_50_DECAPITATEDHEAD">Skyrim, Decapitated Head</option>
         <option value="51" name="SBP_51_DECAPITATE">Skyrim, Decapitate, neck gore</option>
+        <option value="52" name="SBP_52_MOD_PELVIS_SECONDARY">Pelvis secondary or undergarment</option>
+        <option value="53" name="SBP_53_MOD_LEG_RIGHT">Leg primary or outergarment or right leg</option>
+        <option value="54" name="SBP_54_MOD_LEG_LEFT">Leg secondary or undergarment or left leg</option>
+        <option value="55" name="SBP_55_MOD_FACE_JEWELRY">Face alternate or jewelry</option>
+        <option value="56" name="SBP_56_MOD_CHEST_SECONDARY">Chest secondary or undergarment</option>
+        <option value="57" name="SBP_57_MOD_SHOULDER">Shoulder</option>
+        <option value="58" name="SBP_58_MOD_ARM_LEFT">Arm secondary or undergarment or left arm</option>
+        <option value="59" name="SBP_59_MOD_ARM_RIGHT">Arm primary or outergarment or right arm</option>
+        <option value="60" name="SBP_60_MOD_MISC2">Anything that does not fit in the list</option>
         <option value="61" name="SBP_61_FX01">Skyrim, FX01(Humanoid)</option>
         
         <option value="101" name="BP_SECTIONCAP_HEAD">Section Cap | Head</option>
