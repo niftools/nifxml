@@ -236,16 +236,16 @@
         <option value="899511101" name="SKY_HAV_MAT_STAIRS_STONE">Stairs Stone</option>
         <option value="1060167844" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
         <option value="1024582599" name="SKY_HAV_MAT_WATER">Water</option>
-        <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
+        <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
         <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
         <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
         <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
-        <option value="1440721808" name="UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
+        <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
         <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
-        <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
-        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
+        <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
+        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
         <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
         <option value="1803571212" name="SKY_HAV_MAT_MATERIAL_WOOD_AS_STAIRS">Material Wood As Stairs</option>
         <option value="1848600814" name="SKY_HAV_MAT_GRASS">Grass</option>
