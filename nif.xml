@@ -226,49 +226,56 @@
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
         <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
         <option value="428587608" name="SKY_HAV_MAT_GRAVEL">Gravel</option>
-        <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">MaterialChainMetal</option>
+        <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">Material Chain Metal</option>
         <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
+        <option value="591247106" name="SKY_HAV_MAT_SKIN">Skin</option>
         <option value="732141076" name="SKY_HAV_MAT_BARREL">Barrel</option>
-        <option value="781661019" name="SKY_HAV_MAT_MATERIAL_CERAMIC_MEDIUM">MaterialCeramicMedium</option>
+        <option value="781661019" name="SKY_HAV_MAT_MATERIAL_CERAMIC_MEDIUM">Material Ceramic Medium</option>
         <option value="790784366" name="SKY_HAV_MAT_MATERIAL_BASKET">Material Basket</option>
         <option value="873356572" name="SKY_HAV_MAT_ICE">Ice</option>
         <option value="899511101" name="SKY_HAV_MAT_STAIRS_STONE">Stairs Stone</option>
         <option value="1060167844" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
         <option value="1024582599" name="SKY_HAV_MAT_WATER">Water</option>
+        <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
         <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
         <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
         <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
-        <option value="1440721808" name="UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
+        <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
         <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
-        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif.</option>
+        <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
+        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
         <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
-        <option value="1803571212" name="SKY_HAV_MAT_MATERIAL_WOOD_AS_STAIRS">MaterialWoodAsStairs</option>
+        <option value="1803571212" name="SKY_HAV_MAT_MATERIAL_WOOD_AS_STAIRS">Material Wood As Stairs</option>
         <option value="1848600814" name="SKY_HAV_MAT_GRASS">Grass</option>
-        <option value="1885326971" name="SKY_HAV_MAT_MATERIAL_BOULDER_LARGE">MaterialBoulderLarge</option>
+        <option value="1885326971" name="SKY_HAV_MAT_MATERIAL_BOULDER_LARGE">Material Boulder Large</option>
         <option value="1886078335" name="SKY_HAV_MAT_MATERIAL_STONE_AS_STAIRS">Material Stone As Stairs</option>
         <option value="2022742644" name="SKY_HAV_MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
-        <option value="2025794648" name="SKY_HAV_MAT_MATERIAL_BOTTLE_SMALL">MaterialBottleSmall</option>
+        <option value="2025794648" name="SKY_HAV_MAT_MATERIAL_BOTTLE_SMALL">Material Bottle Small</option>
         <option value="2168343821" name="SKY_HAV_MAT_SAND">Sand</option>
         <option value="2229413539" name="SKY_HAV_MAT_HEAVY_METAL">Heavy Metal</option>
-        <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small,</option>
+        <option value="2518321175" name="SKY_HAV_MAT_DRAGON">Dragon</option>
+        <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small</option>
+        <option value="2632367422" name="SKY_HAV_MAT_MATERIAL_SKIN_SMALL">Material Skin Small</option>
         <option value="2892392795" name="SKY_HAV_MAT_STAIRS_BROKEN_STONE">Stairs Broken Stone</option>
+        <option value="2965929619" name="SKY_HAV_MAT_MATERIAL_SKIN_LARGE">Material Skin Large</option>
         <option value="2974920155" name="SKY_HAV_MAT_ORGANIC">Organic</option>
+        <option value="3049421844" name="SKY_HAV_MAT_MATERIAL_BONE">Material Bone</option>
         <option value="3070783559" name="SKY_HAV_MAT_HEAVY_WOOD">Heavy Wood</option>
-        <option value="3074114406" name="SKY_HAV_MAT_MATERIAL_CHAIN">MaterialChain</option>
+        <option value="3074114406" name="SKY_HAV_MAT_MATERIAL_CHAIN">Material Chain</option>
         <option value="3106094762" name="SKY_HAV_MAT_DIRT">Dirt</option>
-        <option value="3424720541" name="SKY_HAV_MAT_MATERIAL_ARMOR_LIGHT">MaterialArmorLight</option>
-        <option value="3448167928" name="SKY_HAV_MAT_MATERIAL_SHIELD_LIGHT">MaterialShieldLight</option>
+        <option value="3424720541" name="SKY_HAV_MAT_MATERIAL_ARMOR_LIGHT">Material Armor Light</option>
+        <option value="3448167928" name="SKY_HAV_MAT_MATERIAL_SHIELD_LIGHT">Material Shield Light</option>
         <option value="3589100606" name="SKY_HAV_MAT_MATERIAL_COIN">Material Coin</option>
-        <option value="3702389584" name="SKY_HAV_MAT_MATERIAL_SHIELD_HEAVY">MaterialShieldHeavy</option>
-        <option value="3708432437" name="SKY_HAV_MAT_MATERIAL_ARMOR_HEAVY">MaterialArmorHeavy</option>
-        <option value="3725505938" name="SKY_HAV_MAT_MATERIAL_ARROW">MaterialArrow</option>
-        <option value="3739830338" name="SKY_HAV_MAT_GLASS">GLASS</option>
+        <option value="3702389584" name="SKY_HAV_MAT_MATERIAL_SHIELD_HEAVY">Material Shield Heavy</option>
+        <option value="3708432437" name="SKY_HAV_MAT_MATERIAL_ARMOR_HEAVY">Material Armor Heavy</option>
+        <option value="3725505938" name="SKY_HAV_MAT_MATERIAL_ARROW">Material Arrow</option>
+        <option value="3739830338" name="SKY_HAV_MAT_GLASS">Glass</option>
         <option value="3741512247" name="SKY_HAV_MAT_STONE">Stone</option>
         <option value="3839073443" name="SKY_HAV_MAT_CLOTH">Cloth</option>
         <option value="3969592277" name="SKY_HAV_MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
-        <option value="4283869410" name="SKY_HAV_MAT_MATERIAL_BOULDER_MEDIUM">MaterialBoulderMedium</option>
+        <option value="4283869410" name="SKY_HAV_MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
