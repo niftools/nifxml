@@ -1752,7 +1752,11 @@
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
-        <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">Unknown.</add>
+        <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
+            Unknown.
+            Oblivion defaults: 0 21280 2481 62977 65535 44 0
+            Skyrim defaults: 0 56896 1343 0 0 1 65535 (fourth and fifth element *must* be zero)
+        </add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
