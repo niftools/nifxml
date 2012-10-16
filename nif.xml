@@ -1230,13 +1230,21 @@
     <compound name="QTransform">
         <add name="Translation" type="Vector3">Translation.</add>
         <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float">Scale.</add>
+        <add name="Scale" type="float" default="1.0">Scale.</add>
     </compound>
 
     <compound name="MTransform">
         <add name="Translation" type="Vector3">Translation.</add>
         <add name="Rotation" type="Matrix33">Rotation.</add>
-        <add name="Scale" type="float">Scale.</add>
+        <add name="Scale" type="float" default="1.0">Scale.</add>
+    </compound>
+
+    <!-- SkinTransform is like MTansform, but rotation comes first; used in skinning -->
+    <!-- TODO unify all transform types via a general purpose template type? -->
+    <compound name="SkinTransform">
+        <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
+        <add name="Translation" type="Vector3">The translation vector.</add>
+        <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
     </compound>
 
     <compound name="BoundingBox">
@@ -1973,9 +1981,7 @@
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Material" type="HavokMaterial" vercond="((Version != 20.2.0.7) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 83))">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" userver2="83">The shape&#039;s material.</add>
-        <!--<add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes, probably MOPP Header.</add>-->
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
+        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
@@ -2078,6 +2084,7 @@
 
     <niobject name="NiTransformInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         An interpolator for transform keyframes.
+        <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3">Translate.</add>
         <add name="Rotation" type="Quaternion">Rotation.</add>
         <add name="Scale" type="float">Scale.</add>
@@ -2187,6 +2194,7 @@
         Generic node object.
         <add name="Flags" type="Flags" ver1="3.0">Some flags; commonly 0x000C or 0x000A.</add>
         <add name="Unknown Short 1" type="ushort" default="8" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
+        <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -2495,13 +2503,13 @@
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
-        <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))" calculated="1">Methods for saving binormals and tangents saved in upper byte.  Texture flags in lower byte.</add>
+        <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))" calculated="1">Flag for tangents and bitangents in upper byte. Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))" calculated="1">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
         <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>	
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Unknown. Binormal &amp; tangents?</add>
-        <add name="Binormals" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Unknown. Binormal &amp; tangents? has_normals must be set as well for this field to be present.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2690,7 +2698,7 @@
     </niobject>
 
     <niobject name="NiBinaryExtraData" abstract="0" inherit="NiExtraData">
-        Binary extra data object. Used to store normals and binormals in Oblivion.
+        Binary extra data object. Used to store tangents and bitangents in Oblivion.
         <add name="Binary Data" type="ByteArray">The binary data.</add>
     </niobject>
 
@@ -2771,6 +2779,7 @@
 
     <niobject name="NiBSplineTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator">
         An interpolator for storing transform keyframes via a B-spline.
+        <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
         <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
         <add name="Scale" type="float">Base scale when scale curve not defined.</add>
@@ -2987,6 +2996,7 @@
         <add name="Unknown Short" type="ushort">Unknown.</add>
         <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
         <add name="Target" type="string">Target node name.</add>
+        <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3" ver2="20.5.0.0">Translate.</add>
         <add name="Rotation" type="Quaternion" ver2="20.5.0.0">Rotation.</add>
         <add name="Scale" type="float" ver2="20.5.0.0">Scale.</add>
@@ -4860,6 +4870,7 @@
 
     <compound name="BSTreadTransformData">
         Bethesda-specific node.
+        <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3">Translation.</add>
         <add name="Rotation" type="Quaternion">Rotation.</add>
         <add name="Scale" type="float">Scale (usually float_min).</add>
@@ -5337,12 +5348,6 @@
         <add name="Num Elements" type="uint">The number of morphing data stream elements.</add>
         <add name="Elements" type="ElementReference" arr1="Num Elements">Semantics and normalization of the morphing data stream elements.</add>
     </niobject>
-
-    <compound name="SkinTransform">
-        <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
-        <add name="Translation" type="Vector3">The translation vector.</add>
-        <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
-    </compound>
 
     <niobject name="NiSkinningMeshModifier" inherit="NiMeshModifier">
         <add name="Flags" type="ushort">
