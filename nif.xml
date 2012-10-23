@@ -5821,7 +5821,7 @@
 		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
-    <niobject name="bhkCompressedMeshShapeData" inherit="NiObject">
+    <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject">
          A compressed mesh shape for collision in Skyrim.
 		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
 		<add name="Bits Per W Index" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
