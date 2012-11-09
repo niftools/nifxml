@@ -731,10 +731,10 @@
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
     
-    <enum name="BSSegmentFlags" storage="uint">
+    <bitflags name="BSSegmentFlags" storage="uint">
         An unsigned 32-bit integer, describing what's inside the segment.
         <option value="9" name="BSSEG_WATER">Contains water.</option>
-    </enum>
+    </bitflags>
     
     <enum name="BSLightingShaderPropertyShaderType" storage="uint">
         Values for configuring the shader type in a BSLightingShaderProperty
@@ -1573,7 +1573,7 @@
     <compound name="BSSegment">
         Bethesda-specific node.
         <add name="Internal index" type="int" >Index multiplied by 1536 (0x0600)</add>
-        <add name="Flags" type="BSSegmentFlags" default="0x00000000">Geometry present in the segment</add>
+        <add name="Flags" type="BSSegmentFlags">Geometry present in the segment</add>
         <add name="Unknown Byte 1" type="byte" >Unknown</add>
     </compound>
     
