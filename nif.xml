@@ -343,6 +343,110 @@
         <option value="57" name="OL_NULL">Null</option>
     </enum>
 
+    <enum name="SkyrimLayer" storage="byte">
+        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
+        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
+        <option value="1" name="SKYL_STATIC">Static</option>
+        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
+        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
+        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
+        <option value="5" name="SKYL_WEAPON">Weapon</option>
+        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
+        <option value="7" name="SKYL_SPELL">Spell</option>
+        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="SKYL_TREES">Trees</option>
+        <option value="10" name="SKYL_PROPS">Props</option>
+        <option value="11" name="SKYL_WATER">Water</option>
+        <option value="12" name="SKYL_TRIGGER">Trigger</option>
+        <option value="13" name="SKYL_TERRAIN">Terrain</option>
+        <option value="14" name="SKYL_TRAP">Trap</option>
+        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
+        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
+        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
+        <option value="18" name="SKYL_PORTAL">Portal</option>
+        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
+        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
+        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
+        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
+        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
+        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
+        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
+        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
+        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
+        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
+        <option value="29" name="SKYL_WARD">Ward</option>
+        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
+        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
+        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
+        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
+        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
+        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
+        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
+        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
+        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
+        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
+        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
+        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
+        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
+        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
+        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
+        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
+        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
+        <option value="47" name="SKYL_NULL">Null</option>
+    </enum>
+
+    <enum name="SkyrimLayerCMSDM" storage="uint">
+        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
+        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
+        <option value="1" name="SKYL_STATIC">Static</option>
+        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
+        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
+        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
+        <option value="5" name="SKYL_WEAPON">Weapon</option>
+        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
+        <option value="7" name="SKYL_SPELL">Spell</option>
+        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="SKYL_TREES">Trees</option>
+        <option value="10" name="SKYL_PROPS">Props</option>
+        <option value="11" name="SKYL_WATER">Water</option>
+        <option value="12" name="SKYL_TRIGGER">Trigger</option>
+        <option value="13" name="SKYL_TERRAIN">Terrain</option>
+        <option value="14" name="SKYL_TRAP">Trap</option>
+        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
+        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
+        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
+        <option value="18" name="SKYL_PORTAL">Portal</option>
+        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
+        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
+        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
+        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
+        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
+        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
+        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
+        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
+        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
+        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
+        <option value="29" name="SKYL_WARD">Ward</option>
+        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
+        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
+        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
+        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
+        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
+        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
+        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
+        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
+        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
+        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
+        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
+        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
+        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
+        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
+        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
+        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
+        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
+        <option value="47" name="SKYL_NULL">Null</option>
+    </enum>
+
     <enum name="MipMapFormat" storage="uint">
         An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
         <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
@@ -1589,7 +1693,7 @@
 	<compound name="bhkCMSDMaterial">
     per-chunk material, used in bhkCompressedMeshShapeData
 		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Unknown Integer" type="uint">Always 1?</add>
+		<add name="Skyrim Layer" type="SkyrimLayerCMSDM">Copy of Skyrim Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
 	</compound>
 
     <compound name="bhkCMSDBigTris">
@@ -1725,8 +1829,46 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer" default="OL_STATIC">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Layer" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte" default="0" vercond="User Version &lt; 12">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Skyrim Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
+        <add name="Flags &amp; Part number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
+        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
+        	Bit 6: turns collision off (not used for Layer SKYL_BIPED).
+        	Bit 5: sets the SCALED property.
+
+        	PART NUMBER in a linked body list is stored in lowest 5 bits (used only when Skyrim Layer is set to SKYL_BIPED):
+        	0 - OTHER
+        	1 - HEAD
+        	2 - BODY
+        	3 - SPINE1
+        	4 - SPINE2
+        	5 - LUPPERARM
+        	6 - LFOREARM
+        	7 - LHAND
+        	8 - LTHIGH
+        	9 - LCALF
+        	10 - LFOOT
+        	11 - RUPPERARM
+        	12 - RFOREARM
+        	13 - RHAND
+        	14 - RTHIGH
+        	15 - RCALF
+        	16 - RFOOT
+        	17 - TAIL
+        	18 - SHIELD
+        	19 - QUIVER
+        	20 - WEAPON
+        	21 - PONYTAIL
+        	22 - WING
+        	23 - PACK
+        	24 - CHAIN
+        	25 - ADDONHEAD
+        	26 - ADDONCHEST
+        	27 - ADDONARM
+        	28 - ADDONLEG
+        	29-31 - NULL
+        </add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
     </niobject>
 
@@ -1761,8 +1903,10 @@
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
+        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Copy of Layer value?</add>
+        <add name="Col Filter Copy" type="byte" default="0" vercond="User Version &lt; 12">Copy of Col Filter value?</add>
+        <add name="Skyrim Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
+        <add name="Flags &amp; Part number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
             Unknown.
             Oblivion defaults: 0 21280 2481 62977 65535 44 0
