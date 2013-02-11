@@ -244,6 +244,7 @@
         <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
+        <option value="1550912982" name="SKY_HAV_MAT_MATERIAL_BOULDER_SMALL">Material Boulder Small</option>
         <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
         <option value="1570821952" name="SKY_HAV_MAT_HEAVY_STONE">Heavy Stone</option>
         <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
