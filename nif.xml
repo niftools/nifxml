@@ -227,6 +227,7 @@
         <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
         <option value="428587608" name="SKY_HAV_MAT_GRAVEL">Gravel</option>
         <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">Material Chain Metal</option>
+        <option value="493553910" name="SKY_HAV_MAT_BOTTLE">Bottle</option>
         <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
         <option value="591247106" name="SKY_HAV_MAT_SKIN">Skin</option>
         <option value="732141076" name="SKY_HAV_MAT_BARREL">Barrel</option>
@@ -244,6 +245,7 @@
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
         <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
+        <option value="1570821952" name="SKY_HAV_MAT_HEAVY_STONE">Heavy Stone</option>
         <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
         <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
         <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
