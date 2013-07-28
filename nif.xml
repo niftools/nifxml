@@ -1833,7 +1833,7 @@
         <add name="Layer" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte" default="0" vercond="User Version &lt; 12">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Skyrim Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
-        <add name="Flags &amp; Part number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
+        <add name="Flags And Part Number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
         	Bit 6: turns collision off (not used for Layer SKYL_BIPED).
         	Bit 5: sets the SCALED property.
@@ -1907,7 +1907,7 @@
         <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0" vercond="User Version &lt; 12">Copy of Col Filter value?</add>
         <add name="Skyrim Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
-        <add name="Flags &amp; Part number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
+        <add name="Flags And Part Number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
             Unknown.
             Oblivion defaults: 0 21280 2481 62977 65535 44 0
@@ -2656,8 +2656,8 @@
         <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Material</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440)!=0 || (BS Num UV Sets &amp; 61440)!=0)" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440)!=0 || (BS Num UV Sets &amp; 61440)!=0)" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2828,7 +2828,7 @@
         <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
         <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
         <add name="Aspect Ratio" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
-        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
+        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
         <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
@@ -5507,7 +5507,7 @@
         <add name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</add>
         <add name="Bones" type="Ptr" template="NiAVObject" arr1="Num Bones">Pointers to the bone nodes that affect this skin.</add>
         <add name="Bone Transforms" type="SkinTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
-        <add name="Bone Bounds" type="SphereBV" cond="Flags &amp; 2" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add> <!-- Note, "SphereBV" is actually "NiBound."-->
+        <add name="Bone Bounds" type="SphereBV" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add> <!-- Note, "SphereBV" is actually "NiBound."-->
     </niobject>
 
     <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier">
