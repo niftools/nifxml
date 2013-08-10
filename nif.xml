@@ -4609,12 +4609,12 @@
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSEffectShaderPropertyFloatController, target is a number in order they appear:
-    0: Visibility?
-    1: 
-    2: 
-    3: 
-    4: Emissive or Saturation?
-    5: Alpha Transparency
+    0: EmissiveMultiple
+    1: Falloff Start Angle (degrees)
+    2: Falloff Stop Angle (degrees)
+    3: Falloff Start Opacity
+    4: Falloff Stop Opacity
+    5: Alpha Transparency (Emissive alpha?)
     6: U Offset
     7: U Scale
     8: V Offset
@@ -4623,20 +4623,29 @@
     </niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown</add>
+    0: Emissive Color
+		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
     This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
-    5: U Offset
-    6: V Offset
-    7: U Scale
-    8: V Scale
+    0: Unknown Float 2
+    8: Environment Map Scale
+    9: Glossiness
+    10: Specular Strength
+    11: Emissive Multiple
+    12: Alpha
+    20: U Offset
+    21: U Scale
+    22: V Offset
+    23: V Scale
 		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
+		Target numbers:
+		0: Specular Color
+		1: Emissive Color
 		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
 	</niobject>	
 	
@@ -4675,10 +4684,12 @@
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
             0: Diffuse
             1: Normal/Gloss
-            2: Glow/Skin/Hair
+            2: Glow(SLSF2_Glow_Map)/Skin/Hair/Rim light(SLSF2_Rim_Lighting)
             3: Height/Parallax
             4: Environment
             5: Environment Mask
+            6: Subsurface for Multilayer Parallax
+            7: Back Lighting Map (SLSF2_Back_Lighting)
         </add>
     </niobject>
 
@@ -4812,7 +4823,7 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
+        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales intensity of the environment/cube map. (0-1)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
@@ -4828,7 +4839,7 @@
     </niobject>
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Skyrim non-PP shader model, used primarily for transparency effects.
+        Skyrim non-PP shader model, used primarily for transparency effects, often as decal
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
@@ -4836,14 +4847,14 @@
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
         <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float" default="1.0"></add>
-        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
-        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
-        <add name="Falloff Stop Opacity" type="float"></add>
+        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
         <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
+        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float"></add>
-        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha</add>
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
