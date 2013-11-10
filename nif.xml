@@ -448,6 +448,13 @@
         <option value="47" name="SKYL_NULL">Null</option>
     </enum>
 
+    <enum name="MoppDataBuildType" storage="byte">
+        A byte describing if MOPP Data is organized into chunks (PS3) or not (PC)
+        <option value="0" name="BUILT_WITH_CHUNK_SUBDIVISION">Organized in chunks for PS3.</option>
+        <option value="1" name="BUILT_WITHOUT_CHUNK_SUBDIVISION">Not organized in chunks for PC. (Default)</option>
+        <option value="2" name="BUILD_NOT_SET">Build type not set yet.</option>
+    </enum>
+
     <enum name="MipMapFormat" storage="uint">
         An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
         <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
@@ -2135,8 +2142,8 @@
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
+        <add name="Build Type" type="MoppDataBuildType" ver1="20.2.0.7" vercond="User Version >= 12">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
 
