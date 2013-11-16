@@ -2189,7 +2189,7 @@
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkShape">
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -2199,7 +2199,7 @@
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
@@ -2261,7 +2261,7 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
@@ -2289,7 +2289,7 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
@@ -2332,7 +2332,7 @@
 
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
@@ -5146,7 +5146,7 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The shape&#039;s material.</add>
         <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
