@@ -221,6 +221,137 @@
         <option value="31" name="HAV_MAT_RUBBER">Rubber</option>
     </enum>
 
+    <enum name="Fallout3HavokMaterial" storage="uint">
+        <option value="0" name="FAL_MAT_STONE">Stone</option>
+        <option value="1" name="FAL_MAT_CLOTH">Cloth</option>
+        <option value="2" name="FAL_MAT_DIRT">Dirt</option>
+        <option value="3" name="FAL_MAT_GLASS">Glass</option>
+        <option value="4" name="FAL_MAT_GRASS">Grass</option>
+        <option value="5" name="FAL_MAT_METAL">Metal</option>
+        <option value="6" name="FAL_MAT_ORGANIC">Organic</option>
+        <option value="7" name="FAL_MAT_SKIN">Skin</option>
+        <option value="8" name="FAL_MAT_WATER">Water</option>
+        <option value="9" name="FAL_MAT_WOOD">Wood</option>
+        <option value="10" name="FAL_MAT_HEAVY_STONE">Heavy Stone</option>
+        <option value="11" name="FAL_MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="12" name="FAL_MAT_HEAVY_WOOD">Heavy Wood</option>
+        <option value="13" name="FAL_MAT_CHAIN">Chain</option>
+        <option value="14" name="FAL_MAT_BOTTLECAP">Bottlecap</option>
+        <option value="15" name="FAL_MAT_ELEVATOR">Elevator</option>
+        <option value="16" name="FAL_MAT_HOLLOW_METAL">Hollow Metal</option>
+        <option value="17" name="FAL_MAT_SHEET_METAL">Sheet Metal</option>
+        <option value="18" name="FAL_MAT_SAND">Sand</option>
+        <option value="19" name="FAL_MAT_BROKEN_CONCRETE">Broken Concrete</option>
+        <option value="20" name="FAL_MAT_VEHICLE_BODY">Vehicle Body</option>
+        <option value="21" name="FAL_MAT_VEHICLE_PART_SOLID">Vehicle Part Solid</option>
+        <option value="22" name="FAL_MAT_VEHICLE_PART_HOLLOW">Vehicle Part Hollow</option>
+        <option value="23" name="FAL_MAT_BARREL">Barrel</option>
+        <option value="24" name="FAL_MAT_BOTTLE">Bottle</option>
+        <option value="25" name="FAL_MAT_SODA_CAN">Soda Can</option>
+        <option value="26" name="FAL_MAT_PISTOL">Pistol</option>
+        <option value="27" name="FAL_MAT_RIFLE">Rifle</option>
+        <option value="28" name="FAL_MAT_SHOPPING_CART">Shopping Cart</option>
+        <option value="29" name="FAL_MAT_LUNCHBOX">Lunchbox</option>
+        <option value="30" name="FAL_MAT_BABY_RATTLE">Baby Rattle</option>
+        <option value="31" name="FAL_MAT_RUBBER_BALL">Rubber Ball</option>
+        <option value="32" name="FAL_MAT_STONE_PLATFORM">Stone + Platform</option>
+        <option value="33" name="FAL_MAT_CLOTH_PLATFORM">Cloth + Platform</option>
+        <option value="34" name="FAL_MAT_DIRT_PLATFORM">Dirt + Platform</option>
+        <option value="35" name="FAL_MAT_GLASS_PLATFORM">Glass + Platform</option>
+        <option value="36" name="FAL_MAT_GRASS_PLATFORM">Grass + Platform</option>
+        <option value="37" name="FAL_MAT_METAL_PLATFORM">Metal + Platform</option>
+        <option value="38" name="FAL_MAT_ORGANIC_PLATFORM">Organic + Platform</option>
+        <option value="39" name="FAL_MAT_SKIN_PLATFORM">Skin + Platform</option>
+        <option value="40" name="FAL_MAT_WATER_PLATFORM">Water + Platform</option>
+        <option value="41" name="FAL_MAT_WOOD_PLATFORM">Wood + Platform</option>
+        <option value="42" name="FAL_MAT_HEAVY_STONE_PLATFORM">Heavy Stone + Platform</option>
+        <option value="43" name="FAL_MAT_HEAVY_METAL_PLATFORM">Heavy Metal + Platform</option>
+        <option value="44" name="FAL_MAT_HEAVY_WOOD_PLATFORM">Heavy Wood + Platform</option>
+        <option value="45" name="FAL_MAT_CHAIN_PLATFORM">Chain + Platform</option>
+        <option value="46" name="FAL_MAT_BOTTLECAP_PLATFORM">Bottlecap + Platform</option>
+        <option value="47" name="FAL_MAT_ELEVATOR_PLATFORM">Elevator + Platform</option>
+        <option value="48" name="FAL_MAT_HOLLOW_METAL_PLATFORM">Hollow Metal + Platform</option>
+        <option value="49" name="FAL_MAT_SHEET_METAL_PLATFORM">Sheet Metal + Platform</option>
+        <option value="50" name="FAL_MAT_SAND_PLATFORM">Sand + Platform</option>
+        <option value="51" name="FAL_MAT_BROKEN_CONCRETE_PLATFORM">Broken Concrete + Platform</option>
+        <option value="52" name="FAL_MAT_VEHICLE_BODY_PLATFORM">Vehicle Body + Platform</option>
+        <option value="53" name="FAL_MAT_VEHICLE_PART_SOLID_PLATFORM">Vehicle Part Solid + Platform</option>
+        <option value="54" name="FAL_MAT_VEHICLE_PART_HOLLOW_PLATFORM">Vehicle Part Hollow + Platform</option>
+        <option value="55" name="FAL_MAT_BARREL_PLATFORM">Barrel + Platform</option>
+        <option value="56" name="FAL_MAT_BOTTLE_PLATFORM">Bottle + Platform</option>
+        <option value="57" name="FAL_MAT_SODA_CAN_PLATFORM">Soda Can + Platform</option>
+        <option value="58" name="FAL_MAT_PISTOL_PLATFORM">Pistol + Platform</option>
+        <option value="59" name="FAL_MAT_RIFLE_PLATFORM">Rifle + Platform</option>
+        <option value="60" name="FAL_MAT_SHOPPING_CART_PLATFORM">Shopping Cart + Platform</option>
+        <option value="61" name="FAL_MAT_LUNCHBOX_PLATFORM">Lunchbox + Platform</option>
+        <option value="62" name="FAL_MAT_BABY_RATTLE_PLATFORM">Baby Rattle + Platform</option>
+        <option value="63" name="FAL_MAT_RUBBER_BALL_PLATFORM">Rubber Ball + Platform</option>
+        <option value="64" name="FAL_MAT_STONE_STAIRS">Stone + Stairs</option>
+        <option value="65" name="FAL_MAT_CLOTH_STAIRS">Cloth + Stairs</option>
+        <option value="66" name="FAL_MAT_DIRT_STAIRS">Dirt + Stairs</option>
+        <option value="67" name="FAL_MAT_GLASS_STAIRS">Glass + Stairs</option>
+        <option value="68" name="FAL_MAT_GRASS_STAIRS">Grass + Stairs</option>
+        <option value="69" name="FAL_MAT_METAL_STAIRS">Metal + Stairs</option>
+        <option value="70" name="FAL_MAT_ORGANIC_STAIRS">Organic + Stairs</option>
+        <option value="71" name="FAL_MAT_SKIN_STAIRS">Skin + Stairs</option>
+        <option value="72" name="FAL_MAT_WATER_STAIRS">Water + Stairs</option>
+        <option value="73" name="FAL_MAT_WOOD_STAIRS">Wood + Stairs</option>
+        <option value="74" name="FAL_MAT_HEAVY_STONE_STAIRS">Heavy Stone + Stairs</option>
+        <option value="75" name="FAL_MAT_HEAVY_METAL_STAIRS">Heavy Metal + Stairs</option>
+        <option value="76" name="FAL_MAT_HEAVY_WOOD_STAIRS">Heavy Wood + Stairs</option>
+        <option value="77" name="FAL_MAT_CHAIN_STAIRS">Chain + Stairs</option>
+        <option value="78" name="FAL_MAT_BOTTLECAP_STAIRS">Bottlecap + Stairs</option>
+        <option value="79" name="FAL_MAT_ELEVATOR_STAIRS">Elevator + Stairs</option>
+        <option value="80" name="FAL_MAT_HOLLOW_METAL_STAIRS">Hollow Metal + Stairs</option>
+        <option value="81" name="FAL_MAT_SHEET_METAL_STAIRS">Sheet Metal + Stairs</option>
+        <option value="82" name="FAL_MAT_SAND_STAIRS">Sand + Stairs</option>
+        <option value="83" name="FAL_MAT_BROKEN_CONCRETE_STAIRS">Broken Concrete + Stairs</option>
+        <option value="84" name="FAL_MAT_VEHICLE_BODY_STAIRS">Vehicle Body + Stairs</option>
+        <option value="85" name="FAL_MAT_VEHICLE_PART_SOLID_STAIRS">Vehicle Part Solid + Stairs</option>
+        <option value="86" name="FAL_MAT_VEHICLE_PART_HOLLOW_STAIRS">Vehicle Part Hollow + Stairs</option>
+        <option value="87" name="FAL_MAT_BARREL_STAIRS">Barrel + Stairs</option>
+        <option value="88" name="FAL_MAT_BOTTLE_STAIRS">Bottle + Stairs</option>
+        <option value="89" name="FAL_MAT_SODA_CAN_STAIRS">Soda Can + Stairs</option>
+        <option value="90" name="FAL_MAT_PISTOL_STAIRS">Pistol + Stairs</option>
+        <option value="91" name="FAL_MAT_RIFLE_STAIRS">Rifle + Stairs</option>
+        <option value="92" name="FAL_MAT_SHOPPING_CART_STAIRS">Shopping Cart + Stairs</option>
+        <option value="93" name="FAL_MAT_LUNCHBOX_STAIRS">Lunchbox + Stairs</option>
+        <option value="94" name="FAL_MAT_BABY_RATTLE_STAIRS">Baby Rattle + Stairs</option>
+        <option value="95" name="FAL_MAT_RUBBER_BALL_STAIRS">Rubber Ball + Stairs</option>
+        <option value="96" name="FAL_MAT_STONE_PLATFORM_STAIRS">Stone + Platform + Stairs</option>
+        <option value="97" name="FAL_MAT_CLOTH_PLATFORM_STAIRS">Cloth + Platform + Stairs</option>
+        <option value="98" name="FAL_MAT_DIRT_PLATFORM_STAIRS">Dirt + Platform + Stairs</option>
+        <option value="99" name="FAL_MAT_GLASS_PLATFORM_STAIRS">Glass + Platform + Stairs</option>
+        <option value="100" name="FAL_MAT_GRASS_PLATFORM_STAIRS">Grass + Platform + Stairs</option>
+        <option value="101" name="FAL_MAT_METAL_PLATFORM_STAIRS">Metal + Platform + Stairs</option>
+        <option value="102" name="FAL_MAT_ORGANIC_PLATFORM_STAIRS">Organic + Platform + Stairs</option>
+        <option value="103" name="FAL_MAT_SKIN_PLATFORM_STAIRS">Skin + Platform + Stairs</option>
+        <option value="104" name="FAL_MAT_WATER_PLATFORM_STAIRS">Water + Platform + Stairs</option>
+        <option value="105" name="FAL_MAT_WOOD_PLATFORM_STAIRS">Wood + Platform + Stairs</option>
+        <option value="106" name="FAL_MAT_HEAVY_STONE_PLATFORM_STAIRS">Heavy Stone + Platform + Stairs</option>
+        <option value="107" name="FAL_MAT_HEAVY_METAL_PLATFORM_STAIRS">Heavy Metal + Platform + Stairs</option>
+        <option value="108" name="FAL_MAT_HEAVY_WOOD_PLATFORM_STAIRS">Heavy Wood + Platform + Stairs</option>
+        <option value="109" name="FAL_MAT_CHAIN_PLATFORM_STAIRS">Chain + Platform + Stairs</option>
+        <option value="110" name="FAL_MAT_BOTTLECAP_PLATFORM_STAIRS">Bottlecap + Platform + Stairs</option>
+        <option value="111" name="FAL_MAT_ELEVATOR_PLATFORM_STAIRS">Elevator + Platform + Stairs</option>
+        <option value="112" name="FAL_MAT_HOLLOW_METAL_PLATFORM_STAIRS">Hollow Metal + Platform + Stairs</option>
+        <option value="113" name="FAL_MAT_SHEET_METAL_PLATFORM_STAIRS">Sheet Metal + Platform + Stairs</option>
+        <option value="114" name="FAL_MAT_SAND_PLATFORM_STAIRS">Sand + Platform + Stairs</option>
+        <option value="115" name="FAL_MAT_BROKEN_CONCRETE_PLATFORM_STAIRS">Broken Concrete + Platform + Stairs</option>
+        <option value="116" name="FAL_MAT_VEHICLE_BODY_PLATFORM_STAIRS">Vehicle Body + Platform + Stairs</option>
+        <option value="117" name="FAL_MAT_VEHICLE_PART_SOLID_PLATFORM_STAIRS">Vehicle Part Solid + Platform + Stairs</option>
+        <option value="118" name="FAL_MAT_VEHICLE_PART_HOLLOW_PLATFORM_STAIRS">Vehicle Part Hollow + Platform + Stairs</option>
+        <option value="119" name="FAL_MAT_BARREL_PLATFORM_STAIRS">Barrel + Platform + Stairs</option>
+        <option value="120" name="FAL_MAT_BOTTLE_PLATFORM_STAIRS">Bottle + Platform + Stairs</option>
+        <option value="121" name="FAL_MAT_SODA_CAN_PLATFORM_STAIRS">Soda Can + Platform + Stairs</option>
+        <option value="122" name="FAL_MAT_PISTOL_PLATFORM_STAIRS">Pistol + Platform + Stairs</option>
+        <option value="123" name="FAL_MAT_RIFLE_PLATFORM_STAIRS">Rifle + Platform + Stairs</option>
+        <option value="124" name="FAL_MAT_SHOPPING_CART_PLATFORM_STAIRS">Shopping Cart + Platform + Stairs</option>
+        <option value="125" name="FAL_MAT_LUNCHBOX_PLATFORM_STAIRS">Lunchbox + Platform + Stairs</option>
+        <option value="126" name="FAL_MAT_BABY_RATTLE_PLATFORM_STAIRS">Baby Rattle + Platform + Stairs</option>
+        <option value="127" name="FAL_MAT_RUBBER_BALL_PLATFORM_STAIRS">Rubber Ball + Platform + Stairs</option>
+    </enum>
+
     <enum name="SkyrimHavokMaterial" storage="uint">
         <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
@@ -1449,7 +1580,8 @@
         <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
         <add name="Unknown Short" type="ushort">Unknown. Perhaps the vertex wielding type?</add>
         <add name="Num Vertices" type="uint">The number of vertices that form this sub shape.</add>
-        <add name="Material" type="HavokMaterial">The material of the subshape.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) ||((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
     </compound>
 
     <compound name="MotorDescriptor">
@@ -2057,7 +2189,8 @@
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkShape">
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
@@ -2066,7 +2199,8 @@
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
@@ -2127,7 +2261,8 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
@@ -2154,7 +2289,8 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
@@ -2196,7 +2332,8 @@
 
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
         <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
@@ -5009,7 +5146,8 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial" vercond="(User Version &lt; 11) || ((User Version == 11) &amp;&amp; (User Version 2 &lt; 34))">The material of the subshape.</add>
+        <add name="Fallout3 Material" type="Fallout3HavokMaterial" vercond="(User Version == 11) &amp;&amp; (User Version 2 == 34)">The shape&#039;s material.</add>
         <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
         <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
