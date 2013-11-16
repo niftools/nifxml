@@ -240,7 +240,7 @@
         <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
         <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
         <option value="1286705471" name="SKY_HAV_MAT_MATERIAL_CARPET">Material Carpet</option>
-	<option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
+        <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
         <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
         <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
@@ -873,6 +873,45 @@
         <option value="17" name="Unknown 17"></option>
         <option value="18" name="WorldMap4"></option>
         <option value="19" name="World LOD Multitexture"></option>
+    </enum>
+
+    <enum name="EffectShaderControlledVariable" storage="uint">
+        An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
+        <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
+        <option value="1" name="Falloff Start Angle (degrees)">Falloff Start Angle (degrees).</option>
+        <option value="2" name="Falloff Stop Angle (degrees)">Falloff Stop Angle (degrees).</option>
+        <option value="3" name="Falloff Start Opacity">Falloff Start Opacity.</option>
+        <option value="4" name="Falloff Stop Opacity">Falloff Stop Opacity.</option>
+        <option value="5" name="Alpha Transparency (Emissive alpha?)">Alpha Transparency (Emissive alpha?).</option>
+        <option value="6" name="U Offset">U Offset.</option>
+        <option value="7" name="U Scale">U Scale.</option>
+        <option value="8" name="V Offset">V Offset.</option>
+        <option value="9" name="V Scale">V Scale.</option>
+    </enum>
+
+    <enum name="EffectShaderControlledColor" storage="uint">
+        An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
+        <option value="0" name="Emissive Color">Emissive Color.</option>
+    </enum>
+
+    <enum name="LightingShaderControlledVariable" storage="uint">
+        An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
+        <option value="0" name="Unknown Float 2">Unknown Float 2.</option>
+        <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
+        <option value="9" name="Glossiness">Glossiness.</option>
+        <option value="10" name="Specular Strength">Specular Strength.</option>
+        <option value="11" name="Emissive Multiple">Emissive Multiple.</option>
+        <option value="12" name="Alpha">Alpha.</option>
+        <option value="20" name="U Offset">U Offset.</option>
+        <option value="21" name="U Scale">U Scale.</option>
+        <option value="22" name="V Offset">V Offset.</option>
+        <option value="23" name="V Scale">V Scale.</option>
+    </enum>
+
+    <enum name="LightingShaderControlledColor" storage="uint">
+        An unsigned 32-bit integer, describing which color in BSLightingShaderProperty to animate.
+        <option value="0" name="Specular Color">Specular Color.</option>
+        <option value="1" name="Emissive Color">Emissive Color.</option>
     </enum>
 
     <!--Compounds
@@ -2660,11 +2699,11 @@
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))" calculated="1">Flag for tangents and bitangents in upper byte. Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))" calculated="1">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Material</add>
+		<add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Material</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440)!=0 || (BS Num UV Sets &amp; 61440)!=0)" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440)!=0 || (BS Num UV Sets &amp; 61440)!=0)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -4616,36 +4655,23 @@
 
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate variables in BSEffectShaderPropertyFloatController, target is a number in order they appear:
-    0: Visibility?
-    1: 
-    2: 
-    3: 
-    4: Emissive or Saturation?
-    5: Alpha Transparency
-    6: U Offset
-    7: U Scale
-    8: V Offset
-    9: V Scale
-        <add name="Target Variable" type="uint">Unknown</add>
+    This controller is used to animate float variables in BSEffectShaderProperty.
+        <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
     </niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown</add>
+    This controller is used to animate colors in BSEffectShaderProperty.
+		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
-    5: U Offset
-    6: V Offset
-    7: U Scale
-    8: V Scale
-		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
+    This controller is used to animate float variables in BSLightingShaderProperty.
+		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
+    This controller is used to animate colors in BSLightingShaderProperty.
+		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
 	</niobject>	
 	
 	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
@@ -4683,10 +4709,12 @@
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
             0: Diffuse
             1: Normal/Gloss
-            2: Glow/Skin/Hair
+            2: Glow(SLSF2_Glow_Map)/Skin/Hair/Rim light(SLSF2_Rim_Lighting)
             3: Height/Parallax
             4: Environment
             5: Environment Mask
+            6: Subsurface for Multilayer Parallax
+            7: Back Lighting Map (SLSF2_Back_Lighting)
         </add>
     </niobject>
 
@@ -4820,7 +4848,7 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
+        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
@@ -4836,7 +4864,7 @@
     </niobject>
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Skyrim non-PP shader model, used primarily for transparency effects.
+        Skyrim non-PP shader model, used primarily for transparency effects, often as decal.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
@@ -4844,14 +4872,14 @@
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
         <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float" default="1.0"></add>
-        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
-        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
-        <add name="Falloff Stop Opacity" type="float"></add>
+        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
         <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
+        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float"></add>
-        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
