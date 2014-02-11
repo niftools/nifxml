@@ -1592,6 +1592,7 @@
     <compound name="HalfSpaceBV">
         <add name="Normal" type="Vector3">Normal</add>
         <add name="Center" type="Vector3">Center</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
     </compound>
 
     <compound name="BoundingVolume">
