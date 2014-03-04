@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.0.0">
+<niftoolsxml version="0.7.1.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -42,7 +42,8 @@
     <version num="20.6.0.0">KrazyRain</version>
     <version num="20.6.5.0">Epic Mickey</version>
     <version num="30.0.0.2">Emerge</version>
-
+    <version num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
+    
     <!--Basic Types-->
 
     <basic name="bool" count="1" niflibtype="bool" nifskopetype="bool">
@@ -227,6 +228,7 @@
         <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
         <option value="428587608" name="SKY_HAV_MAT_GRAVEL">Gravel</option>
         <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">Material Chain Metal</option>
+        <option value="493553910" name="SKY_HAV_MAT_BOTTLE">Bottle</option>
         <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
         <option value="591247106" name="SKY_HAV_MAT_SKIN">Skin</option>
         <option value="732141076" name="SKY_HAV_MAT_BARREL">Barrel</option>
@@ -238,12 +240,15 @@
         <option value="1024582599" name="SKY_HAV_MAT_WATER">Water</option>
         <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
         <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
+        <option value="1286705471" name="SKY_HAV_MAT_MATERIAL_CARPET">Material Carpet</option>
         <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
         <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
         <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
         <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
         <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
+        <option value="1550912982" name="SKY_HAV_MAT_MATERIAL_BOULDER_SMALL">Material Boulder Small</option>
         <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
+        <option value="1570821952" name="SKY_HAV_MAT_HEAVY_STONE">Heavy Stone</option>
         <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
         <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
         <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
@@ -338,6 +343,117 @@
         <option value="55" name="OL_PONYTAIL">PonyTail</option>
         <option value="56" name="OL_WING">Wing</option>
         <option value="57" name="OL_NULL">Null</option>
+    </enum>
+
+    <enum name="SkyrimLayer" storage="byte">
+        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
+        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
+        <option value="1" name="SKYL_STATIC">Static</option>
+        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
+        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
+        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
+        <option value="5" name="SKYL_WEAPON">Weapon</option>
+        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
+        <option value="7" name="SKYL_SPELL">Spell</option>
+        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="SKYL_TREES">Trees</option>
+        <option value="10" name="SKYL_PROPS">Props</option>
+        <option value="11" name="SKYL_WATER">Water</option>
+        <option value="12" name="SKYL_TRIGGER">Trigger</option>
+        <option value="13" name="SKYL_TERRAIN">Terrain</option>
+        <option value="14" name="SKYL_TRAP">Trap</option>
+        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
+        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
+        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
+        <option value="18" name="SKYL_PORTAL">Portal</option>
+        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
+        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
+        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
+        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
+        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
+        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
+        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
+        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
+        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
+        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
+        <option value="29" name="SKYL_WARD">Ward</option>
+        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
+        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
+        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
+        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
+        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
+        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
+        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
+        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
+        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
+        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
+        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
+        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
+        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
+        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
+        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
+        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
+        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
+        <option value="47" name="SKYL_NULL">Null</option>
+    </enum>
+
+    <enum name="SkyrimLayerCMSDM" storage="uint">
+        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
+        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
+        <option value="1" name="SKYL_STATIC">Static</option>
+        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
+        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
+        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
+        <option value="5" name="SKYL_WEAPON">Weapon</option>
+        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
+        <option value="7" name="SKYL_SPELL">Spell</option>
+        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="SKYL_TREES">Trees</option>
+        <option value="10" name="SKYL_PROPS">Props</option>
+        <option value="11" name="SKYL_WATER">Water</option>
+        <option value="12" name="SKYL_TRIGGER">Trigger</option>
+        <option value="13" name="SKYL_TERRAIN">Terrain</option>
+        <option value="14" name="SKYL_TRAP">Trap</option>
+        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
+        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
+        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
+        <option value="18" name="SKYL_PORTAL">Portal</option>
+        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
+        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
+        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
+        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
+        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
+        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
+        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
+        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
+        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
+        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
+        <option value="29" name="SKYL_WARD">Ward</option>
+        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
+        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
+        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
+        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
+        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
+        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
+        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
+        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
+        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
+        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
+        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
+        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
+        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
+        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
+        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
+        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
+        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
+        <option value="47" name="SKYL_NULL">Null</option>
+    </enum>
+
+    <enum name="MoppDataBuildType" storage="byte">
+        A byte describing if MOPP Data is organized into chunks (PS3) or not (PC)
+        <option value="0" name="BUILT_WITH_CHUNK_SUBDIVISION">Organized in chunks for PS3.</option>
+        <option value="1" name="BUILT_WITHOUT_CHUNK_SUBDIVISION">Not organized in chunks for PC. (Default)</option>
+        <option value="2" name="BUILD_NOT_SET">Build type not set yet.</option>
     </enum>
 
     <enum name="MipMapFormat" storage="uint">
@@ -758,6 +874,45 @@
         <option value="17" name="Unknown 17"></option>
         <option value="18" name="WorldMap4"></option>
         <option value="19" name="World LOD Multitexture"></option>
+    </enum>
+
+    <enum name="EffectShaderControlledVariable" storage="uint">
+        An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
+        <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
+        <option value="1" name="Falloff Start Angle (degrees)">Falloff Start Angle (degrees).</option>
+        <option value="2" name="Falloff Stop Angle (degrees)">Falloff Stop Angle (degrees).</option>
+        <option value="3" name="Falloff Start Opacity">Falloff Start Opacity.</option>
+        <option value="4" name="Falloff Stop Opacity">Falloff Stop Opacity.</option>
+        <option value="5" name="Alpha Transparency (Emissive alpha?)">Alpha Transparency (Emissive alpha?).</option>
+        <option value="6" name="U Offset">U Offset.</option>
+        <option value="7" name="U Scale">U Scale.</option>
+        <option value="8" name="V Offset">V Offset.</option>
+        <option value="9" name="V Scale">V Scale.</option>
+    </enum>
+
+    <enum name="EffectShaderControlledColor" storage="uint">
+        An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
+        <option value="0" name="Emissive Color">Emissive Color.</option>
+    </enum>
+
+    <enum name="LightingShaderControlledVariable" storage="uint">
+        An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
+        <option value="0" name="Unknown Float 2">Unknown Float 2.</option>
+        <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
+        <option value="9" name="Glossiness">Glossiness.</option>
+        <option value="10" name="Specular Strength">Specular Strength.</option>
+        <option value="11" name="Emissive Multiple">Emissive Multiple.</option>
+        <option value="12" name="Alpha">Alpha.</option>
+        <option value="20" name="U Offset">U Offset.</option>
+        <option value="21" name="U Scale">U Scale.</option>
+        <option value="22" name="V Offset">V Offset.</option>
+        <option value="23" name="V Scale">V Scale.</option>
+    </enum>
+
+    <enum name="LightingShaderControlledColor" storage="uint">
+        An unsigned 32-bit integer, describing which color in BSLightingShaderProperty to animate.
+        <option value="0" name="Specular Color">Specular Color.</option>
+        <option value="1" name="Emissive Color">Emissive Color.</option>
     </enum>
 
     <!--Compounds
@@ -1484,6 +1639,7 @@
     <compound name="HalfSpaceBV">
         <add name="Normal" type="Vector3">Normal</add>
         <add name="Center" type="Vector3">Center</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
     </compound>
 
     <compound name="BoundingVolume">
@@ -1586,7 +1742,7 @@
 	<compound name="bhkCMSDMaterial">
     per-chunk material, used in bhkCompressedMeshShapeData
 		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Unknown Integer" type="uint">Always 1?</add>
+		<add name="Skyrim Layer" type="SkyrimLayerCMSDM">Copy of Skyrim Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
 	</compound>
 
     <compound name="bhkCMSDBigTris">
@@ -1722,8 +1878,46 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer" default="OL_STATIC">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte" default="0">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Layer" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Sets mesh color in Oblivion Construction Set.</add>
+        <add name="Col Filter" type="byte" default="0" vercond="User Version &lt; 12">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+        <add name="Skyrim Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
+        <add name="Flags And Part Number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
+        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
+        	Bit 6: turns collision off (not used for Layer SKYL_BIPED).
+        	Bit 5: sets the SCALED property.
+
+        	PART NUMBER in a linked body list is stored in lowest 5 bits (used only when Skyrim Layer is set to SKYL_BIPED):
+        	0 - OTHER
+        	1 - HEAD
+        	2 - BODY
+        	3 - SPINE1
+        	4 - SPINE2
+        	5 - LUPPERARM
+        	6 - LFOREARM
+        	7 - LHAND
+        	8 - LTHIGH
+        	9 - LCALF
+        	10 - LFOOT
+        	11 - RUPPERARM
+        	12 - RFOREARM
+        	13 - RHAND
+        	14 - RTHIGH
+        	15 - RCALF
+        	16 - RFOOT
+        	17 - TAIL
+        	18 - SHIELD
+        	19 - QUIVER
+        	20 - WEAPON
+        	21 - PONYTAIL
+        	22 - WING
+        	23 - PACK
+        	24 - CHAIN
+        	25 - ADDONHEAD
+        	26 - ADDONCHEST
+        	27 - ADDONARM
+        	28 - ADDONLEG
+        	29-31 - NULL
+        </add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
     </niobject>
 
@@ -1758,8 +1952,10 @@
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" default="0">Copy of Col Filter value?</add>
+        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Copy of Layer value?</add>
+        <add name="Col Filter Copy" type="byte" default="0" vercond="User Version &lt; 12">Copy of Col Filter value?</add>
+        <add name="Skyrim Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
+        <add name="Flags And Part Number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
             Unknown.
             Oblivion defaults: 0 21280 2481 62977 65535 44 0
@@ -1987,8 +2183,8 @@
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
+        <add name="Build Type" type="MoppDataBuildType" ver1="20.2.0.7" vercond="User Version >= 12">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" vercond="User Version >= 12">Unknown</add>
     </niobject>
 
 
@@ -2505,7 +2701,7 @@
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))" calculated="1">Flag for tangents and bitangents in upper byte. Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))" calculated="1">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
-        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>	
+		<add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Material</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
@@ -2680,7 +2876,7 @@
         <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
         <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
         <add name="Aspect Ratio" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
-        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs == 1" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
+        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
         <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
         <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
@@ -4461,36 +4657,23 @@
 
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate variables in BSEffectShaderPropertyFloatController, target is a number in order they appear:
-    0: Visibility?
-    1: 
-    2: 
-    3: 
-    4: Emissive or Saturation?
-    5: Alpha Transparency
-    6: U Offset
-    7: U Scale
-    8: V Offset
-    9: V Scale
-        <add name="Target Variable" type="uint">Unknown</add>
+    This controller is used to animate float variables in BSEffectShaderProperty.
+        <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
     </niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
-    Unkown
-		<add name="Unknown Int 1" type="uint">Unknown</add>
+    This controller is used to animate colors in BSEffectShaderProperty.
+		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate variables in BSLightingShaderPropertyFloatController, target is a number in order they appear:
-    5: U Offset
-    6: V Offset
-    7: U Scale
-    8: V Scale
-		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
+    This controller is used to animate float variables in BSLightingShaderProperty.
+		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
-		<add name="Target Variable" type="uint">Which variable in the shader to animate.</add>
+    This controller is used to animate colors in BSLightingShaderProperty.
+		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
 	</niobject>	
 	
 	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
@@ -4528,10 +4711,12 @@
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
             0: Diffuse
             1: Normal/Gloss
-            2: Glow/Skin/Hair
+            2: Glow(SLSF2_Glow_Map)/Skin/Hair/Rim light(SLSF2_Rim_Lighting)
             3: Height/Parallax
             4: Environment
             5: Environment Mask
+            6: Subsurface for Multilayer Parallax
+            7: Back Lighting Map (SLSF2_Back_Lighting)
         </add>
     </niobject>
 
@@ -4665,7 +4850,7 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the environment/cube map. (0-??)</add>
+        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
@@ -4681,7 +4866,7 @@
     </niobject>
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Skyrim non-PP shader model, used primarily for transparency effects.
+        Skyrim non-PP shader model, used primarily for transparency effects, often as decal.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
@@ -4689,14 +4874,14 @@
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
         <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float" default="1.0"></add>
-        <add name="Falloff Stop Angle" type="float" default="1.0"></add>
-        <add name="Falloff Start Opacity" type="float">Texture will fade in within this proximity.</add>
-        <add name="Falloff Stop Opacity" type="float"></add>
+        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
         <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multipled Emissive Colors</add>
+        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float"></add>
-        <add name="Greyscale Texture"  type="SizedString">points to an external texture.</add>
+        <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
@@ -5359,7 +5544,7 @@
         <add name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</add>
         <add name="Bones" type="Ptr" template="NiAVObject" arr1="Num Bones">Pointers to the bone nodes that affect this skin.</add>
         <add name="Bone Transforms" type="SkinTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
-        <add name="Bone Bounds" type="SphereBV" cond="Flags &amp; 2" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add> <!-- Note, "SphereBV" is actually "NiBound."-->
+        <add name="Bone Bounds" type="SphereBV" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add> <!-- Note, "SphereBV" is actually "NiBound."-->
     </niobject>
 
     <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier">
