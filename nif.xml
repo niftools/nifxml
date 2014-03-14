@@ -2175,8 +2175,7 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Unknown Int" type="uint">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
