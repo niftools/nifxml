@@ -1636,24 +1636,32 @@
         <add name="Twist B" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
 
         <!-- Fallout 3 -->
-        <add name="Twist A" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Motor A" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist B" type="Vector4" ver1="20.2.0.7">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
-        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Motor B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Plane A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+        <add name="Plane B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
 
-        <add name="Cone Max Angle" 	type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
+        <!-- Fallout 3, file meshes\ragdollconstraint\stiff.rdt with User Version 2 = 16 -->
+        <add name="Pivot A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Plane A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Pivot B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Plane B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+
+        <add name="Cone Max Angle" type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
         <add name="Plane Min Angle" type="float">Minimum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Plane Max Angle" type="float">Maximum angle the object can rotate around Plane A, relative to Twist A.</add>
         <add name="Twist Min Angle" type="float">Minimum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
-        <add name="Max Friction" 	type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
+        <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="bool" ver1="20.2.0.7">Unknown</add>
-        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
+        <add name="Enable Motor" type="bool" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Unknown</add>
+        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1669,21 +1677,30 @@
         <add name="Perp2 Axle In B2" type="Vector4" ver2="20.0.0.5">Perp2 Axle In A2 in second entity coordinate system.</add>
 
         <!-- Fallout 3 -->
-        <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" ver1="20.2.0.7">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A2 in second entity coordinate system.</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot A in second entity coordinate system.</add>
+        <add name="Axle A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
+        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Pivot point around which the object will rotate.</add>
+        <add name="Axle B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Axle A in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Perp2 Axle In A1 in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Pivot A in second entity coordinate system.</add>
+
+        <!-- Fallout 3, file meshes\ragdollconstraint\stiff.rdt with User Version 2 = 16 -->
+        <add name="Pivot A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Pivot point around which the object will rotate.</add>
+        <add name="Axle A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Axis of rotation.</add>
+        <add name="Perp2 Axle In A2?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Perp2 Axle In A1?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Pivot B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Pivot A in second entity coordinate system.</add>
+        <add name="Axle B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Axle A in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B1?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Perp2 Axle In A1 in second entity coordinate system.</add>
 
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
         <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="bool" ver1="20.2.0.7">Unknown</add>
-        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" />
+        <add name="Enable Motor" type="bool" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Unknown</add>
+        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
     <compound name="HingeDescriptor">
@@ -1894,26 +1911,29 @@
         <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
     </compound>
 
-<!-- nowhere used currently
-	<compound name="RagdollTemplateSubData1">
-		Todo: Add route for secondary Ref set?
-		<add name="Unknown Flag 3" type="uint">Unknown</add>
-		<add name="Unknown 2" type="uint">Unknown</add>
-		<add name="Unknown Ref 1" type="Ref" template="NiObject">Unknown</add>
-		<add name="Unknown Ref 2" type="Ref" template="NiObject">Unknown</add>
-	</compound>
-	
-	<compound name="RagdollTemplateSubData2">
-		Sub-list for bhkRagdollTemplateData. (not finished)
-		<add name="Unknown Flag 4" type="int">Unknown</add>
-		<add name="Unknown Set 1" type="Vector3" cond="Unknown Flag 3 == 7" arr1="12">Unknown</add>
-		<add name="Unknown XXX 1" type="int"/>
-		<add name="Unknown XXX 1" type="int"/>
-		<add name="Unknown float 2" type="float">Unknown</add>
-		<add name="Unknown float 3" type="float">Unknown</add>
-		<add name="Unknown byte 1" type="byte">Unknown</add>		
-	</compound>
--->
+    <compound name="bhkRDTConstraint">
+        <add name="Type" type="uint">Type of constraint.
+        7 = RagDoll Constraint?
+        13 = Malleable Constraint?</add>
+        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
+        <add name="Entity A" type="Ref" template="NiObject">Entity A in this constraint.</add>
+        <add name="Entity B" type="Ref" template="NiObject">Entity B in this constraint.</add>
+        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="Malleable Constraint" type="bhkRDTMalleableConstraint" cond="Type == 13" />
+    </compound>
+    <compound name="bhkRDTMalleableConstraint">
+    A malleable constraint.
+        <add name="Type" type="uint">Type of constraint.</add>
+        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
+        <add name="Entity A" type="Ref" template="NiObject">Usually -1?</add>
+        <add name="Entity B" type="Ref" template="NiObject">Usually -1?</add>
+        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+        <add name="Damping" type="float" />
+    </compound>
 
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
@@ -5347,25 +5367,29 @@
         <add name="Num Poses" type="int">Unknown</add>
 		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
 	</niobject>
-
-	<niobject name="bhkRagdollTemplate" inherit="NiObject">
-		Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
-		<add name="Name" type="string"/>
-		<add name="Num Bones" type="int">Number of target bones</add>
-		<add name="Bones" type="Ref" template="NiObject" arr1="Num Bones">Bones in index</add>
-	</niobject>
-	<niobject name="bhkRagdollTemplateData" inherit="NiObject">
-		Data for bhkRagdollTemplate
-		<add name="Name" type="string"/>
-		<add name="Unknown float 1" type="float" >Unknown</add>
-		<add name="Translation" type="Vector3">Unknown</add>
-		<add name="Unknown int 1" type="int" >Unknown</add>
-		<add name="Unknown Flag 1" type="Flags">Unknown</add>
-		<add name="Unknown Flag 2" type="Flags">Unknown</add>
-		<add name="Unknown Set 1" type="RagdollTemplateSubData1" cond="Unknown int 1 == 7 ">Unknown</add>
-		<add name="Unknown Set 2" type="RagdollTemplateSubData2" cond="Unknown Flag 1 != 0">Unknown</add>
-	</niobject>
 -->	
+    <niobject name="bhkRagdollTemplate" inherit="NiObject">
+        Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
+        <add name="Name" type="string"/>
+        <add name="Num Bones" type="int">Number of target bones</add>
+        <add name="Bones" type="Ref" template="NiObject" arr1="Num Bones">Bones in index</add>
+    </niobject>
+
+    <niobject name="bhkRagdollTemplateData" inherit="NiObject">
+        Data for bhkRagdollTemplate
+        <add name="Name" type="string"/>
+        <add name="Mass?" type="float">Probably a Mass for bhkRigidBody linked to this bone node.</add>
+        <add name="Restitution?" type="float">Probably a Restitution for bhkRigidBody linked to this bone node.</add>
+        <add name="Friction?" type="float">Probably a Friction for bhkRigidBody linked to this bone node.</add>
+        <add name="Radius?" type="float">Probably a Radius for collision object shape of bhkRigidBody linked to this bone node.</add>
+        <add name="Unknown Int" type="uint">Unknown. Dependent on value of User Version 2?
+        Value 7 found in Fallout3 meshes\ragdollconstraint\default.rdt. This file has User Version 2 = 34.
+        Value 0 found in Fallout3 meshes\ragdollconstraint\stiff.rdt. This file has User Version 2 = 16.</add>
+        <add name="Flag or Num Constraints?" type="uint">Either a flag or a number of constraints.
+        0: no Constraint is present.
+        1: a Constraint is present.</add>
+        <add name="Constraint" type="bhkRDTConstraint" cond="Flag or Num Constraints? != 0">Unknown</add>
+    </niobject>
 
     <compound name="Region">
         A range of indices, which make up a region (such as a submesh).
