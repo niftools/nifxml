@@ -2175,8 +2175,7 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Unknown Int" type="uint">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
         <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
@@ -2701,7 +2700,7 @@
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
         <add name="Num UV Sets" type="ushort" vercond="((Version >= 10.0.1.0) &amp;&amp; (!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))))" calculated="1">Flag for tangents and bitangents in upper byte. Texture flags in lower byte.</add>
         <add name="BS Num UV Sets" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))" calculated="1">Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single bit denotes whether uv's are present. For example, see meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.</add>
-		<add name="Skyrim Material" type="SkyrimHavokMaterial" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Material</add>
+        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Num UV Sets &amp; 61440) || (BS Num UV Sets &amp; 61440))" ver1="10.1.0.0">Tangent vectors.</add>
@@ -5994,10 +5993,10 @@
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial">The shape&#039;s material.</add>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
-		<add name="Unknown Floats 1" type="Vector4">Unknown</add>
+	<add name="Unknown Floats 1" type="Vector4">Unknown</add>
         <add name="Radius" type="float">A shell with that radius is added around the shape.</add>
         <add name="Scale" type="float">Scale</add>
         <add name="Unknown Float 3" type="float">Unknown</add>
