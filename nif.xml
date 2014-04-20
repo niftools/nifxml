@@ -186,8 +186,8 @@
         <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
     </enum>
 
-    <enum name="HavokMaterial" storage="uint">
-        A material, used by havok shape objects.
+    <enum name="OblivionHavokMaterial" storage="uint">
+        A material, used by havok shape objects in Oblivion.
         <option value="0" name="HAV_MAT_STONE">Stone</option>
         <option value="1" name="HAV_MAT_CLOTH">Cloth</option>
         <option value="2" name="HAV_MAT_DIRT">Dirt</option>
@@ -222,231 +222,296 @@
         <option value="31" name="HAV_MAT_RUBBER">Rubber</option>
     </enum>
 
+    <enum name="Fallout3HavokMaterial" storage="uint">
+        A material, used by havok shape objects in Fallout 3.
+        Bit 5: flag for PLATFORM (for values 32-63 substract 32 to know material number)
+        Bit 6: flag for STAIRS  (for values 64-95 substract 64 to know material number)
+        Bit 5+6: flag for STAIRS+PLATFORM  (for values 96-127 substract 96 to know material number)
+        <option value="0" name="MAT_STONE">Stone</option>
+        <option value="1" name="MAT_CLOTH">Cloth</option>
+        <option value="2" name="MAT_DIRT">Dirt</option>
+        <option value="3" name="MAT_GLASS">Glass</option>
+        <option value="4" name="MAT_GRASS">Grass</option>
+        <option value="5" name="MAT_METAL">Metal</option>
+        <option value="6" name="MAT_ORGANIC">Organic</option>
+        <option value="7" name="MAT_SKIN">Skin</option>
+        <option value="8" name="MAT_WATER">Water</option>
+        <option value="9" name="MAT_WOOD">Wood</option>
+        <option value="10" name="MAT_HEAVY_STONE">Heavy Stone</option>
+        <option value="11" name="MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="12" name="MAT_HEAVY_WOOD">Heavy Wood</option>
+        <option value="13" name="MAT_CHAIN">Chain</option>
+        <option value="14" name="MAT_BOTTLECAP">Bottlecap</option>
+        <option value="15" name="MAT_ELEVATOR">Elevator</option>
+        <option value="16" name="MAT_HOLLOW_METAL">Hollow Metal</option>
+        <option value="17" name="MAT_SHEET_METAL">Sheet Metal</option>
+        <option value="18" name="MAT_SAND">Sand</option>
+        <option value="19" name="MAT_BROKEN_CONCRETE">Broken Concrete</option>
+        <option value="20" name="MAT_VEHICLE_BODY">Vehicle Body</option>
+        <option value="21" name="MAT_VEHICLE_PART_SOLID">Vehicle Part Solid</option>
+        <option value="22" name="MAT_VEHICLE_PART_HOLLOW">Vehicle Part Hollow</option>
+        <option value="23" name="MAT_BARREL">Barrel</option>
+        <option value="24" name="MAT_BOTTLE">Bottle</option>
+        <option value="25" name="MAT_SODA_CAN">Soda Can</option>
+        <option value="26" name="MAT_PISTOL">Pistol</option>
+        <option value="27" name="MAT_RIFLE">Rifle</option>
+        <option value="28" name="MAT_SHOPPING_CART">Shopping Cart</option>
+        <option value="29" name="MAT_LUNCHBOX">Lunchbox</option>
+        <option value="30" name="MAT_BABY_RATTLE">Baby Rattle</option>
+        <option value="31" name="MAT_RUBBER_BALL">Rubber Ball</option>
+    </enum>
+
     <enum name="SkyrimHavokMaterial" storage="uint">
-        <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
-        <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
-        <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
-        <option value="428587608" name="SKY_HAV_MAT_GRAVEL">Gravel</option>
-        <option value="438912228" name="SKY_HAV_MAT_MATERIAL_CHAIN_METAL">Material Chain Metal</option>
-        <option value="493553910" name="SKY_HAV_MAT_BOTTLE">Bottle</option>
-        <option value="500811281" name="SKY_HAV_MAT_WOOD">Wood</option>
-        <option value="591247106" name="SKY_HAV_MAT_SKIN">Skin</option>
-        <option value="732141076" name="SKY_HAV_MAT_BARREL">Barrel</option>
-        <option value="781661019" name="SKY_HAV_MAT_MATERIAL_CERAMIC_MEDIUM">Material Ceramic Medium</option>
-        <option value="790784366" name="SKY_HAV_MAT_MATERIAL_BASKET">Material Basket</option>
-        <option value="873356572" name="SKY_HAV_MAT_ICE">Ice</option>
-        <option value="899511101" name="SKY_HAV_MAT_STAIRS_STONE">Stairs Stone</option>
-        <option value="1060167844" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
-        <option value="1024582599" name="SKY_HAV_MAT_WATER">Water</option>
-        <option value="1028101969" name="SKY_HAV_MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
-        <option value="1264672850" name="SKY_HAV_MAT_MATERIAL_BOOK">Material Book</option>
-        <option value="1286705471" name="SKY_HAV_MAT_MATERIAL_CARPET">Material Carpet</option>
-        <option value="1288358971" name="SKY_HAV_MAT_SOLID_METAL">Solid Metal</option>
-        <option value="1305674443" name="SKY_HAV_MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
-        <option value="1440721808" name="SKY_HAV_MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
-        <option value="1461712277" name="SKY_HAV_MAT_STAIRS_WOOD">Stairs Wood</option>
-        <option value="1486385281" name="SKY_HAV_MAT_MUD">Mud</option>
-        <option value="1550912982" name="SKY_HAV_MAT_MATERIAL_BOULDER_SMALL">Material Boulder Small</option>
-        <option value="1560365355" name="SKY_HAV_MAT_STAIRS_SNOW">Stairs Snow</option>
-        <option value="1570821952" name="SKY_HAV_MAT_HEAVY_STONE">Heavy Stone</option>
-        <option value="1574477864" name="SKY_HAV_MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
-        <option value="1591009235" name="SKY_HAV_MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
-        <option value="1607128641" name="SKY_HAV_MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
-        <option value="1803571212" name="SKY_HAV_MAT_MATERIAL_WOOD_AS_STAIRS">Material Wood As Stairs</option>
-        <option value="1848600814" name="SKY_HAV_MAT_GRASS">Grass</option>
-        <option value="1885326971" name="SKY_HAV_MAT_MATERIAL_BOULDER_LARGE">Material Boulder Large</option>
-        <option value="1886078335" name="SKY_HAV_MAT_MATERIAL_STONE_AS_STAIRS">Material Stone As Stairs</option>
-        <option value="2022742644" name="SKY_HAV_MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
-        <option value="2025794648" name="SKY_HAV_MAT_MATERIAL_BOTTLE_SMALL">Material Bottle Small</option>
-        <option value="2168343821" name="SKY_HAV_MAT_SAND">Sand</option>
-        <option value="2229413539" name="SKY_HAV_MAT_HEAVY_METAL">Heavy Metal</option>
-        <option value="2518321175" name="SKY_HAV_MAT_DRAGON">Dragon</option>
-        <option value="2617944780" name="SKY_HAV_MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small</option>
-        <option value="2632367422" name="SKY_HAV_MAT_MATERIAL_SKIN_SMALL">Material Skin Small</option>
-        <option value="2892392795" name="SKY_HAV_MAT_STAIRS_BROKEN_STONE">Stairs Broken Stone</option>
-        <option value="2965929619" name="SKY_HAV_MAT_MATERIAL_SKIN_LARGE">Material Skin Large</option>
-        <option value="2974920155" name="SKY_HAV_MAT_ORGANIC">Organic</option>
-        <option value="3049421844" name="SKY_HAV_MAT_MATERIAL_BONE">Material Bone</option>
-        <option value="3070783559" name="SKY_HAV_MAT_HEAVY_WOOD">Heavy Wood</option>
-        <option value="3074114406" name="SKY_HAV_MAT_MATERIAL_CHAIN">Material Chain</option>
-        <option value="3106094762" name="SKY_HAV_MAT_DIRT">Dirt</option>
-        <option value="3424720541" name="SKY_HAV_MAT_MATERIAL_ARMOR_LIGHT">Material Armor Light</option>
-        <option value="3448167928" name="SKY_HAV_MAT_MATERIAL_SHIELD_LIGHT">Material Shield Light</option>
-        <option value="3589100606" name="SKY_HAV_MAT_MATERIAL_COIN">Material Coin</option>
-        <option value="3702389584" name="SKY_HAV_MAT_MATERIAL_SHIELD_HEAVY">Material Shield Heavy</option>
-        <option value="3708432437" name="SKY_HAV_MAT_MATERIAL_ARMOR_HEAVY">Material Armor Heavy</option>
-        <option value="3725505938" name="SKY_HAV_MAT_MATERIAL_ARROW">Material Arrow</option>
-        <option value="3739830338" name="SKY_HAV_MAT_GLASS">Glass</option>
-        <option value="3741512247" name="SKY_HAV_MAT_STONE">Stone</option>
-        <option value="3839073443" name="SKY_HAV_MAT_CLOTH">Cloth</option>
-        <option value="3969592277" name="SKY_HAV_MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
-        <option value="4283869410" name="SKY_HAV_MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
+        A material, used by havok shape objects in Skyrim.
+        <option value="365420259" name="MAT_LIGHT_WOOD">Light Wood</option>
+        <option value="131151687" name="MAT_BROKEN_STONE">Broken Stone</option>
+        <option value="398949039" name="MAT_SNOW">Snow</option>
+        <option value="428587608" name="MAT_GRAVEL">Gravel</option>
+        <option value="438912228" name="MAT_MATERIAL_CHAIN_METAL">Material Chain Metal</option>
+        <option value="493553910" name="MAT_BOTTLE">Bottle</option>
+        <option value="500811281" name="MAT_WOOD">Wood</option>
+        <option value="591247106" name="MAT_SKIN">Skin</option>
+        <option value="732141076" name="MAT_BARREL">Barrel</option>
+        <option value="781661019" name="MAT_MATERIAL_CERAMIC_MEDIUM">Material Ceramic Medium</option>
+        <option value="790784366" name="MAT_MATERIAL_BASKET">Material Basket</option>
+        <option value="873356572" name="MAT_ICE">Ice</option>
+        <option value="899511101" name="MAT_STAIRS_STONE">Stairs Stone</option>
+        <option value="1060167844" name="MAT_MATERIAL_BLADE_1HAND">Material Blade 1 Hand</option>
+        <option value="1024582599" name="MAT_WATER">Water</option>
+        <option value="1028101969" name="MAT_UNKNOWN_1028101969">Unknown in Creation Kit v1.6.89.0. Found in actors\draugr\character assets\skeletons.nif.</option>
+        <option value="1264672850" name="MAT_MATERIAL_BOOK">Material Book</option>
+        <option value="1286705471" name="MAT_MATERIAL_CARPET">Material Carpet</option>
+        <option value="1288358971" name="MAT_SOLID_METAL">Solid Metal</option>
+        <option value="1305674443" name="MAT_MATERIAL_AXE_1HAND">Material Axe 1Hand</option>
+        <option value="1440721808" name="MAT_UNKNOWN_1440721808">Unknown in Creation Kit v1.6.89.0. Found in armor\draugr\draugrbootsfemale_go.nif or armor\amuletsandrings\amuletgnd.nif.</option>
+        <option value="1461712277" name="MAT_STAIRS_WOOD">Stairs Wood</option>
+        <option value="1486385281" name="MAT_MUD">Mud</option>
+        <option value="1550912982" name="MAT_MATERIAL_BOULDER_SMALL">Material Boulder Small</option>
+        <option value="1560365355" name="MAT_STAIRS_SNOW">Stairs Snow</option>
+        <option value="1570821952" name="MAT_HEAVY_STONE">Heavy Stone</option>
+        <option value="1574477864" name="MAT_UNKNOWN_1574477864">Unknown in Creation Kit v1.6.89.0. Found in actors\dragon\character assets\skeleton.nif.</option>
+        <option value="1591009235" name="MAT_UNKNOWN_1591009235">Unknown in Creation Kit v1.6.89.0. Found in trap objects or clutter\displaycases\displaycaselgangled01.nif or actors\deer\character assets\skeleton.nif.</option>
+        <option value="1607128641" name="MAT_MATERIAL_BOWS_STAVES">Material Bows Staves</option>
+        <option value="1803571212" name="MAT_MATERIAL_WOOD_AS_STAIRS">Material Wood As Stairs</option>
+        <option value="1848600814" name="MAT_GRASS">Grass</option>
+        <option value="1885326971" name="MAT_MATERIAL_BOULDER_LARGE">Material Boulder Large</option>
+        <option value="1886078335" name="MAT_MATERIAL_STONE_AS_STAIRS">Material Stone As Stairs</option>
+        <option value="2022742644" name="MAT_MATERIAL_BLADE_2HAND">Material Blade 2Hand</option>
+        <option value="2025794648" name="MAT_MATERIAL_BOTTLE_SMALL">Material Bottle Small</option>
+        <option value="2168343821" name="MAT_SAND">Sand</option>
+        <option value="2229413539" name="MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="2518321175" name="MAT_DRAGON">Dragon</option>
+        <option value="2617944780" name="MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small</option>
+        <option value="2632367422" name="MAT_MATERIAL_SKIN_SMALL">Material Skin Small</option>
+        <option value="2892392795" name="MAT_STAIRS_BROKEN_STONE">Stairs Broken Stone</option>
+        <option value="2965929619" name="MAT_MATERIAL_SKIN_LARGE">Material Skin Large</option>
+        <option value="2974920155" name="MAT_ORGANIC">Organic</option>
+        <option value="3049421844" name="MAT_MATERIAL_BONE">Material Bone</option>
+        <option value="3070783559" name="MAT_HEAVY_WOOD">Heavy Wood</option>
+        <option value="3074114406" name="MAT_MATERIAL_CHAIN">Material Chain</option>
+        <option value="3106094762" name="MAT_DIRT">Dirt</option>
+        <option value="3424720541" name="MAT_MATERIAL_ARMOR_LIGHT">Material Armor Light</option>
+        <option value="3448167928" name="MAT_MATERIAL_SHIELD_LIGHT">Material Shield Light</option>
+        <option value="3589100606" name="MAT_MATERIAL_COIN">Material Coin</option>
+        <option value="3702389584" name="MAT_MATERIAL_SHIELD_HEAVY">Material Shield Heavy</option>
+        <option value="3708432437" name="MAT_MATERIAL_ARMOR_HEAVY">Material Armor Heavy</option>
+        <option value="3725505938" name="MAT_MATERIAL_ARROW">Material Arrow</option>
+        <option value="3739830338" name="MAT_GLASS">Glass</option>
+        <option value="3741512247" name="MAT_STONE">Stone</option>
+        <option value="3839073443" name="MAT_CLOTH">Cloth</option>
+        <option value="3969592277" name="MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
+        <option value="4283869410" name="MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
         Sets mesh color in Oblivion Construction Set.  Anything higher than 57 is also null.
-        <option value="0" name="OL_UNIDENTIFIED">Unidentified (white)</option>
-        <option value="1" name="OL_STATIC">Static (red)</option>
-        <option value="2" name="OL_ANIM_STATIC">AnimStatic (magenta)</option>
-        <option value="3" name="OL_TRANSPARENT">Transparent (light pink)</option>
-        <option value="4" name="OL_CLUTTER">Clutter (light blue)</option>
-        <option value="5" name="OL_WEAPON">Weapon (orange)</option>
-        <option value="6" name="OL_PROJECTILE">Projectile (light orange)</option>
-        <option value="7" name="OL_SPELL">Spell (cyan)</option>
-        <option value="8" name="OL_BIPED">Biped (green) Seems to apply to all creatures/NPCs</option>
-        <option value="9" name="OL_TREES">Trees (light brown)</option>
-        <option value="10" name="OL_PROPS">Props (magenta)</option>
-        <option value="11" name="OL_WATER">Water (cyan)</option>
-        <option value="12" name="OL_TRIGGER">Trigger (light grey)</option>
-        <option value="13" name="OL_TERRAIN">Terrain (light yellow)</option>
-        <option value="14" name="OL_TRAP">Trap (light grey)</option>
-        <option value="15" name="OL_NONCOLLIDABLE">NonCollidable (white)</option>
-        <option value="16" name="OL_CLOUD_TRAP">CloudTrap (greenish grey)</option>
-        <option value="17" name="OL_GROUND">Ground (none)</option>
-        <option value="18" name="OL_PORTAL">Portal (green)</option>
-        <option value="19" name="OL_STAIRS">Stairs (white)</option>
-        <option value="20" name="OL_CHAR_CONTROLLER">CharController (yellow)</option>
-        <option value="21" name="OL_AVOID_BOX">AvoidBox (dark yellow)</option>
-        <option value="22" name="OL_UNKNOWN1">? (white)</option>
-        <option value="23" name="OL_UNKNOWN2">? (white)</option>
-        <option value="24" name="OL_CAMERA_PICK">CameraPick (white)</option>
-        <option value="25" name="OL_ITEM_PICK">ItemPick (white)</option>
-        <option value="26" name="OL_LINE_OF_SIGHT">LineOfSight (white)</option>
-        <option value="27" name="OL_PATH_PICK">PathPick (white)</option>
-        <option value="28" name="OL_CUSTOM_PICK_1">CustomPick1 (white)</option>
-        <option value="29" name="OL_CUSTOM_PICK_2">CustomPick2 (white)</option>
-        <option value="30" name="OL_SPELL_EXPLOSION">SpellExplosion (white)</option>
-        <option value="31" name="OL_DROPPING_PICK">DroppingPick (white)</option>
-        <option value="32" name="OL_OTHER">Other (white)</option>
-        <option value="33" name="OL_HEAD">Head</option>
-        <option value="34" name="OL_BODY">Body</option>
-        <option value="35" name="OL_SPINE1">Spine1</option>
-        <option value="36" name="OL_SPINE2">Spine2</option>
-        <option value="37" name="OL_L_UPPER_ARM">LUpperArm</option>
-        <option value="38" name="OL_L_FOREARM">LForeArm</option>
-        <option value="39" name="OL_L_HAND">LHand</option>
-        <option value="40" name="OL_L_THIGH">LThigh</option>
-        <option value="41" name="OL_L_CALF">LCalf</option>
-        <option value="42" name="OL_L_FOOT">LFoot</option>
-        <option value="43" name="OL_R_UPPER_ARM">RUpperArm</option>
-        <option value="44" name="OL_R_FOREARM">RForeArm</option>
-        <option value="45" name="OL_R_HAND">RHand</option>
-        <option value="46" name="OL_R_THIGH">RThigh</option>
-        <option value="47" name="OL_R_CALF">RCalf</option>
-        <option value="48" name="OL_R_FOOT">RFoot</option>
-        <option value="49" name="OL_TAIL">Tail</option>
-        <option value="50" name="OL_SIDE_WEAPON">SideWeapon</option>
-        <option value="51" name="OL_SHIELD">Shield</option>
-        <option value="52" name="OL_QUIVER">Quiver</option>
-        <option value="53" name="OL_BACK_WEAPON">BackWeapon</option>
-        <option value="54" name="OL_BACK_WEAPON2">BackWeapon (?)</option>
-        <option value="55" name="OL_PONYTAIL">PonyTail</option>
-        <option value="56" name="OL_WING">Wing</option>
-        <option value="57" name="OL_NULL">Null</option>
+        <option value="0" name="UNIDENTIFIED">Unidentified (white)</option>
+        <option value="1" name="STATIC">Static (red)</option>
+        <option value="2" name="ANIM_STATIC">AnimStatic (magenta)</option>
+        <option value="3" name="TRANSPARENT">Transparent (light pink)</option>
+        <option value="4" name="CLUTTER">Clutter (light blue)</option>
+        <option value="5" name="WEAPON">Weapon (orange)</option>
+        <option value="6" name="PROJECTILE">Projectile (light orange)</option>
+        <option value="7" name="SPELL">Spell (cyan)</option>
+        <option value="8" name="BIPED">Biped (green) Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="TREES">Trees (light brown)</option>
+        <option value="10" name="PROPS">Props (magenta)</option>
+        <option value="11" name="WATER">Water (cyan)</option>
+        <option value="12" name="TRIGGER">Trigger (light grey)</option>
+        <option value="13" name="TERRAIN">Terrain (light yellow)</option>
+        <option value="14" name="TRAP">Trap (light grey)</option>
+        <option value="15" name="NONCOLLIDABLE">NonCollidable (white)</option>
+        <option value="16" name="CLOUD_TRAP">CloudTrap (greenish grey)</option>
+        <option value="17" name="GROUND">Ground (none)</option>
+        <option value="18" name="PORTAL">Portal (green)</option>
+        <option value="19" name="STAIRS">Stairs (white)</option>
+        <option value="20" name="CHAR_CONTROLLER">CharController (yellow)</option>
+        <option value="21" name="AVOID_BOX">AvoidBox (dark yellow)</option>
+        <option value="22" name="UNKNOWN1">? (white)</option>
+        <option value="23" name="UNKNOWN2">? (white)</option>
+        <option value="24" name="CAMERA_PICK">CameraPick (white)</option>
+        <option value="25" name="ITEM_PICK">ItemPick (white)</option>
+        <option value="26" name="LINE_OF_SIGHT">LineOfSight (white)</option>
+        <option value="27" name="PATH_PICK">PathPick (white)</option>
+        <option value="28" name="CUSTOM_PICK_1">CustomPick1 (white)</option>
+        <option value="29" name="CUSTOM_PICK_2">CustomPick2 (white)</option>
+        <option value="30" name="SPELL_EXPLOSION">SpellExplosion (white)</option>
+        <option value="31" name="DROPPING_PICK">DroppingPick (white)</option>
+        <option value="32" name="OTHER">Other (white)</option>
+        <option value="33" name="HEAD">Head</option>
+        <option value="34" name="BODY">Body</option>
+        <option value="35" name="SPINE1">Spine1</option>
+        <option value="36" name="SPINE2">Spine2</option>
+        <option value="37" name="L_UPPER_ARM">LUpperArm</option>
+        <option value="38" name="L_FOREARM">LForeArm</option>
+        <option value="39" name="L_HAND">LHand</option>
+        <option value="40" name="L_THIGH">LThigh</option>
+        <option value="41" name="L_CALF">LCalf</option>
+        <option value="42" name="L_FOOT">LFoot</option>
+        <option value="43" name="R_UPPER_ARM">RUpperArm</option>
+        <option value="44" name="R_FOREARM">RForeArm</option>
+        <option value="45" name="R_HAND">RHand</option>
+        <option value="46" name="R_THIGH">RThigh</option>
+        <option value="47" name="R_CALF">RCalf</option>
+        <option value="48" name="R_FOOT">RFoot</option>
+        <option value="49" name="TAIL">Tail</option>
+        <option value="50" name="SIDE_WEAPON">SideWeapon</option>
+        <option value="51" name="SHIELD">Shield</option>
+        <option value="52" name="QUIVER">Quiver</option>
+        <option value="53" name="BACK_WEAPON">BackWeapon</option>
+        <option value="54" name="BACK_WEAPON2">BackWeapon (?)</option>
+        <option value="55" name="PONYTAIL">PonyTail</option>
+        <option value="56" name="WING">Wing</option>
+        <option value="57" name="NULL">Null</option>
+    </enum>
+
+    <enum name="Fallout3Layer" storage="byte">
+        Sets mesh color in Fallout 3 GECK. Anything higher than 72 is also null.
+        <option value="0" name="UNIDENTIFIED">Unidentified (white)</option>
+        <option value="1" name="STATIC">Static (red)</option>
+        <option value="2" name="ANIM_STATIC">AnimStatic (magenta)</option>
+        <option value="3" name="TRANSPARENT">Transparent (light pink)</option>
+        <option value="4" name="CLUTTER">Clutter (light blue)</option>
+        <option value="5" name="WEAPON">Weapon (orange)</option>
+        <option value="6" name="PROJECTILE">Projectile (light orange)</option>
+        <option value="7" name="SPELL">Spell (cyan)</option>
+        <option value="8" name="BIPED">Biped (green) Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="TREES">Trees (light brown)</option>
+        <option value="10" name="PROPS">Props (magenta)</option>
+        <option value="11" name="WATER">Water (cyan)</option>
+        <option value="12" name="TRIGGER">Trigger (light grey)</option>
+        <option value="13" name="TERRAIN">Terrain (light yellow)</option>
+        <option value="14" name="TRAP">Trap (light grey)</option>
+        <option value="15" name="NONCOLLIDABLE">NonCollidable (white)</option>
+        <option value="16" name="CLOUD_TRAP">CloudTrap (greenish grey)</option>
+        <option value="17" name="GROUND">Ground (none)</option>
+        <option value="18" name="PORTAL">Portal (green)</option>
+        <option value="19" name="DEBRIS_SMALL">DebrisSmall (white)</option>
+        <option value="20" name="DEBRIS_LARGE">DebrisLarge (white)</option>
+        <option value="21" name="ACOUSTIC_SPACE">AcousticSpace (white)</option>
+        <option value="22" name="ACTORZONE">Actorzone (white)</option>
+        <option value="23" name="PROJECTILEZONE">Projectilezone (white)</option>
+        <option value="24" name="GASTRAP">GasTrap (yellowish green)</option>
+        <option value="25" name="SHELLCASING">ShellCasing (white)</option>
+        <option value="26" name="TRANSPARENT_SMALL">TransparentSmall (white)</option>
+        <option value="27" name="INVISIBLE_WALL">InvisibleWall (white)</option>
+        <option value="28" name="TRANSPARENT_SMALL_ANIM">TransparentSmallAnim (white)</option>
+        <option value="29" name="BIPED">Biped (green)</option>
+        <option value="30" name="CHARCONTROLLER">CharController (yellow)</option>
+        <option value="31" name="AVOIDBOX">Avoidbox (orange)</option>
+        <option value="32" name="COLLISIONBOX">Collisionbox (white)</option>
+        <option value="33" name="CAMERASPHERE">Camerasphere (white)</option>
+        <option value="34" name="DOORDETECTION">Doordetection (white)</option>
+        <option value="35" name="CAMERAPICK">Camerapick (white)</option>
+        <option value="36" name="ITEMPICK">Itempick (white)</option>
+        <option value="37" name="LINEOFSIGHT">LineOfSight (white)</option>
+        <option value="38" name="PATHPICK">Pathpick (white)</option>
+        <option value="39" name="CUSTOMPICK1">Custompick1 (white)</option>
+        <option value="40" name="CUSTOMPICK2">Custompick2 (white)</option>
+        <option value="41" name="SPELLEXPLOSION">SpellExplosion (white)</option>
+        <option value="42" name="DROPPINGPICK">Droppingpick (white)</option>
+        <option value="43" name="NULL">Null (white)</option>
+        <option value="44" name="OTHER">Other (white)</option>
+        <option value="45" name="HEAD">Head</option>
+        <option value="46" name="BODY">Body</option>
+        <option value="47" name="SPINE1">Spine1</option>
+        <option value="48" name="SPINE2">Spine2</option>
+        <option value="49" name="L_UPPER_ARM">LUpperArm</option>
+        <option value="50" name="L_FORE_ARM">LForeArm</option>
+        <option value="51" name="L_HAND">LHand</option>
+        <option value="52" name="L_THIGH">LThigh</option>
+        <option value="53" name="L_CALF">LCalf</option>
+        <option value="54" name="L_FOOT">LFoot</option>
+        <option value="55" name="R_UPPER_ARM">RUpperArm</option>
+        <option value="56" name="R_FORE_ARM">RForeArm</option>
+        <option value="57" name="R_HAND">RHand</option>
+        <option value="58" name="R_THIGH">RThigh</option>
+        <option value="59" name="R_CALF">RCalf</option>
+        <option value="60" name="R_FOOT">RFoot</option>
+        <option value="61" name="TAIL">Tail</option>
+        <option value="62" name="SHIELD">Shield</option>
+        <option value="63" name="QUIVER">Quiver</option>
+        <option value="64" name="WEAPON">Weapon (?)</option>
+        <option value="65" name="PONYTAIL">Ponytail</option>
+        <option value="66" name="WING">Wing</option>
+        <option value="67" name="PACK">Pack</option>
+        <option value="68" name="CHAIN">Chain</option>
+        <option value="69" name="ADDONHEAD">AddOnHead</option>
+        <option value="70" name="ADDONCHEST">AddOnChest</option>
+        <option value="71" name="ADDONARM">AddOnArm</option>
+        <option value="72" name="ADDONLEG">AddOnLeg</option>
     </enum>
 
     <enum name="SkyrimLayer" storage="byte">
         Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
-        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
-        <option value="1" name="SKYL_STATIC">Static</option>
-        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
-        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
-        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
-        <option value="5" name="SKYL_WEAPON">Weapon</option>
-        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
-        <option value="7" name="SKYL_SPELL">Spell</option>
-        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
-        <option value="9" name="SKYL_TREES">Trees</option>
-        <option value="10" name="SKYL_PROPS">Props</option>
-        <option value="11" name="SKYL_WATER">Water</option>
-        <option value="12" name="SKYL_TRIGGER">Trigger</option>
-        <option value="13" name="SKYL_TERRAIN">Terrain</option>
-        <option value="14" name="SKYL_TRAP">Trap</option>
-        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
-        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
-        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
-        <option value="18" name="SKYL_PORTAL">Portal</option>
-        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
-        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
-        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
-        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
-        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
-        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
-        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
-        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
-        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
-        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
-        <option value="29" name="SKYL_WARD">Ward</option>
-        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
-        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
-        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
-        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
-        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
-        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
-        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
-        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
-        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
-        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
-        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
-        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
-        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
-        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
-        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
-        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
-        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
-        <option value="47" name="SKYL_NULL">Null</option>
-    </enum>
-
-    <enum name="SkyrimLayerCMSDM" storage="uint">
-        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
-        <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
-        <option value="1" name="SKYL_STATIC">Static</option>
-        <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
-        <option value="3" name="SKYL_TRANSPARENT">Transparent</option>
-        <option value="4" name="SKYL_CLUTTER">Clutter. Object with this layer will float on water surface.</option>
-        <option value="5" name="SKYL_WEAPON">Weapon</option>
-        <option value="6" name="SKYL_PROJECTILE">Projectile</option>
-        <option value="7" name="SKYL_SPELL">Spell</option>
-        <option value="8" name="SKYL_BIPED">Biped. Seems to apply to all creatures/NPCs</option>
-        <option value="9" name="SKYL_TREES">Trees</option>
-        <option value="10" name="SKYL_PROPS">Props</option>
-        <option value="11" name="SKYL_WATER">Water</option>
-        <option value="12" name="SKYL_TRIGGER">Trigger</option>
-        <option value="13" name="SKYL_TERRAIN">Terrain</option>
-        <option value="14" name="SKYL_TRAP">Trap</option>
-        <option value="15" name="SKYL_NONCOLLIDABLE">NonCollidable</option>
-        <option value="16" name="SKYL_CLOUD_TRAP">CloudTrap</option>
-        <option value="17" name="SKYL_GROUND">Ground. It seems that produces no sound when collide.</option>
-        <option value="18" name="SKYL_PORTAL">Portal</option>
-        <option value="19" name="SKYL_DEBRIS_SMALL">Debris Small</option>
-        <option value="20" name="SKYL_DEBRIS_LARGE">Debris Large</option>
-        <option value="21" name="SKYL_ACOUSTIC_SPACE">Acoustic Space</option>
-        <option value="22" name="SKYL_ACTORZONE">Actor Zone</option>
-        <option value="23" name="SKYL_PROJECTILEZONE">Projectile Zone</option>
-        <option value="24" name="SKYL_GASTRAP">Gas Trap</option>
-        <option value="25" name="SKYL_SHELLCASING">Shell Casing</option>
-        <option value="26" name="SKYL_TRANSPARENT_SMALL">Transparent Small</option>
-        <option value="27" name="SKYL_INVISIBLE_WALL">Invisible Wall</option>
-        <option value="28" name="SKYL_TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
-        <option value="29" name="SKYL_WARD">Ward</option>
-        <option value="30" name="SKYL_CHARCONTROLLER">Char Controller</option>
-        <option value="31" name="SKYL_STAIRHELPER">Stair Helper</option>
-        <option value="32" name="SKYL_DEADBIP">Dead Bip</option>
-        <option value="33" name="SKYL_BIPED_NO_CC">Biped No CC</option>
-        <option value="34" name="SKYL_AVOIDBOX">Avoid Box</option>
-        <option value="35" name="SKYL_COLLISIONBOX">Collision Box</option>
-        <option value="36" name="SKYL_CAMERASHPERE">Camera Sphere</option>
-        <option value="37" name="SKYL_DOORDETECTION">Door Detection</option>
-        <option value="38" name="SKYL_CONEPROJECTILE">Cone Projectile</option>
-        <option value="39" name="SKYL_CAMERAPICK">Camera Pick</option>
-        <option value="40" name="SKYL_ITEMPICK">Item Pick</option>
-        <option value="41" name="SKYL_LINEOFSIGHT">Line of Sight</option>
-        <option value="42" name="SKYL_PATHPICK">Path Pick</option>
-        <option value="43" name="SKYL_CUSTOMPICK1">Custom Pick 1</option>
-        <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
-        <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
-        <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
-        <option value="47" name="SKYL_NULL">Null</option>
+        <option value="0" name="UNIDENTIFIED">Unidentified</option>
+        <option value="1" name="STATIC">Static</option>
+        <option value="2" name="ANIMSTATIC">Anim Static</option>
+        <option value="3" name="TRANSPARENT">Transparent</option>
+        <option value="4" name="CLUTTER">Clutter. Object with this layer will float on water surface.</option>
+        <option value="5" name="WEAPON">Weapon</option>
+        <option value="6" name="PROJECTILE">Projectile</option>
+        <option value="7" name="SPELL">Spell</option>
+        <option value="8" name="BIPED">Biped. Seems to apply to all creatures/NPCs</option>
+        <option value="9" name="TREES">Trees</option>
+        <option value="10" name="PROPS">Props</option>
+        <option value="11" name="WATER">Water</option>
+        <option value="12" name="TRIGGER">Trigger</option>
+        <option value="13" name="TERRAIN">Terrain</option>
+        <option value="14" name="TRAP">Trap</option>
+        <option value="15" name="NONCOLLIDABLE">NonCollidable</option>
+        <option value="16" name="CLOUD_TRAP">CloudTrap</option>
+        <option value="17" name="GROUND">Ground. It seems that produces no sound when collide.</option>
+        <option value="18" name="PORTAL">Portal</option>
+        <option value="19" name="DEBRIS_SMALL">Debris Small</option>
+        <option value="20" name="DEBRIS_LARGE">Debris Large</option>
+        <option value="21" name="ACOUSTIC_SPACE">Acoustic Space</option>
+        <option value="22" name="ACTORZONE">Actor Zone</option>
+        <option value="23" name="PROJECTILEZONE">Projectile Zone</option>
+        <option value="24" name="GASTRAP">Gas Trap</option>
+        <option value="25" name="SHELLCASING">Shell Casing</option>
+        <option value="26" name="TRANSPARENT_SMALL">Transparent Small</option>
+        <option value="27" name="INVISIBLE_WALL">Invisible Wall</option>
+        <option value="28" name="TRANSPARENT_SMALL_ANIM">Transparent Small Anim</option>
+        <option value="29" name="WARD">Ward</option>
+        <option value="30" name="CHARCONTROLLER">Char Controller</option>
+        <option value="31" name="STAIRHELPER">Stair Helper</option>
+        <option value="32" name="DEADBIP">Dead Bip</option>
+        <option value="33" name="BIPED_NO_CC">Biped No CC</option>
+        <option value="34" name="AVOIDBOX">Avoid Box</option>
+        <option value="35" name="COLLISIONBOX">Collision Box</option>
+        <option value="36" name="CAMERASHPERE">Camera Sphere</option>
+        <option value="37" name="DOORDETECTION">Door Detection</option>
+        <option value="38" name="CONEPROJECTILE">Cone Projectile</option>
+        <option value="39" name="CAMERAPICK">Camera Pick</option>
+        <option value="40" name="ITEMPICK">Item Pick</option>
+        <option value="41" name="LINEOFSIGHT">Line of Sight</option>
+        <option value="42" name="PATHPICK">Path Pick</option>
+        <option value="43" name="CUSTOMPICK1">Custom Pick 1</option>
+        <option value="44" name="CUSTOMPICK2">Custom Pick 2</option>
+        <option value="45" name="SPELLEXPLOSION">Spell Explosion</option>
+        <option value="46" name="DROPPINGPICK">Dropping Pick</option>
+        <option value="47" name="NULL">Null</option>
     </enum>
 
     <enum name="MoppDataBuildType" storage="byte">
@@ -531,6 +596,7 @@
         <option value="3" name="ALWAYS_FACE_CENTER">Always Face Center.</option>
         <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
         <option value="5" name="BSROTATE_ABOUT_UP">The billboard will only rotate around its local Z axis (it always stays in its local X-Y plane).</option>
+        <option value="9" name="ROTATE_ABOUT_UP2">The billboard will only rotate around the up axis (same as ROTATE_ABOUT_UP?).</option>
     </enum>
 
     <enum name="StencilCompareMode" storage="uint">
@@ -1488,18 +1554,63 @@
         <add name="Radius" type="float">The sphere's radius.</add>
     </compound>
 
-    <compound name="OblivionColFilter">
-        Oblivion's ColFilter property for Havok.
-        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
+    <compound name="HavokColFilter">
+        ColFilter property for Havok. It contains Layer, Flags and Part Number
+        <add name="Layer" type="OblivionLayer" default="STATIC" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">Sets mesh color in Oblivion Construction Set.</add><!--condition: all except Fallout 3 and Skyrim -->
+        <add name="Layer" type="Fallout3Layer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">Sets mesh color in Fallout 3 GECK.</add>
+        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
+
+        <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
+        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
+        	Bit 6: turns collision off (not used for Layer BIPED).
+        	Bit 5: sets the SCALED property.
+
+					PART NUMBER is stored in bits 0-4. Used only when Layer is set to BIPED.
+
+					Part Numbers for Oblivion, Fallout 3, Skyrim:
+        	0 - OTHER
+        	1 - HEAD
+        	2 - BODY
+        	3 - SPINE1
+        	4 - SPINE2
+        	5 - LUPPERARM
+        	6 - LFOREARM
+        	7 - LHAND
+        	8 - LTHIGH
+        	9 - LCALF
+        	10 - LFOOT
+        	11 - RUPPERARM
+        	12 - RFOREARM
+        	13 - RHAND
+        	14 - RTHIGH
+        	15 - RCALF
+        	16 - RFOOT
+        	17 - TAIL
+        	18 - SHIELD
+        	19 - QUIVER
+        	20 - WEAPON
+        	21 - PONYTAIL
+        	22 - WING
+        	23 - PACK
+        	24 - CHAIN
+        	25 - ADDONHEAD
+        	26 - ADDONCHEST
+        	27 - ADDONARM
+        	28 - ADDONLEG
+        	29-31 - NULL
+        </add>
         <add name="Unknown Short" type="ushort">Unknown.</add>
+    </compound>
+
+    <compound name="HavokMaterial">
+        <add name="Material" type="OblivionHavokMaterial" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">The material of the shape.</add><!--condition: all except Fallout 3 and Skyrim -->
+        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">The material of the shape.</add>
+        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
         Havok Information for packed TriStrip shapes.
-        <add name="Layer" type="OblivionLayer">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
-        <add name="Unknown Short" type="ushort">Unknown. Perhaps the vertex wielding type?</add>
+        <add name="Havok Col Filter" type="HavokColFilter" />
         <add name="Num Vertices" type="uint">The number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
@@ -1745,9 +1856,11 @@
     </compound>
 
 	<compound name="bhkCMSDMaterial">
-    per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Skyrim Layer" type="SkyrimLayerCMSDM">Copy of Skyrim Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+    Per-chunk material, used in bhkCompressedMeshShapeData
+		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
+		<add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+    <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
+    <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
 	</compound>
 
     <compound name="bhkCMSDBigTris">
@@ -1883,47 +1996,7 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Layer" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Sets mesh color in Oblivion Construction Set.</add>
-        <add name="Col Filter" type="byte" default="0" vercond="User Version &lt; 12">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
-        <add name="Skyrim Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
-        <add name="Flags And Part Number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
-        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
-        	Bit 6: turns collision off (not used for Layer SKYL_BIPED).
-        	Bit 5: sets the SCALED property.
-
-        	PART NUMBER in a linked body list is stored in lowest 5 bits (used only when Skyrim Layer is set to SKYL_BIPED):
-        	0 - OTHER
-        	1 - HEAD
-        	2 - BODY
-        	3 - SPINE1
-        	4 - SPINE2
-        	5 - LUPPERARM
-        	6 - LFOREARM
-        	7 - LHAND
-        	8 - LTHIGH
-        	9 - LCALF
-        	10 - LFOOT
-        	11 - RUPPERARM
-        	12 - RFOREARM
-        	13 - RHAND
-        	14 - RTHIGH
-        	15 - RCALF
-        	16 - RFOOT
-        	17 - TAIL
-        	18 - SHIELD
-        	19 - QUIVER
-        	20 - WEAPON
-        	21 - PONYTAIL
-        	22 - WING
-        	23 - PACK
-        	24 - CHAIN
-        	25 - ADDONHEAD
-        	26 - ADDONCHEST
-        	27 - ADDONARM
-        	28 - ADDONLEG
-        	29-31 - NULL
-        </add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Havok Col Filter" type="HavokColFilter" />
     </niobject>
 
     <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject">
@@ -1957,14 +2030,11 @@
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
-        <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Copy of Layer value?</add>
-        <add name="Col Filter Copy" type="byte" default="0" vercond="User Version &lt; 12">Copy of Col Filter value?</add>
-        <add name="Skyrim Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
-        <add name="Flags And Part Number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
-        <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
+        <add name="Havok Col Filter Copy" type="HavokColFilter">Copy of Havok Col Filter</add>
+        <add name="Unknown 6 Shorts" type="ushort" arr1="6" default="21280 2481 62977 65535 44 0">
             Unknown.
-            Oblivion defaults: 0 21280 2481 62977 65535 44 0
-            Skyrim defaults: 0 56896 1343 0 0 1 65535 (fourth and fifth element *must* be zero)
+            Oblivion defaults: 21280 2481 62977 65535 44 0
+            Skyrim defaults: 56896 1343 0 0 1 65535 (third and fourth element *must* be zero)
         </add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
@@ -2110,8 +2180,7 @@
     <niobject name="bhkTransformShape" abstract="0" inherit="bhkShape">
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
@@ -2119,8 +2188,7 @@
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
@@ -2206,8 +2274,7 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
@@ -2248,8 +2315,7 @@
 
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
         <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
         <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
@@ -2259,7 +2325,7 @@
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
-        <add name="Data Layers" type="OblivionColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
+        <add name="Data Layers" type="HavokColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
     <niobject name="NiExtraData" abstract="1" inherit="NiObject">
@@ -2367,7 +2433,7 @@
     <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
         Havok related collision object?
         <add name="Flags" type="Flags" default="1">
-            Set to 1 for most objects, and to 41 for animated objects (OL_ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
+            Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
         <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
     </niobject>
@@ -5088,8 +5154,7 @@
         walking noise, so only use it for non-walkable objects.
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
-        <add name="Material" type="HavokMaterial" vercond="User Version &lt; 12">The shape&#039;s material.</add>
-        <add name="Skyrim Material" type="SkyrimHavokMaterial" vercond="User Version >= 12">The shape&#039;s material.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
         <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
         <add name="Unknown Float 1" type="float">Unknown Flag</add>
