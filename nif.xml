@@ -524,12 +524,13 @@
 
     <enum name="BillboardMode" storage="ushort">
         Determines the way the billboard will react to the camera.
+        Billboard mode is stored in lowest 3 bits although Oblivion vanilla nifs uses values higher than 7.
         <option value="0" name="ALWAYS_FACE_CAMERA">The billboard will always face the camera.</option>
         <option value="1" name="ROTATE_ABOUT_UP">The billboard will only rotate around the up axis.</option>
         <option value="2" name="RIGID_FACE_CAMERA">Rigid Face Camera.</option>
         <option value="3" name="ALWAYS_FACE_CENTER">Always Face Center.</option>
         <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
-        <option value="9" name="ROTATE_ABOUT_UP2">The billboard will only rotate around the up axis (same as ROTATE_ABOUT_UP?).</option>
+        <option value="5" name="BSROTATE_ABOUT_UP">The billboard will only rotate around its local Z axis (it always stays in its local X-Y plane).</option>
     </enum>
 
     <enum name="StencilCompareMode" storage="uint">
