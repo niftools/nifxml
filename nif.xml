@@ -1746,8 +1746,8 @@
 
 	<compound name="bhkCMSDMaterial">
     per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Skyrim Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Skyrim Layer" type="SkyrimLayerCMSDM">Copy of Skyrim Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
+		<add name="Layer" type="SkyrimLayerCMSDM">Copy of Skyrim Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
 	</compound>
 
     <compound name="bhkCMSDBigTris">
@@ -1885,7 +1885,7 @@
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Layer" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Sets mesh color in Oblivion Construction Set.</add>
         <add name="Col Filter" type="byte" default="0" vercond="User Version &lt; 12">The first bit sets the LINK property and controls whether this body is physically linked to others. The next bit turns collision off. Then, the next bit sets the SCALED property in Oblivion. The next five bits make up the number of this part in a linked body list.</add>
-        <add name="Skyrim Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
+        <add name="Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
         <add name="Flags And Part Number" type="byte" default="0" vercond="User Version >= 12">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
         	Bit 6: turns collision off (not used for Layer SKYL_BIPED).
@@ -1959,7 +1959,7 @@
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
         <add name="Layer Copy" type="OblivionLayer" default="OL_STATIC" vercond="User Version &lt; 12">Copy of Layer value?</add>
         <add name="Col Filter Copy" type="byte" default="0" vercond="User Version &lt; 12">Copy of Col Filter value?</add>
-        <add name="Skyrim Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
+        <add name="Layer Copy" type="SkyrimLayer" default="SKYL_STATIC" vercond="User Version >= 12">Copy of Skyrim Layer value?</add>
         <add name="Flags And Part Number Copy" type="byte" default="0" vercond="User Version >= 12">Copy of Flags &amp; Part number?</add>
         <add name="Unknown 7 Shorts" type="ushort" arr1="7" default="0 21280 2481 62977 65535 44 0">
             Unknown.
