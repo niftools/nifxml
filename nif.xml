@@ -463,7 +463,7 @@
     </enum>
 
     <enum name="SkyrimLayer" storage="byte">
-        Physical purpose of collision object? The setting affects objetct's havok behavior in game. Anything higher than 47 is also null.
+        Physical purpose of collision object? The setting affects object's havok behavior in game. Anything higher than 47 is also null.
         <option value="0" name="UNIDENTIFIED">Unidentified</option>
         <option value="1" name="STATIC">Static</option>
         <option value="2" name="ANIMSTATIC">Anim Static</option>
@@ -1558,7 +1558,7 @@
         ColFilter property for Havok. It contains Layer, Flags and Part Number
         <add name="Layer" type="OblivionLayer" default="STATIC" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">Sets mesh color in Oblivion Construction Set.</add><!--condition: all except Fallout 3 and Skyrim -->
         <add name="Layer" type="Fallout3Layer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">Sets mesh color in Fallout 3 GECK.</add>
-        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">Physical purpose of collision object? The setting affects objetct's havok behavior in game.</add>
+        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">Physical purpose of collision object? The setting affects object's havok behavior in game.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
