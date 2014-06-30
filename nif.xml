@@ -898,7 +898,7 @@
 
     <enum name="LightingShaderControlledVariable" storage="uint">
         An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
-        <option value="0" name="Unknown Float 2">Unknown Float 2.</option>
+        <option value="0" name="Refraction Strength">The amount of distortion.</option>
         <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
         <option value="9" name="Glossiness">Glossiness.</option>
         <option value="10" name="Specular Strength">Specular Strength.</option>
