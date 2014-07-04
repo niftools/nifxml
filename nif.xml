@@ -898,7 +898,7 @@
 
     <enum name="LightingShaderControlledVariable" storage="uint">
         An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
-        <option value="0" name="Unknown Float 2">Unknown Float 2.</option>
+        <option value="0" name="Refraction Strength">The amount of distortion.</option>
         <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
         <option value="9" name="Glossiness">Glossiness.</option>
         <option value="10" name="Specular Strength">Specular Strength.</option>
@@ -4849,8 +4849,8 @@
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
-        <add name="Alpha" type="float" default="1.0">The materials opacity (1=non-transparent).</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
+        <add name="Alpha" type="float" default="1.0">The material&#039;s opacity (1=non-transparent).</add>
+        <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Glossiness" type="float">The material&#039;s specular power, or glossiness (0-999).</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
