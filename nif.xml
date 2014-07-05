@@ -4618,39 +4618,76 @@
         <option value="30" name="SF_Shadow_Map">Shadow Map</option>
         <option value="31" name="SF_ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
+
+    <bitflags name="BSShaderFlags2" storage="uint">
+        Shader Property Flags 2
+        <option value="0" name="SF2_ZBuffer_Write">ZBuffer Write</option>
+        <option value="1" name="SF2_LOD_Landscape">LOD Landscape</option>
+        <option value="2" name="SF2_LOD_Building">LOD Building</option>
+        <option value="3" name="SF2_No_Fade">No Fade</option>
+        <option value="4" name="SF2_Refraction_Tint">Refraction Tint</option>
+        <option value="5" name="SF2_Vertex_Colors">Has Vertex Colors</option>
+        <option value="6" name="SF2_Unknown1">Unknown</option>
+        <option value="7" name="SF2_1st_Light_is_Point_Light">1st Light is Point Light</option>
+        <option value="8" name="SF2_2nd_Light">2nd Light</option>
+        <option value="9" name="SF2_3rd_Light">3rd Light</option>
+        <option value="10" name="SF2_Vertex_Lighting">Vertex Lighting</option>
+        <option value="11" name="SF2_Uniform_Scale">Uniform Scale</option>
+        <option value="12" name="SF2_Fit_Slope">Fit Slope</option>
+        <option value="13" name="SF2_Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
+        <option value="14" name="SF2_No_LOD_Land_Blend">No LOD Land Blend</option>
+        <option value="15" name="SF2_Envmap_Light_Fade">Envmap Light Fade</option>
+        <option value="16" name="SF2_Wireframe">Wireframe</option>
+        <option value="17" name="SF2_VATS_Selection">VATS Selection</option>
+        <option value="18" name="SF2_Show_in_Local_Map">Show in Local Map</option>
+        <option value="19" name="SF2_Premult_Alpha">Premult Alpha</option>
+        <option value="20" name="SF2_Skip_Normal_Maps">Skip Normal Maps</option>
+        <option value="21" name="SF2_Alpha_Decal">Alpha Decal</option>
+        <option value="22" name="SF2_No_Transparecny_Multisampling">No Transparency MultiSampling</option>
+        <option value="23" name="SF2_Unknown2">Unknown</option>
+        <option value="24" name="SF2_Unknown3">Unknown</option>
+        <option value="25" name="SF2_Unknown4">Unknown</option>
+        <option value="26" name="SF2_Unknown5">Unknown</option>
+        <option value="27" name="SF2_Unknown6">Unknown</option>
+        <option value="28" name="SF2_Unknown7">Unknown</option>
+        <option value="29" name="SF2_Unknown8">Unknown</option>
+        <option value="30" name="SF2_Unknown9">Unknown</option>
+        <option value="31" name="SF2_Unknown10">Unknown</option>
+    </bitflags>
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
         Bethesda-specific Property node
-        <add name="Flags" type="Flags" default="1">Unknown</add>
+        <add name="Smooth" type="Flags" default="1">Unknown.
+            0: smooth no
+            1: smooth yes
+        </add>
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
-        <add name="Unknown Int 2" type="int" default="1">Unknown</add>
+        <add name="Shader Flags 2" type="BSShaderFlags2" default="1">Shader Property Flags 2</add>
         <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
     </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Unknown Int 3" type="int" default="3" vercond="User Version &lt;= 11">Unknown</add>
+        <add name="Texture Clamp Mode" type="TexClampMode" default="3" vercond="User Version &lt;= 11">How to handle texture borders.</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">The texture glow map.</add>
-        <add name="Unknown Float 2" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
-        <add name="Unknown Float 3" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">
-            Normally what appears to be a junk value (0xB33BBD2E). Appears to be related to glow when Unk Flags is (0x82000148).
-        </add>
-        <add name="Unknown Float 4" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
-        <add name="Unknown Float 5" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Unknown</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Alpha falloff multiplier at end angle</add>
     </niobject>
 
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific Shade node.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Unknown Float 2" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Unknown</add>
-        <add name="Refraction Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
-        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
+        <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
+        <add name="Unknown Float 1" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 2" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
@@ -4723,11 +4760,19 @@
         Bethesda-specific node? Found in Fallout3
     </niobject>
 
-    <niobject name="SkyShaderProperty" abstract="0" inherit="BSShaderProperty">
+    <enum name="SkyObjectType" storage="uint">
+        Sets what sky function this object fulfills in BSSkyShaderProperty or SkyShaderProperty.
+        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
+        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
+        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
+        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
+        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
+        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
+    </enum>
+    <niobject name="SkyShaderProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific node? Found in Fallout3
-        <add name="Unknown Int 4" type="int">Unknown</add>
         <add name="File Name" type="SizedString">The texture.</add>
-        <add name="Unknown Int 5" type="int" default="3">Unknown</add>
+        <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
 
     <niobject name="TileShaderProperty" abstract="0" inherit="BSShaderLightingProperty">
@@ -4906,15 +4951,6 @@
         <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
     </niobject>
     
-    <enum name="SkyObjectType" storage="uint">
-        Skyrim, sets what sky function this object fulfills in BSSkyShaderProperty.
-        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
-        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
-        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
-        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
-        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
-        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
-    </enum>
     <niobject name="BSSkyShaderProperty" inherit="NiProperty">
         Skyrim Sky shader block.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
