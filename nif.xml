@@ -4664,7 +4664,7 @@
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Shader Flags 2" type="BSShaderFlags2" default="1">Shader Property Flags 2</add>
-        <add name="Envmap Scale" type="float" default="1.0" vercond="User Version == 11">Unknown</add>
+        <add name="Environment Map Scale" type="float" default="1.0" vercond="User Version == 11">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
@@ -4686,8 +4686,8 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Unknown Float 1" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
-        <add name="Unknown Float 2" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 4" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
+        <add name="Unknown Float 5" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">Unknown</add>
         <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
     </niobject>
 
