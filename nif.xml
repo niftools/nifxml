@@ -986,11 +986,12 @@
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
-    <enum name="ConstraintType" storage="uint">
+    <enum name="hkConstraintType" storage="uint">
         The type of constraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
         <option value="1" name="Hinge">A hinge constraint.</option>
         <option value="2" name="Limited Hinge">A limited hinge constraint.</option>
+        <option value="6" name="Prismatic">A prismatic constraint.</option>
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
 <!--        <option value="10" name="Generic">A generic constraint.</option>-->
@@ -1743,6 +1744,32 @@
         <add name="Unknown Int 1" type="uint">Unknown</add>
     </compound>
 
+    <compound name="PrismaticDescriptor">
+        <!-- Oblivion -->
+        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot A.</add>
+        <add name="Rotation Matrix A" type="Vector4" arr1="4" ver2="20.0.0.5">4x4 rotation matrix, rotates the child entity.</add>
+        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot B.</add>
+        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
+
+        <!-- Fallout 3 -->
+        <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
+        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot.</add>
+        <add name="Sliding B" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
+        <add name="Rotation B" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
+        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot in B coordinates.</add>
+
+        <add name="Min Distance" type="float">Describe the min distance the object is able to travel.</add>
+
+        <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
+        <add name="Friction" type="float" >Friction.</add>
+
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" default="0">Unknown. Do not set this to anything over 0 as it will crash the game.</add>
+    </compound>
+
     <compound name="StiffSpringDescriptor">
         <add name="Pivot A" type="Vector4">Pivot A.</add>
         <add name="Pivot B" type="Vector4">Pivot B.</add>
@@ -1935,13 +1962,14 @@
     </compound>
 
     <compound name="SubConstraint">
-        <add name="Type" type="ConstraintType">Type of constraint.</add>
+        <add name="Type" type="hkConstraintType">Type of constraint.</add>
         <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
         <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
         <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
     </compound>
@@ -2166,30 +2194,7 @@
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint">
         A prismatic constraint.
-
-        <!-- Oblivion -->
-        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot A.</add>
-        <add name="Rotation Matrix A" type="Vector4" arr1="4" ver2="20.0.0.5">4x4 rotation matrix, rotates the child entity.</add>
-        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot B.</add>
-        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
-        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
-
-        <!-- Fallout 3 -->
-        <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
-        <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
-        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot.</add>
-        <add name="Sliding B" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
-        <add name="Rotation B" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
-        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot in B coordinates.</add>
-
-        <add name="Min Distance" type="float">Describe the min distance the object is able to travel.</add>
-
-        <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
-        <add name="Friction" type="float" >Friction.</add>
-
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" default="0">Unknown. Do not set this to anything over 0 as it will crash the game.</add>
+        <add name="Prismatic" type="PrismaticDescriptor">Describes a prismatic constraint</add>
     </niobject>
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint">
