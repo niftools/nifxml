@@ -1433,25 +1433,25 @@
 
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
+<!--        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
         <add name="Unknown 00 00 1" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Num Vertices 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Unknown 00 00 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Unknown 00 00 3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Unknown 00 00 4" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Unknown Arr 1" type="SkinPartitionUnknownItem1" arr1="Num Vertices 2" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
+        <add name="Unknown Arr 1" type="SkinPartitionUnknownItem1" arr1="Num Vertices 2" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>-->
     </compound>
 
     <!-- related to the file posted in tracker item #3117836:
         http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-    <compound name="SkinPartitionUnknownItem1">
+<!--    <compound name="SkinPartitionUnknownItem1">
         <add name="Unknown Flags" type="uint"></add>
         <add name="f1" type="float"></add>
         <add name="f2" type="float"></add>
         <add name="f3" type="float"></add>
         <add name="f4" type="float"></add>
         <add name="f5" type="float"></add>
-    </compound>
+    </compound>-->
 
     <compound name="QTransform">
         <add name="Translation" type="Vector3">Translation.</add>
