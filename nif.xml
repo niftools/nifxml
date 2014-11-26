@@ -986,6 +986,17 @@
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
+    <enum name="hkConstraintType" storage="uint">
+        The type of constraint.
+        <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
+        <option value="1" name="Hinge">A hinge constraint.</option>
+        <option value="2" name="Limited Hinge">A limited hinge constraint.</option>
+        <option value="6" name="Prismatic">A prismatic constraint.</option>
+        <option value="7" name="Ragdoll">A ragdoll constraint.</option>
+        <option value="8" name="StiffSpring">A stiff spring constraint.</option>
+<!--        <option value="10" name="Generic">A generic constraint.</option>-->
+    </enum>
+
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
@@ -1726,6 +1737,45 @@
         <!-- no friction -->
     </compound>
 
+    <compound name="BallAndSocketDescriptor">
+        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
+        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
+        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
+        <add name="Unknown Int 1" type="uint">Unknown</add>
+    </compound>
+
+    <compound name="PrismaticDescriptor">
+        <!-- Oblivion -->
+        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot A.</add>
+        <add name="Rotation Matrix A" type="Vector4" arr1="4" ver2="20.0.0.5">4x4 rotation matrix, rotates the child entity.</add>
+        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot B.</add>
+        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
+
+        <!-- Fallout 3 -->
+        <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
+        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
+        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot.</add>
+        <add name="Sliding B" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
+        <add name="Rotation B" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
+        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
+        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot in B coordinates.</add>
+
+        <add name="Min Distance" type="float">Describe the min distance the object is able to travel.</add>
+
+        <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
+        <add name="Friction" type="float" >Friction.</add>
+
+        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" default="0">Unknown. Do not set this to anything over 0 as it will crash the game.</add>
+    </compound>
+
+    <compound name="StiffSpringDescriptor">
+        <add name="Pivot A" type="Vector4">Pivot A.</add>
+        <add name="Pivot B" type="Vector4">Pivot B.</add>
+        <add name="Length" type="float">Length.</add>
+    </compound>
+
     <compound name="OldSkinData">
         Used to store skin weights in NiTriShapeSkinController.
         <add name="Vertex Weight" type="float">The amount that this bone affects the vertex.</add>
@@ -1909,6 +1959,19 @@
         <add name="Strips" type="ushort" arr1="Num Strips">Compressed strips</add>
         <add name="Num Indices 2" type="uint">Number of </add>
         <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
+    </compound>
+
+    <compound name="SubConstraint">
+        <add name="Type" type="hkConstraintType">Type of constraint.</add>
+        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
+        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
+        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
+        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
+        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
     </compound>
 
     <compound name="bhkRDTConstraint">
@@ -2113,23 +2176,15 @@
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
         A malleable constraint.
-        <add name="Type" type="uint">Type of constraint.</add>
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
-        <add name="Unknown Link 1" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Unknown Link 2" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Unknown Int 3" type="uint">Unknown. 1?</add>
-        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 -->
-        <add name="Damping" type="float" />
+        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
+        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
+        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
     </niobject>
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
         A spring constraint.
-        <add name="Pivot A" type="Vector4">Pivot A.</add>
-        <add name="Pivot B" type="Vector4">Pivot B.</add>
-        <add name="Length" type="float">Length.</add>
+        <add name="StiffSpring" type="StiffSpringDescriptor">Stiff Spring constraint.</add>
     </niobject>
 
     <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint">
@@ -2139,30 +2194,7 @@
 
     <niobject name="bhkPrismaticConstraint" abstract="0" inherit="bhkConstraint">
         A prismatic constraint.
-
-        <!-- Oblivion -->
-        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot A.</add>
-        <add name="Rotation Matrix A" type="Vector4" arr1="4" ver2="20.0.0.5">4x4 rotation matrix, rotates the child entity.</add>
-        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot B.</add>
-        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
-        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
-
-        <!-- Fallout 3 -->
-        <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
-        <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
-        <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot.</add>
-        <add name="Sliding B" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
-        <add name="Rotation B" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
-        <add name="Plane B" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot in B coordinates.</add>
-
-        <add name="Min Distance" type="float">Describe the min distance the object is able to travel.</add>
-
-        <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
-        <add name="Friction" type="float" >Friction.</add>
-
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" default="0">Unknown. Do not set this to anything over 0 as it will crash the game.</add>
+        <add name="Prismatic" type="PrismaticDescriptor">Describes a prismatic constraint</add>
     </niobject>
 
     <niobject name="bhkHingeConstraint" abstract="0" inherit="bhkConstraint">
@@ -2172,10 +2204,7 @@
 
     <niobject name="bhkBallAndSocketConstraint" abstract="0" inherit="bhkConstraint">
         A Ball and Socket Constraint.
-        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
-        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Ball and Socket" type="BallAndSocketDescriptor">Describes a ball and socket constraint</add>
     </niobject>
 
     <niobject name="bhkBallSocketConstraintChain" abstract="0" inherit="bhkSerializable">
@@ -5337,20 +5366,10 @@
     </niobject>
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
-        Bethesda-Specific node.
-        <add name="Unknown Ints 1" type="int" arr1="41" vercond="User Version &lt;= 11"> </add>
-        <add name="Unknown Short 1" type="short" vercond="User Version &lt;= 11">Unknown</add>
-		<add name="Unknown Int 1" type="uint" vercond="User Version == 12">A count or flag?</add>
-		<add name="Num Entities 2" type="uint" vercond="User Version == 12">Number of bodies affected by this constraint.</add>
-        <add name="Entities 2" type="Ptr" template="bhkEntity" arr1="Num Entities 2" vercond="User Version == 12">The entities affected by this constraint.</add>
-        <add name="Priority 2" type="uint" default="1" vercond="User Version == 12">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Unknown Int 2" type="uint" vercond="User Version == 12">Unknown</add>
-        <add name="Position" type="Vector3" vercond="User Version == 12">Unknown</add>
-        <add name="Rotation" type="Vector3" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Int 3" type="uint" vercond="User Version == 12">Unknown</add>
-        <add name="Threshold" type="float" vercond="User Version == 12">Unknown</add>
-        <add name="Unknown Float 1" type="float" cond="Unknown Int 1 >= 1" vercond="User Version == 12">Unknown</add>
-        <add name="Remove if Broken" type="byte" vercond="User Version == 12">Unknown</add>
+        A breakable constraint.
+        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
+        <add name="Remove if Broken" type="bool">Unknown</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
