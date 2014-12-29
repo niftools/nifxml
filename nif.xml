@@ -989,15 +989,32 @@
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
+<!--Values for constraint types 3, 9, 10, 11, 12, 14-25 found in file hkpConstraintData.h-->
     <enum name="hkConstraintType" storage="uint">
         The type of constraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
         <option value="1" name="Hinge">A hinge constraint.</option>
         <option value="2" name="Limited Hinge">A limited hinge constraint.</option>
+<!--        <option value="3" name="PointtoPath">A point to path constraint.</option>-->
         <option value="6" name="Prismatic">A prismatic constraint.</option>
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
-<!--        <option value="10" name="Generic">A generic constraint.</option>-->
+<!--        <option value="9" name="Wheel">A wheel constraint.</option>
+        <option value="10" name="Generic">A generic constraint.</option>
+        <option value="11" name="Contact">A contact constraint.</option>
+        <option value="12" name="Breakable">A breakable constraint.</option>
+        <option value="13" name="Malleable">A malleable constraint.</option>
+        <option value="14" name="PointtoPlane">A point to plane constraint.</option>
+        <option value="15" name="Pulley">A pulley constraint.</option>
+        <option value="16" name="Rotational">A rotational constraint.</option>
+        <option value="18" name="HingeLimits">A hinge limits constraint.</option>
+        <option value="19" name="RagdollLimits">A ragdoll limits constraint.</option>
+        <option value="20" name="Custom">A custom constraint.</option>
+        <option value="21" name="RackandPinion">A rack and pinion constraint.</option>
+        <option value="22" name="COGWheel">A COG wheel constraint.</option>
+        <option value="23" name="Fixed">A fixed constraint.</option>
+        <option value="24" name="DeformableFixed">A deformable fixed constraint.</option>
+        <option value="25" name="LinearSlack">A linear slack constraint.</option>-->
     </enum>
 
     <enum name="hkRDTConstraintType" storage="uint">
@@ -2845,7 +2862,7 @@
 
         	Fallout3/Skyrim: can't be higher than 1.</add>
         <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="Version >= 10.0.1.0">Bit 4: Has Tangents/Bitangents</add>
-        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
+        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim. If this is NiTriStripsData block and its parent block is bhkNiTriStripsShape, the value here is SkyrimHavokMaterial.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Tangent vectors.</add>
