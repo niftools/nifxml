@@ -549,8 +549,8 @@
         <option value="6" name="PIX_LAY_DEFAULT">Use default setting.</option>
     </enum>
 
-    <enum name="TexClampMode" storage="uint">
-        Specifies the availiable texture clamp modes.  That is, the behavior of pixels outside the range of the texture.
+    <enum name="TexClampMode" storage="byte">
+        Specifies the available texture clamp modes. That is, the behavior of pixels outside the range of the texture.
         <option value="0" name="CLAMP_S_CLAMP_T">Clamp in both directions.</option>
         <option value="1" name="CLAMP_S_WRAP_T">Clamp in the S(U) direction but wrap in the T(V) direction.</option>
         <option value="2" name="WRAP_S_CLAMP_T">Wrap in the S(U) direction but clamp in the T(V) direction.</option>
@@ -945,12 +945,12 @@
 
     <enum name="EffectShaderControlledVariable" storage="uint">
         An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
-        <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
+        <option value="0" name="Base Color Multiple">Multiplier for Base Color (RGB part).</option>
         <option value="1" name="Falloff Start Angle (degrees)">Falloff Start Angle (degrees).</option>
         <option value="2" name="Falloff Stop Angle (degrees)">Falloff Stop Angle (degrees).</option>
         <option value="3" name="Falloff Start Opacity">Falloff Start Opacity.</option>
         <option value="4" name="Falloff Stop Opacity">Falloff Stop Opacity.</option>
-        <option value="5" name="Alpha Transparency (Emissive alpha?)">Alpha Transparency (Emissive alpha?).</option>
+        <option value="5" name="Alpha">Alpha Transparency.</option>
         <option value="6" name="U Offset">U Offset.</option>
         <option value="7" name="U Scale">U Scale.</option>
         <option value="8" name="V Offset">V Offset.</option>
@@ -959,7 +959,7 @@
 
     <enum name="EffectShaderControlledColor" storage="uint">
         An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
-        <option value="0" name="Emissive Color">Emissive Color.</option>
+        <option value="0" name="Base Color">Base Color.</option>
     </enum>
 
     <enum name="LightingShaderControlledVariable" storage="uint">
@@ -1365,6 +1365,12 @@
     </compound>
 -->
 
+    <compound name="TextureClampMode">
+        <add name="Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
+        <add name="Unknown Byte" type="byte" defalut="0">Unknown. In BSEffectShaderProperty of Skyrim nifs it is most often set to 255 but sometimes to other values.</add>
+        <add name="Unknown Short" type="ushort" defalut="0" />
+    </compound>
+
     <compound name="TexCoord" niflibtype="TexCoord" nifskopetype="vector2">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
@@ -1374,7 +1380,7 @@
     <compound name="TexDesc">
         Texture description.
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
-        <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
+        <add name="Clamp Mode" type="TextureClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
         <add name="Unknown short" type="short" ver1="20.6.0.0">Unknown, seems to always be 1</add>
@@ -1786,7 +1792,7 @@
     <compound name="MultiTextureElement">
         <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
         <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
-        <add name="Clamp?" type="TexClampMode" cond="Has Image" default="WRAP_S_WRAP_T">May be texture clamp mode.</add>
+        <add name="Clamp?" type="TextureClampMode" cond="Has Image" default="WRAP_S_WRAP_T">May be texture clamp mode.</add>
         <add name="Filter?" type="TexFilterMode" cond="Has Image" default="FILTER_TRILERP">May be texture filter mode.</add>
         <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
         <add name="PS2 L" type="short" cond="Has Image" default="0" ver1="3.03" ver2="10.2.0.0">0?</add>
@@ -4151,7 +4157,7 @@
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
-        <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
+        <add name="Texture Clamping" type="TextureClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
         <add name="Unknown" type="short" ver1="20.6.0.0" />
         <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
@@ -4791,7 +4797,7 @@
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Texture Clamp Mode" type="TexClampMode" default="3" vercond="User Version &lt;= 11">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TextureClampMode" default="3" vercond="User Version &lt;= 11">How to handle texture borders.</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
@@ -4999,7 +5005,11 @@
         <option value="31" name="SLSF2_HD_LOD_Objects"></option>
     </bitflags>
 
-    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
+    <niobject name="NonSharableBSShaderProperty" abstract="1" inherit="NiProperty">
+        Only abstract for Bethesda Skyrim shader properties which must be unique (must not be shared).
+    </niobject>
+
+    <niobject name="BSLightingShaderProperty" abstract="0" inherit="NonSharableBSShaderProperty">
         Skyrim PP shader for assigning material/shader/texture.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="User Version == 12" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
@@ -5008,7 +5018,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
-        <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TextureClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material&#039;s opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Glossiness" type="float">The material&#039;s specular power, or glossiness (0-999).</add>
@@ -5031,21 +5041,22 @@
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
 
-    <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
+    <niobject name="BSEffectShaderProperty" abstract="0" inherit="NonSharableBSShaderProperty">
         Skyrim non-PP shader model, used primarily for transparency effects, often as decal.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
-        <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
+        <add name="Source Texture" type="SizedString">points to an external texture.</add>
+        <add name="Texture Clamp Mode" type="TextureClampMode" />
         <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
         <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
         <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
         <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
         <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
-        <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Base Color" type="Color3">Base color (Vertex color multiplier).</add>
+        <add name="Alpha" type="float" default="1.0">Alpha transparency (1.0 = non-transparent).</add>
+        <add name="Base Color Multiple" type="float">Base Color multiplier (RGB part).</add>
         <add name="Soft Falloff Depth" type="float"></add>
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
     </niobject>
@@ -5062,7 +5073,7 @@
         <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
     </bitflags>
     
-    <niobject name="BSWaterShaderProperty" inherit="NiProperty">
+    <niobject name="BSWaterShaderProperty" inherit="NonSharableBSShaderProperty">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
@@ -5073,7 +5084,7 @@
         <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
     </niobject>
     
-    <niobject name="BSSkyShaderProperty" inherit="NiProperty">
+    <niobject name="BSSkyShaderProperty" inherit="NonSharableBSShaderProperty">
         Skyrim Sky shader block.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
