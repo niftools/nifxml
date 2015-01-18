@@ -1510,6 +1510,7 @@
 
     <enum name="FurnitureMarkerType" storage="byte">
         Fallout 3 specific furniture marker types.
+        For Oblivion only 1, 2, 3, 4, 11, 12, 13, 14 are acceptable.
         <option value="1" name="Sleep Right Bed">Sleep from right on normal bed.</option>
         <option value="2" name="Sleep Left Bed">Sleep from right on normal bed.</option>
         <option value="3" name="Sleep Right Bed Floor">Sleep from right on bed on floor.</option>
@@ -1533,10 +1534,10 @@
     <compound name="FurnitureMarker">
         Describes a furniture marker.
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
-<!-- Fallout 3 -->
-        <add name="Heading" type="ushort" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11)">Furniture marker heading (its Z rotation). In radians * 1000.</add>
-        <add name="Marker Type" type="FurnitureMarkerType" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11)">Type of furniture marker. It determines the animation used on this marker. Refers to "markers/furnituremarkerxx.nif" file.</add>
-        <add name="Marker Type Copy" type="FurnitureMarkerType" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11)">Copy of Marker Type.</add>
+<!-- Oblivion, Fallout 3 -->
+        <add name="Heading" type="ushort" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Furniture marker heading (its Z rotation). In radians * 1000.</add>
+        <add name="Marker Type" type="FurnitureMarkerType" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Type of furniture marker. It determines the animation used on this marker. Refers to "markers/furnituremarkerxx.nif" file.</add>
+        <add name="Marker Type Copy" type="FurnitureMarkerType" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Copy of Marker Type.</add>
 <!-- Skyrim -->
         <add name="Heading" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Furniture marker heading (its Z rotation). In radians.</add>
         <add name="Animation Type" type="FurnitureMarkerAnimationType" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Animation type used on this marker. This specifies the function of this marker.</add>
