@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -1492,31 +1492,56 @@
         <add name="Radius" type="Vector3">Radius, per direction.</add>
     </compound>
 
-	<bitflags name="FurnitureEntryPoints" storage="ushort">
-		Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
-		<option value="0" name="Front">front entry point</option>
-		<option value="1" name="Behind">behind entry point</option>
-		<option value="2" name="Right">right entry point</option>
-		<option value="3" name="Left">left entry point</option>
-		<option value="4" name="Up">up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
-	</bitflags>
+    <bitflags name="FurnitureMarkerEntryPoints" storage="ushort">
+        Skyrim specific furniture entry points.
+        <option value="0" name="Front">Front entry point.</option>
+        <option value="1" name="Behind">Behind entry point.</option>
+        <option value="2" name="Right">Right entry point.</option>
+        <option value="3" name="Left">Left entry point.</option>
+        <option value="4" name="Up">Up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
+    </bitflags>
 
-	<enum name="AnimationType" storage="ushort">
-		Animation type used on this position. This specifies the function of this position.
-		<option value="1" name="Sit">Actor use sit animation.</option>
-		<option value="2" name="Sleep">Actor use sleep animation.</option>
-		<option value="4" name="Lean">Used for lean animations?</option>
-	</enum>
+    <enum name="FurnitureMarkerAnimationType" storage="ushort">
+        Skyrim specific furniture animation types.
+        <option value="1" name="Sit">Actor use sit animation.</option>
+        <option value="2" name="Sleep">Actor use sleep animation.</option>
+        <option value="4" name="Lean">Used for lean animations?</option>
+    </enum>
 
-    <compound name="FurniturePosition">
-        Describes a furniture position?
+    <enum name="FurnitureMarkerType" storage="byte">
+        Fallout 3 specific furniture marker types.
+        For Oblivion only 1, 2, 3, 4, 11, 12, 13, 14 are acceptable.
+        <option value="1" name="Sleep Right Bed">Sleep from right on normal bed.</option>
+        <option value="2" name="Sleep Left Bed">Sleep from right on normal bed.</option>
+        <option value="3" name="Sleep Right Bed Floor">Sleep from right on bed on floor.</option>
+        <option value="4" name="Sleep Left Bed Floor">Sleep from right on bed on floor.</option>
+        <option value="5" name="Sleep Right Floor">Sleep from right on floor.</option>
+        <option value="6" name="Sleep Left Floor">Sleep from left on floor.</option>
+        <option value="11" name="Sit Left">Sit from left.</option>
+        <option value="12" name="Sit Right">Sit from right.</option>
+        <option value="13" name="Sit Behind">Sit from behind.</option>
+        <option value="14" name="Sit Front">Sit from front.</option>
+        <option value="15" name="Sit Stool">Sit on stool and lean against bar.</option>
+        <option value="16" name="Sit Tranquility">Sit on Tranquility pod.</option>
+        <option value="17" name="Sit Floor">Sit on floor.</option>
+        <option value="18" name="Kneel Restrained">Kneel restrained.</option>
+        <option value="19" name="Wall Lean">Lean against a wall.</option>
+        <option value="20" name="Child Bar">Step on plaform and lean against bar (for child).</option>
+        <option value="21" name="Unknown">Unknown.</option>
+        <option value="22" name="Special">Used for special actions?</option>
+    </enum>
+
+    <compound name="FurnitureMarker">
+        Describes a furniture marker.
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
-        <add name="Orientation" type="ushort" vercond="User Version &lt;= 11">Furniture marker orientation.</add>
-        <add name="Position Ref 1" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
-        <add name="Position Ref 2" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
-        <add name="Heading" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Similar to Orientation, in float form.</add>
-        <add name="Animation Type" type="AnimationType" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Entry Properties" type="FurnitureEntryPoints" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
+<!-- Oblivion, Fallout 3 -->
+        <add name="Heading" type="ushort" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Furniture marker heading (its Z rotation). In radians * 1000.</add>
+        <add name="Marker Type" type="FurnitureMarkerType" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Type of furniture marker. It determines the animation used on this marker. Refers to "markers/furnituremarkerxx.nif" file.</add>
+        <add name="Marker Type Copy" type="FurnitureMarkerType" vercond="((Version == 20.0.0.5) || (Version == 20.2.0.7)) &amp;&amp; (User Version == 11)">Copy of Marker Type.</add>
+<!-- Skyrim -->
+        <add name="Heading" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Furniture marker heading (its Z rotation). In radians.</add>
+        <add name="Animation Type" type="FurnitureMarkerAnimationType" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Animation type used on this marker. This specifies the function of this marker.</add>
+        <add name="Entry Properties" type="FurnitureMarkerEntryPoints" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the marker.</add>
     </compound>
 
     <compound name="hkTriangle">
@@ -2871,9 +2896,9 @@
     </niobject>
 
     <niobject name="BSFurnitureMarker" abstract="0" inherit="NiExtraData">
-        Unknown. Marks furniture sitting positions?
-        <add name="Num Positions" type="uint">Number of positions.</add>
-        <add name="Positions" type="FurniturePosition" arr1="Num Positions">Unknown. Probably has something to do with the furniture positions?</add>
+        Defines available furniture markers.
+        <add name="Num Markers" type="uint">Number of markers.</add>
+        <add name="Marker" type="FurnitureMarker" arr1="Num Markers">Furnitute markers definitions.</add>
     </niobject>
 
     <niobject name="BSParentVelocityModifier" abstract="0" inherit="NiPSysModifier">
@@ -6218,15 +6243,20 @@
 		<add name="Maximum Distance" type="float">How far bone will tail an actor.</add>
 	</niobject>
 
-	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
-    A variation on NiTriShape, for visibility control over vertex groups.
-		<add name="Level 0 Size" type="uint">Unknown</add>
-		<add name="Level 1 Size" type="uint">Unknown</add>
-		<add name="Level 2 Size" type="uint">Unknown</add>
-	</niobject>
+    <niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
+        A variation on NiTriShape, for visibility control over vertex groups.
+        Level 0, 1 and 2 refers as index to Triangles Array in linked NiTriShapeData block.
+        Level 0 starting triangle index = 0.
+        Level 1 starting triangle index = Level 0.
+        Level 2 starting triangle index = Level 0 + Level 1.
+        <add name="Level 0 Size" type="uint">Number of triangles that are always visible.
+        The sum of Level 0, Level 1 and Level 2 must be equal to "Num Triangles" in linked NiTriShapeData block.</add>
+        <add name="Level 1 Size" type="uint">Number of triangles that are disabled at higher distance.</add>
+        <add name="Level 2 Size" type="uint">Number of triangles that are disabled at lower distance.</add>
+    </niobject>
 
-	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
-    Furniture Marker for actors
+    <niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
+        Furniture Marker for actors
     </niobject>
 	
     <niobject name="BSLeafAnimNode" inherit="NiNode">
