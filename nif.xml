@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
