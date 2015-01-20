@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -913,12 +913,7 @@
         <option value="12000" name="BP_TORSOSECTION_RIGHTLEG3">Torso Section | Right Leg 3</option>
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
-    
-    <bitflags name="BSSegmentFlags" storage="uint">
-        An unsigned 32-bit integer, describing what's inside the segment.
-        <option value="9" name="BSSEG_WATER">Contains water.</option>
-    </bitflags>
-    
+
     <enum name="BSLightingShaderPropertyShaderType" storage="uint">
         Values for configuring the shader type in a BSLightingShaderProperty
         <option value="0" name="Default"></option>
@@ -1910,10 +1905,10 @@
     </compound>
     
     <compound name="BSSegment">
-        Bethesda-specific node.
-        <add name="Internal index" type="int" >Index multiplied by 1536 (0x0600)</add>
-        <add name="Flags" type="BSSegmentFlags">Geometry present in the segment</add>
-        <add name="Unknown Byte 1" type="byte" >Unknown</add>
+        Stores data of each segment in BSSegmentedTriShape.
+        <add name="Unknown Byte" type="byte">Unknown.</add>
+        <add name="Triangle Point Offset" type="int">Offset of first triangle point of this Segment. Divide this value by 3 to get index of first Triangle in Triangles array of NiTriShapeData.</add>
+        <add name="Triangle Count" type="int">The number of triangles in this Segment. Value 0 mean empty Segment.</add>
     </compound>
     
     <compound name="BoneLOD">
@@ -5280,8 +5275,10 @@
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
         Bethesda-specific node.
-        <add name="Num Segments" type="int" >Number of segments in the square grid</add>
-        <add name="Segment" type="BSSegment" arr1="Num Segments">Configuration of each segment</add>
+        Found in Fallout 3 nif files located in "landscape/lod/../blocks/".
+        Found in Skyrim terrain bto files.
+        <add name="Num Segments" type="int" >Number of segments in the square grid.</add>
+        <add name="Segment" type="BSSegment" arr1="Num Segments">Configuration of each segment.</add>
     </niobject>
 
     <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
