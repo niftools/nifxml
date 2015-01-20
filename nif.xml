@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -271,6 +271,7 @@
         <option value="493553910" name="MAT_BOTTLE">Bottle</option>
         <option value="500811281" name="MAT_WOOD">Wood</option>
         <option value="591247106" name="MAT_SKIN">Skin</option>
+        <option value="617099282" name="MAT_UNKNOWN_617099282">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\clutter\dlc01deerskin.nif.</option>
         <option value="732141076" name="MAT_BARREL">Barrel</option>
         <option value="781661019" name="MAT_MATERIAL_CERAMIC_MEDIUM">Material Ceramic Medium</option>
         <option value="790784366" name="MAT_MATERIAL_BASKET">Material Basket</option>
@@ -300,6 +301,7 @@
         <option value="2025794648" name="MAT_MATERIAL_BOTTLE_SMALL">Material Bottle Small</option>
         <option value="2168343821" name="MAT_SAND">Sand</option>
         <option value="2229413539" name="MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="2290050264" name="MAT_UNKNOWN_2290050264">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\clutter\dlc01sabrecatpelt.nif.</option>
         <option value="2518321175" name="MAT_DRAGON">Dragon</option>
         <option value="2617944780" name="MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small</option>
         <option value="2632367422" name="MAT_MATERIAL_SKIN_SMALL">Material Skin Small</option>
@@ -320,6 +322,7 @@
         <option value="3741512247" name="MAT_STONE">Stone</option>
         <option value="3839073443" name="MAT_CLOTH">Cloth</option>
         <option value="3969592277" name="MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
+        <option value="4239621792" name="MAT_UNKNOWN_4239621792">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\prototype\dlc1protoswingingbridge.nif.</option>
         <option value="4283869410" name="MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
     </enum>
 
@@ -986,15 +989,38 @@
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
+<!--Values for constraint types 3, 9, 10, 11, 12, 14-25 found in file hkpConstraintData.h-->
     <enum name="hkConstraintType" storage="uint">
         The type of constraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
         <option value="1" name="Hinge">A hinge constraint.</option>
         <option value="2" name="Limited Hinge">A limited hinge constraint.</option>
+<!--        <option value="3" name="PointtoPath">A point to path constraint.</option>-->
         <option value="6" name="Prismatic">A prismatic constraint.</option>
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
-<!--        <option value="10" name="Generic">A generic constraint.</option>-->
+<!--        <option value="9" name="Wheel">A wheel constraint.</option>
+        <option value="10" name="Generic">A generic constraint.</option>
+        <option value="11" name="Contact">A contact constraint.</option>
+        <option value="12" name="Breakable">A breakable constraint.</option>
+        <option value="13" name="Malleable">A malleable constraint.</option>
+        <option value="14" name="PointtoPlane">A point to plane constraint.</option>
+        <option value="15" name="Pulley">A pulley constraint.</option>
+        <option value="16" name="Rotational">A rotational constraint.</option>
+        <option value="18" name="HingeLimits">A hinge limits constraint.</option>
+        <option value="19" name="RagdollLimits">A ragdoll limits constraint.</option>
+        <option value="20" name="Custom">A custom constraint.</option>
+        <option value="21" name="RackandPinion">A rack and pinion constraint.</option>
+        <option value="22" name="COGWheel">A COG wheel constraint.</option>
+        <option value="23" name="Fixed">A fixed constraint.</option>
+        <option value="24" name="DeformableFixed">A deformable fixed constraint.</option>
+        <option value="25" name="LinearSlack">A linear slack constraint.</option>-->
+    </enum>
+
+    <enum name="hkRDTConstraintType" storage="uint">
+        The type of constraint.
+        <option value="7" name="Ragdoll">A ragdoll constraint.</option>
+        <option value="13" name="Malleable">A malleable constraint.</option>
     </enum>
 
     <!--Compounds
@@ -1738,10 +1764,8 @@
     </compound>
 
     <compound name="BallAndSocketDescriptor">
-        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
-        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Pivot Point A" type="Vector4">Constraint's pivot point in bodyA's space.</add>
+        <add name="Pivot Point B" type="Vector4">Constraint's pivot point in bodyB's space.</add>
     </compound>
 
     <compound name="PrismaticDescriptor">
@@ -1774,6 +1798,41 @@
         <add name="Pivot A" type="Vector4">Pivot A.</add>
         <add name="Pivot B" type="Vector4">Pivot B.</add>
         <add name="Length" type="float">Length.</add>
+    </compound>
+
+    <compound name="MalleableDescriptor">
+        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
+        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
+        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
+    </compound>
+
+    <compound name="SubConstraint">
+        <add name="Type" type="hkConstraintType">Type of constraint.</add>
+        <add name="Constraint Basic Data" type="ConstraintBasicData" />
+        <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
+        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
+        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
+        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+    </compound>
+
+    <compound name="RDTConstraint">
+        <add name="Type" type="hkRDTConstraintType">Type of constraint.</add>
+        <add name="Constraint Basic Data" type="ConstraintBasicData" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="Malleable" type="MalleableDescriptor" cond="Type == 13" />
+    </compound>
+
+    <compound name="ConstraintBasicData">
+        Basic data for any havok constraint.
+        <add name="Num Entities" type="uint" default="2">Number of bodies affected by this constraint. Usually 2.</add>
+        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">The entities affected by this constraint.
+        Within bhkRagdollTemplateData: both entities are usually set to None (Fallout3).
+        Within Sub Constraint: both entities are usually set to None (Skyrim).
+        Within bhkBallSocketConstraintChain: here are usually two entities and are set to first two entities in chain (Skyrim).</add>
+        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
     </compound>
 
     <compound name="OldSkinData">
@@ -1869,26 +1928,21 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
-<!-- nowhere used currently
-	<compound name="UnknownMatrix1">
-		Unknown Matrix; for deathposes.psa
-		<add name="Unknown UInt 1" type="uint">Unknown uint 1</add>
-		<add name="m11" type="float" />
-        <add name="m12" type="float" />
-        <add name="m13" type="float" />
-        <add name="m21" type="float" />
-        <add name="m22" type="float" />
-        <add name="m23" type="float" />
-        <add name="m31" type="float" />
-        <add name="m32" type="float" />
-        <add name="m33" type="float" />
+    <compound name="BoneTransformData">
+        A set of tranformation data for this bone (used in .psa files).
+        Index of Bone Transform deterimes the bone defined in Bones.
+        <add name="Translation" type="Vector3" />
+        <add name="Rotation" type="QuaternionXYZW" />
+        <add name="Unknown float 1" type="float" default="1.0">Unknown. Usually 1.0</add>
+        <add name="Unknown float 2" type="float" default="1.0">Unknown. Usually 1.0</add>
+        <add name="Unknown float 2" type="float" default="1.0">Unknown. Usually 1.0</add>
     </compound>
 
-	<compound name="BonePoseArray">
-		<add name="Unknown Array 2" type="int">Unknown</add>
-        <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
-	</compound>
--->
+    <compound name="BonePoseArray">
+        List of transformations of each bone in this pose.
+        <add name="Num Bone Transforms" type="int">Number of bone transformations. Usually same as Num Bones in bhkPoseArray.</add>
+        <add name="Bone Transforms" type="BoneTransformData" arr1="Num Bone Transforms">Transformation data for each bone in this pose. Index of Bone Transform deterimes the bone defined in Bones.</add>
+    </compound>
 
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
@@ -1922,35 +1976,35 @@
         <add name="Bone Name" type="string">The bones name</add>
     </compound>
 
-	<compound name="bhkCMSDMaterial">
-    Per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
-    <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
-    <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
-	</compound>
+    <compound name="bhkCMSDMaterial">
+        Per-chunk material, used in bhkCompressedMeshShapeData
+        <add name="Material" type="SkyrimHavokMaterial">Material.</add>
+        <add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+        <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
+        <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
+    </compound>
 
     <compound name="bhkCMSDBigTris">
-    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
+        Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
         <add name="Triangle 1" type="ushort"></add>
         <add name="Triangle 2" type="ushort"></add>
         <add name="Triangle 3" type="ushort"></add>
-		<add name="Unknown Int 1" type="uint">Always 0?</add>
+        <add name="Unknown Int 1" type="uint">Always 0?</add>
         <add name="Unknown Short 1" type="ushort"></add>
     </compound>
-    
+  
     <compound name="bhkCMSDTransform">
-    A set of transformation data: translation and rotation
+        A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
         <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
     </compound>
     
     <compound name="bhkCMSDChunk">
     Defines subshape chunks in bhkCompressedMeshShapeData
-		<add name="Translation" type="Vector4">Local translation</add>
-		<add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
-		<add name="Unknown Short 1" type="ushort">Always 65535?</add>
-		<add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
+        <add name="Translation" type="Vector4">Local translation</add>
+        <add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
+        <add name="Unknown Short 1" type="ushort">Always 65535?</add>
+        <add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
         <add name="Num Vertices" type="uint">Number of compressed vertices</add>
         <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
         <add name="Num Indices" type="uint"></add>
@@ -1959,43 +2013,6 @@
         <add name="Strips" type="ushort" arr1="Num Strips">Compressed strips</add>
         <add name="Num Indices 2" type="uint">Number of </add>
         <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
-    </compound>
-
-    <compound name="SubConstraint">
-        <add name="Type" type="hkConstraintType">Type of constraint.</add>
-        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
-        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
-        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
-        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
-    </compound>
-
-    <compound name="bhkRDTConstraint">
-        <add name="Type" type="uint">Type of constraint.
-        7 = RagDoll Constraint?
-        13 = Malleable Constraint?</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Entity A in this constraint.</add>
-        <add name="Entity B" type="Ref" template="NiObject">Entity B in this constraint.</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Malleable Constraint" type="bhkRDTMalleableConstraint" cond="Type == 13" />
-    </compound>
-    <compound name="bhkRDTMalleableConstraint">
-    A malleable constraint.
-        <add name="Type" type="uint">Type of constraint.</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Entity B" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Damping" type="float" />
     </compound>
 
     <!-- NIF Objects
@@ -2106,7 +2123,7 @@
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown Int 1" type="int">Unknown. Could be 2 shorts corresponding to Unknown 7 Shorts[1] and [2].</add>
+        <add name="Unknown Int 1" type="int">Unknown.</add>
         <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
         <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown. Could be 3 floats.</add>
         <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
@@ -2114,10 +2131,11 @@
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
         <add name="Havok Col Filter Copy" type="HavokColFilter">Copy of Havok Col Filter</add>
-        <add name="Unknown 6 Shorts" type="ushort" arr1="6" default="21280 2481 62977 65535 44 0">
+        <add name="Unknown Int 1 Copy" type="int">Unknown. Copy of Unknown Int 1.</add>
+        <add name="Unknown 4 Shorts" type="ushort" arr1="4" default="62977 65535 44 0">
             Unknown.
-            Oblivion defaults: 21280 2481 62977 65535 44 0
-            Skyrim defaults: 56896 1343 0 0 1 65535 (third and fourth element *must* be zero)
+            Oblivion defaults: 62977 65535 44 0
+            Skyrim defaults: 0 0 1 65535 (1st and 2nd element *must* be zero)
         </add>
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
@@ -2163,10 +2181,7 @@
     </niobject>
 
     <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable">
-        Describes a physical constraint.
-        <add name="Num Entities" type="uint">Number of bodies affected by this constraint.</add>
-        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">The entities affected by this constraint.</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Constraint Basic Data" type="ConstraintBasicData" />
     </niobject>
 
     <niobject name="bhkLimitedHingeConstraint" abstract="0" inherit="bhkConstraint">
@@ -2176,10 +2191,7 @@
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
         A malleable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
-        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
-        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
-        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
+        <add name="Malleable" type="MalleableDescriptor">Describes a malleable constraint</add>
     </niobject>
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
@@ -2209,17 +2221,45 @@
 
     <niobject name="bhkBallSocketConstraintChain" abstract="0" inherit="bhkSerializable">
         A Ball and Socket Constraint chain.
-        <add name="Num Floats" type="uint">Unknown</add>
-        <add name="Floats 1" type="Vector4" arr1="Num Floats">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Num Links" type="uint">Number of links in the chain</add>
-        <add name="Links" type="Ptr" template="NiObject" arr1="Num Links">Unknown</add>
-        <add name="Num Links 2" type="uint">Number of links in the chain</add>
-        <add name="Links 2" type="Ptr" template="NiObject" arr1="Num Links 2">Unknown</add>
-        <add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Num Pivot Points" type="uint">Number of items in Pivot Points array. Divide this by 2 to get number of constraints in the chain.
+        Each constraint in chain takes two items in Pivot Points array. The first (every odd in array) defines constraint's pivot point in bodyA's space, next (every even in array) defines constraint's pivot point in bodyB's space. It is same as for single bhkBallAndSocketConstraint.</add>
+        <add name="Pivot Points" type="Vector4" arr1="Num Pivot Points">Items on even index (0, 2, 4, ...): Constraint's pivot point in bodyA's space.
+        Items on odd index (1, 3, 5, ...): Constraint's pivot point in bodyB's space.</add>
+        <add name="Tau?" type="float" default="1.0">High values (0.8 .. 1.2) make the constraints harder, however they get more unstable as well. Smaller numbers (0.3 .. 0.6) give much softer and smoother behavior.
+        
+        Observation in Skyrim:
+        - Usual value is 1.0.</add>
+        <add name="Damping?" type="float" default="0.6">Defines how the current bodies velocity is taken into account.
+        
+        Observation in Skyrim:
+        - Damping of the constraints in the chain, i.e. how much the bodies holds their position in chain.
+        - Very low values reduces the strength of chain, .i.e. strong impuls can increase local distance between bodies and slow down (or even disable) their coming back to original position.
+        - Usual value is 0.6.</add>
+        <add name="CFM?" type="float" default="1.1920929e-08">Constraint force mixing parameter. Value added to the diagonal of the constraint matrix. Should be zero or tiny. When this value is zero, then some chain configurations may result in a division by zero when solving.
+        
+        Observation in Skyrim:
+        - Restitution (elasticity) of constraints - higher values make constraints more elastic.
+        - Usual value is 1.1920929e-08.</add>
+        <add name="Max Error Distance?" type="float" default="0.1">Specifies the maximum distance error in constraints allowed before the stabilization algorithm kicks in.
+        
+        Observation in Skyrim:
+        - Very low values increases resistance to move of each constraint in chain.
+        - Usual value is 0.1.</add>
+        <add name="Num Entities in Chain" type="uint">Number of bodies in the chain.</add>
+        <add name="Entities in Chain" type="Ptr" template="bhkEntity" arr1="Num Entities in Chain">The entities in the chain.</add>
+        <add name="Constraint Basic Data" type="ConstraintBasicData" />
+    </niobject>
+
+    <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
+        A breakable constraint.
+        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Threshold" type="float">Amount of force to break the rigid bodies apart.</add>
+        <add name="Remove if Broken" type="bool" default="0">Usually no.
+        Observation in Skyrim:
+        Two movable entities (RigidBodies) behavior after constraint is broken:
+        No: Entities are independent. But grabbing of any entity gives impulses to other entity too.
+        Yes: If one entity stop its moving (have no velocity) or is not interacting with other RigidBody, the other entity is disabled - don't collide with player, stops its move and after appropriate time it is moved to its final position (where it would normally stop its move). If the velocity of one entity is regained, the other entity is enabled. Grabbing of any entity gives impulses to other entity too.
+        </add>
     </niobject>
 
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
@@ -2822,7 +2862,7 @@
 
         	Fallout3/Skyrim: can't be higher than 1.</add>
         <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="Version >= 10.0.1.0">Bit 4: Has Tangents/Bitangents</add>
-        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
+        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim. If this is NiTriStripsData block and its parent block is bhkNiTriStripsShape, the value here is SkyrimHavokMaterial.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Tangent vectors.</add>
@@ -5365,28 +5405,21 @@
         <add name="Unknown Short 2" type="short">Unknown</add>
     </niobject>
 
-    <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
-        A breakable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
-        <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
-        <add name="Remove if Broken" type="bool">Unknown</add>
-    </niobject>
-
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
         Bethesda-Specific node.
         <add name="Unknown Ints 1" type="int" arr1="17" />
     </niobject>
 
-<!--	
-	
-	<niobject name="bhkPoseArray" inherit="NiObject">
-		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
-		<add name="Num Bones" type="int">Number of target bones</add>
-        <add name="Bones" type="string" arr1="Num Bones">Bones in index</add>
-        <add name="Num Poses" type="int">Unknown</add>
-		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
-	</niobject>
--->	
+    <niobject name="bhkPoseArray" inherit="NiObject">
+        Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
+        Defines different kill poses. The game probably select the pose randomly and apply it on creature's skeleton immediately after it is killed (after it becomes a ragdoll).
+        Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
+        <add name="Num Bones" type="int">Number of target bones</add>
+        <add name="Bones" type="string" arr1="Num Bones">List of bones.</add>
+        <add name="Num Poses" type="int">Number of poses.</add>
+        <add name="Poses" type="BonePoseArray" arr1="Num Poses">List of poses.</add>
+    </niobject>
+
     <niobject name="bhkRagdollTemplate" inherit="NiObject">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
         <add name="Name" type="string"/>
@@ -5407,7 +5440,7 @@
         <add name="Flag or Num Constraints?" type="uint">Either a flag or a number of constraints.
         0: no Constraint is present.
         1: a Constraint is present.</add>
-        <add name="Constraint" type="bhkRDTConstraint" cond="Flag or Num Constraints? != 0">Unknown</add>
+        <add name="Constraint" type="RDTConstraint" cond="Flag or Num Constraints? != 0">Unknown</add>
     </niobject>
 
     <compound name="Region">
