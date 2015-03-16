@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -37,7 +37,7 @@
     <version num="20.3.0.2">Emerge</version>
     <version num="20.3.0.3">Emerge</version>
     <version num="20.3.0.6">Emerge</version>
-    <version num="20.3.0.9">Warhammer, Lazeska, Divinity 2, Howling Sword, Bully SE</version>
+    <version num="20.3.0.9">Warhammer, Lazeska, Divinity 2, Howling Sword, Bully SE, Black Prophecy</version>
     <version num="20.5.0.0">KrazyRain</version>
     <version num="20.6.0.0">KrazyRain</version>
     <version num="20.6.5.0">Epic Mickey</version>
@@ -1227,7 +1227,7 @@
         <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Priority" type="byte" ver1="10.1.0.106" vercond="(User Version >= 10)">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
+        <add name="Priority" type="byte" ver1="10.1.0.106" vercond="(User Version >= 10) &amp;&amp; (Version != 20.3.0.9)">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to the NiStringPalette which contains the name of the controlled NIF object.</add>
         <add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
         <add name="Node Name" type="string" ver1="20.1.0.3">The name of the animated node.</add>
@@ -1263,10 +1263,10 @@
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="ulittle32" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="ulittle32" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="ulittle32" default="0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
+        <add name="User Version 2" type="ulittle32" default="0" cond="((User Version &gt;= 10) &amp;&amp; (Version != 20.3.0.9)) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
-        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
+        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="((User Version &gt;= 10) &amp;&amp; (Version != 20.3.0.9))|| ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
         <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
@@ -1440,7 +1440,7 @@
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into &#039;Bones&#039;.</add>
-		<add name="Unknown Short" type="ushort" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Short" type="ushort" vercond="(User Version >= 12) &amp;&amp; (Version != 20.3.0.9)">Unknown</add>
 
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
@@ -1553,7 +1553,7 @@
         <add name="Skin Transform" type="SkinTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
-        <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
+        <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 131072) || (User Version == 196608)">Unknown, always 0?</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
@@ -2509,13 +2509,14 @@
         Generic node object.
         <add name="Flags" type="Flags" ver1="3.0">Some flags; commonly 0x000C or 0x000A.</add>
         <add name="Unknown Short 1" type="ushort" default="8" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
+        <add name="Unknown Short 1" type="ushort" default="0" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version >= 7) &amp;&amp; (User Version &lt;= 12)" >Unknown Flag</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
         <add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
-        <add name="Num Properties" type="uint" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))">The number of property objects referenced.</add>
-        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))">List of node properties.</add>
+        <add name="Num Properties" type="uint" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11) || (Version == 20.3.0.9))">The number of property objects referenced.</add>
+        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11) || (Version == 20.3.0.9))">List of node properties.</add>
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
         <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0">Do we have a bounding box?</add>
@@ -2572,8 +2573,58 @@
         <add name="Life Span Variation" type="float">Adds randomness to Life Span.</add>
     </niobject>
 
+    <niobject name="RkPSysEmitterModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Next Particle System?" type="Ref" template="NiParticleSystem">Index of the next NiParticleSystem?.</add>
+        <add name="Unknown Byte" type="byte">Unknown.</add>
+    </niobject>
+
+    <niobject name="RkPSysPartRadiusModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Data" type="Ref" template="NiFloatData">Float data.</add>
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown Float 2" type="float">Unknown.</add>
+    </niobject>
+
+    <niobject name="RkPSysSpeedModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Data" type="Ref" template="NiFloatData">Float data.</add>
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown.</add>
+        <add name="Unknown Short 3" type="ushort">Unknown.</add>
+    </niobject>
+
+    <niobject name="RkPSysColorScaleModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Unknown Float" type="float">Unknown.</add>
+    </niobject>
+
+    <niobject name="RkPSysRadiusScaleModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Unknown Byte" type="byte">Unknown.</add>
+        <add name="Unknown Float" type="float">Unknown.</add>
+    </niobject>
+
+    <niobject name="RkPSysAnimRotModifier" abstract="0" inherit="NiPSysModifier">
+        Unknown.
+        <add name="Data" type="Ref" template="NiFloatData">Float data.</add>
+        <add name="Unknown Short 1" type="ushort">Unknown.</add>
+        <add name="Unknown Float" type="float">Unknown.</add>
+        <add name="Unknown Int" type="uint">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort">Unknown.</add>
+        <add name="Initial Axis?" type="Vector3">Unknown.</add>
+        <add name="Initial Rotation Angle?" type="float">Unknown.</add>
+        <add name="Initial Rotation Angle Variation?" type="float">Unknown.</add>
+    </niobject>
+
     <niobject name="NiPSysVolumeEmitter" abstract="1" inherit="NiPSysEmitter">
         An emitter that emits meshes?
+        <add name="Has Unknown Array" type="bool" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version != 196608)">Unknown bool.</add>
+        <add name="Unknown Array" type="uint" arr1="13" cond="Has Unknown Array" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version != 196608)">Unknown.
+        Found in nifs from Black Prophecy game where this array if filled with 13 values of 0xBDBDBDBD. Is it some kind of pattern?</add>
         <add name="Emitter Object" type="Ptr" template="NiNode" ver1="10.1.0.0">Node parent of this modifier?</add>
     </niobject>
 
@@ -2778,8 +2829,8 @@
         <add name="Num Shape Groups 2" type="uint"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">The size of the second list of shape groups.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Group of NiTriShape indices.</add>
-        <add name="Unknown Int 2" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
-        <add name="Unknown Int 3" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
+        <add name="Unknown Int 2" type="int" vercond="(Version == 20.3.0.9) &amp;&amp; ((User Version == 131072) || (User Version == 196608))">Unknown.</add>
+        <add name="Unknown Int 3" type="int" vercond="(Version == 20.3.0.9) &amp;&amp; ((User Version == 131072) || (User Version == 196608))">Unknown.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
@@ -2800,7 +2851,7 @@
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
-        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
+        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Two property links, used by Bethesda.</add>
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -2812,24 +2863,29 @@
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
         <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
         <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
-        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(Version &lt; 20.2.0.7) || (User Version &lt; 11)">Number of vertices.</add>
-        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
+        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(Version &lt; 20.2.0.7) || (User Version &lt; 11) || (Version == 20.3.0.9)">Number of vertices.</add>
+        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
-        <add name="Num UV Sets" type="byte" vercond="Version >= 10.0.1.0" calculated="1">Number of UV texture sets.
-
-        	Fallout3/Skyrim: can't be higher than 1.</add>
-        <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="Version >= 10.0.1.0">Bit 4: Has Tangents/Bitangents</add>
-        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
+        <add name="Num UV Sets" type="byte" vercond="(Version >= 10.0.1.0) &amp;&amp; (Endian Type == 1)" calculated="1">Number of UV texture sets.
+        Fallout3/Skyrim: can't be higher than 1.</add>
+        <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="(Version >= 10.0.1.0) &amp;&amp; (Endian Type == 1)">Bit 4: Has Tangents/Bitangents</add>
+        <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="(Version >= 10.0.1.0) &amp;&amp; (Endian Type == 0)">Bit 4: Has Tangents/Bitangents</add>
+        <add name="Num UV Sets" type="byte" vercond="(Version >= 10.0.1.0) &amp;&amp; (Endian Type == 0)" calculated="1">Number of UV texture sets.
+        Fallout3/Skyrim: can't be higher than 1.</add>
+        <add name="Unknown Int 2" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Tangent vectors.</add>
         <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Unknown bool 1" type="bool" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version == 196608)">Enables/disables Unknown array 1.</add>
+        <add name="Unknown array 1" type="float" arr1="Num Vertices" cond="Unknown bool 1">Unknown array.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
-        <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
+        <add name="Unknown 13 shorts" type="short" arr1="13" vercond="(Version == 20.3.0.9) &amp;&amp;((User Version == 131072) || (User Version == 196608))">Unknown, always 0?</add>
+        <add name="Unknown Int" type="uint" cond="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12)">Unknown</add>
         <add name="Has Vertex Colors" type="bool">
             Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
@@ -2845,10 +2901,8 @@
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
         <add name="UV Sets" type="TexCoord" arr1="(Num UV Sets &amp; 63)" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
-        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt; 12">Unknown.</add>
-        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version >= 12" cond="!NiPSysData">Unknown.</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
+        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
     </niobject>
 
     <niobject name="AbstractAdditionalGeometryData" abstract="1" inherit="NiObject">
@@ -2948,22 +3002,22 @@
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles&#039; size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
-        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
+        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii" ver1="10.1.0.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
         <add name="Num Active" type="ushort">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</add>
         <add name="Has Sizes" type="bool">Is the particle size array present?</add>
-        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
+        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes">The individual particel sizes.</add>
         <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
-        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particle rotations.</add>
-        <add name="Unknown Byte 1" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Unknown Link" type="Ref" template="NiObject" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particle rotations.</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
-        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Angles of rotation</add>
-        <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
+        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles">Angles of rotation</add>
+        <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4" vercond="Version != 20.3.0.9">Are axes of rotation present?</add>
         <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
-        <add name="Has UV Quadrants" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">if value is no, a single image rendered</add>
-        <add name="Num UV Quadrants" type="byte" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
+        <add name="Has UV Quadrants" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (Version != 20.3.0.9)">if value is no, a single image rendered</add>
+        <add name="Num UV Quadrants" type="byte" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (Version != 20.3.0.9)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
         <add name="UV Quadrants" type="Vector4" arr1="Num UV Quadrants" cond="Has UV Quadrants" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)"></add>
-        <add name="Unknown Byte 2" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
+        <add name="Unknown Byte 2" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11)">Unknown</add>
+        <add name="Has Unknown Floats 2" type="byte" vercond="Version == 20.3.0.9">Unknown</add>
+        <add name="Unknown Floats 2" type="Vector3" arr1="Num Vertices" cond="Has Unknown Floats 2">Unknown</add>
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -2988,21 +3042,21 @@
 
     <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData">
         Particle system data.
-        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
-
-        <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
-        <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
-        <add name="Aspect Ratio" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
-        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
-        <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Short 3" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Byte 4" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
+        <add name="Unknown Short 1" type="ushort" vercond="!((Version == 20.2.0.7) &amp;&amp; ((User Version == 11) || (User Version == 12)))">Unknown.</add>
+        <add name="Unknown Short 2" type="ushort" vercond="!((Version == 20.2.0.7) &amp;&amp; ((User Version == 11) || (User Version == 12)))">Unknown.</add>
+        <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
+        <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
+        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
+        <add name="Aspect Ratio" type="float" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
+        <add name="Velocity Orientation" type="bool" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Speed To Aspect Enabled" type="bool" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Speed To Aspect Acpect 2" type="float" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Speed To Aspect Speed 1" type="float" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Speed To Aspect Speed 2" type="float" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Unknown Byte 4" type="byte" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
     </niobject>
     
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData">
@@ -3172,8 +3226,8 @@
         <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
         <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
-        <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
-        <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
+        <add name="Unknown Int 4" type="int" vercond="(Version == 20.3.0.9) &amp;&amp; ((User Version == 131072) || (User Version == 196608))">Unknown</add>
+        <add name="Unknown Int 5" type="int" vercond="(Version == 20.3.0.9) &amp;&amp; ((User Version == 131072) || (User Version == 196608))">Unknown</add>
         <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
         <add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
@@ -3211,6 +3265,7 @@
 
     <niobject name="NiDirectionalLight" abstract="0" inherit="NiLight">
         Directional light source.
+        <add name="Unknown bool" type="bool" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 10)">Unknown.</add>
     </niobject>
 
     <niobject name="NiDitherProperty" abstract="0" inherit="NiProperty">
@@ -3397,6 +3452,7 @@
         01 ROTATE_ABOUT_UP
         10 RIGID_FACE_CAMERA
         11 ALWAYS_FACE_CENTER
+        <add name="Unknown 3" type="byte" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version != 196608)">Unknown.</add>
         <add name="Billboard Mode" type="BillboardMode" ver1="10.1.0.0">The way the billboard will react to the camera.</add>
     </niobject>
 
@@ -3486,10 +3542,13 @@
 
     <niobject name="NiParticleSystem" abstract="0" inherit="NiParticles">
         A particle system.
-		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Short 3" type="ushort" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
-		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
+        <add name="Unknown Short 2" type="ushort" vercond="((User Version >= 12) &amp;&amp; ((Version != 20.3.0.9) || ((Version == 20.3.0.9) &amp;&amp; (User Version != 196608))))">Unknown</add>
+        <add name="Unknown Short 3" type="ushort" vercond="((User Version >= 12) &amp;&amp; ((Version != 20.3.0.9) || ((Version == 20.3.0.9) &amp;&amp; (User Version != 196608))))">Unknown</add>
+        <add name="Unknown Int 1" type="uint" vercond="((User Version >= 12) &amp;&amp; ((Version != 20.3.0.9) || ((Version == 20.3.0.9) &amp;&amp; (User Version != 196608))))">Unknown</add>
+        <add name="World Space" type="bool" ver1="10.1.0.0" vercond="((Version != 20.3.0.9) || ((Version == 20.3.0.9) &amp;&amp; (User Version == 196608)))">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
+        <add name="Unknown Byte" type="byte" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 5) &amp;&amp; (User Version &lt; 12)">Unknown. Maybe World Space bool?</add>
+        <add name="Unknown Short 2" type="ushort" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 5) &amp;&amp; (User Version &lt; 12)">Unknown</add>
+        <add name="Unknown Int 1" type="uint" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 5) &amp;&amp; (User Version &lt; 12)">Unknown</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
     </niobject>
@@ -3675,6 +3734,9 @@
         <add name="Spawn Modifier" type="Ref" template="NiPSysSpawnModifier">Link to NiPSysSpawnModifier object?</add>
     </niobject>
 
+    <niobject name="RkPSysAgeDeathNotifyModifier" abstract="0" inherit="NiPSysAgeDeathModifier">
+    </niobject>
+
     <niobject name="NiPSysBombModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that uses a NiNode to use as a "Bomb Object" to alter the path of particles.
         <add name="Bomb Object" type="Ptr" template="NiNode">Link to a NiNode for bomb to function.</add>
@@ -3738,7 +3800,7 @@
         <add name="Force Type" type="ForceType">Planar or Spherical type</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Range for turbulence.</add>
-        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" vercond="User Version >= 11">Unknown</add>
+        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (Version != 20.3.0.9)">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier">
@@ -3747,11 +3809,14 @@
         <add name="Grow Generation" type="ushort">Unknown.</add>
         <add name="Fade Time" type="float">Time in seconds to fade out.</add>
         <add name="Fade Generation" type="ushort">Unknown.</add>
-        <add name="Base Scale" type="float" ver1="20.2.0.7" userver="11">Unknown</add>
+        <add name="Base Scale" type="float" ver1="20.2.0.7" vercond="(User Version == 11) &amp;&amp; (Version != 20.3.0.9)">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysMeshEmitter" abstract="0" inherit="NiPSysEmitter">
         Particle emitter that uses points on a specified mesh to emit from.
+        <add name="Has Unknown Array" type="bool" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version != 196608)">Unknown byte.</add>
+        <add name="Unknown Array" type="uint" arr1="13" cond="Has Unknown Array" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version != 196608)">Unknown.
+        Found in nifs from Black Prophecy game where this array if filled with 13 values of 0xBDBDBDBD. Is it some kind of pattern?</add>
         <add name="Num Emitter Meshes" type="uint">The number of references to emitter meshes that follow.</add>
         <add name="Emitter Meshes" type="Ref" template="NiTriBasedGeom" arr1="Num Emitter Meshes">Links to meshes used for emitting.</add>
         <add name="Initial Velocity Type" type="VelocityType">The way the particles get their initial direction and speed.</add>
@@ -3761,6 +3826,7 @@
 
     <niobject name="NiPSysMeshUpdateModifier" abstract="0" inherit="NiPSysModifier">
         Unknown.
+        <add name="Unknown bool" type="bool" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version >= 9) &amp;&amp; (User Version &lt;= 12)">Unknown.</add>
         <add name="Num Meshes" type="uint">The number of object references that follow.</add>
         <add name="Meshes" type="Ref" template="NiAVObject" arr1="Num Meshes">Group of target NiNodes or NiTriShapes?</add>
     </niobject>
@@ -3847,6 +3913,7 @@
     <niobject name="NiPSysSphereEmitter" abstract="0" inherit="NiPSysVolumeEmitter">
         Particle emitter that uses points within a sphere shape to emit from.
         <add name="Radius" type="float">The radius of the sphere shape</add>
+        <add name="Unknown Float" type="float" vercond="(Version == 20.3.0.9) &amp;&amp; (User Version != 196608)">Unknown</add>
     </niobject>
 
     <niobject name="NiPSysUpdateCtlr" abstract="0" inherit="NiTimeController">
@@ -5123,10 +5190,10 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 5" type="short">Unknown</add>
-        <add name="Unknown Byte 6" type="byte">Unknown</add>
-        <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Float 8" type="float">Unknown</add>
+        <add name="Max Point Count" type="ushort">Final value is computed as Max Point Count + 3, i.e. when value here is 0, Max Point Count for engine is 3.</add>
+        <add name="Start Cap Size" type="float">Unknown</add>
+        <add name="End Cap Size" type="float">Unknown</add>
+        <add name="Do Z Pre-Pass" type="bool">Unknown</add>
     </niobject>
 
 
@@ -6135,10 +6202,55 @@
     </niobject>
 
     <!-- Divinity 2 (P_Island_VerySmall_A.item) -->
+    <!-- Divinity 2 .item files (version 20.3.0.9, user version 196608) -->
     <niobject name="CStreamableAssetData" inherit="NiObject">
         <add name="Root" type="Ref" template="NiNode" />
-        <add name="Unknown Bytes" type="byte" arr1="5" />
+        <add name="Has Kfm Data" type="bool">Has Kfm data?</add>
+        <add name="Kfm Data size" type="uint">Size of Kfm Data in bytes.</add>
+        <add name="Kfm Data" type="KfmData" cond="Has Kfm Data">Complete Kfm data?</add>
+        <add name="Num Controller Sequences" type="uint" cond="Has Kfm Data">The number of controller sequence objects.</add>
+        <add name="Controller Sequences" type="Ref" template="NiControllerSequence" arr1="Num Controller Sequences" cond="Has Kfm Data">Refers to a list of NiControllerSequence object.</add>
     </niobject>
+
+    <compound name="KfmData"><!-- taken from kfm.xml-->
+        <add name="NIF File Name" type="SizedString"/>
+        <add name="Master Node Name" type="SizedString"/>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="Unknown Int 2" type="uint">Unknown.</add>
+        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Unknown Float 2" type="float">Unknown.</add>
+        <add name="Num Animations" type="uint">Unknown.</add>
+        <add name="Animations" type="Animation" arr1="Num Animations">Unknown.</add>
+        <add name="Unknown Int 3" type="uint">Unknown.</add>
+    </compound>
+
+    <compound name="Animation"><!-- taken from kfm.xml-->
+        <add name="Event Code" type="int" />
+        <add name="KF File Name" type="SizedString" />
+        <add name="Index" type="int">An index?</add>
+        <add name="Num Transitions" type="int" />
+        <add name="Transitions" type="Transition" arr1="Num Transitions">Max = Num Animations -1? No transition from animation to itself.</add>
+    </compound>
+
+    <compound name="Transition"><!-- taken from kfm.xml-->
+        <add name="Animation" type="int">Refers to another animation</add>
+        <add name="Type" type="int" />
+        <add name="Duration" type="float" cond="(Type != 5) &amp;&amp; (Type != 4)" />
+        <add name="Num Intermediate Anims" type="int" cond="(Type != 5) &amp;&amp; (Type != 4)" />
+        <add name="Intermediate Anims" type="IntermediateAnim" arr1="Num Intermediate Anims" cond="Num Intermediate Anims" />
+        <add name="Num TextKeyPairs" type="int" cond="(Type != 5) &amp;&amp; (Type != 4)" />
+        <add name="TextKeyPairs" type="TextKeyPair" cond="Num TextKeyPairs" />
+    </compound>
+
+    <compound name="IntermediateAnim"><!-- taken from kfm.xml-->
+        <add name="Unknown Int" type="int" />
+        <add name="Event" type="SizedString" />
+    </compound>
+
+    <compound name="TextKeyPair">
+        <add name="Unknown Int" type="int" />
+        <add name="Unknown float" type="float" />
+    </compound>
 
     <!-- Skyrim specific havok block -->
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
@@ -6240,6 +6352,193 @@
         <add name="Num Bones 2" type="uint">Unknown</add>
         <add name="Bones" type="Ref" arr1="Num Bones 2" template="NiNode">Unknown</add>
     </niobject>
-    
-    
+
+<!-- Support for Divinity 2 .cat files, version 20.3.0.9, user version 196608 -->
+    <niobject name="MdlMan::CModelTemplateDataEntry" abstract="0">
+        Unknown.
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Model Filename" type="string">Unknown.</add>
+        <add name="Extra data?" type="Ref">Unknown</add>
+        <add name="Num Entries" type="uint">Unknown</add>
+        <add name="Entry" type="Ref" arr1="Num Entries">Unknown</add>
+    </niobject>
+
+    <niobject name="MdlMan::CSkeletonDataEntry" abstract="0">
+        Unknown.
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Skeleton Filename" type="string">Unknown.</add>
+        <add name="Skeleton Node" type="Ref">Unknown</add>
+    </niobject>
+
+    <niobject name="MdlMan::CAMDataEntry" abstract="0">
+        Unknown.
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Has Kfm Data" type="bool">Has Kfm data?</add>
+        <add name="Kfm Name" type="string">Unknown.</add>
+        <add name="Kfm Data size" type="uint">Size of Kfm Data in bytes.</add>
+        <add name="Kfm Data" type="KfmData" cond="Has Kfm Data">Complete Kfm data?</add>
+    </niobject>
+
+    <niobject name="MdlMan::CMeshDataEntry" abstract="0">
+        Unknown.
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Mesh Filename" type="string">Unknown.</add>
+        <add name="Unknown byte 2" type="byte">Unknown</add>
+        <add name="Mesh Node" type="Ref">Unknown</add>
+    </niobject>
+
+    <niobject name="MdlMan::CAnimationDataEntry" abstract="0">
+        Unknown.
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Animation Filename" type="string">Unknown.</add>
+        <add name="Num Sequences" type="uint">Unknown</add>
+        <add name="Sequence" type="Ref" arr1="Num Sequences">Unknown</add>
+    </niobject>
+<!-- Support for Divinity 2 .cat files, version 20.3.0.9, user version 196608 -END- -->
+
+<!-- Support for Divinity 2 MdlManBinary.nif file, version 20.3.0.9, user version 196608 -->
+    <compound name="CModel">
+        <add name="Unknown int" type="uint">Unknown</add>
+        <add name="Num Meshes" type="uint">Unknown</add>
+        <add name="Meshes" type="Ref" arr1="Num Meshes" template="CMesh">Unknown</add>
+    </compound>
+
+    <compound name="ModelPrototype">
+        <add name="Name" type="SizedString">Unknown</add>
+        <add name="Prototype" type="Ref" template="CModelPrototype">Unknown</add>
+    </compound>
+
+    <compound name="ModelTemplate">
+        <add name="Name" type="SizedString">Unknown</add>
+        <add name="Template" type="Ref" template="CModelTemplate">Unknown</add>
+    </compound>
+
+    <compound name="CStringMapperItem1">
+        <add name="Name" type="SizedString">Unknown</add>
+        <add name="Unknown int" type="uint">Unknown</add>
+    </compound>
+
+    <compound name="CStringMapperSubItem1">
+        <add name="Name" type="SizedString">Unknown</add>
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Unknown int 2" type="uint">Unknown</add>
+    </compound>
+
+    <compound name="CStringMapperItem3">
+        <add name="Unknown int 1" type="uint">Unknown</add>
+        <add name="Num SubItems" type="uint">Unknown</add>
+        <add name="SubItem" type="CStringMapperSubItem1" arr1="Num SubItems">Unknown</add>
+    </compound>
+
+    <niobject name="CModelManager" abstract="0">
+        <add name="String Mapper?" type="Ref">Unknown</add>
+        <add name="Num Models" type="uint">Unknown</add>
+        <add name="Model" type="CModel" arr1="Num Models">Unknown</add>
+        <add name="Num Prototypes" type="uint">Unknown</add>
+        <add name="Model Prototype" type="ModelPrototype" arr1="Num Prototypes">Unknown</add>
+        <add name="Num Templates" type="uint">Unknown</add>
+        <add name="Model Template" type="ModelTemplate" arr1="Num Templates">Unknown</add>
+    </niobject>
+
+    <niobject name="CStringMapper" abstract="0">
+        <add name="Num Items 1" type="uint">Unknown</add>
+        <add name="Item 1" type="CStringMapperItem1" arr1="Num Items 1">Unknown</add>
+        <add name="Num Items 2" type="uint">Unknown</add>
+        <add name="Item 2" type="CStringMapperItem1" arr1="Num Items 2">Unknown</add>
+        <add name="Num Items 3" type="uint">Unknown</add>
+        <add name="Item 3" type="CStringMapperItem3" arr1="Num Items 3">Unknown</add>
+    </niobject>
+
+    <compound name="CMeshItem">
+        <add name="Unknown int 1" type="int">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+    </compound>
+
+    <niobject name="CMesh" abstract="0">
+        <add name="Filename" type="string">Unknown</add>
+        <add name="Name" type="string">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Unknown int 1" type="int">Unknown</add>
+        <add name="Num Items" type="uint">Unknown</add>
+        <add name="Item" type="CMeshItem" arr1="Num Items">Unknown</add>
+    </niobject>
+
+    <niobject name="CMeshEntry" abstract="0">
+        <add name="Unknown int 1" type="int">Unknown</add>
+        <add name="Unknown int 2" type="int">Unknown</add>
+        <add name="Unknown int 3" type="int">Unknown</add>
+        <add name="Unknown byte 1" type="byte">Unknown</add>
+        <add name="Unknown int 4" type="int">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+    </niobject>
+
+    <compound name="CPropertyGroupItem">
+        <add name="Unknown int 1" type="int">Unknown</add>
+        <add name="Unknown int 2" type="int">Unknown</add>
+        <add name="Unknown int 3" type="int">Unknown</add>
+    </compound>
+
+    <niobject name="CPropertyGroup" abstract="0">
+        <add name="Num Items" type="uint">Unknown</add>
+        <add name="Items" type="CPropertyGroupItem" arr1="Num Items">Unknown</add>
+    </niobject>
+
+    <compound name="CModelPrototypeItem">
+        <add name="Unknown int" type="int">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+    </compound>
+
+    <niobject name="CModelPrototype" abstract="0">
+        <add name="Name" type="string">Unknown</add>
+        <add name="Filename" type="string">Unknown</add>
+        <add name="Unknown int 3" type="int">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+        <add name="Num Unknown Vectors3" type="uint">Unknown</add>
+        <add name="Unknown Vectors3" type="Vector3" arr1="Num Unknown Vectors3">Unknown</add>
+        <add name="Num Unknown ints" type="uint">Unknown</add>
+        <add name="Unknown ints" type="int" arr1="Num Unknown ints">Unknown</add>
+        <add name="Num Items" type="uint">Unknown</add>
+        <add name="Items" type="CModelPrototypeItem" arr1="Num Items">Unknown</add>
+        <add name="Num CKFMDescriptors" type="uint">Unknown</add>
+        <add name="CKFMDescriptors" type="Ref" arr1="Num CKFMDescriptors">Unknown</add>
+        <add name="Num Parts" type="uint">Unknown</add>
+        <add name="Parts" type="CModelPrototypeItem" arr1="Num Parts">Unknown</add>
+    </niobject>
+
+    <niobject name="CKFMDescriptor" abstract="0">
+        <add name="Name" type="string">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+    </niobject>
+
+    <niobject name="CSlot" abstract="0">
+        <add name="Name" type="string">Unknown</add>
+        <add name="Unknown link" type="Ref">Unknown</add>
+        <add name="Unknown int" type="int">Unknown</add>
+        <add name="Num 1" type="uint">Unknown</add>
+        <add name="Unknown ints 1" type="int" arr1="Num 1">Unknown</add>
+        <add name="Num 2" type="uint">Unknown</add>
+        <add name="Unknown links" type="Ref" arr1="Num 2">Unknown</add>
+    </niobject>
+
+    <compound name="CModelTemplateItem">
+        <add name="Num 1" type="uint">Unknown</add>
+        <add name="Unknown bytes 1" type="byte" arr1="Num 1">Unknown</add>
+        <add name="Num 2" type="uint">Unknown</add>
+        <add name="Unknown bytes 2" type="byte" arr1="Num 2">Unknown</add>
+    </compound>
+
+    <niobject name="CModelTemplate" abstract="0">
+        <add name="Name" type="string">Unknown</add>
+        <add name="Unknown int 2" type="int">Unknown</add>
+        <add name="Unknown link 1" type="Ref">Unknown</add>
+        <add name="Unknown link 2" type="Ref">Unknown</add>
+        <add name="Num Items" type="uint">Unknown</add>
+        <add name="Items" type="CModelTemplateItem" arr1="Num Items">Unknown</add>
+    </niobject>
+<!-- Support for Divinity 2 MdlManBinary.nif file, version 20.3.0.9, user version 196608 -END- -->
+
 </niftoolsxml>
