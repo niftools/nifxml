@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.2.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -38,6 +38,7 @@
     <version num="20.3.0.3">Emerge</version>
     <version num="20.3.0.6">Emerge</version>
     <version num="20.3.0.9">Warhammer, Lazeska, Divinity 2, Howling Sword, Bully SE</version>
+    <version num="20.3.1.1">Fantasy Frontier Online</version>
     <version num="20.5.0.0">KrazyRain</version>
     <version num="20.6.0.0">KrazyRain</version>
     <version num="20.6.5.0">Epic Mickey</version>
@@ -1081,6 +1082,20 @@
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
 
+    <compound name="ByteVector3">
+        A vector in 3D space (x,y,z).
+        <add name="x" type="byte">First coordinate.</add>
+        <add name="y" type="byte">Second coordinate.</add>
+        <add name="z" type="byte">Third coordinate.</add>
+    </compound>
+
+    <compound name="Vector3a">
+        A vector in 3D space (x,y,z).
+        <add name="x" type="short">First coordinate.</add>
+        <add name="y" type="short">Second coordinate.</add>
+        <add name="z" type="short">Third coordinate.</add>
+    </compound>
+
     <compound name="Vector3" niflibtype="Vector3" nifskopetype="vector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="float">First coordinate.</add>
@@ -1211,6 +1226,12 @@
         A weighted vertex.
         <add name="Index" type="ushort">The vertex index, in the mesh.</add>
         <add name="Weight" type="float">The vertex weight - between 0.0 and 1.0</add>
+    </compound>
+
+    <compound name="SkinWeight2">
+        A weighted vertex.
+        <add name="Index" type="ushort">The vertex index, in the mesh.</add>
+        <add name="Weight" type="ushort">The vertex weight - between 0.0 and 1.0</add>
     </compound>
 
     <compound name="AVObject">
@@ -1371,6 +1392,12 @@
         <add name="v" type="float">Second coordinate.</add>
     </compound>
 
+    <compound name="TexCoord2">
+        Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
+        <add name="u" type="ushort">First coordinate.</add>
+        <add name="v" type="ushort">Second coordinate.</add>
+    </compound>
+
     <compound name="TexDesc">
         Texture description.
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
@@ -1429,9 +1456,12 @@
         <add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" cond="Has Vertex Map" ver1="10.1.0.0">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
-        <add name="Has Vertex Weights" type="bool" ver1="10.1.0.0">Do we have vertex weights?</add>
+        <add name="Has Vertex Weights" type="byte" ver1="10.1.0.0">Do we have vertex weights?
+        1 (default): vertex weights are stored in floats.
+        15 (compression): vertex weights are stored in half floats (found in 20.3.1.1 Fantasy Frontier Online).</add>
         <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2">The vertex weights.</add>
-        <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights" ver1="10.1.0.0">The vertex weights.</add>
+        <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights == 1" ver1="10.1.0.0">The vertex weights.</add>
+        <add name="Vertex Weights" type="ushort" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights == 15" ver1="20.3.1.1">The vertex weights.</add>
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The strip lengths.</add>
         <add name="Has Faces" type="bool" ver1="10.1.0.0">Do we have triangle or strip data?</add>
         <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Num Strips != 0" ver2="10.0.1.2">The strips.</add>
@@ -1556,7 +1586,8 @@
         <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
         <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
-        <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
+        <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG == 1">The vertex weights.</add>
+        <add name="Vertex Weights" type="SkinWeight2" arr1="Num Vertices" ver1="20.3.1.1" cond="ARG == 15">The vertex weights.</add>
     </compound>
 
     <compound name="SphereBV">
@@ -2816,35 +2847,47 @@
         <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
-        <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
-        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
+        <add name="Has Vertices" type="byte" default="1">Is the vertex array present? (Always non-zero.)
+        1 (default): vertices and texture coordinates are stored in floats.
+        15 (compression): vertices and texture coordinates are stored in half floats (found in 20.3.1.1 Fantasy Frontier Online).</add>
+        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices == 1">The mesh vertices.</add>
+        <add name="Vertices" type="Vector3a" arr1="Num Vertices" cond="Has Vertices == 15" ver1="20.3.1.1">The mesh vertices stored in half floats.</add>
         <add name="Num UV Sets" type="byte" vercond="Version >= 10.0.1.0" calculated="1">Number of UV texture sets.
 
         	Fallout3/Skyrim: can't be higher than 1.</add>
-        <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="Version >= 10.0.1.0">Bit 4: Has Tangents/Bitangents</add>
+        <add name="Extra Vectors Flags" type="ExtraVectorsFlags" vercond="(Version >= 10.0.1.0 &amp;&amp; Version != 20.3.1.1)">Bit 4: Has Tangents/Bitangents</add>
         <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
-        <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
-        <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
+        <add name="Has Normals" type="byte">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.
+        1 (default): normals are stored in floats.
+        6 (compression): normals are stored in ByteVector3 (found in 20.3.1.1 Fantasy Frontier Online).</add>
+        <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals == 1">The lighting normals.</add>
+        <add name="Normals" type="ByteVector3" arr1="Num Vertices" cond="Has Normals == 6" ver1="20.3.1.1">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Tangent vectors.</add>
         <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; (Extra Vectors Flags &amp; 16)" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
-        <add name="Has Vertex Colors" type="bool">
+        <add name="Has Vertex Colors" type="byte">
             Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
             Note: how vertex colors influence the model can be controlled by having a NiVertexColorProperty object as a property child of the root node. If this property object is not present, the vertex colors fine-tune lighting.
 
             Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
+
+            Note 3:
+            1 (default): vertex colors are stored in 4 floats.
+            7 (compression): vertex colors are stored in 4 bytes (found in 20.3.1.1 Fantasy Frontier Online).
         </add>
-        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
+        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors == 1">The vertex colors.</add>
+        <add name="Vertex Colors" type="ByteColor4" arr1="Num Vertices" cond="Has Vertex Colors == 7" ver1="20.3.1.1">The vertex colors.</add>
         <add name="Num UV Sets" type="ushort" ver2="4.2.2.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits. For versions 10.1.0.0 and up, if bit 12 is set then extra vectors are present after the normals.</add>
         <add name="Has UV" type="bool" ver2="4.0.0.2">
             Do we have UV coordinates?
 
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
-        <add name="UV Sets" type="TexCoord" arr1="(Num UV Sets &amp; 63)" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" cond="Has Vertices == 1" arr1="(Num UV Sets &amp; 63)" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord2" cond="Has Vertices == 15" arr1="Num UV Sets" arr2="Num Vertices" ver1="20.3.1.1">The UV texture coordinates</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt; 12">Unknown.</add>
@@ -2934,6 +2977,7 @@
             110 GL_GEQUAL
             111 GL_NEVER
         </add>
+        <add name="Unknown Short 0" type="ushort" vercond="Version == 20.3.1.1">Unknown</add>
         <add name="Threshold" type="byte">Threshold for alpha testing (see: glAlphaFunc)</add>
         <add name="Unknown Short 1" type="ushort" ver2="2.3">Unknown</add>
         <add name="Unknown Int 2" type="uint" ver2="2.3">Unknown</add>
@@ -4023,7 +4067,9 @@
         <add name="Skin Transform" type="SkinTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Num Bones" type="uint">Number of bones.</add>
         <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="4.0.0.2" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
-        <add name="Has Vertex Weights" type="byte" ver1="4.2.1.0" default="1">Enables Vertex Weights for this NiSkinData.</add>
+        <add name="Has Vertex Weights" type="byte" ver1="4.2.1.0" default="1">Enables Vertex Weights for this NiSkinData.
+        1 (default): vertex weights are stored in floats.
+        15 (compression): vertex weights are stored in half floats (found in 20.3.1.1 Fantasy Frontier Online).</add>
         <add name="Bone List" type="SkinData" arr1="Num Bones" arg="Has Vertex Weights">Contains offset data for each node that this skin is influenced by.</add>
     </niobject>
 
