@@ -1089,7 +1089,7 @@
         <add name="z" type="byte">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector3a">
+    <compound name="HalfVector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="short">First coordinate.</add>
         <add name="y" type="short">Second coordinate.</add>
@@ -1392,7 +1392,7 @@
         <add name="v" type="float">Second coordinate.</add>
     </compound>
 
-    <compound name="TexCoord2">
+    <compound name="HalfTexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="ushort">First coordinate.</add>
         <add name="v" type="ushort">Second coordinate.</add>
@@ -2851,7 +2851,7 @@
         1 (default): vertices and texture coordinates are stored in floats.
         15 (compression): vertices and texture coordinates are stored in half floats (found in 20.3.1.1 Fantasy Frontier Online).</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices == 1">The mesh vertices.</add>
-        <add name="Vertices" type="Vector3a" arr1="Num Vertices" cond="Has Vertices == 15" ver1="20.3.1.1">The mesh vertices stored in half floats.</add>
+        <add name="Vertices" type="HalfVector3" arr1="Num Vertices" cond="Has Vertices == 15" ver1="20.3.1.1">The mesh vertices stored in half floats.</add>
         <add name="Num UV Sets" type="byte" vercond="Version >= 10.0.1.0" calculated="1">Number of UV texture sets.
 
         	Fallout3/Skyrim: can't be higher than 1.</add>
@@ -2887,7 +2887,7 @@
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
         <add name="UV Sets" type="TexCoord" cond="Has Vertices == 1" arr1="(Num UV Sets &amp; 63)" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="UV Sets" type="TexCoord2" cond="Has Vertices == 15" arr1="Num UV Sets" arr2="Num Vertices" ver1="20.3.1.1">The UV texture coordinates</add>
+        <add name="UV Sets" type="HalfTexCoord" cond="Has Vertices == 15" arr1="Num UV Sets" arr2="Num Vertices" ver1="20.3.1.1">The UV texture coordinates</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt; 12">Unknown.</add>
