@@ -140,19 +140,19 @@
 
     <enum name="AlphaFormat" storage="uint">
         An unsigned 32-bit integer, describing how transparency is handled in a texture.
-        <option value="0" name="ALPHA_NONE">No alpha blending; the texture is fully opaque.</option>
-        <option value="1" name="ALPHA_BINARY">Texture is either fully transparent or fully opaque.  There are no partially transparent areas.</option>
-        <option value="2" name="ALPHA_SMOOTH">Full range of alpha values can be used from fully transparent to fully opaque including all partially transparent values in between.</option>
-        <option value="3" name="ALPHA_DEFAULT">Use default setting.</option>
+        <option value="0" name="NONE">No alpha blending; the texture is fully opaque.</option>
+        <option value="1" name="BINARY">Texture is either fully transparent or fully opaque.  There are no partially transparent areas.</option>
+        <option value="2" name="SMOOTH">Full range of alpha values can be used from fully transparent to fully opaque including all partially transparent values in between.</option>
+        <option value="3" name="DEFAULT">Use default setting.</option>
     </enum>
 
     <enum name="ApplyMode" storage="uint">
         An unsigned 32-bit integer, describing the apply mode of a texture.
-        <option value="0" name="APPLY_REPLACE">Replaces existing color</option>
-        <option value="1" name="APPLY_DECAL">For placing images on the object like stickers.</option>
-        <option value="2" name="APPLY_MODULATE">Modulates existing color. (Default)</option>
-        <option value="3" name="APPLY_HILIGHT">PS2 Only.  Function Unknown.</option>
-        <option value="4" name="APPLY_HILIGHT2">Parallax Flag in some Oblivion meshes.</option>
+        <option value="0" name="REPLACE">Replaces existing color</option>
+        <option value="1" name="DECAL">For placing images on the object like stickers.</option>
+        <option value="2" name="MODULATE">Modulates existing color. (Default)</option>
+        <option value="3" name="HILIGHT">PS2 Only.  Function Unknown.</option>
+        <option value="4" name="HILIGHT2">Parallax Flag in some Oblivion meshes.</option>
     </enum>
 
     <enum name="TexType" storage="uint">
@@ -173,17 +173,17 @@
 
     <enum name="KeyType" storage="uint">
         The type of animation interpolation (blending) that will be used on the associated key frames.
-        <option value="1" name="LINEAR_KEY">Use linear interpolation.</option>
-        <option value="2" name="QUADRATIC_KEY">Use quadratic interpolation.  Forward and back tangents will be stored.</option>
-        <option value="3" name="TBC_KEY">Use Tension Bias Continuity interpolation.  Tension, bias, and continuity will be stored.</option>
-        <option value="4" name="XYZ_ROTATION_KEY">For use only with rotation data.  Separate X, Y, and Z keys will be stored instead of using quaternions.</option>
-        <option value="5" name="CONST_KEY">Step function. Used for visibility keys in NiBoolData.</option>
+        <option value="1" name="LINEAR">Use linear interpolation.</option>
+        <option value="2" name="QUADRATIC">Use quadratic interpolation.  Forward and back tangents will be stored.</option>
+        <option value="3" name="TENSION_BIAS_CONTINUITY">Use Tension Bias Continuity interpolation.  Tension, bias, and continuity will be stored.</option>
+        <option value="4" name="XYZ_ROTATION">For use only with rotation data.  Separate X, Y, and Z keys will be stored instead of using quaternions.</option>
+        <option value="5" name="CONSTANT">Step function. Used for visibility keys in NiBoolData.</option>
     </enum>
 
     <enum name="LightMode" storage="uint">
         An unsigned 32-bit integer, describing how vertex colors influence lighting.
-        <option value="0" name="LIGHT_MODE_EMISSIVE">Emissive.</option>
-        <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
+        <option value="0" name="EMISSIVE">Emissive.</option>
+        <option value="1" name="EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
     </enum>
 
     <enum name="OblivionHavokMaterial" storage="uint">
@@ -523,30 +523,30 @@
 
     <enum name="MipMapFormat" storage="uint">
         An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
-        <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
-        <option value="1" name="MIP_FMT_YES">Texture uses mip maps.</option>
-        <option value="2" name="MIP_FMT_DEFAULT">Use default setting.</option>
+        <option value="0" name="NO">Texture does not use mip maps.</option>
+        <option value="1" name="YES">Texture uses mip maps.</option>
+        <option value="2" name="DEFAULT">Use default setting.</option>
     </enum>
 
     <enum name="PixelFormat" storage="uint">
         Specifies the pixel format used by the NiPixelData object to store a texture.
-        <option value="0" name="PX_FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
-        <option value="1" name="PX_FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
-        <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
-        <option value="4" name="PX_FMT_DXT1">DXT1 compressed texture.</option>
-        <option value="5" name="PX_FMT_DXT5">DXT5 compressed texture.</option>
-        <option value="6" name="PX_FMT_DXT5_ALT">DXT5 compressed texture. It is not clear what the difference is with PX_FMT_DXT5.</option>
+        <option value="0" name="RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
+        <option value="1" name="RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
+        <option value="2" name="PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
+        <option value="4" name="DXT1">DXT1 compressed texture.</option>
+        <option value="5" name="DXT5">DXT5 compressed texture.</option>
+        <option value="6" name="DXT5_ALT">DXT5 compressed texture. It is not clear what the difference is with DXT5.</option>
     </enum>
 
     <enum name="PixelLayout" storage="uint">
         An unsigned 32-bit integer, describing the color depth of a texture.
-        <option value="0" name="PIX_LAY_PALETTISED">Texture is in 8-bit paletized format.</option>
-        <option value="1" name="PIX_LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
-        <option value="2" name="PIX_LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
-        <option value="3" name="PIX_LAY_COMPRESSED">Texture is compressed.</option>
-        <option value="4" name="PIX_LAY_BUMPMAP">Texture is a grayscale bump map.</option>
-        <option value="5" name="PIX_LAY_PALETTISED_4">Texture is in 4-bit paletized format.</option>
-        <option value="6" name="PIX_LAY_DEFAULT">Use default setting.</option>
+        <option value="0" name="PALETTISED">Texture is in 8-bit paletized format.</option>
+        <option value="1" name="HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
+        <option value="2" name="TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
+        <option value="3" name="COMPRESSED">Texture is compressed.</option>
+        <option value="4" name="BUMPMAP">Texture is a grayscale bump map.</option>
+        <option value="5" name="PALETTISED_4">Texture is in 4-bit paletized format.</option>
+        <option value="6" name="DEFAULT">Use default setting.</option>
     </enum>
 
     <enum name="TexClampMode" storage="uint">
@@ -559,32 +559,32 @@
 
     <enum name="TexFilterMode" storage="uint">
         Specifies the availiable texture filter modes.  That is, the way pixels within a texture are blended together when textures are displayed on the screen at a size other than their original dimentions.
-        <option value="0" name="FILTER_NEAREST">Simply uses the nearest pixel.  Very grainy.</option>
-        <option value="1" name="FILTER_BILERP">Uses bilinear filtering.</option>
-        <option value="2" name="FILTER_TRILERP">Uses trilinear filtering.</option>
-        <option value="3" name="FILTER_NEAREST_MIPNEAREST">Uses the nearest pixel from the mipmap that is closest to the display size.</option>
-        <option value="4" name="FILTER_NEAREST_MIPLERP">Blends the two mipmaps closest to the display size linearly, and then uses the nearest pixel from the result.</option>
-        <option value="5" name="FILTER_BILERP_MIPNEAREST">Uses the closest mipmap to the display size and then uses bilinear filtering on the pixels.</option>
+        <option value="0" name="NEAREST">Simply uses the nearest pixel.  Very grainy.</option>
+        <option value="1" name="BILINEAR">Uses bilinear filtering.</option>
+        <option value="2" name="TRILINEAR">Uses trilinear filtering.</option>
+        <option value="3" name="NEAREST_MIPMAP">Uses the nearest pixel from the mipmap that is closest to the display size.</option>
+        <option value="4" name="NEAREST_MIPMAP_BLEND">Blends the two mipmaps closest to the display size linearly, and then uses the nearest pixel from the result.</option>
+        <option value="5" name="BILINEAR_MIPMAP">Uses the closest mipmap to the display size and then uses bilinear filtering on the pixels.</option>
     </enum>
 
     <enum name="VertMode" storage="uint">
         An unsigned 32-bit integer, which describes how to apply vertex colors.
-        <option value="0" name="VERT_MODE_SRC_IGNORE">Source Ignore.</option>
-        <option value="1" name="VERT_MODE_SRC_EMISSIVE">Source Emissive.</option>
-        <option value="2" name="VERT_MODE_SRC_AMB_DIF">Source Ambient/Diffuse. (Default)</option>
+        <option value="0" name="IGNORE">Source Ignore.</option>
+        <option value="1" name="EMISSIVE">Source Emissive.</option>
+        <option value="2" name="AMBIENT_DIFFUSE">Source Ambient/Diffuse. (Default)</option>
     </enum>
 
     <enum name="CycleType" storage="uint">
         The animation cyle behavior.
-        <option value="0" name="CYCLE_LOOP">Loop</option>
-        <option value="1" name="CYCLE_REVERSE">Reverse</option>
-        <option value="2" name="CYCLE_CLAMP">Clamp</option>
+        <option value="0" name="LOOP">Loop</option>
+        <option value="1" name="REVERSE">Reverse</option>
+        <option value="2" name="CLAMP">Clamp</option>
     </enum>
 
     <enum name="FieldType" storage="uint">
         The force field&#039;s type.
-        <option value="0" name="FIELD_WIND">Wind (fixed direction)</option>
-        <option value="1" name="FIELD_POINT">Point (fixed origin)</option>
+        <option value="0" name="WIND">Wind (fixed direction)</option>
+        <option value="1" name="POINT">Point (fixed origin)</option>
     </enum>
 
     <enum name="BillboardMode" storage="ushort">
@@ -613,54 +613,54 @@
 
     <enum name="ZCompareMode" storage="uint">
         This enum contains the options for doing z buffer tests.
-        <option value="0" name="ZCOMP_ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
-        <option value="1" name="ZCOMP_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
-        <option value="2" name="ZCOMP_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
-        <option value="3" name="ZCOMP_LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
-        <option value="4" name="ZCOMP_GREATER">Opposite of TEST_LESS.</option>
-        <option value="5" name="ZCOMP_NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
-        <option value="6" name="ZCOMP_GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
-        <option value="7" name="ZCOMP_NEVER">Test will allways return false. Nothing is drawn at all.</option>
+        <option value="0" name="ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
+        <option value="1" name="LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
+        <option value="2" name="EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
+        <option value="3" name="LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
+        <option value="4" name="GREATER">Opposite of TEST_LESS.</option>
+        <option value="5" name="NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
+        <option value="6" name="GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
+        <option value="7" name="NEVER">Test will allways return false. Nothing is drawn at all.</option>
     </enum>
 
     <enum name="StencilAction" storage="uint">
         This enum defines the various actions used in conjunction with the stencil buffer.
         For a detailed description of the individual options please refer to the OpenGL docs.
-        <option value="0" name="ACTION_KEEP" />
-        <option value="1" name="ACTION_ZERO" />
-        <option value="2" name="ACTION_REPLACE" />
-        <option value="3" name="ACTION_INCREMENT" />
-        <option value="4" name="ACTION_DECREMENT" />
-        <option value="5" name="ACTION_INVERT" />
+        <option value="0" name="KEEP" />
+        <option value="1" name="ZERO" />
+        <option value="2" name="REPLACE" />
+        <option value="3" name="INCREMENT" />
+        <option value="4" name="DECREMENT" />
+        <option value="5" name="INVERT" />
     </enum>
 
     <enum name="FaceDrawMode" storage="uint">
         This enum lists the different face culling options.
-        <option value="0" name="DRAW_CCW_OR_BOTH">use application defaults?</option>
-        <option value="1" name="DRAW_CCW">Draw counter clock wise faces, cull clock wise faces. This is the default for most (all?) Nif Games so far.</option>
-        <option value="2" name="DRAW_CW">Draw clock wise faces, cull counter clock wise faces. This will flip all the faces.</option>
-        <option value="3" name="DRAW_BOTH">Draw double sided faces.</option>
+        <option value="0" name="COUNTERCLOCKWISE_OR_DOUBLESIDED">use application defaults?</option>
+        <option value="1" name="COUNTERCLOCKWISE">Draw counter clock wise faces, cull clock wise faces. This is the default for most (all?) Nif Games so far.</option>
+        <option value="2" name="CLOCKWISE">Draw clock wise faces, cull counter clock wise faces. This will flip all the faces.</option>
+        <option value="3" name="DOUBLESIDED">Draw double sided faces.</option>
     </enum>
 
     <enum name="MotionSystem" storage="byte">
         The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
 
-        <option value="0" name="MO_SYS_INVALID">Invalid</option>
-        <option value="1" name="MO_SYS_DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects MO_SYS_SPHERE_INERTIA or MO_SYS_BOX_INERTIA as appropriate.</option>
-        <option value="2" name="MO_SYS_SPHERE">Simulation is performed using a sphere inertia tensor.</option>
-        <option value="3" name="MO_SYS_SPHERE_INERTIA">This is the same as MO_SYS_SPHERE_INERTIA, except that simulation of the rigid body is "softened".</option>
-        <option value="4" name="MO_SYS_BOX">Simulation is performed using a box inertia tensor.</option>
-        <option value="5" name="MO_SYS_BOX_STABILIZED">This is the same as MO_SYS_BOX_INERTIA, except that simulation of the rigid body is "softened".</option>
-        <option value="6" name="MO_SYS_KEYFRAMED">Simulation is not performed as a normal rigid body. The keyframed rigid body has an infinite mass when viewed by the rest of the system. (used for creatures)</option>
-        <option value="7" name="MO_SYS_FIXED">This motion type is used for the static elements of a game scene, e.g. the landscape. Faster than MO_SYS_KEYFRAMED at velocity 0. (used for weapons)</option>
-        <option value="8" name="MO_SYS_THIN_BOX">A box inertia motion which is optimized for thin boxes and has less stability problems</option>
-        <option value="9" name="MO_SYS_CHARACTER">A specialized motion used for character controllers</option>
+        <option value="0" name="INVALID">Invalid</option>
+        <option value="1" name="DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects SPHERE_INERTIA or BOX_INERTIA as appropriate.</option>
+        <option value="2" name="SPHERE">Simulation is performed using a sphere inertia tensor.</option>
+        <option value="3" name="SPHERE_INERTIA">This is the same as SPHERE_INERTIA, except that simulation of the rigid body is "softened".</option>
+        <option value="4" name="BOX">Simulation is performed using a box inertia tensor.</option>
+        <option value="5" name="BOX_STABILIZED">This is the same as BOX_INERTIA, except that simulation of the rigid body is "softened".</option>
+        <option value="6" name="KEYFRAMED">Simulation is not performed as a normal rigid body. The keyframed rigid body has an infinite mass when viewed by the rest of the system. (used for creatures)</option>
+        <option value="7" name="FIXED">This motion type is used for the static elements of a game scene, e.g. the landscape. Faster than KEYFRAMED at velocity 0. (used for weapons)</option>
+        <option value="8" name="THIN_BOX">A box inertia motion which is optimized for thin boxes and has less stability problems</option>
+        <option value="9" name="CHARACTER">A specialized motion used for character controllers</option>
     </enum>
 
     <enum name="DeactivatorType" storage="byte">
-        <option value="0" name="DEACTIVATOR_INVALID">Invalid</option>
-        <option value="1" name="DEACTIVATOR_NEVER">This will force the rigid body to never deactivate.</option>
-        <option value="2" name="DEACTIVATOR_SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>
+        <option value="0" name="INVALID">Invalid</option>
+        <option value="1" name="NEVER">This will force the rigid body to never deactivate.</option>
+        <option value="2" name="SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>
     </enum>
 
     <enum name="SolverDeactivation" storage="byte">
@@ -668,91 +668,91 @@
         solver deactivates objects. The solver works on a per object basis.
         Note: Solver deactivation does not save CPU, but reduces creeping of
         movable objects in a pile quite dramatically.
-        <option value="0" name="SOLVER_DEACTIVATION_INVALID">Invalid</option>
-        <option value="1" name="SOLVER_DEACTIVATION_OFF">No solver deactivation</option>
-        <option value="2" name="SOLVER_DEACTIVATION_LOW">Very conservative deactivation, typically no visible artifacts.</option>
-        <option value="3" name="SOLVER_DEACTIVATION_MEDIUM">Normal deactivation, no serious visible artifacts in most cases</option>
-        <option value="4" name="SOLVER_DEACTIVATION_HIGH">Fast deactivation, visible artifacts</option>
-        <option value="5" name="SOLVER_DEACTIVATION_MAX">Very fast deactivation, visible artifacts</option>
+        <option value="0" name="INVALID">Invalid</option>
+        <option value="1" name="OFF">No solver deactivation</option>
+        <option value="2" name="LOW">Very conservative deactivation, typically no visible artifacts.</option>
+        <option value="3" name="MEDIUM">Normal deactivation, no serious visible artifacts in most cases</option>
+        <option value="4" name="HIGH">Fast deactivation, visible artifacts</option>
+        <option value="5" name="MAX">Very fast deactivation, visible artifacts</option>
     </enum>
 
     <enum name="MotionQuality" storage="byte">
         The motion type. Determines quality of motion?
-        <option value="0" name="MO_QUAL_INVALID">Automatically assigned to MO_QUAL_FIXED, MO_QUAL_KEYFRAMED or MO_QUAL_DEBRIS</option>
-        <option value="1" name="MO_QUAL_FIXED">Use this for fixed bodies. </option>
-        <option value="2" name="MO_QUAL_KEYFRAMED">Use this for moving objects with infinite mass.</option>
-        <option value="3" name="MO_QUAL_DEBRIS">Use this for all your debris objects</option>
-        <option value="4" name="MO_QUAL_MOVING">Use this for moving bodies, which should not leave the world.</option>
-        <option value="5" name="MO_QUAL_CRITICAL">Use this for all objects, which you cannot afford to tunnel through the world at all</option>
-        <option value="6" name="MO_QUAL_BULLET">Use this for very fast objects </option>
-        <option value="7" name="MO_QUAL_USER">For user.</option>
-        <option value="8" name="MO_QUAL_CHARACTER">Use this for rigid body character controllers</option>
-        <option value="9" name="MO_QUAL_KEYFRAMED_REPORT">
+        <option value="0" name="INVALID">Automatically assigned to FIXED, KEYFRAMED or DEBRIS</option>
+        <option value="1" name="FIXED">Use this for fixed bodies. </option>
+        <option value="2" name="KEYFRAMED">Use this for moving objects with infinite mass.</option>
+        <option value="3" name="DEBRIS">Use this for all your debris objects</option>
+        <option value="4" name="MOVING">Use this for moving bodies, which should not leave the world.</option>
+        <option value="5" name="CRITICAL">Use this for all objects, which you cannot afford to tunnel through the world at all</option>
+        <option value="6" name="BULLET">Use this for very fast objects </option>
+        <option value="7" name="USER">For user.</option>
+        <option value="8" name="CHARACTER">Use this for rigid body character controllers</option>
+        <option value="9" name="KEYFRAMED_REPORT">
             Use this for moving objects with infinite mass which should report contact points and Toi-collisions against all other bodies, including other fixed and keyframed bodies.
         </option>
     </enum>
 
     <enum name="ForceType" storage="uint">
         The type of force?  May be more valid values.
-        <option value="0" name="FORCE_PLANAR"></option>
-        <option value="1" name="FORCE_SPHERICAL"></option>
-        <option value="2" name="FORCE_UNKNOWN"></option>
+        <option value="0" name="PLANAR"></option>
+        <option value="1" name="SPHERICAL"></option>
+        <option value="2" name="UNKNOWN"></option>
     </enum>
 
     <enum name="TexTransform" storage="uint">
         Determines how a NiTextureTransformController animates the UV coordinates.
-        <option value="0" name="TT_TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
-        <option value="1" name="TT_TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
-        <option value="2" name="TT_ROTATE">Means this controller roates the UV texture cooridnates.</option>
-        <option value="3" name="TT_SCALE_U">Means this controller scales the U texture cooridnates.</option>
-        <option value="4" name="TT_SCALE_V">Means this controller scales the V texture cooridnates.</option>
+        <option value="0" name="TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
+        <option value="1" name="TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
+        <option value="2" name="ROTATE">Means this controller roates the UV texture cooridnates.</option>
+        <option value="3" name="SCALE_U">Means this controller scales the U texture cooridnates.</option>
+        <option value="4" name="SCALE_V">Means this controller scales the V texture cooridnates.</option>
     </enum>
 
     <enum name="DecayType" storage="uint">
         Determines decay function.  Used by NiPSysBombModifier.
-        <option value="0" name="DECAY_NONE">No decay.</option>
-        <option value="1" name="DECAY_LINEAR">Linear decay.</option>
-        <option value="2" name="DECAY_EXPONENTIAL">Exponential decay.</option>
+        <option value="0" name="NONE">No decay.</option>
+        <option value="1" name="LINEAR">Linear decay.</option>
+        <option value="2" name="EXPONENTIAL">Exponential decay.</option>
     </enum>
 
     <enum name="SymmetryType" storage="uint">
         Determines symetry type used by NiPSysBombModifier.
-        <option value="0" name="SPHERICAL_SYMMETRY">Spherical Symmetry.</option>
-        <option value="1" name="CYLINDRICAL_SYMMETRY">Cylindrical Symmetry.</option>
-        <option value="2" name="PLANAR_SYMMETRY">Planar Symmetry.</option>
+        <option value="0" name="SPHERICAL">Spherical Symmetry.</option>
+        <option value="1" name="CYLINDRICAL">Cylindrical Symmetry.</option>
+        <option value="2" name="PLANAR">Planar Symmetry.</option>
     </enum>
 
     <enum name="VelocityType" storage="uint">
         Controls the way the a particle mesh emitter determines the starting speed and direction of the particles that are emitted.
-        <option value="0" name="VELOCITY_USE_NORMALS">Uses the normals of the meshes to determine staring velocity.</option>
-        <option value="1" name="VELOCITY_USE_RANDOM">Starts particles with a random velocity.</option>
-        <option value="2" name="VELOCITY_USE_DIRECTION">Uses the emission axis to determine initial particle direction?</option>
+        <option value="0" name="USE_NORMALS">Uses the normals of the meshes to determine staring velocity.</option>
+        <option value="1" name="USE_RANDOM">Starts particles with a random velocity.</option>
+        <option value="2" name="USE_DIRECTION">Uses the emission axis to determine initial particle direction?</option>
     </enum>
 
     <enum name="EmitFrom" storage="uint">
         Controls which parts of the mesh that the particles are emitted from.
-        <option value="0" name="EMIT_FROM_VERTICES">Emit particles from the vertices of the mesh.</option>
-        <option value="1" name="EMIT_FROM_FACE_CENTER">Emit particles from the center of the faces of the mesh.</option>
-        <option value="2" name="EMIT_FROM_EDGE_CENTER">Emit particles from the center of the edges of the mesh.</option>
-        <option value="3" name="EMIT_FROM_FACE_SURFACE">Perhaps randomly emit particles from anywhere on the faces of the mesh?</option>
-        <option value="4" name="EMIT_FROM_EDGE_SURFACE">Perhaps randomly emit particles from anywhere on the edges of the mesh?</option>
+        <option value="0" name="VERTICES">Emit particles from the vertices of the mesh.</option>
+        <option value="1" name="FACE_CENTER">Emit particles from the center of the faces of the mesh.</option>
+        <option value="2" name="EDGE_CENTER">Emit particles from the center of the edges of the mesh.</option>
+        <option value="3" name="FACE_SURFACE">Perhaps randomly emit particles from anywhere on the faces of the mesh?</option>
+        <option value="4" name="EDGE_SURFACE">Perhaps randomly emit particles from anywhere on the edges of the mesh?</option>
     </enum>
 
     <enum name="EffectType" storage="uint">
         The type of information that's store in a texture used by a NiTextureEffect.
-        <option value="0" name="EFFECT_PROJECTED_LIGHT">Apply a projected light texture.</option>
-        <option value="1" name="EFFECT_PROJECTED_SHADOW">Apply a projected shaddow texture.</option>
-        <option value="2" name="EFFECT_ENVIRONMENT_MAP">Apply an environment map texture.</option>
-        <option value="3" name="EFFECT_FOG_MAP">Apply a fog map texture.</option>
+        <option value="0" name="PROJECTED_LIGHT">Apply a projected light texture.</option>
+        <option value="1" name="PROJECTED_SHADOW">Apply a projected shaddow texture.</option>
+        <option value="2" name="ENVIRONMENT_MAP">Apply an environment map texture.</option>
+        <option value="3" name="FOG_MAP">Apply a fog map texture.</option>
     </enum>
 
     <enum name="CoordGenType" storage="uint">
         Determines the way that UV texture coordinates are generated.
-        <option value="0" name="CG_WORLD_PARALLEL">Use plannar mapping.</option>
-        <option value="1" name="CG_WORLD_PERSPECTIVE">Use perspective mapping.</option>
-        <option value="2" name="CG_SPHERE_MAP">Use spherical mapping.</option>
-        <option value="3" name="CG_SPECULAR_CUBE_MAP">Use specular cube mapping.</option>
-        <option value="4" name="CG_DIFFUSE_CUBE_MAP">Use Diffuse cube mapping.</option>
+        <option value="0" name="WORLD_PARALLEL">Use plannar mapping.</option>
+        <option value="1" name="WORLD_PERSPECTIVE">Use perspective mapping.</option>
+        <option value="2" name="SPHERE_MAP">Use spherical mapping.</option>
+        <option value="3" name="SPECULAR_CUBE_MAP">Use specular cube mapping.</option>
+        <option value="4" name="DIFFUSE_CUBE_MAP">Use Diffuse cube mapping.</option>
     </enum>
 
     <enum name="EndianType" storage="byte">
@@ -762,53 +762,53 @@
 
     <enum name="TargetColor" storage="ushort">
         Used by NiPoint3InterpControllers to select which type of color in the controlled object that will be animated.
-        <option value="0" name="TC_AMBIENT">Control the ambient color.</option>
-        <option value="1" name="TC_DIFFUSE">Control the diffuse color.</option>
-        <option value="2" name="TC_SPECULAR">Control the specular color.</option>
-        <option value="3" name="TC_SELF_ILLUM">Control the self illumination color.</option>
+        <option value="0" name="AMBIENT">Control the ambient color.</option>
+        <option value="1" name="DIFFUSE">Control the diffuse color.</option>
+        <option value="2" name="SPECULAR">Control the specular color.</option>
+        <option value="3" name="SELF_ILLUM">Control the self illumination color.</option>
     </enum>
 
     <enum name="ConsistencyType" storage="ushort">
         Used by NiGeometryData to control the volatility of the mesh.  While they appear to be flags they behave as an enum.
-        <option value="0x0000" name="CT_MUTABLE">Mutable Mesh</option>
-        <option value="0x4000" name="CT_STATIC">Static Mesh</option>
-        <option value="0x8000" name="CT_VOLATILE">Volatile Mesh</option>
+        <option value="0x0000" name="MUTABLE">Mutable Mesh</option>
+        <option value="0x4000" name="STATIC">Static Mesh</option>
+        <option value="0x8000" name="VOLATILE">Volatile Mesh</option>
     </enum>
 
     <enum name="SortingMode" storage="uint">
-        <option value="0" name="SORTING_INHERIT">Inherit</option>
-        <option value="1" name="SORTING_OFF">Disable</option>
+        <option value="0" name="INHERIT">Inherit</option>
+        <option value="1" name="OFF">Disable</option>
     </enum>
 
     <enum name="PropagationMode" storage="uint">
-        <option value="0" name="PROPAGATE_ON_SUCCESS">On Success</option>
-        <option value="1" name="PROPAGATE_ON_FAILURE">On Failure</option>
-        <option value="2" name="PROPAGATE_ALWAYS">Always</option>
-        <option value="3" name="PROPAGATE_NEVER">Never</option>
+        <option value="0" name="ON_SUCCESS">On Success</option>
+        <option value="1" name="ON_FAILURE">On Failure</option>
+        <option value="2" name="ALWAYS">Always</option>
+        <option value="3" name="NEVER">Never</option>
     </enum>
 
     <enum name="CollisionMode" storage="uint">
-        <option value="0" name="CM_USE_OBB">Use Bounding Box</option>
-        <option value="1" name="CM_USE_TRI">Use Triangles</option>
-        <option value="2" name="CM_USE_ABV">Use Alternate Bounding Volumes</option>
-        <option value="3" name="CM_NOTEST">No Test</option>
-        <option value="4" name="CM_USE_NIBOUND">Use NiBound</option>
+        <option value="0" name="USE_OBB">Use Bounding Box</option>
+        <option value="1" name="USE_TRI">Use Triangles</option>
+        <option value="2" name="USE_ABV">Use Alternate Bounding Volumes</option>
+        <option value="3" name="NOTEST">No Test</option>
+        <option value="4" name="USE_NIBOUND">Use NiBound</option>
     </enum>
 
     <enum name="BoundVolumeType" storage="uint">
-        <option value="0xffffffff" name="BASE_BV">Default</option>
-        <option value="0" name="SPHERE_BV">Sphere</option>
-        <option value="1" name="BOX_BV">Box</option>
-        <option value="2" name="CAPSULE_BV">Capsule</option>
-        <option value="4" name="UNION_BV">Union</option>
-        <option value="5" name="HALFSPACE_BV">Half Space</option>
+        <option value="0xffffffff" name="BASE">Default</option>
+        <option value="0" name="SPHERE">Sphere</option>
+        <option value="1" name="BOX">Box</option>
+        <option value="2" name="CAPSULE">Capsule</option>
+        <option value="4" name="UNION">Union</option>
+        <option value="5" name="HALFSPACE">Half Space</option>
     </enum>
 
     <enum name="hkResponseType" storage="byte">
-        <option value="0" name="RESPONSE_INVALID">Invalid Response</option>
-        <option value="1" name="RESPONSE_SIMPLE_CONTACT">Do normal collision resolution</option>
-        <option value="2" name="RESPONSE_REPORTING">No collision resolution is performed but listeners are called</option>
-        <option value="3" name="RESPONSE_NONE">Do nothing, ignore all the results.</option>
+        <option value="0" name="INVALID">Invalid Response</option>
+        <option value="1" name="SIMPLE_CONTACT">Do normal collision resolution</option>
+        <option value="2" name="REPORTING">No collision resolution is performed but listeners are called</option>
+        <option value="3" name="NONE">Do nothing, ignore all the results.</option>
     </enum>
 
     <enum name="SkyrimDismemberType" storage="ushort">
@@ -1243,9 +1243,9 @@
         <add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the object type name of the controller in the NIF file that is child of the controlled object.</add>
         <add name="Controller Type" type="string" ver1="20.1.0.3">Probably the object type name of the controller in the NIF file that is child of the controlled object.</add>
         <add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled object, via its type name.</add>
-        <add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-        <add name="Variable 1" type="string" ver1="20.1.0.3">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-        <add name="Variable 1 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
+        <add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
+        <add name="Variable 1" type="string" ver1="20.1.0.3">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
+        <add name="Variable 1 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
         <add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
         <add name="Variable 2" type="string" ver1="20.1.0.3">Another variable string, apparently used for particle system controllers.</add>
         <add name="Variable 2 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
@@ -1365,7 +1365,7 @@
     <compound name="RotationKeyArray" istemplate="1">
         Rotation key array.
         <add name="Num Keys" type="uint">Number of keys.</add>
-        <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
+        <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR, QUADRATIC, TENSION_BIAS_CONTINUITY, or XYZ_ROTATION).</add>
         <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
     </compound>
 -->
@@ -1380,7 +1380,7 @@
         Texture description.
         <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
-        <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
+        <add name="Filter Mode" type="TexFilterMode" default="TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
         <add name="Unknown short" type="short" ver1="20.6.0.0">Unknown, seems to always be 1</add>
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
@@ -1797,7 +1797,7 @@
         <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
         <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
         <add name="Clamp?" type="TexClampMode" cond="Has Image" default="WRAP_S_WRAP_T">May be texture clamp mode.</add>
-        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="FILTER_TRILERP">May be texture filter mode.</add>
+        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="TRILERP">May be texture filter mode.</add>
         <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
         <add name="PS2 L" type="short" cond="Has Image" default="0" ver1="3.03" ver2="10.2.0.0">0?</add>
         <add name="PS2 K" type="short" cond="Has Image" default="-75" ver1="3.03" ver2="10.2.0.0">-75?</add>
@@ -2119,7 +2119,7 @@
         <add name="Unknown Int 1" type="int">Unknown. Could be 2 shorts corresponding to Unknown 7 Shorts[1] and [2].</add>
         <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
         <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown. Could be 3 floats.</add>
-        <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Collision Response?" type="hkResponseType" default="SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
         <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
@@ -2154,10 +2154,10 @@
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
-        <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_FIXED">The motion type. Determines quality of motion?</add>
+        <add name="Motion System" type="MotionSystem" default="DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Deactivator Type" type="DeactivatorType" default="NEVER">The initial deactivator type of the body.</add>
+        <add name="Solver Deactivation" type="SolverDeactivation" default="OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
+        <add name="Quality Type" type="MotionQuality" default="FIXED">The motion type. Determines quality of motion?</add>
         <add name="Unknown Int 6" type="uint" default="512">Unknown.</add>
         <add name="Unknown Int 7" type="uint" default="160">Unknown.</add>
         <add name="Unknown Int 8" type="uint" default="161">Unknown.</add>
@@ -2855,8 +2855,8 @@
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
         <add name="UV Sets" type="TexCoord" arr1="(Num UV Sets &amp; 63)" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt; 12">Unknown.</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version >= 12" cond="!NiPSysData">Unknown.</add>
     </niobject>
@@ -3577,20 +3577,20 @@
     </niobject>
 
     <enum name="ChannelType" storage="uint">
-        <option value="0" name="CHNL_RED">Red</option>
-        <option value="1" name="CHNL_GREEN">Green</option>
-        <option value="2" name="CHNL_BLUE">Blue</option>
-        <option value="3" name="CHNL_ALPHA">Alpha</option>
-        <option value="4" name="CHNL_COMPRESSED">Compressed</option>
-        <option value="16" name="CHNL_INDEX">Index</option>
-        <option value="19" name="CHNL_EMPTY">Empty</option>
+        <option value="0" name="RED">Red</option>
+        <option value="1" name="GREEN">Green</option>
+        <option value="2" name="BLUE">Blue</option>
+        <option value="3" name="ALPHA">Alpha</option>
+        <option value="4" name="COMPRESSED">Compressed</option>
+        <option value="16" name="INDEX">Index</option>
+        <option value="19" name="EMPTY">Empty</option>
     </enum>
 
     <enum name="ChannelConvention" storage="uint">
-        <option value="0" name="CC_FIXED">Fixed</option>
-        <option value="3" name="CC_INDEX">Palettized</option>
-        <option value="4" name="CC_COMPRESSED">Compressed</option>
-        <option value="5" name="CC_EMPTY">Empty</option>
+        <option value="0" name="FIXED">Fixed</option>
+        <option value="3" name="INDEX">Palettized</option>
+        <option value="4" name="COMPRESSED">Compressed</option>
+        <option value="5" name="EMPTY">Empty</option>
     </enum>
 
     <compound name="ChannelData">
@@ -4076,9 +4076,9 @@
         <add name="Unknown Byte" type="byte" default="1" cond="Use External == 0" ver2="10.0.1.0">Unknown. Seems to be set if Pixel Data is present?</add>
         <add name="File Name" type="FilePath" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData object.</add>
         <add name="Pixel Data" type="Ref" template="ATextureRenderData" cond="Use External == 0">Pixel data object index. NiPixelData or NiPersistentSrcTextureRendererData</add>
-        <add name="Pixel Layout" type="PixelLayout" default="PIX_LAY_PALETTISED_4">Specifies the way the image will be stored.</add>
-        <add name="Use Mipmaps" type="MipMapFormat" default="MIP_FMT_DEFAULT">Specifies whether mip maps are used.</add>
-        <add name="Alpha Format" type="AlphaFormat" default="ALPHA_DEFAULT"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
+        <add name="Pixel Layout" type="PixelLayout" default="PALETTISED_4">Specifies the way the image will be stored.</add>
+        <add name="Use Mipmaps" type="MipMapFormat" default="DEFAULT">Specifies whether mip maps are used.</add>
+        <add name="Alpha Format" type="AlphaFormat" default="DEFAULT"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
         <add name="Is Static" type="byte" default="1">Is Static?</add>
         <add name="Direct Render" type="bool" default="1" ver1="10.1.0.106">Load direct to renderer</add>
         <add name="Persist Render Data" type="bool" default="0" ver1="20.2.0.7">Render data is persistant</add>
@@ -4117,7 +4117,7 @@
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5"/>
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
+        <add name="Draw Mode" default="DOUBLESIDED" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DOUBLESIDED).</add>
         <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
             Property flags:
             Bit 0: Stencil Enable
@@ -4160,11 +4160,11 @@
         Enables environment mapping. Should be in both the children list and effects list of the NiTriShape object. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect object is present).
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
-        <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
+        <add name="Texture Filtering" type="TexFilterMode" default="TRILERP">Texture Filtering mode.</add>
         <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
         <add name="Unknown" type="short" ver1="20.6.0.0" />
-        <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
-        <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
+        <add name="Texture Type" default="ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
+        <add name="Coordinate Generation Type" default="SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
         <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
@@ -4209,7 +4209,7 @@
         Describes an object&#039;s textures.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Property flags.</add>
-        <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
+        <add name="Apply Mode" type="ApplyMode" default="MODULATE" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
         <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
         <add name="Base Texture" type="TexDesc" cond="Has Base Texture">The base texture.</add>
@@ -4418,7 +4418,7 @@
             Bit 0 enables the z test
             Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
         </add>
-        <add name="Function" type="ZCompareMode" default="ZCOMP_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
+        <add name="Function" type="ZCompareMode" default="LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
             Z-Test function (see: glDepthFunc). In Flags from 20.1.0.3 on.
         </add>
     </niobject>
@@ -4438,7 +4438,7 @@
 
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode">
         Unknown node.  Found in Loki.
-        <add name="Sorting Mode" type="SortingMode" default="SORTING_INHERIT">Sorting</add>
+        <add name="Sorting Mode" type="SortingMode" default="INHERIT">Sorting</add>
         <add name="Unknown Int 2" type="int" default="-1" ver2="10.2.0.0">Unknown.</add>
     </niobject>
 
@@ -4705,86 +4705,86 @@
 
     <enum name="BSShaderType" storage="uint">
         The type of animation interpolation (blending) that will be used on the associated key frames.
-        <option value="0" name="SHADER_TALL_GRASS">Tall Grass Shader</option>
-        <option value="1" name="SHADER_DEFAULT">Standard Lighting Shader</option>
-        <option value="10" name="SHADER_SKY">Sky Shader</option>
-		<option value="14" name="SHADER_SKIN">Skin Shader</option>
-        <option value="17" name="SHADER_WATER">Water Shader</option>
-        <option value="29" name="SHADER_LIGHTING30">Lighting 3.0 Shader</option>
-        <option value="32" name="SHADER_TILE">Tiled Shader</option>
-        <option value="33" name="SHADER_NOLIGHTING">No Lighting Shader</option>
+        <option value="0" name="TALL_GRASS">Tall Grass Shader</option>
+        <option value="1" name="DEFAULT">Standard Lighting Shader</option>
+        <option value="10" name="SKY">Sky Shader</option>
+		<option value="14" name="SKIN">Skin Shader</option>
+        <option value="17" name="WATER">Water Shader</option>
+        <option value="29" name="LIGHTING30">Lighting 3.0 Shader</option>
+        <option value="32" name="TILE">Tiled Shader</option>
+        <option value="33" name="NO_LIGHTING">No Lighting Shader</option>
     </enum>
     
     <bitflags name="BSShaderFlags" storage="uint">
         Shader Property Flags
-        <option value="0" name="SF_Specular">Enables Specularity</option>
-        <option value="1" name="SF_Skinned">Required For Skinned Meshes</option>
-        <option value="2" name="SF_LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
-        <option value="3" name="SF_Vertex_Alpha">Vertex Alpha</option>
-        <option value="4" name="SF_Unknown_1">Unknown</option>
-        <option value="5" name="SF_Single_Pass">Single Pass</option>
-        <option value="6" name="SF_Empty">Unknown</option>
-        <option value="7" name="SF_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
-        <option value="8" name="SF_Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
-        <option value="9" name="SF_Unknown_2">Unknown</option>
-        <option value="10" name="SF_FaceGen">FaceGen</option>
-        <option value="11" name="SF_Parallax_Shader_Index_15">Parallax</option>
-        <option value="12" name="SF_Unknown_3">Unknown/Crash</option>
-        <option value="13" name="SF_Non_Projective_Shadows">Non-Projective Shadows</option>
-        <option value="14" name="SF_Unknown_4">Unknown/Crash</option>
-        <option value="15" name="SF_Refraction">Refraction (switches on refraction power)</option>
-        <option value="16" name="SF_Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
-        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
-        <option value="18" name="SF_Hair">Hair</option>
-        <option value="19" name="SF_Dynamic_Alpha">Dynamic Alpha</option>
-        <option value="20" name="SF_Localmap_Hide_Secret">Localmap Hide Secret</option>
-        <option value="21" name="SF_Window_Environment_Mapping">Window Environment Mapping</option>
-        <option value="22" name="SF_Tree_Billboard">Tree Billboard</option>
-        <option value="23" name="SF_Shadow_Frustum">Shadow Frustum</option>
-        <option value="24" name="SF_Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
-        <option value="25" name="SF_Remappable_Textures">usually seen w/texture animation</option>
-        <option value="26" name="SF_Decal_Single_Pass">Decal</option>
-        <option value="27" name="SF_Dynamic_Decal_Single_Pass">Dynamic Decal</option>
-        <option value="28" name="SF_Parallax_Occulsion">Parallax Occlusion</option>
-        <option value="29" name="SF_External_Emittance">External Emittance</option>
-        <option value="30" name="SF_Shadow_Map">Shadow Map</option>
-        <option value="31" name="SF_ZBuffer_Test">ZBuffer Test (1=on)</option>
+        <option value="0" name="Specular">Enables Specularity</option>
+        <option value="1" name="Skinned">Required For Skinned Meshes</option>
+        <option value="2" name="LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
+        <option value="3" name="Vertex_Alpha">Vertex Alpha</option>
+        <option value="4" name="Unknown_1">Unknown</option>
+        <option value="5" name="Single_Pass">Single Pass</option>
+        <option value="6" name="Empty">Unknown</option>
+        <option value="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
+        <option value="8" name="Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
+        <option value="9" name="Unknown_2">Unknown</option>
+        <option value="10" name="FaceGen">FaceGen</option>
+        <option value="11" name="Parallax_Shader_Index_15">Parallax</option>
+        <option value="12" name="Unknown_3">Unknown/Crash</option>
+        <option value="13" name="Non_Projective_Shadows">Non-Projective Shadows</option>
+        <option value="14" name="Unknown_4">Unknown/Crash</option>
+        <option value="15" name="Refraction">Refraction (switches on refraction power)</option>
+        <option value="16" name="Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
+        <option value="17" name="Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
+        <option value="18" name="Hair">Hair</option>
+        <option value="19" name="Dynamic_Alpha">Dynamic Alpha</option>
+        <option value="20" name="Localmap_Hide_Secret">Localmap Hide Secret</option>
+        <option value="21" name="Window_Environment_Mapping">Window Environment Mapping</option>
+        <option value="22" name="Tree_Billboard">Tree Billboard</option>
+        <option value="23" name="Shadow_Frustum">Shadow Frustum</option>
+        <option value="24" name="Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
+        <option value="25" name="Remappable_Textures">usually seen w/texture animation</option>
+        <option value="26" name="Decal_Single_Pass">Decal</option>
+        <option value="27" name="Dynamic_Decal_Single_Pass">Dynamic Decal</option>
+        <option value="28" name="Parallax_Occulsion">Parallax Occlusion</option>
+        <option value="29" name="External_Emittance">External Emittance</option>
+        <option value="30" name="Shadow_Map">Shadow Map</option>
+        <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
 
     <bitflags name="BSShaderFlags2" storage="uint">
         Shader Property Flags 2
-        <option value="0" name="SF2_ZBuffer_Write">ZBuffer Write</option>
-        <option value="1" name="SF2_LOD_Landscape">LOD Landscape</option>
-        <option value="2" name="SF2_LOD_Building">LOD Building</option>
-        <option value="3" name="SF2_No_Fade">No Fade</option>
-        <option value="4" name="SF2_Refraction_Tint">Refraction Tint</option>
-        <option value="5" name="SF2_Vertex_Colors">Has Vertex Colors</option>
-        <option value="6" name="SF2_Unknown1">Unknown</option>
-        <option value="7" name="SF2_1st_Light_is_Point_Light">1st Light is Point Light</option>
-        <option value="8" name="SF2_2nd_Light">2nd Light</option>
-        <option value="9" name="SF2_3rd_Light">3rd Light</option>
-        <option value="10" name="SF2_Vertex_Lighting">Vertex Lighting</option>
-        <option value="11" name="SF2_Uniform_Scale">Uniform Scale</option>
-        <option value="12" name="SF2_Fit_Slope">Fit Slope</option>
-        <option value="13" name="SF2_Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
-        <option value="14" name="SF2_No_LOD_Land_Blend">No LOD Land Blend</option>
-        <option value="15" name="SF2_Envmap_Light_Fade">Envmap Light Fade</option>
-        <option value="16" name="SF2_Wireframe">Wireframe</option>
-        <option value="17" name="SF2_VATS_Selection">VATS Selection</option>
-        <option value="18" name="SF2_Show_in_Local_Map">Show in Local Map</option>
-        <option value="19" name="SF2_Premult_Alpha">Premult Alpha</option>
-        <option value="20" name="SF2_Skip_Normal_Maps">Skip Normal Maps</option>
-        <option value="21" name="SF2_Alpha_Decal">Alpha Decal</option>
-        <option value="22" name="SF2_No_Transparecny_Multisampling">No Transparency MultiSampling</option>
-        <option value="23" name="SF2_Unknown2">Unknown</option>
-        <option value="24" name="SF2_Unknown3">Unknown</option>
-        <option value="25" name="SF2_Unknown4">Unknown</option>
-        <option value="26" name="SF2_Unknown5">Unknown</option>
-        <option value="27" name="SF2_Unknown6">Unknown</option>
-        <option value="28" name="SF2_Unknown7">Unknown</option>
-        <option value="29" name="SF2_Unknown8">Unknown</option>
-        <option value="30" name="SF2_Unknown9">Unknown</option>
-        <option value="31" name="SF2_Unknown10">Unknown</option>
+        <option value="0" name="ZBuffer_Write">ZBuffer Write</option>
+        <option value="1" name="LOD_Landscape">LOD Landscape</option>
+        <option value="2" name="LOD_Building">LOD Building</option>
+        <option value="3" name="No_Fade">No Fade</option>
+        <option value="4" name="Refraction_Tint">Refraction Tint</option>
+        <option value="5" name="Vertex_Colors">Has Vertex Colors</option>
+        <option value="6" name="Unknown1">Unknown</option>
+        <option value="7" name="1st_Light_is_Point_Light">1st Light is Point Light</option>
+        <option value="8" name="2nd_Light">2nd Light</option>
+        <option value="9" name="3rd_Light">3rd Light</option>
+        <option value="10" name="Vertex_Lighting">Vertex Lighting</option>
+        <option value="11" name="Uniform_Scale">Uniform Scale</option>
+        <option value="12" name="Fit_Slope">Fit Slope</option>
+        <option value="13" name="Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
+        <option value="14" name="No_LOD_Land_Blend">No LOD Land Blend</option>
+        <option value="15" name="Envmap_Light_Fade">Envmap Light Fade</option>
+        <option value="16" name="Wireframe">Wireframe</option>
+        <option value="17" name="VATS_Selection">VATS Selection</option>
+        <option value="18" name="Show_in_Local_Map">Show in Local Map</option>
+        <option value="19" name="Premult_Alpha">Premult Alpha</option>
+        <option value="20" name="Skip_Normal_Maps">Skip Normal Maps</option>
+        <option value="21" name="Alpha_Decal">Alpha Decal</option>
+        <option value="22" name="No_Transparecny_Multisampling">No Transparency MultiSampling</option>
+        <option value="23" name="Unknown2">Unknown</option>
+        <option value="24" name="Unknown3">Unknown</option>
+        <option value="25" name="Unknown4">Unknown</option>
+        <option value="26" name="Unknown5">Unknown</option>
+        <option value="27" name="Unknown6">Unknown</option>
+        <option value="28" name="Unknown7">Unknown</option>
+        <option value="29" name="Unknown8">Unknown</option>
+        <option value="30" name="Unknown9">Unknown</option>
+        <option value="31" name="Unknown10">Unknown</option>
     </bitflags>
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
@@ -4793,7 +4793,7 @@
             0: smooth no
             1: smooth yes
         </add>
-        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
+        <add name="Shader Type" type="BSShaderType" default="DEFAULT">Unknown (Set to 0x21 for NoLighting, 0x11 for Water)</add>
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000">Shader Property Flags</add>
         <add name="Shader Flags 2" type="BSShaderFlags2" default="1">Shader Property Flags 2</add>
         <add name="Environment Map Scale" type="float" default="1.0" vercond="User Version == 11">Scales the intensity of the environment/cube map.</add>
@@ -4894,12 +4894,12 @@
 
     <enum name="SkyObjectType" storage="uint">
         Sets what sky function this object fulfills in BSSkyShaderProperty or SkyShaderProperty.
-        <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
-        <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
-        <option value="2" name="BSSM_SKY">BSSM_Sky</option>
-        <option value="3" name="BSSM_SKY_CLOUDS">BSSM_Sky_Clouds</option>
-        <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
-        <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
+        <option value="0" name="SKY_TEXTURE">Sky_Texture</option>
+        <option value="1" name="SKY_SUNGLARE">Sky_Sunglare</option>
+        <option value="2" name="SKY">Sky</option>
+        <option value="3" name="SKY_CLOUDS">Sky_Clouds</option>
+        <option value="5" name="SKY_STARS">Sky_Stars</option>
+        <option value="7" name="SKY_MOON_STARS_MASK">Sky_Moon_Stars_Mask</option>
     </enum>
     <niobject name="SkyShaderProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific node? Found in Fallout3
@@ -5428,9 +5428,9 @@
 
     <enum name="CloningBehavior" storage="uint">
         Sets how objects are to be cloned.
-        <option value="0" name="CLONING_SHARE">Share this object pointer with the newly cloned scene.</option>
-        <option value="1" name="CLONING_COPY">Create an exact duplicate of this object for use with the newly cloned scene.</option>
-        <option value="2" name="CLONING_BLANK_COPY">Create a copy of this object for use with the newly cloned stream, leaving some of the data to be written later.</option>
+        <option value="0" name="SHARE">Share this object pointer with the newly cloned scene.</option>
+        <option value="1" name="COPY">Create an exact duplicate of this object for use with the newly cloned scene.</option>
+        <option value="2" name="BLANK_COPY">Create a copy of this object for use with the newly cloned stream, leaving some of the data to be written later.</option>
     </enum>
 
     <enum name="ComponentFormat" storage="uint">
@@ -5524,7 +5524,7 @@
         <add name="Usage" type="DataStreamUsage" abstract="1"></add>
         <add name="Access" type="DataStreamAccess" abstract="1"></add>
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
-        <add name="Cloning Behavior" type="CloningBehavior" default="CLONING_SHARE" />
+        <add name="Cloning Behavior" type="CloningBehavior" default="SHARE" />
         <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
@@ -5584,23 +5584,23 @@
 
     <enum name="MeshPrimitiveType" storage="uint">
         Describes the type of primitives stored in a mesh object.
-        <option value="0" name="MESH_PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
-        <option value="1" name="MESH_PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
-        <option value="2" name="MESH_PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
-        <option value="3" name="MESH_PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
-        <option value="4" name="MESH_PRIMITIVE_POINTS">Point primitive type.</option>
+        <option value="0" name="TRIANGLES">Triangle primitive type.</option>
+        <option value="1" name="TRIANGLE_STRIPS">Triangle strip primitive type.</option>
+        <option value="2" name="LINE_STRIPS">Line strip primitive type.</option>
+        <option value="3" name="QUADRILATERALS">Quadrilateral primitive type.</option>
+        <option value="4" name="POINTS">Point primitive type.</option>
     </enum>
 
     <enum name="SyncPoint" storage="ushort">
         Specifies the time when an application must syncronize for some reason.
-        <option value="0x8000" name="SYNC_ANY">Value used when no specific sync point is desired.</option>
-        <option value="0x8010" name="SYNC_UPDATE">Synchronize when an object is updated.</option>
-        <option value="0x8020" name="SYNC_POST_UPDATE">Synchronize when an entire scene graph has been updated.</option>
-        <option value="0x8030" name="SYNC_VISIBLE">Synchronize when an object is determined to be potentially visible.</option>
-        <option value="0x8040" name="SYNC_RENDER">Synchronize when an object is rendered.</option>
-        <option value="0x8050" name="SYNC_PHYSICS_SIMULATE">Synchronize when a physics simulation step is about to begin.</option>
-        <option value="0x8060" name="SYNC_PHYSICS_COMPLETED">Synchronize when a physics simulation step has produced results.</option>
-        <option value="0x8070" name="SYNC_REFLECTIONS">Syncronize after all data necessary to calculate reflections is ready.</option>
+        <option value="0x8000" name="ANY">Value used when no specific sync point is desired.</option>
+        <option value="0x8010" name="UPDATE">Synchronize when an object is updated.</option>
+        <option value="0x8020" name="POST_UPDATE">Synchronize when an entire scene graph has been updated.</option>
+        <option value="0x8030" name="VISIBLE">Synchronize when an object is determined to be potentially visible.</option>
+        <option value="0x8040" name="RENDER">Synchronize when an object is rendered.</option>
+        <option value="0x8050" name="PHYSICS_SIMULATE">Synchronize when a physics simulation step is about to begin.</option>
+        <option value="0x8060" name="PHYSICS_COMPLETED">Synchronize when a physics simulation step has produced results.</option>
+        <option value="0x8070" name="REFLECTIONS">Syncronize after all data necessary to calculate reflections is ready.</option>
     </enum>
 
     <niobject name="NiMeshModifier" inherit="NiObject">
@@ -5778,11 +5778,11 @@
     </niobject>
 
     <enum name="PSLoopBehavior" ver1="20.5.0.0" storage="uint">
-        <option name="PS_LOOP_CLAMP_BIRTH" value="0">Key times map such that the first key occurs at the birth of the particle, and times later than the last key get the last key value.</option>
-        <option name="PS_LOOP_CLAMP_DEATH" value="1">Key times map such that the last key occurs at the death of the particle, and times before the initial key time get the value of the initial key.</option>
-        <option name="PS_LOOP_AGESCALE" value="2">Scale the animation to fit the particle lifetime, so that the first key is age zero, and the last key comes at the particle death.</option>
-        <option name="PS_LOOP_LOOP" value="3">The time is converted to one within the time range represented by the keys, as if the key sequence loops forever in the past and future.</option>
-        <option name="PS_LOOP_REFLECT" value="4">The time is reflection looped, as if the keys played forward then backward the forward then backward etc for all time.</option>
+        <option name="CLAMP_BIRTH" value="0">Key times map such that the first key occurs at the birth of the particle, and times later than the last key get the last key value.</option>
+        <option name="CLAMP_DEATH" value="1">Key times map such that the last key occurs at the death of the particle, and times before the initial key time get the value of the initial key.</option>
+        <option name="AGE_SCALE" value="2">Scale the animation to fit the particle lifetime, so that the first key is age zero, and the last key comes at the particle death.</option>
+        <option name="LOOP" value="3">The time is converted to one within the time range represented by the keys, as if the key sequence loops forever in the past and future.</option>
+        <option name="REFLECT" value="4">The time is reflection looped, as if the keys played forward then backward the forward then backward etc for all time.</option>
     </enum>
 
     <niobject name="NiPSSimulatorGeneralStep" inherit="NiPSSimulatorStep">
