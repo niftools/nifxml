@@ -983,6 +983,7 @@
     </enum>
 
     <enum name="ExtraVectorsFlags" storage="byte">
+        <option value="0" name="None">No Tangents and Bitangents Vectors.</option>
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
