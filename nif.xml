@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.7.1.0">
+<niftoolsxml version="0.7.1.1">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -983,6 +983,7 @@
     </enum>
 
     <enum name="ExtraVectorsFlags" storage="byte">
+        <option value="0" name="None">No Tangents and Bitangents Vectors.</option>
         <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
     </enum>
 
