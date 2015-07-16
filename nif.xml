@@ -815,28 +815,28 @@
         Biped bodypart data used for visibility control of triangles.
         Skyrim BP names are listed only for vanilla names, different creatures have different defnitions for naming.
 
-        <option value="30" name="HEAD">Skyrim, Head(Human), Body(Atronachs,Beasts), Mask(Dragonpriest)</option>
-        <option value="31" name="HAIR">Skyrim, Hair(human), Far(Dragon), Mask2(Dragonpriest),SkinnedFX(Spriggan)</option>
-        <option value="32" name="BODY">Skyrim, Main body, extras(Spriggan)</option>
-        <option value="33" name="HANDS">Skyrim, Hands L/R, BodyToo(Dragonpriest), Legs(Draugr), Arms(Giant)</option>
-        <option value="34" name="FOREARMS">Skyrim, Forearms L/R, Beard(Draugr)</option>
-        <option value="35" name="AMULET">Skyrim, Amulet</option>
-        <option value="36" name="RING">Skyrim, Ring</option>
-        <option value="37" name="FEET">Skyrim, Feet L/R</option>
-        <option value="38" name="CALVES">Skyrim, Calves L/R</option>
-        <option value="39" name="SHIELD">Skyrim, Shield</option>
-        <option value="40" name="TAIL">Skyrim, Tail(Argonian/Khajiit), Skeleton01(Dragon), FX01(AtronachStorm),FXMist (Dragonpriest), Spit(Chaurus,Spider),SmokeFins(IceWraith)</option>
-        <option value="41" name="LONGHAIR">Skyrim, Long Hair(Human), Skeleton02(Dragon),FXParticles(Dragonpriest)</option>
-        <option value="42" name="CIRCLET">Skyrim, Circlet(Human, MouthFireEffect(Dragon)</option>
-        <option value="43" name="EARS">Skyrim, Ears</option>
-        <option value="44" name="DRAGON_BLOODHEAD_OR_MOD_MOUTH">Skyrim, Bloodied dragon head, or NPC face/mouth</option>
-        <option value="45" name="DRAGON_BLOODWINGL_OR_MOD_NECK">Skyrim, Left Bloodied dragon wing, Saddle(Horse), or NPC cape, scarf, shawl, neck-tie, etc.</option>
-        <option value="46" name="DRAGON_BLOODWINGR_OR_MOD_CHEST_PRIMARY">Skyrim, Right Bloodied dragon wing, or NPC chest primary or outergarment</option>
-        <option value="47" name="DRAGON_BLOODTAIL_OR_MOD_BACK">Skyrim, Bloodied dragon tail, or NPC backpack/wings/...</option>
+        <option value="30" name="HEAD">Head(Human), Body(Atronachs,Beasts), Mask(Dragonpriest)</option>
+        <option value="31" name="HAIR">Hair(human), Far(Dragon), Mask2(Dragonpriest),SkinnedFX(Spriggan)</option>
+        <option value="32" name="BODY">Main body, extras(Spriggan)</option>
+        <option value="33" name="HANDS">Hands L/R, BodyToo(Dragonpriest), Legs(Draugr), Arms(Giant)</option>
+        <option value="34" name="FOREARMS">Forearms L/R, Beard(Draugr)</option>
+        <option value="35" name="AMULET">Amulet</option>
+        <option value="36" name="RING">Ring</option>
+        <option value="37" name="FEET">Feet L/R</option>
+        <option value="38" name="CALVES">Calves L/R</option>
+        <option value="39" name="SHIELD">Shield</option>
+        <option value="40" name="TAIL">Tail(Argonian/Khajiit), Skeleton01(Dragon), FX01(AtronachStorm),FXMist (Dragonpriest), Spit(Chaurus,Spider),SmokeFins(IceWraith)</option>
+        <option value="41" name="LONGHAIR">Long Hair(Human), Skeleton02(Dragon),FXParticles(Dragonpriest)</option>
+        <option value="42" name="CIRCLET">Circlet(Human, MouthFireEffect(Dragon)</option>
+        <option value="43" name="EARS">Ears</option>
+        <option value="44" name="DRAGON_BLOODHEAD_OR_MOD_MOUTH">Bloodied dragon head, or NPC face/mouth</option>
+        <option value="45" name="DRAGON_BLOODWINGL_OR_MOD_NECK">Left Bloodied dragon wing, Saddle(Horse), or NPC cape, scarf, shawl, neck-tie, etc.</option>
+        <option value="46" name="DRAGON_BLOODWINGR_OR_MOD_CHEST_PRIMARY">Right Bloodied dragon wing, or NPC chest primary or outergarment</option>
+        <option value="47" name="DRAGON_BLOODTAIL_OR_MOD_BACK">Bloodied dragon tail, or NPC backpack/wings/...</option>
         <option value="48" name="MOD_MISC1">Anything that does not fit in the list</option>
         <option value="49" name="MOD_PELVIS_PRIMARY">Pelvis primary or outergarment</option>
-        <option value="50" name="DECAPITATEDHEAD">Skyrim, Decapitated Head</option>
-        <option value="51" name="DECAPITATE_NECK_GORE">Skyrim, Decapitate, neck gore</option>
+        <option value="50" name="DECAPITATEDHEAD">Decapitated Head</option>
+        <option value="51" name="DECAPITATE_NECK_GORE">Decapitate, neck gore</option>
         <option value="52" name="MOD_PELVIS_SECONDARY">Pelvis secondary or undergarment</option>
         <option value="53" name="MOD_LEG_RIGHT">Leg primary or outergarment or right leg</option>
         <option value="54" name="MOD_LEG_LEFT">Leg secondary or undergarment or left leg</option>
@@ -846,16 +846,16 @@
         <option value="58" name="MOD_ARM_LEFT">Arm secondary or undergarment or left arm</option>
         <option value="59" name="MOD_ARM_RIGHT">Arm primary or outergarment or right arm</option>
         <option value="60" name="MOD_MISC2">Anything that does not fit in the list</option>
-        <option value="61" name="FX01">Skyrim, FX01(Humanoid)</option>
+        <option value="61" name="FX01">FX01(Humanoid)</option>
 
-        <option value="130" name="FULL_FACE_HELMET">Skyrim, Head slot, use on full-face helmets</option>
-        <option value="131" name="HOOD_COWL_HAIR">Skyrim, Hair slot 1, use on hoods</option>
-        <option value="141" name="LONGHAIR_SLOT_2">Skyrim, Hair slot 2, use for longer hair</option>
-        <option value="142" name="CIRCLET">Skyrim, Circlet slot 1, use for circlets</option>
-        <option value="143" name="EARS">Skyrim, Ear slot</option>
-        <option value="150" name="DECAPITATED_HEAD_GORE">Skyrim, neck gore on head side</option>
+        <option value="130" name="FULL_FACE_HELMET">Head slot, use on full-face helmets</option>
+        <option value="131" name="HOOD_COWL_HAIR">Hair slot 1, use on hoods</option>
+        <option value="141" name="LONGHAIR_SLOT_2">Hair slot 2, use for longer hair</option>
+        <option value="142" name="CIRCLET">Circlet slot 1, use for circlets</option>
+        <option value="143" name="EARS">Ear slot</option>
+        <option value="150" name="DECAPITATED_HEAD_GORE">neck gore on head side</option>
 
-        <option value="230" name="HEAD_NECK">Skyrim, Head slot, use for neck on character head</option>
+        <option value="230" name="HEAD_NECK">Head slot, use for neck on character head</option>
     </enum>
 
     <enum name="Fallout3DismemberType" storage="ushort">
