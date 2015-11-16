@@ -2396,7 +2396,7 @@
         <add name="Data Layers" type="HavokColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
-    <niobject name="NiExtraData" abstract="1" inherit="NiObject">
+    <niobject name="NiExtraData" abstract="0" inherit="NiObject">
         A generic extra data object.
         <add name="Name" type="string" ver1="10.0.1.0" cond="!BSExtraData">Name of this object.</add>
         <add name="Next Extra Data" type="Ref" template="NiExtraData" ver2="4.2.2.0">Block number of the next extra data object.</add>
@@ -6406,11 +6406,12 @@
 
     <niobject name="BSSkin::Instance" inherit="NiObject">
         Fallout 4 Skin Instance
-        <add name="Unknown Int 1" type="uint" />
+        <add name="Target" type="Ptr" />
         <add name="Bone Data" type="Ref" template="BSSkin::BoneData" />
         <add name="Num Bones" type="uint" />
-        <add name="Bones" type="Ref" arr1="Num Bones" />
-        <add name="Unknown Int 2" type="uint" />
+        <add name="Bones" type="Ptr" arr1="Num Bones" />
+        <add name="Num Unknown" type="uint" />
+        <add name="Unknown" type="Vector3" arr1="Num Unknown" />
     </niobject>
 
     <niobject name="BSSkin::BoneData" inherit="NiObject">
