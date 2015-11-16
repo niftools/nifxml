@@ -106,7 +106,11 @@
     <basic name="float" count="0" niflibtype="float" nifskopetype="float">
         A standard 32-bit floating point number.
     </basic>
-
+    
+    <basic name="hfloat" count="0" niflibtype="hfloat" nifskopetype="hfloat">
+        A 16-bit floating point number.
+    </basic>
+    
     <basic name="HeaderString" count="0" niflibtype="HeaderString" nifskopetype="headerstring">
         A variable length string that ends with a newline character (0x0A).  The string starts as follows depending on the version:
 
@@ -1081,6 +1085,13 @@
         <add name="Num Vertices" type="ushort">Number of vertices in this group.</add>
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
+    
+    <compound name="HalfVector3">
+        A vector in 3D space (x,y,z).
+        <add name="x" type="hfloat">First coordinate.</add>
+        <add name="y" type="hfloat">Second coordinate.</add>
+        <add name="z" type="hfloat">Third coordinate.</add>
+    </compound>
 
     <compound name="Vector3" niflibtype="Vector3" nifskopetype="vector3">
         A vector in 3D space (x,y,z).
@@ -1268,6 +1279,7 @@
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
         <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
+        <add name="Export Info 3" type="ShortString" cond="(Version == 20.2.0.7) &amp;amp; (User Version 2 == 130)" />
         <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
@@ -1370,6 +1382,12 @@
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
         <add name="v" type="float">Second coordinate.</add>
+    </compound>
+    
+    <compound name="HalfTexCoord">
+        Texture coordinates (u,v).
+        <add name="u" type="hfloat">First coordinate.</add>
+        <add name="v" type="hfloat">Second coordinate.</add>
     </compound>
 
     <compound name="TexDesc">
@@ -2380,7 +2398,7 @@
 
     <niobject name="NiExtraData" abstract="1" inherit="NiObject">
         A generic extra data object.
-        <add name="Name" type="string" ver1="10.0.1.0">Name of this object.</add>
+        <add name="Name" type="string" ver1="10.0.1.0" cond="!BSExtraData">Name of this object.</add>
         <add name="Next Extra Data" type="Ref" template="NiExtraData" ver2="4.2.2.0">Block number of the next extra data object.</add>
     </niobject>
 
@@ -2526,11 +2544,11 @@
 
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
         A dynamic effect such as a light or environment map.
-        <add name="Switch State" type="bool" ver1="10.1.0.106">Turns effect on and off?  Switches list to list of unaffected nodes?</add>
-        <add name="Num Affected Node List Pointers" type="uint" ver2="4.0.0.2">The number of affected nodes referenced.</add>
-        <add name="Num Affected Nodes" type="uint" ver1="10.1.0.0">The number of affected nodes referenced.</add>
+        <add name="Switch State" type="bool" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">Turns effect on and off?  Switches list to list of unaffected nodes?</add>
+        <add name="Num Affected Node List Pointers" type="uint" ver2="4.0.0.2" >The number of affected nodes referenced.</add>
         <add name="Affected Node List Pointers" type="uint" arr1="Num Affected Node List Pointers" ver2="4.0.0.2">This is probably the list of affected nodes. For some reason i do not know the max exporter seems to write pointers instead of links. But it doesn&#039;t matter because at least in version 4.0.0.2 the list is automagically updated by the engine during the load stage.</add>
-        <add name="Affected Nodes" type="Ref" template="NiAVObject" arr1="Num Affected Nodes" ver1="10.1.0.0">The list of affected nodes?</add>
+        <add name="Num Affected Nodes" type="uint" ver1="10.1.0.0" vercond="User Version 2 &lt; 130">The number of affected nodes referenced.</add>
+        <add name="Affected Nodes" type="Ref" template="NiAVObject" arr1="Num Affected Nodes" ver1="10.1.0.0" vercond="User Version 2 &lt; 130">The list of affected nodes?</add>
     </niobject>
 
     <niobject name="NiLight" abstract="1" inherit="NiDynamicEffect">
@@ -2789,8 +2807,10 @@
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
-        <add name="Data" type="Ref" template="NiGeometryData">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13">Skin instance index.</add>
+        <add name="Data" type="Ref" template="NiGeometryData" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="uint" template="NiGeometryData" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" type="uint" template="NiSkinInstance" ver1="3.3.0.13" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
@@ -2800,7 +2820,8 @@
         <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
-        <add name="Dirty Flag" type="bool" ver1="20.2.0.7">Dirty Flag?</add>
+        <add name="Dirty Flag" type="bool" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt; 130)">Dirty Flag?</add>
+        <add name="Unknown Integer 3" type="int" vercond="(User Version >= 12) &amp;&amp; (User Version 2 >= 130)">Dirty Flag?</add>
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
     </niobject>
 
@@ -3347,8 +3368,8 @@
         Generic node object for grouping.
         <add name="Num Children" type="uint">The number of child objects.</add>
         <add name="Children" type="Ref" template="NiAVObject" arr1="Num Children">List of child node object indices.</add>
-        <add name="Num Effects" type="uint">The number of references to effect objects that follow.</add>
-        <add name="Effects" type="Ref" template="NiDynamicEffect" arr1="Num Effects">List of node effects. ADynamicEffect?</add>
+        <add name="Num Effects" type="uint" vercond="User Version 2 &lt; 130">The number of references to effect objects that follow.</add>
+        <add name="Effects" type="Ref" template="NiDynamicEffect" arr1="Num Effects" vercond="User Version 2 &lt; 130">List of node effects. ADynamicEffect?</add>
     </niobject>
 
     <niobject name="NiBone" abstract="0" inherit="NiNode">
@@ -3490,6 +3511,9 @@
 		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Short 3" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
+        <add name="Unknown Int 2" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
+        <add name="Unknown Int 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
+        <add name="Data" type="Ref" template="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
 		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
@@ -3754,7 +3778,8 @@
     <niobject name="NiPSysMeshEmitter" abstract="0" inherit="NiPSysEmitter">
         Particle emitter that uses points on a specified mesh to emit from.
         <add name="Num Emitter Meshes" type="uint">The number of references to emitter meshes that follow.</add>
-        <add name="Emitter Meshes" type="Ref" template="NiTriBasedGeom" arr1="Num Emitter Meshes">Links to meshes used for emitting.</add>
+        <!-- Note: Reduced strictness of validation -->
+        <add name="Emitter Meshes" type="Ref" template="NiAVObject" arr1="Num Emitter Meshes">Links to meshes used for emitting.</add>
         <add name="Initial Velocity Type" type="VelocityType">The way the particles get their initial direction and speed.</add>
         <add name="Emission Type" type="EmitFrom">The parts of the mesh that the particles emit from.</add>
         <add name="Emission Axis" type="Vector3">The emission axis.</add>
@@ -4861,7 +4886,8 @@
         <add name="Byte 1" type="byte">Unknown</add>
         <add name="Byte 2" type="byte">Unknown</add>
         <add name="Byte 3" type="byte">Unknown</add>
-        <add name="Interpolator 10?" type="Ref" template="NiInterpolator">Unknown, unsure if this is actually another interpolator link.</add>
+        <!-- Note: Reduced strictness of validation -->
+        <add name="Interpolator 10?" type="Ref" template="NiObject">Unknown, unsure if this is actually another interpolator link.</add>
 	</niobject>
 
    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
@@ -5009,6 +5035,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
+        <add name="Wet Material" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material&#039;s opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
@@ -5017,8 +5044,11 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Unknown 9 Floats" type="float" arr1="9" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
+        <add name="Unknown Env Map Int" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
+        <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
         <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
@@ -5040,15 +5070,20 @@
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
-        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
-        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
-        <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
-        <add name="Soft Falloff Depth" type="float"></add>
-        <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" vercond="User Version 2 &lt; 130">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0" vercond="User Version 2 &lt; 130">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" vercond="User Version 2 &lt; 130">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" vercond="User Version 2 &lt; 130">Alpha falloff multiplier at end angle</add>
+        <add name="Emissive Color" type="Color4" vercond="User Version 2 &lt; 130">Emissive color</add>
+        <add name="Emissive Multiple" type="float" vercond="User Version 2 &lt; 130">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Soft Falloff Depth" type="float" vercond="User Version 2 &lt; 130"></add>
+        <add name="Greyscale Texture"  type="SizedString" vercond="User Version 2 &lt; 130">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
+        <add name="Unknown 10 Floats" type="float" arr1="10" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Emissive Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Normal Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Specular Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Float 1" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
@@ -6243,4 +6278,184 @@
     </niobject>
     
     
+    <!-- Fallout 4 Geometry -->
+    
+    <compound name="BSVertexData">
+        <add name="Vertex" type="HalfVector3" />
+        <add name="dotNormal?" type="hfloat" />
+        <add name="UV" type="HalfTexCoord"  cond="ARG != 4" />
+        <add name="Unknown 8 Bytes" type="byte" arr1="8" cond="ARG &gt; 3" />
+        <add name="Vertex Colors" type="ByteColor4" cond="ARG == 6" />
+        <add name="Unknown 2 Ints" type="uint" cond="ARG == 7" arr1="2" />
+        <add name="Unknown 4 Halfs" type="hfloat" cond="ARG &gt;= 8" arr1="4" />
+        <add name="Unknown 4 Bytes" type="byte" cond="ARG &gt;= 8" arr1="4" />
+        <add name="Unknown Int 1" type="uint" cond="ARG == 9" />
+        <add name="Unknown 2 Ints 2" type="uint" cond="ARG == 10" arr1="2" />
+    </compound>
+
+    <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
+        Fallout 4 Tri Shape
+        <add name="Unknown 4 Floats" type="float" arr1="4" />
+        <add name="Skin" type="Ref" />
+        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" />
+        <add name="Vertex Flag 1" type="byte" />
+        <add name="Vertex Flag 2" type="byte" />
+        <add name="Vertex Flag 3" type="byte" />
+        <add name="Vertex Flag 4" type="byte" />
+        <add name="Vertex Flag 5" type="byte" />
+        <add name="Vertex Flag 6" type="byte" />
+        <add name="Vertex Flag 7" type="byte" />
+        <add name="Vertex Flag 8" type="byte" />
+        <add name="Num Triangles" type="uint" />
+        <add name="Num Vertices" type="ushort" />
+        <add name="Data Size" type="uint" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Flag 1" />
+        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
+    </niobject>
+
+    <niobject name="BSMeshLODTriShape" inherit="BSTriShape">
+        Fallout 4 LOD Tri Shape
+        <add name="LOD0 Size" type="uint" />
+        <add name="LOD1 Size" type="uint" />
+        <add name="LOD2 Size" type="uint" />
+    </niobject>
+    
+    <compound name="SubIndexRecordA">
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Unknown Int 2" type="uint" />
+        <add name="Unknown Int 3" type="uint" />
+        <add name="Unknown Int 4" type="uint" />
+    </compound>
+    
+    <compound name="SubIndexPart1">
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Unknown Int 2" type="uint" />
+        <add name="Unknown Int 3" type="uint" />
+        <add name="Num Records" type="uint" />
+        <add name="Sub Index Record" type="SubIndexRecordA" arr1="Num Records" />
+    </compound>
+
+    <compound name="SubIndexRecordB">
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Unknown Half 1" type="hfloat" />
+        <add name="Unknown Half 2" type="hfloat" />
+        <add name="Num Data" type="uint" />
+        <add name="Extra Data" type="float" arr1="Num Data" />
+    </compound>
+
+    <compound name="SubIndexPart2">
+        <add name="Num A2" type="uint" />
+        <add name="Num B2" type="uint" />
+        <add name="Sequence" type="uint" arr1="Num A2" />
+        <add name="Sub Index Record" type="SubIndexRecordB" arr1="Num B2" />
+        <add name="SSP Length" type="ushort" />
+        <!-- There is no actual char support in NifSkope! -->
+        <add name="SSP File" type="byte" arr1="SSP Length" />
+    </compound>
+
+    <niobject name="BSSubIndexTriShape" inherit="BSTriShape">
+        Fallout 4 Sub-Index Tri Shape
+        <add name="Num Triangles 2" type="uint" cond="Data Size &gt; 0" />
+        <add name="Num A" type="uint" cond="Data Size &gt; 0" />
+        <add name="Num B" type="uint" cond="Data Size &gt; 0" />
+        <!-- Can't use multiplication in expressions! -->
+        <add name="Sub Index Part 1" type="SubIndexPart1" arr1="Num A" cond="Data Size &gt; 0" />
+        <!-- end hack -->
+        <add name="Sub Index Part 2" type="SubIndexPart2" cond="(Num A &lt; Num B) &amp;&amp; (Data Size &gt; 0)" />
+    </niobject>
+    
+    <!-- Fallout 4 Physics -->
+
+    <niobject name="bhkNPCollisionObject" inherit="bhkCollisionObject">
+        Fallout 4 Collision Object
+        <add name="Unknown Int 2" type="uint">Unknown.</add>
+    </niobject>
+
+    <niobject name="BSExtraData" inherit="NiExtraData">
+        Fallout 4 Extra Data
+    </niobject>
+    
+    <niobject name="bhkPhysicsSystem" inherit="BSExtraData">
+        Fallout 4 Collision System
+        <add name="Num Bytes" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
+    </niobject>
+
+    <niobject name="bhkRagdollSystem" inherit="BSExtraData">
+        Fallout 4 Ragdoll System
+        <add name="Num Bytes" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
+    </niobject>
+
+    <niobject name="BSClothExtraData" inherit="BSExtraData">
+        Fallout 4 Cloth data
+        <add name="Num Bytes" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
+    </niobject>
+    
+    <!-- Fallout 4 Skeleton -->
+
+    <compound name="BSSkinBoneTrans">
+        Fallout 4 Bone Transform
+        <add name="Bounding Sphere" type="Vector3" />
+        <add name="Radius" type="float" />
+        <add name="Rotation" type="Matrix33" />
+        <add name="Translation" type="Vector3" />
+        <add name="Scale" type="float" />
+    </compound>
+
+    <niobject name="BSSkin::Instance" inherit="NiObject">
+        Fallout 4 Skin Instance
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Bone Data" type="Ref" template="BSSkin::BoneData" />
+        <add name="Num Bones" type="uint" />
+        <add name="Bones" type="Ref" arr1="Num Bones" />
+        <add name="Unknown Int 2" type="uint" />
+    </niobject>
+
+    <niobject name="BSSkin::BoneData" inherit="NiObject">
+        Fallout 4 Bone Data
+        <add name="Num Bones" type="uint" />
+        <add name="Bones" type="BSSkinBoneTrans" arr1="Num Bones" />
+    </niobject>
+
+    <niobject name="BSPositionData" inherit="NiExtraData">
+        Fallout 4 Positional Data
+        <add name="Num Data" type="uint" />
+        <add name="Data" type="hfloat" arr1="Num Data" />
+    </niobject>
+
+    <compound name="BSConnectPoint">
+        <add name="Root" type="SizedString" />
+        <add name="Variable Name" type="SizedString" />
+        <add name="Unknown Float 1" type="float" />
+        <add name="Unknown 6 Shorts" type="ushort" arr1="6" />
+        <add name="Unknown 4 Floats" type="float" arr1="4" />
+    </compound>
+
+    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData">
+        Fallout 4 Item Slot Parent
+        <add name="Num Connect Points" type="uint" />
+        <add name="Connect Points" type="BSConnectPoint" arr1="Num Connect Points" />
+    </niobject>
+
+    <niobject name="BSConnectPoint::Children" inherit="NiExtraData">
+        Fallout 4 Item Slot Child
+        <add name="Unknown Byte" type="byte" />
+        <add name="Num Targets" type="int" />
+        <add name="Target" type="SizedString" arr1="Num Targets" />
+    </niobject>
+    
+    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData">
+        Fallout 4 Eye Center Data
+        <add name="Num Data" type="int" />
+        <add name="Data" type="float" arr1="Num Data" />
+    </niobject>
+    
+    <!-- Fallout 4 Animation -->
+    
+    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController">
+    
+    </niobject>
+
 </niftoolsxml>
