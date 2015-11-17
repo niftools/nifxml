@@ -6285,7 +6285,14 @@
         <add name="Vertex" type="HalfVector3" />
         <add name="dotNormal?" type="hfloat" />
         <add name="UV" type="HalfTexCoord"  cond="ARG != 4" />
-        <add name="Unknown 8 Bytes" type="byte" arr1="8" cond="ARG &gt; 3" />
+        <add name="Normal X" type="byte" cond="ARG &gt; 3" />
+        <add name="Normal Y" type="byte" cond="ARG &gt; 3" />
+        <add name="Normal Z" type="byte" cond="ARG &gt; 3" />
+        <add name="Unknown Byte 1" type="byte" cond="ARG &gt; 3" />
+        <add name="Tangent X" type="byte" cond="ARG &gt; 3" />
+        <add name="Tangent Y" type="byte" cond="ARG &gt; 3" />
+        <add name="Tangent Z" type="byte" cond="ARG &gt; 3" />
+        <add name="Unknown Byte 2" type="byte" cond="ARG &gt; 3" />
         <add name="Vertex Colors" type="ByteColor4" cond="ARG == 6" />
         <add name="Unknown 2 Ints" type="uint" cond="ARG == 7" arr1="2" />
         <add name="Unknown 4 Halfs" type="hfloat" cond="ARG &gt;= 8" arr1="4" />
