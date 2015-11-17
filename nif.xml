@@ -29,7 +29,7 @@
     <version num="20.0.0.4">Civilization IV, Oblivion, Sid Meier's Railroads</version>
     <version num="20.0.0.5">Oblivion</version>
     <version num="20.1.0.3">Megami Tensei: Imagine</version>
-    <version num="20.2.0.7">Emerge, Empire Earth III, Fallout 3, Skyrim</version>
+    <version num="20.2.0.7">Emerge, Empire Earth III, Fallout 3, Skyrim, Fallout 4</version>
     <version num="20.2.0.8">Emerge, Empire Earth III, Atlantica</version>
     <!-- version 20.3.0.1 is found in Props/GDCLargeContainer.nif-->
     <version num="20.3.0.1">Emerge</version>
@@ -6355,8 +6355,8 @@
         <add name="Num B2" type="uint" />
         <add name="Sequence" type="uint" arr1="Num A2" />
         <add name="Sub Index Record" type="SubIndexRecordB" arr1="Num B2" />
+        <!-- TODO: Actual ShortString type (current "ShortString" is actually a byte) -->
         <add name="SSP Length" type="ushort" />
-        <!-- There is no actual char support in NifSkope! -->
         <add name="SSP File" type="byte" arr1="SSP Length" />
     </compound>
 
@@ -6365,9 +6365,7 @@
         <add name="Num Triangles 2" type="uint" cond="Data Size &gt; 0" />
         <add name="Num A" type="uint" cond="Data Size &gt; 0" />
         <add name="Num B" type="uint" cond="Data Size &gt; 0" />
-        <!-- Can't use multiplication in expressions! -->
         <add name="Sub Index Part 1" type="SubIndexPart1" arr1="Num A" cond="Data Size &gt; 0" />
-        <!-- end hack -->
         <add name="Sub Index Part 2" type="SubIndexPart2" cond="(Num A &lt; Num B) &amp;&amp; (Data Size &gt; 0)" />
     </niobject>
     
