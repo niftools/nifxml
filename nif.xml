@@ -1279,8 +1279,7 @@
         <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
         <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
         <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
-        <!-- Absolutely must use ver/userver2 as NifSkope will not process cond on this line causing all earlier NIFs to fail -->
-        <add name="Export Info 3" type="ShortString" ver="20.2.0.7" userver2="130" />
+        <add name="Export Info 3" type="ShortString" cond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))" />
         <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
