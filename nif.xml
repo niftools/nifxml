@@ -1086,7 +1086,7 @@
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
     
-    <compound name="HalfVector3">
+    <compound name="HalfVector3" nifskopetype="halfvector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="hfloat">First coordinate.</add>
         <add name="y" type="hfloat">Second coordinate.</add>
@@ -5035,7 +5035,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
-        <add name="Wet Material" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wet Material" type="StringIndex" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material&#039;s opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
@@ -6282,22 +6282,21 @@
     
     <compound name="BSVertexData">
         <add name="Vertex" type="HalfVector3" />
-        <add name="dotNormal?" type="hfloat" />
-        <add name="UV" type="HalfTexCoord"  cond="ARG != 4" />
-        <add name="Normal X" type="byte" cond="ARG &gt; 3" />
-        <add name="Normal Y" type="byte" cond="ARG &gt; 3" />
-        <add name="Normal Z" type="byte" cond="ARG &gt; 3" />
-        <add name="Unknown Byte 1" type="byte" cond="ARG &gt; 3" />
-        <add name="Tangent X" type="byte" cond="ARG &gt; 3" />
-        <add name="Tangent Y" type="byte" cond="ARG &gt; 3" />
-        <add name="Tangent Z" type="byte" cond="ARG &gt; 3" />
-        <add name="Unknown Byte 2" type="byte" cond="ARG &gt; 3" />
-        <add name="Vertex Colors" type="ByteColor4" cond="ARG == 6" />
-        <add name="Unknown 2 Ints" type="uint" cond="ARG == 7" arr1="2" />
-        <add name="Unknown 4 Halfs" type="hfloat" cond="ARG &gt;= 8" arr1="4" />
-        <add name="Unknown 4 Bytes" type="byte" cond="ARG &gt;= 8" arr1="4" />
-        <add name="Unknown Int 1" type="uint" cond="ARG == 9" />
-        <add name="Unknown 2 Ints 2" type="uint" cond="ARG == 10" arr1="2" />
+        <add name="Unknown Dot" type="hfloat" />
+        <add name="Unknown Int 1" type="uint" cond="ARG == 3" />
+        <add name="UV" type="HalfTexCoord" cond="ARG &gt; 4" />
+        <add name="Normal X" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Normal Y" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Normal Z" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Unknown Byte 1" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Tangent X" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Tangent Y" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Tangent Z" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Unknown Byte 2" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 6) &amp;&amp; (ARG != 7))" />
+        <add name="Vertex Colors" type="ByteColor4" cond="((ARG == 7) || (ARG == 9) || (ARG == 10))" />
+        <add name="Bone Weights" type="hfloat" cond="ARG &gt;= 6" arr1="4" />
+        <add name="Bone Indices" type="byte" cond="ARG &gt;= 6" arr1="4" />
+        <add name="Unknown Int 2" type="uint" cond="ARG == 10" />
     </compound>
 
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
@@ -6344,8 +6343,7 @@
 
     <compound name="SubIndexRecordB">
         <add name="Unknown Int 1" type="uint" />
-        <add name="Unknown Half 1" type="hfloat" />
-        <add name="Unknown Half 2" type="hfloat" />
+        <add name="Unknown Int 2" type="uint" />
         <add name="Num Data" type="uint" />
         <add name="Extra Data" type="float" arr1="Num Data" />
     </compound>
