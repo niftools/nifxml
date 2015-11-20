@@ -6289,7 +6289,8 @@
     
     <compound name="BSVertexData">
         <add name="Vertex" type="HalfVector3" />
-        <add name="Unknown Dot" type="hfloat" />
+        <add name="Unknown Dot" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG != 3))" />
+        <add name="Unknown Short 1" type="ushort" cond="((ARG == 6) || (ARG == 3))" />
         <add name="Unknown Int 1" type="uint" cond="ARG == 3" />
         <add name="UV" type="HalfTexCoord" cond="ARG &gt; 4" />
         <add name="Normal" type="ByteVector3" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
