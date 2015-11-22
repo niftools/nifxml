@@ -1391,7 +1391,7 @@
         <add name="v" type="float">Second coordinate.</add>
     </compound>
     
-    <compound name="HalfTexCoord">
+    <compound name="HalfTexCoord" nifskopetype="halfvector2">
         Texture coordinates (u,v).
         <add name="u" type="hfloat">First coordinate.</add>
         <add name="v" type="hfloat">Second coordinate.</add>
@@ -6358,8 +6358,8 @@
         <add name="Sequence" type="uint" arr1="Num A2" />
         <add name="Sub Index Record" type="SubIndexRecordB" arr1="Num B2" />
         <!-- TODO: Actual ShortString type (current "ShortString" is actually a byte) -->
-        <add name="SSP Length" type="ushort" />
-        <add name="SSP File" type="byte" arr1="SSP Length" />
+        <add name="SSF Length" type="ushort" />
+        <add name="SSF File" type="byte" arr1="SSF Length" />
     </compound>
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape">
