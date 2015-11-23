@@ -6287,7 +6287,34 @@
     
     <!-- Fallout 4 Geometry -->
     
+    <compound name="BSVertexDataRigid">
+        Rigid Vertex Data compound
+        <add name="Vertex" type="HalfVector3" />
+        <add name="Unknown Dot" type="hfloat" />
+        <add name="UV" type="HalfTexCoord" />
+        <add name="Normal" type="ByteVector3" />
+        <add name="Unknown Byte 1" type="byte" />
+        <add name="Tangent" type="ByteVector3" />
+        <add name="Unknown Byte 2" type="byte" />
+        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
+    </compound>
+    
+    <compound name="BSVertexDataSkinned">
+        Skinned Vertex Data compound
+        <add name="Vertex" type="HalfVector3" />
+        <add name="Unknown Dot" type="hfloat" />
+        <add name="UV" type="HalfTexCoord" />
+        <add name="Normal" type="ByteVector3" />
+        <add name="Unknown Byte 1" type="byte" />
+        <add name="Tangent" type="ByteVector3" />
+        <add name="Unknown Byte 2" type="byte" />
+        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
+        <add name="Bone Weights" type="hfloat" arr1="4" />
+        <add name="Bone Indices" type="byte" arr1="4" />
+    </compound>
+    
     <compound name="BSVertexData">
+        Catch all Vertex Data compound, SLOW
         <add name="Vertex" type="HalfVector3" />
         <add name="Unknown Dot" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG != 3))" />
         <add name="Unknown Short 1" type="ushort" cond="((ARG == 6) || (ARG == 3))" />
@@ -6319,7 +6346,12 @@
         <add name="Num Triangles" type="uint" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Flag 1" cond="Data Size &gt; 0" />
+        <add name="Vertex Data" type="BSVertexDataRigid" arr1="Num Vertices" arg="Vertex Flag 7" 
+            cond="(Data Size &gt; 0) &amp;&amp; ((Vertex Flag 7 &amp; 1) != 0) &amp;&amp; ((Vertex Flag 7 &amp; 4) == 0)" />
+        <add name="Vertex Data" type="BSVertexDataSkinned" arr1="Num Vertices" arg="Vertex Flag 7" 
+            cond="(Data Size &gt; 0) &amp;&amp; ((Vertex Flag 7 &amp; 1) != 0) &amp;&amp; ((Vertex Flag 7 &amp; 4) != 0) &amp;&amp; (Vertex Flag 5 == 0)" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Flag 1"
+            cond="(Data Size &gt; 0) &amp;&amp; (((Vertex Flag 7 &amp; 1) == 0) || Vertex Flag 5 &gt; 0)" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
     </niobject>
 
