@@ -6290,24 +6290,24 @@
     <compound name="BSVertexDataRigid">
         Rigid Vertex Data compound
         <add name="Vertex" type="HalfVector3" />
-        <add name="Unknown Dot" type="hfloat" />
+        <add name="Bitangent X" type="hfloat" />
         <add name="UV" type="HalfTexCoord" />
         <add name="Normal" type="ByteVector3" />
-        <add name="Unknown Byte 1" type="byte" />
+        <add name="Bitangent Y" type="byte" />
         <add name="Tangent" type="ByteVector3" />
-        <add name="Unknown Byte 2" type="byte" />
+        <add name="Bitangent Z" type="byte" />
         <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
     </compound>
     
     <compound name="BSVertexDataSkinned">
         Skinned Vertex Data compound
         <add name="Vertex" type="HalfVector3" />
-        <add name="Unknown Dot" type="hfloat" />
+        <add name="Bitangent X" type="hfloat" />
         <add name="UV" type="HalfTexCoord" />
         <add name="Normal" type="ByteVector3" />
-        <add name="Unknown Byte 1" type="byte" />
+        <add name="Bitangent Y" type="byte" />
         <add name="Tangent" type="ByteVector3" />
-        <add name="Unknown Byte 2" type="byte" />
+        <add name="Bitangent Z" type="byte" />
         <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
         <add name="Bone Weights" type="hfloat" arr1="4" />
         <add name="Bone Indices" type="byte" arr1="4" />
@@ -6316,14 +6316,14 @@
     <compound name="BSVertexData">
         Catch all Vertex Data compound, SLOW
         <add name="Vertex" type="HalfVector3" />
-        <add name="Unknown Dot" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG != 3))" />
+        <add name="Bitangent X" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG != 3))" />
         <add name="Unknown Short 1" type="ushort" cond="((ARG == 6) || (ARG == 3))" />
         <add name="Unknown Int 1" type="uint" cond="ARG == 3" />
         <add name="UV" type="HalfTexCoord" cond="ARG &gt; 4" />
         <add name="Normal" type="ByteVector3" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
-        <add name="Unknown Byte 1" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
+        <add name="Bitangent Y" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
         <add name="Tangent" type="ByteVector3" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
-        <add name="Unknown Byte 2" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
+        <add name="Bitangent Z" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
         <add name="Vertex Colors" type="ByteColor4" cond="((ARG == 6) || (ARG == 7) || (ARG == 9) || (ARG == 10))" />
         <add name="Bone Weights" type="hfloat" cond="ARG &gt; 6" arr1="4" />
         <add name="Bone Indices" type="byte" cond="ARG &gt; 6" arr1="4" />
