@@ -6362,19 +6362,19 @@
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="SubIndexRecordA">
+    <compound name="BSSITSSubSegment">
+        <add name="Triangle Offset" type="uint" />
+        <add name="Triangle Count" type="uint" />
+        <add name="Segment Offset" type="uint" />
         <add name="Unknown Int 1" type="uint" />
-        <add name="Unknown Int 2" type="uint" />
-        <add name="Unknown Int 3" type="uint" />
-        <add name="Unknown Int 4" type="uint" />
     </compound>
     
-    <compound name="SubIndexPart1">
-        <add name="Unknown Int 1" type="uint" />
-        <add name="Unknown Int 2" type="uint" />
-        <add name="Unknown Int 3" type="uint" />
-        <add name="Num Records" type="uint" />
-        <add name="Sub Index Record" type="SubIndexRecordA" arr1="Num Records" />
+    <compound name="BSSITSSegment">
+        <add name="Triangle Offset" type="uint" />
+        <add name="Triangle Count" type="uint" />
+        <add name="Unknown Hash" type="uint" />
+        <add name="Num Segments" type="uint" />
+        <add name="Sub Segment" type="BSSITSSubSegment" arr1="Num Segments" />
     </compound>
 
     <compound name="SubIndexRecordB">
@@ -6399,7 +6399,7 @@
         <add name="Num Triangles 2" type="uint" cond="Data Size &gt; 0" />
         <add name="Num A" type="uint" cond="Data Size &gt; 0" />
         <add name="Num B" type="uint" cond="Data Size &gt; 0" />
-        <add name="Sub Index Part 1" type="SubIndexPart1" arr1="Num A" cond="Data Size &gt; 0" />
+        <add name="Segment" type="BSSITSSegment" arr1="Num A" cond="Data Size &gt; 0" />
         <add name="Sub Index Part 2" type="SubIndexPart2" cond="(Num A &lt; Num B) &amp;&amp; (Data Size &gt; 0)" />
     </niobject>
     
