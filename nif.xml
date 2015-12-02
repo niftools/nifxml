@@ -5049,9 +5049,19 @@
         <add name="Glossiness" type="float">The material&#039;s specular power, or glossiness (0-999).</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Lighting Effect 2" type="float">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Unknown 9 Floats" type="float" arr1="9" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Lighting Effect 1" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Lighting Effect 2" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+		<add name="Subsurface Rolloff" type="float"  vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Float 1" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Backlight Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Grayscale to Palette Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Spec Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Spec Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Min Var" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Env Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+		<add name="Wetness Metalness" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Unknown Env Map Int" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
