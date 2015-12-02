@@ -6478,9 +6478,9 @@
     <compound name="BSConnectPoint">
         <add name="Root" type="SizedString" />
         <add name="Variable Name" type="SizedString" />
-        <add name="Unknown Float 1" type="float" />
-        <add name="Unknown 6 Shorts" type="ushort" arr1="6" />
-        <add name="Unknown 4 Floats" type="float" arr1="4" />
+        <add name="Rotation" type="Quaternion" />
+        <add name="Translation" type="Vector3" />
+        <add name="Scale" type="float" />
     </compound>
 
     <niobject name="BSConnectPoint::Parents" inherit="NiExtraData">
