@@ -6342,7 +6342,7 @@
 
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
         Fallout 4 Tri Shape
-        <add name="Unknown 4 Floats" type="float" arr1="4" />
+        <add name="Bounding Sphere" type="SphereBV" />
         <add name="Skin" type="Ref" />
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" />
         <add name="Vertex Flag 1" type="byte" />
@@ -6446,8 +6446,7 @@
 
     <compound name="BSSkinBoneTrans">
         Fallout 4 Bone Transform
-        <add name="Bounding Sphere" type="Vector3" />
-        <add name="Radius" type="float" />
+        <add name="Bounding Sphere" type="SphereBV" />
         <add name="Rotation" type="Matrix33" />
         <add name="Translation" type="Vector3" />
         <add name="Scale" type="float" />
