@@ -5087,20 +5087,18 @@
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
-        <add name="Falloff Start Angle" type="float" default="1.0" vercond="User Version 2 &lt; 130">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="1.0" vercond="User Version 2 &lt; 130">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float" vercond="User Version 2 &lt; 130">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float" vercond="User Version 2 &lt; 130">Alpha falloff multiplier at end angle</add>
-        <add name="Emissive Color" type="Color4" vercond="User Version 2 &lt; 130">Emissive color</add>
-        <add name="Emissive Multiple" type="float" vercond="User Version 2 &lt; 130">Multiplier for Emissive Color (RGB part)</add>
-        <add name="Soft Falloff Depth" type="float" vercond="User Version 2 &lt; 130"></add>
-        <add name="Greyscale Texture"  type="SizedString" vercond="User Version 2 &lt; 130">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
-        <add name="Unknown 10 Floats" type="float" arr1="10" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Emissive Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
+        <add name="Emissive Color" type="Color4">Emissive color</add>
+        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Soft Falloff Depth" type="float"></add>
+        <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
+        <add name="Env Map Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Normal Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Specular Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Unknown Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Unknown Float 1" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Env Mask Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Environment Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
