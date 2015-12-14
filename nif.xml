@@ -6319,15 +6319,15 @@
         <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
         <add name="Bone Weights" type="hfloat" arr1="4" />
         <add name="Bone Indices" type="byte" arr1="4" />
+        <add name="Unknown Int 2" type="uint" cond="(ARG &amp; 16) != 0" />
     </compound>
     
     <compound name="BSVertexData">
         Catch all Vertex Data compound, SLOW
         <add name="Vertex" type="HalfVector3" />
-        <add name="Bitangent X" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG != 3))" />
-        <add name="Unknown Short 1" type="ushort" cond="((ARG == 6) || (ARG == 3))" />
-        <add name="Unknown Int 1" type="uint" cond="ARG == 3" />
-        <add name="UV" type="HalfTexCoord" cond="ARG &gt; 4" />
+        <add name="Bitangent X" type="hfloat" cond="((ARG != 6) &amp;&amp; (ARG &gt; 4))" />
+        <add name="Unknown Short 1" type="ushort" cond="((ARG == 6) || (ARG &lt; 5))" />
+        <add name="UV" type="HalfTexCoord" cond="(ARG &gt; 2) &amp;&amp; (ARG != 4)" />
         <add name="Normal" type="ByteVector3" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
         <add name="Bitangent Y" type="byte" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
         <add name="Tangent" type="ByteVector3" cond="((ARG &gt; 3) &amp;&amp; (ARG != 7))" />
@@ -6337,29 +6337,76 @@
         <add name="Bone Indices" type="byte" cond="ARG &gt; 6" arr1="4" />
         <add name="Unknown Int 2" type="uint" cond="ARG == 10" />
     </compound>
+    
+    <compound name="BSVertexDataFloat">
+        Rigid Vertex Data compound
+        <add name="Vertex" type="Vector3" />
+        <add name="Bitangent X" type="float" />
+        <add name="UV" type="HalfTexCoord" />
+        <add name="Normal" type="ByteVector3" />
+        <add name="Bitangent Y" type="byte" />
+        <add name="Tangent" type="ByteVector3" />
+        <add name="Bitangent Z" type="byte" />
+        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
+        <add name="Bone Weights" type="hfloat" cond="(ARG &amp; 4) != 0" arr1="4" />
+        <add name="Bone Indices" type="byte" cond="(ARG &amp; 4) != 0" arr1="4" />
+    </compound>
+    
+    <compound name="BSVertexDataNoTangents">
+        TODO: Temporary
+        <add name="Vertex" type="HalfVector3" />
+        <add name="Unknown Short 1" type="ushort" />
+        <add name="Normal" type="ByteVector3" />
+        <add name="Unknown Byte 1" type="byte" />
+        <add name="Vertex Colors" type="ByteColor4" cond="ARG == 4" />
+    </compound>
+    
+    <compound name="BSVertexDataNoNormals">
+        TODO: Temporary
+        <add name="Vertex" type="HalfVector3" />
+        <add name="Unknown Short 1" type="ushort" />
+        <add name="UV" type="HalfTexCoord" />
+        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 2) != 0" />
+        <add name="Bone Weights" type="hfloat" cond="(ARG &amp; 4) != 0" arr1="4" />
+        <add name="Bone Indices" type="byte" cond="(ARG &amp; 4) != 0" arr1="4" />
+    </compound>
 
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="SphereBV" />
         <add name="Skin" type="Ref" />
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" />
-        <add name="Vertex Flag 1" type="byte" />
-        <add name="Vertex Flag 2" type="byte" />
-        <add name="Vertex Flag 3" type="byte" />
-        <add name="Vertex Flag 4" type="byte" />
-        <add name="Vertex Flag 5" type="byte" />
-        <add name="Vertex Flag 6" type="byte" />
-        <add name="Vertex Flag 7" type="byte" />
-        <add name="Vertex Flag 8" type="byte" />
+        <add name="VF1" type="byte" />
+        <add name="VF2" type="byte" />
+        <add name="VF3" type="byte" />
+        <add name="VF4" type="byte" />
+        <add name="VF5" type="byte" />
+        <add name="VF6" type="byte" />
+        <add name="VF7" type="byte" />
+        <add name="VF8" type="byte" />
         <add name="Num Triangles" type="uint" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexDataRigid" arr1="Num Vertices" arg="Vertex Flag 7" 
-            cond="(Data Size &gt; 0) &amp;&amp; ((Vertex Flag 7 &amp; 1) != 0) &amp;&amp; ((Vertex Flag 7 &amp; 4) == 0)" />
-        <add name="Vertex Data" type="BSVertexDataSkinned" arr1="Num Vertices" arg="Vertex Flag 7" 
-            cond="(Data Size &gt; 0) &amp;&amp; ((Vertex Flag 7 &amp; 1) != 0) &amp;&amp; ((Vertex Flag 7 &amp; 4) != 0) &amp;&amp; (Vertex Flag 5 == 0)" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Flag 1"
-            cond="(Data Size &gt; 0) &amp;&amp; (((Vertex Flag 7 &amp; 1) == 0) || Vertex Flag 5 &gt; 0)" />
+		<!-- Below are several compounds to bypass the inability to check multiple flags via multiple ARG passing -->
+		<!-- NifSkope performance is also **extremely** poor with ARG passing and so optimized compounds for the majority of cases were created -->
+		<!-- Rigid (Optimized) -->
+        <add name="Vertex Data" type="BSVertexDataRigid" arr1="Num Vertices" arg="VF7" 
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) == 0) &amp;&amp; ((VF7 &amp; 1) != 0) &amp;&amp; ((VF7 &amp; 4) == 0) &amp;&amp; (VF6 == 176)" />
+		<!-- Skinned (Optimized) -->
+        <add name="Vertex Data" type="BSVertexDataSkinned" arr1="Num Vertices" arg="VF7" 
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) == 0) &amp;&amp; ((VF7 &amp; 1) != 0) &amp;&amp; ((VF7 &amp; 4) != 0) &amp;&amp; (VF6 == 176)" />
+		<!-- Catch All (SLOW) -->
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF1"
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) == 0) &amp;&amp; ((VF7 &amp; 1) == 0) &amp;&amp; ((VF6 == 176) || (VF6 == 16))" />
+		<!-- Float Replacement (SCOL folder) -->
+        <add name="Vertex Data" type="BSVertexDataFloat" arr1="Num Vertices" arg="VF7"
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) != 0) &amp;&amp; (VF6 == 176)" />
+		<!-- Edge Case #1 (VF6 == 48) -->
+        <add name="Vertex Data" type="BSVertexDataNoNormals" arr1="Num Vertices" arg="VF7"
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) == 0) &amp;&amp; (VF6 == 48)" />
+		<!-- Edge Case #2 (VF6 == 144) -->
+        <add name="Vertex Data" type="BSVertexDataNoTangents" arr1="Num Vertices" arg="VF1"
+            cond="(Data Size &gt; 0) &amp;&amp; ((VF7 &amp; 64) == 0) &amp;&amp; (VF6 == 144)" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
     </niobject>
 
@@ -6497,6 +6544,10 @@
         Fallout 4 Eye Center Data
         <add name="Num Data" type="int" />
         <add name="Data" type="float" arr1="Num Data" />
+    </niobject>
+    
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
+        Fallout 4 Packed Combined Geometry Data
     </niobject>
     
     <!-- Fallout 4 Animation -->
