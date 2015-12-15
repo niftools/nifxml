@@ -6546,13 +6546,13 @@
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-	<compound name="BSPackedGeomData">
+    <compound name="BSPackedGeomData">
         <add name="Unk1" type="uint" arr1="8" />
         <add name="Num Unk2" type="uint" />
         <add name="Unk2" type="uint" arr1="Num Unk2" arr2="18" />
         <add name="Unk Int 1" type="uint" />
         <add name="Unk Int 2" type="uint" />
-	</compound>
+    </compound>
     
     <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Geometry Data
