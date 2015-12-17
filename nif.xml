@@ -6546,13 +6546,33 @@
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
+    <compound name="BSPackedGeomDataCombined">
+        <add name="Rotation" type="Matrix33" />
+        <add name="Unk Float 1" type="float" />
+        <add name="Translation" type="Vector3" />
+        <add name="Scale" type="float" />
+        <add name="Bounding Sphere" type="SphereBV" />
+    </compound>
+    
+    <compound name="BSPackedGeomDataLOD">
+        <add name="Triangle Count" type="uint" />
+        <add name="Triangle Offset" type="uint" />
+    </compound>
+    
     <compound name="BSPackedGeomData">
-        <add name="Unk1" type="uint" arr1="8" />
-        <add name="Num Unk2" type="uint" />
-        <add name="Unk2" type="uint" arr1="Num Unk2" arr2="18" />
+        <add name="Num Verts" type="uint" />
+        <add name="LOD Levels" type="uint" />
+        <add name="LOD" type="BSPackedGeomDataLOD" arr1="LOD Levels" />
+        <add name="Num Combined" type="uint" />
+        <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <add name="Unk Int 1" type="uint" />
         <add name="Unk Int 2" type="uint" />
     </compound>
+	
+	<compound name="BSPackedGeomObject">
+		<add name="Unknown Int 1" type="uint" />
+		<add name="Object Hash?" type="uint" />
+	</compound>
     
     <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Geometry Data
@@ -6566,11 +6586,11 @@
         <add name="VF8" type="byte" />
         <add name="Num Vertices" type="uint" />
         <add name="Num Triangles" type="uint" />
-        <add name="Unknown Int 1" type="uint" />
-        <add name="Unknown Int 2" type="uint" />
+        <add name="Unknown Flags 1" type="uint" />
+        <add name="Unknown Flags 2" type="uint" />
         <add name="Num Data" type="uint" />
-        <add name="Unk 1" type="byte" arr1="Num Data" arr2="8" />
-        <add name="Data" type="BSPackedGeomData" arr1="Num Data" />
+        <add name="Object" type="BSPackedGeomObject" arr1="Num Data" />
+        <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
     
     <!-- Fallout 4 Animation -->
