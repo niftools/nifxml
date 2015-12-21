@@ -6547,8 +6547,8 @@
     </niobject>
 	
     <compound name="BSPackedGeomDataCombined">
+        <add name="Grayscale to Palette Scale" type="float" />
         <add name="Rotation" type="Matrix33" />
-        <add name="Unk Float 1" type="float" />
         <add name="Translation" type="Vector3" />
         <add name="Scale" type="float" />
         <add name="Bounding Sphere" type="SphereBV" />
