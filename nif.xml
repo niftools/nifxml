@@ -6374,7 +6374,7 @@
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="SphereBV" />
-        <add name="Skin" type="Ref" />
+        <add name="Skin" type="Ref" template="NiObject" />
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" />
         <add name="VF1" type="byte" />
         <add name="VF2" type="byte" />
@@ -6499,7 +6499,7 @@
 
     <niobject name="BSSkin::Instance" inherit="NiObject">
         Fallout 4 Skin Instance
-        <add name="Target" type="Ptr" />
+        <add name="Target" type="Ptr" template="NiAVObject" />
         <add name="Bone Data" type="Ref" template="BSSkin::BoneData" />
         <add name="Num Bones" type="uint" />
         <add name="Bones" type="Ptr" arr1="Num Bones" />
