@@ -2814,10 +2814,12 @@
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
-        <add name="Data" type="Ref" template="NiGeometryData" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="uint" template="NiGeometryData" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13" cond="!NiParticleSystem">Skin instance index.</add>
-        <add name="Skin Instance" type="uint" template="NiSkinInstance" ver1="3.3.0.13" cond="NiParticleSystem">Skin instance index.</add>
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Data index (NiTriShapeData/NiTriStripData).</add>
+		<add name="Data" type="Ref" template="NiGeometryData" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+		<add name="Data" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+		<add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Skin instance index.</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
@@ -5042,7 +5044,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
-        <add name="Wet Material" type="StringIndex" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wet Material" type="string" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material&#039;s opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
