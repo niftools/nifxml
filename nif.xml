@@ -6316,34 +6316,7 @@
         <option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
     </bitflags>
     
-    <compound name="BSVertexDataRigid">
-        Rigid Vertex Data compound
-        <add name="Vertex" type="HalfVector3" />
-        <add name="Bitangent X" type="hfloat" />
-        <add name="UV" type="HalfTexCoord" />
-        <add name="Normal" type="ByteVector3" />
-        <add name="Bitangent Y" type="byte" />
-        <add name="Tangent" type="ByteVector3" />
-        <add name="Bitangent Z" type="byte" />
-        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-    </compound>
-    
-    <compound name="BSVertexDataSkinned">
-        Skinned Vertex Data compound
-        <add name="Vertex" type="HalfVector3" />
-        <add name="Bitangent X" type="hfloat" />
-        <add name="UV" type="HalfTexCoord" />
-        <add name="Normal" type="ByteVector3" />
-        <add name="Bitangent Y" type="byte" />
-        <add name="Tangent" type="ByteVector3" />
-        <add name="Bitangent Z" type="byte" />
-        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-        <add name="Bone Weights" type="hfloat" arr1="4" />
-        <add name="Bone Indices" type="byte" arr1="4" />
-    </compound>
-    
     <compound name="BSVertexData">
-        Catch all Vertex Data compound, SLOW
         <add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
         <add name="Bitangent X" type="hfloat" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
         <add name="Unknown Short" type="ushort" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
@@ -6359,20 +6332,6 @@
         <add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
         <add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
         <add name="Unknown Int 2" type="uint" cond="(ARG &amp; 4096) != 0" />
-    </compound>
-    
-    <compound name="BSVertexDataFloat">
-        Rigid Vertex Data compound
-        <add name="Vertex" type="Vector3" />
-        <add name="Bitangent X" type="float" />
-        <add name="UV" type="HalfTexCoord" />
-        <add name="Normal" type="ByteVector3" />
-        <add name="Bitangent Y" type="byte" />
-        <add name="Tangent" type="ByteVector3" />
-        <add name="Bitangent Z" type="byte" />
-        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-        <add name="Bone Weights" type="hfloat" cond="(ARG &amp; 1024) != 0" arr1="4" />
-        <add name="Bone Indices" type="byte" cond="(ARG &amp; 1024) != 0" arr1="4" />
     </compound>
 
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
@@ -6390,20 +6349,7 @@
         <add name="Num Triangles" type="uint" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <!-- NifSkope performance is **extremely** poor with ARG passing and so optimized compounds for the majority of cases were created -->
-        <!-- Rigid (Optimized) -->
-        <add name="Vertex Data" type="BSVertexDataRigid" arr1="Num Vertices" arg="VF" 
-            cond="(Data Size &gt; 0) &amp;&amp; ((VF == 432) || (VF == 944))" />
-        <!-- Skinned (Optimized) -->
-        <add name="Vertex Data" type="BSVertexDataSkinned" arr1="Num Vertices" arg="VF" 
-            cond="(Data Size &gt; 0) &amp;&amp; ((VF == 1456) || (VF == 1968))" />
-        <!-- Catch All (SLOW) -->
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF"
-            cond="(Data Size &gt; 0) &amp;&amp; ((VF &amp; 16384) == 0) &amp;&amp; ((VF != 432) &amp;&amp; (VF != 944) &amp;&amp; (VF != 1456) &amp;&amp; (VF != 1968))" />
-        <!-- Float Replacement (SCOL folder) -->
-        <add name="Vertex Data" type="BSVertexDataFloat" arr1="Num Vertices" arg="VF"
-            cond="(Data Size &gt; 0) &amp;&amp; ((VF &amp; 16384) != 0)" />
-
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
     </niobject>
 
