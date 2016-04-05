@@ -2815,9 +2815,9 @@
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Data index (NiTriShapeData/NiTriStripData).</add>
-		<add name="Data" type="Ref" template="NiGeometryData" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-		<add name="Data" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-		<add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Skin instance index.</add>
+        <add name="Data" type="Ref" template="NiGeometryData" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Skin instance index.</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Skin instance index.</add>
         <add name="Skin Instance" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
@@ -2830,7 +2830,7 @@
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
         <add name="Dirty Flag" type="bool" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt; 130)">Dirty Flag?</add>
-        <add name="Unknown Integer 3" type="int" vercond="(User Version >= 12) &amp;&amp; (User Version 2 >= 130)">Dirty Flag?</add>
+        <add name="Unknown Integer 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Dirty Flag?</add>
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
     </niobject>
 
@@ -5053,17 +5053,17 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-		<add name="Subsurface Rolloff" type="float"  vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Subsurface Rolloff" type="float"  vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Unknown Float 1" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Backlight Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Grayscale to Palette Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Spec Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Spec Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Min Var" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Env Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-		<add name="Wetness Metalness" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Backlight Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Grayscale to Palette Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Spec Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Spec Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Min Var" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Env Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wetness Metalness" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Unknown Env Map Int" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
@@ -5089,6 +5089,7 @@
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
+        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
         <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
         <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
         <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
@@ -6512,10 +6513,10 @@
         <add name="Unk Int 2" type="uint" />
     </compound>
 	
-	<compound name="BSPackedGeomObject">
-		<add name="Unknown Int 1" type="uint" />
-		<add name="Object Hash?" type="uint" />
-	</compound>
+    <compound name="BSPackedGeomObject">
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Object Hash?" type="uint" />
+    </compound>
     
     <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Geometry Data
