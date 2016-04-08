@@ -6362,32 +6362,32 @@
     </niobject>
     
     <compound name="BSSITSSubSegment">
-        <add name="Triangle Offset" type="uint" />
-        <add name="Triangle Count" type="uint" />
-        <add name="Segment Offset" type="uint" />
+        <add name="Start Index" type="uint" />
+        <add name="Num Primitives" type="uint" />
+        <add name="Parent Array Index" type="uint" />
         <add name="Unknown Int 1" type="uint" />
     </compound>
     
     <compound name="BSSITSSegment">
-        <add name="Triangle Offset" type="uint" />
-        <add name="Triangle Count" type="uint" />
-        <add name="Unknown Hash" type="uint" />
-        <add name="Num Segments" type="uint" />
-        <add name="Sub Segment" type="BSSITSSubSegment" arr1="Num Segments" />
+        <add name="Start Index" type="uint" />
+        <add name="Num Primitives" type="uint" />
+        <add name="Parent Array Index" type="uint" />
+        <add name="Num Sub Segments" type="uint" />
+        <add name="Sub Segment" type="BSSITSSubSegment" arr1="Num Sub Segments" />
     </compound>
 
-    <compound name="SubIndexRecordB">
-        <add name="Unknown Int 1" type="uint" />
+    <compound name="BSSITSSubSegmentData">
+        <add name="Segment/User" type="uint">If Unknown Int 2 is 0xffffffff, this value refers to the Segment at the listed index.</add>
         <add name="Unknown Int 2" type="uint" />
         <add name="Num Data" type="uint" />
         <add name="Extra Data" type="float" arr1="Num Data" />
     </compound>
 
-    <compound name="SubIndexPart2">
-        <add name="Num A2" type="uint" />
-        <add name="Num B2" type="uint" />
-        <add name="Sequence" type="uint" arr1="Num A2" />
-        <add name="Sub Index Record" type="SubIndexRecordB" arr1="Num B2" />
+    <compound name="BSSITSSubSegmentRecord">
+        <add name="Num Segments" type="uint" />
+        <add name="Total Segments" type="uint" />
+        <add name="Array Indices" type="uint" arr1="Num Segments" />
+        <add name="Sub Segments" type="BSSITSSubSegmentData" arr1="Total Segments" />
         <!-- TODO: Actual ShortString type (current "ShortString" is actually a byte) -->
         <add name="SSF Length" type="ushort" />
         <add name="SSF File" type="byte" arr1="SSF Length" />
@@ -6395,11 +6395,11 @@
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape">
         Fallout 4 Sub-Index Tri Shape
-        <add name="Num Triangles 2" type="uint" cond="Data Size &gt; 0" />
-        <add name="Num A" type="uint" cond="Data Size &gt; 0" />
-        <add name="Num B" type="uint" cond="Data Size &gt; 0" />
-        <add name="Segment" type="BSSITSSegment" arr1="Num A" cond="Data Size &gt; 0" />
-        <add name="Sub Index Part 2" type="SubIndexPart2" cond="(Num A &lt; Num B) &amp;&amp; (Data Size &gt; 0)" />
+        <add name="Num Primitives" type="uint" cond="Data Size &gt; 0" />
+        <add name="Num Segments" type="uint" cond="Data Size &gt; 0" />
+        <add name="Total Segments" type="uint" cond="Data Size &gt; 0" />
+        <add name="Segment" type="BSSITSSegment" arr1="Num Segments" cond="Data Size &gt; 0" />
+        <add name="Sub Segment Data" type="BSSITSSubSegmentRecord" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
