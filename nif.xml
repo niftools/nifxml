@@ -6404,31 +6404,40 @@
     
     <!-- Fallout 4 Physics -->
 
-    <niobject name="bhkNPCollisionObject" inherit="bhkCollisionObject">
+    <niobject name="bhkSystem" abstract="1" inherit="NiObject">
+        Fallout 4 Physics System
+    </niobject>
+    
+    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject">
         Fallout 4 Collision Object
-        <add name="Unknown Int 2" type="uint">Unknown.</add>
+        <add name="Flags" type="ushort">
+            Due to inaccurate reporting in the CK the Reset and Sync On Update positions are a guess.
+            Bits: 0=Reset, 2=Notify, 3=SetLocal, 7=SyncOnUpdate, 10=AnimTargeted
+        </add>
+        <add name="Data" type="Ref" template="bhkSystem" />
+        <add name="Body ID" type="uint" />
+    </niobject>
+    
+    <niobject name="bhkPhysicsSystem" inherit="bhkSystem">
+        Fallout 4 Collision System
+        <add name="Size" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
+    </niobject>
+
+    <niobject name="bhkRagdollSystem" inherit="bhkSystem">
+        Fallout 4 Ragdoll System
+        <add name="Size" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
     </niobject>
 
     <niobject name="BSExtraData" inherit="NiExtraData">
         Fallout 4 Extra Data
     </niobject>
-    
-    <niobject name="bhkPhysicsSystem" inherit="BSExtraData">
-        Fallout 4 Collision System
-        <add name="Num Bytes" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
-    </niobject>
-
-    <niobject name="bhkRagdollSystem" inherit="BSExtraData">
-        Fallout 4 Ragdoll System
-        <add name="Num Bytes" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
-    </niobject>
 
     <niobject name="BSClothExtraData" inherit="BSExtraData">
         Fallout 4 Cloth data
-        <add name="Num Bytes" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
+        <add name="Size" type="uint" />
+        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
     </niobject>
     
     <!-- Fallout 4 Skeleton -->
@@ -6443,7 +6452,7 @@
 
     <niobject name="BSSkin::Instance" inherit="NiObject">
         Fallout 4 Skin Instance
-        <add name="Target" type="Ptr" template="NiAVObject" />
+        <add name="Root Parent" type="Ptr" template="NiAVObject" />
         <add name="Bone Data" type="Ref" template="BSSkin::BoneData" />
         <add name="Num Bones" type="uint" />
         <add name="Bones" type="Ptr" arr1="Num Bones" />
@@ -6464,8 +6473,8 @@
     </niobject>
 
     <compound name="BSConnectPoint">
-        <add name="Root" type="SizedString" />
-        <add name="Variable Name" type="SizedString" />
+        <add name="Parent" type="SizedString" />
+        <add name="Name" type="SizedString" />
         <add name="Rotation" type="Quaternion" />
         <add name="Translation" type="Vector3" />
         <add name="Scale" type="float" />
@@ -6479,9 +6488,9 @@
 
     <niobject name="BSConnectPoint::Children" inherit="NiExtraData">
         Fallout 4 Item Slot Child
-        <add name="Unknown Byte" type="byte" />
-        <add name="Num Targets" type="int" />
-        <add name="Target" type="SizedString" arr1="Num Targets" />
+        <add name="Skinned" type="bool" />
+        <add name="Num Points" type="int" />
+        <add name="Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
     <niobject name="BSEyeCenterExtraData" inherit="NiExtraData">
