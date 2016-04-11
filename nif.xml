@@ -5035,10 +5035,84 @@
         <option value="31" name="SLSF2_HD_LOD_Objects"></option>
     </bitflags>
 
+    <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint">
+        Fallout 4 Shader Property Flags 1
+        <option value="0" name="FSF1_Specular" />
+        <option value="1" name="FSF1_Skinned" />
+        <option value="2" name="FSF1_Temp_Refraction" />
+        <option value="3" name="FSF1_Vertex_Alpha" />
+        <option value="4" name="FSF1_GreyscaleToPalette_Color" />
+        <option value="5" name="FSF1_GreyscaleToPalette_Alpha" />
+        <option value="6" name="FSF1_Use_Falloff" />
+        <option value="7" name="FSF1_Environment_Mapping" />
+        <option value="8" name="FSF1_RGB_Falloff" />
+        <option value="9" name="FSF1_Cast_Shadows" />
+        <option value="10" name="FSF1_Face" />
+        <option value="11" name="FSF1_UI_Mask_Rects" />
+        <option value="12" name="FSF1_Model_Space_Normals" />
+        <option value="13" name="FSF1_Non_Projective_Shadows" />
+        <option value="14" name="FSF1_Landscape" />
+        <option value="15" name="FSF1_Refraction" />
+        <option value="16" name="FSF1_Fire_Refraction" />
+        <option value="17" name="FSF1_Eye_Environment_Mapping" />
+        <option value="18" name="FSF1_Hair" />
+        <option value="19" name="FSF1_Screendoor_Alpha_Fade" />
+        <option value="20" name="FSF1_Localmap_Hide_Secret" />
+        <option value="21" name="FSF1_Skin_Tint" />
+        <option value="22" name="FSF1_Own_Emit" />
+        <option value="23" name="FSF1_Projected_UV" />
+        <option value="24" name="FSF1_Multiple_Textures" />
+        <option value="25" name="FSF1_Tessellate" />
+        <option value="26" name="FSF1_Decal" />
+        <option value="27" name="FSF1_Dynamic_Decal" />
+        <option value="28" name="FSF1_Character_Lighting" />
+        <option value="29" name="FSF1_External_Emittance" />
+        <option value="30" name="FSF1_Soft_Effect" />
+        <option value="31" name="FSF1_ZBuffer_Test" />
+    </bitflags>
+    
+    <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint">
+        Fallout 4 Shader Property Flags 2
+        <option value="0" name="FSF2_ZBuffer_Write" />
+        <option value="1" name="FSF2_LOD_Landscape" />
+        <option value="2" name="FSF2_LOD_Objects" />
+        <option value="3" name="FSF2_No_Fade" />
+        <option value="4" name="FSF2_Double_Sided" />
+        <option value="5" name="FSF2_Vertex_Colors" />
+        <option value="6" name="FSF2_Glow_Map" />
+        <option value="7" name="FSF2_Transform_Changed" />
+        <option value="8" name="FSF2_Dismemberment_Meatcuff" />
+        <option value="9" name="FSF2_Tint" />
+        <option value="10" name="FSF2_Grass_Vertex_Lighting" />
+        <option value="11" name="FSF2_Grass_Uniform_Scale" />
+        <option value="12" name="FSF2_Grass_Fit_Slope" />
+        <option value="13" name="FSF2_Grass_Billboard" />
+        <option value="14" name="FSF2_No_LOD_Land_Blend" />
+        <option value="15" name="FSF2_Dismemberment" />
+        <option value="16" name="FSF2_Wireframe" />
+        <option value="17" name="FSF2_Weapon_Blood" />
+        <option value="18" name="FSF2_Hide_On_Local_Map" />
+        <option value="19" name="FSF2_Premult_Alpha" />
+        <option value="20" name="FSF2_VATS_Target" />
+        <option value="21" name="FSF2_Anisotropic_Lighting" />
+        <option value="22" name="FSF2_Skew_Specular_Alpha" />
+        <option value="23" name="FSF2_Menu_Screen" />
+        <option value="24" name="FSF2_Multi_Layer_Parallax" />
+        <option value="25" name="FSF2_Alpha_Test" />
+        <option value="26" name="FSF2_Gradient_Remap" />
+        <option value="27" name="FSF2_VATS_Target_Draw_All" />
+        <option value="28" name="FSF2_Pipboy_Screen" />
+        <option value="29" name="FSF2_Tree_Anim" />
+        <option value="30" name="FSF2_Effect_Lighting" />
+        <option value="31" name="FSF2_Refraction_Writes_Depth" />
+    </bitflags>
+
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
-        Skyrim PP shader for assigning material/shader/texture.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="User Version == 12" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="User Version == 12" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
+        Bethesda shader property for Skyrim and later.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
@@ -5082,9 +5156,11 @@
     </niobject>
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
-        Skyrim non-PP shader model, used primarily for transparency effects, often as decal.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        Bethesda effect shader property for Skyrim and later.
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
