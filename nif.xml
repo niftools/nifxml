@@ -46,44 +46,44 @@
     
     <!--Basic Types-->
 
-    <basic name="bool" count="1" niflibtype="bool" nifskopetype="bool">
+    <basic name="bool" count="1" niflibtype="bool">
         A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
     </basic>
 
-    <basic name="byte" count="1" niflibtype="byte" nifskopetype="byte">
+    <basic name="byte" count="1" niflibtype="byte">
         An unsigned 8-bit integer.
     </basic>
 
-    <basic name="uint" count="1" niflibtype="unsigned int" nifskopetype="uint">
+    <basic name="uint" count="1" niflibtype="unsigned int">
         An unsigned 32-bit integer.
     </basic>
 
-    <basic name="ulittle32" count="1" niflibtype="unsigned int" nifskopetype="uint">
+    <basic name="ulittle32" count="1" niflibtype="unsigned int">
         A litte-endian unsigned 32-bit integer.
     </basic>
 
-    <basic name="ushort" count="1" niflibtype="unsigned short" nifskopetype="ushort">
+    <basic name="ushort" count="1" niflibtype="unsigned short">
         An unsigned 16-bit integer.
     </basic>
 
-    <basic name="int" count="1" niflibtype="int" nifskopetype="int">
+    <basic name="int" count="1" niflibtype="int">
         A signed 32-bit integer.
     </basic>
 
-    <basic name="short" count="1" niflibtype="short" nifskopetype="short">
+    <basic name="short" count="1" niflibtype="short">
         A signed 16-bit integer.
     </basic>
 
-    <basic name="BlockTypeIndex" count="0" niflibtype="unsigned short" nifskopetype="blocktypeindex">
+    <basic name="BlockTypeIndex" count="0" niflibtype="unsigned short">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
         The upper bit appears to be a flag used for PhysX block types.
     </basic>
 
-    <basic name="char" count="0" niflibtype="byte" nifskopetype="char">
+    <basic name="char" count="0" niflibtype="byte">
         An 8-bit character.
     </basic>
 
-    <basic name="FileVersion" count="0" niflibtype="unsigned int" nifskopetype="fileversion">
+    <basic name="FileVersion" count="0" niflibtype="unsigned int">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
         Some widely-used versions and their hex representation:
@@ -99,42 +99,42 @@
         20.0.0.5:   0x14000005
     </basic>
 
-    <basic name="Flags" count="0" niflibtype="unsigned short" nifskopetype="flags">
+    <basic name="Flags" count="0" niflibtype="unsigned short">
         A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
 
-    <basic name="float" count="0" niflibtype="float" nifskopetype="float">
+    <basic name="float" count="0" niflibtype="float">
         A standard 32-bit floating point number.
     </basic>
     
-    <basic name="hfloat" count="0" niflibtype="hfloat" nifskopetype="hfloat">
+    <basic name="hfloat" count="0" niflibtype="hfloat">
         A 16-bit floating point number.
     </basic>
     
-    <basic name="HeaderString" count="0" niflibtype="HeaderString" nifskopetype="headerstring">
+    <basic name="HeaderString" count="0" niflibtype="HeaderString">
         A variable length string that ends with a newline character (0x0A).  The string starts as follows depending on the version:
 
         Version &lt;= 10.0.1.0:  &#039;NetImmerse File Format&#039;
         Version &gt;= 10.1.0.0:  &#039;Gamebryo File Format&#039;
     </basic>
 
-    <basic name="LineString" count="0" niflibtype="LineString" nifskopetype="linestring">
+    <basic name="LineString" count="0" niflibtype="LineString">
         A variable length string that ends with a newline character (0x0A).
     </basic>
 
-    <basic name="Ptr" count="0" niflibtype="*" nifskopetype="uplink" istemplate="1">
+    <basic name="Ptr" count="0" niflibtype="*" istemplate="1">
         A signed 32-bit integer, referring to a object before this one in the hierarchy.  Examples:  Bones, gravity objects.
     </basic>
 
-    <basic name="Ref" count="0" niflibtype="Ref" nifskopetype="link" istemplate="1">
+    <basic name="Ref" count="0" niflibtype="Ref" istemplate="1">
         A signed 32-bit integer, used to refer to another object; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to objects higher up.
     </basic>
 
-    <basic name="StringOffset" count="0" niflibtype="unsigned int" nifskopetype="stringoffset">
+    <basic name="StringOffset" count="0" niflibtype="unsigned int">
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
-    <basic name="StringIndex" count="0" niflibtype="IndexString" nifskopetype="stringindex">
+    <basic name="StringIndex" count="0" niflibtype="IndexString">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
@@ -1006,46 +1006,46 @@
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
 
-    <compound name="SizedString" niflibtype="string" nifskopetype="sizedstring">
+    <compound name="SizedString" niflibtype="string">
         A string of given length.
         <add name="Length" type="uint">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself.</add>
     </compound>
 
-    <compound name="string" niflibtype="IndexString" nifskopetype="string">
+    <compound name="string" niflibtype="IndexString">
         A string type.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
         <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
     </compound>
 
-    <compound name="ByteArray" nifskopetype="bytearray">
+    <compound name="ByteArray">
         An array of bytes.
         <add name="Data Size" type="uint">The number of bytes in this array</add>
         <add name="Data" type="byte" arr1="Data Size">The bytes which make up the array</add>
     </compound>
 
-    <compound name="ByteMatrix" nifskopetype="bytematrix">
+    <compound name="ByteMatrix">
         An array of bytes.
         <add name="Data Size 1" type="uint">The number of bytes in this array</add>
         <add name="Data Size 2" type="uint">The number of bytes in this array</add>
         <add name="Data" type="byte" arr1="Data Size 2" arr2="Data Size 1">The bytes which make up the array</add>
     </compound>
 
-    <compound name="Color3" niflibtype="Color3" nifskopetype="color3">
+    <compound name="Color3" niflibtype="Color3">
         A color without alpha (red, green, blue).
         <add name="r" type="float">Red color component.</add>
         <add name="g" type="float">Green color component.</add>
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
-    <compound name="ByteColor3"><!-- niflibtype="Color3" nifskopetype="color3" -->
+    <compound name="ByteColor3"><!-- niflibtype="Color3" -->
         A color without alpha (red, green, blue).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
         <add name="b" type="byte">Blue color component.</add>
     </compound>
 
-    <compound name="Color4" niflibtype="Color4" nifskopetype="color4">
+    <compound name="Color4" niflibtype="Color4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="float">Red component.</add>
         <add name="g" type="float">Green component.</add>
@@ -1053,7 +1053,7 @@
         <add name="a" type="float">Alpha.</add>
     </compound>
 
-    <compound name="ByteColor4" nifskopetype="bytecolor4"><!-- niflibtype="Color4" nifskopetype="color4" -->
+    <compound name="ByteColor4"><!-- niflibtype="Color4" -->
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
@@ -1061,7 +1061,7 @@
         <add name="a" type="byte">Alpha color component.</add>
     </compound>
 
-    <compound name="FilePath" niflibtype="IndexString" nifskopetype="filepath">
+    <compound name="FilePath" niflibtype="IndexString">
         A string that contains the path to a file.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
         <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
@@ -1086,28 +1086,28 @@
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
     
-    <compound name="ByteVector3" nifskopetype="bytevector3">
+    <compound name="ByteVector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="byte">First coordinate.</add>
         <add name="y" type="byte">Second coordinate.</add>
         <add name="z" type="byte">Third coordinate.</add>
     </compound>
     
-    <compound name="HalfVector3" nifskopetype="halfvector3">
+    <compound name="HalfVector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="hfloat">First coordinate.</add>
         <add name="y" type="hfloat">Second coordinate.</add>
         <add name="z" type="hfloat">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector3" niflibtype="Vector3" nifskopetype="vector3">
+    <compound name="Vector3" niflibtype="Vector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
         <add name="z" type="float">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector4" niflibtype="Vector4" nifskopetype="vector4">
+    <compound name="Vector4" niflibtype="Vector4">
         A 4-dimensional vector.
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
@@ -1115,7 +1115,7 @@
         <add name="w" type="float">Fourth coordinate.</add>
     </compound>
 
-    <compound name="Quaternion" niflibtype="Quaternion" nifskopetype="quaternion">
+    <compound name="Quaternion" niflibtype="Quaternion">
         A quaternion.
         <add name="w" type="float" default="1.0">The w-coordinate.</add>
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
@@ -1123,7 +1123,7 @@
         <add name="z" type="float" default="0.0">The z-coordinate.</add>
     </compound>
 
-    <compound name="QuaternionXYZW" nifskopetype="quaternion_xyzw">
+    <compound name="QuaternionXYZW">
         A quaternion as it appears in the havok objects.
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
         <add name="y" type="float" default="0.0">The y-coordinate.</add>
@@ -1139,7 +1139,7 @@
         <add name="m22" type="float" default="1.0">Member 2,2 (bottom right)</add>
     </compound>
 
-    <compound name="Matrix33" niflibtype="Matrix33" nifskopetype="matrix33">
+    <compound name="Matrix33" niflibtype="Matrix33">
         A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
         <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
         <add name="m21" type="float" default="0.0">Member 2,1</add>
@@ -1152,7 +1152,7 @@
         <add name="m33" type="float" default="1.0">Member 3,3 (bottom left)</add>
     </compound>
 
-    <compound name="Matrix44" niflibtype="Matrix44" nifskopetype="matrix44">
+    <compound name="Matrix44" niflibtype="Matrix44">
         A 4x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
@@ -1185,27 +1185,7 @@
         <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
-    <compound name="ns keylin" istemplate="1">
-        Linear key type (!!! for NifSkope optimizer only, use key, keyrot, or keyvec for regular use).
-        <add name="Time" type="float">Key time.</add>
-        <add name="Value" type="TEMPLATE">The key value.</add>
-    </compound>
-
-    <compound name="ns keyarray" istemplate="1">
-        Array of keys, not interpolated (!!! for NifSkope only, use keyarray for regular use).
-        <add name="Num Keys" type="uint">Number of keys.</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys">The keys.</add>
-    </compound>
-
-    <compound name="ns keytan" istemplate="1">
-        Key with tangents (!!! for NifSkope only, use keyvec instead for regular purposes).
-        <add name="Time" type="float">The key time.</add>
-        <add name="Value" type="TEMPLATE">The key value.</add>
-        <add name="Forward" type="TEMPLATE">Forward tangent.</add>
-        <add name="Backward" type="TEMPLATE">Backward tangent.</add>
-    </compound>
-
-    <compound name="ShortString" ver1="10.1.0.0" niflibtype="ShortString" nifskopetype="shortstring">
+    <compound name="ShortString" ver1="10.1.0.0" niflibtype="ShortString">
         Another string format, for short strings.  Specific to Bethesda-specific header tags.
         <add name="Length" type="byte">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
@@ -1297,13 +1277,13 @@
         <add name="Unknown Int 2" type="uint" default="0" ver1="10.0.1.0">Unknown.</add>
     </compound>
 
-    <compound name="StringPalette" nifskopetype="stringpalette">
+    <compound name="StringPalette">
         A list of \\0 terminated strings.
         <add name="Palette" type="SizedString">A bunch of 0x00 seperated strings.</add>
         <add name="Length" type="uint">Length of the palette string is repeated here.</add>
     </compound>
 
-    <compound name="TBC" nifskopetype="vector3">
+    <compound name="TBC">
         Tension, bias, continuity.
         <add name="t" type="float">Tension.</add>
         <add name="b" type="float">Bias.</add>
@@ -1326,48 +1306,6 @@
         <add name="Keys" type="Key" arg="Interpolation" template="TEMPLATE" arr1="Num Keys">The keys.</add>
     </compound>
 
-    <compound name="ns keytbc" istemplate="1">
-        A TBC key (!!! for NifSkope only, use keyvec for regular purposes).
-        <add name="Time" type="float">The key time.</add>
-        <add name="Value" type="TEMPLATE">The key value.</add>
-        <add name="TBC" type="TBC">Tension, bias, continuity.</add>
-    </compound>
-
-    <compound name="ns keyvecarray" istemplate="1">
-        Array of interpolable keys (!!! for NifSkope only, use keyvecarray for regular use).
-        <add name="Num Keys" type="uint">Number of keys.</add>
-        <add name="Key Type" type="uint" cond="Num Keys != 0">The key type (1, 2, or 3).</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
-        <add name="Keys" type="ns keytan" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
-        <add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 5">Another type of linear key?</add>
-    </compound>
-
-    <compound name="ns keyrotsub">
-        Rotation subkey (!!! Nifskope only).
-        <add name="Time" type="float" ver2="10.1.0.0">Time.</add>
-        <add name="Sub Keys" type="ns keyvecarray" template="float" arr1="3">The sub keys, one for every axis.</add>
-    </compound>
-
-    <compound name="ns keyrotarray" istemplate="1">
-        Array of rotation keys (!!! for NifSkope only, use keyrotarray for regular use).
-        <add name="Num Keys" type="uint">Number of rotation keys.</add>
-        <add name="Key Type" type="uint" cond="Num Keys != 0">The key type (1, 2, 3, or 4).</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 1">Linear keys.</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 2">Linear keys (yes, rotations don&#039;t have type 2 tangent keys!).</add>
-        <add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">TBC keys.</add>
-        <add name="Keys Sub" type="ns keyrotsub" arr1="Num Keys" cond="Key Type == 4">Special rotation keys (3 float arrays, one for each axis).</add>
-    </compound>
-
-    <compound name="ns keyvecarraytyp" istemplate="1">
-        Array of interpolable keys (!!! for NifSkope only, use keyvecarraytyp for regular use)
-        <add name="Num Keys" type="uint">Number of keys</add>
-        <add name="Key Type" type="uint">The key type (1, 2, 3)</add>
-        <add name="Keys" type="ns keylin" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 1">Linearly interpolated keys.</add>
-        <add name="Keys" type="ns keytan" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 2">Interpolated keys, using tangents.</add>
-        <add name="Keys" type="ns keytbc" template="TEMPLATE" arr1="Num Keys" cond="Key Type == 3">Keys, interpolated with tension, bias, continuity.</add>
-    </compound>
-
     <compound name="QuatKey" niflibtype="Key" istemplate="1"><!-- TEMPLATE should always be Quaternion -->
         A special version of the key type used for quaternions.  Never has tangents.
         <add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
@@ -1385,13 +1323,13 @@
     </compound>
 -->
 
-    <compound name="TexCoord" niflibtype="TexCoord" nifskopetype="vector2">
+    <compound name="TexCoord" niflibtype="TexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
         <add name="v" type="float">Second coordinate.</add>
     </compound>
     
-    <compound name="HalfTexCoord" nifskopetype="halfvector2">
+    <compound name="HalfTexCoord">
         Texture coordinates (u,v).
         <add name="u" type="hfloat">First coordinate.</add>
         <add name="v" type="hfloat">Second coordinate.</add>
@@ -1437,7 +1375,7 @@
         <add name="Pixel Data" type="Ref" template="NiPixelData" cond="Use External == 0">Pixel data object index.</add>
     </compound>
 
-    <compound name="Triangle" niflibtype="Triangle" nifskopetype="triangle">
+    <compound name="Triangle" niflibtype="Triangle">
         List of three vertex indices.
         <add name="v1" type="ushort">First vertex index.</add>
         <add name="v2" type="ushort">Second vertex index.</add>
@@ -2329,9 +2267,9 @@
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
-        <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" nifskopetype="blob" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
+        <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" binary="1" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
         <add name="Build Type" type="MoppDataBuildType" ver1="20.2.0.7" vercond="User Version >= 12">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
-        <add name="MOPP Data" ver1="10.0.1.2" type="byte" nifskopetype="blob" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="MOPP Data" ver1="10.0.1.2" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
 
@@ -3658,15 +3596,15 @@
         <add name="Unknown Int 6" type="uint">Unknown, same as the number of pixels? / number of blocks?</add>
         <add name="Num Faces" type="uint">Unknown</add>
         <add name="Unknown Int 7" type="uint">Unknown</add>
-        <add name="Pixel Data" type="byte"  nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
 
     <niobject name="NiPixelData" abstract="0" inherit="ATextureRenderData">
         A texture.
         <add name="Num Pixels" type="uint">Total number of pixels</add>
         <add name="Num Faces" type="uint" ver1="20.0.0.4" default="1">Unknown</add>
-        <add name="Pixel Data" type="byte" nifskopetype="blob" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
-        <add name="Pixel Data" type="byte" nifskopetype="blob" arr1="1" arr2="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Pixel Data" type="byte" binary="1" arr1="1" arr2="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
     </niobject>
 
     <niobject name="NiPlanarCollider" abstract="0" inherit="NiParticleModifier">
@@ -5650,7 +5588,7 @@
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
         <add name="Component Formats" type="ComponentFormat" arr1="Num Components">The format of each component in this data stream.</add>
         <!-- temporarily defined as blob until we have a way to handle this -->
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Num Bytes" />
+        <add name="Data" type="byte" binary="1" arr1="Num Bytes" />
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
@@ -6497,13 +6435,13 @@
     <niobject name="bhkPhysicsSystem" inherit="bhkSystem">
         Fallout 4 Collision System
         <add name="Size" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
+        <add name="Data" type="byte" binary="1" arr1="Size" />
     </niobject>
 
     <niobject name="bhkRagdollSystem" inherit="bhkSystem">
         Fallout 4 Ragdoll System
         <add name="Size" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
+        <add name="Data" type="byte" binary="1" arr1="Size" />
     </niobject>
 
     <niobject name="BSExtraData" inherit="NiExtraData">
@@ -6513,7 +6451,7 @@
     <niobject name="BSClothExtraData" inherit="BSExtraData">
         Fallout 4 Cloth data
         <add name="Size" type="uint" />
-        <add name="Data" type="byte" nifskopetype="blob" arr1="Size" />
+        <add name="Data" type="byte" binary="1" arr1="Size" />
     </niobject>
     
     <!-- Fallout 4 Skeleton -->
