@@ -917,12 +917,7 @@
         <option value="12000" name="BP_TORSOSECTION_RIGHTLEG3">Torso Section | Right Leg 3</option>
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
-    
-    <bitflags name="BSSegmentFlags" storage="uint">
-        An unsigned 32-bit integer, describing what's inside the segment.
-        <option value="9" name="BSSEG_WATER">Contains water.</option>
-    </bitflags>
-    
+	
     <enum name="BSLightingShaderPropertyShaderType" storage="uint">
         Values for configuring the shader type in a BSLightingShaderProperty
         <option value="0" name="Default"></option>
@@ -1381,6 +1376,49 @@
         <add name="v2" type="ushort">Second vertex index.</add>
         <add name="v3" type="ushort">Third vertex index.</add>
     </compound>
+	
+	<bitflags name="VertexFlags" storage="ushort">
+		<option value="0" name="VF_Unknown_1" />       <!-- & 1 -->
+		<option value="1" name="VF_Unknown_2" />       <!-- & 2 -->
+		<option value="2" name="VF_Unknown_3" />       <!-- & 4 -->
+		<option value="3" name="VF_Unknown_4" />       <!-- & 8 -->
+		<option value="4" name="VF_Vertex" />          <!-- & 16 -->
+		<option value="5" name="VF_UVs" />             <!-- & 32 -->
+		<option value="6" name="VF_Unknown_5" />       <!-- & 64 -->
+		<option value="7" name="VF_Normals" />         <!-- & 128 -->
+		<option value="8" name="VF_Tangents" />        <!-- & 256 -->
+		<option value="9" name="VF_Vertex_Colors" />   <!-- & 512 -->
+		<option value="10" name="VF_Skinned" />        <!-- & 1024 -->
+		<option value="11" name="VF_Unknown_6" />      <!-- & 2048 -->
+		<option value="12" name="VF_Male_Eyes" />      <!-- & 4096 -->
+		<option value="13" name="VF_Unknown_7" />      <!-- & 8192 -->
+		<option value="14" name="VF_Full_Precision" /> <!-- & 16384 -->
+		<option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
+	</bitflags>
+    
+	<compound name="BSVertexData">
+		<add name="Vertex" type="Vector3" userver2="100" cond="((ARG &amp; 16) != 0)" />
+		<add name="Bitangent X" type="float" userver2="100" cond="((ARG &amp; 256) != 0)" />
+		<add name="Unknown Int" type="int" userver2="100" cond="(ARG &amp; 256) == 0" />
+		
+		<add name="Vertex" type="HalfVector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		<add name="Bitangent X" type="hfloat" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		<add name="Unknown Short" type="ushort" userver2="130" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		
+		<add name="Vertex" type="Vector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		<add name="Bitangent X" type="float" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		<add name="Unknown Int" type="uint" userver2="130" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		
+		<add name="UV" type="HalfTexCoord" cond="(((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 32) != 0))" />
+		<add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
+		<add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
+		<add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Unknown Int 2" type="uint" cond="(ARG &amp; 4096) != 0" />
+	</compound>
 
     <compound name="SkinPartition" ver1="4.2.1.0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
@@ -1405,7 +1443,14 @@
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into &#039;Bones&#039;.</add>
 		<add name="Unknown Short" type="ushort" vercond="User Version >= 12">Unknown</add>
-
+		<add name="Vertex Size" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="Float Size" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF3" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF4" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
+		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver="20.2.0.7" userver2="100" />
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
 <!--        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
@@ -1533,7 +1578,7 @@
         ColFilter property for Havok. It contains Layer, Flags and Part Number
         <add name="Layer" type="OblivionLayer" default="STATIC" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">Sets mesh color in Oblivion Construction Set.</add><!--condition: all except Fallout 3 and Skyrim -->
         <add name="Layer" type="Fallout3Layer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">Sets mesh color in Fallout 3 GECK.</add>
-        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">Physical purpose of collision object? The setting affects object's havok behavior in game.</add>
+        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 &gt;= 83)">Physical purpose of collision object? The setting affects object's havok behavior in game.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
@@ -1580,7 +1625,7 @@
     <compound name="HavokMaterial">
         <add name="Material" type="OblivionHavokMaterial" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">The material of the shape.</add><!--condition: all except Fallout 3 and Skyrim -->
         <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">The material of the shape.</add>
-        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 == 83)">The material of the shape.</add>
+        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 &gt;= 83)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
@@ -1873,11 +1918,11 @@
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
     
-    <compound name="BSSegment">
+    <compound name="BSGeometrySegmentData">
         Bethesda-specific node.
-        <add name="Internal index" type="int" >Index multiplied by 1536 (0x0600)</add>
-        <add name="Flags" type="BSSegmentFlags">Geometry present in the segment</add>
-        <add name="Unknown Byte 1" type="byte" >Unknown</add>
+        <add name="Flags" type="byte" />
+        <add name="Index" type="uint">Index = previous Index + previous Num Tris in Segment * 3</add>
+        <add name="Num Tris in Segment" type="uint" >The number of triangles belonging to this segment</add>
     </compound>
     
     <compound name="BoneLOD">
@@ -2752,12 +2797,12 @@
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="Ref" template="NiGeometryData" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))">Skin instance index.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver="20.2.0.7" userver2="130" cond="!NiParticleSystem">Skin instance index.</add>
-        <add name="Skin Instance" type="uint" ver="20.2.0.7" userver2="130" cond="NiParticleSystem">Skin instance index.</add>
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
@@ -2767,8 +2812,9 @@
         <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
-        <add name="Dirty Flag" type="bool" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt; 130)">Dirty Flag?</add>
-        <add name="Unknown Integer 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Dirty Flag?</add>
+        <add name="Dirty Flag" type="bool" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt; 100)">Dirty Flag?</add>
+        <add name="Dirty Flag" type="bool" cond="NiTriBasedGeom" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 100)">Dirty Flag?</add>
+        <add name="Unknown Integer 3" type="int" cond="NiParticleSystem" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Dirty Flag?</add>
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
     </niobject>
 
@@ -3458,9 +3504,9 @@
 		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Short 3" type="ushort" vercond="User Version >= 12">Unknown</add>
 		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
-        <add name="Unknown Int 2" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
-        <add name="Unknown Int 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
-        <add name="Data" type="Ref" template="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)">Unknown</add>
+		<add name="Unknown Int 2" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
+		<add name="Unknown Int 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
+		<add name="Data" type="Ref" template="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
 		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
@@ -4024,7 +4070,18 @@
     <niobject name="NiSkinPartition" abstract="0" inherit="NiObject">
         Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.
         <add name="Num Skin Partition Blocks" type="uint">Unknown.</add>
-        <add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks">Skin partition objects.</add>
+		<add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 100))">Skin partition objects.</add>
+		<add name="Data Size" type="uint" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Size" type="uint" ver="20.2.0.7" userver2="100" />
+		<add name="VF1" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF2" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF3" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF4" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
+		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Data" type="BSVertexData" arg="VF" arr1="Data Size #DIV# Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
+		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver="20.2.0.7" userver2="100" />
     </niobject>
 
     <niobject name="NiTexture" abstract="1" inherit="NiObjectNET">
@@ -5349,7 +5406,7 @@
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
         Bethesda-specific node.
         <add name="Num Segments" type="int" >Number of segments in the square grid</add>
-        <add name="Segment" type="BSSegment" arr1="Num Segments">Configuration of each segment</add>
+        <add name="Segment" type="BSGeometrySegmentData" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
     <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
@@ -6312,43 +6369,6 @@
     
     <!-- Fallout 4 Geometry -->
     
-    <bitflags name="VertexFlags" storage="ushort">
-        <option value="0" name="VF_Unknown_1" />       <!-- & 1 -->
-        <option value="1" name="VF_Unknown_2" />       <!-- & 2 -->
-        <option value="2" name="VF_Unknown_3" />       <!-- & 4 -->
-        <option value="3" name="VF_Unknown_4" />       <!-- & 8 -->
-        <option value="4" name="VF_Vertex" />          <!-- & 16 -->
-        <option value="5" name="VF_UVs" />             <!-- & 32 -->
-        <option value="6" name="VF_Unknown_5" />       <!-- & 64 -->
-        <option value="7" name="VF_Normals" />         <!-- & 128 -->
-        <option value="8" name="VF_Tangents" />        <!-- & 256 -->
-        <option value="9" name="VF_Vertex_Colors" />   <!-- & 512 -->
-        <option value="10" name="VF_Skinned" />        <!-- & 1024 -->
-        <option value="11" name="VF_Unknown_6" />      <!-- & 2048 -->
-        <option value="12" name="VF_Male_Eyes" />      <!-- & 4096 -->
-        <option value="13" name="VF_Unknown_7" />      <!-- & 8192 -->
-        <option value="14" name="VF_Full_Precision" /> <!-- & 16384 -->
-        <option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
-    </bitflags>
-    
-    <compound name="BSVertexData">
-        <add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Bitangent X" type="hfloat" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Unknown Short" type="ushort" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        <add name="Bitangent X" type="float" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        <add name="Unknown Int" type="uint" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        <add name="UV" type="HalfTexCoord" cond="(ARG &amp; 32) != 0" />
-        <add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
-        <add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
-        <add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-        <add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-        <add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
-        <add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-        <add name="Unknown Int 2" type="uint" cond="(ARG &amp; 4096) != 0" />
-    </compound>
-
     <niobject name="BSTriShape" abstract="0" inherit="NiAVObject">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="SphereBV" />
@@ -6361,11 +6381,15 @@
         <add name="VF5" type="byte" />
         <add name="VF" type="VertexFlags" />
         <add name="VF8" type="byte" />
-        <add name="Num Triangles" type="uint" />
+        <add name="Num Triangles" type="uint" userver2="130" />
+        <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
         <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
+        <add name="Particle Data Size" type="uint" userver2="100" />
+        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
+        <add name="Triangles Copy" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" userver2="100" />
     </niobject>
 
     <niobject name="BSMeshLODTriShape" inherit="BSTriShape">
@@ -6409,11 +6433,13 @@
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape">
         Fallout 4 Sub-Index Tri Shape
-        <add name="Num Primitives" type="uint" cond="Data Size &gt; 0" />
-        <add name="Num Segments" type="uint" cond="Data Size &gt; 0" />
-        <add name="Total Segments" type="uint" cond="Data Size &gt; 0" />
-        <add name="Segment" type="BSSITSSegment" arr1="Num Segments" cond="Data Size &gt; 0" />
-        <add name="Sub Segment Data" type="BSSITSSubSegmentRecord" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
+		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
+		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
+		<add name="Total Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
+		<add name="Segment" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
+		<add name="Sub Segment Data" type="BSSITSSubSegmentRecord" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
+		<add name="Num Segments" type="uint" userver2="100" />
+		<add name="Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
@@ -6565,5 +6591,17 @@
     <niobject name="NiLightRadiusController" inherit="NiFloatInterpController">
     
     </niobject>
+	
+	<!-- Skyrim SE --> 
 
+	<niobject name="BSDynamicTriShape" inherit="BSTriShape">
+		<add name="Vertex Data Size" type="uint" />
+		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Vertex Data Size &gt; 0" />
+	</niobject>
+	
+	<niobject name="BSDistantObjectLargeRefExtraData" abstract="0" inherit="NiExtraData">
+        Extra integer data.
+		<add name="Data" type="byte">The value of the extra data.</add>
+	</niobject>
+	
 </niftoolsxml>
