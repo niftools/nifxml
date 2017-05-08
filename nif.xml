@@ -4080,7 +4080,7 @@
 		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
 		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
 		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="Vertex Data" type="BSVertexData" arg="VF" arr1="Data Size #DIV# Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Data" type="BSVertexData" arg="VF" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver="20.2.0.7" userver2="100" />
     </niobject>
 
