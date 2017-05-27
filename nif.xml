@@ -1635,15 +1635,39 @@
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
-    <compound name="MotorDescriptor">
-        <add name="Unknown Float 1" type="float" default="-1000000.0">Unknown</add>
-        <add name="Unknown Float 2" type="float" default="1000000.0">Unknown</add>
-        <add name="Unknown Float 3" type="float" default="0.8">Unknown</add>
-        <add name="Unknown Float 4" type="float" default="1.0">Unknown</add>
-        <add name="Unknown Float 5" type="float" default="2.0">Unknown</add>
-        <add name="Unknown Float 6" type="float" default="1.0">Unknown</add>
-        <add name="Unknown Byte 1"  type="byte"  default="0">Unknown</add>
+    <compound name="bhkPositionConstraintMotorDescriptor">
+        <add name="Min Force" type="float" default="0">Unknown</add>
+        <add name="Max Force" type="float" default="0">Unknown</add>
+        <add name="Tau" type="float" default="0">Unknown</add>
+        <add name="Damping" type="float" default="0">Unknown</add>
+        <add name="Prop Rec Velocity" type="float" default="0">Unknown</add>
+        <add name="Const Rec Velocity" type="float" default="0">Unknown</add>
+		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
+	
+	<compound name="bhkVelocityConstraintMotorDescriptor">
+        <add name="Min Force" type="float" default="0">Unknown</add>
+        <add name="Max Force" type="float" default="0">Unknown</add>
+        <add name="Tau" type="float" default="0">Unknown</add>
+        <add name="Target Velocity" type="float" default="0">Unknown</add>
+		<add name="Use Velocity Target" type="bool" default="0">Unknown</add>
+		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
+    </compound>
+	
+	<compound name="bhkSpringDamperConstraintMotorDescriptor">
+        <add name="Min Force" type="float" default="0">Unknown</add>
+        <add name="Max Force" type="float" default="0">Unknown</add>
+        <add name="Spring Constant" type="float" default="0">Unknown</add>
+        <add name="Spring Damping" type="float" default="0">Unknown</add>		
+		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
+    </compound>
+
+    <compound name="MotorDescriptor">
+	<add name="Type" type="byte" ver1="20.2.0.7" default="0">Unknown</add>
+    <add name="Position Motor" type="bhkPositionConstraintMotorDescriptor" cond="Type == 1">Unknown</add>
+	<add name="Velocity Motor" type="bhkVelocityConstraintMotorDescriptor" cond="Type == 2">Unknown</add>
+	<add name="Spring Damper Motor" type="bhkSpringDamperConstraintMotorDescriptor" cond="Type == 3">Unknown</add>
+    </compound> 
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
@@ -1680,8 +1704,7 @@
         <add name="Twist Max Angle" type="float">Maximum angle the object can rotate around Twist A, relative to Plane A.</add>
         <add name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="bool" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Unknown</add>
-        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
+        <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
     <compound name="LimitedHingeDescriptor">
@@ -1719,8 +1742,7 @@
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
         <add name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</add>
 
-        <add name="Enable Motor" type="bool" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Unknown</add>
-        <add name="Motor" type="MotorDescriptor" cond="Enable Motor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
+        <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
     <compound name="HingeDescriptor">
