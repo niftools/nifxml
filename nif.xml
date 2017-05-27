@@ -1798,7 +1798,7 @@
         <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
         <add name="Friction" type="float" >Friction.</add>
 
-        <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7" default="0">Unknown. Do not set this to anything over 0 as it will crash the game.</add>
+        <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
     <compound name="StiffSpringDescriptor">
