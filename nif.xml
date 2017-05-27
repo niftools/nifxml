@@ -1636,13 +1636,6 @@
     </compound>
 
     <compound name="bhkPositionConstraintMotorDescriptor">
-        <add name="Min Force" type="float" default="0">Unknown</add>
-        <add name="Max Force" type="float" default="0">Unknown</add>
-        <add name="Tau" type="float" default="0">Unknown</add>
-        <add name="Damping" type="float" default="0">Unknown</add>
-        <add name="Prop Rec Velocity" type="float" default="0">Unknown</add>
-        <add name="Const Rec Velocity" type="float" default="0">Unknown</add>
-		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0">Relative stiffness</add>
@@ -1651,28 +1644,16 @@
         <add name="Constant Recovery Velocity" type="float" default="0">A constant velocity which is used to recover from errors</add>
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
-	
-	<compound name="bhkVelocityConstraintMotorDescriptor">
-        <add name="Min Force" type="float" default="0">Unknown</add>
-        <add name="Max Force" type="float" default="0">Unknown</add>
-        <add name="Tau" type="float" default="0">Unknown</add>
+
     <compound name="bhkVelocityConstraintMotorDescriptor">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0">Relative stiffness</add>
         <add name="Target Velocity" type="float" default="0">Unknown</add>
-		<add name="Use Velocity Target" type="bool" default="0">Unknown</add>
-		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
         <add name="Use Velocity Target" type="bool" default="0">Unknown</add>
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
-	
-	<compound name="bhkSpringDamperConstraintMotorDescriptor">
-        <add name="Min Force" type="float" default="0">Unknown</add>
-        <add name="Max Force" type="float" default="0">Unknown</add>
-        <add name="Spring Constant" type="float" default="0">Unknown</add>
-        <add name="Spring Damping" type="float" default="0">Unknown</add>		
-		<add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
+
     <compound name="bhkSpringDamperConstraintMotorDescriptor">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
@@ -1682,10 +1663,6 @@
     </compound>
 
     <compound name="MotorDescriptor">
-	<add name="Type" type="byte" ver1="20.2.0.7" default="0">Unknown</add>
-    <add name="Position Motor" type="bhkPositionConstraintMotorDescriptor" cond="Type == 1">Unknown</add>
-	<add name="Velocity Motor" type="bhkVelocityConstraintMotorDescriptor" cond="Type == 2">Unknown</add>
-	<add name="Spring Damper Motor" type="bhkSpringDamperConstraintMotorDescriptor" cond="Type == 3">Unknown</add>
         <add name="Type" type="byte" default="0">Unknown</add>
         <add name="Position Motor" type="bhkPositionConstraintMotorDescriptor" cond="Type == 1">Unknown</add>
         <add name="Velocity Motor" type="bhkVelocityConstraintMotorDescriptor" cond="Type == 2">Unknown</add>
