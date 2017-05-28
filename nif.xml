@@ -994,7 +994,7 @@
         <option value="6" name="Prismatic">A prismatic constraint.</option>
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
-<!--        <option value="10" name="Generic">A generic constraint.</option>-->
+        <!--<option value="10" name="Generic">A generic constraint.</option>-->
     </enum>
 
     <!--Compounds
@@ -1309,14 +1309,14 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
-<!-- no longer used
+    <!-- no longer used
     <compound name="RotationKeyArray" istemplate="1">
         Rotation key array.
         <add name="Num Keys" type="uint">Number of keys.</add>
         <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
         <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
     </compound>
--->
+    -->
 
     <compound name="TexCoord" niflibtype="TexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
@@ -1453,7 +1453,7 @@
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver="20.2.0.7" userver2="100" />
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-<!--        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
+        <!--<add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
         <add name="Unknown 00 00 1" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Num Vertices 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Unknown 00 00 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
@@ -1464,7 +1464,7 @@
 
     <!-- related to the file posted in tracker item #3117836:
         http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-<!--    <compound name="SkinPartitionUnknownItem1">
+    <!--<compound name="SkinPartitionUnknownItem1">
         <add name="Unknown Flags" type="uint"></add>
         <add name="f1" type="float"></add>
         <add name="f2" type="float"></add>
@@ -1907,7 +1907,7 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
-<!-- nowhere used currently
+	<!-- nowhere used currently
 	<compound name="UnknownMatrix1">
 		Unknown Matrix; for deathposes.psa
 		<add name="Unknown UInt 1" type="uint">Unknown uint 1</add>
@@ -1926,7 +1926,7 @@
 		<add name="Unknown Array 2" type="int">Unknown</add>
         <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
 	</compound>
--->
+	-->
 
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
@@ -5531,8 +5531,7 @@
         <add name="Unknown Ints 1" type="int" arr1="17" />
     </niobject>
 
-<!--	
-	
+    <!--
 	<niobject name="bhkPoseArray" inherit="NiObject">
 		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
 		<add name="Num Bones" type="int">Number of target bones</add>
@@ -5540,7 +5539,7 @@
         <add name="Num Poses" type="int">Unknown</add>
 		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
 	</niobject>
--->	
+    -->
     <niobject name="bhkRagdollTemplate" inherit="NiObject">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
         <add name="Name" type="string"/>
@@ -5911,7 +5910,7 @@
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
-<niobject name="NiPSSimulator" inherit="NiMeshModifier">
+    <niobject name="NiPSSimulator" inherit="NiMeshModifier">
         The mesh modifier that performs all particle system simulation.
         <add name="Num Simulation Steps" type="uint">The number of simulation steps in this modifier.</add>
         <add name="Simulation Steps" type="Ref" template="NiPSSimulatorStep" arr1="Num Simulation Steps">Links to the simulation steps.</add>
