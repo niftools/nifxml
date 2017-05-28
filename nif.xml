@@ -1635,17 +1635,17 @@
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
-    <compound name="bhkPositionConstraintMotorDescriptor">
+    <compound name="bhkPositionConstraintMotor">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
-        <add name="Tau" type="float" default="0">Relative stiffness</add>
-        <add name="Damping" type="float" default="0">Motor damping value</add>
-        <add name="Proportional Recovery Velocity" type="float" default="0">A factor of the current error to calculate the recovery velocity</add>
-        <add name="Constant Recovery Velocity" type="float" default="0">A constant velocity which is used to recover from errors</add>
+        <add name="Tau" type="float" default="0.8">Relative stiffness</add>
+        <add name="Damping" type="float" default="1.0">Motor damping value</add>
+        <add name="Proportional Recovery Velocity" type="float" default="2.0">A factor of the current error to calculate the recovery velocity</add>
+        <add name="Constant Recovery Velocity" type="float" default="1.0">A constant velocity which is used to recover from errors</add>
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkVelocityConstraintMotorDescriptor">
+    <compound name="bhkVelocityConstraintMotor">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0">Relative stiffness</add>
@@ -1654,20 +1654,27 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkSpringDamperConstraintMotorDescriptor">
+    <compound name="bhkSpringDamperConstraintMotor">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
-        <add name="Spring Constant" type="float" default="0">The spring constant in Nsec/m</add>
+        <add name="Spring Constant" type="float" default="0">The spring constant in N/m</add>
         <add name="Spring Damping" type="float" default="0">The spring damping in Nsec/m</add>       
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
+    
+    <enum name="MotorType" storage="byte">
+        <option value="0" name="MOTOR_NONE" />
+        <option value="1" name="MOTOR_POSITION" />
+        <option value="2" name="MOTOR_VELOCITY" />
+        <option value="3" name="MOTOR_SPRING" />
+    </enum>
 
     <compound name="MotorDescriptor">
-        <add name="Type" type="byte" default="0">Unknown</add>
-        <add name="Position Motor" type="bhkPositionConstraintMotorDescriptor" cond="Type == 1">Unknown</add>
-        <add name="Velocity Motor" type="bhkVelocityConstraintMotorDescriptor" cond="Type == 2">Unknown</add>
-        <add name="Spring Damper Motor" type="bhkSpringDamperConstraintMotorDescriptor" cond="Type == 3">Unknown</add>
-    </compound> 
+        <add name="Type" type="MotorType" default="MOTOR_NONE" />
+        <add name="Position Motor" type="bhkPositionConstraintMotor" cond="Type == 1" />
+        <add name="Velocity Motor" type="bhkVelocityConstraintMotor" cond="Type == 2" />
+        <add name="Spring Damper Motor" type="bhkSpringDamperConstraintMotor" cond="Type == 3" />
+    </compound>
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
