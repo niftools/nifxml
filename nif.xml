@@ -5286,9 +5286,8 @@
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions">Unknown</add>
     </niobject>
 
-    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiExtraData">
+    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData">
         Bethesda-specific node. (for dynamic decal projection?)
-        <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Num Vector Blocks" type="short">Number of groups</add>
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks">Number of Blocks</add>
     </niobject>
@@ -6687,8 +6686,8 @@
 	</niobject>
 	
 	<niobject name="BSDistantObjectLargeRefExtraData" abstract="0" inherit="NiExtraData">
-        Extra integer data.
-		<add name="Data" type="byte">The value of the extra data.</add>
+        Large ref flag.
+		<add name="Large Ref" type="bool"/>
 	</niobject>
 	
 </niftoolsxml>
