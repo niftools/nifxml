@@ -2451,15 +2451,25 @@
         <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
     </niobject>
 
+    <enum name="PathFlags" storage="ushort">
+        <option value="0x0001" name="CVDataNeedsUpdate">CVDataNeedsUpdate</option>
+        <option value="0x0002" name="CurveTypeOpen">CurveTypeOpen</option>
+        <option value="0x0004" name="AllowFlip">AllowFlip</option>
+        <option value="0x0008" name="Bank">Bank</option>
+        <option value="0x0010" name="ConstantVelocity">ConstantVelocity</option>
+        <option value="0x0020" name="Follow">Follow</option>
+        <option value="0x0040" name="Flip">Flip</option>
+    </enum>
+
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Unknown interpolator.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown. Zero.</add>
-        <add name="Pos Data" type="Ref" template="NiPosData">Links to NiPosData.</add>
-        <add name="Float Data" type="Ref" template="NiFloatData">Links to NiFloatData.</add>
+        <add name="Flags" type="PathFlags"/>
+        <add name="Bank Dir" type="uint"/>
+        <add name="Max Bank Angle" type="float"/>
+        <add name="Smoothing" type="float"/>
+        <add name="Follow Axis" type="ushort">Unknown. Zero.</add>
+        <add name="Path Data" type="Ref" template="NiPosData">Refers to NiPosData.</add>
+        <add name="Percent Data" type="Ref" template="NiFloatData">Refers to NiFloatData.</add>
     </niobject>
 
     <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
@@ -2472,10 +2482,33 @@
         Unknown.
     </niobject>
 
+    <enum name="InterpBlendFlags" storage="byte">
+        <option value="1" name="MANAGER_CONTROLLED">MANAGER_CONTROLLED</option>
+    </enum>
+
+    <compound name="InterpBlendItem">
+        Interpolator item for array in NiBlendInterpolator.
+        <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
+        <add name="Weight" type="float"/>
+        <add name="Normalized Weight" type="float"/>
+        <add name="Priority" type="byte"/>
+        <add name="Ease Spinner" type="float"/>
+    </compound>
+
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
         An extended type of interpolater.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
+        <add name="Flags" type="InterpBlendFlags"/>
+        <add name="Array Size" type="byte"/>
+        <add name="Weight Threshold" type="float"/>
+        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0"/>
+        <add name="Single Index" type="byte" cond="(Flags &amp; 1) == 0"/>
+        <add name="High Priority" type="char" cond="(Flags &amp; 1) == 0"/>
+        <add name="Next High Priority" type="char" cond="(Flags &amp; 1) == 0"/>
+        <add name="Single Time" type="float" cond="(Flags &amp; 1) == 0"/>
+        <add name="High Weights Sum" type="float" cond="(Flags &amp; 1) == 0"/>
+        <add name="Next High Weights Sum" type="float" cond="(Flags &amp; 1) == 0"/>
+        <add name="High Ease Spinner" type="float" cond="(Flags &amp; 1) == 0"/>
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0"/>
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
@@ -2804,10 +2837,10 @@
 
     <niobject name="NiBoneLODController" abstract="0" inherit="NiTimeController">
         Level of detail controller for bones.  Priority is arranged from low to high.
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Num Node Groups" type="uint">Number of node groups.</add>
-        <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
-        <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
+        <add name="LOD" type="uint">Unknown.</add>
+        <add name="Num LODs" type="uint">Number of LODs.</add>
+        <add name="Num Node Groups" type="uint">Number of node arrays.</add>
+        <add name="Node Groups" type="NodeGroup" arr1="Num LODs">A list of node groups (each group a sequence of bones).</add>
         <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" userver="0">Number of shape groups.</add>
         <add name="Num Shape Groups" type="uint" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Number of shape groups.</add>
         <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
@@ -2905,7 +2938,7 @@
 
     <niobject name="bhkBlendController" abstract="0" inherit="NiTimeController">
         Unknown. Is apparently only used in skeleton.nif files.
-        <add name="Unknown Int" type="uint">Seems to be always zero.</add>
+        <add name="Keys" type="uint">Seems to be always zero.</add>
     </niobject>
 
     <niobject name="BSBound" abstract="0" inherit="NiExtraData">
@@ -3219,7 +3252,7 @@
         <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
-        <add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
+        <add name="Array Grow By" type="uint" ver1="10.1.0.106">Unknown.</add>
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
     </niobject>
 
@@ -3237,18 +3270,19 @@
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
         <add name="Target Name" type="string" ver1="10.1.0.106">Name of target node Controller acts on.</add>
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
-        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 >= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
-        <add name="Unknown Short 1" type="short" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 28)">Unknown</add>
+        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
+        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Number of anim notes objects.</add>
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Notes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
         <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
-        Unknown.
+        Abstract type for object palettes.
     </niobject>
 
     <niobject name="NiDefaultAVObjectPalette" abstract="0" inherit="NiAVObjectPalette">
-        Unknown. Refers to a list of objects. Used by NiControllerManager.
-        <add name="Unknown Int" type="uint">Unknown.</add>
+        Refers to a list of objects. Used by NiControllerManager.
+        <add name="Scene" type="Ptr" template="NiAVObject">Scene root of the object palette.</add>
         <add name="Num Objs" type="uint">Number of objects.</add>
         <add name="Objs" type="AVObject" arr1="Num Objs">The objects.</add>
     </niobject>
@@ -3346,6 +3380,14 @@
         <add name="Scales" type="KeyGroup" template="float">Scale keys.</add>
     </niobject>
 
+    <enum name="LookAtFlags" storage="ushort">
+        Should be a bitfield for flip toggle.
+        <option value="0" name="LOOK_X_AXIS">X-Axis</option>
+        <option value="1" name="LOOK_FLIP">Flip</option>
+        <option value="2" name="LOOK_Y_AXIS">Y-Axis</option>
+        <option value="4" name="LOOK_Z_AXIS">Z-Axis</option>
+    </enum>
+
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController">
         Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
         <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
@@ -3354,16 +3396,16 @@
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
         Unknown.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Flags" type="LookAtFlags"/>
         <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
-        <add name="Target" type="string">Target node name.</add>
+        <add name="Look At Name" type="string">Target node name.</add>
         <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3" ver2="20.5.0.0">Translate.</add>
         <add name="Rotation" type="Quaternion" ver2="20.5.0.0">Rotation.</add>
         <add name="Scale" type="float" ver2="20.5.0.0">Scale.</add>
-        <add name="Unknown Link 1" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
-        <add name="Unknown Link 2" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
-        <add name="Unknown Link 3" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
+        <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
+        <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
+        <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
     </niobject>
 
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
@@ -4897,30 +4939,30 @@
     Unkown
 	</niobject>
 	
-	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
+	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiTimeController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
     First interpolator controls Generation.
+        <add name="Interpolator 1: Generation" type="Ref" template="NiInterpolator">References generation interpolator.</add>
 		<add name="Interpolator 2: Mutation" type="Ref" template="NiInterpolator">References interpolator for Mutation of strips</add>
-        <add name="Interpolator 3" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 4" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 5" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 6" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 7" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 8" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for Amplitutde control. 0=straight, 50=wide</add>
-        <add name="Unknown Short 1" type="ushort">Unknown</add>
-        <add name="Unknown Short 2" type="ushort">Unknown</add>
-        <add name="Unknown Short 3" type="ushort">Unknown</add>
-        <add name="Distance Weight" type="float">How far lightning will stretch to.</add>
-        <add name="Float 2" type="float">Unknown</add>
-        <add name="Strip Width" type="float">How wide the bolt will be</add>
-        <add name="Fork" type="float">Influences forking behavior</add>
-        <add name="Float 5" type="float">Unknown</add>
-        <add name="Byte 1" type="byte">Unknown</add>
-        <add name="Byte 2" type="byte">Unknown</add>
-        <add name="Byte 3" type="byte">Unknown</add>
-        <!-- Note: Reduced strictness of validation -->
-        <add name="Interpolator 10?" type="Ref" template="NiObject">Unknown, unsure if this is actually another interpolator link.</add>
+        <add name="Interpolator 3: Subdivision" type="Ref" template="NiInterpolator">References subdivision interpolator.</add>
+        <add name="Interpolator 4: Num Branches" type="Ref" template="NiInterpolator">References branches interpolator.</add>
+        <add name="Interpolator 5: Num Branches Var" type="Ref" template="NiInterpolator">References branches variation interpolator.</add>
+        <add name="Interpolator 6: Length" type="Ref" template="NiInterpolator">References length interpolator.</add>
+        <add name="Interpolator 7: Length Var" type="Ref" template="NiInterpolator">References length variation interpolator.</add>
+        <add name="Interpolator 8: Width" type="Ref" template="NiInterpolator">References width interpolator.</add>
+        <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for amplitude control. 0=straight, 50=wide</add>
+        <add name="Subdivisions" type="ushort">Unknown</add>
+        <add name="Num Branches" type="ushort">Unknown</add>
+        <add name="Num Branches Variation" type="ushort">Unknown</add>
+        <add name="Length" type="float">How far lightning will stretch to.</add>
+        <add name="Length Variation" type="float">How far lightning variation will stretch to.</add>
+        <add name="Width" type="float">How wide the bolt will be.</add>
+        <add name="Child Width Mult" type="float">Influences forking behavior with a multiplier.</add>
+        <add name="Arc Offset" type="float">Unknown</add>
+        <add name="Fade Main Bolt" type="bool">Unknown</add>
+        <add name="Fade Child Bolts" type="bool">Unknown</add>
+        <add name="Animate Arc Offset" type="bool">Unknown</add>
+        <add name="Shader Property" type="Ref" template="NiProperty">Reference to a shader property.</add>
 	</niobject>
 
    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
@@ -5385,9 +5427,26 @@
         <add name="Data" type="Ref" template="NiFloatData">Unknown float data.</add>
     </niobject>
 
+    <enum name="AnimNoteType" storage="uint">
+        Anim note types.
+        <option value="0" name="ANT_INVALID">ANT_INVALID</option>
+        <option value="1" name="ANT_GRABIK">ANT_GRABIK</option>
+        <option value="2" name="ANT_LOOKIK">ANT_LOOKIK</option>
+    </enum>
+
+    <niobject name="BSAnimNote" abstract="0" inherit="NiObject">
+        Bethesda-specific node.
+        <add name="Type" type="AnimNoteType">Type of this note.</add>
+        <add name="Time" type="float">Location in time.</add>
+        <add name="Arm" type="uint" cond="Type == 1">Unknown.</add>
+        <add name="Gain" type="float" cond="Type == 2">Unknown.</add>
+        <add name="State" type="uint" cond="Type == 2">Unknown.</add>
+    </niobject>
+
     <niobject name="BSAnimNotes" abstract="0" inherit="NiObject">
         Bethesda-specific node.
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Num Anim Notes" type="ushort">Number of BSAnimNote objects.</add>
+        <add name="Anim Notes" type="Ref" template="BSAnimNote" arr1="Num Anim Notes">BSAnimNote objects.</add>
     </niobject>
 
     <niobject name="bhkLiquidAction" inherit="bhkSerializable">
