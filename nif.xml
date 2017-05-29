@@ -1619,7 +1619,7 @@
         	28 - ADDONLEG
         	29-31 - NULL
         </add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Group" type="ushort">Unknown.</add>
     </compound>
 
     <compound name="HavokMaterial">
@@ -2097,9 +2097,9 @@
     </niobject>
 
     <compound name="hkWorldObjCinfoProperty">
-        <add name="Data" type="uint" />
-        <add name="Size" type="uint" />
-        <add name="Capacity and Flags" type="uint" />
+        <add name="Data" type="uint" default="0" />
+        <add name="Size" type="uint" default="0" />
+        <add name="Capacity and Flags" type="uint" default="0x80000000" />
     </compound>
 
     <niobject name="bhkRefObject" abstract="1" inherit="NiObject">
@@ -2114,6 +2114,10 @@
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Havok Col Filter" type="HavokColFilter" />
+        <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
+        <add name="Broad Phase Type" type="byte" default="1" />
+        <add name="Unused Bytes" type="byte" arr1="3" />
+        <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
 
     <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject">
@@ -2126,7 +2130,7 @@
 
     <niobject name="bhkSimpleShapePhantom" abstract="0" inherit="bhkShapePhantom">
         Unknown shape.
-        <add name="Padding" type="byte" arr1="8">Not used.</add>
+        <add name="Unused 2" type="byte" arr1="8">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44" />
     </niobject>
 
@@ -2139,32 +2143,30 @@
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown Int 1" type="int">Unknown. Could be 2 shorts corresponding to Unknown 7 Shorts[1] and [2].</add>
-        <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
-        <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown. Could be 3 floats.</add>
-        <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
-        <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
-        <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
-        <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
+        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Havok Col Filter Copy" type="HavokColFilter">Copy of Havok Col Filter</add>
-        <add name="Unknown 6 Shorts" type="ushort" arr1="6" default="21280 2481 62977 65535 44 0">
-            Unknown.
-            Oblivion defaults: 21280 2481 62977 65535 44 0
-            Skyrim defaults: 56896 1343 0 0 1 65535 (third and fourth element *must* be zero)
-        </add>
+        <add name="Unused 2" type="byte" arr1="4">Garbage data from memory. Matches previous Unused value.</add>
+        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &gt; 34" />
+        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
+        <add name="Unused Byte 2" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" />
+        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &lt;= 34" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
-        <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
+        <add name="Inertia Tensor" type="Vector4" arr1="3">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
-        <add name="Unknown TimeFactor or GravityFactor 1" type="float" vercond="(User Version >= 12)" />
-        <add name="Unknown TimeFactor or GravityFactor 2" type="float" vercond="(User Version >= 12)" />
+        <add name="Time Factor" type="float" vercond="(User Version 2 &gt; 34)" />
+        <add name="Gravity Factor" type="float" vercond="(User Version 2 &gt; 34)" />
         <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
-        <add name="RollingFrictionMultiplier?" type="float" vercond="(User Version >= 12)" />
+        <add name="Rolling Friction Multiplier" type="float" vercond="(User Version 2 &gt; 34)" />
         <add name="Restitution" type="float" default="0.3">
             The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
@@ -2178,17 +2180,16 @@
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
         <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
+        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER" vercond="(User Version 2 &lt;= 34)">The initial deactivator type of the body.</add>
+        <add name="Enable Deactivation" type="bool" default="1" vercond="(User Version 2 &gt; 34)" />
         <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
         <add name="Quality Type" type="MotionQuality" default="MO_QUAL_FIXED">The motion type. Determines quality of motion?</add>
-        <add name="Unknown Int 6" type="uint" default="512">Unknown.</add>
-        <add name="Unknown Int 7" type="uint" default="160">Unknown.</add>
-        <add name="Unknown Int 8" type="uint" default="161">Unknown.</add>
-        <add name="Unknown Int 81" type="uint" vercond="(User Version >= 12)">Unknown. Skyrim only.</add>
+        <add name="Unknown Bytes 1" type="byte" arr1="12">Unknown.</add>
+        <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Unknown Int 9" type="uint" vercond="(User Version &lt;= 11)">0 = do not respond to wind, 1 = respond to wind (?)</add>
-        <add name="Unknown Int 91" type="ushort" vercond="(User Version >= 12)"></add>
+        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
+        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
@@ -5596,7 +5597,7 @@
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
         Bethesda-Specific node.
-        <add name="Body" type="Ref" template="NiObject" />
+        <add name="Body" type="Ptr" template="NiObject" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Int 2" type="uint" />
         <add name="Padding 1" type="byte" arr1="8" />
