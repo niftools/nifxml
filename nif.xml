@@ -6373,16 +6373,13 @@
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="User Data" type="uint">Unknown.</add>
+        <add name="Radius" type="float" default="0.005">A shell that is added around the shape.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
-	<add name="Unknown Floats 1" type="Vector4">Unknown</add>
-        <add name="Radius" type="float">A shell with that radius is added around the shape.</add>
-        <add name="Scale" type="float">Scale</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Radius Copy" type="float" default="0.005">A shell that is added around the shape.</add>
+        <add name="Scale Copy" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
     <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject">
