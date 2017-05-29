@@ -2271,8 +2271,8 @@
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
+        <add name="Radius" type="float" />
+        <add name="Unused" type="byte" arr1="8">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
@@ -2292,7 +2292,7 @@
 
     <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape">
         A capsule.
-        <add name="Padding" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
         <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
@@ -2301,7 +2301,7 @@
 
     <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape">
         A box.
-        <add name="Padding" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
         <add name="Radius" type="float">The smallest of the three sizes. Might be used for optimization.</add>
     </niobject>
@@ -2405,11 +2405,7 @@
         A shape constructed from a bunch of strips.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" default="0.1" />
-        <add name="Unused 1" type="uint" />
-        <add name="Unused 2" type="uint" />
-        <add name="Unused 3" type="uint">MaxSize</add>
-        <add name="Unused 4" type="uint">Size</add>
-        <add name="Unused 5" type="uint">eSize</add>
+        <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
         <add name="Grow By" type="uint" default="1" />
         <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
@@ -5571,7 +5567,7 @@
 
     <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom">
         Bethesda-specific node.
-        <add name="Padding" type="byte" arr1="8" />
+        <add name="Unused" type="byte" arr1="8" />
         <add name="AABB Min" type="Vector4" />
         <add name="AABB Max" type="Vector4" />
     </niobject>
@@ -5599,12 +5595,12 @@
         <add name="Body" type="Ptr" template="NiObject" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Int 2" type="uint" />
-        <add name="Padding 1" type="byte" arr1="8" />
+        <add name="Unused 1" type="byte" arr1="8" />
         <add name="Hinge Axis LS" type="Vector4" />
         <add name="Forward LS" type="Vector4" />
         <add name="Strength" type="float" />
         <add name="Damping" type="float" />
-        <add name="Padding 2" type="byte" arr1="8" />
+        <add name="Unused 2" type="byte" arr1="8" />
     </niobject>
 
 	<niobject name="bhkPoseArray" inherit="NiObject">
