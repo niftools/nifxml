@@ -1776,10 +1776,8 @@
     </compound>
 
     <compound name="BallAndSocketDescriptor">
-        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
-        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Translation A" type="Vector4" />
+        <add name="Translation B" type="Vector4" />
     </compound>
 
     <compound name="PrismaticDescriptor">
@@ -2576,9 +2574,9 @@
     </niobject>
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
-        Generic node object.
-        <add name="Flags" type="Flags" ver1="3.0">Some flags; commonly 0x000C or 0x000A.</add>
-        <add name="Unknown Short 1" type="ushort" default="8" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
+        Base audiovisual object.
+        <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -3206,7 +3204,7 @@
 
     <niobject name="NiCamera" abstract="0" inherit="NiAVObject">
         Camera object.
-        <add name="Unknown Short" type="ushort" ver1="10.1.0.0">Unknown.</add>
+        <add name="Camera Flags" type="ushort" ver1="10.1.0.0">Obsolete flags.</add>
         <add name="Frustum Left" type="float">Frustrum left.</add>
         <add name="Frustum Right" type="float">Frustrum right.</add>
         <add name="Frustum Top" type="float">Frustrum top.</add>
@@ -3219,10 +3217,10 @@
         <add name="Viewport Top" type="float">Viewport top.</add>
         <add name="Viewport Bottom" type="float">Viewport bottom.</add>
         <add name="LOD Adjust" type="float">Level of detail adjust.</add>
-        <add name="Unknown Link" type="Ref" template="NiObject">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.  Changing value crashes viewer.</add>
-        <add name="Unknown Int 2" type="uint" ver1="4.2.1.0">Unknown.  Changing value crashes viewer.</add>
-        <add name="Unknown Int 3" type ="uint" ver2="3.1">Unknown.</add>
+        <add name="Scene" type="Ref" template="NiAVObject" />
+        <add name="Num Screen Polygons" type="uint" default="0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Num Screen Textures" type="uint" default="0" ver1="4.2.1.0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Unknown Int 3" type="uint" ver2="3.1">Unknown.</add>
     </niobject>
 
     <niobject name="NiColorData" abstract="0" inherit="NiObject">
@@ -3492,11 +3490,17 @@
     <niobject name="NiBSParticleNode" abstract="0" inherit="NiNode">
         Unknown.
     </niobject>
+    
+    <bitflags name="NiSwitchFlags" storage="ushort">
+        Flags for NiSwitchNode.
+        <option value="0" name="UpdateOnlyActiveChild">Update Only Active Child</option>
+        <option value="1" name="UpdateControllers">Update Controllers</option>
+    </bitflags>
 
     <niobject name="NiSwitchNode" abstract="0" inherit="NiNode">
         A node used to switch between branches, such as for LOD levels?
-        <add name="Unknown Flags 1" type="ushort" ver1="10.1.0.0">Flags</add>
-        <add name="Unknown Int 1" type="int">Index?</add>
+        <add name="Switch Node Flags" type="NiSwitchFlags" ver1="10.1.0.0" />
+        <add name="Index" type="uint" />
     </niobject>
 
     <niobject name="NiLODNode" abstract="0" inherit="NiSwitchNode">
@@ -3826,7 +3830,7 @@
         <add name="Force Type" type="ForceType">Planar or Spherical type</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Range for turbulence.</add>
-        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" vercond="User Version >= 11">Unknown</add>
+        <add name="World Aligned" type="bool" ver1="20.2.0.7" vercond="User Version >= 11" />
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier">
@@ -3855,10 +3859,10 @@
     </niobject>
     
     <niobject name="BSPSysInheritVelocityModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Target" type="Ptr" template="NiNode" />
+        <add name="Chance To Inherit" type="float" />
+        <add name="Velocity Multiplier" type="float" />
+        <add name="Velocity Variation" type="float" />
     </niobject>
     
     <niobject name="BSPSysHavokUpdateModifier"  abstract="0" inherit="NiPSysModifier">
@@ -3868,13 +3872,9 @@
     </niobject>   
 
     <niobject name="BSPSysRecycleBoundModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-        <add name="Unknown Float 6" type="float">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Bound Offset" type="Vector3" />
+        <add name="Bound Extent" type="Vector3" />
+        <add name="Target" type="Ptr" template="NiNode" />
     </niobject> 
     
     <niobject name="BSPSysSubTexModifier"  abstract="0" inherit="NiPSysModifier">
@@ -3973,10 +3973,10 @@
     </niobject>
 
     <niobject name="BSPSysLODModifier" inherit="NiPSysModifier">
-        <add name="Uknown Float 1" type="float">Unknown</add>
-        <add name="Uknown Float 2" type="float">Unknown</add>
-        <add name="Uknown Float 3" type="float">Unknown</add>
-        <add name="Uknown Float 4" type="float">Unknown</add>
+        <add name="LOD Begin Distance" type="float" />
+        <add name="LOD End Distance" type="float" />
+        <add name="Unknown Fade Factor 1" type="float" />
+        <add name="Unknown Fade Factor 2" type="float" />
     </niobject>
     
     <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier">
@@ -5305,10 +5305,16 @@
     </niobject>
 
 
+    <bitflags name="BSValueNodeFlags" storage="byte">
+        Flags for BSValueNode.
+        <option value="0" name="BillboardWorldZ">Billboard World Z</option>
+        <option value="1" name="UsePlayerAdjust">Use Player Adjust</option>
+    </bitflags>
+
     <niobject name="BSValueNode" inherit="NiNode">
         Bethesda-Specific node. Found on fxFire effects
-        <add name="Value" type="int">Value</add>
-        <add name="Unknown byte" type="byte">Unknown</add>
+        <add name="Value" type="uint">Value</add>
+        <add name="Value Node Flags" type="BSValueNodeFlags">Value node flags.</add>
     </niobject>
 
 
@@ -5319,10 +5325,10 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 5" type="short">Unknown</add>
-        <add name="Unknown Byte 6" type="byte">Unknown</add>
-        <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Float 8" type="float">Unknown</add>
+        <add name="Max Point Count" type="short" />
+        <add name="Start Cap Size" type="uint" />
+        <add name="End Cap Size" type="uint" />
+        <add name="Do Z Prepass" type="bool" />
     </niobject>
 
 
@@ -5351,8 +5357,8 @@
         Particle system (multi?) emitter controller.
         <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
         <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Max Emitters" type="ushort" />
+        <add name="Master Particle System" type="Ptr" template="BSMasterParticleSystem" />
     </niobject>
 
 
@@ -5364,21 +5370,23 @@
     <niobject name="BSOrderedNode" inherit="NiNode">
         Bethesda-Specific node.
         <add name="Alpha Sort Bound" type="Vector4">Unknown</add>
-        <add name="Is Static Bound" type="byte">Unknown</add>
+        <add name="Static Bound" type="bool">Unknown</add>
     </niobject>
 
 
-    <niobject name="BSBlastNode" inherit="NiNode">
+    <niobject name="BSRangeNode" inherit="NiNode">
         Bethesda-Specific node.
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
+        <add name="Min" type="byte">Min</add>
+        <add name="Max" type="byte">Max</add>
+        <add name="Current" type="byte">Current</add>
     </niobject>
 
-
-    <niobject name="BSDamageStage" inherit="NiNode">
+    <niobject name="BSBlastNode" inherit="BSRangeNode">
         Bethesda-Specific node.
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
+    </niobject>
+
+    <niobject name="BSDamageStage" inherit="BSBlastNode">
+        Bethesda-Specific node.
     </niobject>
 
 
@@ -5463,17 +5471,25 @@
         <add name="Neighbor Strength" type="float" />
     </niobject>
 
+    <enum name="BSCPCullingType" storage="uint">
+        Culling modes for multi bound nodes.
+        <option value="0" name="BSCP_CULL_NORMAL">Normal</option>
+        <option value="1" name="BSCP_CULL_ALLPASS">All Pass</option>
+        <option value="2" name="BSCP_CULL_ALLFAIL">All Fail</option>
+        <option value="3" name="BSCP_CULL_IGNOREMULTIBOUNDS">Ignore Multi Bounds</option>
+        <option value="4" name="BSCP_CULL_FORCEMULTIBOUNDSNOUPDATE">Force Multi Bounds No Update</option>
+    </enum>
+
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
-        <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
-		<add name="Unknown Int" type="uint" ver1="20.2.0.7" vercond="(User Version >= 12)">Unknown</add>
+        <add name="Multi Bound" type="Ref" template="BSMultiBound" />
+		<add name="Culling Mode" type="BSCPCullingType" vercond="(User Version 2 &gt;= 83)" />
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
         Bethesda-specific node.
-        <add name="Data" type="Ref" template="BSMultiBoundData">Unknown.</add>
+        <add name="Data" type="Ref" template="BSMultiBoundData" />
     </niobject>
-    
 
     <niobject name="BSMultiBoundData" inherit="NiObject">
         Abstract base type for bounding data.
@@ -5488,9 +5504,7 @@
     
     <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown Flag</add>
-        <add name="Unknown Int 2" type="int">Unknown Flag</add>
-        <add name="Unknown Int 3" type="int">Unknown Flag</add>
+        <add name="Center" type="Vector3">Center</add>
         <add name="Radius" type="float">Radius</add>
     </niobject>
 
@@ -5577,10 +5591,8 @@
         <add name="Interpolator" type="Ref" template="NiFloatInterpolator">Frustrum field of view animation interpolater and data.</add>
     </niobject>
 
-    <niobject name="BSDebrisNode" inherit="NiNode">
+    <niobject name="BSDebrisNode" inherit="BSRangeNode">
         Bethesda-Specific node.
-        <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add>
     </niobject>
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
