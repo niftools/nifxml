@@ -2163,17 +2163,17 @@
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
-        <add name="Time Factor" type="float" vercond="(User Version 2 &gt; 34)" />
-        <add name="Gravity Factor" type="float" vercond="(User Version 2 &gt; 34)" />
-        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
+        <add name="Time Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Friction" type="float" default="0.5">The body&#039;s friction.</add>
         <add name="Rolling Friction Multiplier" type="float" vercond="(User Version 2 &gt; 34)" />
-        <add name="Restitution" type="float" default="0.3">
+        <add name="Restitution" type="float" default="0.4">
             The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
+        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
         <add name="Penetration Depth" type="float" default="0.15">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
