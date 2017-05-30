@@ -2614,13 +2614,15 @@
         A generic time controller object.
         <add name="Next Controller" type="Ref" template="NiTimeController">Index of the next controller.</add>
         <add name="Flags" type="Flags">
-            Controller flags (usually 0x000C). Probably controls loops.
+            Controller flags.
             Bit 0 : Anim type, 0=APP_TIME 1=APP_INIT
-            Bit 1-2 : Cycle type  00=Loop 01=Reverse 10=Loop
+            Bit 1-2 : Cycle type, 00=Loop 01=Reverse 10=Clamp
             Bit 3 : Active
             Bit 4 : Play backwards
+            Bit 5 : Is manager controlled
+            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function
         </add>
-        <add name="Frequency" type="float">Frequency (is usually 1.0).</add>
+        <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
         <add name="Start Time" type="float">Controller start time.</add>
         <add name="Stop Time" type="float">Controller stop time.</add>
@@ -6393,7 +6395,7 @@
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
     Links a nif with a Havok Behavior .hkx animation file
 		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
-		<add name="Controls Base Skeleton" type="byte">Unknown, has to do with blending appended bones onto an actor.</add>
+		<add name="Controls Base Skeleton" type="bool">Unknown, has to do with blending appended bones onto an actor.</add>
 	</niobject>
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController">
