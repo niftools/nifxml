@@ -5325,9 +5325,9 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Max Point Count" type="short" />
-        <add name="Start Cap Size" type="uint" />
-        <add name="End Cap Size" type="uint" />
+        <add name="Max Point Count" type="ushort" />
+        <add name="Start Cap Size" type="float" />
+        <add name="End Cap Size" type="float" />
         <add name="Do Z Prepass" type="bool" />
     </niobject>
 
