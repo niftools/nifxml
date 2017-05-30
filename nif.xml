@@ -981,11 +981,6 @@
         <option value="1" name="Emissive Color">Emissive Color.</option>
     </enum>
 
-    <enum name="ExtraVectorsFlags" storage="byte">
-        <option value="0" name="None">No Tangents and Bitangents Vectors.</option>
-        <option value="16" name="Tangents_Bitangents">Has Tangents and Bitangents Vectors.</option>
-    </enum>
-
     <enum name="hkConstraintType" storage="uint">
         The type of constraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
