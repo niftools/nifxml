@@ -263,6 +263,102 @@
         <option value="29" name="MAT_LUNCHBOX">Lunchbox</option>
         <option value="30" name="MAT_BABY_RATTLE">Baby Rattle</option>
         <option value="31" name="MAT_RUBBER_BALL">Rubber Ball</option>
+        <option value="32" name="MAT_STONE_PLATFORM">Stone</option>
+        <option value="33" name="MAT_CLOTH_PLATFORM">Cloth</option>
+        <option value="34" name="MAT_DIRT_PLATFORM">Dirt</option>
+        <option value="35" name="MAT_GLASS_PLATFORM">Glass</option>
+        <option value="36" name="MAT_GRASS_PLATFORM">Grass</option>
+        <option value="37" name="MAT_METAL_PLATFORM">Metal</option>
+        <option value="38" name="MAT_ORGANIC_PLATFORM">Organic</option>
+        <option value="39" name="MAT_SKIN_PLATFORM">Skin</option>
+        <option value="40" name="MAT_WATER_PLATFORM">Water</option>
+        <option value="41" name="MAT_WOOD_PLATFORM">Wood</option>
+        <option value="42" name="MAT_HEAVY_STONE_PLATFORM">Heavy Stone</option>
+        <option value="43" name="MAT_HEAVY_METAL_PLATFORM">Heavy Metal</option>
+        <option value="44" name="MAT_HEAVY_WOOD_PLATFORM">Heavy Wood</option>
+        <option value="45" name="MAT_CHAIN_PLATFORM">Chain</option>
+        <option value="46" name="MAT_BOTTLECAP_PLATFORM">Bottlecap</option>
+        <option value="47" name="MAT_ELEVATOR_PLATFORM">Elevator</option>
+        <option value="48" name="MAT_HOLLOW_METAL_PLATFORM">Hollow Metal</option>
+        <option value="49" name="MAT_SHEET_METAL_PLATFORM">Sheet Metal</option>
+        <option value="50" name="MAT_SAND_PLATFORM">Sand</option>
+        <option value="51" name="MAT_BROKEN_CONCRETE_PLATFORM">Broken Concrete</option>
+        <option value="52" name="MAT_VEHICLE_BODY_PLATFORM">Vehicle Body</option>
+        <option value="53" name="MAT_VEHICLE_PART_SOLID_PLATFORM">Vehicle Part Solid</option>
+        <option value="54" name="MAT_VEHICLE_PART_HOLLOW_PLATFORM">Vehicle Part Hollow</option>
+        <option value="55" name="MAT_BARREL_PLATFORM">Barrel</option>
+        <option value="56" name="MAT_BOTTLE_PLATFORM">Bottle</option>
+        <option value="57" name="MAT_SODA_CAN_PLATFORM">Soda Can</option>
+        <option value="58" name="MAT_PISTOL_PLATFORM">Pistol</option>
+        <option value="59" name="MAT_RIFLE_PLATFORM">Rifle</option>
+        <option value="60" name="MAT_SHOPPING_CART_PLATFORM">Shopping Cart</option>
+        <option value="61" name="MAT_LUNCHBOX_PLATFORM">Lunchbox</option>
+        <option value="62" name="MAT_BABY_RATTLE_PLATFORM">Baby Rattle</option>
+        <option value="63" name="MAT_RUBBER_BALL_PLATFORM">Rubber Ball</option>
+        <option value="64" name="MAT_STONE_STAIRS">Stone</option>
+        <option value="65" name="MAT_CLOTH_STAIRS">Cloth</option>
+        <option value="66" name="MAT_DIRT_STAIRS">Dirt</option>
+        <option value="67" name="MAT_GLASS_STAIRS">Glass</option>
+        <option value="68" name="MAT_GRASS_STAIRS">Grass</option>
+        <option value="69" name="MAT_METAL_STAIRS">Metal</option>
+        <option value="70" name="MAT_ORGANIC_STAIRS">Organic</option>
+        <option value="71" name="MAT_SKIN_STAIRS">Skin</option>
+        <option value="72" name="MAT_WATER_STAIRS">Water</option>
+        <option value="73" name="MAT_WOOD_STAIRS">Wood</option>
+        <option value="74" name="MAT_HEAVY_STONE_STAIRS">Heavy Stone</option>
+        <option value="75" name="MAT_HEAVY_METAL_STAIRS">Heavy Metal</option>
+        <option value="76" name="MAT_HEAVY_WOOD_STAIRS">Heavy Wood</option>
+        <option value="77" name="MAT_CHAIN_STAIRS">Chain</option>
+        <option value="78" name="MAT_BOTTLECAP_STAIRS">Bottlecap</option>
+        <option value="79" name="MAT_ELEVATOR_STAIRS">Elevator</option>
+        <option value="80" name="MAT_HOLLOW_METAL_STAIRS">Hollow Metal</option>
+        <option value="81" name="MAT_SHEET_METAL_STAIRS">Sheet Metal</option>
+        <option value="82" name="MAT_SAND_STAIRS">Sand</option>
+        <option value="83" name="MAT_BROKEN_CONCRETE_STAIRS">Broken Concrete</option>
+        <option value="84" name="MAT_VEHICLE_BODY_STAIRS">Vehicle Body</option>
+        <option value="85" name="MAT_VEHICLE_PART_SOLID_STAIRS">Vehicle Part Solid</option>
+        <option value="86" name="MAT_VEHICLE_PART_HOLLOW_STAIRS">Vehicle Part Hollow</option>
+        <option value="87" name="MAT_BARREL_STAIRS">Barrel</option>
+        <option value="88" name="MAT_BOTTLE_STAIRS">Bottle</option>
+        <option value="89" name="MAT_SODA_CAN_STAIRS">Soda Can</option>
+        <option value="90" name="MAT_PISTOL_STAIRS">Pistol</option>
+        <option value="91" name="MAT_RIFLE_STAIRS">Rifle</option>
+        <option value="92" name="MAT_SHOPPING_CART_STAIRS">Shopping Cart</option>
+        <option value="93" name="MAT_LUNCHBOX_STAIRS">Lunchbox</option>
+        <option value="94" name="MAT_BABY_RATTLE_STAIRS">Baby Rattle</option>
+        <option value="95" name="MAT_RUBBER_BALL_STAIRS">Rubber Ball</option>
+        <option value="96" name="MAT_STONE_STAIRS_PLATFORM">Stone</option>
+        <option value="97" name="MAT_CLOTH_STAIRS_PLATFORM">Cloth</option>
+        <option value="98" name="MAT_DIRT_STAIRS_PLATFORM">Dirt</option>
+        <option value="99" name="MAT_GLASS_STAIRS_PLATFORM">Glass</option>
+        <option value="100" name="MAT_GRASS_STAIRS_PLATFORM">Grass</option>
+        <option value="101" name="MAT_METAL_STAIRS_PLATFORM">Metal</option>
+        <option value="102" name="MAT_ORGANIC_STAIRS_PLATFORM">Organic</option>
+        <option value="103" name="MAT_SKIN_STAIRS_PLATFORM">Skin</option>
+        <option value="104" name="MAT_WATER_STAIRS_PLATFORM">Water</option>
+        <option value="105" name="MAT_WOOD_STAIRS_PLATFORM">Wood</option>
+        <option value="106" name="MAT_HEAVY_STONE_STAIRS_PLATFORM">Heavy Stone</option>
+        <option value="107" name="MAT_HEAVY_METAL_STAIRS_PLATFORM">Heavy Metal</option>
+        <option value="108" name="MAT_HEAVY_WOOD_STAIRS_PLATFORM">Heavy Wood</option>
+        <option value="109" name="MAT_CHAIN_STAIRS_PLATFORM">Chain</option>
+        <option value="110" name="MAT_BOTTLECAP_STAIRS_PLATFORM">Bottlecap</option>
+        <option value="111" name="MAT_ELEVATOR_STAIRS_PLATFORM">Elevator</option>
+        <option value="112" name="MAT_HOLLOW_METAL_STAIRS_PLATFORM">Hollow Metal</option>
+        <option value="113" name="MAT_SHEET_METAL_STAIRS_PLATFORM">Sheet Metal</option>
+        <option value="114" name="MAT_SAND_STAIRS_PLATFORM">Sand</option>
+        <option value="115" name="MAT_BROKEN_CONCRETE_STAIRS_PLATFORM">Broken Concrete</option>
+        <option value="116" name="MAT_VEHICLE_BODY_STAIRS_PLATFORM">Vehicle Body</option>
+        <option value="117" name="MAT_VEHICLE_PART_SOLID_STAIRS_PLATFORM">Vehicle Part Solid</option>
+        <option value="118" name="MAT_VEHICLE_PART_HOLLOW_STAIRS_PLATFORM">Vehicle Part Hollow</option>
+        <option value="119" name="MAT_BARREL_STAIRS_PLATFORM">Barrel</option>
+        <option value="120" name="MAT_BOTTLE_STAIRS_PLATFORM">Bottle</option>
+        <option value="121" name="MAT_SODA_CAN_STAIRS_PLATFORM">Soda Can</option>
+        <option value="122" name="MAT_PISTOL_STAIRS_PLATFORM">Pistol</option>
+        <option value="123" name="MAT_RIFLE_STAIRS_PLATFORM">Rifle</option>
+        <option value="124" name="MAT_SHOPPING_CART_STAIRS_PLATFORM">Shopping Cart</option>
+        <option value="125" name="MAT_LUNCHBOX_STAIRS_PLATFORM">Lunchbox</option>
+        <option value="126" name="MAT_BABY_RATTLE_STAIRS_PLATFORM">Baby Rattle</option>
+        <option value="127" name="MAT_RUBBER_BALL_STAIRS_PLATFORM">Rubber Ball</option>
     </enum>
 
     <enum name="SkyrimHavokMaterial" storage="uint">
