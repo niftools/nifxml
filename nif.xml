@@ -1905,16 +1905,16 @@
         <add name="m34" type="float">Zero</add>
     </compound>
 
-	<compound name="BonePoseMatrix">
-		Matrix for deathposes.psa
-		<add name="Unknown Float" type="float" />
-		<add name="Matrix" type="Matrix33" />
+    <compound name="BonePoseMatrix">
+        Matrix for deathposes.psa
+        <add name="Unknown Float" type="float" />
+        <add name="Matrix" type="Matrix33" />
     </compound>
 
-	<compound name="BonePoseArray">
-		<add name="Num Matrices" type="uint" />
+    <compound name="BonePoseArray">
+        <add name="Num Matrices" type="uint" />
         <add name="Matrices" type="BonePoseMatrix" arr1="Num Matrices" />
-	</compound>
+    </compound>
 
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
@@ -1948,35 +1948,35 @@
         <add name="Bone Name" type="string">The bones name</add>
     </compound>
 
-	<compound name="bhkCMSDMaterial">
-    Per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+    <compound name="bhkCMSDMaterial">
+        Per-chunk material, used in bhkCompressedMeshShapeData
+        <add name="Material" type="SkyrimHavokMaterial">Material.</add>
+        <add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
     <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
     <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
-	</compound>
+    </compound>
 
     <compound name="bhkCMSDBigTris">
-    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
+        Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
         <add name="Triangle 1" type="ushort"></add>
         <add name="Triangle 2" type="ushort"></add>
         <add name="Triangle 3" type="ushort"></add>
-		<add name="Material" type="uint">Always 0?</add>
+        <add name="Material" type="uint">Always 0?</add>
         <add name="Welding Info" type="ushort"></add>
     </compound>
     
     <compound name="bhkCMSDTransform">
-    A set of transformation data: translation and rotation
+        A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
         <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
     </compound>
     
     <compound name="bhkCMSDChunk">
-    Defines subshape chunks in bhkCompressedMeshShapeData
-		<add name="Translation" type="Vector4">Local translation</add>
-		<add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
-		<add name="Reference" type="ushort">Always 65535?</add>
-		<add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
+        Defines subshape chunks in bhkCompressedMeshShapeData
+        <add name="Translation" type="Vector4">Local translation</add>
+        <add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
+        <add name="Reference" type="ushort">Always 65535?</add>
+        <add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
         <add name="Num Vertices" type="uint">Number of compressed vertices</add>
         <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
         <add name="Num Indices" type="uint"></add>
@@ -2012,7 +2012,7 @@
         <add name="Malleable Constraint" type="bhkRDTMalleableConstraint" cond="Type == 13" />
     </compound>
     <compound name="bhkRDTMalleableConstraint">
-    A malleable constraint.
+        A malleable constraint.
         <add name="Type" type="uint">Type of constraint.</add>
         <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
         <add name="Entity A" type="Ref" template="NiObject">Usually -1?</add>
@@ -5615,14 +5615,14 @@
         <add name="Unused 2" type="byte" arr1="8" />
     </niobject>
 
-	<niobject name="bhkPoseArray" inherit="NiObject">
-		Found in Fallout 3, extra ragdoll info for NPCs/creatures (usually idleanims\deathposes.psa).
+    <niobject name="bhkPoseArray" inherit="NiObject">
+        Found in Fallout 3, extra ragdoll info for NPCs/creatures (usually idleanims\deathposes.psa).
         Defines different kill poses that are selected randomly after death.
-		<add name="Num Bones" type="int">Number of target bones.</add>
+        <add name="Num Bones" type="int">Number of target bones.</add>
         <add name="Bones" type="string" arr1="Num Bones">Array of bone names.</add>
         <add name="Num Poses" type="int">Number of poses.</add>
-		<add name="Poses" type="BonePoseArray" arr1="Num Poses">Array of poses.</add>
-	</niobject>
+        <add name="Poses" type="BonePoseArray" arr1="Num Poses">Array of poses.</add>
+    </niobject>
 
     <niobject name="bhkRagdollTemplate" inherit="NiObject">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
