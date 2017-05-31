@@ -1776,8 +1776,8 @@
     </compound>
 
     <compound name="BallAndSocketDescriptor">
-        <add name="Translation A" type="Vector4" />
-        <add name="Translation B" type="Vector4" />
+        <add name="Pivot A" type="Vector4">Pivot point in the local space of entity A.</add>
+        <add name="Pivot B" type="Vector4">Pivot point in the local space of entity B.</add>
     </compound>
 
     <compound name="PrismaticDescriptor">
@@ -2239,7 +2239,7 @@
         <add name="Ball and Socket" type="BallAndSocketDescriptor">Describes a ball and socket constraint</add>
     </niobject>
 
-    <compound name="PivotAB">
+    <compound name="ConstraintInfo">
         Two Vector4 for pivot in A and B.
         <add name="Pivot In A" type="Vector4" />
         <add name="Pivot In B" type="Vector4" />
@@ -2247,12 +2247,12 @@
 
     <niobject name="bhkBallSocketConstraintChain" abstract="0" inherit="bhkSerializable">
         A Ball and Socket Constraint chain.
-        <add name="Num Pivots" type="uint" />
-        <add name="Pivots" type="PivotAB" arr1="Num Pivots / 2" />
-        <add name="Tau" type="float" />
-        <add name="Damping" type="float" />
-        <add name="Constraint Mixing Force" type="float" />
-        <add name="Max Error Distance" type="float" />
+        <add name="Num Pivots" type="uint">Number of pivot points. Divide by 2 to get the number of constraints.</add>
+        <add name="Pivots" type="ConstraintInfo" arr1="Num Pivots / 2">Two pivot points A and B for each constraint.</add>
+        <add name="Tau" type="float" default="1.0">High values are harder and more reactive, lower values are smoother.</add>
+        <add name="Damping" type="float" default="0.6">Defines damping strength for the current velocity.</add>
+        <add name="Constraint Force Mixing" type="float" default="1.1920929e-08">Restitution (amount of elasticity) of constraints. Added to the diagonal of the constraint matrix. A value of 0.0 can result in a division by zero with some chain configurations.</add>
+        <add name="Max Error Distance" type="float" default="0.1">Maximum distance error in constraints allowed before stabilization algorithm kicks in. A smaller distance causes more resistance.</add>
         <add name="Num Entities A" type="uint">Number of links in the chain</add>
         <add name="Entities A" type="Ptr" template="NiObject" arr1="Num Entities A" />
         <add name="Num Entities" type="uint" default="2">Hardcoded to 2. Don't change.</add>
@@ -5599,7 +5599,7 @@
         A breakable constraint.
         <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
         <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
-        <add name="Remove if Broken" type="bool">Unknown</add>
+        <add name="Remove When Broken" type="bool" default="0">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
@@ -5616,11 +5616,12 @@
     </niobject>
 
 	<niobject name="bhkPoseArray" inherit="NiObject">
-		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
-		<add name="Num Bones" type="int">Number of target bones</add>
-        <add name="Bones" type="string" arr1="Num Bones">Bones in index</add>
-        <add name="Num Poses" type="int">Unknown</add>
-		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
+		Found in Fallout 3, extra ragdoll info for NPCs/creatures (usually idleanims\deathposes.psa).
+        Defines different kill poses that are selected randomly after death.
+		<add name="Num Bones" type="int">Number of target bones.</add>
+        <add name="Bones" type="string" arr1="Num Bones">Array of bone names.</add>
+        <add name="Num Poses" type="int">Number of poses.</add>
+		<add name="Poses" type="BonePoseArray" arr1="Num Poses">Array of poses.</add>
 	</niobject>
 
     <niobject name="bhkRagdollTemplate" inherit="NiObject">
