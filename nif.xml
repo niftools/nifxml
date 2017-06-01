@@ -1168,6 +1168,22 @@
         <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
+    <compound name="hkMatrix3" niflibtype="InertiaMatrix">
+        A 3x3 Havok matrix stored in 4x3 due to memory alignment.
+        <add name="m11" type="float" />
+        <add name="m12" type="float" />
+        <add name="m13" type="float" />
+        <add name="m14" type="float">Unused</add>
+        <add name="m21" type="float" />
+        <add name="m22" type="float" />
+        <add name="m23" type="float" />
+        <add name="m24" type="float">Unused</add>
+        <add name="m31" type="float" />
+        <add name="m32" type="float" />
+        <add name="m33" type="float" />
+        <add name="m34" type="float">Unused</add>
+    </compound>
+
     <compound name="MipMap">
         Description of a MipMap within a NiPixelData object.
         <add name="Width" type="uint">Width of the mipmap image.</add>
@@ -1888,13 +1904,6 @@
         <add name="Unknown Int 4" type="int" />
         <add name="Texturing Property" type="Ref" template="NiTexturingProperty"/>
         <add name="Unknown Bytes" type="byte" arr1="9" />
-    </compound>
-
-    <compound name="hkMatrix3" niflibtype="InertiaMatrix">
-        An inertia matrix.
-        <add name="Row 1" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
-        <add name="Row 2" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
-        <add name="Row 3" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
     </compound>
 
     <compound name="BoneTransform">
