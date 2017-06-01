@@ -1623,9 +1623,9 @@
     </compound>
 
     <compound name="HavokMaterial">
-        <add name="Material" type="OblivionHavokMaterial" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">The material of the shape.</add><!--condition: all except Fallout 3 and Skyrim -->
-        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">The material of the shape.</add>
-        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 &gt;= 83)">The material of the shape.</add>
+        <add name="Material" type="OblivionHavokMaterial" vercond="(Version == 20.0.0.5)">The material of the shape.</add>
+        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
+        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
