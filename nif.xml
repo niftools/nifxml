@@ -2300,8 +2300,8 @@
     <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape">
         A box.
         <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
-        <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
-        <add name="Radius" type="float">The smallest of the three sizes. Might be used for optimization.</add>
+        <add name="Dimensions" type="Vector3">A cube stored in Half Extents. A unit cube (1.0, 1.0, 1.0) would be stored as 0.5, 0.5, 0.5.</add>
+        <add name="Unused Float" type="float">Unused as Havok stores the Half Extents as hkVector4 with the W component unused.</add>
     </niobject>
 
     <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkConvexShape">
