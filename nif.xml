@@ -371,6 +371,7 @@
         <option value="493553910" name="MAT_BOTTLE">Bottle</option>
         <option value="500811281" name="MAT_WOOD">Wood</option>
         <option value="591247106" name="MAT_SKIN">Skin</option>
+        <option value="617099282" name="MAT_UNKNOWN_617099282">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\clutter\dlc01deerskin.nif.</option>
         <option value="732141076" name="MAT_BARREL">Barrel</option>
         <option value="781661019" name="MAT_MATERIAL_CERAMIC_MEDIUM">Material Ceramic Medium</option>
         <option value="790784366" name="MAT_MATERIAL_BASKET">Material Basket</option>
@@ -400,6 +401,7 @@
         <option value="2025794648" name="MAT_MATERIAL_BOTTLE_SMALL">Material Bottle Small</option>
         <option value="2168343821" name="MAT_SAND">Sand</option>
         <option value="2229413539" name="MAT_HEAVY_METAL">Heavy Metal</option>
+        <option value="2290050264" name="MAT_UNKNOWN_2290050264">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\clutter\dlc01sabrecatpelt.nif.</option>
         <option value="2518321175" name="MAT_DRAGON">Dragon</option>
         <option value="2617944780" name="MAT_MATERIAL_BLADE_1HAND_SMALL">Material Blade 1Hand Small</option>
         <option value="2632367422" name="MAT_MATERIAL_SKIN_SMALL">Material Skin Small</option>
@@ -420,6 +422,7 @@
         <option value="3741512247" name="MAT_STONE">Stone</option>
         <option value="3839073443" name="MAT_CLOTH">Cloth</option>
         <option value="3969592277" name="MAT_MATERIAL_BLUNT_2HAND">Material Blunt 2Hand</option>
+        <option value="4239621792" name="MAT_UNKNOWN_4239621792">Unknown in Creation Kit v1.9.32.0. Found in Dawnguard DLC in meshes\dlc01\prototype\dlc1protoswingingbridge.nif.</option>
         <option value="4283869410" name="MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
     </enum>
 
