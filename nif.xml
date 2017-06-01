@@ -1889,20 +1889,11 @@
         <add name="Unknown Bytes" type="byte" arr1="9" />
     </compound>
 
-    <compound name="InertiaMatrix" niflibtype="InertiaMatrix">
+    <compound name="hkMatrix3" niflibtype="InertiaMatrix">
         An inertia matrix.
-        <add name="m11" type="float" />
-        <add name="m12" type="float" />
-        <add name="m13" type="float" />
-        <add name="m14" type="float">Zero</add>
-        <add name="m21" type="float" />
-        <add name="m22" type="float" />
-        <add name="m23" type="float" />
-        <add name="m24" type="float">Zero</add>
-        <add name="m31" type="float" />
-        <add name="m32" type="float" />
-        <add name="m33" type="float" />
-        <add name="m34" type="float">Zero</add>
+        <add name="Row 1" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
+        <add name="Row 2" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
+        <add name="Row 3" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
     </compound>
 
     <compound name="BonePoseMatrix">
@@ -2156,7 +2147,7 @@
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
-        <add name="Inertia Tensor" type="Vector4" arr1="3">Defines how the mass is distributed among the body.</add>
+        <add name="Inertia Tensor" type="hkMatrix3">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
