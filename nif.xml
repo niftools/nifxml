@@ -2081,6 +2081,13 @@
         <add name="Collider Object" type="Ptr" template="NiNode">Links to a NiNode that will define where in object space the collider is located/oriented.</add>
     </niobject>
 
+    <enum name="BroadPhaseType" storage="byte">
+        <option value="0" name="BROAD_PHASE_INVALID" />
+        <option value="1" name="BROAD_PHASE_ENTITY" />
+        <option value="2" name="BROAD_PHASE_PHANTOM" />
+        <option value="3" name="BROAD_PHASE_BORDER" />
+    </enum>
+
     <compound name="hkWorldObjCinfoProperty">
         <add name="Data" type="uint" default="0" />
         <add name="Size" type="uint" default="0" />
@@ -2100,7 +2107,7 @@
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Havok Col Filter" type="HavokColFilter" />
         <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
-        <add name="Broad Phase Type" type="byte" default="1" />
+        <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
         <add name="Unused Bytes" type="byte" arr1="3" />
         <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
