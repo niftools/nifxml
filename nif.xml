@@ -995,6 +995,7 @@
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
         <!--<option value="10" name="Generic">A generic constraint.</option>-->
+        <option value="13" name="Malleable">A malleable constraint.</option>
     </enum>
 
     <!--Compounds
@@ -1980,7 +1981,7 @@
         <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
     </compound>
 
-    <compound name="SubConstraint">
+    <compound name="MalleableDescriptor">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
         <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
         <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
@@ -1991,30 +1992,23 @@
         <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
+        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
+        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
     </compound>
 
-    <compound name="bhkRDTConstraint">
-        <add name="Type" type="uint">Type of constraint.
-        7 = RagDoll Constraint?
-        13 = Malleable Constraint?</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Entity A in this constraint.</add>
-        <add name="Entity B" type="Ref" template="NiObject">Entity B in this constraint.</add>
+    <compound name="ConstraintData">
+        <add name="Type" type="hkConstraintType">Type of constraint.</add>
+        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
+        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Malleable Constraint" type="bhkRDTMalleableConstraint" cond="Type == 13" />
-    </compound>
-    <compound name="bhkRDTMalleableConstraint">
-        A malleable constraint.
-        <add name="Type" type="uint">Type of constraint.</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Entity B" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Damping" type="float" />
+        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Malleable" type="MalleableDescriptor" cond="Type == 13" />
     </compound>
 
     <!-- NIF Objects
@@ -2201,10 +2195,7 @@
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
         A malleable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
-        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
-        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
-        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
+        <add name="Malleable" type="MalleableDescriptor">Constraint within constraint.</add>
     </niobject>
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
@@ -5590,7 +5581,7 @@
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
         A breakable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Constraint Data" type="ConstraintData">Constraint within constraint.</add>
         <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
         <add name="Remove When Broken" type="bool" default="0">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</add>
     </niobject>
@@ -5618,27 +5609,22 @@
         <add name="Poses" type="BonePose" arr1="Num Poses">Array of poses.</add>
     </niobject>
 
-    <niobject name="bhkRagdollTemplate" inherit="NiObject">
+    <niobject name="bhkRagdollTemplate" inherit="NiExtraData">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
-        <add name="Name" type="string"/>
         <add name="Num Bones" type="int">Number of target bones</add>
         <add name="Bones" type="Ref" template="NiObject" arr1="Num Bones">Bones in index</add>
     </niobject>
 
     <niobject name="bhkRagdollTemplateData" inherit="NiObject">
         Data for bhkRagdollTemplate
-        <add name="Name" type="string"/>
-        <add name="Mass?" type="float">Probably a Mass for bhkRigidBody linked to this bone node.</add>
-        <add name="Restitution?" type="float">Probably a Restitution for bhkRigidBody linked to this bone node.</add>
-        <add name="Friction?" type="float">Probably a Friction for bhkRigidBody linked to this bone node.</add>
-        <add name="Radius?" type="float">Probably a Radius for collision object shape of bhkRigidBody linked to this bone node.</add>
-        <add name="Unknown Int" type="uint">Unknown. Dependent on value of User Version 2?
-        Value 7 found in Fallout3 meshes\ragdollconstraint\default.rdt. This file has User Version 2 = 34.
-        Value 0 found in Fallout3 meshes\ragdollconstraint\stiff.rdt. This file has User Version 2 = 16.</add>
-        <add name="Flag or Num Constraints?" type="uint">Either a flag or a number of constraints.
-        0: no Constraint is present.
-        1: a Constraint is present.</add>
-        <add name="Constraint" type="bhkRDTConstraint" cond="Flag or Num Constraints? != 0">Unknown</add>
+        <add name="Name" type="string" />
+        <add name="Mass" type="float" default="9.0" />
+        <add name="Restitution" type="float" default="0.8" />
+        <add name="Friction" type="float" default="0.3" />
+        <add name="Radius" type="float" default="1.0" />
+        <add name="Material" type="HavokMaterial" default="7" />
+        <add name="Num Constraints" type="uint" />
+        <add name="Constraint" type="ConstraintData" arr1="Num Constraints" />
     </niobject>
 
     <compound name="Region">
