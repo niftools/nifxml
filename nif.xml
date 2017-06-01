@@ -1896,15 +1896,17 @@
         <add name="Row 3" type="Vector4">W is unused as hkMatrix3 is only 4x3 because of memory alignment.</add>
     </compound>
 
-    <compound name="BonePoseMatrix">
-        Matrix for deathposes.psa
-        <add name="Unknown Float" type="float" />
-        <add name="Matrix" type="Matrix33" />
+    <compound name="BoneTransform">
+        Transformation data for the bone at this index in bhkPoseArray.
+        <add name="Translation" type="Vector3" />
+        <add name="Rotation" type="QuaternionXYZW" />
+        <add name="Scale" type="Vector3" />
     </compound>
 
-    <compound name="BonePoseArray">
-        <add name="Num Matrices" type="uint" />
-        <add name="Matrices" type="BonePoseMatrix" arr1="Num Matrices" />
+    <compound name="BonePose">
+        A list of transforms for each bone in bhkPoseArray.
+        <add name="Num Transforms" type="uint" />
+        <add name="Transforms" type="BoneTransform" arr1="Num Transforms" />
     </compound>
 
     <compound name="DecalVectorArray">
@@ -5607,12 +5609,13 @@
     </niobject>
 
     <niobject name="bhkPoseArray" inherit="NiObject">
-        Found in Fallout 3, extra ragdoll info for NPCs/creatures (usually idleanims\deathposes.psa).
-        Defines different kill poses that are selected randomly after death.
+        Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
+        Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.
+        Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
         <add name="Num Bones" type="int">Number of target bones.</add>
         <add name="Bones" type="string" arr1="Num Bones">Array of bone names.</add>
         <add name="Num Poses" type="int">Number of poses.</add>
-        <add name="Poses" type="BonePoseArray" arr1="Num Poses">Array of poses.</add>
+        <add name="Poses" type="BonePose" arr1="Num Poses">Array of poses.</add>
     </niobject>
 
     <niobject name="bhkRagdollTemplate" inherit="NiObject">
