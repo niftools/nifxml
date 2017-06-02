@@ -2547,9 +2547,25 @@
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1">Collision data.</add>
     </niobject>
 
+    <bitflags name="bhkCOFlags" storage="ushort">
+        bhkNiCollisionObject flags. The flags 0x2, 0x100, and 0x200 are not seen in any NIF nor get/set by the engine.
+        <option value="0" name="BHKCO_ACTIVE" />
+        <!--<option value="1" name="BHKCO_UNK1" />-->
+        <option value="2" name="BHKCO_NOTIFY" />
+        <option value="3" name="BHKCO_SET_LOCAL" />
+        <option value="4" name="BHKCO_DBG_DISPLAY" />
+        <option value="5" name="BHKCO_USE_VEL" />
+        <option value="6" name="BHKCO_RESET" />
+        <option value="7" name="BHKCO_SYNC_ON_UPDATE" />
+        <!--<option value="8" name="BHKCO_UNK2" />-->
+        <!--<option value="9" name="BHKCO_UNK3" />-->
+        <option value="10" name="BHKCO_ANIM_TARGETED" />
+        <option value="11" name="BHKCO_DISMEMBERED_LIMB" />
+    </bitflags>
+
     <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
         Havok related collision object?
-        <add name="Flags" type="Flags" default="1">
+        <add name="Flags" type="bhkCOFlags" default="1">
             Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
         <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
