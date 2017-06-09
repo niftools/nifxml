@@ -1902,7 +1902,7 @@
         <add name="Texture Name" type="string" />
         <add name="Unknown Int 3" type="int" />
         <add name="Unknown Int 4" type="int" />
-        <add name="Texturing Property" type="Ref" template="NiTexturingProperty"/>
+        <add name="Texturing Property" type="Ref" template="NiTexturingProperty" />
         <add name="Unknown Bytes" type="byte" arr1="9" />
     </compound>
 
@@ -2460,10 +2460,10 @@
 
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Unknown interpolator.
-        <add name="Flags" type="PathFlags"/>
-        <add name="Bank Dir" type="uint"/>
-        <add name="Max Bank Angle" type="float"/>
-        <add name="Smoothing" type="float"/>
+        <add name="Flags" type="PathFlags" />
+        <add name="Bank Dir" type="uint" />
+        <add name="Max Bank Angle" type="float" />
+        <add name="Smoothing" type="float" />
         <add name="Follow Axis" type="ushort">Unknown. Zero.</add>
         <add name="Path Data" type="Ref" template="NiPosData">Refers to NiPosData.</add>
         <add name="Percent Data" type="Ref" template="NiFloatData">Refers to NiFloatData.</add>
@@ -2486,26 +2486,26 @@
     <compound name="InterpBlendItem">
         Interpolator item for array in NiBlendInterpolator.
         <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
-        <add name="Weight" type="float"/>
-        <add name="Normalized Weight" type="float"/>
-        <add name="Priority" type="byte"/>
-        <add name="Ease Spinner" type="float"/>
+        <add name="Weight" type="float" />
+        <add name="Normalized Weight" type="float" />
+        <add name="Priority" type="byte" />
+        <add name="Ease Spinner" type="float" />
     </compound>
 
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
         An extended type of interpolater.
-        <add name="Flags" type="InterpBlendFlags"/>
-        <add name="Array Size" type="byte"/>
-        <add name="Weight Threshold" type="float"/>
-        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0"/>
-        <add name="Single Index" type="byte" cond="(Flags &amp; 1) == 0"/>
-        <add name="High Priority" type="char" cond="(Flags &amp; 1) == 0"/>
-        <add name="Next High Priority" type="char" cond="(Flags &amp; 1) == 0"/>
-        <add name="Single Time" type="float" cond="(Flags &amp; 1) == 0"/>
-        <add name="High Weights Sum" type="float" cond="(Flags &amp; 1) == 0"/>
-        <add name="Next High Weights Sum" type="float" cond="(Flags &amp; 1) == 0"/>
-        <add name="High Ease Spinner" type="float" cond="(Flags &amp; 1) == 0"/>
-        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0"/>
+        <add name="Flags" type="InterpBlendFlags" />
+        <add name="Array Size" type="byte" />
+        <add name="Weight Threshold" type="float" />
+        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Index" type="byte" cond="(Flags &amp; 1) == 0" />
+        <add name="High Priority" type="char" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Priority" type="char" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Time" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="High Ease Spinner" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
@@ -3409,7 +3409,7 @@
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
         Unknown.
-        <add name="Flags" type="LookAtFlags"/>
+        <add name="Flags" type="LookAtFlags" />
         <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
         <add name="Look At Name" type="string">Target node name.</add>
         <!-- TODO use QTransform -->
@@ -4220,9 +4220,9 @@
         <add name="Stencil Function" type="StencilCompareMode" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
         <add name="Stencil Ref" type="uint" ver2="20.0.0.5">Unknown.  Default is 0.</add>
         <add name="Stencil Mask" type="uint" default="4294967295" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
-        <add name="Fail Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Pass Action" type="StencilAction" ver2="20.0.0.5"/>
+        <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
+        <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5" />
+        <add name="Pass Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
         <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
             Property flags:
@@ -6725,7 +6725,7 @@
 	
 	<niobject name="BSDistantObjectLargeRefExtraData" abstract="0" inherit="NiExtraData">
         Large ref flag.
-		<add name="Large Ref" type="bool"/>
+		<add name="Large Ref" type="bool" />
 	</niobject>
 	
 </niftoolsxml>
