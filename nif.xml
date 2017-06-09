@@ -989,7 +989,8 @@
         <option value="6" name="Prismatic">A prismatic constraint.</option>
         <option value="7" name="Ragdoll">A ragdoll constraint.</option>
         <option value="8" name="StiffSpring">A stiff spring constraint.</option>
-<!--        <option value="10" name="Generic">A generic constraint.</option>-->
+        <!--<option value="10" name="Generic">A generic constraint.</option>-->
+        <option value="13" name="Malleable">A malleable constraint.</option>
     </enum>
 
     <!--Compounds
@@ -1162,6 +1163,22 @@
         <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
+    <compound name="hkMatrix3" niflibtype="InertiaMatrix">
+        A 3x3 Havok matrix stored in 4x3 due to memory alignment.
+        <add name="m11" type="float" />
+        <add name="m12" type="float" />
+        <add name="m13" type="float" />
+        <add name="m14" type="float">Unused</add>
+        <add name="m21" type="float" />
+        <add name="m22" type="float" />
+        <add name="m23" type="float" />
+        <add name="m24" type="float">Unused</add>
+        <add name="m31" type="float" />
+        <add name="m32" type="float" />
+        <add name="m33" type="float" />
+        <add name="m34" type="float">Unused</add>
+    </compound>
+
     <compound name="MipMap">
         Description of a MipMap within a NiPixelData object.
         <add name="Width" type="uint">Width of the mipmap image.</add>
@@ -1304,14 +1321,14 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
-<!-- no longer used
+    <!-- no longer used
     <compound name="RotationKeyArray" istemplate="1">
         Rotation key array.
         <add name="Num Keys" type="uint">Number of keys.</add>
         <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
         <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
     </compound>
--->
+    -->
 
     <compound name="TexCoord" niflibtype="TexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
@@ -1448,7 +1465,7 @@
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver="20.2.0.7" userver2="100" />
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-<!--        <add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
+        <!--<add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
         <add name="Unknown 00 00 1" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Num Vertices 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
         <add name="Unknown 00 00 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
@@ -1459,7 +1476,7 @@
 
     <!-- related to the file posted in tracker item #3117836:
         http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-<!--    <compound name="SkinPartitionUnknownItem1">
+    <!--<compound name="SkinPartitionUnknownItem1">
         <add name="Unknown Flags" type="uint"></add>
         <add name="f1" type="float"></add>
         <add name="f2" type="float"></add>
@@ -1614,13 +1631,13 @@
         	28 - ADDONLEG
         	29-31 - NULL
         </add>
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Group" type="ushort">Unknown.</add>
     </compound>
 
     <compound name="HavokMaterial">
-        <add name="Material" type="OblivionHavokMaterial" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">The material of the shape.</add><!--condition: all except Fallout 3 and Skyrim -->
-        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">The material of the shape.</add>
-        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 &gt;= 83)">The material of the shape.</add>
+        <add name="Material" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
+        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
+        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
@@ -1771,10 +1788,8 @@
     </compound>
 
     <compound name="BallAndSocketDescriptor">
-        <add name="Unknown 4 bytes" type="byte" arr1="4">Unknown</add>
-        <add name="Unknown Floats 1" type="Vector3">Unknown</add>
-        <add name="Unknown Floats 2" type="Vector3">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Pivot A" type="Vector4">Pivot point in the local space of entity A.</add>
+        <add name="Pivot B" type="Vector4">Pivot point in the local space of entity B.</add>
     </compound>
 
     <compound name="PrismaticDescriptor">
@@ -1882,46 +1897,22 @@
         <add name="Texture Name" type="string" />
         <add name="Unknown Int 3" type="int" />
         <add name="Unknown Int 4" type="int" />
-        <add name="Texturing Property" type="Ref" template="NiTexturingProperty"/>
+        <add name="Texturing Property" type="Ref" template="NiTexturingProperty" />
         <add name="Unknown Bytes" type="byte" arr1="9" />
     </compound>
 
-    <compound name="InertiaMatrix" niflibtype="InertiaMatrix">
-        An inertia matrix.
-        <add name="m11" type="float" />
-        <add name="m12" type="float" />
-        <add name="m13" type="float" />
-        <add name="m14" type="float">Zero</add>
-        <add name="m21" type="float" />
-        <add name="m22" type="float" />
-        <add name="m23" type="float" />
-        <add name="m24" type="float">Zero</add>
-        <add name="m31" type="float" />
-        <add name="m32" type="float" />
-        <add name="m33" type="float" />
-        <add name="m34" type="float">Zero</add>
+    <compound name="BoneTransform">
+        Transformation data for the bone at this index in bhkPoseArray.
+        <add name="Translation" type="Vector3" />
+        <add name="Rotation" type="QuaternionXYZW" />
+        <add name="Scale" type="Vector3" />
     </compound>
 
-<!-- nowhere used currently
-	<compound name="UnknownMatrix1">
-		Unknown Matrix; for deathposes.psa
-		<add name="Unknown UInt 1" type="uint">Unknown uint 1</add>
-		<add name="m11" type="float" />
-        <add name="m12" type="float" />
-        <add name="m13" type="float" />
-        <add name="m21" type="float" />
-        <add name="m22" type="float" />
-        <add name="m23" type="float" />
-        <add name="m31" type="float" />
-        <add name="m32" type="float" />
-        <add name="m33" type="float" />
+    <compound name="BonePose">
+        A list of transforms for each bone in bhkPoseArray.
+        <add name="Num Transforms" type="uint" />
+        <add name="Transforms" type="BoneTransform" arr1="Num Transforms" />
     </compound>
-
-	<compound name="BonePoseArray">
-		<add name="Unknown Array 2" type="int">Unknown</add>
-        <add name="Unknown Floats" type="UnknownMatrix1" arr1="Unknown Array 2">Unknown</add>
-	</compound>
--->
 
     <compound name="DecalVectorArray">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
@@ -1955,35 +1946,35 @@
         <add name="Bone Name" type="string">The bones name</add>
     </compound>
 
-	<compound name="bhkCMSDMaterial">
-    Per-chunk material, used in bhkCompressedMeshShapeData
-		<add name="Material" type="SkyrimHavokMaterial">Material.</add>
-		<add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
+    <compound name="bhkCMSDMaterial">
+        Per-chunk material, used in bhkCompressedMeshShapeData
+        <add name="Material" type="SkyrimHavokMaterial">Material.</add>
+        <add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
     <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
     <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
-	</compound>
+    </compound>
 
     <compound name="bhkCMSDBigTris">
-    Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
+        Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
         <add name="Triangle 1" type="ushort"></add>
         <add name="Triangle 2" type="ushort"></add>
         <add name="Triangle 3" type="ushort"></add>
-		<add name="Unknown Int 1" type="uint">Always 0?</add>
-        <add name="Unknown Short 1" type="ushort"></add>
+        <add name="Material" type="uint">Always 0?</add>
+        <add name="Welding Info" type="ushort"></add>
     </compound>
     
     <compound name="bhkCMSDTransform">
-    A set of transformation data: translation and rotation
+        A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
         <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
     </compound>
     
     <compound name="bhkCMSDChunk">
-    Defines subshape chunks in bhkCompressedMeshShapeData
-		<add name="Translation" type="Vector4">Local translation</add>
-		<add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
-		<add name="Unknown Short 1" type="ushort">Always 65535?</add>
-		<add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
+        Defines subshape chunks in bhkCompressedMeshShapeData
+        <add name="Translation" type="Vector4">Local translation</add>
+        <add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
+        <add name="Reference" type="ushort">Always 65535?</add>
+        <add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
         <add name="Num Vertices" type="uint">Number of compressed vertices</add>
         <add name="Vertices" type="ushort" arr1="Num Vertices">Compressed vertices</add>
         <add name="Num Indices" type="uint"></add>
@@ -1994,7 +1985,7 @@
         <add name="Indices 2" type="ushort" arr1="Num Indices 2">Compressed </add>
     </compound>
 
-    <compound name="SubConstraint">
+    <compound name="MalleableDescriptor">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
         <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
         <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
@@ -2005,30 +1996,23 @@
         <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
+        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
+        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
     </compound>
 
-    <compound name="bhkRDTConstraint">
-        <add name="Type" type="uint">Type of constraint.
-        7 = RagDoll Constraint?
-        13 = Malleable Constraint?</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Entity A in this constraint.</add>
-        <add name="Entity B" type="Ref" template="NiObject">Entity B in this constraint.</add>
+    <compound name="ConstraintData">
+        <add name="Type" type="hkConstraintType">Type of constraint.</add>
+        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
+        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="Malleable Constraint" type="bhkRDTMalleableConstraint" cond="Type == 13" />
-    </compound>
-    <compound name="bhkRDTMalleableConstraint">
-    A malleable constraint.
-        <add name="Type" type="uint">Type of constraint.</add>
-        <add name="Unknown Int" type="uint">Unknown. Usually 2.</add>
-        <add name="Entity A" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Entity B" type="Ref" template="NiObject">Usually -1?</add>
-        <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
+        <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
-        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
-        <add name="Damping" type="float" />
+        <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
+        <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
+        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Malleable" type="MalleableDescriptor" cond="Type == 13" />
     </compound>
 
     <!-- NIF Objects
@@ -2101,6 +2085,19 @@
         <add name="Collider Object" type="Ptr" template="NiNode">Links to a NiNode that will define where in object space the collider is located/oriented.</add>
     </niobject>
 
+    <enum name="BroadPhaseType" storage="byte">
+        <option value="0" name="BROAD_PHASE_INVALID" />
+        <option value="1" name="BROAD_PHASE_ENTITY" />
+        <option value="2" name="BROAD_PHASE_PHANTOM" />
+        <option value="3" name="BROAD_PHASE_BORDER" />
+    </enum>
+
+    <compound name="hkWorldObjCinfoProperty">
+        <add name="Data" type="uint" default="0" />
+        <add name="Size" type="uint" default="0" />
+        <add name="Capacity and Flags" type="uint" default="0x80000000" />
+    </compound>
+
     <niobject name="bhkRefObject" abstract="1" inherit="NiObject">
         The base type of most Bethesda-specific Havok-related NIF objects.
     </niobject>
@@ -2113,6 +2110,10 @@
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Havok Col Filter" type="HavokColFilter" />
+        <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
+        <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
+        <add name="Unused Bytes" type="byte" arr1="3" />
+        <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
 
     <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject">
@@ -2125,9 +2126,8 @@
 
     <niobject name="bhkSimpleShapePhantom" abstract="0" inherit="bhkShapePhantom">
         Unknown shape.
-        <add name="Unkown Floats" type="float" arr1="7">Unknown.</add>
-        <add name="Unknown Floats 2" type="float" arr1="3" arr2="5">Unknown. (1,0,0,0,0) x 3.</add>
-        <add name="Unknown Float" type="float">Unknown.</add>
+        <add name="Unused 2" type="byte" arr1="8">Garbage data from memory.</add>
+        <add name="Transform" type="Matrix44" />
     </niobject>
 
     <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
@@ -2139,56 +2139,53 @@
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed
         into a bhkRigidBodyT and vice-versa.
-        <add name="Unknown Int 1" type="int">Unknown. Could be 2 shorts corresponding to Unknown 7 Shorts[1] and [2].</add>
-        <add name="Unknown Int 2" type="int" default="0x00000001">Unknown.</add>
-        <add name="Unknown 3 Ints" type="int" arr1="3" default="0 0 0x80000000">Unknown. Could be 3 floats.</add>
-        <add name="Collision Response?" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
-        <add name="Unknown Byte" type="byte" default="0xbe">Unknown</add>
-        <add name="Process Contact Callback Delay?" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
-        <add name="Unknown 2 Shorts" type="ushort" arr1="2" default="35899 16336">Unknown.</add>
+        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">The collision response. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
+        <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Havok Col Filter Copy" type="HavokColFilter">Copy of Havok Col Filter</add>
-        <add name="Unknown 6 Shorts" type="ushort" arr1="6" default="21280 2481 62977 65535 44 0">
-            Unknown.
-            Oblivion defaults: 21280 2481 62977 65535 44 0
-            Skyrim defaults: 56896 1343 0 0 1 65535 (third and fourth element *must* be zero)
-        </add>
+        <add name="Unused 2" type="byte" arr1="4">Garbage data from memory. Matches previous Unused value.</add>
+        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &gt; 34" />
+        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
+        <add name="Unused Byte 2" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" />
+        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &lt;= 34" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
-        <add name="Inertia" type="InertiaMatrix">Defines how the mass is distributed among the body.</add>
+        <add name="Inertia Tensor" type="hkMatrix3">Defines how the mass is distributed among the body.</add>
         <add name="Center" type="Vector4"> This seems to be used to relocate the object's center of mass. Useful for balancing objects in contraints.</add>
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1"> Damping value for linear movement. A value that is too small fixes the object in place.</add>
         <add name="Angular Damping" type="float" default="0.05"> Damping value for angular movement.</add>
-        <add name="Unknown TimeFactor or GravityFactor 1" type="float" vercond="(User Version >= 12)" />
-        <add name="Unknown TimeFactor or GravityFactor 2" type="float" vercond="(User Version >= 12)" />
-        <add name="Friction" type="float" default="0.3">The body&#039;s friction.</add>
-        <add name="RollingFrictionMultiplier?" type="float" vercond="(User Version >= 12)" />
-        <add name="Restitution" type="float" default="0.3">
+        <add name="Time Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Friction" type="float" default="0.5">The body&#039;s friction.</add>
+        <add name="Rolling Friction Multiplier" type="float" vercond="(User Version 2 &gt; 34)" />
+        <add name="Restitution" type="float" default="0.4">
             The body&#039;s restitution (elasticity).
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
             Try to set restitution to 0 for maximum performance (e.g. collapsing buildings)
         </add>
-        <add name="Max Linear Velocity" type="float" default="250.0">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.4159">Maximal angular velocity. Pi x 10?</add>
+        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
         <add name="Penetration Depth" type="float" default="0.15">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
         <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
+        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER" vercond="(User Version 2 &lt;= 34)">The initial deactivator type of the body.</add>
+        <add name="Enable Deactivation" type="bool" default="1" vercond="(User Version 2 &gt; 34)" />
         <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
         <add name="Quality Type" type="MotionQuality" default="MO_QUAL_FIXED">The motion type. Determines quality of motion?</add>
-        <add name="Unknown Int 6" type="uint" default="512">Unknown.</add>
-        <add name="Unknown Int 7" type="uint" default="160">Unknown.</add>
-        <add name="Unknown Int 8" type="uint" default="161">Unknown.</add>
-        <add name="Unknown Int 81" type="uint" vercond="(User Version >= 12)">Unknown. Skyrim only.</add>
+        <add name="Unknown Bytes 1" type="byte" arr1="12">Unknown.</add>
+        <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Unknown Int 9" type="uint" vercond="(User Version &lt;= 11)">0 = do not respond to wind, 1 = respond to wind (?)</add>
-        <add name="Unknown Int 91" type="ushort" vercond="(User Version >= 12)"></add>
+        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
+        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
@@ -2209,10 +2206,7 @@
 
     <niobject name="bhkMalleableConstraint" abstract="0" inherit="bhkConstraint">
         A malleable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
-        <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
-        <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
-        <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
+        <add name="Malleable" type="MalleableDescriptor">Constraint within constraint.</add>
     </niobject>
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
@@ -2240,19 +2234,26 @@
         <add name="Ball and Socket" type="BallAndSocketDescriptor">Describes a ball and socket constraint</add>
     </niobject>
 
+    <compound name="ConstraintInfo">
+        Two Vector4 for pivot in A and B.
+        <add name="Pivot In A" type="Vector4" />
+        <add name="Pivot In B" type="Vector4" />
+    </compound>
+
     <niobject name="bhkBallSocketConstraintChain" abstract="0" inherit="bhkSerializable">
         A Ball and Socket Constraint chain.
-        <add name="Num Floats" type="uint">Unknown</add>
-        <add name="Floats 1" type="Vector4" arr1="Num Floats">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Int 2" type="uint">Unknown</add>
-        <add name="Num Links" type="uint">Number of links in the chain</add>
-        <add name="Links" type="Ptr" template="NiObject" arr1="Num Links">Unknown</add>
-        <add name="Num Links 2" type="uint">Number of links in the chain</add>
-        <add name="Links 2" type="Ptr" template="NiObject" arr1="Num Links 2">Unknown</add>
-        <add name="Unknown Int 3" type="uint">Unknown</add>
+        <add name="Num Pivots" type="uint">Number of pivot points. Divide by 2 to get the number of constraints.</add>
+        <add name="Pivots" type="ConstraintInfo" arr1="Num Pivots / 2">Two pivot points A and B for each constraint.</add>
+        <add name="Tau" type="float" default="1.0">High values are harder and more reactive, lower values are smoother.</add>
+        <add name="Damping" type="float" default="0.6">Defines damping strength for the current velocity.</add>
+        <add name="Constraint Force Mixing" type="float" default="1.1920929e-08">Restitution (amount of elasticity) of constraints. Added to the diagonal of the constraint matrix. A value of 0.0 can result in a division by zero with some chain configurations.</add>
+        <add name="Max Error Distance" type="float" default="0.1">Maximum distance error in constraints allowed before stabilization algorithm kicks in. A smaller distance causes more resistance.</add>
+        <add name="Num Entities A" type="uint">Number of links in the chain</add>
+        <add name="Entities A" type="Ptr" template="NiObject" arr1="Num Entities A" />
+        <add name="Num Entities" type="uint" default="2">Hardcoded to 2. Don't change.</add>
+        <add name="Entity A" type="Ptr" template="NiObject" />
+        <add name="Entity B" type="Ptr" template="NiObject" />
+        <add name="Priority" type="uint" />
     </niobject>
 
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
@@ -2263,8 +2264,8 @@
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
+        <add name="Radius" type="float" />
+        <add name="Unused" type="byte" arr1="8">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
@@ -2280,12 +2281,11 @@
 
     <niobject name="bhkSphereShape" abstract="0" inherit="bhkConvexShape">
         A sphere.
-
     </niobject>
 
     <niobject name="bhkCapsuleShape" abstract="0" inherit="bhkConvexShape">
         A capsule.
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
+        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
         <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
@@ -2294,16 +2294,17 @@
 
     <niobject name="bhkBoxShape" abstract="0" inherit="bhkConvexShape">
         A box.
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown.</add>
-        <add name="Dimensions" type="Vector3">Looks like this could be the box size.</add>
-        <add name="Minimum Size" type="float">The smallest of the three sizes. Might be used for optimization.</add>
+        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Dimensions" type="Vector3">A cube stored in Half Extents. A unit cube (1.0, 1.0, 1.0) would be stored as 0.5, 0.5, 0.5.</add>
+        <add name="Unused Float" type="float">Unused as Havok stores the Half Extents as hkVector4 with the W component unused.</add>
     </niobject>
 
     <niobject name="bhkConvexVerticesShape" abstract="0" inherit="bhkConvexShape">
         A convex shape built from vertices. Note that if the shape is used in
         a non-static object (such as clutter), then they will simply fall
         through ground when they are under a bhkListShape.
-        <add name="Unknown 6 Floats" type="float" arr1="6">Unknown. Must be (0.0,0.0,-0.0,0.0,0.0,-0.0) for arrow detection to work (mind the minus signs, -0.0 is 0x80000000 in hex).</add>
+        <add name="Vertices Property" type="hkWorldObjCinfoProperty" />
+        <add name="Normals Property" type="hkWorldObjCinfoProperty" />
         <add name="Num Vertices" type="uint">Number of vertices.</add>
         <add name="Vertices" type="Vector4" arr1="Num Vertices">Vertices. Fourth component is 0. Lexicographically sorted.</add>
         <add name="Num Normals" type="uint">The number of half spaces.</add>
@@ -2330,9 +2331,8 @@
     <niobject name="bhkMoppBvTreeShape" abstract="0" inherit="bhkBvTreeShape">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8">Unknown bytes.</add>
-        <add name="Unknown Float" type="float" default="1.0">Unknown float, might be scale.</add>
+        <add name="Unused" type="uint" arr1="3">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</add>
+        <add name="Shape Scale" type="float" default="1.0">Scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
@@ -2357,7 +2357,8 @@
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Unknown Floats" type="float" arr1="6">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
+        <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
+        <add name="Child Filter Property" type="hkWorldObjCinfoProperty" />
         <add name="Num Unknown Ints" type="uint">Count.</add>
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints">Unknown.</add>
     </niobject>
@@ -2383,27 +2384,23 @@
         A shape constructed from strips data.
         <add name="Num Sub Shapes" type="ushort" ver2="20.0.0.5">Number of subparts.</add>
         <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver2="20.0.0.5">The subparts.</add>
-        <add name="Unknown Int 1" type="uint" default="0">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" default="0x014E9DD8">Unknown. Looks like a memory pointer and may be garbage.</add>
-        <add name="Unknown Float 1" type="float" default="0.1">Unknown. Same as Unknown Float 3</add>
-        <add name="Unknown Int 3" type="uint" default="0">Unknown. Sometimes 0.0f or -1. but sometimes really large number.  Suspect its garbage.</add>
-        <add name="Scale Copy?" type="Vector3" default="1.0, 1.0, 1.0">Unknown. Same as scale below?</add>
-        <add name="Unknown Float 2" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 4</add>
-        <add name="Unknown Float 3" type="float" default="0.1">Unknown. Same as Unknown Float 1</add>
-        <add name="Scale" type="Vector3" default="1.0, 1.0, 1.0">Scale.</add>
-        <add name="Unknown Float 4" type="float" default="0.0">Unknown. Usually 0.0 but sometimes 1.0.  Same as Unknown Float 2</add>
+        <add name="User Data" type="uint" default="0" />
+        <add name="Unused 1" type="uint">Looks like a memory pointer and may be garbage.</add>
+        <add name="Radius" type="float" default="0.1" />
+        <add name="Unused 2" type="uint">Looks like a memory pointer and may be garbage.</add>
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0" />
+        <add name="Radius Copy" type="float" default="0.1">Same as radius</add>
+        <add name="Scale Copy" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Same as scale.</add>
         <add name="Data" type="Ref" template="hkPackedNiTriStripsData">A link to the shape&#039;s NiTriStripsData.</add>
     </niobject>
 
     <niobject name="bhkNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
         A shape constructed from a bunch of strips.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Unknown Float 1" type="float" default="0.1">Unknown.</add>
-        <add name="Unknown Int 1" type="uint" default="0x004ABE60">Unknown.</add>
-        <add name="Unknown Ints 1" type="uint" arr1="4">Unknown.</add>
-        <add name="Unknown Int 2" type="uint" default="1">Unknown</add>
-        <add name="Scale" type="Vector3" default="1.0, 1.0, 1.0">Scale. Usually (1.0, 1.0, 1.0).</add>
-        <add name="Unknown Int 3" type="uint">Unknown.</add>
+        <add name="Radius" type="float" default="0.1" />
+        <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
+        <add name="Grow By" type="uint" default="1" />
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
@@ -2446,15 +2443,25 @@
         <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
     </niobject>
 
+    <enum name="PathFlags" storage="ushort">
+        <option value="0x1" name="NIPI_CVDataNeedsUpdate">CVDataNeedsUpdate</option>
+        <option value="0x2" name="NIPI_CurveTypeOpen">CurveTypeOpen</option>
+        <option value="0x4" name="NIPI_AllowFlip">AllowFlip</option>
+        <option value="0x8" name="NIPI_Bank">Bank</option>
+        <option value="0x10" name="NIPI_ConstantVelocity">ConstantVelocity</option>
+        <option value="0x20" name="NIPI_Follow">Follow</option>
+        <option value="0x40" name="NIPI_Flip">Flip</option>
+    </enum>
+
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Unknown interpolator.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort">Unknown. Zero.</add>
-        <add name="Pos Data" type="Ref" template="NiPosData">Links to NiPosData.</add>
-        <add name="Float Data" type="Ref" template="NiFloatData">Links to NiFloatData.</add>
+        <add name="Flags" type="PathFlags" />
+        <add name="Bank Dir" type="uint" />
+        <add name="Max Bank Angle" type="float" />
+        <add name="Smoothing" type="float" />
+        <add name="Follow Axis" type="ushort">Unknown. Zero.</add>
+        <add name="Path Data" type="Ref" template="NiPosData">Refers to NiPosData.</add>
+        <add name="Percent Data" type="Ref" template="NiFloatData">Refers to NiFloatData.</add>
     </niobject>
 
     <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
@@ -2467,10 +2474,33 @@
         Unknown.
     </niobject>
 
+    <enum name="InterpBlendFlags" storage="byte">
+        <option value="1" name="MANAGER_CONTROLLED">MANAGER_CONTROLLED</option>
+    </enum>
+
+    <compound name="InterpBlendItem">
+        Interpolator item for array in NiBlendInterpolator.
+        <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
+        <add name="Weight" type="float" />
+        <add name="Normalized Weight" type="float" />
+        <add name="Priority" type="byte" />
+        <add name="Ease Spinner" type="float" />
+    </compound>
+
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
         An extended type of interpolater.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
+        <add name="Flags" type="InterpBlendFlags" />
+        <add name="Array Size" type="byte" />
+        <add name="Weight Threshold" type="float" />
+        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Index" type="byte" cond="(Flags &amp; 1) == 0" />
+        <add name="High Priority" type="char" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Priority" type="char" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Time" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="High Ease Spinner" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
@@ -2512,9 +2542,25 @@
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1">Collision data.</add>
     </niobject>
 
+    <bitflags name="bhkCOFlags" storage="ushort">
+        bhkNiCollisionObject flags. The flags 0x2, 0x100, and 0x200 are not seen in any NIF nor get/set by the engine.
+        <option value="0" name="BHKCO_ACTIVE" />
+        <!--<option value="1" name="BHKCO_UNK1" />-->
+        <option value="2" name="BHKCO_NOTIFY" />
+        <option value="3" name="BHKCO_SET_LOCAL" />
+        <option value="4" name="BHKCO_DBG_DISPLAY" />
+        <option value="5" name="BHKCO_USE_VEL" />
+        <option value="6" name="BHKCO_RESET" />
+        <option value="7" name="BHKCO_SYNC_ON_UPDATE" />
+        <!--<option value="8" name="BHKCO_UNK2" />-->
+        <!--<option value="9" name="BHKCO_UNK3" />-->
+        <option value="10" name="BHKCO_ANIM_TARGETED" />
+        <option value="11" name="BHKCO_DISMEMBERED_LIMB" />
+    </bitflags>
+
     <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
         Havok related collision object?
-        <add name="Flags" type="Flags" default="1">
+        <add name="Flags" type="bhkCOFlags" default="1">
             Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
         <add name="Body" type="Ref" template="NiObject">Links to the collision object data</add>
@@ -2526,8 +2572,8 @@
 
     <niobject name="bhkBlendCollisionObject" abstract="0" inherit="bhkCollisionObject">
         Unknown.
-        <add name="Unknown Float 1" type="float">Blending parameter?</add>
-        <add name="Unknown Float 2" type="float">Another blending parameter?</add>
+        <add name="Heir Gain" type="float" />
+        <add name="Vel Gain" type="float" />
     </niobject>
 
     <niobject name="bhkPCollisionObject" abstract="0" inherit="bhkNiCollisionObject">
@@ -2539,9 +2585,9 @@
     </niobject>
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
-        Generic node object.
-        <add name="Flags" type="Flags" ver1="3.0">Some flags; commonly 0x000C or 0x000A.</add>
-        <add name="Unknown Short 1" type="ushort" default="8" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 26)" >Unknown Flag</add>
+        Base audiovisual object.
+        <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -2801,10 +2847,10 @@
 
     <niobject name="NiBoneLODController" abstract="0" inherit="NiTimeController">
         Level of detail controller for bones.  Priority is arranged from low to high.
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Num Node Groups" type="uint">Number of node groups.</add>
-        <add name="Num Node Groups 2" type="uint">Number of node groups.</add>
-        <add name="Node Groups" type="NodeGroup" arr1="Num Node Groups">A list of node groups (each group a sequence of bones).</add>
+        <add name="LOD" type="uint">Unknown.</add>
+        <add name="Num LODs" type="uint">Number of LODs.</add>
+        <add name="Num Node Groups" type="uint">Number of node arrays.</add>
+        <add name="Node Groups" type="NodeGroup" arr1="Num LODs">A list of node groups (each group a sequence of bones).</add>
         <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" userver="0">Number of shape groups.</add>
         <add name="Num Shape Groups" type="uint" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Number of shape groups.</add>
         <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
@@ -2938,7 +2984,7 @@
 
     <niobject name="bhkBlendController" abstract="0" inherit="NiTimeController">
         Unknown. Is apparently only used in skeleton.nif files.
-        <add name="Unknown Int" type="uint">Seems to be always zero.</add>
+        <add name="Keys" type="uint">Seems to be always zero.</add>
     </niobject>
 
     <niobject name="BSBound" abstract="0" inherit="NiExtraData">
@@ -3207,7 +3253,7 @@
 
     <niobject name="NiCamera" abstract="0" inherit="NiAVObject">
         Camera object.
-        <add name="Unknown Short" type="ushort" ver1="10.1.0.0">Unknown.</add>
+        <add name="Camera Flags" type="ushort" ver1="10.1.0.0">Obsolete flags.</add>
         <add name="Frustum Left" type="float">Frustrum left.</add>
         <add name="Frustum Right" type="float">Frustrum right.</add>
         <add name="Frustum Top" type="float">Frustrum top.</add>
@@ -3220,10 +3266,10 @@
         <add name="Viewport Top" type="float">Viewport top.</add>
         <add name="Viewport Bottom" type="float">Viewport bottom.</add>
         <add name="LOD Adjust" type="float">Level of detail adjust.</add>
-        <add name="Unknown Link" type="Ref" template="NiObject">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.  Changing value crashes viewer.</add>
-        <add name="Unknown Int 2" type="uint" ver1="4.2.1.0">Unknown.  Changing value crashes viewer.</add>
-        <add name="Unknown Int 3" type ="uint" ver2="3.1">Unknown.</add>
+        <add name="Scene" type="Ref" template="NiAVObject" />
+        <add name="Num Screen Polygons" type="uint" default="0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Num Screen Textures" type="uint" default="0" ver1="4.2.1.0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Unknown Int 3" type="uint" ver2="3.1">Unknown.</add>
     </niobject>
 
     <niobject name="NiColorData" abstract="0" inherit="NiObject">
@@ -3252,7 +3298,7 @@
         <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
         <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
-        <add name="Unknown Int 1" type="uint" ver1="10.1.0.106">Unknown.</add>
+        <add name="Array Grow By" type="uint" ver1="10.1.0.106">Unknown.</add>
         <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
     </niobject>
 
@@ -3270,18 +3316,19 @@
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
         <add name="Target Name" type="string" ver1="10.1.0.106">Name of target node Controller acts on.</add>
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
-        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 >= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
-        <add name="Unknown Short 1" type="short" ver1="20.2.0.7" vercond="(User Version >= 11) &amp;&amp; (User Version 2 > 28)">Unknown</add>
+        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
+        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Number of anim notes objects.</add>
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Notes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
         <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
-        Unknown.
+        Abstract type for object palettes.
     </niobject>
 
     <niobject name="NiDefaultAVObjectPalette" abstract="0" inherit="NiAVObjectPalette">
-        Unknown. Refers to a list of objects. Used by NiControllerManager.
-        <add name="Unknown Int" type="uint">Unknown.</add>
+        Refers to a list of objects. Used by NiControllerManager.
+        <add name="Scene" type="Ptr" template="NiAVObject">Scene root of the object palette.</add>
         <add name="Num Objs" type="uint">Number of objects.</add>
         <add name="Objs" type="AVObject" arr1="Num Objs">The objects.</add>
     </niobject>
@@ -3379,6 +3426,14 @@
         <add name="Scales" type="KeyGroup" template="float">Scale keys.</add>
     </niobject>
 
+    <enum name="LookAtFlags" storage="ushort">
+        Should be a bitfield for flip toggle.
+        <option value="0" name="LOOK_X_AXIS">X-Axis</option>
+        <option value="1" name="LOOK_FLIP">Flip</option>
+        <option value="2" name="LOOK_Y_AXIS">Y-Axis</option>
+        <option value="4" name="LOOK_Z_AXIS">Z-Axis</option>
+    </enum>
+
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController">
         Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
         <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
@@ -3387,16 +3442,16 @@
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
         Unknown.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
+        <add name="Flags" type="LookAtFlags" />
         <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
-        <add name="Target" type="string">Target node name.</add>
+        <add name="Look At Name" type="string">Target node name.</add>
         <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3" ver2="20.5.0.0">Translate.</add>
         <add name="Rotation" type="Quaternion" ver2="20.5.0.0">Rotation.</add>
         <add name="Scale" type="float" ver2="20.5.0.0">Scale.</add>
-        <add name="Unknown Link 1" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
-        <add name="Unknown Link 2" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
-        <add name="Unknown Link 3" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
+        <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
+        <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
+        <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
     </niobject>
 
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
@@ -3484,11 +3539,17 @@
     <niobject name="NiBSParticleNode" abstract="0" inherit="NiNode">
         Unknown.
     </niobject>
+    
+    <bitflags name="NiSwitchFlags" storage="ushort">
+        Flags for NiSwitchNode.
+        <option value="0" name="UpdateOnlyActiveChild">Update Only Active Child</option>
+        <option value="1" name="UpdateControllers">Update Controllers</option>
+    </bitflags>
 
     <niobject name="NiSwitchNode" abstract="0" inherit="NiNode">
         A node used to switch between branches, such as for LOD levels?
-        <add name="Unknown Flags 1" type="ushort" ver1="10.1.0.0">Flags</add>
-        <add name="Unknown Int 1" type="int">Index?</add>
+        <add name="Switch Node Flags" type="NiSwitchFlags" ver1="10.1.0.0" />
+        <add name="Index" type="uint" />
     </niobject>
 
     <niobject name="NiLODNode" abstract="0" inherit="NiSwitchNode">
@@ -3818,7 +3879,7 @@
         <add name="Force Type" type="ForceType">Planar or Spherical type</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Range for turbulence.</add>
-        <add name="Unknown Byte" type="byte" ver1="20.2.0.7" vercond="User Version >= 11">Unknown</add>
+        <add name="World Aligned" type="bool" ver1="20.2.0.7" vercond="User Version >= 11" />
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier">
@@ -3847,10 +3908,10 @@
     </niobject>
     
     <niobject name="BSPSysInheritVelocityModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Int 1" type="uint">Unknown</add>
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
+        <add name="Target" type="Ptr" template="NiNode" />
+        <add name="Chance To Inherit" type="float" />
+        <add name="Velocity Multiplier" type="float" />
+        <add name="Velocity Variation" type="float" />
     </niobject>
     
     <niobject name="BSPSysHavokUpdateModifier"  abstract="0" inherit="NiPSysModifier">
@@ -3860,13 +3921,9 @@
     </niobject>   
 
     <niobject name="BSPSysRecycleBoundModifier"  abstract="0" inherit="NiPSysModifier">
-        <add name="Unknown Float 1" type="float">Unknown</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-        <add name="Unknown Float 6" type="float">Unknown</add>
-        <add name="Unknown Int 1" type="uint">Unknown</add>
+        <add name="Bound Offset" type="Vector3" />
+        <add name="Bound Extent" type="Vector3" />
+        <add name="Target" type="Ptr" template="NiNode" />
     </niobject> 
     
     <niobject name="BSPSysSubTexModifier"  abstract="0" inherit="NiPSysModifier">
@@ -3965,10 +4022,10 @@
     </niobject>
 
     <niobject name="BSPSysLODModifier" inherit="NiPSysModifier">
-        <add name="Uknown Float 1" type="float">Unknown</add>
-        <add name="Uknown Float 2" type="float">Unknown</add>
-        <add name="Uknown Float 3" type="float">Unknown</add>
-        <add name="Uknown Float 4" type="float">Unknown</add>
+        <add name="LOD Begin Distance" type="float" />
+        <add name="LOD End Distance" type="float" />
+        <add name="Unknown Fade Factor 1" type="float" />
+        <add name="Unknown Fade Factor 2" type="float" />
     </niobject>
     
     <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier">
@@ -4196,9 +4253,9 @@
         <add name="Stencil Function" type="StencilCompareMode" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
         <add name="Stencil Ref" type="uint" ver2="20.0.0.5">Unknown.  Default is 0.</add>
         <add name="Stencil Mask" type="uint" default="4294967295" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
-        <add name="Fail Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5"/>
-        <add name="Pass Action" type="StencilAction" ver2="20.0.0.5"/>
+        <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
+        <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5" />
+        <add name="Pass Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
         <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
             Property flags:
@@ -4930,30 +4987,30 @@
     Unkown
 	</niobject>
 	
-	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiFloatInterpController">
+	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiTimeController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
     First interpolator controls Generation.
+        <add name="Interpolator 1: Generation" type="Ref" template="NiInterpolator">References generation interpolator.</add>
 		<add name="Interpolator 2: Mutation" type="Ref" template="NiInterpolator">References interpolator for Mutation of strips</add>
-        <add name="Interpolator 3" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 4" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 5" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 6" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 7" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 8" type="Ref" template="NiInterpolator">Unknown</add>
-        <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for Amplitutde control. 0=straight, 50=wide</add>
-        <add name="Unknown Short 1" type="ushort">Unknown</add>
-        <add name="Unknown Short 2" type="ushort">Unknown</add>
-        <add name="Unknown Short 3" type="ushort">Unknown</add>
-        <add name="Distance Weight" type="float">How far lightning will stretch to.</add>
-        <add name="Float 2" type="float">Unknown</add>
-        <add name="Strip Width" type="float">How wide the bolt will be</add>
-        <add name="Fork" type="float">Influences forking behavior</add>
-        <add name="Float 5" type="float">Unknown</add>
-        <add name="Byte 1" type="byte">Unknown</add>
-        <add name="Byte 2" type="byte">Unknown</add>
-        <add name="Byte 3" type="byte">Unknown</add>
-        <!-- Note: Reduced strictness of validation -->
-        <add name="Interpolator 10?" type="Ref" template="NiObject">Unknown, unsure if this is actually another interpolator link.</add>
+        <add name="Interpolator 3: Subdivision" type="Ref" template="NiInterpolator">References subdivision interpolator.</add>
+        <add name="Interpolator 4: Num Branches" type="Ref" template="NiInterpolator">References branches interpolator.</add>
+        <add name="Interpolator 5: Num Branches Var" type="Ref" template="NiInterpolator">References branches variation interpolator.</add>
+        <add name="Interpolator 6: Length" type="Ref" template="NiInterpolator">References length interpolator.</add>
+        <add name="Interpolator 7: Length Var" type="Ref" template="NiInterpolator">References length variation interpolator.</add>
+        <add name="Interpolator 8: Width" type="Ref" template="NiInterpolator">References width interpolator.</add>
+        <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for amplitude control. 0=straight, 50=wide</add>
+        <add name="Subdivisions" type="ushort">Unknown</add>
+        <add name="Num Branches" type="ushort">Unknown</add>
+        <add name="Num Branches Variation" type="ushort">Unknown</add>
+        <add name="Length" type="float">How far lightning will stretch to.</add>
+        <add name="Length Variation" type="float">How far lightning variation will stretch to.</add>
+        <add name="Width" type="float">How wide the bolt will be.</add>
+        <add name="Child Width Mult" type="float">Influences forking behavior with a multiplier.</add>
+        <add name="Arc Offset" type="float">Unknown</add>
+        <add name="Fade Main Bolt" type="bool">Unknown</add>
+        <add name="Fade Child Bolts" type="bool">Unknown</add>
+        <add name="Animate Arc Offset" type="bool">Unknown</add>
+        <add name="Shader Property" type="Ref" template="NiProperty">Reference to a shader property.</add>
 	</niobject>
 
    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
@@ -5196,7 +5253,7 @@
         <add name="Wetness Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Wetness Metalness" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
-        <add name="Unknown Env Map Int" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Env Map Short" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
@@ -5221,8 +5278,10 @@
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
-        <add name="Texture Clamp Mode" type="uint">How to handle texture borders.</add>
-        <!-- Seems to behave the same as in LightingShader, but needs flags instead? -->
+        <add name="Texture Clamp Mode" type="byte">How to handle texture borders.</add>
+        <add name="Lighting Influence" type="byte" />
+        <add name="Env Map Min LOD" type="byte" />
+        <add name="Unknown Byte" type="byte" />
         <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
         <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
         <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
@@ -5277,9 +5336,8 @@
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions">Unknown</add>
     </niobject>
 
-    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiExtraData">
+    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData">
         Bethesda-specific node. (for dynamic decal projection?)
-        <add name="Unknown Float 1" type="float">Unknown</add>
         <add name="Num Vector Blocks" type="short">Number of groups</add>
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks">Number of Blocks</add>
     </niobject>
@@ -5296,10 +5354,16 @@
     </niobject>
 
 
+    <bitflags name="BSValueNodeFlags" storage="byte">
+        Flags for BSValueNode.
+        <option value="0" name="BillboardWorldZ">Billboard World Z</option>
+        <option value="1" name="UsePlayerAdjust">Use Player Adjust</option>
+    </bitflags>
+
     <niobject name="BSValueNode" inherit="NiNode">
         Bethesda-Specific node. Found on fxFire effects
-        <add name="Value" type="int">Value</add>
-        <add name="Unknown byte" type="byte">Unknown</add>
+        <add name="Value" type="uint">Value</add>
+        <add name="Value Node Flags" type="BSValueNodeFlags">Value node flags.</add>
     </niobject>
 
 
@@ -5310,10 +5374,10 @@
 
     <niobject name="BSStripPSysData" inherit="NiPSysData">
         Bethesda-Specific (mesh?) Particle System Data.
-        <add name="Unknown Short 5" type="short">Unknown</add>
-        <add name="Unknown Byte 6" type="byte">Unknown</add>
-        <add name="Unknown Int 7" type="int">Unknown</add>
-        <add name="Unknown Float 8" type="float">Unknown</add>
+        <add name="Max Point Count" type="ushort" />
+        <add name="Start Cap Size" type="float" />
+        <add name="End Cap Size" type="float" />
+        <add name="Do Z Prepass" type="bool" />
     </niobject>
 
 
@@ -5342,8 +5406,8 @@
         Particle system (multi?) emitter controller.
         <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
         <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
-        <add name="Unknown Short 1" type="short">Unknown</add>
-        <add name="Unknown Int 1" type="int">Unknown</add>
+        <add name="Max Emitters" type="ushort" />
+        <add name="Master Particle System" type="Ptr" template="BSMasterParticleSystem" />
     </niobject>
 
 
@@ -5355,21 +5419,23 @@
     <niobject name="BSOrderedNode" inherit="NiNode">
         Bethesda-Specific node.
         <add name="Alpha Sort Bound" type="Vector4">Unknown</add>
-        <add name="Is Static Bound" type="byte">Unknown</add>
+        <add name="Static Bound" type="bool">Unknown</add>
     </niobject>
 
 
-    <niobject name="BSBlastNode" inherit="NiNode">
+    <niobject name="BSRangeNode" inherit="NiNode">
         Bethesda-Specific node.
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
+        <add name="Min" type="byte">Min</add>
+        <add name="Max" type="byte">Max</add>
+        <add name="Current" type="byte">Current</add>
     </niobject>
 
-
-    <niobject name="BSDamageStage" inherit="NiNode">
+    <niobject name="BSBlastNode" inherit="BSRangeNode">
         Bethesda-Specific node.
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add><!-- Unknown Short 1 already used in NiNode -->
+    </niobject>
+
+    <niobject name="BSDamageStage" inherit="BSBlastNode">
+        Bethesda-Specific node.
     </niobject>
 
 
@@ -5391,9 +5457,12 @@
         <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
         <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Unknown Floats" type="float" arr1="6" default="0.0 0.0 -0.0 0.0 0.0 -0.0">Unknown. Set to (0.0,0.0,-0.0,0.0,0.0,-0.0), where -0.0 is 0x80000000 in hex.</add>
-        <add name="Unknown Byte 1" type="byte" >Unknown Flag</add>
-        <add name="Unknown Float 1" type="float">Unknown Flag</add>
+        <add name="Radius" type="float" />
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Unknown Float 1" type="float" />
+        <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
+        <add name="Unknown Byte 1" type="byte" />
+        <add name="Unknown Float 2" type="float" />
     </niobject>
 
     <compound name="BSTreadTransformData">
@@ -5418,33 +5487,58 @@
         <add name="Data" type="Ref" template="NiFloatData">Unknown float data.</add>
     </niobject>
 
+    <enum name="AnimNoteType" storage="uint">
+        Anim note types.
+        <option value="0" name="ANT_INVALID">ANT_INVALID</option>
+        <option value="1" name="ANT_GRABIK">ANT_GRABIK</option>
+        <option value="2" name="ANT_LOOKIK">ANT_LOOKIK</option>
+    </enum>
+
+    <niobject name="BSAnimNote" abstract="0" inherit="NiObject">
+        Bethesda-specific node.
+        <add name="Type" type="AnimNoteType">Type of this note.</add>
+        <add name="Time" type="float">Location in time.</add>
+        <add name="Arm" type="uint" cond="Type == 1">Unknown.</add>
+        <add name="Gain" type="float" cond="Type == 2">Unknown.</add>
+        <add name="State" type="uint" cond="Type == 2">Unknown.</add>
+    </niobject>
+
     <niobject name="BSAnimNotes" abstract="0" inherit="NiObject">
         Bethesda-specific node.
-        <add name="Unknown Short 1" type="short">Unknown</add>
+        <add name="Num Anim Notes" type="ushort">Number of BSAnimNote objects.</add>
+        <add name="Anim Notes" type="Ref" template="BSAnimNote" arr1="Num Anim Notes">BSAnimNote objects.</add>
     </niobject>
 
     <niobject name="bhkLiquidAction" inherit="bhkSerializable">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown Flag</add>
+        <add name="User Data" type="uint" />
         <add name="Unknown Int 2" type="int">Unknown Flag</add>
         <add name="Unknown Int 3" type="int">Unknown Flag</add>
-        <add name="Unknown Float 1" type="float">Unknown Flag</add>
-        <add name="Unknown Float 2" type="float">Unknown Flag</add>
-        <add name="Unknown Float 3" type="float">Unknown Flag</add>
-        <add name="Unknown Float 4" type="float">Unknown Flag</add>
+        <add name="Initial Stick Force" type="float" />
+        <add name="Stick Strength" type="float" />
+        <add name="Neighbor Distance" type="float" />
+        <add name="Neighbor Strength" type="float" />
     </niobject>
+
+    <enum name="BSCPCullingType" storage="uint">
+        Culling modes for multi bound nodes.
+        <option value="0" name="BSCP_CULL_NORMAL">Normal</option>
+        <option value="1" name="BSCP_CULL_ALLPASS">All Pass</option>
+        <option value="2" name="BSCP_CULL_ALLFAIL">All Fail</option>
+        <option value="3" name="BSCP_CULL_IGNOREMULTIBOUNDS">Ignore Multi Bounds</option>
+        <option value="4" name="BSCP_CULL_FORCEMULTIBOUNDSNOUPDATE">Force Multi Bounds No Update</option>
+    </enum>
 
     <niobject name="BSMultiBoundNode" inherit="NiNode">
         Bethesda-specific node.
-        <add name="Multi Bound" type="Ref" template="BSMultiBound">Unknown.</add>
-		<add name="Unknown Int" type="uint" ver1="20.2.0.7" vercond="(User Version >= 12)">Unknown</add>
+        <add name="Multi Bound" type="Ref" template="BSMultiBound" />
+		<add name="Culling Mode" type="BSCPCullingType" vercond="(User Version 2 &gt;= 83)" />
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
         Bethesda-specific node.
-        <add name="Data" type="Ref" template="BSMultiBoundData">Unknown.</add>
+        <add name="Data" type="Ref" template="BSMultiBoundData" />
     </niobject>
-    
 
     <niobject name="BSMultiBoundData" inherit="NiObject">
         Abstract base type for bounding data.
@@ -5459,9 +5553,7 @@
     
     <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
         Bethesda-specific node.
-        <add name="Unknown Int 1" type="int">Unknown Flag</add>
-        <add name="Unknown Int 2" type="int">Unknown Flag</add>
-        <add name="Unknown Int 3" type="int">Unknown Flag</add>
+        <add name="Center" type="Vector3">Center</add>
         <add name="Radius" type="float">Radius</add>
     </niobject>
 
@@ -5538,7 +5630,9 @@
 
     <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom">
         Bethesda-specific node.
-        <add name="Unknown Ints 1" type="int" arr1="15" />
+        <add name="Unused" type="byte" arr1="8" />
+        <add name="AABB Min" type="Vector4" />
+        <add name="AABB Max" type="Vector4" />
     </niobject>
 
     <niobject name="BSFrustumFOVController" inherit="NiTimeController">
@@ -5546,55 +5640,56 @@
         <add name="Interpolator" type="Ref" template="NiFloatInterpolator">Frustrum field of view animation interpolater and data.</add>
     </niobject>
 
-    <niobject name="BSDebrisNode" inherit="NiNode">
+    <niobject name="BSDebrisNode" inherit="BSRangeNode">
         Bethesda-Specific node.
-        <add name="Unknown byte 1" type="byte">Unknown</add>
-        <add name="Unknown Short 2" type="short">Unknown</add>
     </niobject>
 
     <niobject name="bhkBreakableConstraint" abstract="0" inherit="bhkConstraint">
         A breakable constraint.
-        <add name="Sub Constraint" type="SubConstraint">Constraint within constraint.</add>
+        <add name="Constraint Data" type="ConstraintData">Constraint within constraint.</add>
         <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
-        <add name="Remove if Broken" type="bool">Unknown</add>
+        <add name="Remove When Broken" type="bool" default="0">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</add>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
         Bethesda-Specific node.
-        <add name="Unknown Ints 1" type="int" arr1="17" />
+        <add name="Body" type="Ptr" template="NiObject" />
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Unknown Int 2" type="uint" />
+        <add name="Unused 1" type="byte" arr1="8" />
+        <add name="Hinge Axis LS" type="Vector4" />
+        <add name="Forward LS" type="Vector4" />
+        <add name="Strength" type="float" />
+        <add name="Damping" type="float" />
+        <add name="Unused 2" type="byte" arr1="8" />
     </niobject>
 
-<!--	
-	
-	<niobject name="bhkPoseArray" inherit="NiObject">
-		Found in Fallout 3, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
-		<add name="Num Bones" type="int">Number of target bones</add>
-        <add name="Bones" type="string" arr1="Num Bones">Bones in index</add>
-        <add name="Num Poses" type="int">Unknown</add>
-		<add name="Pose Array" type="BonePoseArray" arr1="Num Poses">Unknown</add>
-	</niobject>
--->	
-    <niobject name="bhkRagdollTemplate" inherit="NiObject">
+    <niobject name="bhkPoseArray" inherit="NiObject">
+        Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
+        Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.
+        Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
+        <add name="Num Bones" type="int">Number of target bones.</add>
+        <add name="Bones" type="string" arr1="Num Bones">Array of bone names.</add>
+        <add name="Num Poses" type="int">Number of poses.</add>
+        <add name="Poses" type="BonePose" arr1="Num Poses">Array of poses.</add>
+    </niobject>
+
+    <niobject name="bhkRagdollTemplate" inherit="NiExtraData">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
-        <add name="Name" type="string"/>
         <add name="Num Bones" type="int">Number of target bones</add>
         <add name="Bones" type="Ref" template="NiObject" arr1="Num Bones">Bones in index</add>
     </niobject>
 
     <niobject name="bhkRagdollTemplateData" inherit="NiObject">
         Data for bhkRagdollTemplate
-        <add name="Name" type="string"/>
-        <add name="Mass?" type="float">Probably a Mass for bhkRigidBody linked to this bone node.</add>
-        <add name="Restitution?" type="float">Probably a Restitution for bhkRigidBody linked to this bone node.</add>
-        <add name="Friction?" type="float">Probably a Friction for bhkRigidBody linked to this bone node.</add>
-        <add name="Radius?" type="float">Probably a Radius for collision object shape of bhkRigidBody linked to this bone node.</add>
-        <add name="Unknown Int" type="uint">Unknown. Dependent on value of User Version 2?
-        Value 7 found in Fallout3 meshes\ragdollconstraint\default.rdt. This file has User Version 2 = 34.
-        Value 0 found in Fallout3 meshes\ragdollconstraint\stiff.rdt. This file has User Version 2 = 16.</add>
-        <add name="Flag or Num Constraints?" type="uint">Either a flag or a number of constraints.
-        0: no Constraint is present.
-        1: a Constraint is present.</add>
-        <add name="Constraint" type="bhkRDTConstraint" cond="Flag or Num Constraints? != 0">Unknown</add>
+        <add name="Name" type="string" />
+        <add name="Mass" type="float" default="9.0" />
+        <add name="Restitution" type="float" default="0.8" />
+        <add name="Friction" type="float" default="0.3" />
+        <add name="Radius" type="float" default="1.0" />
+        <add name="Material" type="HavokMaterial" default="7" />
+        <add name="Num Constraints" type="uint" />
+        <add name="Constraint" type="ConstraintData" arr1="Num Constraints" />
     </niobject>
 
     <compound name="Region">
@@ -5944,7 +6039,7 @@
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
-<niobject name="NiPSSimulator" inherit="NiMeshModifier">
+    <niobject name="NiPSSimulator" inherit="NiMeshModifier">
         The mesh modifier that performs all particle system simulation.
         <add name="Num Simulation Steps" type="uint">The number of simulation steps in this modifier.</add>
         <add name="Simulation Steps" type="Ref" template="NiPSSimulatorStep" arr1="Num Simulation Steps">Links to the simulation steps.</add>
@@ -6331,16 +6426,13 @@
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
+        <add name="User Data" type="uint">Unknown.</add>
+        <add name="Radius" type="float" default="0.005">A shell that is added around the shape.</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown 4 Bytes" type="byte" arr1="4">Unknown.</add>
-	<add name="Unknown Floats 1" type="Vector4">Unknown</add>
-        <add name="Radius" type="float">A shell with that radius is added around the shape.</add>
-        <add name="Scale" type="float">Scale</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
-        <add name="Unknown Float 5" type="float">Unknown</add>
-		<add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Radius Copy" type="float" default="0.005">A shell that is added around the shape.</add>
+        <add name="Scale Copy" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
     <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject">
@@ -6352,11 +6444,14 @@
 		<add name="Error" type="float">The radius of the storage mesh shape? Quantization error?</add>
 		<add name="Bounds Min" type="Vector4">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</add>
 		<add name="Bounds Max" type="Vector4">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</add>
-		<add name="Unknown Byte 1" type="byte">Unknown</add>
-		<add name="Unknown Int 3" type="uint">Unknown</add>
-        <add name="Unknown Int 4" type="uint">Unknown</add>
-        <add name="Unknown Int 5" type="uint">Unknown</add>
-		<add name="Unknown Byte 2" type="byte">Unknown</add>
+		<add name="Welding Type" type="byte" />
+		<add name="Material Type" type="byte" />
+		<add name="Num Materials 32" type="uint" />
+		<add name="Materials 32" type="uint" arr1="Num Materials 32">Does not appear to be used.</add>
+		<add name="Num Materials 16" type="uint" />
+		<add name="Materials 16" type="uint" arr1="Num Materials 16">Does not appear to be used.</add>
+		<add name="Num Materials 8" type="uint" />
+		<add name="Materials 8" type="uint" arr1="Num Materials 8">Does not appear to be used.</add>
 		<add name="Num Materials" type="uint">Number of chunk materials</add>
 		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Table (array) with sets of materials. Chunks refers to this table by index.</add>
 		<add name="Unknown Int 6" type="uint">Unknown</add>
@@ -6368,7 +6463,7 @@
         <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris">Unknown</add>
         <add name="Num Chunks" type="uint">Unknown</add>
         <add name="Chunks" type="bhkCMSDChunk" arr1="Num Chunks"></add>
-        <add name="Unknown Int 12" type="uint">Unknown, end of block.</add>
+        <add name="Num Convex Piece A" type="uint">Does not appear to be used. Needs array.</add>
 	</niobject>
 	
     <!-- Skyrim specific blocks -->
@@ -6662,8 +6757,8 @@
 	</niobject>
 	
 	<niobject name="BSDistantObjectLargeRefExtraData" abstract="0" inherit="NiExtraData">
-        Extra integer data.
-		<add name="Data" type="byte">The value of the extra data.</add>
+        Large ref flag.
+		<add name="Large Ref" type="bool" />
 	</niobject>
 	
 </niftoolsxml>
