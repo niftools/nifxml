@@ -1698,9 +1698,9 @@
 
     <compound name="HavokColFilter">
         ColFilter property for Havok. It contains Layer, Flags and Part Number
-        <add name="Layer" type="OblivionLayer" default="STATIC" vercond="(Version != 20.2.0.7) || ((Version == 20.2.0.7) &amp;&amp; (User Version != 11) &amp;&amp; (User Version != 12) &amp;&amp; (User Version 2 != 34) &amp;&amp; (User Version 2 != 83))">Sets mesh color in Oblivion Construction Set.</add><!--condition: all except Fallout 3 and Skyrim -->
-        <add name="Layer" type="Fallout3Layer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 11) &amp;&amp; (User Version 2 == 34)">Sets mesh color in Fallout 3 GECK.</add>
-        <add name="Layer" type="SkyrimLayer" default="STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version == 12) &amp;&amp; (User Version 2 &gt;= 83)">Physical purpose of collision object? The setting affects object's havok behavior in game.</add>
+        <add name="Layer" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
+        <add name="Layer" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
+        <add name="Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
