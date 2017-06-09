@@ -2449,13 +2449,13 @@
     </niobject>
 
     <enum name="PathFlags" storage="ushort">
-        <option value="0x0001" name="CVDataNeedsUpdate">CVDataNeedsUpdate</option>
-        <option value="0x0002" name="CurveTypeOpen">CurveTypeOpen</option>
-        <option value="0x0004" name="AllowFlip">AllowFlip</option>
-        <option value="0x0008" name="Bank">Bank</option>
-        <option value="0x0010" name="ConstantVelocity">ConstantVelocity</option>
-        <option value="0x0020" name="Follow">Follow</option>
-        <option value="0x0040" name="Flip">Flip</option>
+        <option value="0x1" name="NIPI_CVDataNeedsUpdate">CVDataNeedsUpdate</option>
+        <option value="0x2" name="NIPI_CurveTypeOpen">CurveTypeOpen</option>
+        <option value="0x4" name="NIPI_AllowFlip">AllowFlip</option>
+        <option value="0x8" name="NIPI_Bank">Bank</option>
+        <option value="0x10" name="NIPI_ConstantVelocity">ConstantVelocity</option>
+        <option value="0x20" name="NIPI_Follow">Follow</option>
+        <option value="0x40" name="NIPI_Flip">Flip</option>
     </enum>
 
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
