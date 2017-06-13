@@ -3428,7 +3428,7 @@
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
         <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
         <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Number of anim notes objects.</add>
-        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Notes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
         <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
     </niobject>
 
