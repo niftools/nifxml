@@ -554,7 +554,7 @@
         <option value="61" name="FOL_TAIL">Tail</option>
         <option value="62" name="FOL_SHIELD">Shield</option>
         <option value="63" name="FOL_QUIVER">Quiver</option>
-        <option value="64" name="FOL_WEAPON">Weapon (?)</option>
+        <option value="64" name="FOL_WEAPON_">Weapon (?)</option>
         <option value="65" name="FOL_PONYTAIL">Ponytail</option>
         <option value="66" name="FOL_WING">Wing</option>
         <option value="67" name="FOL_PACK">Pack</option>
