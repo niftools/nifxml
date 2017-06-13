@@ -1044,11 +1044,11 @@
     <enum name="EffectShaderControlledVariable" storage="uint">
         An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
         <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
-        <option value="1" name="Falloff Start Angle (degrees)">Falloff Start Angle (degrees).</option>
-        <option value="2" name="Falloff Stop Angle (degrees)">Falloff Stop Angle (degrees).</option>
+        <option value="1" name="Falloff Start Angle">Falloff Start Angle (degrees).</option>
+        <option value="2" name="Falloff Stop Angle">Falloff Stop Angle (degrees).</option>
         <option value="3" name="Falloff Start Opacity">Falloff Start Opacity.</option>
         <option value="4" name="Falloff Stop Opacity">Falloff Stop Opacity.</option>
-        <option value="5" name="Alpha Transparency (Emissive alpha?)">Alpha Transparency (Emissive alpha?).</option>
+        <option value="5" name="Alpha Transparency">Alpha Transparency (Emissive alpha?).</option>
         <option value="6" name="U Offset">U Offset.</option>
         <option value="7" name="U Scale">U Scale.</option>
         <option value="8" name="V Offset">V Offset.</option>
