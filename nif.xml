@@ -519,7 +519,7 @@
         <option value="26" name="FOL_TRANSPARENT_SMALL">TransparentSmall (white)</option>
         <option value="27" name="FOL_INVISIBLE_WALL">InvisibleWall (white)</option>
         <option value="28" name="FOL_TRANSPARENT_SMALL_ANIM">TransparentSmallAnim (white)</option>
-        <option value="29" name="FOL_BIPED_">Biped (green)</option>
+        <option value="29" name="FOL_DEADBIP">Dead Biped (green)</option>
         <option value="30" name="FOL_CHARCONTROLLER">CharController (yellow)</option>
         <option value="31" name="FOL_AVOIDBOX">Avoidbox (orange)</option>
         <option value="32" name="FOL_COLLISIONBOX">Collisionbox (white)</option>
@@ -534,35 +534,6 @@
         <option value="41" name="FOL_SPELLEXPLOSION">SpellExplosion (white)</option>
         <option value="42" name="FOL_DROPPINGPICK">Droppingpick (white)</option>
         <option value="43" name="FOL_NULL">Null (white)</option>
-        <option value="44" name="FOL_OTHER">Other (white)</option>
-        <option value="45" name="FOL_HEAD">Head</option>
-        <option value="46" name="FOL_BODY">Body</option>
-        <option value="47" name="FOL_SPINE1">Spine1</option>
-        <option value="48" name="FOL_SPINE2">Spine2</option>
-        <option value="49" name="FOL_L_UPPER_ARM">LUpperArm</option>
-        <option value="50" name="FOL_L_FORE_ARM">LForeArm</option>
-        <option value="51" name="FOL_L_HAND">LHand</option>
-        <option value="52" name="FOL_L_THIGH">LThigh</option>
-        <option value="53" name="FOL_L_CALF">LCalf</option>
-        <option value="54" name="FOL_L_FOOT">LFoot</option>
-        <option value="55" name="FOL_R_UPPER_ARM">RUpperArm</option>
-        <option value="56" name="FOL_R_FORE_ARM">RForeArm</option>
-        <option value="57" name="FOL_R_HAND">RHand</option>
-        <option value="58" name="FOL_R_THIGH">RThigh</option>
-        <option value="59" name="FOL_R_CALF">RCalf</option>
-        <option value="60" name="FOL_R_FOOT">RFoot</option>
-        <option value="61" name="FOL_TAIL">Tail</option>
-        <option value="62" name="FOL_SHIELD">Shield</option>
-        <option value="63" name="FOL_QUIVER">Quiver</option>
-        <option value="64" name="FOL_WEAPON_">Weapon (?)</option>
-        <option value="65" name="FOL_PONYTAIL">Ponytail</option>
-        <option value="66" name="FOL_WING">Wing</option>
-        <option value="67" name="FOL_PACK">Pack</option>
-        <option value="68" name="FOL_CHAIN">Chain</option>
-        <option value="69" name="FOL_ADDONHEAD">AddOnHead</option>
-        <option value="70" name="FOL_ADDONCHEST">AddOnChest</option>
-        <option value="71" name="FOL_ADDONARM">AddOnArm</option>
-        <option value="72" name="FOL_ADDONLEG">AddOnLeg</option>
     </enum>
 
     <enum name="SkyrimLayer" storage="byte">
