@@ -519,7 +519,7 @@
         <option value="26" name="FOL_TRANSPARENT_SMALL">TransparentSmall (white)</option>
         <option value="27" name="FOL_INVISIBLE_WALL">InvisibleWall (white)</option>
         <option value="28" name="FOL_TRANSPARENT_SMALL_ANIM">TransparentSmallAnim (white)</option>
-        <option value="29" name="FOL_BIPED">Biped (green)</option>
+        <option value="29" name="FOL_BIPED_">Biped (green)</option>
         <option value="30" name="FOL_CHARCONTROLLER">CharController (yellow)</option>
         <option value="31" name="FOL_AVOIDBOX">Avoidbox (orange)</option>
         <option value="32" name="FOL_COLLISIONBOX">Collisionbox (white)</option>
