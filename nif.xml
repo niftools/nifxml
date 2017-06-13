@@ -6708,10 +6708,10 @@
 		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Total Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
-		<add name="Segment" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
+		<add name="FO4_Segment" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
 		<add name="Sub Segment Data" type="BSSITSSubSegmentRecord" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
 		<add name="Num Segments" type="uint" userver2="100" />
-		<add name="Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
+		<add name="SSE_Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
