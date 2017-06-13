@@ -1057,7 +1057,7 @@
 
     <enum name="EffectShaderControlledColor" storage="uint">
         An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
-        <option value="0" name="Emissive Color">Emissive Color.</option>
+        <option value="0" name="ECSC_Emissive Color">Emissive Color.</option>
     </enum>
 
     <enum name="LightingShaderControlledVariable" storage="uint">
@@ -1076,8 +1076,8 @@
 
     <enum name="LightingShaderControlledColor" storage="uint">
         An unsigned 32-bit integer, describing which color in BSLightingShaderProperty to animate.
-        <option value="0" name="Specular Color">Specular Color.</option>
-        <option value="1" name="Emissive Color">Emissive Color.</option>
+        <option value="0" name="LSCC_Specular Color">Specular Color.</option>
+        <option value="1" name="LSCC_Emissive Color">Emissive Color.</option>
     </enum>
 
     <enum name="hkConstraintType" storage="uint">
