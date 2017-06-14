@@ -2941,7 +2941,7 @@
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Data" suffix="BS" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
         <add name="Skin Instance" suffix="BS" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
         <add name="Skin Instance" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
