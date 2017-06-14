@@ -1483,8 +1483,8 @@
         <add name="Bitangent X" type="float" userver2="100" cond="((ARG &amp; 256) != 0)" />
         <add name="Unknown Int" type="uint" userver2="100" cond="(ARG &amp; 256) == 0" />
         
-        <add name="Vertex" type="HalfVector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Bitangent X" type="hfloat" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+        <add name="Vertex" suffix="Half" type="HalfVector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+        <add name="Bitangent X" suffix="Half" type="hfloat" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
         <add name="Unknown Short" type="ushort" userver2="130" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
         
         <add name="Vertex" type="Vector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
@@ -1658,9 +1658,9 @@
 
     <compound name="HavokColFilter">
         ColFilter property for Havok. It contains Layer, Flags and Part Number
-        <add name="Layer" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
-        <add name="Layer" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
-        <add name="Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
@@ -1705,9 +1705,9 @@
     </compound>
 
     <compound name="HavokMaterial">
-        <add name="Material" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
-        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
-        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
+        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
+        <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
+        <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
@@ -2254,8 +2254,8 @@
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
-        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
+        <add name="Body Flags" suffix="Old" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
+        <add name="Body Flags" suffix="New" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
@@ -2657,7 +2657,7 @@
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Base audiovisual object.
         <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
-        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
+        <add name="Flags" suffix="BS" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -2940,11 +2940,11 @@
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" suffix="BS" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Data" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
-        <add name="Skin Instance" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" suffix="BS" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
@@ -5297,10 +5297,10 @@
 
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda shader property for Skyrim and later.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
-        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
@@ -5345,10 +5345,10 @@
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
         Bethesda effect shader property for Skyrim and later.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
-        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
@@ -6612,8 +6612,8 @@
         <add name="VF5" type="byte" />
         <add name="VF" type="VertexFlags" />
         <add name="VF8" type="byte" />
-        <add name="Num Triangles" type="uint" userver2="130" />
-        <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
+        <add name="Num Triangles" suffix="FO4" type="uint" userver2="130" />
+        <add name="Num Triangles" suffix="SSE" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
         <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" />
@@ -6667,10 +6667,10 @@
 		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Total Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
-		<add name="FO4_Segment" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
+		<add name="Segment" suffix="FO4" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
 		<add name="Sub Segment Data" type="BSSITSSubSegmentRecord" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
 		<add name="Num Segments" type="uint" userver2="100" />
-		<add name="SSE_Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
+		<add name="Segment" suffix="SSE" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
