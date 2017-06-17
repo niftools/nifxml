@@ -1478,29 +1478,40 @@
 		<option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
 	</bitflags>
     
-    <compound name="BSVertexData">
-        <add name="Vertex" type="Vector3" userver2="100" cond="((ARG &amp; 16) != 0)" />
-        <add name="Bitangent X" type="float" userver2="100" cond="((ARG &amp; 256) != 0)" />
-        <add name="Unknown Int" type="uint" userver2="100" cond="(ARG &amp; 256) == 0" />
-        
-        <add name="Vertex" suffix="Half" type="HalfVector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Bitangent X" suffix="Half" type="hfloat" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        <add name="Unknown Short" type="ushort" userver2="130" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-        
-        <add name="Vertex" type="Vector3" userver2="130" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        <add name="Bitangent X" type="float" userver2="130" cond="((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        <add name="Unknown Int" type="uint" userver2="130" cond="((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-        
-        <add name="UV" type="HalfTexCoord" cond="(((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 32) != 0))" />
-        <add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
-        <add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
-        <add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-        <add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-        <add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-        <add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
-        <add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-        <add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
-    </compound>
+	<compound name="BSVertexData">
+		<add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		<add name="Bitangent X" type="hfloat" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		<add name="Unknown Short" type="ushort" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
+		
+		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		<add name="Unknown Int" type="uint" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
+		
+		<add name="UV" type="HalfTexCoord" cond="((ARG &amp; 32) != 0)" />
+		<add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
+		<add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
+		<add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
+	</compound>
+
+	<compound name="BSVertexDataSSE" niflibtype="BSVertexData">
+		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0)" />
+		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Unknown Int" type="int" cond="((ARG &amp; 16) != 0) &amp;&amp; (ARG &amp; 256) == 0" />
+		<add name="UV" type="HalfTexCoord" cond="((ARG &amp; 32) != 0)" />
+		<add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
+		<add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
+		<add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
+		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
+		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
+	</compound>
 
     <compound name="SkinPartition" ver1="4.2.1.0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
@@ -4273,7 +4284,7 @@
 		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
 		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
 		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="Vertex Data" type="BSVertexData" arg="VF" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Data" type="BSVertexDataSSE" arg="VF" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver="20.2.0.7" userver2="100" />
     </niobject>
 
@@ -6616,7 +6627,8 @@
         <add name="Num Triangles" suffix="SSE" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="130" />
+        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="100" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
         <add name="Particle Data Size" type="uint" userver2="100" />
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
