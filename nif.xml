@@ -1012,26 +1012,26 @@
         <option value="19" name="World LOD Multitexture"></option>
     </enum>
 
-    <enum name="EffectShaderControlledVariable" storage="uint">
+    <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV">
         An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
         <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
-        <option value="1" name="Falloff Start Angle (degrees)">Falloff Start Angle (degrees).</option>
-        <option value="2" name="Falloff Stop Angle (degrees)">Falloff Stop Angle (degrees).</option>
+        <option value="1" name="Falloff Start Angle">Falloff Start Angle (degrees).</option>
+        <option value="2" name="Falloff Stop Angle">Falloff Stop Angle (degrees).</option>
         <option value="3" name="Falloff Start Opacity">Falloff Start Opacity.</option>
         <option value="4" name="Falloff Stop Opacity">Falloff Stop Opacity.</option>
-        <option value="5" name="Alpha Transparency (Emissive alpha?)">Alpha Transparency (Emissive alpha?).</option>
+        <option value="5" name="Alpha Transparency">Alpha Transparency (Emissive alpha?).</option>
         <option value="6" name="U Offset">U Offset.</option>
         <option value="7" name="U Scale">U Scale.</option>
         <option value="8" name="V Offset">V Offset.</option>
         <option value="9" name="V Scale">V Scale.</option>
     </enum>
 
-    <enum name="EffectShaderControlledColor" storage="uint">
+    <enum name="EffectShaderControlledColor" storage="uint" prefix="ECSC">
         An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
         <option value="0" name="Emissive Color">Emissive Color.</option>
     </enum>
 
-    <enum name="LightingShaderControlledVariable" storage="uint">
+    <enum name="LightingShaderControlledVariable" storage="uint" prefix="LSCV">
         An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
         <option value="0" name="Refraction Strength">The amount of distortion.</option>
         <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
@@ -1045,7 +1045,7 @@
         <option value="23" name="V Scale">V Scale.</option>
     </enum>
 
-    <enum name="LightingShaderControlledColor" storage="uint">
+    <enum name="LightingShaderControlledColor" storage="uint" prefix="LSCC">
         An unsigned 32-bit integer, describing which color in BSLightingShaderProperty to animate.
         <option value="0" name="Specular Color">Specular Color.</option>
         <option value="1" name="Emissive Color">Emissive Color.</option>
@@ -1472,7 +1472,7 @@
 		<option value="9" name="VF_Vertex_Colors" />   <!-- & 512 -->
 		<option value="10" name="VF_Skinned" />        <!-- & 1024 -->
 		<option value="11" name="VF_Unknown_6" />      <!-- & 2048 -->
-		<option value="12" name="VF_Male_Eyes" />      <!-- & 4096 -->
+		<option value="12" name="VF_Eye_Data" />       <!-- & 4096 -->
 		<option value="13" name="VF_Unknown_7" />      <!-- & 8192 -->
 		<option value="14" name="VF_Full_Precision" /> <!-- & 16384 -->
 		<option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
@@ -1495,10 +1495,10 @@
 		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
 		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
 		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Unknown Int 2" type="uint" cond="(ARG &amp; 4096) != 0" />
+		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
 	</compound>
 
-	<compound name="BSVertexDataSSE">
+	<compound name="BSVertexDataSSE" niflibtype="BSVertexData">
 		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0)" />
 		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
 		<add name="Unknown Int" type="int" cond="((ARG &amp; 16) != 0) &amp;&amp; (ARG &amp; 256) == 0" />
@@ -1510,7 +1510,7 @@
 		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
 		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
 		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Unknown Int 2" type="uint" cond="(ARG &amp; 4096) != 0" />
+		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
 	</compound>
 
     <compound name="SkinPartition" ver1="4.2.1.0">
@@ -1669,9 +1669,9 @@
 
     <compound name="HavokColFilter">
         ColFilter property for Havok. It contains Layer, Flags and Part Number
-        <add name="Layer" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
-        <add name="Layer" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
-        <add name="Layer" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
@@ -1716,9 +1716,9 @@
     </compound>
 
     <compound name="HavokMaterial">
-        <add name="Material" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
-        <add name="Material" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
-        <add name="Material" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
+        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
+        <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
+        <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
@@ -2265,8 +2265,8 @@
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
-        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
+        <add name="Body Flags" suffix="Old" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
+        <add name="Body Flags" suffix="New" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
@@ -2668,7 +2668,7 @@
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Base audiovisual object.
         <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
-        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
+        <add name="Flags" suffix="BS" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -2951,11 +2951,11 @@
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" suffix="BS" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
-        <add name="Skin Instance" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" suffix="BS" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
@@ -2975,7 +2975,7 @@
         Describes a mesh, built from triangles.
     </niobject>
 
-    <bitflags name="VectorFlags" storage="ushort">
+    <bitflags name="VectorFlags" storage="ushort" prefix="VF">
         <option value="0" name="UV_1" />
         <option value="1" name="UV_2" />
         <option value="2" name="UV_4" />
@@ -2994,7 +2994,7 @@
         <option value="15" name="Unk32768" />
     </bitflags>
     
-    <bitflags name="BSVectorFlags" storage="ushort">
+    <bitflags name="BSVectorFlags" storage="ushort" prefix="BSVF">
         <option value="0" name="Has_UV" />
         <option value="1" name="Unk2" />
         <option value="2" name="Unk4" />
@@ -3399,7 +3399,7 @@
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
         <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
         <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Number of anim notes objects.</add>
-        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Notes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
         <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
     </niobject>
 
@@ -5308,10 +5308,10 @@
 
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
         Bethesda shader property for Skyrim and later.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
-        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
@@ -5356,10 +5356,10 @@
 
     <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
         Bethesda effect shader property for Skyrim and later.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 1" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
-        <add name="Shader Flags 2" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
@@ -6623,8 +6623,8 @@
         <add name="VF5" type="byte" />
         <add name="VF" type="VertexFlags" />
         <add name="VF8" type="byte" />
-        <add name="Num Triangles" type="uint" userver2="130" />
-        <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
+        <add name="Num Triangles" suffix="FO4" type="uint" userver2="130" />
+        <add name="Num Triangles" suffix="SSE" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
         <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="130" />
@@ -6679,10 +6679,10 @@
 		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Total Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
-		<add name="Segment" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
+		<add name="Segment" suffix="FO4" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
 		<add name="Sub Segment Data" type="BSSITSSubSegmentRecord" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
 		<add name="Num Segments" type="uint" userver2="100" />
-		<add name="Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
+		<add name="Segment" suffix="SSE" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
