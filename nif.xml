@@ -1478,7 +1478,7 @@
 		<option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
 	</bitflags>
     
-	<compound name="BSVertexData">
+	<compound name="BSVertexData" niflibtype="BSVertexData">
 		<add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
 		<add name="Bitangent X" type="hfloat" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
 		<add name="Unknown Short" type="ushort" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
