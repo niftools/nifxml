@@ -2265,8 +2265,8 @@
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints">Unknown.</add>
-        <add name="Body Flags" suffix="Old" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
-        <add name="Body Flags" suffix="New" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
+        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
+        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
@@ -2667,8 +2667,8 @@
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Base audiovisual object.
+        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
-        <add name="Flags" suffix="BS" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
@@ -2951,10 +2951,10 @@
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
         <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" suffix="BS" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Data" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
-        <add name="Skin Instance" suffix="BS" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
         <add name="Skin Instance" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
