@@ -5772,7 +5772,7 @@
         <add name="Restitution" type="float" default="0.8" />
         <add name="Friction" type="float" default="0.3" />
         <add name="Radius" type="float" default="1.0" />
-        <add name="Material" type="HavokMaterial" default="7" />
+        <add name="Material" type="HavokMaterial" />
         <add name="Num Constraints" type="uint" />
         <add name="Constraint" type="ConstraintData" arr1="Num Constraints" />
     </niobject>
@@ -6735,7 +6735,7 @@
         <add name="Skeleton Root" type="Ptr" template="NiAVObject" />
         <add name="Data" type="Ref" template="BSSkin::BoneData" />
         <add name="Num Bones" type="uint" />
-        <add name="Bones" type="Ptr" arr1="Num Bones" />
+        <add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones" />
         <add name="Num Unknown" type="uint" />
         <add name="Unknown" type="Vector3" arr1="Num Unknown" />
     </niobject>
