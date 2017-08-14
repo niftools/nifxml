@@ -1322,36 +1322,37 @@
         <add name="Variable 2 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
     </compound>
 
-    <compound name="ExportInfo" ver1="10.0.1.2">
+    <compound name="ExportInfo">
     	Information about how the file was exported
-        <add name="Unknown" type="uint" ver2="10.0.1.2" default="3">Probably the number of strings that follow.</add>
-        <add name="Creator" type="ShortString">Could be the name of the creator of the NIF file?</add>
-        <add name="Export Info 1" type="ShortString">Unknown. Can be something like &#039;TriStrip Process Script&#039;.</add>
-        <add name="Export Info 2" type="ShortString">Unknown. Possibly the selected option of the export script. Can be something like &#039;Default Export Script&#039;.</add>
+        <add name="Author" type="ShortString" />
+        <add name="Process Script" type="ShortString" />
+        <add name="Export Script" type="ShortString" />
     </compound>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
     <compound name="Header">
         The NIF file header.
         <add name="Header String" type="HeaderString">&#039;NetImmerse File Format x.x.x.x&#039; (versions &lt;= 10.0.1.2) or &#039;Gamebryo File Format x.x.x.x&#039; (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</add>
-        <add name="Copyright" type="LineString" arr1="3" ver2="3.1" />
-        <add name="Version" type="FileVersion" default="0x04000002" ver1="3.3.0.13">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
-        <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.4">Determines the endianness of the data in the file.</add>
-        <add name="User Version" type="ulittle32" ver1="10.1.0.0">An extra version number, for companies that decide to modify the file format.</add>
-        <add name="Num Blocks" type="ulittle32" ver1="3.3.0.13">Number of file objects.</add>
-        <add name="User Version 2" type="ulittle32" default="0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" ver1="10.1.0.0">This also appears to be the extra user version number and must be set in some circumstances. Probably used by Bethesda to denote the Havok version.</add>
-        <add name="Unknown Int 3" type="uint" default="0" ver1="30.0.0.2">Unknown. Possibly User Version 2?</add>
-        <add name="Export Info" type="ExportInfo" ver1="10.0.1.2" ver2="10.0.1.2" />
-        <add name="Export Info" type="ExportInfo" ver1="10.1.0.0" cond="(User Version &gt;= 10) || ((User Version == 1) &amp;&amp; (Version != 10.2.0.0))" />
-        <add name="Export Info 3" type="ShortString" cond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130))" />
-        <add name="Num Block Types" type="ushort" ver1="10.0.1.0">Number of object types in this NIF file.</add>
-        <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="10.0.1.0">List of all object types used in this NIF file.</add>
-        <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="10.0.1.0">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
-        <add name="Block Size" type="uint" arr1="Num Blocks" ver1="20.2.0.7">Array of block sizes?</add>
-        <add name="Num Strings" type="uint" ver1="20.1.0.3">Number of strings.</add>
-        <add name="Max String Length" type="uint" ver1="20.1.0.3">Maximum string length.</add>
-        <add name="Strings" type="SizedString" arr1="Num Strings" ver1="20.1.0.3">Strings.</add>
-        <add name="Unknown Int 2" type="uint" default="0" ver1="10.0.1.0">Unknown.</add>
+        <add name="Copyright" type="LineString" arr1="3" ver2="3.1.0.0" />
+        <add name="Version" type="FileVersion" default="0x04000002" ver1="3.1.0.1">The NIF version, in hexadecimal notation: 0x04000002, 0x0401000C, 0x04020002, 0x04020100, 0x04020200, 0x0A000100, 0x0A010000, 0x0A020000, 0x14000004, ...</add>
+        <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.3">Determines the endianness of the data in the file.</add>
+        <add name="User Version" type="ulittle32" ver1="10.0.1.8">An extra version number, for companies that decide to modify the file format.</add>
+        <add name="Num Blocks" type="ulittle32" ver1="3.1.0.1">Number of file objects.</add>
+        <!-- BSStreamHeader -->
+        <add name="User Version 2" type="ulittle32" default="0" cond="(Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version == 20.0.0.4) &amp;&amp; (User Version == 11)) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt; 20.0.0.4) &amp;&amp; (User Version &gt;= 3))" />
+        <add name="Export Info" type="ExportInfo" cond="(Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version == 20.0.0.4) &amp;&amp; (User Version == 11)) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt; 20.0.0.4) &amp;&amp; (User Version &gt;= 3))" />
+        <add name="Max Filepath" type="ShortString" cond="(User Version 2 == 130)" />
+        <!-- / BSStreamHeader -->
+        <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
+        <add name="Num Block Types" type="ushort" ver1="5.0.0.1">Number of object types in this NIF file.</add>
+        <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="5.0.0.1">List of all object types used in this NIF file.</add>
+        <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="5.0.0.1">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
+        <add name="Block Size" type="uint" arr1="Num Blocks" ver1="20.2.0.5">Array of block sizes?</add>
+        <add name="Num Strings" type="uint" ver1="20.1.0.1">Number of strings.</add>
+        <add name="Max String Length" type="uint" ver1="20.1.0.1">Maximum string length.</add>
+        <add name="Strings" type="SizedString" arr1="Num Strings" ver1="20.1.0.1">Strings.</add>
+        <add name="Num Groups" type="uint" default="0" ver1="5.0.0.6" />
+        <add name="Groups" type="uint" arr1="Num Groups" ver1="5.0.0.6" />
     </compound>
 
     <compound name="StringPalette">
