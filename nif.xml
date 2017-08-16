@@ -1214,6 +1214,22 @@
         <add name="m33" type="float" default="1.0">Member 3,3 (bottom left)</add>
     </compound>
 
+    <compound name="Matrix34" niflibtype="Matrix34">
+        A 4x4 transformation matrix.
+        <add name="m11" type="float" default="1.0">The (1,1) element.</add>
+        <add name="m21" type="float" default="0.0">The (2,1) element.</add>
+        <add name="m31" type="float" default="0.0">The (3,1) element.</add>
+        <add name="m12" type="float" default="0.0">The (1,2) element.</add>
+        <add name="m22" type="float" default="1.0">The (2,2) element.</add>
+        <add name="m32" type="float" default="0.0">The (3,2) element.</add>
+        <add name="m13" type="float" default="0.0">The (1,3) element.</add>
+        <add name="m23" type="float" default="0.0">The (2,3) element.</add>
+        <add name="m33" type="float" default="1.0">The (3,3) element.</add>
+        <add name="m14" type="float" default="0.0">The (1,4) element.</add>
+        <add name="m24" type="float" default="0.0">The (2,4) element.</add>
+        <add name="m34" type="float" default="0.0">The (3,4) element.</add>
+    </compound>
+
     <compound name="Matrix44" niflibtype="Matrix44">
         A 4x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
