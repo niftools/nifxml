@@ -6322,6 +6322,27 @@
         <add name="Unknown 2" type="int"></add>
     </niobject>
 
+    <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier">
+        <add name="Scale Amount U" type="float" />
+        <add name="Scale Limit U" type="float" />
+        <add name="Scale Rest U" type="float" />
+        <add name="Scale Amount V" type="float" />
+        <add name="Scale Limit V" type="float" />
+        <add name="Scale Rest V" type="float" />
+        <add name="Center U " type="float" />
+        <add name="Center V" type="float" />
+        <add name="UV Scrolling" type="bool" />
+        <add name="Num Frames Across" type="ushort" />
+        <add name="Num Frames Down" type="ushort" />
+        <add name="Ping Pong" type="bool" />
+        <add name="Initial Frame" type="ushort" />
+        <add name="Initial Frame Variation" type="float" />
+        <add name="Num Frames" type="ushort" />
+        <add name="Num Frames Variation" type="float" />
+        <add name="Initial Time" type="float" />
+        <add name="Final Time" type="float" />
+    </niobject>
+
     <niobject name="NiPSSimulator" inherit="NiMeshModifier">
         The mesh modifier that performs all particle system simulation.
         <add name="Num Simulation Steps" type="uint">The number of simulation steps in this modifier.</add>
