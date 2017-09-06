@@ -6279,11 +6279,34 @@
         <add name="Bone Bounds" type="NiBound" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add>
     </niobject>
 
-    <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier">
-        <!-- not yet decoded -->
+    <niobject name="NiMeshHWInstance" inherit="NiAVObject">
+        <add name="Master Mesh" type="Ref" template="NiMesh" />
+        <add name="Mesh Modifier" type="Ref" template="NiInstancingMeshModifier" />
     </niobject>
 
+    <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier">
+        <add name="Has Instance Nodes" type="bool" />
+        <add name="Per Instance Culling" type="bool" />
+        <add name="Has Static Bounds" type="bool" />
+        <add name="Affected Mesh" type="Ref" template="NiMesh" />
+        <add name="Bound" type="NiBound" cond="Has Static Bounds" />
+        <add name="Num Instance Nodes" type="uint" cond="Has Instance Nodes" />
+        <add name="Instance Nodes" type="Ref" template="NiMeshHWInstance" arr1="Num Instance Nodes" cond="Has Instance Nodes" />
+    </niobject>
+
+    <compound name="LODInfo">
+        <add name="Num Active Skins" type="uint" />
+        <add name="Skin Indices" type="uint" arr1="Num Active Skins" />
+    </compound>
+
     <niobject name="NiSkinningLODController" inherit="NiTimeController">
+        <add name="Current LOD" type="uint" />
+        <add name="Num Bones" type="uint" />
+        <add name="Bones" type="Ref" template="NiNode" arr1="Num Bones" />
+        <add name="Num Skins" type="uint" />
+        <add name="Skins" type="Ref" template="NiMesh" arr1="Num Skins" />
+        <add name="Num LOD Levels" type="uint" />
+        <add name="LODs" type="LODInfo" arr1="Num LOD Levels" />
     </niobject>
 
 
@@ -6612,8 +6635,19 @@
         <!-- not yet decoded -->
     </niobject>
 
-    <niobject name="NiMeshHWInstance" inherit="NiObject">
-        <!-- not yet decoded -->
+    <niobject name="NiShadowGenerator" inherit="NiObject">
+        <add name="Name" type="string" />
+        <add name="Flags" type="ushort" />
+        <add name="Num Shadow Casters" type="uint" />
+        <add name="Shadow Casters" type="Ref" template="NiNode" arr1="Num Shadow Casters" />
+        <add name="Num Shadow Receivers" type="uint" />
+        <add name="Shadow Receivers" type="Ref" template="NiNode" arr1="Num Shadow Receivers" />
+        <add name="Target" type="Ptr" template="NiDynamicEffect" />
+        <add name="Depth Bias" type="float" default="0.98" />
+        <add name="Size Hint" type="ushort" />
+        <add name="Near Clipping Distance" type="float" ver1="20.3.0.7" />
+        <add name="Far Clipping Distance" type="float" ver1="20.3.0.7" />
+        <add name="Directional Light Frustum Width" type="float" ver1="20.3.0.7" />
     </niobject>
 
     <niobject name="NiFurSpringController" inherit="NiTimeController"><!-- BloodBowl -->
