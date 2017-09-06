@@ -4772,7 +4772,7 @@
         <add name="Solver Iteration Count" type="uint" />
         <add name="Sleep Energy Threshold" type="float" ver1="20.3.0.0" />
         <add name="Sleep Damping" type="float" ver1="20.3.0.0" />
-        <add name="Contact Report Threshold" type="float" />
+        <add name="Contact Report Threshold" type="float" ver1="20.4.0.0" />
     </niobject>
 
     <enum name="NxJointType" storage="uint">
