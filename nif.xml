@@ -6285,59 +6285,58 @@
 
     <niobject name="NiSkinningLODController" inherit="NiTimeController">
     </niobject>
-    
-    <!-- This and NiPSMeshParticleSystem may inherit from something else -->
-    <niobject name="NiPSParticleSystem" inherit="NiAVObject">
-        <!-- note: Unknonw 1 and 2 already in use by NiAVObject -->
-        <add name="Unknown 3" type="int">0?</add>
-        <add name="Unknown 38" type="int" arr1="Unknown 3"></add>
-        <add name="Unknown 4" type="int">-1?</add>
-        <add name="Unknown 5" type="int">0?</add>
-        <add name="Unknown 39" type="int" arr1="Unknown 3"></add>
-        <add name="Unknown 6" type="int">256?</add>
-        <add name="Unknown 7" type="int">0?</add>
-        <add name="Unknown 8" type="int">0?</add>
-        <add name="Unknown 9" type="int">0?</add>
-        <add name="Unknown 10" type="float">0?</add>
-        <add name="Unknown 11" type="int">0?</add>
-        <add name="Unknown 12" type="int">Counter?</add>
-        <add name="Simulator" type="Ref" template="NiObject">Simulator?</add>
-        <add name="Generator" type="Ref" template="NiObject" cond="Unknown 12 > 1">Generator?</add>
-        <add name="Unknown 15" type="int">Simulator?</add>
-        <add name="Unknown 16" type="int">Updater?</add>
-        <add name="Unknown 17" type="int">1?</add>
-        <add name="Emitter" type="Ref" template="NiObject">Emitter?</add>
-        <add name="Unknown 19" type="int">0?</add>
-        <add name="Unknown 20" type="int">Spawner?</add>
-        <add name="Unknown 21" type="int">Unknown</add>
-        <add name="Unknown 22" type="byte" arr1="4">Unknown</add>
-        <add name="Unknown 27" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 28" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 29" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 30" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 31" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 32" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 33" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 34" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 35" type="byte" ver1="30.0.0.2"></add>
-        <add name="Unknown 36" type="int" ver1="30.0.0.2">-1?</add>
-        <add name="Unknown 37" type="short" ver1="30.0.0.2"></add>
+
+
+    <!-- NiPS Particle System -->
+
+    <compound name="PSSpawnRateKey">
+        <add name="Value" type="float" />
+        <add name="Time" type="float" />
+    </compound>
+
+    <enum name="AlignMethod" storage="uint">
+        <option value="0" name="ALIGN_INVALID" />
+        <option value="1" name="ALIGN_PER_PARTICLE" />
+        <option value="2" name="ALIGN_LOCAL_FIXED" />
+        <option value="5" name="ALIGN_LOCAL_POSITION" />
+        <option value="9" name="ALIGN_LOCAL_VELOCITY" />
+        <option value="16" name="ALIGN_CAMERA" />
+    </enum>
+
+    <niobject name="NiPSParticleSystem" inherit="NiMesh">
+        <add name="Simulator" type="Ref" template="NiPSSimulator" />
+        <add name="Generator" type="Ref" template="NiPSBoundUpdater" />
+        <add name="Num Emitters" type="uint" />
+        <add name="Emitters" type="Ref" template="NiPSEmitter" arr1="Num Emitters" />
+        <add name="Num Spawners" type="uint" />
+        <add name="Spawners" type="Ref" template="NiPSSpawner" arr1="Num Spawners" />
+        <add name="Death Spawner" type="Ref" template="NiPSSpawner" />
+        <add name="Max Num Particles" type="uint" />
+        <add name="Has Colors" type="bool" />
+        <add name="Has Rotations" type="bool" />
+        <add name="Has Rotation Axes" type="bool" />
+        <add name="Has Animated Textures" type="bool" ver1="20.6.1.0" />
+        <add name="World Space" type="bool" />
+        <add name="Normal Method" type="AlignMethod" ver1="20.6.1.0" />
+        <add name="Normal Direction" type="Vector3" ver1="20.6.1.0" />
+        <add name="Up Method" type="AlignMethod" ver1="20.6.1.0" />
+        <add name="Up Direction" type="Vector3" ver1="20.6.1.0" />
+        <add name="Living Spawner" type="Ref" template="NiPSSpawner" ver1="20.6.1.0" />
+        <add name="Num Spawn Rate Keys" type="byte" ver1="20.6.1.0" />
+        <add name="Spawn Rate Keys" type="PSSpawnRateKey" arr1="Num Spawn Rate Keys" ver1="20.6.1.0" />
+        <add name="Pre-RPI" type="bool" ver1="20.6.1.0" />
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem">
-        <add name="Unknown 23" type="int"></add>
-        <add name="Unknown 24" type="int">Unknown - may or may not be emitted mesh?</add>
-        <add name="Unknown 25" type="int"></add>
-        <add name="Unknown 26" type="byte"></add>
+        <add name="Num Generations" type="uint" />
+        <add name="Master Particles" type="Ref" template="NiAVObject" arr1="Num Generations" />
+        <add name="Pool Size" type="uint" />
+        <add name="Auto-Fill Pools" type="bool" />
     </niobject>
 
-    <niobject name="NiPSEmitParticlesCtlr" inherit="NiPSysEmitterCtlr">
-    </niobject>
+    <!-- NiPS Generators -->
 
-    <niobject name="NiPSForceActiveCtlr" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref" template="NiObject"></add>
-        <add name="Unknown 2" type="int"></add>
-    </niobject>
+    <niobject name="NiPSFacingQuadGenerator" inherit="NiMeshModifier" />
 
     <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier">
         <add name="Scale Amount U" type="float" />
@@ -6360,6 +6359,8 @@
         <add name="Final Time" type="float" />
     </niobject>
 
+    <!-- NiPS Simulators -->
+
     <niobject name="NiPSSimulator" inherit="NiMeshModifier">
         The mesh modifier that performs all particle system simulation.
         <add name="Num Simulation Steps" type="uint">The number of simulation steps in this modifier.</add>
@@ -6380,25 +6381,19 @@
 
     <niobject name="NiPSSimulatorGeneralStep" inherit="NiPSSimulatorStep">
         Encapsulates a floodgate kernel that updates particle size, colors, and rotations.
-        <!-- note: the ver2="30.0.0.2" conditions below are just guesses -->
-        <add name="Num Size Keys" type="byte">The number of size animation keys.</add>
-        <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys">The particle size keys.</add>
-        <add name="Size Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the size keys.</add>
-
-        <add name="Unknown 1" type="float" ver2="20.6.0.0" />
-        <add name="Unknown 2" type="float" ver2="20.6.0.0" />
-        <add name="Unknown 3" type="float" ver2="20.6.0.0" />
-
-        <add name="Num Color Keys" type="byte" ver1="30.0.0.2">The number of color animation keys.</add>
-        <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys" ver1="30.0.0.2">The particle color keys.</add>
-        <add name="Color Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the color keys.</add>
-        <add name="Num Rotation Keys" type="byte" ver1="30.0.0.2">The number of rotatoin animation keys.</add>
-        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys" ver1="30.0.0.2">The particle rotation keys.</add>
-        <add name="Rotation Loop Behavior" type="PSLoopBehavior" ver1="30.0.0.2">The loop behavior for the rotation keys.</add>
-        <add name="Grow Time" type="float" ver1="30.0.0.2"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
-        <add name="Shrink Time" type="float" ver1="30.0.0.2">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
-        <add name="Grow Generation" type="ushort" ver1="30.0.0.2">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
-        <add name="Shrink Generation" type="ushort" ver1="30.0.0.2">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
+        <add name="Num Size Keys" type="byte" ver1="20.6.1.0">The number of size animation keys.</add>
+        <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys" ver1="20.6.1.0">The particle size keys.</add>
+        <add name="Size Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the size keys.</add>
+        <add name="Num Color Keys" type="byte">The number of color animation keys.</add>
+        <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys">The particle color keys.</add>
+        <add name="Color Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the color keys.</add>
+        <add name="Num Rotation Keys" type="byte" ver1="20.6.1.0">The number of rotation animation keys.</add>
+        <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys" ver1="20.6.1.0">The particle rotation keys.</add>
+        <add name="Rotation Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the rotation keys.</add>
+        <add name="Grow Time" type="float"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
+        <add name="Shrink Time" type="float">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
+        <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
+        <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
     </niobject>
 
     <niobject name="NiPSSimulatorForcesStep" inherit="NiPSSimulatorStep">
@@ -6424,293 +6419,186 @@
         Encapsulates a floodgate kernel that updates particle positions and ages. As indicated by its name, this step should be attached last in the NiPSSimulator mesh modifier.
     </niobject>
 
-    <niobject name="NiPSFacingQuadGenerator" inherit="NiObject">
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="byte"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="byte"></add>
-        <add name="Unknown 5" type="byte"></add>
-        <add name="Unknown 6" type="byte"></add>
-        <add name="Unknown 7" type="byte"></add>
-        <add name="Unknown 8" type="byte"></add>
-        <add name="Unknown 9" type="byte"></add>
-        <add name="Unknown 10" type="byte"></add>
-        <add name="Unknown 11" type="byte"></add>
-        <add name="Unknown 12" type="byte"></add>
-    </niobject>
-
-    <!-- from Zorsis demo (Scene.nif) -->
-    <niobject name="NiShadowGenerator" inherit="NiObject">
-        <!-- inheritance? -->
-        <add name="Name" type="string" />
-        <add name="Unknown Flags" type="ushort" />
-        <add name="Num Unknown Links 1" type="uint" />
-        <add name="Unknown Links 1" type="Ref" template="NiNode" arr1="Num Unknown Links 1" />
-        <add name="Unkown Int 2" type="int" default="0" />
-        <add name="Target" type="Ptr" template="NiLight" />
-        <add name="Unkown Float 4" type="float" default="0.98" />
-        <add name="Unkown Byte 5" type="byte" default="0" />
-        <add name="Unkown Int 6" type="int" default="2" />
-        <add name="Unkown Int 7" type="int" default="0" />
-        <add name="Unkown Int 8" type="int" default="0" />
-        <add name="Unkown Byte 9" type="byte" default="0" />
-    </niobject>
-
     <niobject name="NiPSBoundUpdater" inherit="NiObject">
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="byte"></add>
+        <add name="Update Skip" type="ushort">Number of particle bounds to skip updating every frame. Higher = more updates each frame.</add>
     </niobject>
 
-    <niobject name="NiPSDragForce" inherit="NiObject">
-        <add name="Unknown 1" type="int"></add>
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="float"></add>
-        <add name="Unknown 5" type="float"></add>
-        <add name="Unknown 6" type="float"></add>
-        <add name="Unknown 7" type="float"></add>
-        <add name="Unknown 8" type="float"></add>
-        <add name="Unknown 9" type="float"></add>
-        <add name="Unknown 10" type="int"></add>
-    </niobject>
+    <!-- NiPS Forces -->
 
-    <niobject name="NiPSGravityForce" inherit="NiObject">
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="byte"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="byte"></add>
-        <add name="Unknown 5" type="byte"></add>
-        <add name="Unknown 6" type="byte"></add>
-        <add name="Unknown 7" type="byte"></add>
-        <add name="Unknown 8" type="byte"></add>
-        <add name="Unknown 9" type="byte"></add>
-        <add name="Unknown 10" type="byte"></add>
-        <add name="Unknown 11" type="byte"></add>
-        <add name="Unknown 12" type="byte"></add>
-        <add name="Unknown 13" type="byte"></add>
-        <add name="Unknown 14" type="byte"></add>
-        <add name="Unknown 15" type="byte"></add>
-        <add name="Unknown 16" type="byte"></add>
-        <add name="Unknown 17" type="byte"></add>
-        <add name="Unknown 18" type="float"></add>
-        <add name="Unknown 19" type="byte"></add>
-        <add name="Unknown 20" type="byte"></add>
-        <add name="Unknown 21" type="byte"></add>
-        <add name="Unknown 22" type="byte"></add>
-        <add name="Unknown 23" type="byte"></add>
-        <add name="Unknown 24" type="byte"></add>
-        <add name="Unknown 25" type="byte"></add>
-        <add name="Unknown 26" type="byte"></add>
-        <add name="Unknown 27" type="byte"></add>
-        <add name="Unknown 28" type="byte"></add>
-        <add name="Unknown 29" type="byte"></add>
-        <add name="Unknown 30" type="byte"></add>
-        <add name="Unknown 31" type="byte"></add>
-        <add name="Unknown 32" type="byte"></add>
-        <add name="Unknown 33" type="byte"></add>
-        <add name="Unknown 34" type="byte"></add>
-        <add name="Unknown 35" type="float"></add>
-        <add name="Unknown 36" type="Ref" template="NiObject">Gravity node?</add>
-    </niobject>
+    <enum name="PSForceType" storage="uint">
+        <option value="0" name="FORCE_BOMB" />
+        <option value="1" name="FORCE_DRAG" />
+        <option value="2" name="FORCE_AIR_FIELD" />
+        <option value="3" name="FORCE_DRAG_FIELD" />
+        <option value="4" name="FORCE_GRAVITY_FIELD" />
+        <option value="5" name="FORCE_RADIAL_FIELD" />
+        <option value="6" name="FORCE_TURBULENCE_FIELD" />
+        <option value="7" name="FORCE_VORTEX_FIELD" />
+        <option value="8" name="FORCE_GRAVITY" />
+    </enum>
 
-    <niobject name="NiPSBoxEmitter" inherit="NiObject">
-        <add name="Name" type="string"></add>
-        <add name="Unknown 1" type="float"></add>
-        <add name="Unknown 2" type="float"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="byte"></add>
-        <add name="Unknown 5" type="byte"></add>
-        <add name="Unknown 6" type="byte"></add>
-        <add name="Unknown 7" type="float"></add>
-        <add name="Unknown 8" type="byte"></add>
-        <add name="Unknown 9" type="byte"></add>
-        <add name="Unknown 10" type="byte"></add>
-        <add name="Unknown 11" type="byte"></add>
-        <add name="Unknown 12" type="float"></add>
-        <add name="Unknown 13" type="int"></add>
-        <add name="Unknown 14" type="float"></add>
-        <add name="Unknown 15" type="float"></add>
-        <add name="Unknown 16" type="float"></add>
-        <add name="Unknown 17" type="float"></add>
-        <add name="Unknown 18" type="float"></add>
-        <add name="Unknown 19" type="float"></add>
-        <add name="Unknown 20" type="float"></add>
-        <add name="Unknown 21" type="float"></add>
-        <add name="Unknown 22" type="float"></add>
-        <add name="Unknown 23" type="byte"></add>
-        <add name="Unknown 24" type="byte"></add>
-        <add name="Unknown 25" type="byte"></add>
-        <add name="Unknown 26" type="byte"></add>
-        <add name="Unknown 27" type="byte"></add>
-        <add name="Unknown 28" type="byte"></add>
-        <add name="Unknown 29" type="byte"></add>
-        <add name="Unknown 30" type="byte"></add>
-        <add name="Unknown 31" type="byte"></add>
-        <add name="Unknown 32" type="byte"></add>
-        <add name="Unknown 33" type="byte"></add>
-        <add name="Unknown 34" type="byte"></add>
-        <add name="Unknown 35" type="byte"></add>
-        <add name="Unknown 36" type="byte"></add>
-        <add name="Unknown 37" type="byte"></add>
-        <add name="Unknown 38" type="byte"></add>
-        <add name="Unknown 39" type="byte"></add>
-        <add name="Unknown 40" type="byte"></add>
-        <add name="Unknown 41" type="byte"></add>
-        <add name="Unknown 42" type="byte"></add>
-        <add name="Unknown 43" type="byte"></add>
-        <add name="Unknown 44" type="byte"></add>
-        <add name="Unknown 45" type="byte"></add>
-        <add name="Unknown 46" type="byte"></add>
-        <add name="Unknown 47" type="byte"></add>
-        <add name="Unknown 48" type="byte"></add>
-    </niobject>
-
-    <niobject name="NiPSMeshEmitter" inherit="NiObject">
-        <add name="Name" type="string"></add>
-        <add name="Unknown 1" type="int"></add>
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 27" type="int" ver1="30.0.0.2"></add>
-        <add name="Unknown 4" type="float"></add>
-        <add name="Unknown 5" type="float"></add>
-        <add name="Unknown 6" type="float"></add>
-        <add name="Unknown 28" type="float" ver1="30.0.0.2"></add>
-        <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 8" type="float"></add>
-        <add name="Unknown 9" type="float"></add>
-        <add name="Unknown 10" type="float"></add>
-        <add name="Unknown 11" type="float"></add>
-        <add name="Unknown 12" type="float"></add>
-        <add name="Unknown 13" type="int"></add>
-        <add name="Unknown 14" type="float"></add>
-        <add name="Unknown 15" type="float"></add>
-        <add name="Unknown 16" type="float"></add>
-        <add name="Unknown 17" type="int" ver2="20.6.0.0"></add>
-        <add name="Unknown 18" type="int" ver2="20.6.0.0"></add>
-        <add name="Unknown 19" type="short"></add>
-        <add name="Unknown 20" type="int"></add>
-        <add name="Unknown 21" type="int"></add>
-        <add name="Unknown 22" type="float" ver2="20.6.0.0"></add>
-        <add name="Unknown 23" type="int" ver2="20.6.0.0"></add>
-        <add name="Unknown 24" type="int"></add>
-        <add name="Unknown 25" type="int"></add>
-        <add name="Unknown 26" type="int"></add>
-    </niobject>
-
-    <niobject name="NiPSGravityStrengthCtlr" inherit="NiTimeController">
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="int"></add>
-    </niobject>
-
-    <niobject name="NiPSPlanarCollider" inherit="NiObject">
-        <!-- inheritance? -->
+    <niobject name="NiPSForce" abstract="1" inherit="NiObject">
         <add name="Name" type="string" />
-        <add name="Unknown Int 1" type="int" />
-        <add name="Unknown Int 2" type="int" />
-        <add name="Unknown Short 3" type="short" />
-        <add name="Unknown Byte 4" type="byte" />
-        <add name="Unknown Floats 5" type="float" arr1="8" />
-        <add name="Unknown Link 6" type="Ref" template="NiNode" />
+        <add name="Type" type="PSForceType" />
+        <add name="Active" type="bool" />
     </niobject>
 
-    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref" template="NiObject"></add>
-        <add name="Unknown 3" type="int"></add>
+    <niobject name="NiPSDragForce" inherit="NiPSForce">
+        <add name="Drag Axis" type="Vector3" />
+        <add name="Percentage" type="float" />
+        <add name="Range" type="float" />
+        <add name="Range Falloff" type="float" />
+        <add name="Drag Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <!-- from Zorsis demo (hit_effect_meaty.nif) -->
-    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiTimeController">
-        <add name="Interpolator" type="Ref" template="NiObject"></add>
-        <add name="Unknown 2" type="int"></add>
+    <niobject name="NiPSGravityForce" inherit="NiPSForce">
+        <add name="Gravity Axis" type="Vector3" />
+        <add name="Decay" type="float" />
+        <add name="Strength" type="float" />
+        <add name="Force Type" type="ForceType" />
+        <add name="Turbulence" type="float" />
+        <add name="Turbulence Scale" type="float" />
+        <add name="Gravity Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <!-- from Zorsis demo (hit_effect_metal.nif) -->
-    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController">
+    <niobject name="NiPSBombForce" inherit="NiPSForce">
+        <add name="Bomb Axis" type="Vector3" />
+        <add name="Decay" type="float" />
+        <add name="Delta V" type="float" />
+        <add name="Decay Type" type="DecayType" />
+        <add name="Symmetry Type" type="SymmetryType" />
+        <add name="Bomb Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSSphereEmitter" inherit="NiObject">
-        <add name="Name" type="string"></add>
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 4" type="int"></add>
-        <add name="Unknown 5" type="int"></add>
-        <add name="Unknown 6" type="float"></add>
-        <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 8" type="float"></add>
-        <add name="Unknown 9" type="float"></add>
-        <add name="Unknown 10" type="int"></add>
-        <add name="Unknown 11" type="float"></add>
-        <add name="Unknown 12" type="int"></add>
-        <add name="Unknown 13" type="int"></add>
-        <add name="Unknown 14" type="int"></add>
-        <add name="Unknown 15" type="int"></add>
-        <add name="Unknown 16" type="int"></add>
-        <add name="Unknown 17" type="float"></add>
-        <add name="Unknown 18" type="int"></add>
-        <add name="Unknown 19" type="int"></add>
-        <add name="Unknown 20" type="short"></add>
-        <add name="Unknown 21" type="int">Target node?</add>
-        <add name="Unknown 22" type="float"></add>
-    </niobject>
-    
-    <niobject name="NiPSCylinderEmitter" inherit="NiPSSphereEmitter">
-        <add name="Unknown 23" type="float"></add>
-    </niobject>
-    
-    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSysModifierCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterDeclinationCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSysModifierCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterPlanarAngleCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSysModifierCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterRotAngleCtlr">
-    </niobject>
-    
-    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSysModifierCtlr">
+    <!-- NiPS Emitters -->
+
+    <niobject name="NiPSEmitter" abstract="1" inherit="NiObject">
+        <add name="Name" type="string" />
+        <add name="Speed" type="float" />
+        <add name="Speed Var" type="float" />
+        <add name="Speed Flip Ratio" type="float" ver1="20.6.1.0" />
+        <add name="Declination" type="float" />
+        <add name="Declination Var" type="float" />
+        <add name="Planar Angle" type="float" />
+        <add name="Planar Angle Var" type="float" />
+        <add name="Color" type="ByteColor4" ver2="20.6.0.0" />
+        <add name="Size" type="float" />
+        <add name="Size Var" type="float" />
+        <add name="Lifespan" type="float" />
+        <add name="Lifespan Var" type="float" />
+        <add name="Rotation Angle" type="float" />
+        <add name="Rotation Angle Var" type="float" />
+        <add name="Rotation Speed" type="float" />
+        <add name="Rotation Speed Var" type="float" />
+        <add name="Rotation Axis" type="Vector3" />
+        <add name="Random Rot Speed Sign" type="bool" />
+        <add name="Random Rot Axis" type="bool" />
+        <add name="Unknown" type="bool" ver1="30.0.0.0" ver2="30.0.0.1" />
     </niobject>
 
-    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterRotSpeedCtlr">
+    <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter">
+        <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSysModifierCtlr">
+    <niobject name="NiPSBoxEmitter" inherit="NiPSVolumeEmitter">
+        <add name="Emitter Width" type="float" />
+        <add name="Emitter Height" type="float" />
+        <add name="Emitter Depth" type="float" />
     </niobject>
 
-    <niobject name="NiPSBombForce" inherit="NiObject">
-        <add name="Name" type="string"></add>
-        <add name="Unknown 1" type="byte"></add>
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="int"></add>
-        <add name="Unknown 4" type="int"></add>
-        <add name="Unknown 5" type="int"></add>
-        <add name="Unknown 6" type="int"></add>
-        <add name="Unknown 7" type="int"></add>
-        <add name="Unknown 8" type="int"></add>
-        <add name="Unknown 9" type="int"></add>
-        <add name="Unknown 10" type="int"></add>
+    <niobject name="NiPSSphereEmitter" inherit="NiPSVolumeEmitter">
+        <add name="Emitter Radius" type="float" />
     </niobject>
 
-    <niobject name="NiPSSphericalCollider" inherit="NiObject"><!-- possibly inherit="NiPSysSphericalCollider"? -->
-        <add name="Unknown 1" type="int"></add>
-        <add name="Unknown 2" type="int"></add>
-        <add name="Unknown 3" type="byte"></add>
-        <add name="Unknown 4" type="float"></add>
-        <add name="Unknown 5" type="int"></add>
-        <add name="Unknown 6" type="short"></add>
-        <add name="Unknown 7" type="int"></add>
+    <niobject name="NiPSCylinderEmitter" inherit="NiPSVolumeEmitter">
+        <add name="Emitter Radius" type="float" />
+        <add name="Emitter Height" type="float" />
+    </niobject>
+
+    <niobject name="NiPSMeshEmitter" inherit="NiPSEmitter">
+        <add name="Num Mesh Emitters" type="uint" />
+        <add name="Mesh Emitters" type="Ptr" template="NiMesh" arr1="Num Mesh Emitters" />
+        <add name="Emit Axis" type="Vector3" ver2="20.6.0.0" />
+        <add name="Emitter Object" type="Ptr" template="NiAVObject" ver1="20.6.1.0" />
+        <add name="Mesh Emission Type" type="EmitFrom" />
+        <add name="Initial Velocity Type" type="VelocityType" />
+    </niobject>
+
+    <!-- NiPS Controllers -->
+
+    <niobject name="NiPSEmitterCtlr" abstract="1" inherit="NiSingleInterpController">
+        <add name="Emitter Name" type="string" />
+    </niobject>
+
+    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr" />
+
+    <niobject name="NiPSEmitParticlesCtlr" inherit="NiPSEmitterCtlr">
+        <add name="Emitter Active Interpolator" type="Ref" template="NiInterpolator" />
+    </niobject>
+
+    <niobject name="NiPSForceCtlr" abstract="1" inherit="NiSingleInterpController">
+        <add name="Force Name" type="string" />
+    </niobject>
+
+    <niobject name="NiPSForceBoolCtlr" inherit="NiPSForceCtlr" />
+    <niobject name="NiPSForceFloatCtlr" inherit="NiPSForceCtlr" />
+    <niobject name="NiPSForceActiveCtlr" inherit="NiPSForceBoolCtlr" />
+    <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr" />
+    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController" />
+    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSEmitterFloatCtlr" />
+
+    <!-- NiPS Colliders -->
+
+    <enum name="ColliderType" storage="uint">
+        <option value="0" name="COLLIDER_PLANAR" />
+        <option value="1" name="COLLIDER_SPHERICAL" />
+    </enum>
+
+    <niobject name="NiPSCollider" inherit="NiObject">
+        <add name="Spawner" type="Ref" template="NiPSSpawner" />
+        <add name="Type" type="ColliderType" />
+        <add name="Active" type="bool" />
+        <add name="Bounce" type="float" />
+        <add name="Spawn on Collide" type="bool" />
+        <add name="Die on Collide" type="bool" />
+    </niobject>
+
+    <niobject name="NiPSPlanarCollider" inherit="NiPSCollider">
+        <add name="Width" type="float" />
+        <add name="Height" type="float" />
+        <add name="X Axis" type="Vector3" />
+        <add name="Y Axis" type="Vector3" />
+        <add name="Collider Object" type="Ptr" template="NiAVObject" />
+    </niobject>
+
+    <niobject name="NiPSSphericalCollider" inherit="NiPSCollider">
+        <add name="Radius" type="float" />
+        <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSSpawner" inherit="NiObject">
-        <!-- not yet decoded -->
+        <add name="Master Particle System" type="Ptr" template="NiPSParticleSystem" ver1="20.6.1.0" />
+        <add name="Percentage Spawned" type="float" />
+        <add name="Spawn Speed Factor" type="float" ver1="20.6.1.0" />
+        <add name="Spawn Speed Factor Var" type="float" />
+        <add name="Spawn Dir Chaos" type="float" />
+        <add name="Life Span" type="float" />
+        <add name="Life Span Var" type="float" />
+        <add name="Num Spawn Generations" type="ushort" />
+        <add name="Min to Spawn" type="uint" />
+        <add name="Max to Spawn" type="uint" />
     </niobject>
+
 
     <niobject name="NiSequenceData" inherit="NiObject">
         <!-- not yet decoded -->
