@@ -169,7 +169,7 @@
         <option value="4" name="GLOW_MAP">Creates a glowing effect.  Basically an incandescence map.</option>
         <option value="5" name="BUMP_MAP">Used to make the object appear to have more detail than it really does.</option>
         <option value="6" name="NORMAL_MAP">Used to make the object appear to have more detail than it really does.</option>
-        <option value="7" name="UNKNOWN2_MAP">Unknown map.</option>
+        <option value="7" name="PARALLAX_MAP">Parallax map.</option>
         <option value="8" name="DECAL_0_MAP">For placing images on the object like stickers.</option>
         <option value="9" name="DECAL_1_MAP">For placing images on the object like stickers.</option>
         <option value="10" name="DECAL_2_MAP">For placing images on the object like stickers.</option>
@@ -603,25 +603,96 @@
         <option value="2" name="MIP_FMT_DEFAULT">Use default setting.</option>
     </enum>
 
-    <enum name="PixelFormat" storage="uint">
-        Specifies the pixel format used by the NiPixelData object to store a texture.
-        <option value="0" name="PX_FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
-        <option value="1" name="PX_FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
-        <option value="2" name="PX_FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
-        <option value="4" name="PX_FMT_DXT1">DXT1 compressed texture.</option>
-        <option value="5" name="PX_FMT_DXT5">DXT5 compressed texture.</option>
-        <option value="6" name="PX_FMT_DXT5_ALT">DXT5 compressed texture. It is not clear what the difference is with PX_FMT_DXT5.</option>
+    <enum name="PlatformID" storage="uint" prefix="PLATFORM">
+        <option value="0" name="ANY" />
+        <option value="1" name="XENON" />
+        <option value="2" name="PS3" />
+        <option value="3" name="DX9" />
+        <option value="4" name="WII" />
+        <option value="5" name="D3D10" />
     </enum>
 
-    <enum name="PixelLayout" storage="uint">
+    <enum name="RendererID" storage="uint" prefix="RENDERER">
+        <option value="0" name="XBOX360" />
+        <option value="1" name="PS3" />
+        <option value="2" name="DX9" />
+        <option value="3" name="D3D10" />
+        <option value="4" name="WII" />
+        <option value="5" name="GENERIC" />
+        <option value="6" name="D3D11" />
+    </enum>
+
+    <enum name="PixelFormat" storage="uint" prefix="PX">
+        Specifies the pixel format used by the NiPixelData object to store a texture.
+        <option value="0" name="FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
+        <option value="1" name="FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
+        <option value="2" name="FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
+        <option value="3" name="FMT_PALA" />
+        <option value="4" name="FMT_DXT1">DXT1 compressed texture.</option>
+        <option value="5" name="FMT_DXT3">DXT3 compressed texture.</option>
+        <option value="6" name="FMT_DXT5">DXT5 compressed texture.</option>
+        <option value="7" name="FMT_RGB24NONINT">24-bit noninterleaved texture.</option>
+        <option value="8" name="FMT_BUMP" />
+        <option value="9" name="FMT_BUMPLUMA" />
+        <option value="10" name="FMT_RENDERSPEC" />
+        <option value="11" name="FMT_1CH" />
+        <option value="12" name="FMT_2CH" />
+        <option value="13" name="FMT_3CH" />
+        <option value="14" name="FMT_4CH" />
+        <option value="15" name="FMT_DEPTH_STENCIL" />
+        <option value="16" name="FMT_UNKNOWN" />
+    </enum>
+
+    <enum name="PixelTiling" storage="uint" prefix="PX">
+        <option value="0" name="TILE_NONE" />
+        <option value="1" name="TILE_XENON" />
+        <option value="2" name="TILE_WII" />
+        <option value="3" name="TILE_NV_SWIZZLED" />
+    </enum>
+
+    <enum name="PixelComponent" storage="uint" prefix="PX">
+        Specifies the pixel format used by the NiPixelData object to store a texture.
+        <option value="0" name="COMP_RED" />
+        <option value="1" name="COMP_GREEN" />
+        <option value="2" name="COMP_BLUE" />
+        <option value="3" name="COMP_ALPHA" />
+        <option value="4" name="COMP_COMPRESSED" />
+        <option value="5" name="COMP_OFFSET_U" />
+        <option value="6" name="COMP_OFFSET_V" />
+        <option value="7" name="COMP_OFFSET_W" />
+        <option value="8" name="COMP_OFFSET_Q" />
+        <option value="9" name="COMP_LUMA" />
+        <option value="10" name="COMP_HEIGHT" />
+        <option value="11" name="COMP_VECTOR_X" />
+        <option value="12" name="COMP_VECTOR_Y" />
+        <option value="13" name="COMP_VECTOR_Z" />
+        <option value="14" name="COMP_PADDING" />
+        <option value="15" name="COMP_INTENSITY" />
+        <option value="16" name="COMP_INDEX" />
+        <option value="17" name="COMP_DEPTH" />
+        <option value="18" name="COMP_STENCIL" />
+        <option value="19" name="COMP_EMPTY" />
+    </enum>
+
+    <enum name="PixelRepresentation" storage="uint" prefix="PX">
+        <option value="0" name="REP_NORM_INT" />
+        <option value="1" name="REP_HALF" />
+        <option value="2" name="REP_FLOAT" />
+        <option value="3" name="REP_INDEX" />
+        <option value="4" name="REP_COMPRESSED" />
+        <option value="5" name="REP_UNKNOWN" />
+        <option value="6" name="REP_INT" />
+    </enum>
+
+    <enum name="PixelLayout" storage="uint" prefix="PX">
         An unsigned 32-bit integer, describing the color depth of a texture.
-        <option value="0" name="PIX_LAY_PALETTISED">Texture is in 8-bit paletized format.</option>
-        <option value="1" name="PIX_LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
-        <option value="2" name="PIX_LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
-        <option value="3" name="PIX_LAY_COMPRESSED">Texture is compressed.</option>
-        <option value="4" name="PIX_LAY_BUMPMAP">Texture is a grayscale bump map.</option>
-        <option value="5" name="PIX_LAY_PALETTISED_4">Texture is in 4-bit paletized format.</option>
-        <option value="6" name="PIX_LAY_DEFAULT">Use default setting.</option>
+        <option value="0" name="LAY_PALETTISED">Texture is in 8-bit paletized format.</option>
+        <option value="1" name="LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
+        <option value="2" name="LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
+        <option value="3" name="LAY_COMPRESSED">Texture is compressed.</option>
+        <option value="4" name="LAY_BUMPMAP">Texture is a grayscale bump map.</option>
+        <option value="5" name="LAY_PALETTISED_4">Texture is in 4-bit paletized format.</option>
+        <option value="6" name="LAY_DEFAULT">Use default setting.</option>
     </enum>
 
     <enum name="TexClampMode" storage="uint">
@@ -1432,11 +1503,12 @@
 
     <compound name="TexDesc">
         Texture description.
-        <add name="Source" type="Ref" template="NiSourceTexture">NiSourceTexture object index.</add>
+        <add name="Image" type="Ref" template="NiImage" ver2="3.1">Link to the texture image.</add>
+        <add name="Source" type="Ref" template="NiSourceTexture" ver1="3.3.0.13">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
         <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
-        <add name="Unknown short" type="short" ver1="20.6.0.0">Unknown, seems to always be 1</add>
+        <add name="Max Anisotropy" type="ushort" ver1="20.5.0.4" />
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
         <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;L values can range from 0 to 3 and are used to specify how fast a texture gets blurry&quot;.</add>
         <add name="PS2 K" type="short" default="-75" ver2="10.4.0.1">PS2 only; from the Freedom Force docs, &quot;The K value is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.&quot; -75 for most v4.0.0.2 meshes.</add>
@@ -1928,17 +2000,6 @@
         <add name="Vertex Weight" type="float">The amount that this bone affects the vertex.</add>
         <add name="Vertex Index" type="ushort">The index of the vertex that this weight applies to.</add>
         <add name="Unknown Vector" type="Vector3">Unknown.  Perhaps some sort of offset?</add>
-    </compound>
-
-    <compound name="MultiTextureElement">
-        <add name="Has Image" type="bool">Looks like a memory address, so probably a bool.</add>
-        <add name="Image" type="Ref" template="NiImage" cond="Has Image">Link to the texture image.</add>
-        <add name="Clamp?" type="TexClampMode" cond="Has Image" default="WRAP_S_WRAP_T">May be texture clamp mode.</add>
-        <add name="Filter?" type="TexFilterMode" cond="Has Image" default="FILTER_TRILERP">May be texture filter mode.</add>
-        <add name="UV Set?" type="uint" cond="Has Image" default="1">This may be the UV set counting from 1 instead of zero.</add>
-        <add name="PS2 L" type="short" cond="Has Image" default="0" ver1="3.03" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="short" cond="Has Image" default="-75" ver1="3.03" ver2="10.2.0.0">-75?</add>
-        <add name="Unknown Short 3" type="short" cond="Has Image" default="0" ver1="3.03">Unknown.  Usually 0 but sometimes 257</add>
     </compound>
 
     <enum name="ImageType" storage="uint">
@@ -3810,73 +3871,64 @@
         <add name="Float Data" type="Ref" template="NiFloatData">Path controller data index (float data). ?</add>
     </niobject>
 
-    <enum name="ChannelType" storage="uint">
-        <option value="0" name="CHNL_RED">Red</option>
-        <option value="1" name="CHNL_GREEN">Green</option>
-        <option value="2" name="CHNL_BLUE">Blue</option>
-        <option value="3" name="CHNL_ALPHA">Alpha</option>
-        <option value="4" name="CHNL_COMPRESSED">Compressed</option>
-        <option value="16" name="CHNL_INDEX">Index</option>
-        <option value="19" name="CHNL_EMPTY">Empty</option>
-    </enum>
-
-    <enum name="ChannelConvention" storage="uint">
-        <option value="0" name="CC_FIXED">Fixed</option>
-        <option value="3" name="CC_INDEX">Palettized</option>
-        <option value="4" name="CC_COMPRESSED">Compressed</option>
-        <option value="5" name="CC_EMPTY">Empty</option>
-    </enum>
-
-    <compound name="ChannelData">
-        Channel data
-        <add name="Type" type="ChannelType">Channel Type</add>
-        <add name="Convention" type="ChannelConvention">Data Storage Convention</add>
-        <add name="Bits Per Channel" type="byte">Bits per channel</add>
-        <add name="Unknown Byte 1" type="byte">Unknown</add>
+    <compound name="PixelFormatComponent">
+        <add name="Type" type="PixelComponent">Component Type</add>
+        <add name="Convention" type="PixelRepresentation">Data Storage Convention</add>
+        <add name="Bits Per Channel" type="byte">Bits per component</add>
+        <add name="Signed" type="bool" />
     </compound>
 
-    <niobject name="ATextureRenderData" abstract="1" inherit="NiObject">
+    <!--
+        NiPixelFormat is not the parent to NiPixelData/NiPersistentSrcTextureRendererData,
+        but actually a member class loaded at the top of each. The two classes are not related.
+        However, faking this inheritance is useful for several things.    
+    -->
+    <niobject name="NiPixelFormat" abstract="1" inherits="NiObject">
         <add name="Pixel Format" type="PixelFormat">The format of the pixels in this internally stored image.</add>
-        <add name="Red Mask" type="uint" ver2="10.2.0.0">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Green Mask" type="uint" ver2="10.2.0.0">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Blue Mask" type="uint" ver2="10.2.0.0">0x00ff0000 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Alpha Mask" type="uint" ver2="10.2.0.0">0xff000000 (for 32bpp) or 0x00000000 (for 24bpp and 8bpp)</add>
-        <add name="Bits Per Pixel" type="byte" ver2="10.2.0.0">Bits per pixel, 0 (?), 8, 24 or 32.</add>
-        <add name="Unknown 3 Bytes" type="byte" arr1="3" ver2="10.2.0.0">Zero?</add>
-        <add name="Unknown 8 Bytes" type="byte" arr1="8" ver2="10.2.0.0">
+        <add name="Red Mask" type="uint" ver2="10.3.0.2">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Green Mask" type="uint" ver2="10.3.0.2">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Blue Mask" type="uint" ver2="10.3.0.2">0x00ff0000 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Alpha Mask" type="uint" ver2="10.3.0.2">0xff000000 (for 32bpp) or 0x00000000 (for 24bpp and 8bpp)</add>
+        <add name="Bits Per Pixel" type="uint" ver2="10.3.0.2">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
+        <add name="Old Fast Compare" type="byte" arr1="8" ver2="10.3.0.2">
             [96,8,130,0,0,65,0,0] if 24 bits per pixel
             [129,8,130,32,0,65,12,0] if 32 bits per pixel
             [34,0,0,0,0,0,0,0] if 8 bits per pixel
-            [4,0,0,0,0,0,0,0] if 0 (?) bits per pixel
+            [X,0,0,0,0,0,0,0] if 0 (Compressed) bits per pixel where X = PixelFormat
         </add>
-        <add name="Unknown Int" type="uint" ver1="10.1.0.0" ver2="10.2.0.0">Seems to always be zero.</add>
-        <add name="Bits Per Pixel" type="byte" ver1="20.0.0.4">Bits per pixel, 0 (?), 8, 24 or 32.</add>
-        <add name="Unknown Int 2" type="int" ver1="20.0.0.4">Unknown.  Could be reference pointer.</add>
-        <add name="Unknown Int 3" type="uint" ver1="20.0.0.4">Seems to always be zero.</add>
-        <add name="Flags" type="byte" ver1="20.0.0.4">Flags</add>
-        <add name="Unknown Int 4" type="uint" ver1="20.0.0.4">Unkown. Often zero.</add>
-        <add name="Unknown Byte 1" type="byte" ver1="20.3.0.6">Unknown.</add>
-        <add name="Channels" type="ChannelData" arr1="4" ver1="20.0.0.4">Channel Data</add>
-        <add name="Palette" type="Ref" template="NiPalette">Link to NiPalette, for 8-bit textures.</add>
-        <add name="Num Mipmaps" type="uint">Number of mipmaps in the texture.</add>
-        <add name="Bytes Per Pixel" type="uint">Bytes per pixel (Bits Per Pixel / 8).</add>
-        <add name="Mipmaps" type="MipMap" arr1="Num Mipmaps">Mipmap descriptions (width, height, offset).</add>
+        <add name="Tiling" type="PixelTiling" ver1="10.1.0.0" ver2="10.3.0.2">Seems to always be zero.</add>
+        <add name="Bits Per Pixel" type="byte" ver1="10.3.0.3">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
+        <add name="Renderer Hint" type="uint" ver1="10.3.0.3" />
+        <add name="Extra Data" type="uint" ver1="10.3.0.3" />
+        <add name="Flags" type="byte" ver1="10.3.0.3">Flags</add>
+        <add name="Tiling" type="PixelTiling" ver1="10.3.0.3" />
+        <add name="sRGB Space" type="bool" ver1="20.3.0.4" />
+        <add name="Channels" type="PixelFormatComponent" arr1="4" ver1="10.3.0.3">Channel Data</add>
     </niobject>
 
-    <niobject name="NiPersistentSrcTextureRendererData" inherit="ATextureRenderData">
-        <add name="Num Pixels" type="uint">Unknown</add>
-        <add name="Unknown Int 6" type="uint">Unknown, same as the number of pixels? / number of blocks?</add>
-        <add name="Num Faces" type="uint">Unknown</add>
-        <add name="Unknown Int 7" type="uint">Unknown</add>
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Faces" arr2="Num Pixels">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+    <niobject name="NiPersistentSrcTextureRendererData" inherit="NiPixelFormat">
+        <add name="Palette" type="Ref" template="NiPalette" />
+        <add name="Num Mipmaps" type="uint" />
+        <add name="Bytes Per Pixel" type="uint" />
+        <add name="Mipmaps" type="MipMap" arr1="Num Mipmaps" />
+        <add name="Num Pixels" type="uint" />
+        <add name="Pad Num Pixels" type="uint" ver1="20.2.0.6" />
+        <add name="Num Faces" type="uint" />
+        <add name="Platform" type="PlatformID" ver2="30.1.0.0" />
+        <add name="Renderer" type="RendererID" ver1="30.1.0.1" />
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" />
     </niobject>
 
-    <niobject name="NiPixelData" abstract="0" inherit="ATextureRenderData">
+    <niobject name="NiPixelData" abstract="0" inherit="NiPixelFormat">
         A texture.
-        <add name="Num Pixels" type="uint">Total number of pixels</add>
-        <add name="Num Faces" type="uint" ver1="20.0.0.4" default="1">Unknown</add>
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Faces" arr2="Num Pixels" ver1="20.0.0.4">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
-        <add name="Pixel Data" type="byte" binary="1" arr1="1" arr2="Num Pixels" ver2="10.2.0.0">Raw pixel data holding the mipmaps.  Mipmap zero is the full-size texture and they get smaller by half as the number increases.</add>
+        <add name="Palette" type="Ref" template="NiPalette" />
+        <add name="Num Mipmaps" type="uint" />
+        <add name="Bytes Per Pixel" type="uint" />
+        <add name="Mipmaps" type="MipMap" arr1="Num Mipmaps" />
+        <add name="Num Pixels" type="uint" />
+        <add name="Num Faces" type="uint" ver1="10.3.0.6" default="1" />
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels" ver2="10.3.0.5" />
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" ver1="10.3.0.6" />
     </niobject>
 
     <niobject name="NiPlanarCollider" abstract="0" inherit="NiParticleModifier">
@@ -4317,13 +4369,13 @@
         <add name="Unknown Link" type="Ref" template="NiObject" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
         <add name="Unknown Byte" type="byte" default="1" cond="Use External == 0" ver2="10.0.1.0">Unknown. Seems to be set if Pixel Data is present?</add>
         <add name="File Name" type="FilePath" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData object.</add>
-        <add name="Pixel Data" type="Ref" template="ATextureRenderData" cond="Use External == 0">Pixel data object index. NiPixelData or NiPersistentSrcTextureRendererData</add>
+        <add name="Pixel Data" type="Ref" template="NiPixelFormat" cond="Use External == 0">Pixel data object index. NiPixelData or NiPersistentSrcTextureRendererData</add>
         <add name="Pixel Layout" type="PixelLayout" default="PIX_LAY_PALETTISED_4">Specifies the way the image will be stored.</add>
         <add name="Use Mipmaps" type="MipMapFormat" default="MIP_FMT_DEFAULT">Specifies whether mip maps are used.</add>
         <add name="Alpha Format" type="AlphaFormat" default="ALPHA_DEFAULT"> Note: the NiTriShape linked to this object must have a NiAlphaProperty in its list of properties to enable material and/or texture transparency.</add>
         <add name="Is Static" type="byte" default="1">Is Static?</add>
-        <add name="Direct Render" type="bool" default="1" ver1="10.1.0.106">Load direct to renderer</add>
-        <add name="Persist Render Data" type="bool" default="0" ver1="20.2.0.7">Render data is persistant</add>
+        <add name="Direct Render" type="bool" default="1" ver1="10.1.0.103">Load direct to renderer</add>
+        <add name="Persist Render Data" type="bool" default="0" ver1="20.2.0.4">Render data is persistant</add>
     </niobject>
 
     <niobject name="NiSpecularProperty" abstract="0" inherit="NiProperty">
@@ -4440,19 +4492,12 @@
         <add name="Unknown Ints 2" type="uint" arr1="2" ver1="3.0" ver2="3.03">Unknown.  0?</add>
     </niobject>
 
-    <niobject name="NiMultiTextureProperty" abstract="0" inherit="NiProperty">
-        (note: not quite complete yet... but already reads most of the DAoC ones)
-        <add name="Flags" type="Flags">Property flags.</add>
-        <add name="Unknown Int" type="uint">Unknown. Always 5 for DAoC files, and always 6 for Bridge Commander.  Seems to have nothing to do with the number of Texture Element slots that follow.</add>
-        <add name="Texture Elements" type="MultiTextureElement" arr1="5">Describes the various textures used by this mutli-texture property.  Each slot probably has special meaning like thoes in NiTexturingProperty.</add>
-    </niobject>
-
     <niobject name="NiTexturingProperty" abstract="0" inherit="NiProperty">
         Describes an object&#039;s textures.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-        <add name="Flags" type="Flags" ver1="20.1.0.3">Property flags.</add>
-        <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver2="20.0.0.5">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
-        <add name="Texture Count" type="uint" default="7">Number of textures. Always 7 in versions &lt; 20.0.0.4. Can also be 8 in &gt;= 20.0.0.4.</add>
+        <add name="Flags" type="Flags" ver1="20.1.0.2">Property flags.</add>
+        <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver1="3.3.0.13" ver2="20.1.0.1">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
+        <add name="Texture Count" type="uint" default="7">Number of textures.</add>
         <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
         <add name="Base Texture" type="TexDesc" cond="Has Base Texture">The base texture.</add>
         <add name="Has Dark Texture" type="bool">Do we have a dark texture?</add>
@@ -4463,30 +4508,33 @@
         <add name="Gloss Texture" type="TexDesc" cond="Has Gloss Texture">The gloss texture.</add>
         <add name="Has Glow Texture" type="bool">Do we have a glow texture?</add>
         <add name="Glow Texture" type="TexDesc" cond="Has Glow Texture">The glowing texture.</add>
-        <add name="Has Bump Map Texture" type="bool">Do we have a bump map texture?</add>
+        <add name="Has Bump Map Texture" type="bool" ver1="3.3.0.13" cond="Texture Count &gt; 5">Do we have a bump map texture?</add>
         <add name="Bump Map Texture" type="TexDesc" cond="Has Bump Map Texture">The bump map texture.</add>
         <add name="Bump Map Luma Scale" type="float" cond="Has Bump Map Texture">Unknown.</add>
         <add name="Bump Map Luma Offset" type="float" cond="Has Bump Map Texture">Unknown.</add>
         <add name="Bump Map Matrix" type="Matrix22" cond="Has Bump Map Texture">Unknown.</add>
-        <add name="Has Normal Texture" type="bool" ver1="20.2.0.7">Do we have a normal texture?  (Noraml guess based on file suffix in sample files)</add>
-        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture" ver1="20.2.0.7">Normal texture.</add>
-        <add name="Has Unknown2 Texture" type="bool" ver1="20.2.0.7">Do we have a unknown texture 2?</add>
-        <add name="Unknown2 Texture" type="TexDesc" cond="Has Unknown2 Texture" ver1="20.2.0.7">Unknown texture 2.</add>
-        <add name="Unknown2 Float" type="float" cond="Has Unknown2 Texture">Unknown.</add>
-        <add name="Has Decal 0 Texture" type="bool">Do we have a decal 0 texture?</add>
+        <add name="Has Normal Texture" type="bool" cond="Texture Count &gt; 6" ver1="20.2.0.5">Do we have a normal texture?</add>
+        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture">Normal texture.</add>
+        <add name="Has Parallax Texture" type="bool" cond="Texture Count &gt; 7" ver1="20.2.0.5" />
+        <add name="Parallax Texture" type="TexDesc" cond="Has Parallax Texture" />
+        <add name="Parallax Offset" type="float" cond="Has Parallax Texture" />
+        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count &gt; 6" ver2="20.2.0.4">Do we have a decal 0 texture?</add>
+        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count &gt; 8" ver1="20.2.0.5">Do we have a decal 0 texture?</add>
         <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture">The decal texture.</add>
-        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt;= 8" ver2="20.1.0.3">Do we have a decal 1 texture?</add>
-        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt;= 10" ver1="20.2.0.7">Do we have a decal 1 texture?</add>
+        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt; 7" ver2="20.2.0.4">Do we have a decal 1 texture?</add>
+        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt; 9" ver1="20.2.0.5">Do we have a decal 1 texture?</add>
         <add name="Decal 1 Texture" type="TexDesc" cond="Has Decal 1 Texture">Another decal texture.</add>
-        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt;= 9" ver2="20.1.0.3">Do we have a decal 2 texture?</add>
-        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt;= 11" ver1="20.2.0.7">Do we have a decal 2 texture?</add>
+        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt; 8" ver2="20.2.0.4">Do we have a decal 2 texture?</add>
+        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt; 10" ver1="20.2.0.5">Do we have a decal 2 texture?</add>
         <add name="Decal 2 Texture" type="TexDesc" cond="Has Decal 2 Texture">Another decal texture.</add>
-        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt;= 10" ver2="20.1.0.3">Do we have a decal 3 texture?</add>
-        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt;= 12" ver1="20.2.0.7">Do we have a decal 3 texture?</add>
+        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt; 9" ver2="20.2.0.4">Do we have a decal 3 texture?</add>
+        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt; 11" ver1="20.2.0.5">Do we have a decal 3 texture?</add>
         <add name="Decal 3 Texture" type="TexDesc" cond="Has Decal 3 Texture">Another decal texture. Who knows the limit.</add>
         <add name="Num Shader Textures" type="uint" ver1="10.0.1.0">Number of Shader textures that follow.</add>
         <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
     </niobject>
+
+    <niobject name="NiMultiTextureProperty" abstract="0" inherit="NiTexturingProperty" />
 
     <niobject name="NiTransformData" abstract="0" inherit="NiKeyframeData">
         Mesh animation keyframe data.
