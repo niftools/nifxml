@@ -686,13 +686,23 @@
 
     <enum name="PixelLayout" storage="uint" prefix="PX">
         An unsigned 32-bit integer, describing the color depth of a texture.
-        <option value="0" name="LAY_PALETTISED">Texture is in 8-bit paletized format.</option>
+        <option value="0" name="LAY_PALETTIZED_8">Texture is in 8-bit palettized format.</option>
         <option value="1" name="LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
         <option value="2" name="LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
         <option value="3" name="LAY_COMPRESSED">Texture is compressed.</option>
         <option value="4" name="LAY_BUMPMAP">Texture is a grayscale bump map.</option>
-        <option value="5" name="LAY_PALETTISED_4">Texture is in 4-bit paletized format.</option>
+        <option value="5" name="LAY_PALETTIZED_4">Texture is in 4-bit palettized format.</option>
         <option value="6" name="LAY_DEFAULT">Use default setting.</option>
+        <option value="7" name="LAY_SINGLE_COLOR_8" />
+        <option value="8" name="LAY_SINGLE_COLOR_16" />
+        <option value="9" name="LAY_SINGLE_COLOR_32" />
+        <option value="10" name="LAY_DOUBLE_COLOR_32" />
+        <option value="11" name="LAY_DOUBLE_COLOR_64" />
+        <option value="12" name="LAY_FLOAT_COLOR_32" />
+        <option value="13" name="LAY_FLOAT_COLOR_64" />
+        <option value="14" name="LAY_FLOAT_COLOR_128" />
+        <option value="15" name="LAY_SINGLE_COLOR_4" />
+        <option value="16" name="LAY_DEPTH_24_X8" />
     </enum>
 
     <enum name="TexClampMode" storage="uint">
