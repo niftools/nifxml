@@ -738,7 +738,7 @@
     </enum>
 
     <enum name="FieldType" storage="uint">
-        The force field&#039;s type.
+        The force field type.
         <option value="0" name="FIELD_WIND">Wind (fixed direction)</option>
         <option value="1" name="FIELD_POINT">Point (fixed origin)</option>
     </enum>
@@ -2240,7 +2240,7 @@
 
 
     <niobject name="NiParticleModifier" abstract="1" inherit="NiObject">
-        A particle system modifier.
+        LEGACY (pre-10.1). Abstract base class for particle system modifiers.
         <add name="Next Modifier" type="Ref" template="NiParticleModifier">Next particle modifier.</add>
         <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="4.0.0.2">Points to the particle system controller parent.</add>
     </niobject>
@@ -2360,7 +2360,7 @@
     </niobject>
 
     <niobject name="bhkRigidBodyT" abstract="0" inherit="bhkRigidBody">
-        Unknown.
+        The "T" suffix marks this body as active for translation and rotation.
     </niobject>
 
     <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable">
@@ -2585,15 +2585,15 @@
     </niobject>
 
     <niobject name="NiInterpolator" abstract="1" inherit="NiObject">
-        Interpolator objects - function unknown.
+        Abstract base class for all interpolators of bool, float, NiQuaternion, NiPoint3, NiColorA, and NiQuatTransform data.
     </niobject>
 
     <niobject name="NiKeyBasedInterpolator" abstract="1" inherit="NiInterpolator">
-        Interpolator objects that use keys?
+        Abstract base class for interpolators that use NiAnimationKeys (Key, KeyGrp) for interpolation.
     </niobject>
 
     <niobject name="NiFloatInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
-        Unknown.
+        Uses NiFloatKeys to animate a float value over time.
         <add name="Float Value" type="float">Value when posed?  At time 0?</add>
         <add name="Data" type="Ref" template="NiFloatData">Float data?</add>
     </niobject>
@@ -2609,7 +2609,7 @@
     </niobject>
 
     <niobject name="NiPoint3Interpolator" abstract="0" inherit="NiKeyBasedInterpolator">
-        Unknown.
+        Uses NiPosKeys to animate an NiPoint3 value over time.
         <add name="Point 3 Value" type="Vector3">Value when posed?  Value at time 0?</add>
         <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
     </niobject>
@@ -2625,7 +2625,7 @@
     </enum>
 
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
-        Unknown interpolator.
+        Used to make an object follow a predefined spline path.
         <add name="Flags" type="PathFlags" />
         <add name="Bank Dir" type="uint" />
         <add name="Max Bank Angle" type="float" />
@@ -2636,13 +2636,14 @@
     </niobject>
 
     <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
-        Unknown.
+        Uses NiBoolKeys to animate a bool value over time.
         <add name="Bool Value" type="bool">Value when posed?  At time 0?</add>
         <add name="Data" type="Ref" template="NiBoolData">Refers to a NiBoolData object.</add>
     </niobject>
 
     <niobject name="NiBoolTimelineInterpolator" abstract="0" inherit="NiBoolInterpolator">
-        Unknown.
+        Uses NiBoolKeys to animate a bool value over time.
+        Unlike NiBoolInterpolator, it ensures that keys have not been missed between two updates.
     </niobject>
 
     <enum name="InterpBlendFlags" storage="byte">
@@ -2659,7 +2660,7 @@
     </compound>
 
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
-        An extended type of interpolater.
+        Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
         <add name="Flags" type="InterpBlendFlags" />
         <add name="Array Size" type="byte" />
         <add name="Weight Threshold" type="float" />
@@ -2675,7 +2676,7 @@
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
-        For interpolators storing data via a B-spline.
+        Abstract base class for interpolators storing data via a B-spline.
         <add name="Start Time" type="float">Animation start time.</add>
         <add name="Stop Time" type="float">Animation stop time.</add>
         <add name="Spline Data" type="Ref" template="NiBSplineData">Refers to NiBSplineData.</add>
@@ -2683,7 +2684,7 @@
     </niobject>
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
-        An object that can be controlled by a controller.
+        Abstract base class for NiObjects that support names, extra data, and time controllers.
         <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="User Version >= 12" cond="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
@@ -2756,7 +2757,7 @@
     </niobject>
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
-        Base audiovisual object.
+        Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
         <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
         <!-- TODO use MTransform -->
@@ -2774,7 +2775,7 @@
     </niobject>
 
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
-        A dynamic effect such as a light or environment map.
+        Abstract base class for dynamic effects such as NiLights or projected texture effects.
         <add name="Switch State" type="bool" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">Turns effect on and off?  Switches list to list of unaffected nodes?</add>
         <add name="Num Affected Node List Pointers" type="uint" ver2="4.0.0.2" >The number of affected nodes referenced.</add>
         <add name="Affected Node List Pointers" type="uint" arr1="Num Affected Node List Pointers" ver2="4.0.0.2">This is probably the list of affected nodes. For some reason i do not know the max exporter seems to write pointers instead of links. But it doesn&#039;t matter because at least in version 4.0.0.2 the list is automagically updated by the engine during the load stage.</add>
@@ -2783,7 +2784,7 @@
     </niobject>
 
     <niobject name="NiLight" abstract="1" inherit="NiDynamicEffect">
-        Light source.
+        Abstract base class that represents light sources in a scene graph.
         <add name="Dimmer" type="float">Dimmer.</add>
         <add name="Ambient Color" type="Color3">Ambient color.</add>
         <add name="Diffuse Color" type="Color3">Diffuse color.</add>
@@ -2791,7 +2792,7 @@
     </niobject>
 
     <niobject name="NiProperty" abstract="1" inherit="NiObjectNET">
-        A generic property object.
+        Abstract base class representing all rendering properties. Subclasses are attached to NiAVObjects to control their rendering.
     </niobject>
 
     <niobject name="NiTransparentProperty" abstract="0" inherit="NiProperty">
@@ -2800,7 +2801,7 @@
     </niobject>
 
     <niobject name="NiPSysModifier" abstract="1" inherit="NiObject">
-        Generic particle system modifier object.
+        Abstract base class for all particle system modifiers.
         <add name="Name" type="string">The object name.</add>
         <add name="Order" type="uint">Modifier ID in the particle modifier chain (always a multiple of 1000)?</add>
         <add name="Target" type="Ptr" template="NiParticleSystem">NiParticleSystem parent of this modifier.</add>
@@ -2808,7 +2809,7 @@
     </niobject>
 
     <niobject name="NiPSysEmitter" abstract="1" inherit="NiPSysModifier">
-        A particle emitter?
+        Abstract base class for all particle system emitters.
         <add name="Speed" type="float">Speed / Inertia of particle movement.</add>
         <add name="Speed Variation" type="float">Adds an amount of randomness to Speed.</add>
         <add name="Declination" type="float">Declination / First axis.</add>
@@ -2823,12 +2824,12 @@
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="1" inherit="NiPSysEmitter">
-        An emitter that emits meshes?
+        Abstract base class for particle emitters that emit particles from a volume.
         <add name="Emitter Object" type="Ptr" template="NiNode" ver1="10.1.0.0">Node parent of this modifier?</add>
     </niobject>
 
     <niobject name="NiTimeController" abstract="1" inherit="NiObject">
-        A generic time controller object.
+        Abstract base class that provides the base timing and update functionality for all the Gamebryo animation controllers.
         <add name="Next Controller" type="Ref" template="NiTimeController">Index of the next controller.</add>
         <add name="Flags" type="Flags">
             Controller flags.
@@ -2849,16 +2850,17 @@
 
 
     <niobject name="NiInterpController" abstract="1" inherit="NiTimeController">
-        A controller capable of interpolation?
+        Abstract base class for all NiTimeController objects using NiInterpolator objects to animate their target objects.
     </niobject>
 
     <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiInterpController">
-        Unknown.
+        DEPRECATED (20.6)
         <add name="Num Extra Targets" type="ushort">The number of target pointers that follow.</add>
         <add name="Extra Targets" type="Ptr" template="NiAVObject" arr1="Num Extra Targets">NiNode Targets to be controlled.</add>
     </niobject>
 
     <niobject name="NiGeomMorpherController" abstract="0" inherit="NiInterpController">
+        DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Time controller for geometry morphing.
         <add name="Extra Flags" type="Flags" ver1="10.0.1.2">Unknown.</add>
         <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
@@ -2881,17 +2883,18 @@
     </niobject>
 
     <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
-        A controller referring to a single interpolator.
+        Uses a single NiInterpolator to animate its target value.
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Link to interpolator.</add>
     </niobject>
 
     <niobject name="NiKeyframeController" abstract="0" inherit="NiSingleInterpController">
+        DEPRECATED (10.2), RENAMED (10.2) to NiTransformController
         A time controller object for animation key frames.
         <add name="Data" type="Ref" template="NiKeyframeData" ver2="10.1.0.0">Keyframe controller data index.</add>
     </niobject>
 
     <niobject name="NiTransformController" abstract="0" inherit="NiKeyframeController">
-        NiTransformController replaces the NiKeyframeController.
+        NiTransformController replaces NiKeyframeController.
     </niobject>
 
     <niobject name="NiPSysModifierCtlr" abstract="1" inherit="NiSingleInterpController">
@@ -2906,16 +2909,16 @@
     </niobject>
 
     <niobject name="NiPSysModifierBoolCtlr" abstract="1" inherit="NiPSysModifierCtlr">
-        A particle system modifier controller that deals with boolean data?
+        A particle system modifier controller that animates a boolean value for particles.
     </niobject>
 
     <niobject name="NiPSysModifierActiveCtlr" abstract="0" inherit="NiPSysModifierBoolCtlr">
-        Unknown.
+        A particle system modifier controller that animates active/inactive state for particles.
         <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">This controller's data.</add>
     </niobject>
 
     <niobject name="NiPSysModifierFloatCtlr" abstract="1" inherit="NiPSysModifierCtlr">
-        A particle system modifier controller that deals with floating point data?
+        A particle system modifier controller that animates a floating point value for particles.
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">This controller's data.</add>
     </niobject>
 
@@ -2945,11 +2948,12 @@
 
 
     <niobject name="NiFloatInterpController" abstract="1" inherit="NiSingleInterpController">
-        A controller that interpolates floating point numbers?
+        Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target float value.
     </niobject>
 
     <niobject name="NiFlipController" abstract="0" inherit="NiFloatInterpController">
-        Texture flipping controller.
+        Changes the image a Map (TexDesc) will use. Uses a float interpolator to animate the texture index.
+        Often used for performing flipbook animation.
         <add name="Texture Slot" type="TexType">Target texture slot (0=base, 4=glow).</add>
         <add name="Unknown Int 2" type="uint" ver1="4.0.0.0" ver2="10.1.0.0">0?</add>
         <add name="Delta" type="float" ver2="10.1.0.0">
@@ -2962,7 +2966,7 @@
     </niobject>
 
     <niobject name="NiAlphaController" abstract="0" inherit="NiFloatInterpController">
-        Time controller for transparency.
+        Animates the alpha value of a property using an interpolator.
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Alpha controller data index.</add>
     </niobject>
 
@@ -2979,16 +2983,16 @@
     </niobject>
 
     <niobject name="NiBoolInterpController" abstract="1" inherit="NiSingleInterpController">
-        A controller that interpolates floating point numbers?
+        Abstract base class for all NiInterpControllers that use a NiInterpolator to animate their target boolean value.
     </niobject>
 
     <niobject name="NiVisController" abstract="0" inherit="NiBoolInterpController">
-        Time controller for visibility.
+        Animates the visibility of an NiAVObject.
         <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">Visibility controller data object index.</add>
     </niobject>
 
     <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController">
-        A controller that interpolates point 3 data?
+        Abstract base class for all NiInterpControllers that use a NiInterpolator to animate their target NiPoint3 value.
         <add name="Target Color" type="TargetColor" ver1="10.1.0.0">Selects which color to control.</add>
         <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
     </niobject>
@@ -3000,16 +3004,16 @@
     </niobject>
 
     <niobject name="NiLightColorController" abstract="0" inherit="NiPoint3InterpController">
-        Light color animation controller.
+        Animates the ambient, diffuse and specular colors of an NiLight.
     </niobject>
 
 
     <niobject name="NiExtraDataController" abstract="1" inherit="NiSingleInterpController">
-        An controller for extra data.
+        Abstract base class for all extra data controllers.
     </niobject>
 
     <niobject name="NiFloatExtraDataController" abstract="0" inherit="NiExtraDataController">
-        Unknown.
+        Animates an NiFloatExtraData object attached to an NiAVObject.
         <add name="Controller Data" type="string" ver1="10.2.0.0">Refers to a NiFloatExtraData name.</add>
         <add name="Num Extra Bytes" type="byte" ver2="10.1.0.0">Number of extra bytes.</add>
         <add name="Unknown Bytes" type="byte" arr1="7" ver2="10.1.0.0">Unknown.</add>
@@ -3017,6 +3021,7 @@
     </niobject>
 
     <niobject name="NiBoneLODController" abstract="0" inherit="NiTimeController">
+        DEPRECATED (20.5), Replaced by NiSkinningLODController.
         Level of detail controller for bones.  Priority is arranged from low to high.
         <add name="LOD" type="uint">Unknown.</add>
         <add name="Num LODs" type="uint">Number of LODs.</add>
@@ -3334,26 +3339,26 @@
     </niobject>
 
     <niobject name="NiBlendBoolInterpolator" abstract="0" inherit="NiBlendInterpolator">
-        An interpolator for a bool.
+        Blends bool values together.
         <add name="Bool Value" type="byte">The interpolated bool?</add>
     </niobject>
 
     <niobject name="NiBlendFloatInterpolator" abstract="0" inherit="NiBlendInterpolator">
-        An interpolator for a float.
+        Blends float values together.
         <add name="Float Value" type="float">The interpolated float?</add>
     </niobject>
 
     <niobject name="NiBlendPoint3Interpolator" abstract="0" inherit="NiBlendInterpolator">
-        Interpolates a point?
+        Blends NiPoint3 values together.
         <add name="Point Value" type="Vector3">The interpolated point?</add>
     </niobject>
 
     <niobject name="NiBlendTransformInterpolator" abstract="0" inherit="NiBlendInterpolator">
-        Unknown.
+        Blends NiQuatTransform values together.
     </niobject>
 
     <niobject name="NiBoolData" abstract="0" inherit="NiObject">
-        Timed boolean data.
+        Wrapper for boolean animation keys.
         <add name="Data" type="KeyGroup" template="byte">The boolean keys.</add>
     </niobject>
 
@@ -3363,16 +3368,16 @@
     </niobject>
 
     <niobject name="NiBSplineBasisData" abstract="0" inherit="NiObject">
-        Stores the number of control points of a B-spline.
+        Contains an NiBSplineBasis for use in interpolation of open, uniform B-Splines.
         <add name="Num Control Points" type="uint">The number of control points of the B-spline (number of frames of animation plus degree of B-spline minus one).</add>
     </niobject>
 
     <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator">
-        Unknown.
+        Uses B-Splines to animate a float value over time.
     </niobject>
 
     <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineFloatInterpolator">
-        Unknown.
+        NiBSplineFloatInterpolator plus the information required for using compact control points.
         <add name="Base" type="float">Base value when curve not defined.</add>
         <add name="Offset" type="uint">Starting offset for the data. (USHRT_MAX for no data.)</add>
         <add name="Bias" type="float">Bias</add>
@@ -3380,16 +3385,17 @@
     </niobject>
 
     <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator">
-        Unknown.
+        Uses B-Splines to animate an NiPoint3 value over time.
         <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
     </niobject>
 
     <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplinePoint3Interpolator">
-        Unknown.
+        NiBSplinePoint3Interpolator plus the information required for using compact control points.
     </niobject>
 
     <niobject name="NiBSplineTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator">
-        An interpolator for storing transform keyframes via a B-spline.
+        Supports the animation of position, rotation, and scale using an NiQuatTransform.
+        The NiQuatTransform can be an unchanging pose or interpolated from B-Spline control point channels.
         <!-- TODO use QTransform -->
         <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
         <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
@@ -3400,9 +3406,7 @@
     </niobject>
 
     <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineTransformInterpolator">
-        An interpolator for storing transform keyframes via a compressed
-        B-spline (that is, using shorts rather than floats in the B-spline
-        data).
+        NiBSplineTransformInterpolator plus the information required for using compact control points.
         <add name="Translation Bias" type="float">Translation Bias</add>
         <add name="Translation Multiplier" type="float">Translation Multiplier</add>
         <add name="Rotation Bias" type="float">Rotation Bias</add>
@@ -3415,7 +3419,7 @@
 	</niobject>
 
     <niobject name="NiBSplineData" abstract="0" inherit="NiObject">
-        B-spline data points as floats, or as shorts for compressed B-splines.
+        Contains one or more sets of control points for use in interpolation of open, uniform B-Splines, stored as either float or compact.
         <add name="Num Float Control Points" type="uint">Number of Float Data Points</add>
         <add name="Float Control Points" type="float" arr1="Num Float Control Points">Float values representing the control data.</add>
         <add name="Num Short Control Points" type="uint">Number of Short Data Points</add>
@@ -3444,17 +3448,17 @@
     </niobject>
 
     <niobject name="NiColorData" abstract="0" inherit="NiObject">
-        Color data for material color controller.
+        Wrapper for color animation keys.
         <add name="Data" type="KeyGroup" template="Color4">The color keys.</add>
     </niobject>
 
     <niobject name="NiColorExtraData" abstract="0" inherit="NiExtraData">
-        Unknown.
+        Extra data in the form of NiColorA (red, green, blue, alpha).
         <add name="Data" type="Color4">RGBA Color?</add>
     </niobject>
 
     <niobject name="NiControllerManager" abstract="0" inherit="NiTimeController">
-        Unknown. Root of all controllers?
+        Controls animation sequences on a specific branch of the scene graph.
         <add name="Cumulative" type="bool">Designates whether animation sequences are cumulative?</add>
         <add name="Num Controller Sequences" type="uint">The number of controller sequence objects.</add>
         <add name="Controller Sequences" type="Ref" template="NiControllerSequence" arr1="Num Controller Sequences">Refers to a list of NiControllerSequence object.</add>
@@ -3494,11 +3498,11 @@
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
-        Abstract type for object palettes.
+        Abstract base class for indexing NiAVObject by name.
     </niobject>
 
     <niobject name="NiDefaultAVObjectPalette" abstract="0" inherit="NiAVObjectPalette">
-        Refers to a list of objects. Used by NiControllerManager.
+        NiAVObjectPalette implementation. Used to quickly look up objects by name.
         <add name="Scene" type="Ptr" template="NiAVObject">Scene root of the object palette.</add>
         <add name="Num Objs" type="uint">Number of objects.</add>
         <add name="Objs" type="AVObject" arr1="Num Objs">The objects.</add>
@@ -3509,33 +3513,33 @@
     </niobject>
 
     <niobject name="NiDitherProperty" abstract="0" inherit="NiProperty">
-        Unknown.
+        NiDitherProperty allows the application to turn the dithering of interpolated colors and fog values on and off.
         <add name="Flags" type="Flags">1&#039;s Bit: Enable dithering</add>
     </niobject>
 
     <niobject name="NiRollController" abstract="0" inherit="NiSingleInterpController">
-        Unknown.
+        DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiLookAtInterpolator.
         <add name="Data" type="Ref" template="NiFloatData">The data for the controller.</add>
     </niobject>
 
     <niobject name="NiFloatData" abstract="0" inherit="NiObject">
-        Possibly the 1D position along a 3D path.
+        Wrapper for 1D (one-dimensional) floating point animation keys.
         <add name="Data" type="KeyGroup" template="float">The keys.</add>
     </niobject>
 
     <niobject name="NiFloatExtraData" abstract="0" inherit="NiExtraData">
-        Float extra data.
+        Extra float data.
         <add name="Float Data" type="float">The float data.</add>
     </niobject>
 
     <niobject name="NiFloatsExtraData" abstract="0" inherit="NiExtraData">
-        Unknown.
+        Extra float array data.
         <add name="Num Floats" type="uint">Number of floats in the next field.</add>
         <add name="Data" type="float" arr1="Num Floats">Float data.</add>
     </niobject>
 
     <niobject name="NiFogProperty" abstract="0" inherit="NiProperty">
-        Describes... fog?
+        NiFogProperty allows the application to enable, disable and control the appearance of fog.
         <add name="Flags" type="Flags">
             1&#039;s bit: Enables Fog
             2&#039;s bit: Sets Fog Function to FOG_RANGE_SQ
@@ -3548,7 +3552,7 @@
     </niobject>
 
     <niobject name="NiGravity" abstract="0" inherit="NiParticleModifier">
-        A particle modifier; applies a gravitational field on the particles.
+        LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.
         <add name="Unknown Float 1" type="float" ver1="4.0.0.2">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
         <add name="Type" type="FieldType">The force field&#039;s type.</add>
@@ -3580,7 +3584,7 @@
     </niobject>
 
     <niobject name="NiIntegersExtraData" abstract="0" inherit="NiExtraData">
-        Integers data.
+        Extra integer array data.
         <add name="Num Integers" type="uint">Number of integers.</add>
         <add name="Data" type="uint" arr1="Num Integers">Integers.</add>
     </niobject>
@@ -3591,7 +3595,8 @@
     </niobject>
 
     <niobject name="NiKeyframeData" abstract="0" inherit="NiObject">
-        Keyframes for mesh animation.
+        DEPRECATED (10.2), RENAMED (10.2) to NiTransformData.
+        Wrapper for transformation animation keys.
         <add name="Num Rotation Keys" type="uint">The number of quaternion rotation keys. If the rotation type is XYZ (type 4) then this *must* be set to 1, and in this case the actual number of keys is stored in the XYZ Rotations field.</add>
         <add name="Rotation Type" type="KeyType" cond="Num Rotation Keys != 0">The type of interpolation to use for rotation.  Can also be 4 to indicate that separate X, Y, and Z values are used for the rotation instead of Quaternions.</add>
         <add name="Quaternion Keys" type="QuatKey" arg="Rotation Type" template="Quaternion" arr1="Num Rotation Keys" cond="Rotation Type != 4">The rotation keys if Quaternion rotation is used.</add>
@@ -3610,13 +3615,14 @@
     </enum>
 
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController">
-        Unknown. Start time is 3.4e+38 and stop time is -3.4e+38.
+        DEPRECATED (10.2), REMOVED (20.5)
+        Replaced by NiTransformController and NiLookAtInterpolator.
         <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
         <add name="Look At Node" type="Ptr" template="NiNode">Link to the node to look at?</add>
     </niobject>
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
-        Unknown.
+        NiLookAtInterpolator rotates an object so that it always faces a target object.
         <add name="Flags" type="LookAtFlags" />
         <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
         <add name="Look At Name" type="string">Target node name.</add>
@@ -3630,7 +3636,7 @@
     </niobject>
 
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
-        Describes the material shading properties.
+        Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
         <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
         <add name="Ambient Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects ambient light.</add>
         <add name="Diffuse Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects diffuse light.</add>
@@ -3642,6 +3648,7 @@
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
+        DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Geometry morphing data.
         <add name="Num Morphs" type="uint">Number of morphing object.</add>
         <add name="Num Vertices" type="uint">Number of vertices.</add>
@@ -3662,7 +3669,7 @@
     </niobject>
 
     <niobject name="AvoidNode" abstract="0" inherit="NiNode">
-        Morrowind specific?
+        Morrowind specific.
     </niobject>
 
     <niobject name="FxWidget" abstract="0" inherit="NiNode">
@@ -3722,7 +3729,7 @@
     </bitflags>
 
     <niobject name="NiSwitchNode" abstract="0" inherit="NiNode">
-        A node used to switch between branches, such as for LOD levels?
+        Represents groups of multiple scenegraph subtrees, only one of which (the "active child") is drawn at any given time.
         <add name="Switch Node Flags" type="NiSwitchFlags" ver1="10.1.0.0" />
         <add name="Index" type="uint" />
     </niobject>
@@ -3738,14 +3745,14 @@
     </niobject>
 
     <niobject name="NiPalette" abstract="0" inherit="NiObject">
-        A color palette.
+        NiPalette objects represent mappings from 8-bit indices to 24-bit RGB or 32-bit RGBA colors.
         <add name="Unknown Byte" type="byte">Unknown, Usually = 0.</add>
         <add name="Num Entries" type="uint" default="256">The number of palette entries.  Always = 256.</add>
         <add name="Palette" type="ByteColor4" arr1="256">The color palette.</add>
     </niobject>
 
     <niobject name="NiParticleBomb" abstract="0" inherit="NiParticleModifier">
-        A particle modifier.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Decay?" type="float">Unknown.</add>
         <add name="Duration?" type="float">Unknown.</add>
         <add name="DeltaV?" type="float">Unknown.</add>
@@ -3757,24 +3764,24 @@
     </niobject>
 
     <niobject name="NiParticleColorModifier" abstract="0" inherit="NiParticleModifier">
-        Unknown.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Color Data" type="Ref" template="NiColorData">Color data index.</add>
     </niobject>
 
     <niobject name="NiParticleGrowFade" abstract="0" inherit="NiParticleModifier">
-        This particle system modifier controls the particle size. If it is present the particles start with size 0.0 . Then they grow to their original size and stay there until they fade to zero size again at the end of their lifetime cycle.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Grow" type="float">The time from the beginning of the particle lifetime during which the particle grows.</add>
         <add name="Fade" type="float">The time from the end of the particle lifetime during which the particle fades.</add>
     </niobject>
 
     <niobject name="NiParticleMeshModifier" abstract="0" inherit="NiParticleModifier">
-        Unknown.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Num Particle Meshes" type="uint">The number of particle mesh references that follow.</add>
         <add name="Particle Meshes" arr1="Num Particle Meshes" type="Ref" template="NiAVObject">Links to nodes of particle meshes?</add>
     </niobject>
 
     <niobject name="NiParticleRotation" abstract="0" inherit="NiParticleModifier">
-        Unknown.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Random Initial Axis?" type="byte">Unknown.</add>
         <add name="Initial Axis?" type="Vector3">Unknown.</add>
         <add name="Rotation Speed?" type="float">Unknown.</add>
@@ -3785,15 +3792,15 @@
     </niobject>
 
     <niobject name="NiAutoNormalParticles" abstract="0" inherit="NiParticles">
-        Unknown.
+        LEGACY (pre-10.1). NiParticles which do not house normals and generate them at runtime.
     </niobject>
 
     <niobject name="NiParticleMeshes" abstract="0" inherit="NiParticles">
-        Mesh particle node?
+        LEGACY (pre-10.1). Particle meshes.
     </niobject>
 
     <niobject name="NiParticleMeshesData" abstract="0" inherit="NiRotatingParticlesData">
-        Particle meshes data.
+        LEGACY (pre-10.1). Particle meshes data.
         <add name="Unknown Link 2" type="Ref" template="NiAVObject">Refers to the mesh that makes up a particle?</add>
     </niobject>
 
@@ -3872,6 +3879,7 @@
     </niobject>
 
     <niobject name="NiPathController" abstract="0" inherit="NiTimeController">
+        DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiPathInterpolator.
         Time controller for a path.
         <add name="Unknown Short 2" type="ushort" ver1="10.1.0.0">Unknown.</add>
         <add name="Unknown Int 1" type="uint">Unknown, always 1?</add>
@@ -3943,7 +3951,7 @@
     </niobject>
 
     <niobject name="NiPlanarCollider" abstract="0" inherit="NiParticleModifier">
-        Unknown.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Unknown Short" type="ushort" ver1="10.0.1.0">Usually 0?</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Float 2" type="float">Unknown.</add>
@@ -3972,18 +3980,18 @@
     </niobject>
 
     <niobject name="NiPosData" abstract="0" inherit="NiObject">
-        Position data.
+        Wrapper for position animation keys.
         <add name="Data" type="KeyGroup" template="Vector3">The position keys.</add>
     </niobject>
 
     <niobject name="NiPSysAgeDeathModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown particle modifier.
+        Particle modifier that controls and updates the age of particles in the system.
         <add name="Spawn on Death" type="bool">Unknown.</add>
         <add name="Spawn Modifier" type="Ref" template="NiPSysSpawnModifier">Link to NiPSysSpawnModifier object?</add>
     </niobject>
 
     <niobject name="NiPSysBombModifier" abstract="0" inherit="NiPSysModifier">
-        Particle modifier that uses a NiNode to use as a "Bomb Object" to alter the path of particles.
+        Particle modifier that applies an explosive force to particles.
         <add name="Bomb Object" type="Ptr" template="NiNode">Link to a NiNode for bomb to function.</add>
         <add name="Bomb Axis" type="Vector3">Orientation of bomb object.</add>
         <add name="Decay" type="float">Falloff rate of the bomb object.</add>
@@ -3993,12 +4001,12 @@
     </niobject>
 
     <niobject name="NiPSysBoundUpdateModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown particle system modifier.
+        Particle modifier that creates and updates bound volumes.
         <add name="Update Skip" type="ushort">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysBoxEmitter" abstract="0" inherit="NiPSysVolumeEmitter">
-        Particle emitter that uses points within a defined Box shape to emit from..
+        Particle emitter that uses points within a defined Box shape to emit from.
         <add name="Width" type="float">Defines the Width of the box area.</add>
         <add name="Height" type="float">Defines the Height of the box area.</add>
         <add name="Depth" type="float">Defines the Depth of the box area.</add>
@@ -4021,7 +4029,7 @@
     </niobject>
 
     <niobject name="NiPSysDragModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown.
+        Particle modifier that applies a linear drag force to particles.
         <add name="Parent" type="Ptr" template="NiObject">Parent reference.</add>
         <add name="Drag Axis" type="Vector3">The drag axis.</add>
         <add name="Percentage" type="float">Drag percentage.</add>
@@ -4030,14 +4038,14 @@
     </niobject>
 
     <niobject name="NiPSysEmitterCtlrData" abstract="0" inherit="NiObject">
-        Particle system emitter controller data.
+        DEPRECATED (10.2). Particle system emitter controller data.
         <add name="Float Keys?" type="KeyGroup" template="float">Unknown.</add>
         <add name="Num Visibility Keys?" type="uint">Number of keys.</add>
         <add name="Visibility Keys?" type="Key" arg="1" template="byte" arr1="Num Visibility Keys?">Unknown.</add>
     </niobject>
 
     <niobject name="NiPSysGravityModifier" abstract="0" inherit="NiPSysModifier">
-        Adds gravity to a particle system, when linked to a NiNode to use as a Gravity Object.
+        Particle modifier that applies a gravitational force to particles.
         <add name="Gravity Object" type="Ptr" template="NiNode">Refers to a NiNode for gravity location.</add>
         <add name="Gravity Axis" type="Vector3">Orientation of gravity.</add>
         <add name="Decay" type="float">Falloff range.</add>
@@ -4068,7 +4076,7 @@
     </niobject>
 
     <niobject name="NiPSysMeshUpdateModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown.
+        Particle modifier that updates mesh particles using the age of each particle.
         <add name="Num Meshes" type="uint">The number of object references that follow.</add>
         <add name="Meshes" type="Ref" template="NiAVObject" arr1="Num Meshes">Group of target NiNodes or NiTriShapes?</add>
     </niobject>
@@ -4093,7 +4101,7 @@
     </niobject> 
     
     <niobject name="BSPSysSubTexModifier"  abstract="0" inherit="NiPSysModifier">
-    Similar to a Flip Controller, this handles particle texture animation on a single texture atlas
+        Similar to a Flip Controller, this handles particle texture animation on a single texture atlas
         <add name="Start Frame" type="uint">Starting frame/position on atlas</add>
         <add name="Start Frame Fudge" type="float">Random chance to start on a different frame?</add>
         <add name="End Frame" type="float">Ending frame/position on atlas</add>
@@ -4117,11 +4125,11 @@
     </niobject>
 
     <niobject name="NiPSysPositionModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown particle system modifier.
+        Particle modifier that updates the particle positions based on velocity and last update time.
     </niobject>
 
     <niobject name="NiPSysResetOnLoopCtlr" abstract="0" inherit="NiTimeController">
-        Unknown.
+        Particle modifier that calls reset on a target upon looping.
     </niobject>
 
     <niobject name="NiPSysRotationModifier" abstract="0" inherit="NiPSysModifier">
@@ -4136,7 +4144,7 @@
     </niobject>
 
     <niobject name="NiPSysSpawnModifier" abstract="0" inherit="NiPSysModifier">
-        Unknown particle modifier.
+        Particle modifier that spawns additional copies of a particle.
         <add name="Num Spawn Generations" type="ushort">Unknown.</add>
         <add name="Percentage Spawned" type="float">Unknown.</add>
         <add name="Min Num to Spawn" type="ushort">Unknown.</add>
@@ -4154,7 +4162,7 @@
     </niobject>
 
     <niobject name="NiPSysUpdateCtlr" abstract="0" inherit="NiTimeController">
-        Particle system controller, used for ???.
+        Particle system controller, tells the system to update its simulation.
     </niobject>
 
     <niobject name="NiPSysFieldModifier" abstract="1" inherit="NiPSysModifier">
@@ -4167,23 +4175,23 @@
     </niobject>
 
     <niobject name="NiPSysVortexFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle velocity in force field.
+        Particle system modifier, implements a vortex field force for particles.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
     </niobject>
 
     <niobject name="NiPSysGravityFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle velocity in gravity field.
+        Particle system modifier, implements a gravity field force for particles.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
     </niobject>
 
     <niobject name="NiPSysDragFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle velocity in drag space warp.
+        Particle system modifier, implements a drag field force for particles.
         <add name="Use Direction?" type="bool">Whether to use the direction field?</add>
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
     </niobject>
 
     <niobject name="NiPSysTurbulenceFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle velocity in drag space warp.
+        Particle system modifier, implements a turbulence field force for particles.
         <add name="Frequency" type="float">Frequency of the update.</add>
     </niobject>
 
@@ -4249,7 +4257,7 @@
     </niobject>
 
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle velocity in a field like wind.
+        Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
         <add name="Unknown Float 2" type="float">Unknown</add>
         <add name="Unknown Float 3" type="float">Unknown</add>
@@ -4279,8 +4287,7 @@
     </niobject>
 
     <niobject name="NiPSysRadialFieldModifier" inherit="NiPSysFieldModifier">
-        Particle system modifier, used for controlling the particle
-        velocity in force field.
+        Particle system modifier, updates the particle velocity to simulate the effects of point gravity.
         <add name="Radial Type" type="int">Unknown Enums?</add>
     </niobject>
 
@@ -4289,14 +4296,14 @@
     </niobject>
 
     <niobject name="NiRangeLODData" abstract="0" inherit="NiLODData">
-        Describes levels of detail based on distance of object from camera.
+        NiRangeLODData controls switching LOD levels based on Z depth from the camera to the NiLODNode.
         <add name="LOD Center" type="Vector3">?</add>
         <add name="Num LOD Levels" type="uint">Number of levels of detail.</add>
         <add name="LOD Levels" type="LODRange" arr1="Num LOD Levels">The ranges of distance that each level of detail applies in.</add>
     </niobject>
 
     <niobject name="NiScreenLODData" abstract="0" inherit="NiLODData">
-        Describes levels of detail based on size of object on screen?
+        NiScreenLODData controls switching LOD levels based on proportion of the screen that a bound would include.
         <add name="Bound Center" type="Vector3">The center of the bounding sphere?</add>
         <add name="Bound Radius" type="float">The radius of the bounding sphere?</add>
         <add name="World Center" type="Vector3">The center of the bounding sphere in world space?</add>
@@ -4310,6 +4317,7 @@
     </niobject>
 
     <niobject name="NiSequenceStreamHelper" abstract="0" inherit="NiObjectNET">
+        DEPRECATED (pre-10.1), REMOVED (20.3).
         Keyframe animation root node, in .kf files.
     </niobject>
 
@@ -4395,7 +4403,7 @@
     </niobject>
 
     <niobject name="NiSphericalCollider" abstract="0" inherit="NiParticleModifier">
-        Unknown.
+        LEGACY (pre-10.1) particle modifier.
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Short 1" type="ushort">Unknown.</add>
         <add name="Unknown Float 2" type="float">Unknown.</add>
@@ -4462,7 +4470,7 @@
     </niobject>
 
     <niobject name="NiTextureEffect" abstract="0" inherit="NiDynamicEffect">
-        Enables environment mapping. Should be in both the children list and effects list of the NiTriShape object. For Morrowind: the bump map can be used to bump the environment map (note that the bump map is ignored if no NiTextureEffect object is present).
+        Represents an effect that uses projected textures such as projected lights (gobos), environment maps, and fog maps.
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
@@ -4481,7 +4489,7 @@
     </niobject>
 
     <niobject name="NiTextureModeProperty" abstract="0" inherit="NiProperty">
-        Unknown
+        LEGACY (pre-10.1)
         <add name="Unknown Ints" type="uint" arr1="3" ver2="2.3" />
         <add name="Unknown Short" type="short" ver1="3.0">Unknown. Either 210 or 194.</add>
         <add name="PS2 L" type="short" default="0" ver1="3.1" ver2="10.2.0.0">0?</add>
@@ -4489,6 +4497,7 @@
     </niobject>
 
     <niobject name="NiImage" abstract="0" inherit="NiObject">
+        LEGACY (pre-10.1)
         <add name="Use External" type="byte">0 if the texture is internal to the NIF file.</add>
         <add name="File Name" type="FilePath" cond="Use External != 0">The filepath to the texture.</add>
         <add name="Image Data" type="Ref" template="NiRawImageData" cond="Use External == 0">Link to the internally stored image data.</add>
@@ -4497,6 +4506,7 @@
     </niobject>
 
     <niobject name="NiTextureProperty" abstract="0" inherit="NiProperty">
+        LEGACY (pre-10.1)
         <add name="Unknown Ints 1" type="uint" arr1="2" ver2="2.3">Property flags.</add>
         <add name="Flags" type="Flags" ver1="3.0">Property flags.</add>
         <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
@@ -4504,7 +4514,7 @@
     </niobject>
 
     <niobject name="NiTexturingProperty" abstract="0" inherit="NiProperty">
-        Describes an object&#039;s textures.
+        Describes how a fragment shader should be configured for a given piece of geometry.
         <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
         <add name="Flags" type="Flags" ver1="20.1.0.2">Property flags.</add>
         <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver1="3.3.0.13" ver2="20.1.0.1">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
@@ -4548,7 +4558,7 @@
     <niobject name="NiMultiTextureProperty" abstract="0" inherit="NiTexturingProperty" />
 
     <niobject name="NiTransformData" abstract="0" inherit="NiKeyframeData">
-        Mesh animation keyframe data.
+        Wrapper for transformation animation keys.
     </niobject>
 
     <niobject name="NiTriShape" abstract="0" inherit="NiTriBasedGeom">
@@ -4603,6 +4613,7 @@
     </niobject>
 
     <niobject name="NiBezierTriangle4" abstract="0" inherit="NiObject">
+        LEGACY (pre-10.1)
         Sub data of NiBezierMesh
         <add name="Unknown 1" type="uint" arr1="6">unknown</add>
         <add name="Unknown 2" type="ushort">unknown</add>
@@ -4616,6 +4627,7 @@
     </niobject>
 
     <niobject name="NiBezierMesh" abstract="0" inherit="NiAVObject">
+        LEGACY (pre-10.1)
         Unknown
         <add name="Num Bezier Triangles" type="uint">references.</add>
         <add name="Bezier Triangle" type="Ref" template="NiBezierTriangle4" arr1="Num Bezier Triangles">unknown</add>
@@ -4642,7 +4654,6 @@
         Pesumably a progressive mesh with triangles specified by edge splits.
         Seems to be specific to Freedom Force.
         The structure of this is uncertain and highly experimental at this point.
-        No file with this data can currently be read properly.
         <add name="Unknown Shorts" type="ushort"></add>
         <add name="Unknown Count 1" type ="ushort"></add>
         <add name="Unknown Count 2" type ="ushort"></add>
@@ -4655,12 +4666,14 @@
     </niobject>
 
     <niobject name="NiUVController" abstract="0" inherit="NiTimeController">
+        DEPRECATED (pre-10.1), REMOVED (20.3).
         Time controller for texture coordinates.
         <add name="Unknown Short" type="ushort">Always 0?</add>
         <add name="Data" type="Ref" template="NiUVData">Texture coordinate controller data index.</add>
     </niobject>
 
     <niobject name="NiUVData" abstract="0" inherit="NiObject">
+        DEPRECATED (pre-10.1), REMOVED (20.3)
         Texture coordinate data.
         <add name="UV Groups" type="KeyGroup" template="float" arr1="4">
             Four UV data groups. Appear to be U translation, V translation, U scaling/tiling, V scaling/tiling.
@@ -4668,7 +4681,8 @@
     </niobject>
 
     <niobject name="NiVectorExtraData" abstract="0" inherit="NiExtraData">
-        Extra vector data.
+        DEPRECATED (20.5).
+        Extra data in the form of a vector (as x, y, z, w components).
         <add name="Vector Data" type="Vector3">The vector data.</add>
         <add name="Unknown Float" type="float">Not sure whether this comes before or after the vector data.</add>
     </niobject>
@@ -4691,6 +4705,7 @@
     </niobject>
 
     <niobject name="NiVertWeightsExtraData" abstract="0" inherit="NiExtraData">
+        DEPRECATED (10.x), REMOVED (?)
         Not used in skinning.
         Unsure of use - perhaps for morphing animation or gravity.
         <add name="Num Bytes" type="uint">Number of bytes in this data object.</add>
@@ -4699,13 +4714,14 @@
     </niobject>
 
     <niobject name="NiVisData" abstract="0" inherit="NiObject">
+        DEPRECATED (10.2), REMOVED (?), Replaced by NiBoolData.
         Visibility data for a controller.
         <add name="Num Keys" type="uint">The number of visibility keys that follow.</add>
         <add name="Keys" type="Key" arg="1" template="byte" arr1="Num Keys">The visibility keys.</add>
     </niobject>
 
     <niobject name="NiWireframeProperty" abstract="0" inherit="NiProperty">
-        Unknown.
+        Allows applications to switch between drawing solid geometry or wireframe outlines.
         <add name="Flags" type="Flags">
             Property flags.
             0 - Wireframe Mode Disabled
@@ -4714,7 +4730,7 @@
     </niobject>
 
     <niobject name="NiZBufferProperty" abstract="0" inherit="NiProperty">
-        This Property controls the Z buffer (OpenGL: depth buffer).
+        Allows applications to set the test and write modes of the renderer's Z-buffer and to set the comparison function used for the Z-buffer test.
         <add name="Flags" type="Flags" default="3">
             Bit 0 enables the z test
             Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
@@ -4729,6 +4745,7 @@
     </niobject>
 
     <niobject name="NiRawImageData" abstract="0" inherit="NiObject">
+        LEGACY (pre-10.1)
         Raw image data.
         <add name="Width" type="uint">Image width</add>
         <add name="Height" type="uint">Image height</add>
@@ -4738,13 +4755,13 @@
     </niobject>
 
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode">
-        Unknown node.  Found in Loki.
+        Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.
         <add name="Sorting Mode" type="SortingMode" default="SORTING_INHERIT">Sorting</add>
         <add name="Unknown Int 2" type="int" default="-1" ver2="10.2.0.0">Unknown.</add>
     </niobject>
 
     <niobject name="NiSourceCubeMap" abstract="0" inherit="NiSourceTexture">
-        Unknown node.  Found in Emerge Demo.
+        Represents cube maps that are created from either a set of six image files, six blocks of pixel data, or a single pixel data with six faces.
     </niobject>
 
     <niobject name="NiPhysXProp" abstract="0" inherit="NiObjectNET">
@@ -5123,6 +5140,7 @@
     </compound>
 
     <niobject name="NiScreenElementsData" inherit="NiTriShapeData">
+        DEPRECATED (20.5), functionality included in NiMeshScreenElements.
         Two dimensional screen elements.
         <add name="Max Polygons" type="ushort">Maximum number of polygons?</add>
         <add name="Polygons" type="Polygon" arr1="Max Polygons">Polygons</add>
@@ -5136,18 +5154,19 @@
     </niobject>
 
     <niobject name="NiScreenElements" inherit="NiTriShape">
+        DEPRECATED (20.5), replaced by NiMeshScreenElements.
         Two dimensional screen elements.
     </niobject>
 
     <niobject name="NiRoomGroup" inherit="NiNode">
-        Grouping node for nodes in a Portal
+        NiRoomGroup represents a set of connected rooms i.e. a game level.
         <add name="Shell Link" type="Ptr" template="NiNode" >Outer Shell Geometry Node?</add>
         <add name="Num Rooms" type="int">Number of rooms in this group</add>
         <add name="Rooms" type="Ptr" template="NiRoom" arr1="Num Rooms">Rooms associated with this group.</add>
     </niobject>
 
     <niobject name="NiRoom" inherit="NiNode">
-        Grouping node for nodes in a Portal
+        NiRoom objects represent cells in a cell-portal culling system.
         <add name="Num Walls" type="int">Number of walls in a room?</add>
         <add name="Wall Plane" type="Vector4" arr1="Num Walls">Face normal and unknown value.</add>
         <add name="Num In Portals" type="int">Number of doors into room</add>
@@ -5159,7 +5178,8 @@
     </niobject>
 
     <niobject name="NiPortal" inherit="NiAVObject">
-        A Portal
+        NiPortal objects are grouping nodes that support aggressive visibility culling.
+        They represent flat polygonal regions through which a part of a scene graph can be viewed.
         <add name="Unknown Flags" type="Flags">Unknown flags.</add>
         <add name="Unknown Short 2" type="short">Unknown</add>
         <add name="Num Vertices" type="ushort">Number of vertices in this polygon</add>
@@ -5286,7 +5306,7 @@
     </bitflags>
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
-        Bethesda-specific Property node
+        Bethesda-specific property.
         <add name="Smooth" type="Flags" default="1">Unknown.
             0: smooth no
             1: smooth yes
@@ -5312,7 +5332,7 @@
     </niobject>
 
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
-        Bethesda-specific Shade node.
+        Bethesda-specific property.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
@@ -5323,28 +5343,26 @@
 
     <!-- Skyrim specific Node -->
     <niobject name="BSEffectShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate float variables in BSEffectShaderProperty.
+        This controller is used to animate float variables in BSEffectShaderProperty.
         <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
     </niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
-    This controller is used to animate colors in BSEffectShaderProperty.
+		This controller is used to animate colors in BSEffectShaderProperty.
 		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyFloatController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate float variables in BSLightingShaderProperty.
+		This controller is used to animate float variables in BSLightingShaderProperty.
 		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
-    This controller is used to animate colors in BSLightingShaderProperty.
+		This controller is used to animate colors in BSLightingShaderProperty.
 		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
 	</niobject>	
 	
-	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController">
-    Unkown
-	</niobject>
+	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController" />
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiTimeController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
@@ -5388,7 +5406,7 @@
     </niobject>
 
     <niobject name="WaterShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node? Found in Fallout3
+        Bethesda-specific property. Found in Fallout3
     </niobject>
 
     <enum name="SkyObjectType" storage="uint">
@@ -5401,39 +5419,39 @@
         <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
     </enum>
     <niobject name="SkyShaderProperty" abstract="0" inherit="BSShaderLightingProperty">
-        Bethesda-specific node? Found in Fallout3
+        Bethesda-specific property. Found in Fallout3
         <add name="File Name" type="SizedString">The texture.</add>
         <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
 
     <niobject name="TileShaderProperty" abstract="0" inherit="BSShaderLightingProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
         <add name="File Name" type="SizedString">Texture file name</add>
     </niobject>
 
     <niobject name="DistantLODShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
     </niobject>
 
     <niobject name="BSDistantTreeShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
     </niobject>
 
     <niobject name="TallGrassShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
         <add name="File Name" type="SizedString">Texture file name</add>
     </niobject>
 
     <niobject name="VolumetricFogShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
     </niobject>
 
     <niobject name="HairShaderProperty" abstract="0" inherit="BSShaderProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
     </niobject>
 
     <niobject name="Lighting30ShaderProperty" abstract="0" inherit="BSShaderPPLightingProperty">
-        Bethesda-specific node.
+        Bethesda-specific property.
     </niobject>
 
     <bitflags name="SkyrimShaderPropertyFlags1" storage="uint">
@@ -5689,20 +5707,20 @@
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" abstract="0" inherit="NiSkinInstance">
-        Bethesda-specific node.
+        Bethesda-specific skin instance.
         <add name="Num Partitions" type="int">Unknown</add>
 
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions">Unknown</add>
     </niobject>
 
     <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData">
-        Bethesda-specific node. (for dynamic decal projection?)
+        Bethesda-specific extra data. (for dynamic decal projection?)
         <add name="Num Vector Blocks" type="short">Number of groups</add>
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks">Number of Blocks</add>
     </niobject>
 
     <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier">
-        Bethesda-Specific Particle node.
+        Bethesda-specific particle modifier.
         <add name="Fade In Percent" type="float">Unknown</add>
         <add name="Fade out Percent" type="float">Unknown</add>
         <add name="Color 1 End Percent" type="float">Unknown</add>
@@ -5720,7 +5738,7 @@
     </bitflags>
 
     <niobject name="BSValueNode" inherit="NiNode">
-        Bethesda-Specific node. Found on fxFire effects
+        Bethesda-specific node. Found on fxFire effects
         <add name="Value" type="uint">Value</add>
         <add name="Value Node Flags" type="BSValueNodeFlags">Value node flags.</add>
     </niobject>
@@ -5747,13 +5765,13 @@
 
 
     <niobject name="BSMaterialEmittanceMultController" inherit="NiFloatInterpController">
-        Bethesda-Specific node.
+        Bethesda-Specific time controller.
     </niobject>
 
 
 
     <niobject name="BSMasterParticleSystem" inherit="NiNode">
-        Bethesda-Specific node.
+        Bethesda-Specific particle system.
         <add name="Max Emitter Objects" type="ushort">Unknown</add>
         <add name="Num Particle Systems" type="int">Unknown</add>
         <add name="Particle Systems" type="Ref" template="NiAVObject" arr1="Num Particle Systems">Unknown</add>
@@ -5771,7 +5789,7 @@
 
 
     <niobject name="BSRefractionStrengthController" inherit="NiFloatInterpController">
-        Bethesda-Specific node.
+        Bethesda-Specific time controller.
     </niobject>
 
 
@@ -5799,8 +5817,7 @@
 
 
     <niobject name="BSRefractionFirePeriodController" abstract="0" inherit="NiTimeController">
-        Bethesda-specific node.
-        <!-- interpolator present in fallout new vegas; potential issues with fallout 3? -->
+        Bethesda-specific time controller.
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="20.2.0.7">Link to Interpolator.</add>
     </niobject>
 
@@ -5833,14 +5850,14 @@
     </compound>
 
     <compound name="BSTreadTransform">
-        Bethesda-specific node.
+        Bethesda-specific compound.
         <add name="Name" type="string">Name of affected node?</add>
         <add name="Transform 1" type="BSTreadTransformData">Transform data.</add>
         <add name="Transform 2" type="BSTreadTransformData">Transform data.</add>
     </compound>
 
     <niobject name="BSTreadTransfInterpolator" abstract="0" inherit="NiInterpolator">
-        Bethesda-specific node.
+        Bethesda-specific interpolator.
         <add name="Num Tread Transforms" type="int">Unknown.</add>
         <add name="Tread Transforms" type="BSTreadTransform" arr1="Num Tread Transforms">Unknown.</add>
         <add name="Data" type="Ref" template="NiFloatData">Unknown float data.</add>
@@ -5854,7 +5871,7 @@
     </enum>
 
     <niobject name="BSAnimNote" abstract="0" inherit="NiObject">
-        Bethesda-specific node.
+        Bethesda-specific object.
         <add name="Type" type="AnimNoteType">Type of this note.</add>
         <add name="Time" type="float">Location in time.</add>
         <add name="Arm" type="uint" cond="Type == 1">Unknown.</add>
@@ -5863,13 +5880,13 @@
     </niobject>
 
     <niobject name="BSAnimNotes" abstract="0" inherit="NiObject">
-        Bethesda-specific node.
+        Bethesda-specific object.
         <add name="Num Anim Notes" type="ushort">Number of BSAnimNote objects.</add>
         <add name="Anim Notes" type="Ref" template="BSAnimNote" arr1="Num Anim Notes">BSAnimNote objects.</add>
     </niobject>
 
     <niobject name="bhkLiquidAction" inherit="bhkSerializable">
-        Bethesda-specific node.
+        Bethesda-specific Havok serializable.
         <add name="User Data" type="uint" />
         <add name="Unknown Int 2" type="int">Unknown Flag</add>
         <add name="Unknown Int 3" type="int">Unknown Flag</add>
@@ -5895,7 +5912,7 @@
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject">
-        Bethesda-specific node.
+        Bethesda-specific object.
         <add name="Data" type="Ref" template="BSMultiBoundData" />
     </niobject>
 
@@ -5911,19 +5928,19 @@
     </niobject>
     
     <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
-        Bethesda-specific node.
+        Bethesda-specific object.
         <add name="Center" type="Vector3">Center</add>
         <add name="Radius" type="float">Radius</add>
     </niobject>
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
-        Bethesda-specific node.
+        Bethesda-specific AV object.
         <add name="Num Segments" type="int" >Number of segments in the square grid</add>
         <add name="Segment" type="BSGeometrySegmentData" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
     <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
-        Bethesda-specific node.
+        Bethesda-specific object.
         <add name="Position" type="Vector3">Position of the AABB's center</add>
         <add name="Extent" type="Vector3">Extent of the AABB in all directions</add>
     </niobject>
@@ -5982,20 +5999,20 @@
     </niobject>
 
     <niobject name="BSWArray" inherit="NiExtraData">
-        Bethesda-specific node.
+        Bethesda-specific extra data.
         <add name="Num Items" type="int">Unknown</add>
         <add name="Items" type="int" arr1="Num Items">Unknown</add>
     </niobject>
 
     <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom">
-        Bethesda-specific node.
+        Bethesda-specific Havok serializable.
         <add name="Unused" type="byte" arr1="8" />
         <add name="AABB Min" type="Vector4" />
         <add name="AABB Max" type="Vector4" />
     </niobject>
 
     <niobject name="BSFrustumFOVController" inherit="NiTimeController">
-        Bethesda-specific node.
+        Bethesda-specific time controller.
         <add name="Interpolator" type="Ref" template="NiFloatInterpolator">Frustrum field of view animation interpolater and data.</add>
     </niobject>
 
@@ -6011,7 +6028,7 @@
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
-        Bethesda-Specific node.
+        Bethesda-Specific Havok serializable.
         <add name="Body" type="Ptr" template="NiObject" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Int 2" type="uint" />
@@ -6803,22 +6820,22 @@
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
-    A variation on NiTriShape, for visibility control over vertex groups.
+		A variation on NiTriShape, for visibility control over vertex groups.
 		<add name="Level 0 Size" type="uint">Unknown</add>
 		<add name="Level 1 Size" type="uint">Unknown</add>
 		<add name="Level 2 Size" type="uint">Unknown</add>
 	</niobject>
 
 	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
-    Furniture Marker for actors
+        Furniture Marker for actors
     </niobject>
 	
     <niobject name="BSLeafAnimNode" inherit="NiNode">
-    Unknown, related to trees.
+        Unknown, related to trees.
     </niobject>
     
     <niobject name="BSTreeNode" inherit="NiNode">
-    Node for handling Trees, Switches branch configurations for variation?
+        Node for handling Trees, Switches branch configurations for variation?
         <add name="Num Bones 1" type="uint">Unknown</add>
         <add name="Bones 1" type="Ref" arr1="Num Bones 1" template="NiNode">Unknown</add>
         <add name="Num Bones 2" type="uint">Unknown</add>
