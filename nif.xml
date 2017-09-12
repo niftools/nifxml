@@ -1491,15 +1491,6 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
-    <!-- no longer used
-    <compound name="RotationKeyArray" istemplate="1">
-        Rotation key array.
-        <add name="Num Keys" type="uint">Number of keys.</add>
-        <add name="Key Type" type="KeyType" cond="Num Keys != 0">Key type (LINEAR_KEY, QUADRATIC_KEY, TBC_KEY, or XYZ_ROTATION_KEY).</add>
-        <add name="Keys" type="QuatKey" arg="Key Type" template="TEMPLATE" arr1="Num Keys">The rotation keys.</add>
-    </compound>
-    -->
-
     <compound name="TexCoord" niflibtype="TexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
@@ -1511,6 +1502,12 @@
         <add name="u" type="hfloat">First coordinate.</add>
         <add name="v" type="hfloat">Second coordinate.</add>
     </compound>
+    
+    <enum name="TransformMethod" storage="uint" prefix="TM">
+        <option value="0" name="Maya Deprecated" />
+        <option value="1" name="Max" />
+        <option value="2" name="Maya" />
+    </enum>
 
     <compound name="TexDesc">
         Texture description.
@@ -1528,7 +1525,7 @@
         <add name="Translation" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The amount to translate the texture coordinates in each direction?</add>
         <add name="Tiling" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="1.0, 1.0">The number of times the texture is tiled in each direction?</add>
         <add name="W Rotation" type="float" default="0.0" cond="Has Texture Transform" ver1="10.1.0.0">2D Rotation of texture image around third W axis after U and V.</add>
-        <add name="Transform Type?" type="uint" default="0" cond="Has Texture Transform" ver1="10.1.0.0">The texture transform type?  Doesn&#039;t seem to do anything.</add>
+        <add name="Transform Method" type="TransformMethod" default="0" cond="Has Texture Transform" ver1="10.1.0.0">Depending on the source, scaling can occur before or after rotation.</add>
         <add name="Center Offset" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The offset from the origin?</add>
     </compound>
 
@@ -1539,20 +1536,6 @@
         <add name="Map Index" type="uint" cond="Is Used">Map Index</add>
     </compound>
 
-    <compound name="TexSource">
-        A texture source.
-        <add name="Use External" type="byte">Is the texture external?</add>
-        <add name="File Name" type="FilePath" cond="Use External == 1">
-            The external texture file name.
-
-            Note: all original morrowind nifs use name.ext only for addressing the textures, but most mods use something like textures/[subdir/]name.ext. This is due to a feature in Morrowind resource manager: it loads name.ext, textures/name.ext and textures/subdir/name.ext but NOT subdir/name.ext.
-        </add>
-        <add name="Unknown Link" type="Ref" template="NiObject" cond="Use External == 1" ver1="10.1.0.0">Unknown.</add>
-        <add name="Unknown Byte" type="byte" cond="Use External == 0" ver2="10.0.1.0">Unknown.</add>
-        <add name="File Name" type="FilePath" cond="Use External == 0" ver1="10.1.0.0">The original source filename of the image embedded by the referred NiPixelData object.</add>
-        <add name="Pixel Data" type="Ref" template="NiPixelData" cond="Use External == 0">Pixel data object index.</add>
-    </compound>
-
     <compound name="Triangle" niflibtype="Triangle">
         List of three vertex indices.
         <add name="v1" type="ushort">First vertex index.</add>
@@ -1560,23 +1543,20 @@
         <add name="v3" type="ushort">Third vertex index.</add>
     </compound>
 	
-	<bitflags name="VertexFlags" storage="ushort">
-		<option value="0" name="VF_Unknown_1" />       <!-- & 1 -->
-		<option value="1" name="VF_Unknown_2" />       <!-- & 2 -->
-		<option value="2" name="VF_Unknown_3" />       <!-- & 4 -->
-		<option value="3" name="VF_Unknown_4" />       <!-- & 8 -->
-		<option value="4" name="VF_Vertex" />          <!-- & 16 -->
-		<option value="5" name="VF_UVs" />             <!-- & 32 -->
-		<option value="6" name="VF_Unknown_5" />       <!-- & 64 -->
-		<option value="7" name="VF_Normals" />         <!-- & 128 -->
-		<option value="8" name="VF_Tangents" />        <!-- & 256 -->
-		<option value="9" name="VF_Vertex_Colors" />   <!-- & 512 -->
-		<option value="10" name="VF_Skinned" />        <!-- & 1024 -->
-		<option value="11" name="VF_Unknown_6" />      <!-- & 2048 -->
-		<option value="12" name="VF_Eye_Data" />       <!-- & 4096 -->
-		<option value="13" name="VF_Unknown_7" />      <!-- & 8192 -->
-		<option value="14" name="VF_Full_Precision" /> <!-- & 16384 -->
-		<option value="15" name="VF_Unknown_8" />      <!-- & 32768 -->
+	<bitflags name="VertexFlags" storage="ushort" prefix="VF">
+		<!-- First 4 bits are unused -->
+		<option value="4" name="Vertex" />          <!-- & 16 -->
+		<option value="5" name="UVs" />             <!-- & 32 -->
+		<option value="6" name="UVs_2" />           <!-- & 64 -->
+		<option value="7" name="Normals" />         <!-- & 128 -->
+		<option value="8" name="Tangents" />        <!-- & 256 -->
+		<option value="9" name="Vertex_Colors" />   <!-- & 512 -->
+		<option value="10" name="Skinned" />        <!-- & 1024 -->
+		<option value="11" name="Land_Data" />      <!-- & 2048 -->
+		<option value="12" name="Eye_Data" />       <!-- & 4096 -->
+		<option value="13" name="Instance" />       <!-- & 8192 -->
+		<option value="14" name="Full_Precision" /> <!-- & 16384 -->
+		<!-- Last bit unused -->
 	</bitflags>
     
 	<compound name="BSVertexData" niflibtype="BSVertexData">
@@ -1667,27 +1647,26 @@
         <add name="f5" type="float"></add>
     </compound>-->
 
+    <compound name="NiPlane">
+        A plane.
+        <add name="Normal" type="Vector3">The plane normal.</add>
+        <add name="Constant" type="float">The plane constant.</add>
+    </compound>
+
     <compound name="NiBound">
         A sphere.
         <add name="Center" type="Vector3">The sphere's center.</add>
         <add name="Radius" type="float">The sphere's radius.</add>
     </compound>
 
-    <compound name="QTransform">
-        <add name="Translation" type="Vector3">Translation.</add>
-        <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float" default="1.0">Scale.</add>
+    <compound name="NiQuatTransform">
+        <add name="Translation" type="Vector3" />
+        <add name="Rotation" type="Quaternion" />
+        <add name="Scale" type="float" default="1.0" />
+        <add name="TRS Valid" type="bool" arr1="3" ver2="10.1.0.109">Whether each transform component is valid.</add>
     </compound>
 
-    <compound name="MTransform">
-        <add name="Translation" type="Vector3">Translation.</add>
-        <add name="Rotation" type="Matrix33">Rotation.</add>
-        <add name="Scale" type="float" default="1.0">Scale.</add>
-    </compound>
-
-    <!-- SkinTransform is like MTansform, but rotation comes first; used in skinning -->
-    <!-- TODO unify all transform types via a general purpose template type? -->
-    <compound name="SkinTransform">
+    <compound name="NiTransform">
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -1759,7 +1738,7 @@
 
     <compound name="SkinData">
         Skinning data component.
-        <add name="Skin Transform" type="SkinTransform">Offset of the skin from this bone in bind position.</add>
+        <add name="Skin Transform" type="NiTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
         <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
@@ -2039,9 +2018,8 @@
     </compound>
 
     <compound name="HalfSpaceBV">
-        <add name="Normal" type="Vector3">Normal</add>
-        <add name="Center" type="Vector3">Center</add>
-        <add name="Unknown Float 1" type="float">Unknown.</add>
+        <add name="Plane" type="NiPlane" />
+        <add name="Center" type="Vector3" />
     </compound>
 
     <compound name="BoundingVolume">
@@ -2600,11 +2578,7 @@
 
     <niobject name="NiTransformInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         An interpolator for transform keyframes.
-        <!-- TODO use QTransform -->
-        <add name="Translation" type="Vector3">Translate.</add>
-        <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float">Scale.</add>
-        <add name="Unknown Bytes" type="byte" arr1="3" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
+        <add name="Transform" type="NiQuatTransform" />
         <add name="Data" type="Ref" template="NiTransformData">Refers to NiTransformData.</add>
     </niobject>
 
@@ -2614,15 +2588,15 @@
         <add name="Data" type="Ref" template="NiPosData">Reference to NiPosData.</add>
     </niobject>
 
-    <enum name="PathFlags" storage="ushort">
-        <option value="0x1" name="NIPI_CVDataNeedsUpdate">CVDataNeedsUpdate</option>
-        <option value="0x2" name="NIPI_CurveTypeOpen">CurveTypeOpen</option>
-        <option value="0x4" name="NIPI_AllowFlip">AllowFlip</option>
-        <option value="0x8" name="NIPI_Bank">Bank</option>
-        <option value="0x10" name="NIPI_ConstantVelocity">ConstantVelocity</option>
-        <option value="0x20" name="NIPI_Follow">Follow</option>
-        <option value="0x40" name="NIPI_Flip">Flip</option>
-    </enum>
+    <bitflags name="PathFlags" storage="ushort" prefix="NIPI">
+        <option value="0" name="CVDataNeedsUpdate" />
+        <option value="1" name="CurveTypeOpen" />
+        <option value="2" name="AllowFlip" />
+        <option value="3" name="Bank" />
+        <option value="4" name="ConstantVelocity" />
+        <option value="5" name="Follow" />
+        <option value="6" name="Flip" />
+    </bitflags>
 
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Used to make an object follow a predefined spline path.
@@ -2760,7 +2734,6 @@
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
         <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects.</add>
         <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
-        <!-- TODO use MTransform -->
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -3606,33 +3579,28 @@
         <add name="Scales" type="KeyGroup" template="float">Scale keys.</add>
     </niobject>
 
-    <enum name="LookAtFlags" storage="ushort">
-        Should be a bitfield for flip toggle.
-        <option value="0" name="LOOK_X_AXIS">X-Axis</option>
-        <option value="1" name="LOOK_FLIP">Flip</option>
-        <option value="2" name="LOOK_Y_AXIS">Y-Axis</option>
-        <option value="4" name="LOOK_Z_AXIS">Z-Axis</option>
-    </enum>
+    <bitflags name="LookAtFlags" storage="ushort">
+        <option value="0" name="LOOK_FLIP">Flip</option>
+        <option value="1" name="LOOK_Y_AXIS">Y-Axis</option>
+        <option value="2" name="LOOK_Z_AXIS">Z-Axis</option>
+    </bitflags>
 
     <niobject name="NiLookAtController" abstract="0" inherit="NiTimeController">
         DEPRECATED (10.2), REMOVED (20.5)
         Replaced by NiTransformController and NiLookAtInterpolator.
-        <add name="Unknown1" type="ushort" ver1="10.1.0.0">Unknown.</add>
-        <add name="Look At Node" type="Ptr" template="NiNode">Link to the node to look at?</add>
+        <add name="Flags" type="LookAtFlags" ver1="10.1.0.0" />
+        <add name="Look At" type="Ptr" template="NiNode" />
     </niobject>
 
     <niobject name="NiLookAtInterpolator" abstract="0" inherit="NiInterpolator">
         NiLookAtInterpolator rotates an object so that it always faces a target object.
         <add name="Flags" type="LookAtFlags" />
-        <add name="Look At" type="Ptr" template="NiNode">Refers to a Node to focus on.</add>
-        <add name="Look At Name" type="string">Target node name.</add>
-        <!-- TODO use QTransform -->
-        <add name="Translation" type="Vector3" ver2="20.5.0.0">Translate.</add>
-        <add name="Rotation" type="Quaternion" ver2="20.5.0.0">Rotation.</add>
-        <add name="Scale" type="float" ver2="20.5.0.0">Scale.</add>
-        <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator">Refers to NiPoint3Interpolator.</add>
-        <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
-        <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator">Refers to a NiFloatInterpolator.</add>
+        <add name="Look At" type="Ptr" template="NiNode" />
+        <add name="Look At Name" type="string" />
+        <add name="Transform" type="NiQuatTransform" ver2="20.5.0.0" />
+        <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator" />
+        <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator" />
+        <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator" />
     </niobject>
 
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
@@ -4332,7 +4300,7 @@
 
     <niobject name="NiSkinData" abstract="0" inherit="NiObject">
         Skinning data.
-        <add name="Skin Transform" type="SkinTransform">Offset of the skin from this bone in bind position.</add>
+        <add name="Skin Transform" type="NiTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Num Bones" type="uint">Number of bones.</add>
         <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="4.0.0.2" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
         <add name="Has Vertex Weights" type="byte" ver1="4.2.1.0" default="1">Enables Vertex Weights for this NiSkinData.</add>
@@ -4480,11 +4448,10 @@
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
-        <add name="Clipping Plane" default="0" type="byte">Determines whether a clipping plane is used.  0 means that a plane is not used.</add>
-        <add name="Unknown Vector" type="Vector3" default="1.0, 0.0, 0.0">Unknown: (1,0,0)?</add>
-        <add name="Unknown Float" type="float">Unknown. 0?</add>
-        <add name="PS2 L" type="short" default="0" ver2="10.2.0.0">0?</add>
-        <add name="PS2 K" type="short" default="-75" ver2="10.2.0.0">-75?</add>
+        <add name="Enable Plane" default="0" type="byte">Determines whether a clipping plane is used.</add> <!-- Not bool as always 8-bit -->
+        <add name="Plane" type="NiPlane" />
+        <add name="PS2 L" type="short" default="0" ver2="10.2.0.0" />
+        <add name="PS2 K" type="short" default="-75" ver2="10.2.0.0" />
         <add name="Unknown Short" type="ushort" ver2="4.1.0.12">Unknown: 0.</add>
     </niobject>
 
@@ -4598,16 +4565,6 @@
         <add name="Child 3" type="Ref" template="NiObject">unknown</add>
     </niobject>
 
-    <!--
-    <niobject name="NiEnvMappedTriShapeData" abstract="0" inherit="NiTriBasedGeomData">
-        Holds mesh data using a list of singular triangles.
-        <add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
-        <add name="Has Triangles" type="bool">Do we have triangle data?</add>
-        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles != 0">Triangle face data.</add>
-        <add name="Num Match Groups" type="ushort">Number of shared normals groups.</add>
-        <add name="Match Groups" type="MatchGroup" arr1="Num Match Groups">The shared normals.</add>
-    </niobject>
-    -->
     <niobject name="NiEnvMappedTriShapeData" abstract="0" inherit="NiTriShapeData">
         Holds mesh data using a list of singular triangles.
     </niobject>
@@ -5167,14 +5124,14 @@
 
     <niobject name="NiRoom" inherit="NiNode">
         NiRoom objects represent cells in a cell-portal culling system.
-        <add name="Num Walls" type="int">Number of walls in a room?</add>
-        <add name="Wall Plane" type="Vector4" arr1="Num Walls">Face normal and unknown value.</add>
-        <add name="Num In Portals" type="int">Number of doors into room</add>
-        <add name="In Portals" type="Ptr" template="NiPortal" arr1="Num In Portals">Number of portals into room</add>
-        <add name="Num Portals 2" type="int">Number of doors out of room</add>
-        <add name="Portals 2" type="Ptr" template="NiPortal" arr1="Num Portals 2">Number of portals out of room</add>
-        <add name="Num Items" type="int">Number of unknowns</add>
-        <add name="Items" type="Ptr" template="NiAVObject" arr1="Num Items">All geometry associated with room.</add>
+        <add name="Num Walls" type="int" />
+        <add name="Wall Planes" type="NiPlane" arr1="Num Walls" />
+        <add name="Num In Portals" type="uint" />
+        <add name="In Portals" type="Ptr" template="NiPortal" arr1="Num In Portals">The portals which see into the room.</add>
+        <add name="Num Out Portals" type="uint" />
+        <add name="Out Portals" type="Ptr" template="NiPortal" arr1="Num Out Portals">The portals which see out of the room.</add>
+        <add name="Num Fixtures" type="uint" />
+        <add name="Fixtures" type="Ptr" template="NiAVObject" arr1="Num Fixtures">All geometry associated with the room.</add>
     </niobject>
 
     <niobject name="NiPortal" inherit="NiAVObject">
@@ -5841,19 +5798,11 @@
         <add name="Unknown Float 2" type="float" />
     </niobject>
 
-    <compound name="BSTreadTransformData">
-        Bethesda-specific node.
-        <!-- TODO use QTransform -->
-        <add name="Translation" type="Vector3">Translation.</add>
-        <add name="Rotation" type="Quaternion">Rotation.</add>
-        <add name="Scale" type="float">Scale (usually float_min).</add>
-    </compound>
-
     <compound name="BSTreadTransform">
         Bethesda-specific compound.
-        <add name="Name" type="string">Name of affected node?</add>
-        <add name="Transform 1" type="BSTreadTransformData">Transform data.</add>
-        <add name="Transform 2" type="BSTreadTransformData">Transform data.</add>
+        <add name="Name" type="string" />
+        <add name="Transform 1" type="NiQuatTransform" />
+        <add name="Transform 2" type="NiQuatTransform" />
     </compound>
 
     <niobject name="BSTreadTransfInterpolator" abstract="0" inherit="NiInterpolator">
@@ -6348,10 +6297,10 @@
             RECOMPUTE_BOUNDS = 0x0002
         </add>
         <add name="Skeleton Root" type="Ptr" template="NiAVObject">The root bone of the skeleton.</add><!-- Root Bone Parent -->
-        <add name="Skeleton Transform" type="SkinTransform">The transform that takes the root bone parent coordinate system into the skin coordinate system.</add><!-- Root Bone Parent To Skin Transform -->
+        <add name="Skeleton Transform" type="NiTransform">The transform that takes the root bone parent coordinate system into the skin coordinate system.</add><!-- Root Bone Parent To Skin Transform -->
         <add name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</add>
         <add name="Bones" type="Ptr" template="NiAVObject" arr1="Num Bones">Pointers to the bone nodes that affect this skin.</add>
-        <add name="Bone Transforms" type="SkinTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
+        <add name="Bone Transforms" type="NiTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add><!-- Skin To Bone Transforms -->
         <add name="Bone Bounds" type="NiBound" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add>
     </niobject>
 
