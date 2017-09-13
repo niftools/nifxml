@@ -3347,45 +3347,45 @@
 
     <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate a float value over time.
+        <add name="Value" type="float">Base value when curve not defined.</add>
+        <add name="Handle" type="uint">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineFloatInterpolator">
         NiBSplineFloatInterpolator plus the information required for using compact control points.
-        <add name="Base" type="float">Base value when curve not defined.</add>
-        <add name="Offset" type="uint">Starting offset for the data. (USHRT_MAX for no data.)</add>
-        <add name="Bias" type="float">Bias</add>
-        <add name="Multiplier" type="float">Multiplier</add>
+        <add name="Float Offset" type="float" />
+        <add name="Float Half Range" type="float" />
     </niobject>
 
     <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate an NiPoint3 value over time.
-        <add name="Unknown Floats" type="float" arr1="6">Unknown.</add>
+        <add name="Value" type="Vector3">Base value when curve not defined.</add>
+        <add name="Handle" type="uint">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplinePoint3Interpolator">
         NiBSplinePoint3Interpolator plus the information required for using compact control points.
+        <add name="Position Offset" type="float" />
+        <add name="Position Half Range" type="float" />
     </niobject>
 
     <niobject name="NiBSplineTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator">
         Supports the animation of position, rotation, and scale using an NiQuatTransform.
         The NiQuatTransform can be an unchanging pose or interpolated from B-Spline control point channels.
-        <!-- TODO use QTransform -->
-        <add name="Translation" type="Vector3">Base translation when translate curve not defined.</add>
-        <add name="Rotation" type="Quaternion">Base rotation when rotation curve not defined.</add>
-        <add name="Scale" type="float">Base scale when scale curve not defined.</add>
-        <add name="Translation Offset" type="uint">Starting offset for the translation data. (USHRT_MAX for no data.)</add>
-        <add name="Rotation Offset" type="uint">Starting offset for the rotation data. (USHRT_MAX for no data.)</add>
-        <add name="Scale Offset" type="uint">Starting offset for the scale data. (USHRT_MAX for no data.)</add>
+        <add name="Transform" type="NiQuatTransform" />
+        <add name="Translation Handle" type="uint">Handle into the translation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Rotation Handle" type="uint">Handle into the rotation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Scale Handle" type="uint">Handle into the scale data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineTransformInterpolator">
         NiBSplineTransformInterpolator plus the information required for using compact control points.
-        <add name="Translation Bias" type="float">Translation Bias</add>
-        <add name="Translation Multiplier" type="float">Translation Multiplier</add>
-        <add name="Rotation Bias" type="float">Rotation Bias</add>
-        <add name="Rotation Multiplier" type="float">Rotation Multiplier</add>
-        <add name="Scale Bias" type="float">Scale Bias</add>
-        <add name="Scale Multiplier" type="float">Scale Multiplier</add>
+        <add name="Translation Offset" type="float" />
+        <add name="Translation Half Range" type="float" />
+        <add name="Rotation Offset" type="float" />
+        <add name="Rotation Half Range" type="float" />
+        <add name="Scale Offset" type="float" />
+        <add name="Scale Half Range" type="float" />
     </niobject>
 	
 	<niobject name="BSRotAccumTransfInterpolator" inherit="NiTransformInterpolator">
@@ -3393,10 +3393,10 @@
 
     <niobject name="NiBSplineData" abstract="0" inherit="NiObject">
         Contains one or more sets of control points for use in interpolation of open, uniform B-Splines, stored as either float or compact.
-        <add name="Num Float Control Points" type="uint">Number of Float Data Points</add>
+        <add name="Num Float Control Points" type="uint" />
         <add name="Float Control Points" type="float" arr1="Num Float Control Points">Float values representing the control data.</add>
-        <add name="Num Short Control Points" type="uint">Number of Short Data Points</add>
-        <add name="Short Control Points" type="short" arr1="Num Short Control Points">Signed shorts representing the data from 0 to 1 (scaled by SHRT_MAX).</add>
+        <add name="Num Compact Control Points" type="uint" />
+        <add name="Compact Control Points" type="short" arr1="Num Compact Control Points">Signed shorts representing the data from 0 to 1 (scaled by SHRT_MAX).</add>
     </niobject>
 
     <niobject name="NiCamera" abstract="0" inherit="NiAVObject">
