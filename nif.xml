@@ -2007,14 +2007,10 @@
 
     <compound name="CapsuleBV">
         Capsule Bounding Volume
-        <add name="Center" type="Vector3">Center</add>
-        <add name="Origin" type="Vector3">Origin</add>
-        <!--<add name="Direction" type="Vector3">Direction</add>
-      <add name="Radius" type="float">Radius</add>-->
-        <!-- direction and radius seem not present in ffvt3r 10.1.0.0 nifs 
-      instead, there's two floats -->
-        <add name="Unknown Float 1" type="float">Unknown.</add>
-        <add name="Unknown Float 2" type="float">Unknown.</add>
+        <add name="Center" type="Vector3" />
+        <add name="Origin" type="Vector3" />
+        <add name="Extent" type="float" />
+        <add name="Radius" type="float" />
     </compound>
 
     <compound name="HalfSpaceBV">
@@ -2838,7 +2834,7 @@
         <add name="Extra Flags" type="Flags" ver1="10.0.1.2">Unknown.</add>
         <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
-        <add name="Always Update" type="byte">Always Update</add>
+        <add name="Always Update" type="byte" ver1="4.0.0.1" />
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106">The number of interpolator objects.</add>
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.0.0.5">List of interpolators.</add>
         <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.1.0.3">Weighted Interpolators?</add>
@@ -2928,8 +2924,8 @@
         Changes the image a Map (TexDesc) will use. Uses a float interpolator to animate the texture index.
         Often used for performing flipbook animation.
         <add name="Texture Slot" type="TexType">Target texture slot (0=base, 4=glow).</add>
-        <add name="Unknown Int 2" type="uint" ver1="4.0.0.0" ver2="10.1.0.0">0?</add>
-        <add name="Delta" type="float" ver2="10.1.0.0">
+        <add name="Start Time" type="float" ver1="3.3.0.13" ver2="10.1.0.103" />
+        <add name="Delta" type="float" ver2="10.1.0.103">
             Time between two flips.
             delta = (start_time - stop_time) / sources.num_indices
         </add>
@@ -2945,7 +2941,7 @@
 
     <niobject name="NiTextureTransformController" abstract="0" inherit="NiFloatInterpController">
         Texture transformation controller. The target texture slot should have "Has Texture Transform" enabled.
-        <add name="Unknown2" type="byte">Unknown.</add>
+        <add name="Shader Map" type="bool">Is the target map a shader map?</add>
         <add name="Texture Slot" type="TexType"> The target texture slot.</add>
         <add name="Operation" type="TexTransform">Determines how this controller animates the UV Coordinates.</add>
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
@@ -3033,7 +3029,7 @@
         <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
-        <add name="Dirty Flag" type="bool" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt; 100)">Dirty Flag?</add>
+        <add name="Dirty Flag" type="bool" vercond="(Version &gt;= 20.2.0.7) &amp;&amp; (User Version 2 &lt; 100)">Dirty Flag?</add>
         <add name="Dirty Flag" type="bool" cond="NiTriBasedGeom" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 100)">Dirty Flag?</add>
         <add name="Unknown Integer 3" type="int" cond="NiParticleSystem" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Dirty Flag?</add>
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
@@ -3258,7 +3254,7 @@
         <add name="Unknown Int 1" type="int">Unknown.</add>
     </compound>
 
-    <niobject name="NiPSysData" abstract="0" inherit="NiRotatingParticlesData">
+    <niobject name="NiPSysData" abstract="0" inherit="NiParticlesData">
         Particle system data.
         <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
         <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
@@ -3526,7 +3522,7 @@
 
     <niobject name="NiGravity" abstract="0" inherit="NiParticleModifier">
         LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.
-        <add name="Unknown Float 1" type="float" ver1="4.0.0.2">Unknown.</add>
+        <add name="Unknown Float 1" type="float" ver1="3.3.0.13">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
         <add name="Type" type="FieldType">The force field&#039;s type.</add>
         <add name="Position" type="Vector3">The position of the mass point relative to the particle system. (TODO: check for versions &lt;= 3.1)</add>
@@ -3573,7 +3569,7 @@
         <add name="Num Rotation Keys" type="uint">The number of quaternion rotation keys. If the rotation type is XYZ (type 4) then this *must* be set to 1, and in this case the actual number of keys is stored in the XYZ Rotations field.</add>
         <add name="Rotation Type" type="KeyType" cond="Num Rotation Keys != 0">The type of interpolation to use for rotation.  Can also be 4 to indicate that separate X, Y, and Z values are used for the rotation instead of Quaternions.</add>
         <add name="Quaternion Keys" type="QuatKey" arg="Rotation Type" template="Quaternion" arr1="Num Rotation Keys" cond="Rotation Type != 4">The rotation keys if Quaternion rotation is used.</add>
-        <add name="Unknown Float" type="float" cond="Rotation Type == 4" ver2="10.1.0.0">Possibly a vestigial time value?  Doesn&#039;t appear to be significant.</add>
+        <add name="Order" type="float" cond="Rotation Type == 4" ver2="10.1.0.0" />
         <add name="XYZ Rotations" type="KeyGroup" template="float" arr1="3" cond="Rotation Type == 4">Individual arrays of keys for rotating X, Y, and Z individually.</add>
         <add name="Translations" type="KeyGroup" template="Vector3">Translation keys.</add>
         <add name="Scales" type="KeyGroup" template="float">Scale keys.</add>
@@ -3714,9 +3710,10 @@
 
     <niobject name="NiPalette" abstract="0" inherit="NiObject">
         NiPalette objects represent mappings from 8-bit indices to 24-bit RGB or 32-bit RGBA colors.
-        <add name="Unknown Byte" type="byte">Unknown, Usually = 0.</add>
-        <add name="Num Entries" type="uint" default="256">The number of palette entries.  Always = 256.</add>
-        <add name="Palette" type="ByteColor4" arr1="256">The color palette.</add>
+        <add name="Has Alpha" type="byte" /> <!-- Not bool as always 8-bit -->
+        <add name="Num Entries" type="uint" default="256">The number of palette entries. Always 256 but can also be 16.</add>
+        <add name="Palette" type="ByteColor4" arr1="16" cond="Num Entries == 16">The color palette.</add>
+        <add name="Palette" type="ByteColor4" arr1="256" cond="Num Entries != 16">The color palette.</add>
     </niobject>
 
     <niobject name="NiParticleBomb" abstract="0" inherit="NiParticleModifier">
@@ -3849,13 +3846,13 @@
     <niobject name="NiPathController" abstract="0" inherit="NiTimeController">
         DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiPathInterpolator.
         Time controller for a path.
-        <add name="Unknown Short 2" type="ushort" ver1="10.1.0.0">Unknown.</add>
-        <add name="Unknown Int 1" type="uint">Unknown, always 1?</add>
-        <add name="Unknown Float 2" type="float">Unknown, often 0?</add>
-        <add name="Unknown Float 3" type="float">Unknown, often 0?</add>
-        <add name="Unknown Short" type="ushort">Unknown, always 0?</add>
-        <add name="Pos Data" type="Ref" template="NiPosData">Path controller data index (position data). ?</add>
-        <add name="Float Data" type="Ref" template="NiFloatData">Path controller data index (float data). ?</add>
+        <add name="Path Flags" type="PathFlags" ver1="10.1.0.0" />
+        <add name="Bank Dir" type="int">-1 = Negative, 1 = Positive</add>
+        <add name="Max Bank Angle" type="float">Max angle in radians.</add>
+        <add name="Smoothing" type="float" />
+        <add name="Follow Axis" type="short">0, 1, or 2 representing X, Y, or Z.</add>
+        <add name="Path Data" type="Ref" template="NiPosData" />
+        <add name="Percent Data" type="Ref" template="NiFloatData" />
     </niobject>
 
     <compound name="PixelFormatComponent">
@@ -4227,12 +4224,12 @@
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.
         <add name="Direction" type="Vector3">Direction of the particle velocity</add>
-        <add name="Unknown Float 2" type="float">Unknown</add>
-        <add name="Unknown Float 3" type="float">Unknown</add>
-        <add name="Unknown Boolean 1" type="bool">Unknown</add>
-        <add name="Unknown Boolean 2" type="bool">Unknown</add>
-        <add name="Unknown Boolean 3" type="bool">Unknown</add>
-        <add name="Unknown Float 4" type="float">Unknown</add>
+        <add name="Air Friction" type="float">How quickly particles will accelerate to the magnitude of the air field.</add>
+        <add name="Inherit Velocity" type="float">How much of the air field velocity will be added to the particle velocity.</add>
+        <add name="Inherit Rotation" type="bool" />
+        <add name="Component Only" type="bool" />
+        <add name="Enable Spread" type="bool" />
+        <add name="Spread" type="float">The angle of the air field cone if Enable Spread is true.</add>
     </niobject>
     
     <niobject name="NiPSysTrailEmitter" abstract="0" inherit="NiPSysEmitter">
@@ -4272,12 +4269,10 @@
 
     <niobject name="NiScreenLODData" abstract="0" inherit="NiLODData">
         NiScreenLODData controls switching LOD levels based on proportion of the screen that a bound would include.
-        <add name="Bound Center" type="Vector3">The center of the bounding sphere?</add>
-        <add name="Bound Radius" type="float">The radius of the bounding sphere?</add>
-        <add name="World Center" type="Vector3">The center of the bounding sphere in world space?</add>
-        <add name="World Radius" type="float">The radius of the bounding sphere in world space?</add>
-        <add name="Proportion Count" type="uint">The number of screen size based LOD levels.</add>
-        <add name="Proportion Levels" type="float" arr1="Proportion Count">The LOD levels based on proportion of screen size?</add>
+        <add name="Bound" type="NiBound" />
+        <add name="World Bound" type="NiBound" />
+        <add name="Num Proportions" type="uint" />
+        <add name="Proportion Levels" type="float" arr1="Num Proportions" />
     </niobject>
 
     <niobject name="NiRotatingParticles" abstract="0" inherit="NiParticles">
@@ -4383,8 +4378,8 @@
 
     <niobject name="NiSpotLight" abstract="0" inherit="NiPointLight">
         A spot.
-        <add name="Cutoff Angle" type="float">The opening angle of the spot.</add>
-        <add name="Unknown Float" type="float" ver1="20.2.0.7">Unknown</add>
+        <add name="Outer Spot Angle" type="float" />
+        <add name="Inner Spot Angle" type="float" ver1="20.2.0.5" />
         <add name="Exponent" type="float">Describes the distribution of light. (see: glLight)</add>
     </niobject>
 
@@ -4442,8 +4437,8 @@
         <add name="Model Projection Matrix" type="Matrix33">Model projection matrix.  Always identity?</add>
         <add name="Model Projection Transform" type="Vector3">Model projection transform.  Always (0,0,0)?</add>
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
+        <add name="Max Anisotropy" type="ushort" ver1="20.5.0.4" />
         <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
-        <add name="Unknown" type="short" ver1="20.6.0.0" />
         <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
@@ -4640,8 +4635,7 @@
     <niobject name="NiVectorExtraData" abstract="0" inherit="NiExtraData">
         DEPRECATED (20.5).
         Extra data in the form of a vector (as x, y, z, w components).
-        <add name="Vector Data" type="Vector3">The vector data.</add>
-        <add name="Unknown Float" type="float">Not sure whether this comes before or after the vector data.</add>
+        <add name="Vector Data" type="Vector4">The vector data.</add>
     </niobject>
 
     <niobject name="NiVertexColorProperty" abstract="0" inherit="NiProperty">
@@ -4714,7 +4708,7 @@
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode">
         Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.
         <add name="Sorting Mode" type="SortingMode" default="SORTING_INHERIT">Sorting</add>
-        <add name="Unknown Int 2" type="int" default="-1" ver2="10.2.0.0">Unknown.</add>
+        <add name="Accumulator" type="Ref" ver2="20.0.0.3" />
     </niobject>
 
     <niobject name="NiSourceCubeMap" abstract="0" inherit="NiSourceTexture">
@@ -5099,15 +5093,15 @@
     <niobject name="NiScreenElementsData" inherit="NiTriShapeData">
         DEPRECATED (20.5), functionality included in NiMeshScreenElements.
         Two dimensional screen elements.
-        <add name="Max Polygons" type="ushort">Maximum number of polygons?</add>
-        <add name="Polygons" type="Polygon" arr1="Max Polygons">Polygons</add>
-        <add name="Polygon Indices" type="ushort" arr1="Max Polygons">Polygon Indices</add>
-        <add name="Unknown UShort 1" type="ushort" default="1">Unknown</add>
-        <add name="Num Polygons" type="ushort">Number of Polygons actually in use</add>
-        <add name="Used Vertices" type="ushort">Number of in-use vertices</add>
-        <add name="Unknown UShort 2" type="ushort" default="1">Unknown</add>
-        <add name="Used Triangle Points" type="ushort">Number of in-use triangles</add>
-        <add name="Unknown UShort 3" type="ushort" default="1">Maximum number of faces</add>
+        <add name="Max Polygons" type="ushort" />
+        <add name="Polygons" type="Polygon" arr1="Max Polygons" />
+        <add name="Polygon Indices" type="ushort" arr1="Max Polygons" />
+        <add name="Polygon Grow By" type="ushort" default="1" />
+        <add name="Num Polygons" type="ushort" />
+        <add name="Max Vertices" type="ushort" />
+        <add name="Vertices Grow By" type="ushort" default="1" />
+        <add name="Max Indices" type="ushort" />
+        <add name="Indices Grow By" type="ushort" default="1" />
     </niobject>
 
     <niobject name="NiScreenElements" inherit="NiTriShape">
@@ -5137,8 +5131,8 @@
     <niobject name="NiPortal" inherit="NiAVObject">
         NiPortal objects are grouping nodes that support aggressive visibility culling.
         They represent flat polygonal regions through which a part of a scene graph can be viewed.
-        <add name="Unknown Flags" type="Flags">Unknown flags.</add>
-        <add name="Unknown Short 2" type="short">Unknown</add>
+        <add name="Portal Flags" type="ushort" />
+        <add name="Plane Count" type="ushort">Unused in 20.x, possibly also 10.x.</add>
         <add name="Num Vertices" type="ushort">Number of vertices in this polygon</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices">Vertices</add>
         <add name="Target" type="Ptr" template="NiNode">Target portal or room</add>
