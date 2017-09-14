@@ -2896,27 +2896,27 @@
     </niobject>
 
     <niobject name="NiPSysEmitterDeclinationCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the declination value on an NiPSysEmitter object.
     </niobject>
 
     <niobject name="NiPSysEmitterDeclinationVarCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the declination variation value on an NiPSysEmitter object.
     </niobject>
 
     <niobject name="NiPSysEmitterInitialRadiusCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the size value on an NiPSysEmitter object.
     </niobject>
 
     <niobject name="NiPSysEmitterLifeSpanCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the lifespan value on an NiPSysEmitter object.
     </niobject>
 
     <niobject name="NiPSysEmitterSpeedCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the speed value on an NiPSysEmitter object.
     </niobject>
 
     <niobject name="NiPSysGravityStrengthCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
-        Unknown.
+        Animates the strength value of an NiPSysGravityModifier.
     </niobject>
 
 
@@ -6352,6 +6352,7 @@
     </enum>
 
     <niobject name="NiPSParticleSystem" inherit="NiMesh">
+        Represents a particle system.
         <add name="Simulator" type="Ref" template="NiPSSimulator" />
         <add name="Generator" type="Ref" template="NiPSBoundUpdater" />
         <add name="Num Emitters" type="uint" />
@@ -6376,6 +6377,7 @@
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem">
+        Represents a particle system that uses mesh particles instead of sprite-based particles.
         <add name="Num Generations" type="uint" />
         <add name="Master Particles" type="Ref" template="NiAVObject" arr1="Num Generations" />
         <add name="Pool Size" type="uint" />
@@ -6384,9 +6386,12 @@
 
     <!-- NiPS Generators -->
 
-    <niobject name="NiPSFacingQuadGenerator" inherit="NiMeshModifier" />
+    <niobject name="NiPSFacingQuadGenerator" inherit="NiMeshModifier">
+        A mesh modifier that uses particle system data to generate camera-facing quads.
+    </niobject>
 
     <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier">
+        A mesh modifier that uses particle system data to generate aligned quads for each particle.
         <add name="Scale Amount U" type="float" />
         <add name="Scale Limit U" type="float" />
         <add name="Scale Rest U" type="float" />
@@ -6468,6 +6473,7 @@
     </niobject>
 
     <niobject name="NiPSBoundUpdater" inherit="NiObject">
+        Updates the bounding volume for an NiPSParticleSystem object.
         <add name="Update Skip" type="ushort">Number of particle bounds to skip updating every frame. Higher = more updates each frame.</add>
     </niobject>
 
@@ -6486,12 +6492,14 @@
     </enum>
 
     <niobject name="NiPSForce" abstract="1" inherit="NiObject">
+        Abstract base class for all particle forces.
         <add name="Name" type="string" />
         <add name="Type" type="PSForceType" />
         <add name="Active" type="bool" />
     </niobject>
 
     <niobject name="NiPSDragForce" inherit="NiPSForce">
+        Applies a linear drag force to particles.
         <add name="Drag Axis" type="Vector3" />
         <add name="Percentage" type="float" />
         <add name="Range" type="float" />
@@ -6500,6 +6508,7 @@
     </niobject>
 
     <niobject name="NiPSGravityForce" inherit="NiPSForce">
+        Applies a gravitational force to particles.
         <add name="Gravity Axis" type="Vector3" />
         <add name="Decay" type="float" />
         <add name="Strength" type="float" />
@@ -6510,6 +6519,7 @@
     </niobject>
 
     <niobject name="NiPSBombForce" inherit="NiPSForce">
+        Applies an explosive force to particles.
         <add name="Bomb Axis" type="Vector3" />
         <add name="Decay" type="float" />
         <add name="Delta V" type="float" />
@@ -6521,6 +6531,7 @@
     <!-- NiPS Emitters -->
 
     <niobject name="NiPSEmitter" abstract="1" inherit="NiObject">
+        Abstract base class for all particle emitters.
         <add name="Name" type="string" />
         <add name="Speed" type="float" />
         <add name="Speed Var" type="float" />
@@ -6545,25 +6556,30 @@
     </niobject>
 
     <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter">
+        Abstract base class for particle emitters that emit particles from a volume.
         <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSBoxEmitter" inherit="NiPSVolumeEmitter">
+        A particle emitter that emits particles from a rectangular volume.
         <add name="Emitter Width" type="float" />
         <add name="Emitter Height" type="float" />
         <add name="Emitter Depth" type="float" />
     </niobject>
 
     <niobject name="NiPSSphereEmitter" inherit="NiPSVolumeEmitter">
+        A particle emitter that emits particles from a spherical volume.
         <add name="Emitter Radius" type="float" />
     </niobject>
 
     <niobject name="NiPSCylinderEmitter" inherit="NiPSVolumeEmitter">
+        A particle emitter that emits particles from a cylindrical volume.
         <add name="Emitter Radius" type="float" />
         <add name="Emitter Height" type="float" />
     </niobject>
 
     <niobject name="NiPSMeshEmitter" inherit="NiPSEmitter">
+        Emits particles from one or more NiMesh objects. A random mesh emitter is selected for each particle emission.
         <add name="Num Mesh Emitters" type="uint" />
         <add name="Mesh Emitters" type="Ptr" template="NiMesh" arr1="Num Mesh Emitters" />
         <add name="Emit Axis" type="Vector3" ver2="20.6.0.0" />
@@ -6575,35 +6591,87 @@
     <!-- NiPS Controllers -->
 
     <niobject name="NiPSEmitterCtlr" abstract="1" inherit="NiSingleInterpController">
+        Abstract base class for all particle emitter time controllers.
         <add name="Emitter Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr" />
+    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr">
+        Abstract base class for controllers that animate a floating point value on an NiPSEmitter object.
+    </niobject>
 
     <niobject name="NiPSEmitParticlesCtlr" inherit="NiPSEmitterCtlr">
+        Animates particle emission and birth rate.
         <add name="Emitter Active Interpolator" type="Ref" template="NiInterpolator" />
     </niobject>
 
     <niobject name="NiPSForceCtlr" abstract="1" inherit="NiSingleInterpController">
+        Abstract base class for all particle force time controllers.
         <add name="Force Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSForceBoolCtlr" inherit="NiPSForceCtlr" />
-    <niobject name="NiPSForceFloatCtlr" inherit="NiPSForceCtlr" />
-    <niobject name="NiPSForceActiveCtlr" inherit="NiPSForceBoolCtlr" />
-    <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr" />
-    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController" />
-    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterFloatCtlr" />
-    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSEmitterFloatCtlr" />
+    <niobject name="NiPSForceBoolCtlr" abstract="1" inherit="NiPSForceCtlr">
+        Abstract base class for controllers that animate a Boolean value on an NiPSForce object.
+    </niobject>
+
+    <niobject name="NiPSForceFloatCtlr" abstract="1" inherit="NiPSForceCtlr">
+        Abstract base class for controllers that animate a floating point value on an NiPSForce object.
+    </niobject>
+
+    <niobject name="NiPSForceActiveCtlr" inherit="NiPSForceBoolCtlr">
+        Animates whether or not an NiPSForce object is active.
+    </niobject>
+
+    <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr">
+        Animates the strength value of an NiPSGravityForce object.
+    </niobject>
+
+    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the speed value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the size value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the declination value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the declination variation value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the planar angle value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the planar angle variation value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the rotation angle value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the rotation angle variation value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the rotation speed value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the rotation speed variation value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSEmitterFloatCtlr">
+        Animates the lifespan value on an NiPSEmitter object.
+    </niobject>
+
+    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController">
+        Calls ResetParticleSystem on an NiPSParticleSystem target upon looping.
+    </niobject>
 
     <!-- NiPS Colliders -->
 
@@ -6613,6 +6681,7 @@
     </enum>
 
     <niobject name="NiPSCollider" inherit="NiObject">
+        Abstract base class for all particle colliders.
         <add name="Spawner" type="Ref" template="NiPSSpawner" />
         <add name="Type" type="ColliderType" />
         <add name="Active" type="bool" />
@@ -6622,6 +6691,7 @@
     </niobject>
 
     <niobject name="NiPSPlanarCollider" inherit="NiPSCollider">
+        A planar collider for particles.
         <add name="Width" type="float" />
         <add name="Height" type="float" />
         <add name="X Axis" type="Vector3" />
@@ -6630,11 +6700,13 @@
     </niobject>
 
     <niobject name="NiPSSphericalCollider" inherit="NiPSCollider">
+        A spherical collider for particles.
         <add name="Radius" type="float" />
         <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSSpawner" inherit="NiObject">
+        Creates a new particle whose initial parameters are based on an existing particle.
         <add name="Master Particle System" type="Ptr" template="NiPSParticleSystem" ver1="20.6.1.0" />
         <add name="Percentage Spawned" type="float" />
         <add name="Spawn Speed Factor" type="float" ver1="20.6.1.0" />
