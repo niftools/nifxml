@@ -143,16 +143,9 @@
         These are like C enums and consist of a list of options.  They can appear
         as parts of compounds or niobjects.-->
 
-    <enum name="AlphaFormat" storage="uint">
-        An unsigned 32-bit integer, describing how transparency is handled in a texture.
-        <option value="0" name="ALPHA_NONE">No alpha blending; the texture is fully opaque.</option>
-        <option value="1" name="ALPHA_BINARY">Texture is either fully transparent or fully opaque.  There are no partially transparent areas.</option>
-        <option value="2" name="ALPHA_SMOOTH">Full range of alpha values can be used from fully transparent to fully opaque including all partially transparent values in between.</option>
-        <option value="3" name="ALPHA_DEFAULT">Use default setting.</option>
-    </enum>
 
     <enum name="ApplyMode" storage="uint">
-        An unsigned 32-bit integer, describing the apply mode of a texture.
+        Describes how the vertex colors are blended with the filtered texture color.
         <option value="0" name="APPLY_REPLACE">Replaces existing color</option>
         <option value="1" name="APPLY_DECAL">For placing images on the object like stickers.</option>
         <option value="2" name="APPLY_MODULATE">Modulates existing color. (Default)</option>
@@ -185,14 +178,8 @@
         <option value="5" name="CONST_KEY">Step function. Used for visibility keys in NiBoolData.</option>
     </enum>
 
-    <enum name="LightMode" storage="uint">
-        An unsigned 32-bit integer, describing how vertex colors influence lighting.
-        <option value="0" name="LIGHT_MODE_EMISSIVE">Emissive.</option>
-        <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
-    </enum>
-
     <enum name="OblivionHavokMaterial" storage="uint">
-        A material, used by havok shape objects in Oblivion.
+        Bethesda Havok. Material descriptor for a Havok shape in Oblivion.
         <option value="0" name="OB_HAV_MAT_STONE">Stone</option>
         <option value="1" name="OB_HAV_MAT_CLOTH">Cloth</option>
         <option value="2" name="OB_HAV_MAT_DIRT">Dirt</option>
@@ -228,10 +215,7 @@
     </enum>
 
     <enum name="Fallout3HavokMaterial" storage="uint">
-        A material, used by havok shape objects in Fallout 3.
-        Bit 5: flag for PLATFORM (for values 32-63 substract 32 to know material number)
-        Bit 6: flag for STAIRS  (for values 64-95 substract 64 to know material number)
-        Bit 5+6: flag for STAIRS+PLATFORM  (for values 96-127 substract 96 to know material number)
+        Bethesda Havok. Material descriptor for a Havok shape in Fallout 3 and Fallout NV.
         <option value="0" name="FO_HAV_MAT_STONE">Stone</option>
         <option value="1" name="FO_HAV_MAT_CLOTH">Cloth</option>
         <option value="2" name="FO_HAV_MAT_DIRT">Dirt</option>
@@ -363,7 +347,7 @@
     </enum>
 
     <enum name="SkyrimHavokMaterial" storage="uint">
-        A material, used by havok shape objects in Skyrim.
+        Bethesda Havok. Material descriptor for a Havok shape in Skyrim.
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
         <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
         <option value="398949039" name="SKY_HAV_MAT_SNOW">Snow</option>
@@ -428,7 +412,7 @@
     </enum>
 
     <enum name="OblivionLayer" storage="byte">
-        Sets mesh color in Oblivion Construction Set.  Anything higher than 57 is also null.
+        Bethesda Havok. Describes the collision layer a body belongs to in Oblivion.
         <option value="0" name="OL_UNIDENTIFIED">Unidentified (white)</option>
         <option value="1" name="OL_STATIC">Static (red)</option>
         <option value="2" name="OL_ANIM_STATIC">AnimStatic (magenta)</option>
@@ -490,7 +474,7 @@
     </enum>
 
     <enum name="Fallout3Layer" storage="byte">
-        Sets mesh color in Fallout 3 GECK. Anything higher than 72 is also null.
+        Bethesda Havok. Describes the collision layer a body belongs to in Fallout 3 and Fallout NV.
         <option value="0" name="FOL_UNIDENTIFIED">Unidentified (white)</option>
         <option value="1" name="FOL_STATIC">Static (red)</option>
         <option value="2" name="FOL_ANIM_STATIC">AnimStatic (magenta)</option>
@@ -538,7 +522,7 @@
     </enum>
 
     <enum name="SkyrimLayer" storage="byte">
-        Physical purpose of collision object? The setting affects object's havok behavior in game. Anything higher than 47 is also null.
+        Bethesda Havok. Describes the collision layer a body belongs to in Skyrim.
         <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
         <option value="1" name="SKYL_STATIC">Static</option>
         <option value="2" name="SKYL_ANIMSTATIC">Anim Static</option>
@@ -590,20 +574,15 @@
     </enum>
 
     <enum name="MoppDataBuildType" storage="byte">
+        Bethesda Havok.
         A byte describing if MOPP Data is organized into chunks (PS3) or not (PC)
         <option value="0" name="BUILT_WITH_CHUNK_SUBDIVISION">Organized in chunks for PS3.</option>
         <option value="1" name="BUILT_WITHOUT_CHUNK_SUBDIVISION">Not organized in chunks for PC. (Default)</option>
         <option value="2" name="BUILD_NOT_SET">Build type not set yet.</option>
     </enum>
 
-    <enum name="MipMapFormat" storage="uint">
-        An unsigned 32-bit integer, describing how mipmaps are handled in a texture.
-        <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
-        <option value="1" name="MIP_FMT_YES">Texture uses mip maps.</option>
-        <option value="2" name="MIP_FMT_DEFAULT">Use default setting.</option>
-    </enum>
-
     <enum name="PlatformID" storage="uint" prefix="PLATFORM">
+        Target platform for NiPersistentSrcTextureRendererData (later than 30.1).
         <option value="0" name="ANY" />
         <option value="1" name="XENON" />
         <option value="2" name="PS3" />
@@ -613,6 +592,7 @@
     </enum>
 
     <enum name="RendererID" storage="uint" prefix="RENDERER">
+        Target renderer for NiPersistentSrcTextureRendererData (until 30.1).
         <option value="0" name="XBOX360" />
         <option value="1" name="PS3" />
         <option value="2" name="DX9" />
@@ -623,27 +603,28 @@
     </enum>
 
     <enum name="PixelFormat" storage="uint" prefix="PX">
-        Specifies the pixel format used by the NiPixelData object to store a texture.
-        <option value="0" name="FMT_RGB8">24-bit color: uses 8 bit to store each red, blue, and green component.</option>
-        <option value="1" name="FMT_RGBA8">32-bit color with alpha: uses 8 bits to store each red, blue, green, and alpha component.</option>
-        <option value="2" name="FMT_PAL8">8-bit palette index: uses 8 bits to store an index into the palette stored in a NiPalette object.</option>
-        <option value="3" name="FMT_PALA" />
+        Describes the pixel format used by the NiPixelData object to store a texture.
+        <option value="0" name="FMT_RGB">24-bit RGB. 8 bits per red, blue, and green component.</option>
+        <option value="1" name="FMT_RGBA">32-bit RGB with alpha. 8 bits per red, blue, green, and alpha component.</option>
+        <option value="2" name="FMT_PAL">8-bit palette index.</option>
+        <option value="3" name="FMT_PALA">8-bit palette index with alpha.</option>
         <option value="4" name="FMT_DXT1">DXT1 compressed texture.</option>
         <option value="5" name="FMT_DXT3">DXT3 compressed texture.</option>
         <option value="6" name="FMT_DXT5">DXT5 compressed texture.</option>
-        <option value="7" name="FMT_RGB24NONINT">24-bit noninterleaved texture.</option>
-        <option value="8" name="FMT_BUMP" />
-        <option value="9" name="FMT_BUMPLUMA" />
-        <option value="10" name="FMT_RENDERSPEC" />
-        <option value="11" name="FMT_1CH" />
-        <option value="12" name="FMT_2CH" />
-        <option value="13" name="FMT_3CH" />
-        <option value="14" name="FMT_4CH" />
-        <option value="15" name="FMT_DEPTH_STENCIL" />
+        <option value="7" name="FMT_RGB24NONINT">(Deprecated) 24-bit noninterleaved texture, an old PS2 format.</option>
+        <option value="8" name="FMT_BUMP">Uncompressed dU/dV gradient bump map.</option>
+        <option value="9" name="FMT_BUMPLUMA">Uncompressed dU/dV gradient bump map with luma channel representing shininess.</option>
+        <option value="10" name="FMT_RENDERSPEC">Generic descriptor for any renderer-specific format not described by other formats.</option>
+        <option value="11" name="FMT_1CH">Generic descriptor for formats with 1 component.</option>
+        <option value="12" name="FMT_2CH">Generic descriptor for formats with 2 components.</option>
+        <option value="13" name="FMT_3CH">Generic descriptor for formats with 3 components.</option>
+        <option value="14" name="FMT_4CH">Generic descriptor for formats with 4 components.</option>
+        <option value="15" name="FMT_DEPTH_STENCIL">Indicates the NiPixelFormat is meant to be used on a depth/stencil surface.</option>
         <option value="16" name="FMT_UNKNOWN" />
     </enum>
 
     <enum name="PixelTiling" storage="uint" prefix="PX">
+        Describes whether pixels have been tiled from their standard row-major format to a format optimized for a particular platform.
         <option value="0" name="TILE_NONE" />
         <option value="1" name="TILE_XENON" />
         <option value="2" name="TILE_WII" />
@@ -651,7 +632,7 @@
     </enum>
 
     <enum name="PixelComponent" storage="uint" prefix="PX">
-        Specifies the pixel format used by the NiPixelData object to store a texture.
+        Describes the pixel format used by the NiPixelData object to store a texture.
         <option value="0" name="COMP_RED" />
         <option value="1" name="COMP_GREEN" />
         <option value="2" name="COMP_BLUE" />
@@ -675,6 +656,7 @@
     </enum>
 
     <enum name="PixelRepresentation" storage="uint" prefix="PX">
+        Describes how each pixel should be accessed on NiPixelFormat.
         <option value="0" name="REP_NORM_INT" />
         <option value="1" name="REP_HALF" />
         <option value="2" name="REP_FLOAT" />
@@ -685,7 +667,7 @@
     </enum>
 
     <enum name="PixelLayout" storage="uint" prefix="PX">
-        An unsigned 32-bit integer, describing the color depth of a texture.
+        Describes the color depth in an NiTexture.
         <option value="0" name="LAY_PALETTIZED_8">Texture is in 8-bit palettized format.</option>
         <option value="1" name="LAY_HIGH_COLOR_16">Texture is in 16-bit high color format.</option>
         <option value="2" name="LAY_TRUE_COLOR_32">Texture is in 32-bit true color format.</option>
@@ -705,8 +687,23 @@
         <option value="16" name="LAY_DEPTH_24_X8" />
     </enum>
 
+    <enum name="MipMapFormat" storage="uint">
+        Describes how mipmaps are handled in an NiTexture.
+        <option value="0" name="MIP_FMT_NO">Texture does not use mip maps.</option>
+        <option value="1" name="MIP_FMT_YES">Texture uses mip maps.</option>
+        <option value="2" name="MIP_FMT_DEFAULT">Use default setting.</option>
+    </enum>
+
+    <enum name="AlphaFormat" storage="uint">
+        Describes how transparency is handled in an NiTexture.
+        <option value="0" name="ALPHA_NONE">No alpha.</option>
+        <option value="1" name="ALPHA_BINARY">1-bit alpha.</option>
+        <option value="2" name="ALPHA_SMOOTH">Interpolated 4- or 8-bit alpha.</option>
+        <option value="3" name="ALPHA_DEFAULT">Use default setting.</option>
+    </enum>
+
     <enum name="TexClampMode" storage="uint">
-        Specifies the availiable texture clamp modes.  That is, the behavior of pixels outside the range of the texture.
+        Describes the availiable texture clamp modes, i.e. the behavior of UV mapping outside the [0,1] range.
         <option value="0" name="CLAMP_S_CLAMP_T">Clamp in both directions.</option>
         <option value="1" name="CLAMP_S_WRAP_T">Clamp in the S(U) direction but wrap in the T(V) direction.</option>
         <option value="2" name="WRAP_S_CLAMP_T">Wrap in the S(U) direction but clamp in the T(V) direction.</option>
@@ -714,20 +711,27 @@
     </enum>
 
     <enum name="TexFilterMode" storage="uint">
-        Specifies the availiable texture filter modes.  That is, the way pixels within a texture are blended together when textures are displayed on the screen at a size other than their original dimentions.
-        <option value="0" name="FILTER_NEAREST">Simply uses the nearest pixel.  Very grainy.</option>
-        <option value="1" name="FILTER_BILERP">Uses bilinear filtering.</option>
-        <option value="2" name="FILTER_TRILERP">Uses trilinear filtering.</option>
-        <option value="3" name="FILTER_NEAREST_MIPNEAREST">Uses the nearest pixel from the mipmap that is closest to the display size.</option>
-        <option value="4" name="FILTER_NEAREST_MIPLERP">Blends the two mipmaps closest to the display size linearly, and then uses the nearest pixel from the result.</option>
-        <option value="5" name="FILTER_BILERP_MIPNEAREST">Uses the closest mipmap to the display size and then uses bilinear filtering on the pixels.</option>
+        Describes the availiable texture filter modes, i.e. the way the pixels in a texture are displayed on screen.
+        <option value="0" name="FILTER_NEAREST">Nearest neighbor. Uses nearest texel with no mipmapping.</option>
+        <option value="1" name="FILTER_BILERP">Bilinear. Linear interpolation with no mipmapping.</option>
+        <option value="2" name="FILTER_TRILERP">Trilinear. Linear intepolation between 8 texels (4 nearest texels between 2 nearest mip levels).</option>
+        <option value="3" name="FILTER_NEAREST_MIPNEAREST">Nearest texel on nearest mip level.</option>
+        <option value="4" name="FILTER_NEAREST_MIPLERP">Linear interpolates nearest texel between two nearest mip levels.</option>
+        <option value="5" name="FILTER_BILERP_MIPNEAREST">Linear interpolates on nearest mip level.</option>
+        <option value="6" name="FILTER_ANISOTROPIC">Anisotropic filtering. One or many trilinear samples depending on anisotropy.</option>
     </enum>
 
     <enum name="VertMode" storage="uint">
-        An unsigned 32-bit integer, which describes how to apply vertex colors.
-        <option value="0" name="VERT_MODE_SRC_IGNORE">Source Ignore.</option>
-        <option value="1" name="VERT_MODE_SRC_EMISSIVE">Source Emissive.</option>
-        <option value="2" name="VERT_MODE_SRC_AMB_DIF">Source Ambient/Diffuse. (Default)</option>
+        Describes how to apply vertex colors for NiVertexColorProperty.
+        <option value="0" name="VERT_MODE_SRC_IGNORE">Emissive, ambient, and diffuse colors are all specified by the NiMaterialProperty.</option>
+        <option value="1" name="VERT_MODE_SRC_EMISSIVE">Emissive colors are specified by the source vertex colors. Ambient+Diffuse are specified by the NiMaterialProperty.</option>
+        <option value="2" name="VERT_MODE_SRC_AMB_DIF">Ambient+Diffuse colors are specified by the source vertex colors. Emissive is specified by the NiMaterialProperty. (Default)</option>
+    </enum>
+
+    <enum name="LightMode" storage="uint">
+        Describes which lighting equation components influence the final vertex color for NiVertexColorProperty.
+        <option value="0" name="LIGHT_MODE_EMISSIVE">Emissive.</option>
+        <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
     </enum>
 
     <enum name="CycleType" storage="uint">
@@ -746,61 +750,62 @@
     <enum name="BillboardMode" storage="ushort">
         Determines the way the billboard will react to the camera.
         Billboard mode is stored in lowest 3 bits although Oblivion vanilla nifs uses values higher than 7.
-        <option value="0" name="ALWAYS_FACE_CAMERA">The billboard will always face the camera.</option>
-        <option value="1" name="ROTATE_ABOUT_UP">The billboard will only rotate around the up axis.</option>
-        <option value="2" name="RIGID_FACE_CAMERA">Rigid Face Camera.</option>
-        <option value="3" name="ALWAYS_FACE_CENTER">Always Face Center.</option>
-        <option value="4" name="RIGID_FACE_CENTER">Rigid Face Center.</option>
+        <option value="0" name="ALWAYS_FACE_CAMERA">Align billboard and camera forward vector. Minimized rotation.</option>
+        <option value="1" name="ROTATE_ABOUT_UP">Align billboard and camera forward vector while allowing rotation around the up axis.</option>
+        <option value="2" name="RIGID_FACE_CAMERA">Align billboard and camera forward vector. Non-minimized rotation.</option>
+        <option value="3" name="ALWAYS_FACE_CENTER">Billboard forward vector always faces camera ceneter. Minimized rotation.</option>
+        <option value="4" name="RIGID_FACE_CENTER">Billboard forward vector always faces camera ceneter. Non-minimized rotation.</option>
+        <!-- TODO: Unverified -->
         <option value="5" name="BSROTATE_ABOUT_UP">The billboard will only rotate around its local Z axis (it always stays in its local X-Y plane).</option>
         <option value="9" name="ROTATE_ABOUT_UP2">The billboard will only rotate around the up axis (same as ROTATE_ABOUT_UP?).</option>
     </enum>
 
     <enum name="StencilCompareMode" storage="uint">
-        This enum contains the options for doing stencil buffer tests.
-        <option value="0" name="TEST_NEVER">Test will allways return false. Nothing is drawn at all.</option>
-        <option value="1" name="TEST_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
-        <option value="2" name="TEST_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
-        <option value="3" name="TEST_LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Stencil Buffer.</option>
-        <option value="4" name="TEST_GREATER">Opposite of TEST_LESS.</option>
-        <option value="5" name="TEST_NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
-        <option value="6" name="TEST_GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
-        <option value="7" name="TEST_ALWAYS">Test will allways succeed. The Stencil Buffer value is ignored.</option>
-    </enum>
-
-    <enum name="ZCompareMode" storage="uint">
-        This enum contains the options for doing z buffer tests.
-        <option value="0" name="ZCOMP_ALWAYS">Test will allways succeed. The Z Buffer value is ignored.</option>
-        <option value="1" name="ZCOMP_LESS">The test will only succeed if the pixel is nearer than the previous pixel.</option>
-        <option value="2" name="ZCOMP_EQUAL">Test will only succeed if the z value of the pixel to be drawn is equal to the value of the previous drawn pixel.</option>
-        <option value="3" name="ZCOMP_LESS_EQUAL">Test will succeed if the z value of the pixel to be drawn is smaller than or equal to the value in the Z Buffer.</option>
-        <option value="4" name="ZCOMP_GREATER">Opposite of TEST_LESS.</option>
-        <option value="5" name="ZCOMP_NOT_EQUAL">Test will succeed if the z value of the pixel to be drawn is NOT equal to the value of the previously drawn pixel.</option>
-        <option value="6" name="ZCOMP_GREATER_EQUAL">Opposite of TEST_LESS_EQUAL.</option>
-        <option value="7" name="ZCOMP_NEVER">Test will allways return false. Nothing is drawn at all.</option>
+        Describes stencil buffer test modes for NiStencilProperty.
+        <option value="0" name="TEST_NEVER">Always false. Ref value is ignored.</option>
+        <option value="1" name="TEST_LESS">VRef ‹ VBuf</option>
+        <option value="2" name="TEST_EQUAL">VRef = VBuf</option>
+        <option value="3" name="TEST_LESS_EQUAL">VRef ≤ VBuf</option>
+        <option value="4" name="TEST_GREATER">VRef › VBuf</option>
+        <option value="5" name="TEST_NOT_EQUAL">VRef ≠ VBuf</option>
+        <option value="6" name="TEST_GREATER_EQUAL">VRef ≥ VBuf</option>
+        <option value="7" name="TEST_ALWAYS">Always true. Buffer is ignored.</option>
     </enum>
 
     <enum name="StencilAction" storage="uint">
-        This enum defines the various actions used in conjunction with the stencil buffer.
-        For a detailed description of the individual options please refer to the OpenGL docs.
-        <option value="0" name="ACTION_KEEP" />
-        <option value="1" name="ACTION_ZERO" />
-        <option value="2" name="ACTION_REPLACE" />
-        <option value="3" name="ACTION_INCREMENT" />
-        <option value="4" name="ACTION_DECREMENT" />
-        <option value="5" name="ACTION_INVERT" />
+        Describes the actions which can occur as a result of tests for NiStencilProperty.
+        <option value="0" name="ACTION_KEEP">Keep the current value in the stencil buffer.</option>
+        <option value="1" name="ACTION_ZERO">Write zero to the stencil buffer.</option>
+        <option value="2" name="ACTION_REPLACE">Write the reference value to the stencil buffer.</option>
+        <option value="3" name="ACTION_INCREMENT">Increment the value in the stencil buffer.</option>
+        <option value="4" name="ACTION_DECREMENT">Decrement the value in the stencil buffer.</option>
+        <option value="5" name="ACTION_INVERT">Bitwise invert the value in the stencil buffer.</option>
     </enum>
 
-    <enum name="FaceDrawMode" storage="uint">
-        This enum lists the different face culling options.
-        <option value="0" name="DRAW_CCW_OR_BOTH">use application defaults?</option>
-        <option value="1" name="DRAW_CCW">Draw counter clock wise faces, cull clock wise faces. This is the default for most (all?) Nif Games so far.</option>
-        <option value="2" name="DRAW_CW">Draw clock wise faces, cull counter clock wise faces. This will flip all the faces.</option>
-        <option value="3" name="DRAW_BOTH">Draw double sided faces.</option>
+    <enum name="StencilDrawMode" storage="uint">
+        Describes the face culling options for NiStencilProperty.
+        <option value="0" name="DRAW_CCW_OR_BOTH">Application default, chooses between DRAW_CCW or DRAW_BOTH.</option>
+        <option value="1" name="DRAW_CCW">Draw only the triangles whose vertices are ordered CCW with respect to the viewer. (Standard behavior)</option>
+        <option value="2" name="DRAW_CW">Draw only the triangles whose vertices are ordered CW with respect to the viewer. (Effectively flips faces)</option>
+        <option value="3" name="DRAW_BOTH">Draw all triangles, regardless of orientation. (Effectively force double-sided)</option>
+    </enum>
+
+    <enum name="ZCompareMode" storage="uint">
+        Describes Z-buffer test modes for NiZBufferProperty.
+        "Less than" = closer to camera, "Greater than" = further from camera.
+        <option value="0" name="ZCOMP_ALWAYS">Always true. Buffer is ignored.</option>
+        <option value="1" name="ZCOMP_LESS">VRef ‹ VBuf</option>
+        <option value="2" name="ZCOMP_EQUAL">VRef = VBuf</option>
+        <option value="3" name="ZCOMP_LESS_EQUAL">VRef ≤ VBuf</option>
+        <option value="4" name="ZCOMP_GREATER">VRef › VBuf</option>
+        <option value="5" name="ZCOMP_NOT_EQUAL">VRef ≠ VBuf</option>
+        <option value="6" name="ZCOMP_GREATER_EQUAL">VRef ≥ VBuf</option>
+        <option value="7" name="ZCOMP_NEVER">Always false. Ref value is ignored.</option>
     </enum>
 
     <enum name="MotionSystem" storage="byte">
+        Bethesda Havok.
         The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
-
         <option value="0" name="MO_SYS_INVALID">Invalid</option>
         <option value="1" name="MO_SYS_DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects MO_SYS_SPHERE_INERTIA or MO_SYS_BOX_INERTIA as appropriate.</option>
         <option value="2" name="MO_SYS_SPHERE">Simulation is performed using a sphere inertia tensor.</option>
@@ -814,12 +819,14 @@
     </enum>
 
     <enum name="DeactivatorType" storage="byte">
+        Bethesda Havok.
         <option value="0" name="DEACTIVATOR_INVALID">Invalid</option>
         <option value="1" name="DEACTIVATOR_NEVER">This will force the rigid body to never deactivate.</option>
         <option value="2" name="DEACTIVATOR_SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>
     </enum>
 
     <enum name="SolverDeactivation" storage="byte">
+        Bethesda Havok.
         A list of possible solver deactivation settings. This value defines how the
         solver deactivates objects. The solver works on a per object basis.
         Note: Solver deactivation does not save CPU, but reduces creeping of
@@ -833,6 +840,7 @@
     </enum>
 
     <enum name="MotionQuality" storage="byte">
+        Bethesda Havok.
         The motion type. Determines quality of motion?
         <option value="0" name="MO_QUAL_INVALID">Automatically assigned to MO_QUAL_FIXED, MO_QUAL_KEYFRAMED or MO_QUAL_DEBRIS</option>
         <option value="1" name="MO_QUAL_FIXED">Use this for fixed bodies. </option>
@@ -849,30 +857,30 @@
     </enum>
 
     <enum name="ForceType" storage="uint">
-        The type of force?  May be more valid values.
+        Describes the type of gravitational force.
         <option value="0" name="FORCE_PLANAR"></option>
         <option value="1" name="FORCE_SPHERICAL"></option>
         <option value="2" name="FORCE_UNKNOWN"></option>
     </enum>
 
-    <enum name="TexTransform" storage="uint">
-        Determines how a NiTextureTransformController animates the UV coordinates.
-        <option value="0" name="TT_TRANSLATE_U">Means this controller moves the U texture cooridnates.</option>
-        <option value="1" name="TT_TRANSLATE_V">Means this controller moves the V texture cooridnates.</option>
-        <option value="2" name="TT_ROTATE">Means this controller roates the UV texture cooridnates.</option>
-        <option value="3" name="TT_SCALE_U">Means this controller scales the U texture cooridnates.</option>
-        <option value="4" name="TT_SCALE_V">Means this controller scales the V texture cooridnates.</option>
+    <enum name="TransformMember" storage="uint">
+        Describes which aspect of the NiTextureTransform the NiTextureTransformController will modify.
+        <option value="0" name="TT_TRANSLATE_U">Control the translation of the U coordinates.</option>
+        <option value="1" name="TT_TRANSLATE_V">Control the translation of the V coordinates.</option>
+        <option value="2" name="TT_ROTATE">Control the rotation of the coordinates.</option>
+        <option value="3" name="TT_SCALE_U">Control the scale of the U coordinates.</option>
+        <option value="4" name="TT_SCALE_V">Control the scale of the V coordinates.</option>
     </enum>
 
     <enum name="DecayType" storage="uint">
-        Determines decay function.  Used by NiPSysBombModifier.
+        Describes the decay function of bomb forces.
         <option value="0" name="DECAY_NONE">No decay.</option>
         <option value="1" name="DECAY_LINEAR">Linear decay.</option>
         <option value="2" name="DECAY_EXPONENTIAL">Exponential decay.</option>
     </enum>
 
     <enum name="SymmetryType" storage="uint">
-        Determines symetry type used by NiPSysBombModifier.
+        Describes the symmetry type of bomb forces.
         <option value="0" name="SPHERICAL_SYMMETRY">Spherical Symmetry.</option>
         <option value="1" name="CYLINDRICAL_SYMMETRY">Cylindrical Symmetry.</option>
         <option value="2" name="PLANAR_SYMMETRY">Planar Symmetry.</option>
@@ -894,21 +902,21 @@
         <option value="4" name="EMIT_FROM_EDGE_SURFACE">Perhaps randomly emit particles from anywhere on the edges of the mesh?</option>
     </enum>
 
-    <enum name="EffectType" storage="uint">
-        The type of information that's store in a texture used by a NiTextureEffect.
-        <option value="0" name="EFFECT_PROJECTED_LIGHT">Apply a projected light texture.</option>
-        <option value="1" name="EFFECT_PROJECTED_SHADOW">Apply a projected shaddow texture.</option>
-        <option value="2" name="EFFECT_ENVIRONMENT_MAP">Apply an environment map texture.</option>
-        <option value="3" name="EFFECT_FOG_MAP">Apply a fog map texture.</option>
+    <enum name="TextureType" storage="uint">
+        The type of information that is stored in a texture used by an NiTextureEffect.
+        <option value="0" name="TEX_PROJECTED_LIGHT">Apply a projected light texture. Each light effect is summed before multiplying by the base texture.</option>
+        <option value="1" name="TEX_PROJECTED_SHADOW">Apply a projected shadow texture. Each shadow effect is multiplied by the base texture.</option>
+        <option value="2" name="TEX_ENVIRONMENT_MAP">Apply an environment map texture. Added to the base texture and light/shadow/decal maps.</option>
+        <option value="3" name="TEX_FOG_MAP">Apply a fog map texture. Alpha channel is used to blend the color channel with the base texture.</option>
     </enum>
 
     <enum name="CoordGenType" storage="uint">
         Determines the way that UV texture coordinates are generated.
-        <option value="0" name="CG_WORLD_PARALLEL">Use plannar mapping.</option>
+        <option value="0" name="CG_WORLD_PARALLEL">Use planar mapping.</option>
         <option value="1" name="CG_WORLD_PERSPECTIVE">Use perspective mapping.</option>
         <option value="2" name="CG_SPHERE_MAP">Use spherical mapping.</option>
-        <option value="3" name="CG_SPECULAR_CUBE_MAP">Use specular cube mapping.</option>
-        <option value="4" name="CG_DIFFUSE_CUBE_MAP">Use Diffuse cube mapping.</option>
+        <option value="3" name="CG_SPECULAR_CUBE_MAP">Use specular cube mapping. For NiSourceCubeMap only.</option>
+        <option value="4" name="CG_DIFFUSE_CUBE_MAP">Use diffuse cube mapping. For NiSourceCubeMap only.</option>
     </enum>
 
     <enum name="EndianType" storage="byte">
@@ -917,7 +925,7 @@
     </enum>
 
     <enum name="TargetColor" storage="ushort">
-        Used by NiPoint3InterpControllers to select which type of color in the controlled object that will be animated.
+        Used by NiMaterialColorControllers to select which type of color in the controlled object that will be animated.
         <option value="0" name="TC_AMBIENT">Control the ambient color.</option>
         <option value="1" name="TC_DIFFUSE">Control the diffuse color.</option>
         <option value="2" name="TC_SPECULAR">Control the specular color.</option>
@@ -925,29 +933,33 @@
     </enum>
 
     <enum name="ConsistencyType" storage="ushort">
-        Used by NiGeometryData to control the volatility of the mesh.  While they appear to be flags they behave as an enum.
+        Used by NiGeometryData to control the volatility of the mesh.
+        Consistency Type is masked to only the upper 4 bits (0xF000). Dirty mask is the lower 12 (0x0FFF) but only used at runtime.
         <option value="0x0000" name="CT_MUTABLE">Mutable Mesh</option>
         <option value="0x4000" name="CT_STATIC">Static Mesh</option>
         <option value="0x8000" name="CT_VOLATILE">Volatile Mesh</option>
     </enum>
 
     <enum name="SortingMode" storage="uint">
-        <option value="0" name="SORTING_INHERIT">Inherit</option>
-        <option value="1" name="SORTING_OFF">Disable</option>
+        Describes the way that NiSortAdjustNode modifies the sorting behavior for the subtree below it.
+        <option value="0" name="SORTING_INHERIT">Inherit. Acts identical to NiNode.</option>
+        <option value="1" name="SORTING_OFF">Disables sort on all geometry under this node.</option>
     </enum>
 
     <enum name="PropagationMode" storage="uint">
-        <option value="0" name="PROPAGATE_ON_SUCCESS">On Success</option>
-        <option value="1" name="PROPAGATE_ON_FAILURE">On Failure</option>
-        <option value="2" name="PROPAGATE_ALWAYS">Always</option>
-        <option value="3" name="PROPAGATE_NEVER">Never</option>
+        The propagation mode controls scene graph traversal during collision detection operations for NiCollisionData.
+        <option value="0" name="PROPAGATE_ON_SUCCESS">Propagation only occurs as a result of a successful collision.</option>
+        <option value="1" name="PROPAGATE_ON_FAILURE">(Deprecated) Propagation only occurs as a result of a failed collision.</option>
+        <option value="2" name="PROPAGATE_ALWAYS">Propagation always occurs regardless of collision result.</option>
+        <option value="3" name="PROPAGATE_NEVER">Propagation never occurs regardless of collision result.</option>
     </enum>
 
     <enum name="CollisionMode" storage="uint">
+        The collision mode controls the type of collision operation that is to take place for NiCollisionData.
         <option value="0" name="CM_USE_OBB">Use Bounding Box</option>
         <option value="1" name="CM_USE_TRI">Use Triangles</option>
         <option value="2" name="CM_USE_ABV">Use Alternate Bounding Volumes</option>
-        <option value="3" name="CM_NOTEST">No Test</option>
+        <option value="3" name="CM_NOTEST">Indicates that no collision test should be made.</option>
         <option value="4" name="CM_USE_NIBOUND">Use NiBound</option>
     </enum>
 
@@ -961,6 +973,7 @@
     </enum>
 
     <enum name="hkResponseType" storage="byte">
+        Bethesda Havok.
         <option value="0" name="RESPONSE_INVALID">Invalid Response</option>
         <option value="1" name="RESPONSE_SIMPLE_CONTACT">Do normal collision resolution</option>
         <option value="2" name="RESPONSE_REPORTING">No collision resolution is performed but listeners are called</option>
@@ -1135,7 +1148,7 @@
     </enum>
 
     <enum name="hkConstraintType" storage="uint">
-        The type of constraint.
+        Bethesda Havok. Describes the type of bhkConstraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
         <option value="1" name="Hinge">A hinge constraint.</option>
         <option value="2" name="Limited Hinge">A limited hinge constraint.</option>
@@ -1297,7 +1310,7 @@
     </compound>
 
     <compound name="Matrix34" niflibtype="Matrix34">
-        A 4x4 transformation matrix.
+        A 3x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
         <add name="m31" type="float" default="0.0">The (3,1) element.</add>
@@ -1349,14 +1362,14 @@
     </compound>
 
     <compound name="MipMap">
-        Description of a MipMap within a NiPixelData object.
+        Description of a mipmap within an NiPixelData object.
         <add name="Width" type="uint">Width of the mipmap image.</add>
         <add name="Height" type="uint">Height of the mipmap image.</add>
         <add name="Offset" type="uint">Offset into the pixel data array where this mipmap starts.</add>
     </compound>
 
-    <compound name="NodeGroup">
-        A group of NiNodes references.
+    <compound name="NodeSet">
+        A set of NiNode references.
         <add name="Num Nodes" type="uint">Number of node references that follow.</add>
         <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
@@ -1367,23 +1380,20 @@
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
     </compound>
 
-    <compound name="SkinShape">
-        Reference to shape and skin instance.
-        <add name="Shape" type="Ptr" template="NiTriBasedGeom">The shape.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance">Skinning instance for the shape?</add>
+    <compound name="SkinInfo">
+        NiBoneLODController::SkinInfo. Reference to shape and skin instance.
+        <add name="Shape" type="Ptr" template="NiTriBasedGeom" />
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" />
     </compound>
 
-    <compound name="SkinShapeGroup" ver1="10.0.1.0">
-        Unknown.
-        <add name="Num Link Pairs" type="uint">Counts unknown.</add>
-        <add name="Link Pairs" type="SkinShape" arr1="Num Link Pairs">
-            First link is a NiTriShape object.
-            Second link is a NiSkinInstance object.
-        </add>
+    <compound name="SkinInfoSet" ver1="10.0.1.0">
+        A set of NiBoneLODController::SkinInfo.
+        <add name="Num Skin Info" type="uint" />
+        <add name="Skin Info" type="SkinInfo" arr1="Num Skin Info" />
     </compound>
 
-    <compound name="SkinWeight">
-        A weighted vertex.
+    <compound name="BoneVertData">
+        NiSkinData::BoneVertData. A vertex and its weight.
         <add name="Index" type="ushort">The vertex index, in the mesh.</add>
         <add name="Weight" type="float">The vertex weight - between 0.0 and 1.0</add>
     </compound>
@@ -1504,13 +1514,15 @@
     </compound>
     
     <enum name="TransformMethod" storage="uint" prefix="TM">
-        <option value="0" name="Maya Deprecated" />
-        <option value="1" name="Max" />
-        <option value="2" name="Maya" />
+        Describes the order of scaling and rotation matrices. Translate, Scale, Rotation, Center are from TexDesc.
+        Back = inverse of Center. FromMaya = inverse of the V axis with a positive translation along V of 1 unit.
+        <option value="0" name="Maya Deprecated">Center * Rotation * Back * Translate * Scale</option>
+        <option value="1" name="Max">Center * Scale * Rotation * Translate * Back</option>
+        <option value="2" name="Maya">Center * Rotation * Back * FromMaya * Translate * Scale</option>
     </enum>
 
     <compound name="TexDesc">
-        Texture description.
+        NiTexturingProperty::Map. Texture description.
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Link to the texture image.</add>
         <add name="Source" type="Ref" template="NiSourceTexture" ver1="3.3.0.13">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
@@ -1529,11 +1541,11 @@
         <add name="Center Offset" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The offset from the origin?</add>
     </compound>
 
-    <compound name="ShaderTexDesc" ver1="10.0.1.0">
-        An extended texture description for shader textures.
-        <add name="Is Used" type="bool">Is it used?</add>
-        <add name="Texture Data" type="TexDesc" cond="Is Used">The texture data.</add>
-        <add name="Map Index" type="uint" cond="Is Used">Map Index</add>
+    <compound name="ShaderTexDesc">
+        NiTexturingProperty::ShaderMap. Shader texture description.
+        <add name="Has Map" type="bool" />
+        <add name="Map" type="TexDesc" cond="Has Map" />
+        <add name="Map ID" type="uint" cond="Has Map">Unique identifier for the Gamebryo shader system.</add>
     </compound>
 
     <compound name="Triangle" niflibtype="Triangle">
@@ -1681,7 +1693,7 @@
     </compound>
 
 	<bitflags name="FurnitureEntryPoints" storage="ushort">
-		Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
+		Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
 		<option value="0" name="Front">front entry point</option>
 		<option value="1" name="Behind">behind entry point</option>
 		<option value="2" name="Right">right entry point</option>
@@ -1690,14 +1702,14 @@
 	</bitflags>
 
 	<enum name="AnimationType" storage="ushort">
-		Animation type used on this position. This specifies the function of this position.
+		Bethesda Animation. Animation type used on this position. This specifies the function of this position.
 		<option value="1" name="Sit">Actor use sit animation.</option>
 		<option value="2" name="Sleep">Actor use sleep animation.</option>
 		<option value="4" name="Lean">Used for lean animations?</option>
 	</enum>
 
     <compound name="FurniturePosition">
-        Describes a furniture position?
+        Bethesda Animation. Describes a furniture position?
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
         <add name="Orientation" type="ushort" vercond="User Version &lt;= 11">Furniture marker orientation.</add>
         <add name="Position Ref 1" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
@@ -1708,7 +1720,7 @@
     </compound>
 
     <compound name="hkTriangle">
-        A triangle with extra data used for physics.
+        Bethesda Havok. A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
         <add name="Welding Info" type="ushort">Additional havok information on how triangles are welded.</add>
         <add name="Normal" type="Vector3" ver2="20.0.0.5">This is the triangle's normal.</add>
@@ -1736,19 +1748,19 @@
         <add name="Vertex ID" type="ushort">Particle/vertex index matches array index</add>
     </compound>
 
-    <compound name="SkinData">
-        Skinning data component.
+    <compound name="BoneData">
+        NiSkinData::BoneData. Skinning data component.
         <add name="Skin Transform" type="NiTransform">Offset of the skin from this bone in bind position.</add>
         <add name="Bounding Sphere Offset" type="Vector3">Translation offset of a bounding sphere holding all vertices. (Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere)</add>
         <add name="Bounding Sphere Radius" type="float">Radius for bounding sphere holding all vertices.</add>
         <add name="Unknown 13 Shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
-        <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
-        <add name="Vertex Weights" type="SkinWeight" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
+        <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
+        <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
     </compound>
 
-    <compound name="HavokColFilter">
-        ColFilter property for Havok. It contains Layer, Flags and Part Number
+    <compound name="HavokFilter">
+        Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
         <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
@@ -1796,14 +1808,15 @@
     </compound>
 
     <compound name="HavokMaterial">
+        Bethesda Havok. Material wrapper for varying material enums by game.
         <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
         <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
         <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape">
-        Havok Information for packed TriStrip shapes.
-        <add name="Havok Col Filter" type="HavokColFilter" />
+        Bethesda Havok. Havok Information for packed TriStrip shapes.
+        <add name="Havok Filter" type="HavokFilter" />
         <add name="Num Vertices" type="uint">The number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
@@ -2093,10 +2106,8 @@
 
     <compound name="bhkCMSDMaterial">
         Per-chunk material, used in bhkCompressedMeshShapeData
-        <add name="Material" type="SkyrimHavokMaterial">Material.</add>
-        <add name="Layer" type="SkyrimLayer">Copy of Layer from bhkRigidBody. The value is stored as 32-bit integer.</add>
-    <add name="Byte set to 0" type="byte" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
-    <add name="Short set to 0" type="ushort" default="0">Always set to 0. It is only remainder of "Layer" 32-bit integer above.</add>
+        <add name="Material" type="SkyrimHavokMaterial" />
+        <add name="Filter" type="HavokFilter" />
     </compound>
 
     <compound name="bhkCMSDBigTris">
@@ -2254,7 +2265,7 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
-        <add name="Havok Col Filter" type="HavokColFilter" />
+        <add name="Havok Filter" type="HavokFilter" />
         <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
         <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
         <add name="Unused Bytes" type="byte" arr1="3" />
@@ -2288,7 +2299,7 @@
         <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
         <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame.</add>
         <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Havok Col Filter Copy" type="HavokColFilter">Copy of Havok Col Filter</add>
+        <add name="Havok Filter Copy" type="HavokFilter">Copy of Havok Filter</add>
         <add name="Unused 2" type="byte" arr1="4">Garbage data from memory. Matches previous Unused value.</add>
         <add name="Unknown Int 2" type="uint" vercond="User Version 2 &gt; 34" />
         <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
@@ -2549,7 +2560,7 @@
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
-        <add name="Data Layers" type="HavokColFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
+        <add name="Data Layers" type="HavokFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
     <niobject name="NiExtraData" abstract="0" inherit="NiObject">
@@ -2940,11 +2951,11 @@
     </niobject>
 
     <niobject name="NiTextureTransformController" abstract="0" inherit="NiFloatInterpController">
-        Texture transformation controller. The target texture slot should have "Has Texture Transform" enabled.
+        Used to animate a single member of an NiTextureTransform.
         <add name="Shader Map" type="bool">Is the target map a shader map?</add>
-        <add name="Texture Slot" type="TexType"> The target texture slot.</add>
-        <add name="Operation" type="TexTransform">Determines how this controller animates the UV Coordinates.</add>
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Link to NiFloatData.</add>
+        <add name="Texture Slot" type="TexType">The target texture slot.</add>
+        <add name="Operation" type="TransformMember">Controls which aspect of the texture transform to modify.</add>
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0" />
     </niobject>
 
     <niobject name="NiLightDimmerController" abstract="0" inherit="NiFloatInterpController">
@@ -2961,18 +2972,17 @@
     </niobject>
 
     <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController">
-        Abstract base class for all NiInterpControllers that use a NiInterpolator to animate their target NiPoint3 value.
-        <add name="Target Color" type="TargetColor" ver1="10.1.0.0">Selects which color to control.</add>
-        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
+        Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target NiPoint3 value.
     </niobject>
 
     <niobject name="NiMaterialColorController" abstract="0" inherit="NiPoint3InterpController">
         Time controller for material color. Flags are used for color selection in versions below 10.1.0.0.
-        
         Bits 4-5: Target Color (00 = Ambient, 01 = Diffuse, 10 = Specular, 11 = Emissive)
+        <add name="Target Color" type="TargetColor" ver1="10.1.0.0">Selects which color to control.</add>
+        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
     </niobject>
 
-    <niobject name="NiLightColorController" abstract="0" inherit="NiPoint3InterpController">
+    <niobject name="NiLightColorController" abstract="0" inherit="NiMaterialColorController">
         Animates the ambient, diffuse and specular colors of an NiLight.
     </niobject>
 
@@ -2995,11 +3005,11 @@
         <add name="LOD" type="uint">Unknown.</add>
         <add name="Num LODs" type="uint">Number of LODs.</add>
         <add name="Num Node Groups" type="uint">Number of node arrays.</add>
-        <add name="Node Groups" type="NodeGroup" arr1="Num LODs">A list of node groups (each group a sequence of bones).</add>
+        <add name="Node Groups" type="NodeSet" arr1="Num LODs">A list of node sets (each set a sequence of bones).</add>
         <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" userver="0">Number of shape groups.</add>
         <add name="Num Shape Groups" type="uint" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinShapeGroup" arr1="Num Shape Groups"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">List of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinInfoSet" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinInfoSet" arr1="Num Shape Groups"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">List of shape groups.</add>
         <add name="Num Shape Groups 2" type="uint"  ver1="4.2.2.0" userver="0">The size of the second list of shape groups.</add>
         <add name="Num Shape Groups 2" type="uint"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">The size of the second list of shape groups.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
@@ -4299,7 +4309,7 @@
         <add name="Num Bones" type="uint">Number of bones.</add>
         <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="4.0.0.2" ver2="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</add>
         <add name="Has Vertex Weights" type="byte" ver1="4.2.1.0" default="1">Enables Vertex Weights for this NiSkinData.</add>
-        <add name="Bone List" type="SkinData" arr1="Num Bones" arg="Has Vertex Weights">Contains offset data for each node that this skin is influenced by.</add>
+        <add name="Bone List" type="BoneData" arr1="Num Bones" arg="Has Vertex Weights">Contains offset data for each node that this skin is influenced by.</add>
     </niobject>
 
     <niobject name="NiSkinInstance" abstract="0" inherit="NiObject">
@@ -4393,7 +4403,7 @@
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5" />
-        <add name="Draw Mode" default="DRAW_BOTH" type="FaceDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
+        <add name="Draw Mode" default="DRAW_BOTH" type="StencilDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
         <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
             Property flags:
             Bit 0: Stencil Enable
@@ -4439,7 +4449,7 @@
         <add name="Texture Filtering" type="TexFilterMode" default="FILTER_TRILERP">Texture Filtering mode.</add>
         <add name="Max Anisotropy" type="ushort" ver1="20.5.0.4" />
         <add name="Texture Clamping" type="TexClampMode" default="WRAP_S_WRAP_T">Texture Clamp mode.</add>
-        <add name="Texture Type" default="EFFECT_ENVIRONMENT_MAP" type="EffectType">The type of effect that the texture is used for.</add>
+        <add name="Texture Type" default="TEX_ENVIRONMENT_MAP" type="TextureType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
         <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
