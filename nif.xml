@@ -143,6 +143,19 @@
         These are like C enums and consist of a list of options.  They can appear
         as parts of compounds or niobjects.-->
 
+    <bitflags name="AccumFlags" storage="uint">
+        Describes the options for the accum root on NiControllerSequence.
+        <option value="0" name="ACCUM_X_TRANS">X Translation will be accumulated.</option>
+        <option value="1" name="ACCUM_Y_TRANS">Y Translation will be accumulated.</option>
+        <option value="2" name="ACCUM_Z_TRANS">Z Translation will be accumulated.</option>
+        <option value="3" name="ACCUM_X_ROT">X Rotation will be accumulated.</option>
+        <option value="4" name="ACCUM_Y_ROT">Y Rotation will be accumulated.</option>
+        <option value="5" name="ACCUM_Z_ROT">Z Rotation will be accumulated.</option>
+        <option value="6" name="ACCUM_X_FRONT">+X is front facing. (Default)</option>
+        <option value="7" name="ACCUM_Y_FRONT">+Y is front facing.</option>
+        <option value="8" name="ACCUM_Z_FRONT">+Z is front facing.</option>
+        <option value="9" name="ACCUM_NEG_FRONT">-X is front facing.</option>
+    </bitflags>
 
     <enum name="ApplyMode" storage="uint">
         Describes how the vertex colors are blended with the filtered texture color.
@@ -924,12 +937,18 @@
         <option value="1" name="ENDIAN_LITTLE">The numbers are stored in little endian format, such as those used by Intel and AMD x86 processors.</option>
     </enum>
 
-    <enum name="TargetColor" storage="ushort">
+    <enum name="MaterialColor" storage="ushort">
         Used by NiMaterialColorControllers to select which type of color in the controlled object that will be animated.
         <option value="0" name="TC_AMBIENT">Control the ambient color.</option>
         <option value="1" name="TC_DIFFUSE">Control the diffuse color.</option>
         <option value="2" name="TC_SPECULAR">Control the specular color.</option>
         <option value="3" name="TC_SELF_ILLUM">Control the self illumination color.</option>
+    </enum>
+
+    <enum name="LightColor" storage="ushort">
+        Used by NiLightColorControllers to select which type of color in the controlled object that will be animated.
+        <option value="0" name="LC_DIFFUSE">Control the diffuse color.</option>
+        <option value="1" name="LC_AMBIENT">Control the ambient color.</option>
     </enum>
 
     <enum name="ConsistencyType" storage="ushort">
@@ -1404,31 +1423,39 @@
         <add name="AV Object" type="Ptr" template="NiAVObject">Object reference.</add>
     </compound>
 
-    <compound name="ControllerLink" ver1="10.2.0.0">
+    <compound name="ControlledBlock">
         In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.
-        <add name="Target Name" type="string" ver2="10.1.0.0">Name of a controllable object in another NIF file.</add>
-        <add name="Controller" type="Ref" template="NiTimeController" ver2="10.1.0.0">Link to a controller.</add>
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106">Link to an interpolator.</add>
-        <add name="Controller" type="Ref" template="NiTimeController" ver1="10.1.0.106">Unknown link. Usually -1.</add>
-        <add name="Unknown Link 2" type="Ref" template="NiObject" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Unknown Short 0" type="ushort" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Priority" type="byte" ver1="10.1.0.106" vercond="(User Version >= 10)">Idle animations tend to have low values for this, and NIF objects that have high values tend to correspond with the important parts of the animation.</add>
-        <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to the NiStringPalette which contains the name of the controlled NIF object.</add>
-        <add name="Node Name" type="string" ver1="10.1.0.106" ver2="10.1.0.106">The name of the animated node.</add>
-        <add name="Node Name" type="string" ver1="20.1.0.3">The name of the animated node.</add>
-        <add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where the name of the controlled node (NiNode, NiTriShape, ...) starts.</add>
-        <add name="Property Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
-        <add name="Property Type" type="string" ver1="20.1.0.3">Name of the property (NiMaterialProperty, ...), if this controller controls a property.</add>
-        <add name="Property Type Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where the property (NiMaterialProperty, ...) starts, if this controller controls a property. Otherwise, -1.</add>
-        <add name="Controller Type" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Probably the object type name of the controller in the NIF file that is child of the controlled object.</add>
-        <add name="Controller Type" type="string" ver1="20.1.0.3">Probably the object type name of the controller in the NIF file that is child of the controlled object.</add>
-        <add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Apparently the offset in the string palette of some type of controller related to Interpolator (for example, a &#039;NiTransformInterpolator&#039; will have here a &#039;NiTransformController&#039;, etc.). Sometimes the type of controller that links to the interpolator. Probably it refers to the controller in the NIF file that is child of the controlled object, via its type name.</add>
-        <add name="Variable 1" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-        <add name="Variable 1" type="string" ver1="20.1.0.3">Some variable string (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.).</add>
-        <add name="Variable 1 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (such as &#039;SELF_ILLUM&#039;, &#039;0-0-TT_TRANSLATE_U&#039;, &#039;tongue_out&#039;, etc.). Usually, -1.</add>
-        <add name="Variable 2" type="string" ver1="10.1.0.106" ver2="10.1.0.106">Another variable string, apparently used for particle system controllers.</add>
-        <add name="Variable 2" type="string" ver1="20.1.0.3">Another variable string, apparently used for particle system controllers.</add>
-        <add name="Variable 2 Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.0.0.5">Offset in the string palette where some variable string starts (so far only &#039;EmitterActive&#039; and &#039;BirthRate&#039; have been observed in official files, used for particle system controllers). Usually, -1.</add>
+        For Controller ID, NiInterpController::GetCtlrID() virtual function returns a string formatted specifically for the derived type.
+        For Interpolator ID, NiInterpController::GetInterpolatorID() virtual function returns a string formatted specifically for the derived type.
+        The string formats are documented on the relevant niobject blocks.
+        <add name="Target Name" type="string" ver2="10.1.0.103">Name of a controllable object in another NIF file.</add>
+        <!-- NiControllerSequence::InterpArrayItem -->
+        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106" />
+        <add name="Controller" type="Ref" template="NiTimeController" />
+        <add name="Blend Interpolator" type="Ref" template="NiBlendInterpolator" ver1="10.1.0.104" ver2="10.1.0.110" />
+        <add name="Blend Index" type="ushort" ver1="10.1.0.104" ver2="10.1.0.110" />
+        <!-- Bethesda-only -->
+        <add name="Priority" type="byte" ver1="10.1.0.106" vercond="(User Version 2 &gt; 0)">Idle animations tend to have low values for this, and high values tend to correspond with the important parts of the animations.</add>
+        <!-- NiControllerSequence::IDTag, post-10.1.0.104 only -->
+        <!-- Until 10.2 -->
+        <add name="Node Name" type="string" ver1="10.1.0.104" ver2="10.1.0.113">The name of the animated NiAVObject.</add>
+        <add name="Property Type" type="string" ver1="10.1.0.104" ver2="10.1.0.113">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
+        <add name="Controller Type" type="string" ver1="10.1.0.104" ver2="10.1.0.113">The RTTI type of the NiTimeController.</add>
+        <add name="Controller ID" type="string" ver1="10.1.0.104" ver2="10.1.0.113">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
+        <add name="Interpolator ID" type="string" ver1="10.1.0.104" ver2="10.1.0.113">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
+        <!-- From 10.2 to 20.1 -->
+        <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.1.0.0">Refers to the NiStringPalette which contains the name of the controlled NIF object.</add>
+        <add name="Node Name Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.1.0.0">Offset in NiStringPalette to the name of the animated NiAVObject.</add>
+        <add name="Property Type Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.1.0.0">Offset in NiStringPalette to the RTTI type of the NiProperty the controller is attached to, if applicable.</add>
+        <add name="Controller Type Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.1.0.0">Offset in NiStringPalette to the RTTI type of the NiTimeController.</add>
+        <add name="Controller ID Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.1.0.0">Offset in NiStringPalette to an ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
+        <add name="Interpolator ID Offset" type="StringOffset" ver1="10.2.0.0" ver2="20.1.0.0">Offset in NiStringPalette to an ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
+        <!-- After 20.1 -->
+        <add name="Node Name" type="string" ver1="20.1.0.1">The name of the animated NiAVObject.</add>
+        <add name="Property Type" type="string" ver1="20.1.0.1">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
+        <add name="Controller Type" type="string" ver1="20.1.0.1">The RTTI type of the NiTimeController.</add>
+        <add name="Controller ID" type="string" ver1="20.1.0.1">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
+        <add name="Interpolator ID" type="string" ver1="20.1.0.1">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
     </compound>
 
     <compound name="ExportInfo">
@@ -2870,7 +2897,7 @@
     <niobject name="NiKeyframeController" abstract="0" inherit="NiSingleInterpController">
         DEPRECATED (10.2), RENAMED (10.2) to NiTransformController
         A time controller object for animation key frames.
-        <add name="Data" type="Ref" template="NiKeyframeData" ver2="10.1.0.0">Keyframe controller data index.</add>
+        <add name="Data" type="Ref" template="NiKeyframeData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiTransformController" abstract="0" inherit="NiKeyframeController">
@@ -2879,13 +2906,18 @@
 
     <niobject name="NiPSysModifierCtlr" abstract="1" inherit="NiSingleInterpController">
         A particle system modifier controller.
-        <add name="Modifier Name" type="string">Refers to modifier object by its name?</add>
+        NiInterpController::GetCtlrID() string format:
+            '%s'
+        Where %s = Value of "Modifier Name"
+        <add name="Modifier Name" type="string">Used to find the modifier pointer.</add>
     </niobject>
 
     <niobject name="NiPSysEmitterCtlr" abstract="0" inherit="NiPSysModifierCtlr">
         Particle system emitter controller.
-        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
+        NiInterpController::GetInterpolatorID() string format:
+            ['BirthRate', 'EmitterActive'] (for "Interpolator" and "Visibility Interpolator" respectively)
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0" />
+        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiPSysModifierBoolCtlr" abstract="1" inherit="NiPSysModifierCtlr">
@@ -2894,12 +2926,12 @@
 
     <niobject name="NiPSysModifierActiveCtlr" abstract="0" inherit="NiPSysModifierBoolCtlr">
         A particle system modifier controller that animates active/inactive state for particles.
-        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">This controller's data.</add>
+        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiPSysModifierFloatCtlr" abstract="1" inherit="NiPSysModifierCtlr">
         A particle system modifier controller that animates a floating point value for particles.
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">This controller's data.</add>
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiPSysEmitterDeclinationCtlr" abstract="0" inherit="NiPSysModifierFloatCtlr">
@@ -2947,15 +2979,18 @@
 
     <niobject name="NiAlphaController" abstract="0" inherit="NiFloatInterpController">
         Animates the alpha value of a property using an interpolator.
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0">Alpha controller data index.</add>
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiTextureTransformController" abstract="0" inherit="NiFloatInterpController">
         Used to animate a single member of an NiTextureTransform.
+        NiInterpController::GetCtlrID() string formats:
+            ['%1-%2-TT_TRANSLATE_U', '%1-%2-TT_TRANSLATE_V', '%1-%2-TT_ROTATE', '%1-%2-TT_SCALE_U', '%1-%2-TT_SCALE_V']
+        (Depending on "Operation" enumeration, %1 = Value of "Shader Map", Value of %2 = "Texture Slot")
         <add name="Shader Map" type="bool">Is the target map a shader map?</add>
         <add name="Texture Slot" type="TexType">The target texture slot.</add>
         <add name="Operation" type="TransformMember">Controls which aspect of the texture transform to modify.</add>
-        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.0" />
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiLightDimmerController" abstract="0" inherit="NiFloatInterpController">
@@ -2968,7 +3003,7 @@
 
     <niobject name="NiVisController" abstract="0" inherit="NiBoolInterpController">
         Animates the visibility of an NiAVObject.
-        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.0">Visibility controller data object index.</add>
+        <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.103" />
     </niobject>
 
     <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController">
@@ -2978,25 +3013,53 @@
     <niobject name="NiMaterialColorController" abstract="0" inherit="NiPoint3InterpController">
         Time controller for material color. Flags are used for color selection in versions below 10.1.0.0.
         Bits 4-5: Target Color (00 = Ambient, 01 = Diffuse, 10 = Specular, 11 = Emissive)
-        <add name="Target Color" type="TargetColor" ver1="10.1.0.0">Selects which color to control.</add>
-        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.0">Material color controller data object index. Points to NiPosData.</add>
+        NiInterpController::GetCtlrID() string formats:
+            ['AMB', 'DIFF', 'SPEC', 'SELF_ILLUM'] (Depending on "Target Color")
+        <add name="Target Color" type="MaterialColor" ver1="10.1.0.0">Selects which color to control.</add>
+        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.103" />
     </niobject>
 
-    <niobject name="NiLightColorController" abstract="0" inherit="NiMaterialColorController">
+    <niobject name="NiLightColorController" abstract="0" inherit="NiPoint3InterpController">
         Animates the ambient, diffuse and specular colors of an NiLight.
+        NiInterpController::GetCtlrID() string formats:
+            ['Diffuse', 'Ambient'] (Depending on "Target Color")
+        <add name="Target Color" type="LightColor" ver1="10.1.0.0" />
+        <add name="Data" type="Ref" template="NiPosData" ver2="10.1.0.103" />
     </niobject>
 
 
     <niobject name="NiExtraDataController" abstract="1" inherit="NiSingleInterpController">
         Abstract base class for all extra data controllers.
+        NiInterpController::GetCtlrID() string format:
+            '%s'
+        Where %s = Value of "Extra Data Name"
+        <add name="Extra Data Name" type="string" ver1="10.2.0.0" />
     </niobject>
 
     <niobject name="NiFloatExtraDataController" abstract="0" inherit="NiExtraDataController">
         Animates an NiFloatExtraData object attached to an NiAVObject.
-        <add name="Controller Data" type="string" ver1="10.2.0.0">Refers to a NiFloatExtraData name.</add>
+        NiInterpController::GetCtlrID() string format is same as parent.
         <add name="Num Extra Bytes" type="byte" ver2="10.1.0.0">Number of extra bytes.</add>
         <add name="Unknown Bytes" type="byte" arr1="7" ver2="10.1.0.0">Unknown.</add>
         <add name="Unknown Extra Bytes" type="byte" arr1="Num Extra Bytes" ver2="10.1.0.0">Unknown.</add>
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
+    </niobject>
+
+    <niobject name="NiFloatsExtraDataController" abstract="0" inherit="NiExtraDataController">
+        Animates an NiFloatsExtraData object attached to an NiAVObject.
+        NiInterpController::GetCtlrID() string format:
+            '%s[%d]'
+        Where %s = Value of "Extra Data Name", %d = Value of "Floats Extra Data Index"
+        <add name="Floats Extra Data Index" type="int" />
+        <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
+    </niobject>
+
+    <niobject name="NiFloatsExtraDataPoint3Controller" abstract="0" inherit="NiExtraDataController">
+        Animates an NiFloatsExtraData object attached to an NiAVObject.
+        NiInterpController::GetCtlrID() string format:
+            '%s[%d]'
+        Where %s = Value of "Extra Data Name", %d = Value of "Floats Extra Data Index"
+        <add name="Floats Extra Data Index" type="int" />
     </niobject>
 
     <niobject name="NiBoneLODController" abstract="0" inherit="NiTimeController">
@@ -3445,35 +3508,35 @@
     </niobject>
 
     <niobject name="NiSequence" abstract="0" inherit="NiObject">
-        Root node used in some Empire Earth II .kf files (version 4.2.2.0).
-        <add name="Name" type="string">Name of this object. This is also the name of the action associated with this file. For instance, if the original NIF file is called &quot;demon.nif&quot; and this animation file contains an attack sequence, then the file would be called &quot;demon_attack1.kf&quot; and this field would contain the string &quot;attack1&quot;.</add>
-        <add name="Text Keys Name" type="string" ver2="10.1.0.0">Name of following referenced NiTextKeyExtraData class.</add>
-        <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.0">Link to NiTextKeyExtraData.</add>
-        <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
-        <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown</add>
-        <add name="Num Controlled Blocks" type="uint">Number of controlled objects.</add>
-        <add name="Array Grow By" type="uint" ver1="10.1.0.106">Unknown.</add>
-        <add name="Controlled Blocks" type="ControllerLink" arr1="Num Controlled Blocks">Refers to controlled objects.</add>
+        Root node in NetImmerse .kf files (until version 10.0).
+        <add name="Name" type="string">The sequence name by which the animation system finds and manages this sequence.</add>
+        <add name="Accum Root Name" type="string" ver2="10.1.0.103">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
+        <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.103" />
+        <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Divinity 2</add>
+        <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Divinity 2</add>
+        <add name="Num Controlled Blocks" type="uint" />
+        <add name="Array Grow By" type="uint" ver1="10.1.0.106" />
+        <add name="Controlled Blocks" type="ControlledBlock" arr1="Num Controlled Blocks" />
     </niobject>
 
     <niobject name="NiControllerSequence" abstract="0" inherit="NiSequence">
-        Root node in .kf files (version 10.0.1.0 and up).
-        <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">Weight/priority of animation?</add>
-        <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106">Link to NiTextKeyExtraData. Replaces the other Text Keys field in versions 10.1.0.106 and up.</add>
-        <add name="Cycle Type" type="CycleType" ver1="10.1.0.106">Anim cycle type? Is part of &quot;Flags&quot; in other objects?</add>
-        <add name="Unknown Int 0" type="uint" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Frequency" type="float" ver1="10.1.0.106">The animation frequency.</add>
-        <add name="Start Time" type="float" ver1="10.1.0.106">The controller sequence start time?</add>
-        <add name="Unknown Float 2" type="float" ver1="10.2.0.0" ver2="10.4.0.1">Unknown.</add>
-        <add name="Stop Time" type="float" ver1="10.1.0.106">The controller sequence stop time?</add>
-        <add name="Unknown Byte" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
-        <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">Refers to NiControllerManager which references this object, if any.</add>
-        <add name="Target Name" type="string" ver1="10.1.0.106">Name of target node Controller acts on.</add>
-        <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.2.0.0" ver2="20.0.0.5">Refers to NiStringPalette.</add>
-        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)">Unknown</add>
-        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Number of anim notes objects.</add>
-        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)">Indices of anim notes objects.</add>
-        <add name="Unknown Int 3" type="uint" ver1="20.3.0.9" default="64">Unknown, found in some Lazeska and Krazy Rain .KFs (seems to be 64 when present).</add>
+        Root node in Gamebryo .kf files (version 10.0.1.0 and up).
+        <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">The weight of a sequence describes how it blends with other sequences at the same priority.</add>
+        <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106" />
+        <add name="Cycle Type" type="CycleType" ver1="10.1.0.106" />
+        <add name="Frequency" type="float" ver1="10.1.0.106" />
+        <add name="Phase" type="float" ver1="10.1.0.106" ver2="10.4.0.1" /> <!-- Actually ver2="10.3.0.1" but WorldShift 10.4.0.1 custom version acts like 10.3.0.1 -->
+        <add name="Start Time" type="float" ver1="10.1.0.106" />
+        <add name="Stop Time" type="float" ver1="10.1.0.106" />
+        <add name="Play Backwards" type="bool" ver1="10.1.0.106" ver2="10.1.0.106" />
+        <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">The owner of this sequence.</add>
+        <add name="Accum Root Name" type="string" ver1="10.1.0.106">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
+        <add name="Accum Flags" type="AccumFlags" ver1="20.3.0.8" default="ACCUM_X_FRONT" />
+        <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.1.0.113" ver2="20.1.0.0" />
+        <!-- Bethesda -->
+        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)" />
+        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)" />
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)" />
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
@@ -5740,10 +5803,8 @@
     </niobject>
 
 
-    <niobject name="BSPSysMultiTargetEmitterCtlr" inherit="NiPSysModifierCtlr">
+    <niobject name="BSPSysMultiTargetEmitterCtlr" inherit="NiPSysEmitterCtlr">
         Particle system (multi?) emitter controller.
-        <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.0">This controller's data</add>
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0">Links to a bool interpolator. Controls emitter&#039;s visibility status?</add>
         <add name="Max Emitters" type="ushort" />
         <add name="Master Particle System" type="Ptr" template="BSMasterParticleSystem" />
     </niobject>
