@@ -2783,19 +2783,21 @@
 
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
         Abstract base class for dynamic effects such as NiLights or projected texture effects.
-        <add name="Switch State" type="bool" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">Turns effect on and off?  Switches list to list of unaffected nodes?</add>
-        <add name="Num Affected Node List Pointers" type="uint" ver2="4.0.0.2" >The number of affected nodes referenced.</add>
-        <add name="Affected Node List Pointers" type="uint" arr1="Num Affected Node List Pointers" ver2="4.0.0.2">This is probably the list of affected nodes. For some reason i do not know the max exporter seems to write pointers instead of links. But it doesn&#039;t matter because at least in version 4.0.0.2 the list is automagically updated by the engine during the load stage.</add>
-        <add name="Num Affected Nodes" type="uint" ver1="10.1.0.0" vercond="User Version 2 &lt; 130">The number of affected nodes referenced.</add>
-        <add name="Affected Nodes" type="Ref" template="NiAVObject" arr1="Num Affected Nodes" ver1="10.1.0.0" vercond="User Version 2 &lt; 130">The list of affected nodes?</add>
+        <add name="Switch State" type="bool" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">If true, then the dynamic effect is applied to affected nodes during rendering.</add>
+        <add name="Num Affected Nodes" type="uint" ver2="4.0.0.2" />
+        <add name="Affected Nodes" type="Ptr" template="NiNode" arr1="Num Affected Nodes" ver2="3.3.0.13">If a node appears in this list, then its entire subtree will be affected by the effect.</add>
+        <add name="Affected Node Pointers" type="uint" arr1="Num Affected Nodes" ver1="4.0.0.0" ver2="4.0.0.2">As of 4.0 the pointer hash is no longer stored alongside each NiObject on disk, yet this node list still refers to the pointer hashes. Cannot leave the type as Ptr because the link will be invalid.</add>
+        <add name="Num Affected Nodes" type="uint" ver1="10.1.0.0" vercond="User Version 2 &lt; 130" />
+        <add name="Affected Nodes" type="Ptr" template="NiNode" arr1="Num Affected Nodes" ver1="10.1.0.0" vercond="User Version 2 &lt; 130">If a node appears in this list, then its entire subtree will be affected by the effect.</add>
     </niobject>
 
     <niobject name="NiLight" abstract="1" inherit="NiDynamicEffect">
         Abstract base class that represents light sources in a scene graph.
-        <add name="Dimmer" type="float">Dimmer.</add>
-        <add name="Ambient Color" type="Color3">Ambient color.</add>
-        <add name="Diffuse Color" type="Color3">Diffuse color.</add>
-        <add name="Specular Color" type="Color3">Specular color.</add>
+        For Bethesda Stream 130 (FO4), NiLight now directly inherits from NiAVObject.
+        <add name="Dimmer" type="float">Scales the overall brightness of all light components.</add>
+        <add name="Ambient Color" type="Color3" />
+        <add name="Diffuse Color" type="Color3" />
+        <add name="Specular Color" type="Color3" />
     </niobject>
 
     <niobject name="NiProperty" abstract="1" inherit="NiObjectNET">
