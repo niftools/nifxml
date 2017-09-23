@@ -816,14 +816,13 @@
         <option value="7" name="ZCOMP_NEVER">Always false. Ref value is ignored.</option>
     </enum>
 
-    <enum name="MotionSystem" storage="byte">
-        Bethesda Havok.
-        The motion system. 4 (Box) is used for everything movable. 7 (Keyframed) is used on statics and animated stuff.
+    <enum name="hkMotionType" storage="byte">
+        Bethesda Havok, based on hkpMotion::MotionType. Motion type of a rigid body determines what happens when it is simulated.
         <option value="0" name="MO_SYS_INVALID">Invalid</option>
         <option value="1" name="MO_SYS_DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects MO_SYS_SPHERE_INERTIA or MO_SYS_BOX_INERTIA as appropriate.</option>
-        <option value="2" name="MO_SYS_SPHERE">Simulation is performed using a sphere inertia tensor.</option>
-        <option value="3" name="MO_SYS_SPHERE_INERTIA">This is the same as MO_SYS_SPHERE_INERTIA, except that simulation of the rigid body is "softened".</option>
-        <option value="4" name="MO_SYS_BOX">Simulation is performed using a box inertia tensor.</option>
+        <option value="2" name="MO_SYS_SPHERE_INERTIA">Simulation is performed using a sphere inertia tensor.</option>
+        <option value="3" name="MO_SYS_SPHERE_STABILIZED">This is the same as MO_SYS_SPHERE_INERTIA, except that simulation of the rigid body is "softened".</option>
+        <option value="4" name="MO_SYS_BOX_INERTIA">Simulation is performed using a box inertia tensor.</option>
         <option value="5" name="MO_SYS_BOX_STABILIZED">This is the same as MO_SYS_BOX_INERTIA, except that simulation of the rigid body is "softened".</option>
         <option value="6" name="MO_SYS_KEYFRAMED">Simulation is not performed as a normal rigid body. The keyframed rigid body has an infinite mass when viewed by the rest of the system. (used for creatures)</option>
         <option value="7" name="MO_SYS_FIXED">This motion type is used for the static elements of a game scene, e.g. the landscape. Faster than MO_SYS_KEYFRAMED at velocity 0. (used for weapons)</option>
@@ -838,34 +837,38 @@
         <option value="2" name="DEACTIVATOR_SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>
     </enum>
 
-    <enum name="SolverDeactivation" storage="byte">
-        Bethesda Havok.
-        A list of possible solver deactivation settings. This value defines how the
-        solver deactivates objects. The solver works on a per object basis.
-        Note: Solver deactivation does not save CPU, but reduces creeping of
-        movable objects in a pile quite dramatically.
+    <enum name="hkSolverDeactivation" storage="byte">
+        Bethesda Havok, based on hkpRigidBodyCinfo::SolverDeactivation.
+        A list of possible solver deactivation settings. This value defines how aggressively the solver deactivates objects.
+        Note: Solver deactivation does not save CPU, but reduces creeping of movable objects in a pile quite dramatically.
         <option value="0" name="SOLVER_DEACTIVATION_INVALID">Invalid</option>
-        <option value="1" name="SOLVER_DEACTIVATION_OFF">No solver deactivation</option>
+        <option value="1" name="SOLVER_DEACTIVATION_OFF">No solver deactivation.</option>
         <option value="2" name="SOLVER_DEACTIVATION_LOW">Very conservative deactivation, typically no visible artifacts.</option>
-        <option value="3" name="SOLVER_DEACTIVATION_MEDIUM">Normal deactivation, no serious visible artifacts in most cases</option>
-        <option value="4" name="SOLVER_DEACTIVATION_HIGH">Fast deactivation, visible artifacts</option>
-        <option value="5" name="SOLVER_DEACTIVATION_MAX">Very fast deactivation, visible artifacts</option>
+        <option value="3" name="SOLVER_DEACTIVATION_MEDIUM">Normal deactivation, no serious visible artifacts in most cases.</option>
+        <option value="4" name="SOLVER_DEACTIVATION_HIGH">Fast deactivation, visible artifacts.</option>
+        <option value="5" name="SOLVER_DEACTIVATION_MAX">Very fast deactivation, visible artifacts.</option>
     </enum>
 
-    <enum name="MotionQuality" storage="byte">
-        Bethesda Havok.
-        The motion type. Determines quality of motion?
+    <enum name="hkQualityType" storage="byte">
+        Bethesda Havok, based on hkpCollidableQualityType. Describes the priority and quality of collisions for a body,
+            e.g. you may expect critical game play objects to have solid high-priority collisions so that they never sink into ground,
+            or may allow penetrations for visual debris objects.
+        Notes:
+            - Fixed and keyframed objects cannot interact with each other.
+            - Debris can interpenetrate but still responds to Bullet hits.
+            - Critical objects are forced to not interpenetrate.
+            - Moving objects can interpenetrate slightly with other Moving or Debris objects but nothing else.
         <option value="0" name="MO_QUAL_INVALID">Automatically assigned to MO_QUAL_FIXED, MO_QUAL_KEYFRAMED or MO_QUAL_DEBRIS</option>
-        <option value="1" name="MO_QUAL_FIXED">Use this for fixed bodies. </option>
-        <option value="2" name="MO_QUAL_KEYFRAMED">Use this for moving objects with infinite mass.</option>
-        <option value="3" name="MO_QUAL_DEBRIS">Use this for all your debris objects</option>
-        <option value="4" name="MO_QUAL_MOVING">Use this for moving bodies, which should not leave the world.</option>
-        <option value="5" name="MO_QUAL_CRITICAL">Use this for all objects, which you cannot afford to tunnel through the world at all</option>
-        <option value="6" name="MO_QUAL_BULLET">Use this for very fast objects </option>
+        <option value="1" name="MO_QUAL_FIXED">Static body.</option>
+        <option value="2" name="MO_QUAL_KEYFRAMED">Animated body with infinite mass.</option>
+        <option value="3" name="MO_QUAL_DEBRIS">Low importance bodies adding visual detail.</option>
+        <option value="4" name="MO_QUAL_MOVING">Moving bodies which should not penetrate or leave the world, but can.</option>
+        <option value="5" name="MO_QUAL_CRITICAL">Gameplay critical bodies which cannot penetrate or leave the world under any circumstance.</option>
+        <option value="6" name="MO_QUAL_BULLET">Fast-moving bodies, such as projectiles.</option>
         <option value="7" name="MO_QUAL_USER">For user.</option>
-        <option value="8" name="MO_QUAL_CHARACTER">Use this for rigid body character controllers</option>
+        <option value="8" name="MO_QUAL_CHARACTER">For use with rigid body character controllers.</option>
         <option value="9" name="MO_QUAL_KEYFRAMED_REPORT">
-            Use this for moving objects with infinite mass which should report contact points and Toi-collisions against all other bodies, including other fixed and keyframed bodies.
+            Moving bodies with infinite mass which should report contact points and TOI collisions against all other bodies.
         </option>
     </enum>
 
@@ -1299,7 +1302,7 @@
         <add name="z" type="float" default="0.0">The z-coordinate.</add>
     </compound>
 
-    <compound name="QuaternionXYZW">
+    <compound name="hkQuaternion">
         A quaternion as it appears in the havok objects.
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
         <add name="y" type="float" default="0.0">The y-coordinate.</add>
@@ -1746,7 +1749,7 @@
         <add name="Entry Properties" type="FurnitureEntryPoints" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
     </compound>
 
-    <compound name="hkTriangle">
+    <compound name="TriangleData">
         Bethesda Havok. A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
         <add name="Welding Info" type="ushort">Additional havok information on how triangles are welded.</add>
@@ -2089,7 +2092,7 @@
     <compound name="BoneTransform">
         Transformation data for the bone at this index in bhkPoseArray.
         <add name="Translation" type="Vector3" />
-        <add name="Rotation" type="QuaternionXYZW" />
+        <add name="Rotation" type="hkQuaternion" />
         <add name="Scale" type="Vector3" />
     </compound>
 
@@ -2149,7 +2152,7 @@
     <compound name="bhkCMSDTransform">
         A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
-        <add name="Rotation" type="QuaternionXYZW">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
+        <add name="Rotation" type="hkQuaternion">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
     </compound>
     
     <compound name="bhkCMSDChunk">
@@ -2334,7 +2337,7 @@
         <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" />
         <add name="Unknown Int 2" type="uint" vercond="User Version 2 &lt;= 34" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
-        <add name="Rotation" type="QuaternionXYZW">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
         <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
         <add name="Inertia Tensor" type="hkMatrix3">Defines how the mass is distributed among the body.</add>
@@ -2358,11 +2361,11 @@
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Motion System" type="MotionSystem" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="DeactivatorType" default="DEACTIVATOR_NEVER" vercond="(User Version 2 &lt;= 34)">The initial deactivator type of the body.</add>
+        <add name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Deactivator Type" type="hkDeactivatorType" default="DEACTIVATOR_NEVER" vercond="(User Version 2 &lt;= 34)">The initial deactivator type of the body.</add>
         <add name="Enable Deactivation" type="bool" default="1" vercond="(User Version 2 &gt; 34)" />
-        <add name="Solver Deactivation" type="SolverDeactivation" default="SOLVER_DEACTIVATION_OFF">Usually set to 1 for fixed objects, or set to 2 for moving ones.  Seems to always be same as Unknown Byte 1.</add>
-        <add name="Quality Type" type="MotionQuality" default="MO_QUAL_FIXED">The motion type. Determines quality of motion?</add>
+        <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
+        <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</add>
         <add name="Unknown Bytes 1" type="byte" arr1="12">Unknown.</add>
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint"> The number of constraints this object is bound to.</add>
@@ -3235,9 +3238,9 @@
 
     <niobject name="hkPackedNiTriStripsData" abstract="0" inherit="bhkShapeCollection">
         NiTriStripsData for havok data?
-        <add name="Num Triangles" type="uint">Number of triangles?</add>
-        <add name="Triangles" type="hkTriangle" arr1="Num Triangles">The physics triangles?</add>
-        <add name="Num Vertices" type="uint">Number of vertices.</add>
+        <add name="Num Triangles" type="uint" />
+        <add name="Triangles" type="TriangleData" arr1="Num Triangles" />
+        <add name="Num Vertices" type="uint" />
         <add name="Unknown Byte 1" type="byte" ver1="20.2.0.7">Unknown.</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices">The vertices?</add>
         <add name="Num Sub Shapes" type="ushort" ver1="20.2.0.7">Number of subparts.</add>
