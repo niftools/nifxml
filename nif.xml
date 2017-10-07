@@ -1660,7 +1660,7 @@
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into 'Bones'.</add>
-		<add name="Unknown Short" type="ushort" vercond="User Version >= 12">Unknown</add>
+		<add name="Unknown Short" type="ushort" vercond="User Version 2 &gt; 34">Unknown</add>
 		<add name="Vertex Size" type="byte" ver="20.2.0.7" userver2="100" />
 		<add name="Float Size" type="byte" ver="20.2.0.7" userver2="100" />
 		<add name="VF3" type="byte" ver="20.2.0.7" userver2="100" />
@@ -1743,12 +1743,12 @@
     <compound name="FurniturePosition">
         Bethesda Animation. Describes a furniture position?
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
-        <add name="Orientation" type="ushort" vercond="User Version &lt;= 11">Furniture marker orientation.</add>
-        <add name="Position Ref 1" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
-        <add name="Position Ref 2" type="byte" vercond="User Version &lt;= 11">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
-        <add name="Heading" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Similar to Orientation, in float form.</add>
-        <add name="Animation Type" type="AnimationType" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Entry Properties" type="FurnitureEntryPoints" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown/unused in nif?</add>
+        <add name="Orientation" type="ushort" vercond="User Version 2 &lt;= 34">Furniture marker orientation.</add>
+        <add name="Position Ref 1" type="byte" vercond="User Version 2 &lt;= 34">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</add>
+        <add name="Position Ref 2" type="byte" vercond="User Version 2 &lt;= 34">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</add>
+        <add name="Heading" type="float" vercond="User Version 2 &gt; 34">Similar to Orientation, in float form.</add>
+        <add name="Animation Type" type="AnimationType" vercond="User Version 2 &gt; 34">Unknown</add>
+        <add name="Entry Properties" type="FurnitureEntryPoints" vercond="User Version 2 &gt; 34">Unknown/unused in nif?</add>
     </compound>
 
     <compound name="TriangleData">
@@ -2121,6 +2121,16 @@
         Body part list for DismemberSkinInstance
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
+    </compound>
+    
+    <compound name="BSVertexDesc">
+        <add name="VF1" type="byte" />
+        <add name="VF2" type="byte" />
+        <add name="VF3" type="byte" />
+        <add name="VF4" type="byte" />
+        <add name="VF5" type="byte" />
+        <add name="VF" type="VertexFlags" />
+        <add name="VF8" type="byte" />
     </compound>
     
     <compound name="BSGeometrySegmentData">
@@ -2523,7 +2533,7 @@
         <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" binary="1" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
-        <add name="Build Type" type="MoppDataBuildType" ver1="20.2.0.7" vercond="User Version >= 12">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
+        <add name="Build Type" type="MoppDataBuildType" vercond="User Version 2 &gt; 34">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
         <add name="MOPP Data" ver1="10.0.1.2" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
@@ -2696,7 +2706,7 @@
 
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
-        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="User Version >= 12" cond="BSLightingShaderProperty">Configures the main shader path</add>
+        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="User Version 2 &gt;= 83" cond="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
         <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
@@ -2769,14 +2779,14 @@
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
-        <add name="Flags" type="uint" default="14" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26)">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
-        <add name="Flags" type="Flags" ver1="3.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 26))">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="14" vercond="(User Version 2 &gt; 26)">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
+        <add name="Flags" type="Flags" ver1="3.0" vercond="(User Version 2 &lt;= 26)">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
         <add name="Velocity" type="Vector3" ver2="4.2.2.0">Unknown function. Always seems to be (0, 0, 0)</add>
-        <add name="Num Properties" type="uint" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))" />
-        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="((Version &lt; 20.2.0.7) || (User Version &lt;= 11))">All rendering properties attached to this object.</add>
+        <add name="Num Properties" type="uint" vercond="(User Version 2 &lt;= 34)" />
+        <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="(User Version 2 &lt;= 34)">All rendering properties attached to this object.</add>
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
         <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0" />
@@ -2881,8 +2891,8 @@
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.0.0.5" />
         <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.1.0.3" />
-        <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version >= 10)" />
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version >= 10)">Unknown.</add>
+        <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version 2 &gt; 0)" />
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version 2 &gt; 0)">Unknown.</add>
     </niobject>
 
     <niobject name="NiMorphController" abstract="0" inherit="NiInterpController">
@@ -3089,27 +3099,40 @@
     <niobject name="NiBSBoneLODController" abstract="0" inherit="NiBoneLODController">
         A simple LOD controller for bones.
     </niobject>
-
-    <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
-        Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version &gt;= 3.3.0.13) &amp;&amp; !((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100))">Skin instance index.</add>
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="!NiParticleSystem">Skin instance index.</add>
-        <add name="Skin Instance" suffix="BSPS" type="uint" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)" cond="NiParticleSystem">Skin instance index.</add>
+    
+    <compound name="GeomMaterialData">
+        <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.1.0.3">Shader.</add>
+        <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
+        <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
         <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
         <add name="Active Material" type="int" ver1="20.2.0.7" default="0">Active Material; often -1. (Is this a link, array index?)</add>
-        <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.1.0.3">Shader.</add>
-        <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
-        <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
+    </compound>
+
+    <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
+        Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
+        <!-- Bethesda 20.2.0.7 NIFs: NiGeometry was changed to BSGeometry. 
+             Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except NiParticleSystem was changed to use BSGeometry.
+             This causes massive inheritance problems so the rows below are doubled up to exclude NiParticleSystem for Bethesda Stream 100+.
+        -->
+        <!-- BSGeometry: Used by Bethesda Stream 100+ NiParticleSystem -->
+        <add name="Bound" type="NiBound" vercond="(User Version 2 &gt;= 100)" cond="NiParticleSystem" />
+        <add name="Skin" type="Ref" template="NiObject" vercond="(User Version 2 &gt;= 100)" cond="NiParticleSystem" />
+        <!-- NiGeometry: Each row is doubled in order to exclude NiParticleSystem for Bethesda Stream 100+ -->
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="(User Version 2 &lt; 100)">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="Ref" template="NiGeometryData" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13" vercond="(User Version 2 &lt; 100)" />
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
+        <add name="Material Data" type="GeomMaterialData" ver1="10.0.1.0" vercond="(User Version 2 &lt; 100)" />
+        <add name="Material Data" type="GeomMaterialData" ver1="10.0.1.0" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
+        <!-- Custom Versions -->
         <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
-        <add name="Dirty Flag" type="bool" vercond="(Version &gt;= 20.2.0.7) &amp;&amp; (User Version 2 &lt; 100)">Dirty Flag?</add>
-        <add name="Dirty Flag" type="bool" cond="NiTriBasedGeom" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 100)">Dirty Flag?</add>
-        <add name="Unknown Integer 3" type="int" cond="NiParticleSystem" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Dirty Flag?</add>
+        <!-- / Custom -->
+        <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &lt; 100)" />
+        <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
+        <!-- Bethesda -->
         <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
     </niobject>
 
@@ -3157,25 +3180,30 @@
 
     <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
+        <!-- Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. 
+           "Num Vertices" is renamed to "BS Max Vertices" for Bethesda 20.2 because Vertices, Normals, Tangents, Colors, and UV arrays
+           do not have length for NiPSysData regardless of "Num" or booleans.
+        -->
         <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
-        <!-- special case for Bethesda PSysData (or NiParticlesData?) in Fallout 3 and higher -->
         <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
-        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(Version &lt; 20.2.0.7) || (User Version &lt; 11)">Number of vertices.</add>
-        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version >= 11)">Bethesda uses this for max number of particles in NiPSysData.</add>
+        <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(User Version 2 &lt; 34)">Number of vertices.</add>
+        <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(User Version 2 &gt;= 34)">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0">Unknown.</add>
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
-        <add name="Vector Flags" type="VectorFlags" vercond="((Version &gt;= 10.0.1.0) &amp;&amp; (Version != 20.2.0.7))" />
-        <add name="BS Vector Flags" type="BSVectorFlags" vercond="(Version == 20.2.0.7)" />
-        <add name="Unknown Int 2" type="uint" ver1="20.2.0.7" userver="12" cond="!NiPSysData">Unknown, seen in Skyrim.</add>
+        <add name="Vector Flags" type="VectorFlags" ver1="10.0.1.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="BS Vector Flags" type="BSVectorFlags" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="Material CRC" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" userver="12" />
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Tangent vectors.</add>
         <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <!-- TODO: NiBound -->
         <add name="Center" type="Vector3">Center of the bounding box (smallest box that contains all vertices) of the mesh.</add>
         <add name="Radius" type="float">Radius of the mesh: maximal Euclidean distance between the center and all vertices.</add>
         <add name="Unknown 13 shorts" type="short" arr1="13" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown, always 0?</add>
+        <!-- / NiBound -->
         <add name="Has Vertex Colors" type="bool">
             Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
 
@@ -3191,10 +3219,8 @@
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
         <add name="UV Sets" type="TexCoord" arr1="((Num UV Sets &amp; 63) | (Vector Flags &amp; 63) | (BS Vector Flags &amp; 1))" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version &lt; 12">Consistency Flags</add>
-        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE" vercond="User Version >= 12" cond="!NiPSysData">Consistency Flags</add>
-        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version &lt; 12">Unknown.</add>
-        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" vercond="User Version >= 12" cond="!NiPSysData">Unknown.</add>
+        <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
+        <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4">Unknown.</add>
     </niobject>
 
     <niobject name="AbstractAdditionalGeometryData" abstract="1" inherit="NiObject">
@@ -3291,25 +3317,32 @@
 
     <niobject name="NiParticlesData" abstract="0" inherit="NiGeometryData">
         Generic rotating particles data object.
+        <!-- Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. 
+            `!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))` means "Not Bethesda 20.2"
+        -->
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles' size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
-        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii" ver1="10.1.0.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
+        <add name="Radii" type="float" arr1="Num Vertices" cond="Has Radii" ver1="10.1.0.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">The individual particle sizes.</add>
         <add name="Num Active" type="ushort">The number of active particles at the time the system was saved. This is also the number of valid entries in the following arrays.</add>
         <add name="Has Sizes" type="bool">Is the particle size array present?</add>
-        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particel sizes.</add>
+        <add name="Sizes" type="float" arr1="Num Vertices" cond="Has Sizes" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">The individual particle sizes.</add>
         <add name="Has Rotations" type="bool" ver1="10.0.1.0">Is the particle rotation array present?</add>
-        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">The individual particle rotations.</add>
-        <add name="Unknown Byte 1" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown, probably a boolean.</add>
-        <add name="Unknown Link" type="Ref" template="NiObject" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <add name="Rotations" type="Quaternion" arr1="Num Vertices" cond="Has Rotations" ver1="10.0.1.0" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">The individual particle rotations.</add>
         <add name="Has Rotation Angles" type="bool" ver1="20.0.0.4">Are the angles of rotation present?</add>
-        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Angles of rotation</add>
+        <add name="Rotation Angles" type="float" arr1="Num Vertices" cond="Has Rotation Angles" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">Angles of rotation</add>
         <add name="Has Rotation Axes" type="bool" ver1="20.0.0.4">Are axes of rotation present?</add>
-        <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown</add>
-        <add name="Has UV Quadrants" type="bool" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">if value is no, a single image rendered</add>
-        <add name="Num UV Quadrants" type="byte" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
-        <add name="UV Quadrants" type="Vector4" arr1="Num UV Quadrants" cond="Has UV Quadrants" vercond="(Version >= 20.2.0.7) &amp;&amp; (User Version == 11)"></add>
-        <add name="Unknown Byte 2" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11)">Unknown</add>
+        <add name="Rotation Axes" type="Vector3" arr1="Num Vertices" cond="Has Rotation Axes" ver1="20.0.0.4" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">Axes of rotation.</add>
+        <!-- Bethesda -->
+        <add name="Has Texture Indices" type="bool" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="Num Subtexture Offsets" type="uint" vercond="(User Version 2 &gt; 34)">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
+        <add name="Num Subtexture Offsets" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
+        <add name="Subtexture Offsets" type="Vector4" arr1="Num Subtexture Offsets" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">Defines UV offsets</add>
+        <add name="Aspect Ratio" type="float" vercond="(User Version 2 &gt; 34)">Sets aspect ratio for Subtexture Offset UV quads</add>
+        <add name="Aspect Flags" type="ushort" vercond="(User Version 2 &gt; 34)" />
+        <add name="Speed to Aspect Aspect 2" type="float" vercond="(User Version 2 &gt; 34)" />
+        <add name="Speed to Aspect Speed 1" type="float" vercond="(User Version 2 &gt; 34)" />
+        <add name="Speed to Aspect Speed 2" type="float" vercond="(User Version 2 &gt; 34)" />
     </niobject>
 
     <niobject name="NiRotatingParticlesData" abstract="0" inherit="NiParticlesData">
@@ -3334,21 +3367,12 @@
 
     <niobject name="NiPSysData" abstract="0" inherit="NiParticlesData">
         Particle system data.
-        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Has Unknown Floats 3" type="bool" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Floats 3" type="float" arr1="Num Vertices" cond="Has Unknown Floats 3" ver1="20.0.0.4" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version >= 11))">Unknown.</add>
-        <add name="Unknown Short 1" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
-        <add name="Unknown Short 2" type="ushort" vercond="!((Version >= 20.2.0.7) &amp;&amp; (User Version == 11))">Unknown.</add>
-
-        <add name="Has Subtexture Offset UVs" type="bool" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Boolean for Num Subtexture Offset UVs</add>
-        <add name="Num Subtexture Offset UVs" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
-        <add name="Aspect Ratio" type="float" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Sets aspect ratio for Subtexture Offset UV quads</add>
-        <add name="Subtexture Offset UVs" type="Vector4" arr1="Num Subtexture Offset UVs" cond="Has Subtexture Offset UVs" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Defines UV offsets</add>
-        <add name="Unknown Int 4" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Int 5" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Int 6" type="uint" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Short 3" type="ushort" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
-        <add name="Unknown Byte 4" type="byte" vercond="((Version >= 20.2.0.7) &amp;&amp; (User Version >= 12))">Unknown</add>
+        <!-- `!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))` means "Not Bethesda 20.2" -->
+        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="Has Rotation Speeds" type="bool" ver1="20.0.0.2" />
+        <add name="Rotation Speeds" type="float" arr1="Num Vertices" cond="Has Rotation Speeds" ver1="20.0.0.2" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="Num Added Particles" type="ushort" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
+        <add name="Added Particles Base" type="ushort" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
     </niobject>
     
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData">
@@ -3539,9 +3563,9 @@
         <add name="Accum Flags" type="AccumFlags" ver1="20.3.0.8" default="ACCUM_X_FRONT" />
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.1.0.113" ver2="20.1.0.0" />
         <!-- Bethesda -->
-        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)" />
-        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)" />
-        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version &gt;= 11) &amp;&amp; (User Version 2 &gt; 28)" />
+        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)" />
+        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version 2 &gt; 28)" />
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version 2 &gt; 28)" />
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
@@ -3680,13 +3704,13 @@
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
         Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
         <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
-        <add name="Ambient Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects ambient light.</add>
-        <add name="Diffuse Color" type="Color3" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version 2 > 21))">How much the material reflects diffuse light.</add>
+        <add name="Ambient Color" type="Color3" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
+        <add name="Diffuse Color" type="Color3" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
         <add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
         <add name="Emissive Color" type="Color3">How much light the material emits.</add>
         <add name="Glossiness" type="float">The material glossiness.</add>
         <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material's parent NiTriShape object, when alpha is not 1.</add>
-        <add name="Emit Multi" type="float" default="1.0" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version >= 11) &amp;&amp; (User Version 2 > 21)">Unknown</add>
+        <add name="Emissive Mult" type="float" default="1.0" vercond="(User Version 2 &gt; 21)" />
     </niobject>
 
     <niobject name="NiMorphData" abstract="0" inherit="NiObject">
@@ -3830,6 +3854,7 @@
 
     <niobject name="NiParticles" abstract="0" inherit="NiGeometry">
         Generic particle system node.
+        <add name="Vertex Desc" type="BSVertexDesc" vercond="(User Version 2 &gt;= 100)" />
     </niobject>
 
     <niobject name="NiAutoNormalParticles" abstract="0" inherit="NiParticles">
@@ -3847,13 +3872,14 @@
 
     <niobject name="NiParticleSystem" abstract="0" inherit="NiParticles">
         A particle system.
-		<add name="Unknown Short 2" type="ushort" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Short 3" type="ushort" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Int 1" type="uint" vercond="User Version >= 12">Unknown</add>
-		<add name="Unknown Int 2" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
-		<add name="Unknown Int 3" type="int" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
-		<add name="Data" type="Ref" template="NiPSysData" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt;= 100)">Unknown</add>
-		<add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
+        <!-- Bethesda -->
+        <add name="Far Begin" type="ushort" vercond="(User Version 2 &gt;= 83)" />
+        <add name="Far End" type="ushort" vercond="(User Version 2 &gt;= 83)" />
+        <add name="Near Begin" type="ushort" vercond="(User Version 2 &gt;= 83)" />
+        <add name="Near End" type="ushort" vercond="(User Version 2 &gt;= 83)" />
+        <add name="Data" type="Ref" template="NiPSysData" vercond="(User Version 2 &gt;= 100)" />
+        <!-- / Bethesda -->
+        <add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
     </niobject>
@@ -4094,7 +4120,7 @@
         <add name="Force Type" type="ForceType">The type of gravitational force.</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Scale for turbulence.</add>
-        <add name="World Aligned" type="bool" ver1="20.2.0.7" vercond="User Version >= 11" />
+        <add name="World Aligned" type="bool" vercond="User Version 2 &gt; 16" />
     </niobject>
 
     <niobject name="NiPSysGrowFadeModifier" abstract="0" inherit="NiPSysModifier">
@@ -4103,7 +4129,7 @@
         <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
         <add name="Fade Time" type="float">The time taken to shrink from their specified size to 0.</add>
         <add name="Fade Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system.</add>
-        <add name="Base Scale" type="float" ver1="20.2.0.7" userver="11">A multiplier on the base particle scale.</add>
+        <add name="Base Scale" type="float" vercond="User Version 2 &gt;= 34">A multiplier on the base particle scale.</add>
     </niobject>
 
     <niobject name="NiPSysMeshEmitter" abstract="0" inherit="NiPSysEmitter">
@@ -5337,31 +5363,32 @@
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" />
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" />
         <add name="Shader Flags 2" type="BSShaderFlags2" default="1" />
-        <add name="Environment Map Scale" type="float" default="1.0" vercond="User Version == 11">Scales the intensity of the environment/cube map.</add>
+        <add name="Environment Map Scale" type="float" default="1.0" vercond="(User Version 2 &lt;= 34)">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Texture Clamp Mode" type="TexClampMode" default="3" vercond="User Version &lt;= 11">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TexClampMode" default="3" vercond="(User Version 2 &lt;= 34)">How to handle texture borders.</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">The texture glow map.</add>
-        <add name="Falloff Start Angle" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="(User Version >= 11) &amp;&amp; (User Version 2 &gt; 26)">Alpha falloff multiplier at end angle</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" vercond="(User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="(User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="(User Version 2 &gt; 26)">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="(User Version 2 &gt; 26)">Alpha falloff multiplier at end angle</add>
     </niobject>
 
     <niobject name="BSShaderPPLightingProperty" abstract="0" inherit="BSShaderLightingProperty">
         Bethesda-specific property.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
-        <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Parallax Max Passes" type="float" default="4.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">The number of passes the parallax shader can apply.</add>
-        <add name="Parallax Scale" type="float" default="1.0" vercond="(User Version == 11) &amp;&amp; (User Version 2 &gt; 24)">The strength of the parallax.</add>
-        <add name="Emissive Color" type="Color4" vercond="User Version >= 12">Glow color and alpha</add>
+        <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
+        <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
+        <add name="Parallax Max Passes" type="float" default="4.0" vercond="(User Version 2 &gt; 24)">The number of passes the parallax shader can apply.</add>
+        <add name="Parallax Scale" type="float" default="1.0" vercond="(User Version 2 &gt; 24)">The strength of the parallax.</add>
+        <!-- TODO: Find where this could have even come from as > 34 doesn't exist for this block. -->
+        <add name="Emissive Color" type="Color4" vercond="(User Version 2 &gt; 34)">Glow color and alpha</add>
     </niobject>
 
     <!-- Skyrim specific Node -->
@@ -5632,7 +5659,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
-        <add name="Wet Material" type="string" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Wet Material" type="string" vercond="(User Version 2 == 130)" />
         <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
@@ -5641,21 +5668,21 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Subsurface Rolloff" type="float"  vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Unknown Float 1" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Backlight Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Grayscale to Palette Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Spec Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Spec Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Min Var" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Env Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Fresnel Power" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Wetness Metalness" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Subsurface Rolloff" type="float"  vercond="(User Version 2 == 130)" />
+        <add name="Unknown Float 1" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Backlight Power" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Grayscale to Palette Scale" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Fresnel Power" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Spec Scale" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Spec Power" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Min Var" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Env Map Scale" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Fresnel Power" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Metalness" type="float" vercond="(User Version 2 == 130)" />
         <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
-        <add name="Unknown Env Map Short" type="ushort" cond="Skyrim Shader Type == 1" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Env Map Short" type="ushort" cond="Skyrim Shader Type == 1" vercond="(User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
-        <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="(User Version 2 == 130)" />
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
         <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
@@ -5690,10 +5717,10 @@
         <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float"></add>
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
-        <add name="Env Map Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Normal Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Env Mask Texture" type="SizedString" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
-        <add name="Environment Map Scale" type="float" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 == 130)" />
+        <add name="Env Map Texture" type="SizedString" vercond="(User Version 2 == 130)" />
+        <add name="Normal Texture" type="SizedString" vercond="(User Version 2 == 130)" />
+        <add name="Env Mask Texture" type="SizedString" vercond="(User Version 2 == 130)" />
+        <add name="Environment Map Scale" type="float" vercond="(User Version 2 == 130)" />
     </niobject>
     
     <bitflags name="SkyrimWaterShaderFlags" storage="byte">
