@@ -6976,8 +6976,8 @@
         <add name="VF5" type="byte" />
         <add name="VF" type="VertexFlags" />
         <add name="VF8" type="byte" />
-        <add name="Num Triangles" suffix="FO4" type="uint" userver2="130" />
-        <add name="Num Triangles" suffix="SSE" type="ushort" vercond="User Version 2 &lt; 130" />
+        <add name="Num Triangles" type="uint" userver2="130" />
+        <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
         <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="130" />
