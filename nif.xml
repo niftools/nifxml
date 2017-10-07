@@ -43,7 +43,7 @@
     <version num="20.6.5.0">Epic Mickey</version>
     <version num="30.0.0.2">Emerge</version>
     <version num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
-    <version num="30.2.0.3"></version>
+    <version num="30.2.0.3">Ghost In The Shell: First Assault, MapleStory 2</version>
 
     <!--Basic Types-->
 
@@ -3943,7 +3943,7 @@
         but actually a member class loaded at the top of each. The two classes are not related.
         However, faking this inheritance is useful for several things.    
     -->
-    <niobject name="NiPixelFormat" abstract="1" inherits="NiObject">
+    <niobject name="NiPixelFormat" abstract="1" inherit="NiObject">
         <add name="Pixel Format" type="PixelFormat">The format of the pixels in this internally stored image.</add>
         <add name="Red Mask" type="uint" ver2="10.3.0.2">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
         <add name="Green Mask" type="uint" ver2="10.3.0.2">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
