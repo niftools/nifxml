@@ -5013,11 +5013,11 @@
         <add name="Shape Name" type="string" />
         <add name="Non-Interacting Compartment Types" type="uint" ver1="20.4.0.0" />
         <add name="Collision Bits" type="uint" arr1="4" />
-        <add name="Shape" type="NxPlane" cond="Shape Type == 0" />
+        <add name="Plane" type="NxPlane" cond="Shape Type == 0" />
         <add name="Sphere Radius" type="float" cond="Shape Type == 1" />
         <add name="Box Half Extents" type="Vector3" cond="Shape Type == 2" />
-        <add name="Shape" type="NxCapsule" cond="Shape Type == 3" />
-        <add name="Shape" type="Ref" template="NiPhysXMeshDesc" cond="(Shape Type == 5) || (Shape Type == 6)" />
+        <add name="Capsule" type="NxCapsule" cond="Shape Type == 3" />
+        <add name="Mesh" type="Ref" template="NiPhysXMeshDesc" cond="(Shape Type == 5) || (Shape Type == 6)" />
     </niobject>
 
     <niobject name="NiPhysXMeshDesc" abstract="0" inherit="NiObject">
