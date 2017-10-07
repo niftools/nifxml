@@ -3961,7 +3961,7 @@
         <add name="Type" type="PixelComponent">Component Type</add>
         <add name="Convention" type="PixelRepresentation">Data Storage Convention</add>
         <add name="Bits Per Channel" type="byte">Bits per component</add>
-        <add name="Signed" type="bool" />
+        <add name="Is Signed" type="bool" />
     </compound>
 
     <!--
@@ -4802,11 +4802,13 @@
         <add name="RGB Image Data" type="ByteColor3" arr1="Width" arr2="Height" cond="Image Type == 1" >Image pixel data.</add>
         <add name="RGBA Image Data" type="ByteColor4" arr1="Width" arr2="Height" cond="Image Type == 2" >Image pixel data.</add>
     </niobject>
+    
+    <niobject name="NiAccumulator" abstract="1" inherit="NiObject" />
 
     <niobject name="NiSortAdjustNode" abstract="0" inherit="NiNode">
         Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.
         <add name="Sorting Mode" type="SortingMode" default="SORTING_INHERIT">Sorting</add>
-        <add name="Accumulator" type="Ref" ver2="20.0.0.3" />
+        <add name="Accumulator" type="Ref" template="NiAccumulator" ver2="20.0.0.3" />
     </niobject>
 
     <niobject name="NiSourceCubeMap" abstract="0" inherit="NiSourceTexture">
