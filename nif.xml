@@ -1638,6 +1638,16 @@
 		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
 	</compound>
 
+    <compound name="BSVertexDesc">
+        <add name="VF1" type="byte" />
+        <add name="VF2" type="byte" />
+        <add name="VF3" type="byte" />
+        <add name="VF4" type="byte" />
+        <add name="VF5" type="byte" />
+        <add name="Vertex Attributes" type="VertexFlags" />
+        <add name="VF8" type="byte" />
+    </compound>
+
     <compound name="SkinPartition" ver1="4.2.1.0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
@@ -1661,13 +1671,7 @@
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into 'Bones'.</add>
 		<add name="Unknown Short" type="ushort" vercond="User Version 2 &gt; 34">Unknown</add>
-		<add name="Vertex Size" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="Float Size" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF3" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF4" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
-		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Desc" type="BSVertexDesc" ver="20.2.0.7" userver2="100" />
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver="20.2.0.7" userver2="100" />
         <!-- related to the file posted in tracker item #3117836:
             http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
@@ -2122,17 +2126,7 @@
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
-    
-    <compound name="BSVertexDesc">
-        <add name="VF1" type="byte" />
-        <add name="VF2" type="byte" />
-        <add name="VF3" type="byte" />
-        <add name="VF4" type="byte" />
-        <add name="VF5" type="byte" />
-        <add name="VF" type="VertexFlags" />
-        <add name="VF8" type="byte" />
-    </compound>
-    
+
     <compound name="BSGeometrySegmentData">
         Bethesda-specific node.
         <add name="Flags" type="byte" />
@@ -3133,7 +3127,8 @@
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &lt; 100)" />
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
         <!-- Bethesda -->
-        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" ver1="20.2.0.7" userver="12">Two property links, used by Bethesda.</add>
+        <add name="Shader Property" type="Ref" template="NiProperty" ver1="20.2.0.7" userver="12" />
+        <add name="Alpha Property" type="Ref" template="NiAlphaProperty" ver1="20.2.0.7" userver="12" />
     </niobject>
 
     <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
@@ -4428,14 +4423,8 @@
 		<add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks" vercond="!((Version == 20.2.0.7) &amp;&amp; (User Version 2 == 100))">Skin partition objects.</add>
 		<add name="Data Size" type="uint" ver="20.2.0.7" userver2="100" />
 		<add name="Vertex Size" type="uint" ver="20.2.0.7" userver2="100" />
-		<add name="VF1" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF2" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF3" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF4" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF5" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="VF" type="VertexFlags" ver="20.2.0.7" userver2="100" />
-		<add name="VF8" type="byte" ver="20.2.0.7" userver2="100" />
-		<add name="Vertex Data" type="BSVertexDataSSE" arg="VF" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Desc" type="BSVertexDesc" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver="20.2.0.7" userver2="100" />
     </niobject>
 
@@ -6968,20 +6957,15 @@
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Skin" type="Ref" template="NiObject" />
-        <add name="BS Properties" type="Ref" template="NiProperty" arr1="2" />
-        <add name="Vertex Size" type="byte" />
-        <add name="Float Size" type="byte" />
-        <add name="VF3" type="byte" />
-        <add name="VF4" type="byte" />
-        <add name="VF5" type="byte" />
-        <add name="VF" type="VertexFlags" />
-        <add name="VF8" type="byte" />
+        <add name="Shader Property" type="Ref" template="NiProperty" />
+        <add name="Alpha Property" type="Ref" template="NiAlphaProperty" />
+        <add name="Vertex Desc" type="BSVertexDesc" />
         <add name="Num Triangles" type="uint" userver2="130" />
         <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="130" />
-        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="VF" cond="Data Size &gt; 0" userver2="100" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc" cond="Data Size &gt; 0" userver2="130" />
+        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc" cond="Data Size &gt; 0" userver2="100" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
         <add name="Particle Data Size" type="uint" userver2="100" />
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
@@ -7162,14 +7146,7 @@
     
     <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Geometry Data
-        <add name="VF1" type="byte" />
-        <add name="VF2" type="byte" />
-        <add name="VF3" type="byte" />
-        <add name="VF4" type="byte" />
-        <add name="VF5" type="byte" />
-        <add name="VF6" type="byte" />
-        <add name="VF7" type="byte" />
-        <add name="VF8" type="byte" />
+        <add name="Vertex Desc" type="BSVertexDesc" />
         <add name="Num Vertices" type="uint" />
         <add name="Num Triangles" type="uint" />
         <add name="Unknown Flags 1" type="uint" />
