@@ -47,44 +47,44 @@
 
     <!--Basic Types-->
 
-    <basic name="bool" count="1" niflibtype="bool">
+    <basic name="bool" count="1">
         A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
     </basic>
 
-    <basic name="byte" count="1" niflibtype="byte">
+    <basic name="byte" count="1">
         An unsigned 8-bit integer.
     </basic>
 
-    <basic name="uint" count="1" niflibtype="unsigned int">
+    <basic name="uint" count="1">
         An unsigned 32-bit integer.
     </basic>
 
-    <basic name="ulittle32" count="1" niflibtype="unsigned int">
+    <basic name="ulittle32" count="1">
         A litte-endian unsigned 32-bit integer.
     </basic>
 
-    <basic name="ushort" count="1" niflibtype="unsigned short">
+    <basic name="ushort" count="1">
         An unsigned 16-bit integer.
     </basic>
 
-    <basic name="int" count="1" niflibtype="int">
+    <basic name="int" count="1">
         A signed 32-bit integer.
     </basic>
 
-    <basic name="short" count="1" niflibtype="short">
+    <basic name="short" count="1">
         A signed 16-bit integer.
     </basic>
 
-    <basic name="BlockTypeIndex" count="0" niflibtype="unsigned short">
+    <basic name="BlockTypeIndex" count="0">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
         The upper bit appears to be a flag used for PhysX block types.
     </basic>
 
-    <basic name="char" count="0" niflibtype="byte">
+    <basic name="char" count="0">
         An 8-bit character.
     </basic>
 
-    <basic name="FileVersion" count="0" niflibtype="unsigned int">
+    <basic name="FileVersion" count="0">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
         Some widely-used versions and their hex representation:
@@ -100,42 +100,42 @@
         20.0.0.5:   0x14000005
     </basic>
 
-    <basic name="Flags" count="0" niflibtype="unsigned short">
+    <basic name="Flags" count="0">
         A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
 
-    <basic name="float" count="0" niflibtype="float">
+    <basic name="float" count="0">
         A standard 32-bit floating point number.
     </basic>
     
-    <basic name="hfloat" count="0" niflibtype="hfloat">
+    <basic name="hfloat" count="0">
         A 16-bit floating point number.
     </basic>
     
-    <basic name="HeaderString" count="0" niflibtype="HeaderString">
+    <basic name="HeaderString" count="0">
         A variable length string that ends with a newline character (0x0A).  The string starts as follows depending on the version:
 
         Version &lt;= 10.0.1.0:  'NetImmerse File Format'
         Version &gt;= 10.1.0.0:  'Gamebryo File Format'
     </basic>
 
-    <basic name="LineString" count="0" niflibtype="LineString">
+    <basic name="LineString" count="0">
         A variable length string that ends with a newline character (0x0A).
     </basic>
 
-    <basic name="Ptr" count="0" niflibtype="*" istemplate="1">
+    <basic name="Ptr" count="0" istemplate="1">
         A signed 32-bit integer, referring to a object before this one in the hierarchy.  Examples:  Bones, gravity objects.
     </basic>
 
-    <basic name="Ref" count="0" niflibtype="Ref" istemplate="1">
+    <basic name="Ref" count="0" istemplate="1">
         A signed 32-bit integer, used to refer to another object; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to objects higher up.
     </basic>
 
-    <basic name="StringOffset" count="0" niflibtype="unsigned int">
+    <basic name="StringOffset" count="0">
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
-    <basic name="StringIndex" count="0" niflibtype="IndexString">
+    <basic name="StringIndex" count="0">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
@@ -1186,13 +1186,13 @@
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
 
-    <compound name="SizedString" niflibtype="string">
+    <compound name="SizedString">
         A string of given length.
         <add name="Length" type="uint">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself.</add>
     </compound>
 
-    <compound name="string" niflibtype="IndexString">
+    <compound name="string">
         A string type.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
         <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
@@ -1211,21 +1211,21 @@
         <add name="Data" type="byte" arr1="Data Size 2" arr2="Data Size 1">The bytes which make up the array</add>
     </compound>
 
-    <compound name="Color3" niflibtype="Color3">
+    <compound name="Color3">
         A color without alpha (red, green, blue).
         <add name="r" type="float">Red color component.</add>
         <add name="g" type="float">Green color component.</add>
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
-    <compound name="ByteColor3"><!-- niflibtype="Color3" -->
+    <compound name="ByteColor3">
         A color without alpha (red, green, blue).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
         <add name="b" type="byte">Blue color component.</add>
     </compound>
 
-    <compound name="Color4" niflibtype="Color4">
+    <compound name="Color4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="float">Red component.</add>
         <add name="g" type="float">Green component.</add>
@@ -1233,7 +1233,7 @@
         <add name="a" type="float">Alpha.</add>
     </compound>
 
-    <compound name="ByteColor4"><!-- niflibtype="Color4" -->
+    <compound name="ByteColor4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
@@ -1241,7 +1241,7 @@
         <add name="a" type="byte">Alpha color component.</add>
     </compound>
 
-    <compound name="FilePath" niflibtype="IndexString">
+    <compound name="FilePath">
         A string that contains the path to a file.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
         <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
@@ -1280,14 +1280,14 @@
         <add name="z" type="hfloat">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector3" niflibtype="Vector3">
+    <compound name="Vector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
         <add name="z" type="float">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector4" niflibtype="Vector4">
+    <compound name="Vector4">
         A 4-dimensional vector.
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
@@ -1295,7 +1295,7 @@
         <add name="w" type="float">Fourth coordinate.</add>
     </compound>
 
-    <compound name="Quaternion" niflibtype="Quaternion">
+    <compound name="Quaternion">
         A quaternion.
         <add name="w" type="float" default="1.0">The w-coordinate.</add>
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
@@ -1311,7 +1311,7 @@
         <add name="w" type="float" default="1.0">The w-coordinate.</add>
     </compound>
 
-    <compound name="Matrix22" niflibtype="Matrix22">
+    <compound name="Matrix22">
         A 2x2 matrix of float values.  Stored in OpenGL column-major format.
         <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
         <add name="m21" type="float" default="0.0">Member 2,1 (bottom left)</add>
@@ -1319,7 +1319,7 @@
         <add name="m22" type="float" default="1.0">Member 2,2 (bottom right)</add>
     </compound>
 
-    <compound name="Matrix33" niflibtype="Matrix33">
+    <compound name="Matrix33">
         A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
         <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
         <add name="m21" type="float" default="0.0">Member 2,1</add>
@@ -1332,7 +1332,7 @@
         <add name="m33" type="float" default="1.0">Member 3,3 (bottom left)</add>
     </compound>
 
-    <compound name="Matrix34" niflibtype="Matrix34">
+    <compound name="Matrix34">
         A 3x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
@@ -1348,7 +1348,7 @@
         <add name="m34" type="float" default="0.0">The (3,4) element.</add>
     </compound>
 
-    <compound name="Matrix44" niflibtype="Matrix44">
+    <compound name="Matrix44">
         A 4x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
@@ -1368,7 +1368,7 @@
         <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
-    <compound name="hkMatrix3" niflibtype="InertiaMatrix">
+    <compound name="hkMatrix3">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
         <add name="m11" type="float" />
         <add name="m12" type="float" />
@@ -1397,7 +1397,7 @@
         <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
-    <compound name="ShortString" ver1="10.1.0.0" niflibtype="ShortString">
+    <compound name="ShortString" ver1="10.1.0.0">
         Another string format, for short strings.  Specific to Bethesda-specific header tags.
         <add name="Length" type="byte">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
@@ -1508,7 +1508,7 @@
         <add name="c" type="float">Continuity.</add>
     </compound>
 
-    <compound name="Key" niflibtype="Key" istemplate="1">
+    <compound name="Key" istemplate="1">
         A generic key with support for interpolation. Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
         <add name="Time" type="float">Time of the key.</add>
         <add name="Value" type="TEMPLATE">The key value.</add>
@@ -1524,7 +1524,7 @@
         <add name="Keys" type="Key" arg="Interpolation" template="TEMPLATE" arr1="Num Keys">The keys.</add>
     </compound>
 
-    <compound name="QuatKey" niflibtype="Key" istemplate="1"><!-- TEMPLATE should always be Quaternion -->
+    <compound name="QuatKey" istemplate="1"><!-- TEMPLATE should always be Quaternion -->
         A special version of the key type used for quaternions.  Never has tangents.
         <add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
         <add name="Time" type="float" cond="ARG != 4" ver1="10.1.0.106">Time the key applies.</add>
@@ -1532,7 +1532,7 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
-    <compound name="TexCoord" niflibtype="TexCoord">
+    <compound name="TexCoord">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
         <add name="v" type="float">Second coordinate.</add>
@@ -1580,7 +1580,7 @@
         <add name="Map ID" type="uint" cond="Has Map">Unique identifier for the Gamebryo shader system.</add>
     </compound>
 
-    <compound name="Triangle" niflibtype="Triangle">
+    <compound name="Triangle">
         List of three vertex indices.
         <add name="v1" type="ushort">First vertex index.</add>
         <add name="v2" type="ushort">Second vertex index.</add>
@@ -1603,7 +1603,7 @@
 		<!-- Last bit unused -->
 	</bitflags>
     
-	<compound name="BSVertexData" niflibtype="BSVertexData">
+	<compound name="BSVertexData">
 		<add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
 		<add name="Bitangent X" type="hfloat" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
 		<add name="Unknown Short" type="ushort" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
@@ -1623,7 +1623,7 @@
 		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
 	</compound>
 
-	<compound name="BSVertexDataSSE" niflibtype="BSVertexData">
+	<compound name="BSVertexDataSSE">
 		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0)" />
 		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
 		<add name="Unknown Int" type="int" cond="((ARG &amp; 16) != 0) &amp;&amp; (ARG &amp; 256) == 0" />
