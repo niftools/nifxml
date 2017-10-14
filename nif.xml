@@ -2126,13 +2126,6 @@
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
-
-    <compound name="BSGeometrySegmentData">
-        Bethesda-specific node.
-        <add name="Flags" type="byte" />
-        <add name="Index" type="uint">Index = previous Index + previous Num Tris in Segment * 3</add>
-        <add name="Num Tris in Segment" type="uint" >The number of triangles belonging to this segment</add>
-    </compound>
     
     <compound name="BoneLOD">
         Stores Bone Level of Detail info in a BSBoneLODExtraData
@@ -5963,6 +5956,26 @@
         <add name="Radius" type="float" />
     </niobject>
 
+    <compound name="BSGeometrySubSegment">
+        This is only defined because of recursion issues.
+        <add name="Start Index" type="uint" />
+        <add name="Num Primitives" type="uint" />
+        <add name="Parent Array Index" type="uint" />
+        <add name="Unused" type="uint" />
+    </compound>
+
+    <compound name="BSGeometrySegmentData">
+        Bethesda-specific. Describes groups of triangles either segmented in a grid (for LOD) or by body part for skinned FO4 meshes.
+        <add name="Flags" type="byte" vercond="(User Version 2 &lt; 130)" />
+        <add name="Index" type="uint" vercond="(User Version 2 &lt; 130)">Index = previous Index + previous Num Tris in Segment * 3</add>
+        <add name="Num Tris in Segment" type="uint" vercond="(User Version 2 &lt; 130)">The number of triangles belonging to this segment</add>
+        <add name="Start Index" type="uint" userver2="130" />
+        <add name="Num Primitives" type="uint" userver2="130" />
+        <add name="Parent Array Index" type="uint" userver2="130" />
+        <add name="Num Sub Segments" type="uint" userver2="130" />
+        <add name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" userver2="130" />
+    </compound>
+
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
         Bethesda-specific AV object.
         <add name="Num Segments" type="int" >Number of segments in the square grid</add>
@@ -6979,33 +6992,18 @@
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSSITSSubSegment">
-        <add name="Start Index" type="uint" />
-        <add name="Num Primitives" type="uint" />
-        <add name="Parent Array Index" type="uint" />
-        <add name="Unknown Int 1" type="uint" />
-    </compound>
-    
-    <compound name="BSSITSSegment">
-        <add name="Start Index" type="uint" />
-        <add name="Num Primitives" type="uint" />
-        <add name="Parent Array Index" type="uint" />
-        <add name="Num Sub Segments" type="uint" />
-        <add name="Sub Segment" type="BSSITSSubSegment" arr1="Num Sub Segments" />
+    <compound name="BSGeometryPerSegmentSharedData">
+        <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
+        <add name="Bone ID" type="uint">A hash of the bone name string.</add>
+        <add name="Num Cut Offsets" type="uint">Maximum of 8.</add>
+        <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
-    <compound name="BSSITSSubSegmentData">
-        <add name="Segment/User" type="uint">If Unknown Int 2 is 0xffffffff, this value refers to the Segment at the listed index.</add>
-        <add name="Unknown Int 2" type="uint" />
-        <add name="Num Data" type="uint" />
-        <add name="Extra Data" type="float" arr1="Num Data" />
-    </compound>
-
-    <compound name="BSSITSSubSegmentRecord">
+    <compound name="BSGeometrySegmentSharedData">
         <add name="Num Segments" type="uint" />
         <add name="Total Segments" type="uint" />
-        <add name="Array Indices" type="uint" arr1="Num Segments" />
-        <add name="Sub Segments" type="BSSITSSubSegmentData" arr1="Total Segments" />
+        <add name="Segment Starts" type="uint" arr1="Num Segments" />
+        <add name="Per Segment Data" type="BSGeometryPerSegmentSharedData" arr1="Total Segments" />
         <!-- TODO: Actual ShortString type (current "ShortString" is actually a byte) -->
         <add name="SSF Length" type="ushort" />
         <add name="SSF File" type="byte" arr1="SSF Length" />
@@ -7016,10 +7014,10 @@
 		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Total Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
-		<add name="Segment" suffix="FO4" type="BSSITSSegment" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
-		<add name="Sub Segment Data" type="BSSITSSubSegmentRecord" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
+		<add name="Segment" type="BSGeometrySegmentData" userver2="130" arr1="Num Segments" cond="Data Size &gt; 0" />
+		<add name="Segment Data" type="BSGeometrySegmentSharedData" userver2="130" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
 		<add name="Num Segments" type="uint" userver2="100" />
-		<add name="Segment" suffix="SSE" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
+		<add name="Segment" type="BSGeometrySegmentData" userver2="100" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
