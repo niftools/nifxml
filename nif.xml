@@ -2269,9 +2269,9 @@
         <add name="Spawn on Collide" type="bool">Spawn particles on impact?</add>
         <add name="Die on Collide" type="bool">Kill particles on impact?</add>
         <add name="Spawn Modifier" type="Ref" template="NiPSysSpawnModifier">Spawner to use for the collider.</add>
-        <add name="Parent" type="Ptr" template="NiObject">Link to parent.</add>
-        <add name="Next Collider" type="Ref" template="NiObject">The next collider.</add>
-        <add name="Collider Object" type="Ptr" template="NiNode">The object whose position and orientation are the basis of the collider.</add>
+        <add name="Parent" type="Ptr" template="NiPSysColliderManager">Link to parent.</add>
+        <add name="Next Collider" type="Ref" template="NiPSysCollider">The next collider.</add>
+        <add name="Collider Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the collider.</add>
     </niobject>
 
     <enum name="BroadPhaseType" storage="byte">
@@ -2436,10 +2436,10 @@
         <add name="Constraint Force Mixing" type="float" default="1.1920929e-08">Restitution (amount of elasticity) of constraints. Added to the diagonal of the constraint matrix. A value of 0.0 can result in a division by zero with some chain configurations.</add>
         <add name="Max Error Distance" type="float" default="0.1">Maximum distance error in constraints allowed before stabilization algorithm kicks in. A smaller distance causes more resistance.</add>
         <add name="Num Entities A" type="uint">Number of links in the chain</add>
-        <add name="Entities A" type="Ptr" template="NiObject" arr1="Num Entities A" />
+        <add name="Entities A" type="Ptr" template="bhkRigidBody" arr1="Num Entities A" />
         <add name="Num Entities" type="uint" default="2">Hardcoded to 2. Don't change.</add>
-        <add name="Entity A" type="Ptr" template="NiObject" />
-        <add name="Entity B" type="Ptr" template="NiObject" />
+        <add name="Entity A" type="Ptr" template="bhkRigidBody" />
+        <add name="Entity B" type="Ptr" template="bhkRigidBody" />
         <add name="Priority" type="uint" />
     </niobject>
 
@@ -2747,7 +2747,7 @@
         <add name="Flags" type="bhkCOFlags" default="1">
             Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
-        <add name="Body" type="Ref" template="NiObject" />
+        <add name="Body" type="Ref" template="bhkWorldObject" />
     </niobject>
 
     <niobject name="bhkCollisionObject" abstract="0" inherit="bhkNiCollisionObject">
@@ -3124,7 +3124,7 @@
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &lt; 100)" />
         <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
         <!-- Bethesda -->
-        <add name="Shader Property" type="Ref" template="NiProperty" ver1="20.2.0.7" userver="12" />
+        <add name="Shader Property" type="Ref" template="BSShaderProperty" ver1="20.2.0.7" userver="12" />
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" ver1="20.2.0.7" userver="12" />
     </niobject>
 
@@ -4089,7 +4089,7 @@
 
     <niobject name="NiPSysDragModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that applies a linear drag force to particles.
-        <add name="Parent" type="Ptr" template="NiObject">The object whose position and orientation are the basis of the force.</add>
+        <add name="Drag Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
         <add name="Drag Axis" type="Vector3">The local direction of the force.</add>
         <add name="Percentage" type="float">The amount of drag to apply to particles.</add>
         <add name="Range" type="float">The distance up to which particles are fully affected.</add>
@@ -4105,7 +4105,7 @@
 
     <niobject name="NiPSysGravityModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that applies a gravitational force to particles.
-        <add name="Gravity Object" type="Ptr" template="NiNode">The object whose position and orientation are the basis of the force.</add>
+        <add name="Gravity Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
         <add name="Gravity Axis" type="Vector3">The local direction of the force.</add>
         <add name="Decay" type="float">How the force diminishes by distance.</add>
         <add name="Strength" type="float">The acceleration of the force.</add>
@@ -4379,7 +4379,7 @@
 
     <niobject name="NiShadeProperty" abstract="0" inherit="NiProperty">
         Determines whether flat shading or smooth shading is used on a shape.
-        <add name="Flags" type="Flags">
+        <add name="Flags" type="Flags" default="1" vercond="(User Version 2 &lt;= 34)">
             Bit 0: Enable smooth phong shading on this shape. Otherwise, hard-edged flat shading will be used on this shape.
         </add>
     </niobject>
@@ -5342,15 +5342,11 @@
         <option value="31" name="SF2_Unknown10">Unknown</option>
     </bitflags>
     
-    <niobject name="BSShaderProperty" abstract="0" inherit="NiProperty">
+    <niobject name="BSShaderProperty" abstract="0" inherit="NiShadeProperty">
         Bethesda-specific property.
-        <add name="Smooth" type="Flags" default="1">
-            0: smooth no
-            1: smooth yes
-        </add>
-        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" />
-        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" />
-        <add name="Shader Flags 2" type="BSShaderFlags2" default="1" />
+        <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" vercond="(User Version 2 &lt;= 34)" />
+        <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" vercond="(User Version 2 &lt;= 34)" />
+        <add name="Shader Flags 2" type="BSShaderFlags2" default="1" vercond="(User Version 2 &lt;= 34)" />
         <add name="Environment Map Scale" type="float" default="1.0" vercond="(User Version 2 &lt;= 34)">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
@@ -5425,7 +5421,7 @@
         <add name="Fade Main Bolt" type="bool" />
         <add name="Fade Child Bolts" type="bool" />
         <add name="Animate Arc Offset" type="bool" />
-        <add name="Shader Property" type="Ref" template="NiProperty">Reference to a shader property.</add>
+        <add name="Shader Property" type="Ref" template="BSShaderProperty">Reference to a shader property.</add>
 	</niobject>
 
    <niobject name="BSShaderTextureSet" abstract="0" inherit="NiObject">
@@ -5636,7 +5632,7 @@
         <option value="31" name="FSF2_Refraction_Writes_Depth" />
     </bitflags>
 
-    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="NiProperty">
+    <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderProperty">
         Bethesda shader property for Skyrim and later.
         <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
@@ -5684,12 +5680,12 @@
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
 
-    <niobject name="BSEffectShaderProperty" abstract="0" inherit="NiProperty">
+    <niobject name="BSEffectShaderProperty" abstract="0" inherit="BSShaderProperty">
         Bethesda effect shader property for Skyrim and later.
-        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" />
-        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" />
-        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="2147483648" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="32" vercond="(User Version 2 != 130)" />
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" default="2147483648" vercond="(User Version 2 == 130)" />
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" default="32" vercond="(User Version 2 == 130)" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
@@ -5723,7 +5719,7 @@
         <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
     </bitflags>
     
-    <niobject name="BSWaterShaderProperty" inherit="NiProperty">
+    <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
@@ -5734,7 +5730,7 @@
         <add name="Unknown Short 3" type="ushort">Unknown, flag?</add>  
     </niobject>
     
-    <niobject name="BSSkyShaderProperty" inherit="NiProperty">
+    <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty">
         Skyrim Sky shader block.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
@@ -6076,7 +6072,7 @@
 
     <niobject name="bhkOrientHingedBodyAction" abstract="0" inherit="bhkSerializable">
         Bethesda-Specific Havok serializable.
-        <add name="Body" type="Ptr" template="NiObject" />
+        <add name="Body" type="Ptr" template="bhkRigidBody" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Int 2" type="uint" />
         <add name="Unused 1" type="byte" arr1="8" />
@@ -6362,7 +6358,7 @@
     <niobject name="NiMorphWeightsController" inherit="NiInterpController">
         <add name="Count" type="uint" />
         <add name="Num Interpolators" type="uint" />
-        <add name="Interpolators" type="Ref" template="NiObject" arr1="Num Interpolators" />
+        <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" />
         <add name="Num Targets" type="uint" />
         <add name="Target Names" type="string" arr1="Num Targets" />
     </niobject>
@@ -6974,7 +6970,7 @@
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Skin" type="Ref" template="NiObject" />
-        <add name="Shader Property" type="Ref" template="NiProperty" />
+        <add name="Shader Property" type="Ref" template="BSShaderProperty" />
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" />
         <add name="Vertex Desc" type="BSVertexDesc" />
         <add name="Num Triangles" type="uint" userver2="130" />
