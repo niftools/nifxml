@@ -1900,31 +1900,23 @@
 
     <compound name="RagdollDescriptor">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
-        <!-- Oblivion -->
-        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">The point where the constraint is attached to its parent rigidbody.</add>
-        <add name="Plane A" type="Vector4" ver2="20.0.0.5">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist A" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">The point where the constraint is attached to the other rigidbody.</add>
-        <add name="Plane B" type="Vector4" ver2="20.0.0.5">Defines the orthogonal plane in which the shape can be controlled (the direction orthogonal on this one and Twist B).</add>
-        <add name="Twist B" type="Vector4" ver2="20.0.0.5">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+        <!-- Oblivion and Fallout 3, Havok 550 -->
+        <add name="Pivot A" type="Vector4" vercond="User Version 2 &lt;= 16">The point where the constraint is attached to its parent rigidbody.</add>
+        <add name="Plane A" type="Vector4" vercond="User Version 2 &lt;= 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist A" type="Vector4" vercond="User Version 2 &lt;= 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Pivot B" type="Vector4" vercond="User Version 2 &lt;= 16">The point where the constraint is attached to the other rigidbody.</add>
+        <add name="Plane B" type="Vector4" vercond="User Version 2 &lt;= 16">Defines the orthogonal plane in which the shape can be controlled (the direction orthogonal on this one and Twist B).</add>
+        <add name="Twist B" type="Vector4" vercond="User Version 2 &lt;= 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
 
-        <!-- Fallout 3 -->
-        <add name="Twist A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Plane A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Motor A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
-        <add name="Plane B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Motor B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-
-        <!-- Fallout 3, file meshes\ragdollconstraint\stiff.rdt with User Version 2 = 16 -->
-        <add name="Pivot A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Plane A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
-        <add name="Pivot B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
-        <add name="Plane B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
-        <add name="Twist B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+        <!-- Fallout 3 and later, Havok 660 and 2010 -->
+        <add name="Twist A" type="Vector4" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane A.</add>
+        <add name="Plane A" type="Vector4" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor A" type="Vector4" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot A" type="Vector4" vercond="User Version 2 &gt; 16">Point around which the object will rotate. Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Twist B" type="Vector4" vercond="User Version 2 &gt; 16">Central directed axis of the cone in which the object can rotate. Orthogonal on Plane B.</add>
+        <add name="Plane B" type="Vector4" vercond="User Version 2 &gt; 16">Defines the orthogonal plane in which the body can move, the orthogonal directions in which the shape can be controlled (the direction orthogonal on this one and Twist A).</add>
+        <add name="Motor B" type="Vector4" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
+        <add name="Pivot B" type="Vector4" vercond="User Version 2 &gt; 16">Defines the orthogonal directions in which the shape can be controlled (namely in this direction, and in the direction orthogonal on this one and Twist A).</add>
 
         <add name="Cone Max Angle" type="float">Maximum angle the object can rotate around the vector orthogonal on Plane A and Twist A relative to the Twist A vector. Note that Cone Min Angle is not stored, but is simply minus this angle.</add>
         <add name="Plane Min Angle" type="float">Minimum angle the object can rotate around Plane A, relative to Twist A.</add>
@@ -1939,33 +1931,24 @@
     <compound name="LimitedHingeDescriptor">
     	This constraint allows rotation about a specified axis, limited by specified boundaries.
     
-        <!-- Oblivion -->
-        <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
-        <add name="Axle A" type="Vector4" ver2="20.0.0.5">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
-        <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" ver2="20.0.0.5">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <!-- Oblivion and Fallout 3, Havok 550 -->
+        <add name="Pivot A" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot point around which the object will rotate.</add>
+        <add name="Axle A" type="Vector4" vercond="User Version 2 &lt;= 16">Axis of rotation.</add>
+        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Pivot B" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot A in second entity coordinate system.</add>
+        <add name="Axle B" type="Vector4" vercond="User Version 2 &lt;= 16">Axle A in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &lt;= 16">Perp2 Axle In A2 in second entity coordinate system.</add>
 
-        <!-- Fallout 3 -->
-        <add name="Axle A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
-        <add name="Pivot A" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Perp2 Axle In A2 in second entity coordinate system.</add>
-        <add name="Pivot B" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 &gt; 16">Pivot A in second entity coordinate system.</add>
-
-        <!-- Fallout 3, file meshes\ragdollconstraint\stiff.rdt with User Version 2 = 16 -->
-        <add name="Pivot A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle A?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A2?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
-        <add name="Perp2 Axle In A1?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Pivot B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1?" type="Vector4" ver1="20.2.0.7" vercond="User Version 2 == 16">Perp2 Axle In A1 in second entity coordinate system.</add>
+        <!-- Fallout 3 and later, Havok 660 and 2010 -->
+        <add name="Axle A" type="Vector4" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
+        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Pivot A" type="Vector4" vercond="User Version 2 &gt; 16">Pivot point around which the object will rotate.</add>
+        <add name="Axle B" type="Vector4" vercond="User Version 2 &gt; 16">Axle A in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B1" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A1 in second entity coordinate system.</add>
+        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Pivot B" type="Vector4" vercond="User Version 2 &gt; 16">Pivot A in second entity coordinate system.</add>
 
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
         <add name="Max Angle" type="float">Maximum rotation angle.</add>
@@ -2025,7 +2008,6 @@
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot in B coordinates.</add>
 
         <add name="Min Distance" type="float">Describe the min distance the object is able to travel.</add>
-
         <add name="Max Distance" type="float">Describe the max distance the object is able to travel.</add>
         <add name="Friction" type="float" >Friction.</add>
 
@@ -2176,15 +2158,16 @@
 
     <compound name="MalleableDescriptor">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
-        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
-        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
+        <add name="Num Entities" type="uint" default="2">Always 2 (Hardcoded). Number of bodies affected by this constraint.</add>
+        <add name="Entity A" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
+        <add name="Entity B" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
         <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
         <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Stiff Spring" type="StiffSpringDescriptor" cond="Type == 8" />
         <add name="Tau" type="float" ver2="20.0.0.5" /><!-- not in Fallout 3 or Skyrim -->
         <add name="Damping" type="float" ver2="20.0.0.5" /><!-- In TES CS described as Damping -->
         <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
@@ -2192,15 +2175,16 @@
 
     <compound name="ConstraintData">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
-        <add name="Num Entities" type="uint">Usually 2. Number of bodies affected by this constraint.</add>
-        <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">Usually NONE. The entities affected by this constraint.</add>
+        <add name="Num Entities 2" type="uint" default="2">Always 2 (Hardcoded). Number of bodies affected by this constraint.</add>
+        <add name="Entity A" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
+        <add name="Entity B" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
         <add name="Ball and Socket" type="BallAndSocketDescriptor" cond="Type == 0" />
         <add name="Hinge" type="HingeDescriptor" cond="Type == 1" />
         <add name="Limited Hinge" type="LimitedHingeDescriptor" cond="Type == 2" />
         <add name="Prismatic" type="PrismaticDescriptor" cond="Type == 6" />
         <add name="Ragdoll" type="RagdollDescriptor" cond="Type == 7" />
-        <add name="StiffSpring" type="StiffSpringDescriptor" cond="Type == 8" />
+        <add name="Stiff Spring" type="StiffSpringDescriptor" cond="Type == 8" />
         <add name="Malleable" type="MalleableDescriptor" cond="Type == 13" />
     </compound>
 
@@ -2398,7 +2382,7 @@
 
     <niobject name="bhkStiffSpringConstraint" abstract="0" inherit="bhkConstraint">
         A spring constraint.
-        <add name="StiffSpring" type="StiffSpringDescriptor">Stiff Spring constraint.</add>
+        <add name="Stiff Spring" type="StiffSpringDescriptor">Stiff Spring constraint.</add>
     </niobject>
 
     <niobject name="bhkRagdollConstraint" abstract="0" inherit="bhkConstraint">
