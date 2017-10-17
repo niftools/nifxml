@@ -3353,11 +3353,11 @@
     
     <niobject name="NiMeshPSysData" abstract="0" inherit="NiPSysData">
         Particle meshes data.
-        <add name="Unknown Int 2" type="uint" ver1="10.2.0.0">Unknown. Possible vertex count but probably not.</add>
-        <add name="Unknown Byte 3" type="byte" default="0" ver1="10.2.0.0">Unknown. 0?</add>
-        <add name="Num Unknown Ints 1" type="uint" ver1="10.2.0.0">Unknown.</add>
-        <add name="Unknown Ints 1" type="uint" ver1="10.2.0.0" arr1="Num Unknown Ints 1">Unknown integers</add>
-        <add name="Unknown Node" type="Ref" template="NiNode">Unknown NiNode.</add>
+        <add name="Default Pool Size" type="uint" ver1="10.2.0.0" />
+        <add name="Fill Pools On Load" type="bool" ver1="10.2.0.0" />
+        <add name="Num Generations" type="uint" ver1="10.2.0.0" />
+        <add name="Generations" type="uint" ver1="10.2.0.0" arr1="Num Generations" />
+        <add name="Particle Meshes" type="Ref" template="NiNode" />
     </niobject>
 
     <niobject name="NiBinaryExtraData" abstract="0" inherit="NiExtraData">
