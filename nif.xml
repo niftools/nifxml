@@ -5365,7 +5365,7 @@
         <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
     </niobject>
 	
-	<niobject name="BSEffectShaderPropertyColorController" inherit="NiFloatInterpController">
+	<niobject name="BSEffectShaderPropertyColorController" inherit="NiPoint3InterpController">
 		This controller is used to animate colors in BSEffectShaderProperty.
 		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
 	</niobject>
@@ -5375,12 +5375,12 @@
 		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
 	</niobject>
 	
-	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiFloatInterpController">
+	<niobject name="BSLightingShaderPropertyColorController" abstract="0" inherit="NiPoint3InterpController">
 		This controller is used to animate colors in BSLightingShaderProperty.
 		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
 	</niobject>	
 	
-	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiAlphaController" />
+	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiFloatInterpController" />
 	
 	<niobject name="BSProceduralLightningController" abstract="0" inherit="NiTimeController">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
@@ -6038,9 +6038,8 @@
         <add name="AABB Max" type="Vector4" />
     </niobject>
 
-    <niobject name="BSFrustumFOVController" inherit="NiTimeController">
+    <niobject name="BSFrustumFOVController" inherit="NiFloatInterpController">
         Bethesda-specific time controller.
-        <add name="Interpolator" type="Ref" template="NiFloatInterpolator">Frustrum field of view animation interpolater and data.</add>
     </niobject>
 
     <niobject name="BSDebrisNode" inherit="BSRangeNode">
