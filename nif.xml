@@ -2710,20 +2710,20 @@
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1" />
     </niobject>
 
-    <bitflags name="bhkCOFlags" storage="ushort">
+    <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO">
         bhkNiCollisionObject flags. The flags 0x2, 0x100, and 0x200 are not seen in any NIF nor get/set by the engine.
-        <option value="0" name="BHKCO_ACTIVE" />
-        <!--<option value="1" name="BHKCO_UNK1" />-->
-        <option value="2" name="BHKCO_NOTIFY" />
-        <option value="3" name="BHKCO_SET_LOCAL" />
-        <option value="4" name="BHKCO_DBG_DISPLAY" />
-        <option value="5" name="BHKCO_USE_VEL" />
-        <option value="6" name="BHKCO_RESET" />
-        <option value="7" name="BHKCO_SYNC_ON_UPDATE" />
-        <!--<option value="8" name="BHKCO_UNK2" />-->
-        <!--<option value="9" name="BHKCO_UNK3" />-->
-        <option value="10" name="BHKCO_ANIM_TARGETED" />
-        <option value="11" name="BHKCO_DISMEMBERED_LIMB" />
+        <option value="0" name="ACTIVE" />
+        <!--<option value="1" name="UNK1" />-->
+        <option value="2" name="NOTIFY" />
+        <option value="3" name="SET_LOCAL" />
+        <option value="4" name="DBG_DISPLAY" />
+        <option value="5" name="USE_VEL" />
+        <option value="6" name="RESET" />
+        <option value="7" name="SYNC_ON_UPDATE" />
+        <!--<option value="8" name="UNK2" />-->
+        <!--<option value="9" name="UNK3" />-->
+        <option value="10" name="ANIM_TARGETED" />
+        <option value="11" name="DISMEMBERED_LIMB" />
     </bitflags>
 
     <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
@@ -5254,76 +5254,76 @@
         <option value="33" name="SHADER_NOLIGHTING">No Lighting Shader</option>
     </enum>
     
-    <bitflags name="BSShaderFlags" storage="uint">
+    <bitflags name="BSShaderFlags" storage="uint" prefix="F3SF1">
         Shader Property Flags
-        <option value="0" name="SF_Specular">Enables Specularity</option>
-        <option value="1" name="SF_Skinned">Required For Skinned Meshes</option>
-        <option value="2" name="SF_LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
-        <option value="3" name="SF_Vertex_Alpha">Vertex Alpha</option>
-        <option value="4" name="SF_Unknown_1">Unknown</option>
-        <option value="5" name="SF_Single_Pass">Single Pass</option>
-        <option value="6" name="SF_Empty">Unknown</option>
-        <option value="7" name="SF_Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
-        <option value="8" name="SF_Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
-        <option value="9" name="SF_Unknown_2">Unknown</option>
-        <option value="10" name="SF_FaceGen">FaceGen</option>
-        <option value="11" name="SF_Parallax_Shader_Index_15">Parallax</option>
-        <option value="12" name="SF_Unknown_3">Unknown/Crash</option>
-        <option value="13" name="SF_Non_Projective_Shadows">Non-Projective Shadows</option>
-        <option value="14" name="SF_Unknown_4">Unknown/Crash</option>
-        <option value="15" name="SF_Refraction">Refraction (switches on refraction power)</option>
-        <option value="16" name="SF_Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
-        <option value="17" name="SF_Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
-        <option value="18" name="SF_Hair">Hair</option>
-        <option value="19" name="SF_Dynamic_Alpha">Dynamic Alpha</option>
-        <option value="20" name="SF_Localmap_Hide_Secret">Localmap Hide Secret</option>
-        <option value="21" name="SF_Window_Environment_Mapping">Window Environment Mapping</option>
-        <option value="22" name="SF_Tree_Billboard">Tree Billboard</option>
-        <option value="23" name="SF_Shadow_Frustum">Shadow Frustum</option>
-        <option value="24" name="SF_Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
-        <option value="25" name="SF_Remappable_Textures">usually seen w/texture animation</option>
-        <option value="26" name="SF_Decal_Single_Pass">Decal</option>
-        <option value="27" name="SF_Dynamic_Decal_Single_Pass">Dynamic Decal</option>
-        <option value="28" name="SF_Parallax_Occulsion">Parallax Occlusion</option>
-        <option value="29" name="SF_External_Emittance">External Emittance</option>
-        <option value="30" name="SF_Shadow_Map">Shadow Map</option>
-        <option value="31" name="SF_ZBuffer_Test">ZBuffer Test (1=on)</option>
+        <option value="0" name="Specular">Enables Specularity</option>
+        <option value="1" name="Skinned">Required For Skinned Meshes</option>
+        <option value="2" name="LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
+        <option value="3" name="Vertex_Alpha">Vertex Alpha</option>
+        <option value="4" name="Unknown_1">Unknown</option>
+        <option value="5" name="Single_Pass">Single Pass</option>
+        <option value="6" name="Empty">Unknown</option>
+        <option value="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
+        <option value="8" name="Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
+        <option value="9" name="Unknown_2">Unknown</option>
+        <option value="10" name="FaceGen">FaceGen</option>
+        <option value="11" name="Parallax_Shader_Index_15">Parallax</option>
+        <option value="12" name="Unknown_3">Unknown/Crash</option>
+        <option value="13" name="Non_Projective_Shadows">Non-Projective Shadows</option>
+        <option value="14" name="Unknown_4">Unknown/Crash</option>
+        <option value="15" name="Refraction">Refraction (switches on refraction power)</option>
+        <option value="16" name="Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
+        <option value="17" name="Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
+        <option value="18" name="Hair">Hair</option>
+        <option value="19" name="Dynamic_Alpha">Dynamic Alpha</option>
+        <option value="20" name="Localmap_Hide_Secret">Localmap Hide Secret</option>
+        <option value="21" name="Window_Environment_Mapping">Window Environment Mapping</option>
+        <option value="22" name="Tree_Billboard">Tree Billboard</option>
+        <option value="23" name="Shadow_Frustum">Shadow Frustum</option>
+        <option value="24" name="Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
+        <option value="25" name="Remappable_Textures">usually seen w/texture animation</option>
+        <option value="26" name="Decal_Single_Pass">Decal</option>
+        <option value="27" name="Dynamic_Decal_Single_Pass">Dynamic Decal</option>
+        <option value="28" name="Parallax_Occulsion">Parallax Occlusion</option>
+        <option value="29" name="External_Emittance">External Emittance</option>
+        <option value="30" name="Shadow_Map">Shadow Map</option>
+        <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
 
-    <bitflags name="BSShaderFlags2" storage="uint">
+    <bitflags name="BSShaderFlags2" storage="uint" prefix="F3SF2">
         Shader Property Flags 2
-        <option value="0" name="SF2_ZBuffer_Write">ZBuffer Write</option>
-        <option value="1" name="SF2_LOD_Landscape">LOD Landscape</option>
-        <option value="2" name="SF2_LOD_Building">LOD Building</option>
-        <option value="3" name="SF2_No_Fade">No Fade</option>
-        <option value="4" name="SF2_Refraction_Tint">Refraction Tint</option>
-        <option value="5" name="SF2_Vertex_Colors">Has Vertex Colors</option>
-        <option value="6" name="SF2_Unknown1">Unknown</option>
-        <option value="7" name="SF2_1st_Light_is_Point_Light">1st Light is Point Light</option>
-        <option value="8" name="SF2_2nd_Light">2nd Light</option>
-        <option value="9" name="SF2_3rd_Light">3rd Light</option>
-        <option value="10" name="SF2_Vertex_Lighting">Vertex Lighting</option>
-        <option value="11" name="SF2_Uniform_Scale">Uniform Scale</option>
-        <option value="12" name="SF2_Fit_Slope">Fit Slope</option>
-        <option value="13" name="SF2_Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
-        <option value="14" name="SF2_No_LOD_Land_Blend">No LOD Land Blend</option>
-        <option value="15" name="SF2_Envmap_Light_Fade">Envmap Light Fade</option>
-        <option value="16" name="SF2_Wireframe">Wireframe</option>
-        <option value="17" name="SF2_VATS_Selection">VATS Selection</option>
-        <option value="18" name="SF2_Show_in_Local_Map">Show in Local Map</option>
-        <option value="19" name="SF2_Premult_Alpha">Premult Alpha</option>
-        <option value="20" name="SF2_Skip_Normal_Maps">Skip Normal Maps</option>
-        <option value="21" name="SF2_Alpha_Decal">Alpha Decal</option>
-        <option value="22" name="SF2_No_Transparecny_Multisampling">No Transparency MultiSampling</option>
-        <option value="23" name="SF2_Unknown2">Unknown</option>
-        <option value="24" name="SF2_Unknown3">Unknown</option>
-        <option value="25" name="SF2_Unknown4">Unknown</option>
-        <option value="26" name="SF2_Unknown5">Unknown</option>
-        <option value="27" name="SF2_Unknown6">Unknown</option>
-        <option value="28" name="SF2_Unknown7">Unknown</option>
-        <option value="29" name="SF2_Unknown8">Unknown</option>
-        <option value="30" name="SF2_Unknown9">Unknown</option>
-        <option value="31" name="SF2_Unknown10">Unknown</option>
+        <option value="0" name="ZBuffer_Write">ZBuffer Write</option>
+        <option value="1" name="LOD_Landscape">LOD Landscape</option>
+        <option value="2" name="LOD_Building">LOD Building</option>
+        <option value="3" name="No_Fade">No Fade</option>
+        <option value="4" name="Refraction_Tint">Refraction Tint</option>
+        <option value="5" name="Vertex_Colors">Has Vertex Colors</option>
+        <option value="6" name="Unknown1">Unknown</option>
+        <option value="7" name="1st_Light_is_Point_Light">1st Light is Point Light</option>
+        <option value="8" name="2nd_Light">2nd Light</option>
+        <option value="9" name="3rd_Light">3rd Light</option>
+        <option value="10" name="Vertex_Lighting">Vertex Lighting</option>
+        <option value="11" name="Uniform_Scale">Uniform Scale</option>
+        <option value="12" name="Fit_Slope">Fit Slope</option>
+        <option value="13" name="Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
+        <option value="14" name="No_LOD_Land_Blend">No LOD Land Blend</option>
+        <option value="15" name="Envmap_Light_Fade">Envmap Light Fade</option>
+        <option value="16" name="Wireframe">Wireframe</option>
+        <option value="17" name="VATS_Selection">VATS Selection</option>
+        <option value="18" name="Show_in_Local_Map">Show in Local Map</option>
+        <option value="19" name="Premult_Alpha">Premult Alpha</option>
+        <option value="20" name="Skip_Normal_Maps">Skip Normal Maps</option>
+        <option value="21" name="Alpha_Decal">Alpha Decal</option>
+        <option value="22" name="No_Transparecny_Multisampling">No Transparency MultiSampling</option>
+        <option value="23" name="Unknown2">Unknown</option>
+        <option value="24" name="Unknown3">Unknown</option>
+        <option value="25" name="Unknown4">Unknown</option>
+        <option value="26" name="Unknown5">Unknown</option>
+        <option value="27" name="Unknown6">Unknown</option>
+        <option value="28" name="Unknown7">Unknown</option>
+        <option value="29" name="Unknown8">Unknown</option>
+        <option value="30" name="Unknown9">Unknown</option>
+        <option value="31" name="Unknown10">Unknown</option>
     </bitflags>
     
     <niobject name="BSShaderProperty" abstract="0" inherit="NiShadeProperty">
@@ -5472,148 +5472,148 @@
         Bethesda-specific property.
     </niobject>
 
-    <bitflags name="SkyrimShaderPropertyFlags1" storage="uint">
+    <bitflags name="SkyrimShaderPropertyFlags1" storage="uint" prefix="SLSF1">
         Skyrim Shader Property Flags 1
-        <option value="0" name="SLSF1_Specular">Enables Specularity</option>
-        <option value="1" name="SLSF1_Skinned">Required For Skinned Meshes.</option>
-        <option value="2" name="SLSF1_Temp_Refraction"></option>
-        <option value="3" name="SLSF1_Vertex_Alpha">Enables using alpha component of vertex colors.</option>
-        <option value="4" name="SLSF1_Greyscale_To_PaletteColor">in EffectShaderProperty</option>
-        <option value="5" name="SLSF1_Greyscale_To_PaletteAlpha">in EffectShaderProperty</option>
-        <option value="6" name="SLSF1_Use_Falloff">Use Falloff value in EffectShaderProperty</option>
-        <option value="7" name="SLSF1_Environment_Mapping">Environment mapping (uses Envmap Scale).</option>
-        <option value="8" name="SLSF1_Recieve_Shadows">Object can recieve shadows.</option>
-        <option value="9" name="SLSF1_Cast_Shadows">Can cast shadows</option>
-        <option value="10" name="SLSF1_Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
-        <option value="11" name="SLSF1_Parallax">Unused?</option>
-        <option value="12" name="SLSF1_Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
-        <option value="13" name="SLSF1_Non_Projective_Shadows"></option>
-        <option value="14" name="SLSF1_Landscape"></option>
-        <option value="15" name="SLSF1_Refraction">Use normal map for refraction effect.</option>
-        <option value="16" name="SLSF1_Fire_Refraction"></option>
-        <option value="17" name="SLSF1_Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
-        <option value="18" name="SLSF1_Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
-        <option value="19" name="SLSF1_Screendoor_Alpha_Fade"></option>
-        <option value="20" name="SLSF1_Localmap_Hide_Secret">Object and anything it is positioned above will not render on local map view.</option>
-        <option value="21" name="SLSF1_FaceGen_RGB_Tint">Use tintmask for Face.</option>
-        <option value="22" name="SLSF1_Own_Emit">Provides its own emittance color. (will not absorb light/ambient color?)</option>
-        <option value="23" name="SLSF1_Projected_UV">Used for decalling?</option>
-        <option value="24" name="SLSF1_Multiple_Textures"></option>
-        <option value="25" name="SLSF1_Remappable_Textures"></option>
-        <option value="26" name="SLSF1_Decal"></option>
-        <option value="27" name="SLSF1_Dynamic_Decal"></option>
-        <option value="28" name="SLSF1_Parallax_Occlusion"></option>
-        <option value="29" name="SLSF1_External_Emittance"></option>
-        <option value="30" name="SLSF1_Soft_Effect"></option>
-        <option value="31" name="SLSF1_ZBuffer_Test">ZBuffer Test (1=on)</option>
+        <option value="0" name="Specular">Enables Specularity</option>
+        <option value="1" name="Skinned">Required For Skinned Meshes.</option>
+        <option value="2" name="Temp_Refraction"></option>
+        <option value="3" name="Vertex_Alpha">Enables using alpha component of vertex colors.</option>
+        <option value="4" name="Greyscale_To_PaletteColor">in EffectShaderProperty</option>
+        <option value="5" name="Greyscale_To_PaletteAlpha">in EffectShaderProperty</option>
+        <option value="6" name="Use_Falloff">Use Falloff value in EffectShaderProperty</option>
+        <option value="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale).</option>
+        <option value="8" name="Recieve_Shadows">Object can recieve shadows.</option>
+        <option value="9" name="Cast_Shadows">Can cast shadows</option>
+        <option value="10" name="Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
+        <option value="11" name="Parallax">Unused?</option>
+        <option value="12" name="Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
+        <option value="13" name="Non_Projective_Shadows"></option>
+        <option value="14" name="Landscape"></option>
+        <option value="15" name="Refraction">Use normal map for refraction effect.</option>
+        <option value="16" name="Fire_Refraction"></option>
+        <option value="17" name="Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
+        <option value="18" name="Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
+        <option value="19" name="Screendoor_Alpha_Fade"></option>
+        <option value="20" name="Localmap_Hide_Secret">Object and anything it is positioned above will not render on local map view.</option>
+        <option value="21" name="FaceGen_RGB_Tint">Use tintmask for Face.</option>
+        <option value="22" name="Own_Emit">Provides its own emittance color. (will not absorb light/ambient color?)</option>
+        <option value="23" name="Projected_UV">Used for decalling?</option>
+        <option value="24" name="Multiple_Textures"></option>
+        <option value="25" name="Remappable_Textures"></option>
+        <option value="26" name="Decal"></option>
+        <option value="27" name="Dynamic_Decal"></option>
+        <option value="28" name="Parallax_Occlusion"></option>
+        <option value="29" name="External_Emittance"></option>
+        <option value="30" name="Soft_Effect"></option>
+        <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
     
-    <bitflags name="SkyrimShaderPropertyFlags2" storage="uint">
+    <bitflags name="SkyrimShaderPropertyFlags2" storage="uint" prefix="SLSF2">
         Skyrim Shader Property Flags 2
-        <option value="0" name="SLSF2_ZBuffer_Write">Enables writing to the Z-Buffer</option>
-        <option value="1" name="SLSF2_LOD_Landscape"></option>
-        <option value="2" name="SLSF2_LOD_Objects"></option>
-        <option value="3" name="SLSF2_No_Fade"></option>
-        <option value="4" name="SLSF2_Double_Sided">Double-sided rendering.</option>
-        <option value="5" name="SLSF2_Vertex_Colors">Has Vertex Colors.</option>
-        <option value="6" name="SLSF2_Glow_Map">Use Glow Map in the third texture slot.</option>
-        <option value="7" name="SLSF2_Assume_Shadowmask"></option>
-        <option value="8" name="SLSF2_Packed_Tangent"></option>
-        <option value="9" name="SLSF2_Multi_Index_Snow"></option>
-        <option value="10" name="SLSF2_Vertex_Lighting"></option>
-        <option value="11" name="SLSF2_Uniform_Scale"></option>
-        <option value="12" name="SLSF2_Fit_Slope"></option>
-        <option value="13" name="SLSF2_Billboard"></option>
-        <option value="14" name="SLSF2_No_LOD_Land_Blend"></option>
-        <option value="15" name="SLSF2_EnvMap_Light_Fade"></option>
-        <option value="16" name="SLSF2_Wireframe">Wireframe (Seems to only work on particles)</option>
-        <option value="17" name="SLSF2_Weapon_Blood">Used for blood decals on weapons.</option>
-        <option value="18" name="SLSF2_Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
-        <option value="19" name="SLSF2_Premult_Alpha">Has Premultiplied Alpha</option>
-        <option value="20" name="SLSF2_Cloud_LOD"></option>
-        <option value="21" name="SLSF2_Anisotropic_Lighting">Hair only?</option>
-        <option value="22" name="SLSF2_No_Transparency_Multisampling"></option>
-        <option value="23" name="SLSF2_Unused01">Unused?</option>
-        <option value="24" name="SLSF2_Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
-        <option value="25" name="SLSF2_Soft_Lighting">Use Soft Lighting Map</option>
-        <option value="26" name="SLSF2_Rim_Lighting">Use Rim Lighting Map</option>
-        <option value="27" name="SLSF2_Back_Lighting">Use Back Lighting Map</option>
-        <option value="28" name="SLSF2_Unused02">Unused?</option>
-        <option value="29" name="SLSF2_Tree_Anim">Enables Vertex Animation, Flutter Animation</option>
-        <option value="30" name="SLSF2_Effect_Lighting"></option>
-        <option value="31" name="SLSF2_HD_LOD_Objects"></option>
+        <option value="0" name="ZBuffer_Write">Enables writing to the Z-Buffer</option>
+        <option value="1" name="LOD_Landscape"></option>
+        <option value="2" name="LOD_Objects"></option>
+        <option value="3" name="No_Fade"></option>
+        <option value="4" name="Double_Sided">Double-sided rendering.</option>
+        <option value="5" name="Vertex_Colors">Has Vertex Colors.</option>
+        <option value="6" name="Glow_Map">Use Glow Map in the third texture slot.</option>
+        <option value="7" name="Assume_Shadowmask"></option>
+        <option value="8" name="Packed_Tangent"></option>
+        <option value="9" name="Multi_Index_Snow"></option>
+        <option value="10" name="Vertex_Lighting"></option>
+        <option value="11" name="Uniform_Scale"></option>
+        <option value="12" name="Fit_Slope"></option>
+        <option value="13" name="Billboard"></option>
+        <option value="14" name="No_LOD_Land_Blend"></option>
+        <option value="15" name="EnvMap_Light_Fade"></option>
+        <option value="16" name="Wireframe">Wireframe (Seems to only work on particles)</option>
+        <option value="17" name="Weapon_Blood">Used for blood decals on weapons.</option>
+        <option value="18" name="Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
+        <option value="19" name="Premult_Alpha">Has Premultiplied Alpha</option>
+        <option value="20" name="Cloud_LOD"></option>
+        <option value="21" name="Anisotropic_Lighting">Hair only?</option>
+        <option value="22" name="No_Transparency_Multisampling"></option>
+        <option value="23" name="Unused01">Unused?</option>
+        <option value="24" name="Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
+        <option value="25" name="Soft_Lighting">Use Soft Lighting Map</option>
+        <option value="26" name="Rim_Lighting">Use Rim Lighting Map</option>
+        <option value="27" name="Back_Lighting">Use Back Lighting Map</option>
+        <option value="28" name="Unused02">Unused?</option>
+        <option value="29" name="Tree_Anim">Enables Vertex Animation, Flutter Animation</option>
+        <option value="30" name="Effect_Lighting"></option>
+        <option value="31" name="HD_LOD_Objects"></option>
     </bitflags>
 
-    <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint">
+    <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint" prefix="F4SF1">
         Fallout 4 Shader Property Flags 1
-        <option value="0" name="FSF1_Specular" />
-        <option value="1" name="FSF1_Skinned" />
-        <option value="2" name="FSF1_Temp_Refraction" />
-        <option value="3" name="FSF1_Vertex_Alpha" />
-        <option value="4" name="FSF1_GreyscaleToPalette_Color" />
-        <option value="5" name="FSF1_GreyscaleToPalette_Alpha" />
-        <option value="6" name="FSF1_Use_Falloff" />
-        <option value="7" name="FSF1_Environment_Mapping" />
-        <option value="8" name="FSF1_RGB_Falloff" />
-        <option value="9" name="FSF1_Cast_Shadows" />
-        <option value="10" name="FSF1_Face" />
-        <option value="11" name="FSF1_UI_Mask_Rects" />
-        <option value="12" name="FSF1_Model_Space_Normals" />
-        <option value="13" name="FSF1_Non_Projective_Shadows" />
-        <option value="14" name="FSF1_Landscape" />
-        <option value="15" name="FSF1_Refraction" />
-        <option value="16" name="FSF1_Fire_Refraction" />
-        <option value="17" name="FSF1_Eye_Environment_Mapping" />
-        <option value="18" name="FSF1_Hair" />
-        <option value="19" name="FSF1_Screendoor_Alpha_Fade" />
-        <option value="20" name="FSF1_Localmap_Hide_Secret" />
-        <option value="21" name="FSF1_Skin_Tint" />
-        <option value="22" name="FSF1_Own_Emit" />
-        <option value="23" name="FSF1_Projected_UV" />
-        <option value="24" name="FSF1_Multiple_Textures" />
-        <option value="25" name="FSF1_Tessellate" />
-        <option value="26" name="FSF1_Decal" />
-        <option value="27" name="FSF1_Dynamic_Decal" />
-        <option value="28" name="FSF1_Character_Lighting" />
-        <option value="29" name="FSF1_External_Emittance" />
-        <option value="30" name="FSF1_Soft_Effect" />
-        <option value="31" name="FSF1_ZBuffer_Test" />
+        <option value="0" name="Specular" />
+        <option value="1" name="Skinned" />
+        <option value="2" name="Temp_Refraction" />
+        <option value="3" name="Vertex_Alpha" />
+        <option value="4" name="GreyscaleToPalette_Color" />
+        <option value="5" name="GreyscaleToPalette_Alpha" />
+        <option value="6" name="Use_Falloff" />
+        <option value="7" name="Environment_Mapping" />
+        <option value="8" name="RGB_Falloff" />
+        <option value="9" name="Cast_Shadows" />
+        <option value="10" name="Face" />
+        <option value="11" name="UI_Mask_Rects" />
+        <option value="12" name="Model_Space_Normals" />
+        <option value="13" name="Non_Projective_Shadows" />
+        <option value="14" name="Landscape" />
+        <option value="15" name="Refraction" />
+        <option value="16" name="Fire_Refraction" />
+        <option value="17" name="Eye_Environment_Mapping" />
+        <option value="18" name="Hair" />
+        <option value="19" name="Screendoor_Alpha_Fade" />
+        <option value="20" name="Localmap_Hide_Secret" />
+        <option value="21" name="Skin_Tint" />
+        <option value="22" name="Own_Emit" />
+        <option value="23" name="Projected_UV" />
+        <option value="24" name="Multiple_Textures" />
+        <option value="25" name="Tessellate" />
+        <option value="26" name="Decal" />
+        <option value="27" name="Dynamic_Decal" />
+        <option value="28" name="Character_Lighting" />
+        <option value="29" name="External_Emittance" />
+        <option value="30" name="Soft_Effect" />
+        <option value="31" name="ZBuffer_Test" />
     </bitflags>
     
-    <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint">
+    <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint" prefix="F4SF2">
         Fallout 4 Shader Property Flags 2
-        <option value="0" name="FSF2_ZBuffer_Write" />
-        <option value="1" name="FSF2_LOD_Landscape" />
-        <option value="2" name="FSF2_LOD_Objects" />
-        <option value="3" name="FSF2_No_Fade" />
-        <option value="4" name="FSF2_Double_Sided" />
-        <option value="5" name="FSF2_Vertex_Colors" />
-        <option value="6" name="FSF2_Glow_Map" />
-        <option value="7" name="FSF2_Transform_Changed" />
-        <option value="8" name="FSF2_Dismemberment_Meatcuff" />
-        <option value="9" name="FSF2_Tint" />
-        <option value="10" name="FSF2_Grass_Vertex_Lighting" />
-        <option value="11" name="FSF2_Grass_Uniform_Scale" />
-        <option value="12" name="FSF2_Grass_Fit_Slope" />
-        <option value="13" name="FSF2_Grass_Billboard" />
-        <option value="14" name="FSF2_No_LOD_Land_Blend" />
-        <option value="15" name="FSF2_Dismemberment" />
-        <option value="16" name="FSF2_Wireframe" />
-        <option value="17" name="FSF2_Weapon_Blood" />
-        <option value="18" name="FSF2_Hide_On_Local_Map" />
-        <option value="19" name="FSF2_Premult_Alpha" />
-        <option value="20" name="FSF2_VATS_Target" />
-        <option value="21" name="FSF2_Anisotropic_Lighting" />
-        <option value="22" name="FSF2_Skew_Specular_Alpha" />
-        <option value="23" name="FSF2_Menu_Screen" />
-        <option value="24" name="FSF2_Multi_Layer_Parallax" />
-        <option value="25" name="FSF2_Alpha_Test" />
-        <option value="26" name="FSF2_Gradient_Remap" />
-        <option value="27" name="FSF2_VATS_Target_Draw_All" />
-        <option value="28" name="FSF2_Pipboy_Screen" />
-        <option value="29" name="FSF2_Tree_Anim" />
-        <option value="30" name="FSF2_Effect_Lighting" />
-        <option value="31" name="FSF2_Refraction_Writes_Depth" />
+        <option value="0" name="ZBuffer_Write" />
+        <option value="1" name="LOD_Landscape" />
+        <option value="2" name="LOD_Objects" />
+        <option value="3" name="No_Fade" />
+        <option value="4" name="Double_Sided" />
+        <option value="5" name="Vertex_Colors" />
+        <option value="6" name="Glow_Map" />
+        <option value="7" name="Transform_Changed" />
+        <option value="8" name="Dismemberment_Meatcuff" />
+        <option value="9" name="Tint" />
+        <option value="10" name="Grass_Vertex_Lighting" />
+        <option value="11" name="Grass_Uniform_Scale" />
+        <option value="12" name="Grass_Fit_Slope" />
+        <option value="13" name="Grass_Billboard" />
+        <option value="14" name="No_LOD_Land_Blend" />
+        <option value="15" name="Dismemberment" />
+        <option value="16" name="Wireframe" />
+        <option value="17" name="Weapon_Blood" />
+        <option value="18" name="Hide_On_Local_Map" />
+        <option value="19" name="Premult_Alpha" />
+        <option value="20" name="VATS_Target" />
+        <option value="21" name="Anisotropic_Lighting" />
+        <option value="22" name="Skew_Specular_Alpha" />
+        <option value="23" name="Menu_Screen" />
+        <option value="24" name="Multi_Layer_Parallax" />
+        <option value="25" name="Alpha_Test" />
+        <option value="26" name="Gradient_Remap" />
+        <option value="27" name="VATS_Target_Draw_All" />
+        <option value="28" name="Pipboy_Screen" />
+        <option value="29" name="Tree_Anim" />
+        <option value="30" name="Effect_Lighting" />
+        <option value="31" name="Refraction_Writes_Depth" />
     </bitflags>
 
     <niobject name="BSLightingShaderProperty"  abstract="0" inherit="BSShaderProperty">
