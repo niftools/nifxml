@@ -1720,14 +1720,6 @@
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
     </compound>
 
-    <compound name="BoundingBox">
-        Bounding box.
-        <add name="Unknown Int" type="uint" default="1">Usually 1.</add>
-        <add name="Translation" type="Vector3">Translation vector.</add>
-        <add name="Rotation" type="Matrix33">Rotation matrix.</add>
-        <add name="Radius" type="Vector3">Radius, per direction.</add>
-    </compound>
-
 	<bitflags name="FurnitureEntryPoints" storage="ushort">
 		Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
 		<option value="0" name="Front">front entry point</option>
@@ -2764,8 +2756,8 @@
         <add name="Properties" type="Ref" template="NiProperty" arr1="Num Properties" vercond="(User Version 2 &lt;= 34)">All rendering properties attached to this object.</add>
         <add name="Unknown 1" type="uint" arr1="4" ver2="2.3">Always 2,0,2,0.</add>
         <add name="Unknown 2" type="byte" ver2="2.3">0 or 1.</add>
-        <add name="Has Bounding Box" type="bool" ver1="3.0" ver2="4.2.2.0" />
-        <add name="Bounding Box" type="BoundingBox" cond="Has Bounding Box" ver1="3.0" ver2="4.2.2.0" />
+        <add name="Has Bounding Volume" type="bool" ver1="3.0" ver2="4.2.2.0" />
+        <add name="Bounding Volume" type="BoundingVolume" cond="Has Bounding Volume" ver1="3.0" ver2="4.2.2.0" />
         <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="10.0.1.0" />
     </niobject>
 
