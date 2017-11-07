@@ -2241,7 +2241,7 @@
 
     <niobject name="NiPSysCollider" abstract="1" inherit="NiObject">
         Particle system collider.
-        <add name="Bounce" type="float">Amount of bounce for the collider.</add>
+        <add name="Bounce" type="float" default="1.0">Amount of bounce for the collider.</add>
         <add name="Spawn on Collide" type="bool">Spawn particles on impact?</add>
         <add name="Die on Collide" type="bool">Kill particles on impact?</add>
         <add name="Spawn Modifier" type="Ref" template="NiPSysSpawnModifier">Spawner to use for the collider.</add>
@@ -2586,7 +2586,7 @@
 
     <niobject name="NiFloatInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiFloatKeys to animate a float value over time.
-        <add name="Pose Value" type="float">Value if lacking NiFloatData.</add>
+        <add name="Pose Value" type="float" default="-3.402823466e+38">Value if lacking NiFloatData.</add>
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
 
@@ -2598,7 +2598,7 @@
 
     <niobject name="NiPoint3Interpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiPosKeys to animate an NiPoint3 value over time.
-        <add name="Pose Value" type="Vector3">Value if lacking NiPosData.</add>
+        <add name="Pose Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Value if lacking NiPosData.</add>
         <add name="Data" type="Ref" template="NiPosData" />
     </niobject>
 
@@ -2614,8 +2614,8 @@
 
     <niobject name="NiPathInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Used to make an object follow a predefined spline path.
-        <add name="Flags" type="PathFlags" />
-        <add name="Bank Dir" type="int">-1 = Negative, 1 = Positive</add>
+        <add name="Flags" type="PathFlags" default="3" />
+        <add name="Bank Dir" type="int" default="1">-1 = Negative, 1 = Positive</add>
         <add name="Max Bank Angle" type="float">Max angle in radians.</add>
         <add name="Smoothing" type="float" />
         <add name="Follow Axis" type="short">0, 1, or 2 representing X, Y, or Z.</add>
@@ -2625,7 +2625,7 @@
 
     <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiBoolKeys to animate a bool value over time.
-        <add name="Pose Value" type="bool">Value if lacking NiBoolData.</add>
+        <add name="Pose Value" type="bool" default="2">Value if lacking NiBoolData.</add>
         <add name="Data" type="Ref" template="NiBoolData" />
     </niobject>
 
@@ -2653,20 +2653,20 @@
         <add name="Array Size" type="byte" />
         <add name="Weight Threshold" type="float" />
         <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Index" type="byte" cond="(Flags &amp; 1) == 0" />
-        <add name="High Priority" type="char" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Priority" type="char" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Time" type="float" cond="(Flags &amp; 1) == 0" />
-        <add name="High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Weights Sum" type="float" cond="(Flags &amp; 1) == 0" />
-        <add name="High Ease Spinner" type="float" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" />
+        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
+        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
+        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
+        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
+        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
         Abstract base class for interpolators storing data via a B-spline.
-        <add name="Start Time" type="float">Animation start time.</add>
-        <add name="Stop Time" type="float">Animation stop time.</add>
+        <add name="Start Time" type="float" default="3.402823466e+38">Animation start time.</add>
+        <add name="Stop Time" type="float" default="-3.402823466e+38">Animation stop time.</add>
         <add name="Spline Data" type="Ref" template="NiBSplineData" />
         <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
@@ -2763,7 +2763,7 @@
 
     <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
         Abstract base class for dynamic effects such as NiLights or projected texture effects.
-        <add name="Switch State" type="bool" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">If true, then the dynamic effect is applied to affected nodes during rendering.</add>
+        <add name="Switch State" type="bool" default="1" ver1="10.1.0.106" vercond="User Version 2 &lt; 130">If true, then the dynamic effect is applied to affected nodes during rendering.</add>
         <add name="Num Affected Nodes" type="uint" ver2="4.0.0.2" />
         <add name="Affected Nodes" type="Ptr" template="NiNode" arr1="Num Affected Nodes" ver2="3.3.0.13">If a node appears in this list, then its entire subtree will be affected by the effect.</add>
         <add name="Affected Node Pointers" type="uint" arr1="Num Affected Nodes" ver1="4.0.0.0" ver2="4.0.0.2">As of 4.0 the pointer hash is no longer stored alongside each NiObject on disk, yet this node list still refers to the pointer hashes. Cannot leave the type as Ptr because the link will be invalid.</add>
@@ -2774,10 +2774,10 @@
     <niobject name="NiLight" abstract="1" inherit="NiDynamicEffect">
         Abstract base class that represents light sources in a scene graph.
         For Bethesda Stream 130 (FO4), NiLight now directly inherits from NiAVObject.
-        <add name="Dimmer" type="float">Scales the overall brightness of all light components.</add>
-        <add name="Ambient Color" type="Color3" />
-        <add name="Diffuse Color" type="Color3" />
-        <add name="Specular Color" type="Color3" />
+        <add name="Dimmer" type="float" default="1.0">Scales the overall brightness of all light components.</add>
+        <add name="Ambient Color" type="Color3" default="0.0, 0.0, 0.0" />
+        <add name="Diffuse Color" type="Color3" default="0.0, 0.0, 0.0" />
+        <add name="Specular Color" type="Color3" default="0.0, 0.0, 0.0" />
     </niobject>
 
     <niobject name="NiProperty" abstract="1" inherit="NiObjectNET">
@@ -2794,7 +2794,7 @@
         <add name="Name" type="string">Used to locate the modifier.</add>
         <add name="Order" type="uint">Modifier ID in the particle modifier chain (always a multiple of 1000)?</add>
         <add name="Target" type="Ptr" template="NiParticleSystem">NiParticleSystem parent of this modifier.</add>
-        <add name="Active" type="bool">Whether or not the modifier is active.</add>
+        <add name="Active" type="bool" default="1">Whether or not the modifier is active.</add>
     </niobject>
 
     <niobject name="NiPSysEmitter" abstract="1" inherit="NiPSysModifier">
@@ -2806,7 +2806,7 @@
         <add name="Planar Angle" type="float">Planar Angle / Second axis.</add>
         <add name="Planar Angle Variation" type="float">Planar Angle randomness / Second axis .</add>
         <add name="Initial Color" type="Color4">Defines color of a birthed particle.</add>
-        <add name="Initial Radius" type="float">Size of a birthed particle.</add>
+        <add name="Initial Radius" type="float" default="1.0">Size of a birthed particle.</add>
         <add name="Radius Variation" type="float" ver1="10.4.0.1">Particle Radius randomness.</add>
         <add name="Life Span" type="float">Duration until a particle dies.</add>
         <add name="Life Span Variation" type="float">Adds randomness to Life Span.</add>
@@ -2831,8 +2831,8 @@
         </add>
         <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
-        <add name="Start Time" type="float">Controller start time.</add>
-        <add name="Stop Time" type="float">Controller stop time.</add>
+        <add name="Start Time" type="float" default="3.402823466e+38">Controller start time.</add>
+        <add name="Stop Time" type="float" default="-3.402823466e+38">Controller stop time.</add>
         <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13">Controller target (object index of the first controllable ancestor of this object).</add>
         <add name="Unknown Integer" type="uint" ver2="3.1">Unknown integer.</add>
     </niobject>
@@ -3243,7 +3243,7 @@
 
     <niobject name="NiAlphaProperty" abstract="0" inherit="NiProperty">
         Transparency. Flags 0x00ED.
-        <add name="Flags" type="Flags" default="237">
+        <add name="Flags" type="Flags" default="4844">
             Bit 0 : alpha blending enable
             Bits 1-4 : source blend mode
             Bits 5-8 : destination blend mode
@@ -3274,7 +3274,7 @@
             110 GL_GEQUAL
             111 GL_NEVER
         </add>
-        <add name="Threshold" type="byte">Threshold for alpha testing (see: glAlphaFunc)</add>
+        <add name="Threshold" type="byte" default="128">Threshold for alpha testing (see: glAlphaFunc)</add>
         <add name="Unknown Short 1" type="ushort" ver2="2.3">Unknown</add>
         <add name="Unknown Int 2" type="uint" ver2="2.3">Unknown</add>
     </niobject>
@@ -3521,10 +3521,10 @@
         <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">The weight of a sequence describes how it blends with other sequences at the same priority.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106" />
         <add name="Cycle Type" type="CycleType" ver1="10.1.0.106" />
-        <add name="Frequency" type="float" ver1="10.1.0.106" />
+        <add name="Frequency" type="float" default="1.0" ver1="10.1.0.106" />
         <add name="Phase" type="float" ver1="10.1.0.106" ver2="10.4.0.1" /> <!-- Actually ver2="10.3.0.1" but WorldShift 10.4.0.1 custom version acts like 10.3.0.1 -->
-        <add name="Start Time" type="float" ver1="10.1.0.106" />
-        <add name="Stop Time" type="float" ver1="10.1.0.106" />
+        <add name="Start Time" type="float" default="3.402823466e+38" ver1="10.1.0.106" />
+        <add name="Stop Time" type="float" default="-3.402823466e+38" ver1="10.1.0.106" />
         <add name="Play Backwards" type="bool" ver1="10.1.0.106" ver2="10.1.0.106" />
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">The owner of this sequence.</add>
         <add name="Accum Root Name" type="string" ver1="10.1.0.106">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
@@ -3586,7 +3586,7 @@
 
             If Bit 1 and Bit 2 are not set, but fog is enabled, Fog function is FOG_Z_LINEAR.
         </add>
-        <add name="Fog Depth" type="float">Depth of the fog in normalized units. 1.0 = begins at near plane. 0.5 = begins halfway between the near and far planes.</add>
+        <add name="Fog Depth" type="float" default="1.0">Depth of the fog in normalized units. 1.0 = begins at near plane. 0.5 = begins halfway between the near and far planes.</add>
         <add name="Fog Color" type="Color3">The color of the fog.</add>
     </niobject>
 
@@ -3672,12 +3672,12 @@
     <niobject name="NiMaterialProperty" abstract="0" inherit="NiProperty">
         Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
         <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
-        <add name="Ambient Color" type="Color3" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
-        <add name="Diffuse Color" type="Color3" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
-        <add name="Specular Color" type="Color3">How much light the material reflects in a specular manner.</add>
-        <add name="Emissive Color" type="Color3">How much light the material emits.</add>
-        <add name="Glossiness" type="float">The material glossiness.</add>
-        <add name="Alpha" type="float">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material's parent NiTriShape object, when alpha is not 1.</add>
+        <add name="Ambient Color" type="Color3" default="1.0, 1.0, 1.0" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
+        <add name="Diffuse Color" type="Color3" default="1.0, 1.0, 1.0" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
+        <add name="Specular Color" type="Color3" default="1.0, 1.0, 1.0">How much light the material reflects in a specular manner.</add>
+        <add name="Emissive Color" type="Color3" default="0.0, 0.0, 0.0">How much light the material emits.</add>
+        <add name="Glossiness" type="float" default="10.0">The material glossiness.</add>
+        <add name="Alpha" type="float" default="1.0">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material's parent NiTriShape object, when alpha is not 1.</add>
         <add name="Emissive Mult" type="float" default="1.0" vercond="(User Version 2 &gt; 21)" />
     </niobject>
 
@@ -3847,7 +3847,7 @@
         <add name="Near End" type="ushort" vercond="(User Version 2 &gt;= 83)" />
         <add name="Data" type="Ref" template="NiPSysData" vercond="(User Version 2 &gt;= 100)" />
         <!-- / Bethesda -->
-        <add name="World Space" type="bool" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
+        <add name="World Space" type="bool" default="1" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
     </niobject>
@@ -3917,7 +3917,7 @@
         DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiPathInterpolator.
         Time controller for a path.
         <add name="Path Flags" type="PathFlags" ver1="10.1.0.0" />
-        <add name="Bank Dir" type="int">-1 = Negative, 1 = Positive</add>
+        <add name="Bank Dir" type="int" default="1">-1 = Negative, 1 = Positive</add>
         <add name="Max Bank Angle" type="float">Max angle in radians.</add>
         <add name="Smoothing" type="float" />
         <add name="Follow Axis" type="short">0, 1, or 2 representing X, Y, or Z.</add>
@@ -4010,7 +4010,7 @@
     <niobject name="NiPointLight" abstract="0" inherit="NiLight">
         A point light.
         <add name="Constant Attenuation" type="float" />
-        <add name="Linear Attenuation" type="float" />
+        <add name="Linear Attenuation" type="float" default="1.0" />
         <add name="Quadratic Attenuation" type="float" />
     </niobject>
 
@@ -4066,10 +4066,10 @@
     <niobject name="NiPSysDragModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that applies a linear drag force to particles.
         <add name="Drag Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
-        <add name="Drag Axis" type="Vector3">The local direction of the force.</add>
-        <add name="Percentage" type="float">The amount of drag to apply to particles.</add>
-        <add name="Range" type="float">The distance up to which particles are fully affected.</add>
-        <add name="Range Falloff" type="float">The distance at which particles cease to be affected.</add>
+        <add name="Drag Axis" type="Vector3" default="1.0, 0.0, 0.0">The local direction of the force.</add>
+        <add name="Percentage" type="float" default="0.05">The amount of drag to apply to particles.</add>
+        <add name="Range" type="float" default="3.402823466e+38">The distance up to which particles are fully affected.</add>
+        <add name="Range Falloff" type="float" default="3.402823466e+38">The distance at which particles cease to be affected.</add>
     </niobject>
 
     <niobject name="NiPSysEmitterCtlrData" abstract="0" inherit="NiObject">
@@ -4082,9 +4082,9 @@
     <niobject name="NiPSysGravityModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that applies a gravitational force to particles.
         <add name="Gravity Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
-        <add name="Gravity Axis" type="Vector3">The local direction of the force.</add>
+        <add name="Gravity Axis" type="Vector3" default="1.0, 0.0, 0.0">The local direction of the force.</add>
         <add name="Decay" type="float">How the force diminishes by distance.</add>
-        <add name="Strength" type="float">The acceleration of the force.</add>
+        <add name="Strength" type="float" default="1.0">The acceleration of the force.</add>
         <add name="Force Type" type="ForceType">The type of gravitational force.</add>
         <add name="Turbulence" type="float">Adds a degree of randomness.</add>
         <add name="Turbulence Scale" type="float" default="1.0">Scale for turbulence.</add>
@@ -4106,7 +4106,7 @@
         <add name="Emitter Meshes" type="Ptr" template="NiAVObject" arr1="Num Emitter Meshes">The meshes which are emitted from.</add>
         <add name="Initial Velocity Type" type="VelocityType">The method by which the initial particle velocity will be computed.</add>
         <add name="Emission Type" type="EmitFrom">The manner in which particles are emitted from the Emitter Meshes.</add>
-        <add name="Emission Axis" type="Vector3">The emission axis if VELOCITY_USE_DIRECTION.</add>
+        <add name="Emission Axis" type="Vector3" default="1.0, 0.0, 0.0">The emission axis if VELOCITY_USE_DIRECTION.</add>
     </niobject>
 
     <niobject name="NiPSysMeshUpdateModifier" abstract="0" inherit="NiPSysModifier">
@@ -4173,16 +4173,16 @@
         <add name="Rotation Angle" type="float" ver1="20.0.0.2">Initial Rotation Angle in radians.</add>
         <add name="Rotation Angle Variation" type="float" ver1="20.0.0.2">Distributes rotation angle over the range [Angle - Variation, Angle + Variation].</add>
         <add name="Random Rot Speed Sign" type="bool" ver1="20.0.0.2">Randomly negate the initial rotation speed?</add>
-        <add name="Random Axis" type="bool">Assign a random axis to new particles?</add>
-        <add name="Axis" type="Vector3">Initial rotation axis.</add>
+        <add name="Random Axis" type="bool" default="1">Assign a random axis to new particles?</add>
+        <add name="Axis" type="Vector3" default="1.0, 0.0, 0.0">Initial rotation axis.</add>
     </niobject>
 
     <niobject name="NiPSysSpawnModifier" abstract="0" inherit="NiPSysModifier">
         Particle modifier that spawns additional copies of a particle.
-        <add name="Num Spawn Generations" type="ushort">Number of allowed generations for spawning. Particles whose generations are >= will not be spawned.</add>
-        <add name="Percentage Spawned" type="float">The likelihood of a particular particle being spawned. Must be between 0.0 and 1.0.</add>
-        <add name="Min Num to Spawn" type="ushort">The minimum particles to spawn for any given original particle.</add>
-        <add name="Max Num to Spawn" type="ushort">The maximum particles to spawn for any given original particle.</add>
+        <add name="Num Spawn Generations" type="ushort" default="0">Number of allowed generations for spawning. Particles whose generations are >= will not be spawned.</add>
+        <add name="Percentage Spawned" type="float" default="1.0">The likelihood of a particular particle being spawned. Must be between 0.0 and 1.0.</add>
+        <add name="Min Num to Spawn" type="ushort" default="1">The minimum particles to spawn for any given original particle.</add>
+        <add name="Max Num to Spawn" type="ushort" default="1">The maximum particles to spawn for any given original particle.</add>
         <add name="Unknown Int" type="int" ver1="10.4.0.1" ver2="10.4.0.1">WorldShift</add>
         <add name="Spawn Speed Variation" type="float">How much the spawned particle speed can vary.</add>
         <add name="Spawn Dir Variation" type="float">How much the spawned particle direction can vary.</add>
@@ -4215,7 +4215,7 @@
 
     <niobject name="NiPSysGravityFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, implements a gravity field force for particles.
-        <add name="Direction" type="Vector3">Direction of the gravity field in Field Object's space.</add>
+        <add name="Direction" type="Vector3" default="0.0, -1.0, 0.0">Direction of the gravity field in Field Object's space.</add>
     </niobject>
 
     <niobject name="NiPSysDragFieldModifier" inherit="NiPSysFieldModifier">
@@ -4230,10 +4230,10 @@
     </niobject>
 
     <niobject name="BSPSysLODModifier" inherit="NiPSysModifier">
-        <add name="LOD Begin Distance" type="float" />
-        <add name="LOD End Distance" type="float" />
-        <add name="Unknown Fade Factor 1" type="float" />
-        <add name="Unknown Fade Factor 2" type="float" />
+        <add name="LOD Begin Distance" type="float" default="0.1" />
+        <add name="LOD End Distance" type="float" default="0.7" />
+        <add name="End Emit Scale" type="float" default="0.2" />
+        <add name="End Size" type="float" default="1.0" />
     </niobject>
     
     <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier">
@@ -4292,7 +4292,7 @@
 
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.
-        <add name="Direction" type="Vector3">Direction of the particle velocity</add>
+        <add name="Direction" type="Vector3" default="-1.0, 0.0, 0.0">Direction of the particle velocity</add>
         <add name="Air Friction" type="float">How quickly particles will accelerate to the magnitude of the air field.</add>
         <add name="Inherit Velocity" type="float">How much of the air field velocity will be added to the particle velocity.</add>
         <add name="Inherit Rotation" type="bool" />
@@ -4446,7 +4446,7 @@
         A spot.
         <add name="Outer Spot Angle" type="float" />
         <add name="Inner Spot Angle" type="float" ver1="20.2.0.5" />
-        <add name="Exponent" type="float">Describes the distribution of light. (see: glLight)</add>
+        <add name="Exponent" type="float" default="1.0">Describes the distribution of light. (see: glLight)</add>
     </niobject>
 
     <niobject name="NiStencilProperty" abstract="0" inherit="NiProperty">
@@ -5613,33 +5613,34 @@
         <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
-        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="129">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="1">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
-        <add name="Emissive Color" type="Color3">Glow color and alpha</add>
+        <add name="Emissive Color" type="Color3" default="0.0, 0.0, 0.0">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
         <add name="Wet Material" type="string" vercond="(User Version 2 == 130)" />
-        <add name="Texture Clamp Mode" type="TexClampMode">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TexClampMode" default="3">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
-        <add name="Glossiness" type="float">The material specular power, or glossiness (0-999).</add>
+        <add name="Glossiness" type="float" default="80" vercond="User Version 2 &lt; 130">The material specular power, or glossiness (0-999).</add>
+        <add name="Smoothness" type="float" default="1.0" vercond="(User Version 2 == 130)">The base roughness (0.0-1.0), multiplied by the smoothness map.</add>
         <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Lighting Effect 2" type="float" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Subsurface Rolloff" type="float"  vercond="(User Version 2 == 130)" />
-        <add name="Unknown Float 1" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Backlight Power" type="float" vercond="(User Version 2 == 130)" />
+        <add name="Lighting Effect 1" type="float" default="0.3" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Lighting Effect 2" type="float" default="2.0" vercond="User Version 2 &lt; 130">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Subsurface Rolloff" type="float" default="0.3" vercond="(User Version 2 == 130)" />
+        <add name="Rimlight Power" type="float" default="3.402823466e+38" vercond="(User Version 2 == 130)" />
+        <add name="Backlight Power" type="float" cond="Rimlight Power == 0x7F7FFFFF" vercond="(User Version 2 == 130)" />
         <add name="Grayscale to Palette Scale" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Fresnel Power" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Spec Scale" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Spec Power" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Min Var" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Env Map Scale" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Fresnel Power" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Wetness Metalness" type="float" vercond="(User Version 2 == 130)" />
-        <add name="Environment Map Scale" type="float" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
+        <add name="Fresnel Power" type="float" default="5.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Spec Scale" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Spec Power" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Min Var" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Env Map Scale" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Fresnel Power" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Wetness Metalness" type="float" default="-1.0" vercond="(User Version 2 == 130)" />
+        <add name="Environment Map Scale" type="float" default="1.0" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Unknown Env Map Short" type="ushort" cond="Skyrim Shader Type == 1" vercond="(User Version 2 == 130)" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="(User Version 2 == 130)" />
