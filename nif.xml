@@ -1479,8 +1479,8 @@
         <add name="User Version" type="ulittle32" ver1="10.0.1.8">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="ulittle32" ver1="3.1.0.1">Number of file objects.</add>
         <!-- BSStreamHeader -->
-        <add name="User Version 2" type="ulittle32" default="0" cond="(Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version == 20.0.0.4) &amp;&amp; (User Version == 11)) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt; 20.0.0.4) &amp;&amp; (User Version &gt;= 3))" />
-        <add name="Export Info" type="ExportInfo" cond="(Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version == 20.0.0.4) &amp;&amp; (User Version == 11)) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt; 20.0.0.4) &amp;&amp; (User Version &gt;= 3))" />
+        <add name="User Version 2" type="ulittle32" default="0" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
+        <add name="Export Info" type="ExportInfo" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
         <add name="Max Filepath" type="ShortString" cond="(User Version 2 == 130)" />
         <!-- / BSStreamHeader -->
         <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
@@ -3304,7 +3304,7 @@
         <!-- Bethesda -->
         <add name="Has Texture Indices" type="bool" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))" />
         <add name="Num Subtexture Offsets" type="uint" vercond="(User Version 2 &gt; 34)">How many quads to use in BSPSysSubTexModifier for texture atlasing</add>
-        <add name="Num Subtexture Offsets" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
+        <add name="Num Subtexture Offsets" type="byte" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34) &amp;&amp; (User Version 2 &gt; 0)">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
         <add name="Subtexture Offsets" type="Vector4" arr1="Num Subtexture Offsets" vercond="((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))">Defines UV offsets</add>
         <add name="Aspect Ratio" type="float" vercond="(User Version 2 &gt; 34)">Sets aspect ratio for Subtexture Offset UV quads</add>
         <add name="Aspect Flags" type="ushort" vercond="(User Version 2 &gt; 34)" />
