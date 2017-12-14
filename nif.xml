@@ -3067,14 +3067,19 @@
         A simple LOD controller for bones.
     </niobject>
     
-    <compound name="GeomMaterialData">
+    <compound name="MaterialData">
         <add name="Has Shader" type="bool" ver1="10.0.1.0" ver2="20.1.0.3">Shader.</add>
         <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
-        <add name="Unknown Integer" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Unknown value, usually -1. (Not a link)</add>
-        <add name="Num Materials" type="uint" ver1="20.2.0.7">Num Materials</add>
-        <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.7">Unknown string.  Shader?</add>
-        <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.7">Unknown integer; often -1. (Is this a link, array index?)</add>
-        <add name="Active Material" type="int" ver1="20.2.0.7" default="0">Active Material; often -1. (Is this a link, array index?)</add>
+        <add name="Shader Extra Data" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Extra data associated with the shader. A value of -1 means the shader is the default implementation.</add>
+        <add name="Num Materials" type="uint" ver1="20.2.0.5" />
+        <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.5">The name of the material.</add>
+        <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.5">Extra data associated with the material. A value of -1 means the material is the default implementation.</add>
+        <add name="Active Material" type="int" default="-1" ver1="20.2.0.5">The index of the currently active material.</add>
+        <!-- Custom Versions -->
+        <add name="Unknown Byte" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
+        <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
+        <!-- / Custom -->
+        <add name="Material Needs Update" type="bool" ver1="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</add>
     </compound>
 
     <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
@@ -3091,14 +3096,8 @@
         <add name="Data" type="Ref" template="NiGeometryData" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13" vercond="(User Version 2 &lt; 100)" />
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
-        <add name="Material Data" type="GeomMaterialData" ver1="10.0.1.0" vercond="(User Version 2 &lt; 100)" />
-        <add name="Material Data" type="GeomMaterialData" ver1="10.0.1.0" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
-        <!-- Custom Versions -->
-        <add name="Unknown Byte" type="byte" default="255" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
-        <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
-        <!-- / Custom -->
-        <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &lt; 100)" />
-        <add name="Dirty Flag" type="bool" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
+        <add name="Material Data" type="MaterialData" ver1="10.0.1.0" vercond="(User Version 2 &lt; 100)" />
+        <add name="Material Data" type="MaterialData" ver1="10.0.1.0" vercond="(User Version 2 &gt;= 100)" cond="!NiParticleSystem" />
         <!-- Bethesda -->
         <add name="Shader Property" type="Ref" template="BSShaderProperty" ver1="20.2.0.7" userver="12" />
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" ver1="20.2.0.7" userver="12" />
@@ -6213,7 +6212,7 @@
         </add>
     </compound>
 
-    <compound name="MeshData">
+    <compound name="DataStreamRef">
         <add name="Stream" type="Ref" template="NiDataStream">
             Reference to a data stream object which holds the data used by
             this reference.
@@ -6230,31 +6229,23 @@
             <!-- see Zorsis Zombie_Boy.nif -->
             A lookup table that maps submeshes to regions.
         </add>
-        <add name="Num Components" type="int" default="1" />
+        <add name="Num Components" type="uint" default="1" />
         <add name="Component Semantics" type="SemanticData" arr1="Num Components">Describes the semantic of each component.</add>
     </compound>
 
-    <compound name="MaterialData" ver1="20.5.0.0">
-        Data stored per-material by NiRenderObject
-        <add name="Material Name" type="string">The name of the material.</add>
-        <add name="Material Extra Data" type="uint">Extra data associated with the material?</add>
-    </compound>
-
-    <niobject name="NiRenderObject" inherit="NiAVObject">
+    <niobject name="NiRenderObject" abstract="1" inherit="NiAVObject">
         An object that can be rendered.
-        <add name="Num Materials" type="uint" />
-        <add name="Material Data" type="MaterialData" arr1="Num Materials">Per-material data.</add>
-        <add name="Active Material" type="int" default="-1">The index of the currently active material.</add>
-        <add name="Material Needs Update Default" type="bool">Whether the materials for this render object always needs to be updated before rendering with them.</add>
+        <add name="Material Data" type="MaterialData">Per-material data.</add>
     </niobject>
 
     <enum name="MeshPrimitiveType" storage="uint">
         Describes the type of primitives stored in a mesh object.
         <option value="0" name="MESH_PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
         <option value="1" name="MESH_PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
-        <option value="2" name="MESH_PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
-        <option value="3" name="MESH_PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
-        <option value="4" name="MESH_PRIMITIVE_POINTS">Point primitive type.</option>
+        <option value="2" name="MESH_PRIMITIVE_LINES">Lines primitive type.</option>
+        <option value="3" name="MESH_PRIMITIVE_LINESTRIPS">Line strip primitive type.</option>
+        <option value="4" name="MESH_PRIMITIVE_QUADS">Quadrilateral primitive type.</option>
+        <option value="5" name="MESH_PRIMITIVE_POINTS">Point primitive type.</option>
     </enum>
 
     <enum name="SyncPoint" storage="ushort">
@@ -6307,8 +6298,8 @@
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
         <add name="Bound" type="NiBound">The combined bounding volume of all submeshes.</add>
-        <add name="Num Datas" type="uint" />
-        <add name="Datas" type="MeshData" arr1="Num Datas" />
+        <add name="Num Datastreams" type="uint" />
+        <add name="Datastreams" type="DataStreamRef" arr1="Num Datastreams" />
         <add name="Num Modifiers" type="uint" />
         <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" />
 
@@ -6332,6 +6323,7 @@
     </niobject>
 
     <niobject name="NiMorphWeightsController" inherit="NiInterpController">
+        Manipulates a mesh with the semantic MORPHWEIGHTS using an NiMorphMeshModifier.
         <add name="Count" type="uint" />
         <add name="Num Interpolators" type="uint" />
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" />
