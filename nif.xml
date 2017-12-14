@@ -1435,7 +1435,7 @@
         <add name="Target Name" type="string" ver2="10.1.0.103">Name of a controllable object in another NIF file.</add>
         <!-- NiControllerSequence::InterpArrayItem -->
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106" />
-        <add name="Controller" type="Ref" template="NiTimeController" />
+        <add name="Controller" type="Ref" template="NiTimeController" ver2="20.5.0.0" />
         <add name="Blend Interpolator" type="Ref" template="NiBlendInterpolator" ver1="10.1.0.104" ver2="10.1.0.110" />
         <add name="Blend Index" type="ushort" ver1="10.1.0.104" ver2="10.1.0.110" />
         <!-- Bethesda-only -->
@@ -2586,7 +2586,7 @@
 
     <niobject name="NiFloatInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiFloatKeys to animate a float value over time.
-        <add name="Pose Value" type="float" default="-3.402823466e+38">Value if lacking NiFloatData.</add>
+        <add name="Value" type="float" default="-3.402823466e+38">Pose value if lacking NiFloatData.</add>
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
 
@@ -2598,7 +2598,7 @@
 
     <niobject name="NiPoint3Interpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiPosKeys to animate an NiPoint3 value over time.
-        <add name="Pose Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Value if lacking NiPosData.</add>
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Pose value if lacking NiPosData.</add>
         <add name="Data" type="Ref" template="NiPosData" />
     </niobject>
 
@@ -2625,7 +2625,7 @@
 
     <niobject name="NiBoolInterpolator" abstract="0" inherit="NiKeyBasedInterpolator">
         Uses NiBoolKeys to animate a bool value over time.
-        <add name="Pose Value" type="bool" default="2">Value if lacking NiBoolData.</add>
+        <add name="Value" type="bool" default="2">Pose value if lacking NiBoolData.</add>
         <add name="Data" type="Ref" template="NiBoolData" />
     </niobject>
 
@@ -3378,17 +3378,17 @@
 
     <niobject name="NiBlendBoolInterpolator" abstract="0" inherit="NiBlendInterpolator">
         Blends bool values together.
-        <add name="Bool Value" type="byte">The interpolated bool?</add>
+        <add name="Value" type="byte" default="2">The pose value. Invalid if using data.</add>
     </niobject>
 
     <niobject name="NiBlendFloatInterpolator" abstract="0" inherit="NiBlendInterpolator">
         Blends float values together.
-        <add name="Float Value" type="float">The interpolated float?</add>
+        <add name="Value" type="float" default="-3.402823466e+38">The pose value. Invalid if using data.</add>
     </niobject>
 
     <niobject name="NiBlendPoint3Interpolator" abstract="0" inherit="NiBlendInterpolator">
         Blends NiPoint3 values together.
-        <add name="Point Value" type="Vector3">The interpolated point?</add>
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">The pose value. Invalid if using data.</add>
     </niobject>
 
     <niobject name="NiBlendTransformInterpolator" abstract="0" inherit="NiBlendInterpolator">
@@ -3412,45 +3412,45 @@
 
     <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate a float value over time.
-        <add name="Value" type="float">Base value when curve not defined.</add>
-        <add name="Handle" type="uint">Handle into the data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Value" type="float" default="-3.402823466e+38">Base value when curve not defined.</add>
+        <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompFloatInterpolator" abstract="0" inherit="NiBSplineFloatInterpolator">
         NiBSplineFloatInterpolator plus the information required for using compact control points.
-        <add name="Float Offset" type="float" />
-        <add name="Float Half Range" type="float" />
+        <add name="Float Offset" type="float" default="3.402823466e+38" />
+        <add name="Float Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
     <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate an NiPoint3 value over time.
-        <add name="Value" type="Vector3">Base value when curve not defined.</add>
-        <add name="Handle" type="uint">Handle into the data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Base value when curve not defined.</add>
+        <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompPoint3Interpolator" abstract="0" inherit="NiBSplinePoint3Interpolator">
         NiBSplinePoint3Interpolator plus the information required for using compact control points.
-        <add name="Position Offset" type="float" />
-        <add name="Position Half Range" type="float" />
+        <add name="Position Offset" type="float" default="3.402823466e+38" />
+        <add name="Position Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
     <niobject name="NiBSplineTransformInterpolator" abstract="0" inherit="NiBSplineInterpolator">
         Supports the animation of position, rotation, and scale using an NiQuatTransform.
         The NiQuatTransform can be an unchanging pose or interpolated from B-Spline control point channels.
         <add name="Transform" type="NiQuatTransform" />
-        <add name="Translation Handle" type="uint">Handle into the translation data. (USHRT_MAX for invalid handle.)</add>
-        <add name="Rotation Handle" type="uint">Handle into the rotation data. (USHRT_MAX for invalid handle.)</add>
-        <add name="Scale Handle" type="uint">Handle into the scale data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Translation Handle" type="uint" default="0xFFFF">Handle into the translation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Rotation Handle" type="uint" default="0xFFFF">Handle into the rotation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Scale Handle" type="uint" default="0xFFFF">Handle into the scale data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompTransformInterpolator" abstract="0" inherit="NiBSplineTransformInterpolator">
         NiBSplineTransformInterpolator plus the information required for using compact control points.
-        <add name="Translation Offset" type="float" />
-        <add name="Translation Half Range" type="float" />
-        <add name="Rotation Offset" type="float" />
-        <add name="Rotation Half Range" type="float" />
-        <add name="Scale Offset" type="float" />
-        <add name="Scale Half Range" type="float" />
+        <add name="Translation Offset" type="float" default="3.402823466e+38" />
+        <add name="Translation Half Range" type="float" default="3.402823466e+38" />
+        <add name="Rotation Offset" type="float" default="3.402823466e+38" />
+        <add name="Rotation Half Range" type="float" default="3.402823466e+38" />
+        <add name="Scale Offset" type="float" default="3.402823466e+38" />
+        <add name="Scale Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 	
 	<niobject name="BSRotAccumTransfInterpolator" inherit="NiTransformInterpolator">
@@ -3662,7 +3662,7 @@
         <add name="Flags" type="LookAtFlags" />
         <add name="Look At" type="Ptr" template="NiNode" />
         <add name="Look At Name" type="string" />
-        <add name="Transform" type="NiQuatTransform" ver2="20.5.0.0" />
+        <add name="Transform" type="NiQuatTransform" ver2="20.4.0.12" />
         <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator" />
         <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator" />
         <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator" />
@@ -4016,6 +4016,14 @@
     <niobject name="NiPosData" abstract="0" inherit="NiObject">
         Wrapper for position animation keys.
         <add name="Data" type="KeyGroup" template="Vector3" />
+    </niobject>
+
+    <niobject name="NiRotData" abstract="0" inherit="NiObject">
+        Wrapper for rotation animation keys.
+        <add name="Num Rotation Keys" type="uint" />
+        <add name="Rotation Type" type="KeyType" cond="Num Rotation Keys != 0" />
+        <add name="Quaternion Keys" type="QuatKey" arg="Rotation Type" template="Quaternion" arr1="Num Rotation Keys" cond="Rotation Type != 4" />
+        <add name="XYZ Rotations" type="KeyGroup" template="float" arr1="3" cond="Rotation Type == 4" />
     </niobject>
 
     <niobject name="NiPSysAgeDeathModifier" abstract="0" inherit="NiPSysModifier">
@@ -6787,17 +6795,162 @@
         <add name="Max to Spawn" type="uint" />
     </niobject>
 
+    <niobject name="NiEvaluator" abstract="1" inherit="NiObject">
+        <add name="Node Name" type="string">The name of the animated NiAVObject.</add>
+        <add name="Property Type" type="string">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
+        <add name="Controller Type" type="string">The RTTI type of the NiTimeController.</add>
+        <add name="Controller ID" type="string">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
+        <add name="Interpolator ID" type="string">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
+        <add name="Channel Types" type="byte" arr1="4">
+            Channel Indices are BASE/POS = 0, ROT = 1, SCALE = 2, FLAG = 3
+            Channel Types are:
+             INVALID = 0, COLOR, BOOL, FLOAT, POINT3, ROT = 5
+            Any channel may be | 0x40 which means POSED
+            The FLAG (3) channel flags affects the whole evaluator:
+             REFERENCED = 0x1, TRANSFORM = 0x2, ALWAYSUPDATE = 0x4, SHUTDOWN = 0x8
+        </add>
+    </niobject>
+
+    <niobject name="NiKeyBasedEvaluator" abstract="1" inherit="NiEvaluator" />
+
+    <niobject name="NiBoolEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Data" type="Ref" template="NiBoolData" />
+    </niobject>
+
+    <niobject name="NiBoolTimelineEvaluator" inherit="NiBoolEvaluator" />
+
+    <niobject name="NiColorEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Data" type="Ref" template="NiColorData" />
+    </niobject>
+
+    <niobject name="NiFloatEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Data" type="Ref" template="NiFloatData" />
+    </niobject>
+
+    <niobject name="NiPoint3Evaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Data" type="Ref" template="NiPosData" />
+    </niobject>
+
+    <niobject name="NiQuaternionEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Data" type="Ref" template="NiRotData" />
+    </niobject>
+
+    <niobject name="NiTransformEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Value" type="NiQuatTransform" />
+        <add name="Data" type="Ref" template="NiTransformData" />
+    </niobject>
+
+    <niobject name="NiConstBoolEvaluator" inherit="NiEvaluator">
+        <add name="Value" type="float" default="-3.402823466e+38" /> <!-- Yes, this is actually a float. -->
+    </niobject>
+
+    <niobject name="NiConstColorEvaluator" inherit="NiEvaluator">
+        <add name="Value" type="Color4" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiConstFloatEvaluator" inherit="NiEvaluator">
+        <add name="Value" type="float" default="-3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator">
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38," />
+    </niobject>
+
+    <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator">
+        <add name="Value" type="Quaternion" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiConstTransformEvaluator" inherit="NiEvaluator">
+        <add name="Value" type="NiQuatTransform" />
+    </niobject>
+
+    <niobject name="NiBSplineEvaluator" inherit="NiEvaluator">
+        <add name="Start Time" type="float" default="3.402823466e+38" />
+        <add name="End Time" type="float" default="-3.402823466e+38" />
+        <add name="Data" type="Ref" template="NiBSplineData" />
+        <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
+    </niobject>
+
+    <niobject name="NiBSplineColorEvaluator" inherit="NiBSplineEvaluator">
+        <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
+    </niobject>
+
+    <niobject name="NiBSplineCompColorEvaluator" inherit="NiBSplineColorEvaluator">
+        <add name="Offset" type="float" default="3.402823466e+38" />
+        <add name="Half Range" type="float" default="3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiBSplineFloatEvaluator" inherit="NiBSplineEvaluator">
+        <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
+    </niobject>
+
+    <niobject name="NiBSplineCompFloatEvaluator" inherit="NiBSplineFloatEvaluator">
+        <add name="Offset" type="float" default="3.402823466e+38" />
+        <add name="Half Range" type="float" default="3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiBSplinePoint3Evaluator" inherit="NiBSplineEvaluator">
+        <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
+    </niobject>
+
+    <niobject name="NiBSplineCompPoint3Evaluator" inherit="NiBSplinePoint3Evaluator">
+        <add name="Offset" type="float" default="3.402823466e+38" />
+        <add name="Half Range" type="float" default="3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiBSplineTransformEvaluator" inherit="NiBSplineEvaluator">
+        <add name="Transform" type="NiQuatTransform" />
+        <add name="Translation Handle" type="uint" default="0xFFFF">Handle into the translation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Rotation Handle" type="uint" default="0xFFFF">Handle into the rotation data. (USHRT_MAX for invalid handle.)</add>
+        <add name="Scale Handle" type="uint" default="0xFFFF">Handle into the scale data. (USHRT_MAX for invalid handle.)</add>
+    </niobject>
+
+    <niobject name="NiBSplineCompTransformEvaluator" inherit="NiBSplineTransformEvaluator">
+        <add name="Translation Offset" type="float" default="3.402823466e+38" />
+        <add name="Translation Half Range" type="float" default="3.402823466e+38" />
+        <add name="Rotation Offset" type="float" default="3.402823466e+38" />
+        <add name="Rotation Half Range" type="float" default="3.402823466e+38" />
+        <add name="Scale Offset" type="float" default="3.402823466e+38" />
+        <add name="Scale Half Range" type="float" default="3.402823466e+38" />
+    </niobject>
+
+    <niobject name="NiLookAtEvaluator" inherit="NiEvaluator">
+        <add name="Flags" type="LookAtFlags" />
+        <add name="Look At Name" type="string" />
+        <add name="Driven Name" type="string" />
+        <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator" />
+        <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator" />
+        <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator" />
+    </niobject>
+
+    <niobject name="NiPathEvaluator" inherit="NiKeyBasedEvaluator">
+        <add name="Flags" type="PathFlags" default="3" />
+        <add name="Bank Dir" type="int" default="1">-1 = Negative, 1 = Positive</add>
+        <add name="Max Bank Angle" type="float">Max angle in radians.</add>
+        <add name="Smoothing" type="float" />
+        <add name="Follow Axis" type="short">0, 1, or 2 representing X, Y, or Z.</add>
+        <add name="Path Data" type="Ref" template="NiPosData" />
+        <add name="Percent Data" type="Ref" template="NiFloatData" />
+    </niobject>
 
     <niobject name="NiSequenceData" inherit="NiObject">
-        <!-- not yet decoded -->
-    </niobject>
-
-    <niobject name="NiTransformEvaluator" inherit="NiObject">
-        <!-- not yet decoded -->
-    </niobject>
-
-    <niobject name="NiBSplineCompTransformEvaluator" inherit="NiObject">
-        <!-- not yet decoded -->
+        Root node in Gamebryo .kf files (20.5.0.1 and up).
+        For 20.5.0.0, "NiSequenceData" is an alias for "NiControllerSequence" and this is not handled in nifxml.
+        This was not found in any 20.5.0.0 KFs available and they instead use NiControllerSequence directly.
+        <add name="Name" type="string" />
+        <!-- Pre-Evaluator -->
+        <add name="Num Controlled Blocks" type="uint" ver2="20.5.0.1" />
+        <add name="Array Grow By" type="uint" ver2="20.5.0.1" />
+        <add name="Controlled Blocks" type="ControlledBlock" arr1="Num Controlled Blocks" ver2="20.5.0.1" />
+        <!-- Evaluator -->
+        <add name="Num Evaluators" type="uint" ver1="20.5.0.2" />
+        <add name="Evaluators" type="Ref" template="NiEvaluator" arr1="Num Evaluators" ver1="20.5.0.2" />
+        <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" />
+        <add name="Duration" type="float" />
+        <add name="Cycle Type" type="CycleType" />
+        <add name="Frequency" type="float" default="1.0" />
+        <add name="Accum Root Name" type="string">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
+        <add name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" />
     </niobject>
 
     <niobject name="NiShadowGenerator" inherit="NiObject">
