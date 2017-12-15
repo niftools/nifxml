@@ -4404,7 +4404,7 @@
 		<add name="Data Size" type="uint" ver="20.2.0.7" userver2="100" />
 		<add name="Vertex Size" type="uint" ver="20.2.0.7" userver2="100" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver="20.2.0.7" userver2="100" />
-		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
+		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver="20.2.0.7" userver2="100" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver="20.2.0.7" userver2="100" />
     </niobject>
 
@@ -7099,8 +7099,8 @@
         <add name="Num Triangles" type="ushort" vercond="User Version 2 &lt; 130" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc" cond="Data Size &gt; 0" userver2="130" />
-        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc" cond="Data Size &gt; 0" userver2="100" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size &gt; 0" userver2="130" />
+        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size &gt; 0" userver2="100" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
         <add name="Particle Data Size" type="uint" userver2="100" />
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
@@ -7254,7 +7254,7 @@
         <add name="Num Combined" type="uint" />
         <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <add name="Vertex Desc" type="BSVertexDesc" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc" cond="!BSPackedCombinedSharedGeomDataExtra" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" cond="!BSPackedCombinedSharedGeomDataExtra" />
         <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" cond="!BSPackedCombinedSharedGeomDataExtra" />
     </compound>
 	
