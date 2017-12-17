@@ -2064,15 +2064,6 @@
         <add name="Weight" type="float" />
     </compound>
 
-    <compound name="ArkTexture">
-        A texture reference used by NiArkTextureExtraData.
-        <add name="Texture Name" type="string" />
-        <add name="Unknown Int 3" type="int" />
-        <add name="Unknown Int 4" type="int" />
-        <add name="Texturing Property" type="Ref" template="NiTexturingProperty" />
-        <add name="Unknown Bytes" type="byte" arr1="9" />
-    </compound>
-
     <compound name="BoneTransform">
         Transformation data for the bone at this index in bhkPoseArray.
         <add name="Translation" type="Vector3" />
@@ -5105,41 +5096,6 @@
 
     <niobject name="NiPhysXDynamicSrc" inherit="NiPhysXRigidBodySrc">
         Sends Gamebryo scene state to a PhysX dynamic actor.
-    </niobject>
-
-    <niobject name="NiArkAnimationExtraData" inherit="NiExtraData">
-        Unknown node.
-        <add name="Unknown Ints" type="int" arr1="4" />
-        <add name="Unknown Bytes" type="byte" arr1="37" ver2="4.1.0.12" />
-    </niobject>
-
-    <niobject name="NiArkImporterExtraData" inherit="NiExtraData">
-        Unknown node.
-        <add name="Unknown Int 1" type="int" />
-        <add name="Unknown Int 2" type="int" ver2="4.1.0.12" />
-        <add name="Importer Name" type="string">Contains a string like &quot;Gamebryo_1_1&quot; or &quot;4.1.0.12&quot;</add>
-        <add name="Unknown Bytes" type="byte" arr1="13" />
-        <add name="Unknown Floats" type="float" arr1="7" />
-    </niobject>
-
-    <niobject name="NiArkTextureExtraData" inherit="NiExtraData">
-        Unknown node.
-        <add name="Unknown Ints 1" type="int" arr1="2" />
-        <add name="Unknown Byte" type="byte" />
-        <add name="Unknown Int 2" type="int" ver2="4.1.0.12" />
-        <add name="Num Textures" type="int" />
-        <add name="Textures" type="ArkTexture" arr1="Num Textures" />
-    </niobject>
-
-    <niobject name="NiArkViewportInfoExtraData" inherit="NiExtraData">
-        Unknown node.
-        <add name="Unknown Bytes" type="byte" arr1="13" />
-    </niobject>
-
-    <niobject name="NiArkShaderExtraData" inherit="NiExtraData">
-        Unknown node.
-        <add name="Unknown Int" type="int" />
-        <add name="Unknown String" type="string" />
     </niobject>
 
     <niobject name="NiLines" inherit="NiTriBasedGeom">
