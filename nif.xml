@@ -3151,7 +3151,7 @@
            "Num Vertices" is renamed to "BS Max Vertices" for Bethesda 20.2 because Vertices, Normals, Tangents, Colors, and UV arrays
            do not have length for NiPSysData regardless of "Num" or booleans.
         -->
-        <add name="Unknown Int" type="int" ver1="10.2.0.0">Unknown identifier. Always 0.</add>
+        <add name="Group ID" type="int" ver1="10.1.0.114">Always zero.</add>
         <add name="Num Vertices" type="ushort" cond="!NiPSysData">Number of vertices.</add>
         <add name="Num Vertices" type="ushort" cond="NiPSysData" vercond="(User Version 2 &lt; 34)">Number of vertices.</add>
         <add name="BS Max Vertices" type="ushort" cond="NiPSysData" vercond="(User Version 2 &gt;= 34)">Bethesda uses this for max number of particles in NiPSysData.</add>
@@ -6268,7 +6268,7 @@
         <option value="0x8070" name="SYNC_REFLECTIONS">Synchronize after all data necessary to calculate reflections is ready.</option>
     </enum>
 
-    <niobject name="NiMeshModifier" inherit="NiObject">
+    <niobject name="NiMeshModifier" abstract="1" inherit="NiObject">
         Base class for mesh modifiers.
         <add name="Num Submit Points" type="uint" />
         <add name="Submit Points" type="SyncPoint" arr1="Num Submit Points">The sync points supported by this mesh modifier for SubmitTasks.</add>
@@ -7064,9 +7064,9 @@
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
 		A variation on NiTriShape, for visibility control over vertex groups.
-		<add name="Level 0 Size" type="uint" />
-		<add name="Level 1 Size" type="uint" />
-		<add name="Level 2 Size" type="uint" />
+		<add name="LOD0 Size" type="uint" />
+		<add name="LOD1 Size" type="uint" />
+		<add name="LOD2 Size" type="uint" />
 	</niobject>
 
 	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
