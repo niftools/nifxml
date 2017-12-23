@@ -1789,7 +1789,7 @@
 
     <compound name="HavokFilter">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
-        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
 
@@ -1837,7 +1837,7 @@
 
     <compound name="HavokMaterial">
         Bethesda Havok. Material wrapper for varying material enums by game.
-        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
+        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The material of the shape.</add>
         <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
         <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
@@ -2315,7 +2315,7 @@
         <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
         <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
         <add name="Time Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
-        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34) &amp;&amp; (User Version 2 != 130)" />
         <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
         <add name="Rolling Friction Multiplier" type="float" vercond="(User Version 2 &gt; 34)" />
         <add name="Restitution" type="float" default="0.4">
@@ -2324,7 +2324,7 @@
         </add>
         <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
-        <add name="Penetration Depth" type="float" default="0.15">
+        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 != 130)">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
@@ -2334,6 +2334,12 @@
         <add name="Enable Deactivation" type="bool" default="1" vercond="(User Version 2 &gt; 34)" />
         <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
         <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</add>
+        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 == 130)">
+            The maximum allowed penetration for this object.
+            This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
+            A good choice is 5% - 20% of the smallest diameter of the object.
+        </add>
+        <add name="Unknown Float 1" type="float" vercond="(User Version 2 == 130)" />
         <add name="Unknown Bytes 1" type="byte" arr1="12">Unknown.</add>
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint" />
@@ -2634,24 +2640,43 @@
         <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
         <add name="Weight" type="float" />
         <add name="Normalized Weight" type="float" />
-        <add name="Priority" type="byte" />
+        <add name="Priority" type="int" ver2="10.1.0.109" />
+        <add name="Priority" type="byte" ver1="10.1.0.110" />
         <add name="Ease Spinner" type="float" />
     </compound>
 
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
         Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
-        <add name="Flags" type="InterpBlendFlags" />
-        <add name="Array Size" type="byte" />
-        <add name="Weight Threshold" type="float" />
-        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" />
-        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" />
+        <add name="Flags" type="InterpBlendFlags" ver1="10.1.0.112" />
+        <add name="Array Size" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Grow By" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Size" type="byte" ver1="10.1.0.110" />
+        <add name="Weight Threshold" type="float" ver1="10.1.0.112" />
+        <!-- Flags conds -->
+        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <!-- end Flags 1 conds -->
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
+        <add name="Managed Controlled" type="bool" ver2="10.1.0.111" />
+        <add name="Weight Threshold" type="float" ver2="10.1.0.111" />
+        <add name="Only Use Highest Weight" type="bool" ver2="10.1.0.111" />
+        <add name="Interp Count" type="ushort" ver2="10.1.0.109" />
+        <add name="Single Index" type="ushort" ver2="10.1.0.109" />
+        <add name="Interp Count" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Index" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="Single Time" type="float" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="High Priority" type="int" ver2="10.1.0.109" />
+        <add name="Next High Priority" type="int" ver2="10.1.0.109" />
+        <add name="High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Next High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
@@ -2831,6 +2856,7 @@
 
     <niobject name="NiInterpController" abstract="1" inherit="NiTimeController">
         Abstract base class for all NiTimeController objects using NiInterpolator objects to animate their target objects.
+        <add name="Manager Controlled" type="bool" ver1="10.1.0.104" ver2="10.1.0.108" />
     </niobject>
 
     <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiInterpController">
@@ -2843,7 +2869,6 @@
         DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Time controller for geometry morphing.
         <add name="Extra Flags" type="Flags" ver1="10.0.1.2">1 = UPDATE NORMALS</add>
-        <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte" ver1="4.0.0.1" />
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
@@ -2864,7 +2889,7 @@
 
     <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
         Uses a single NiInterpolator to animate its target value.
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0" />
+        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.104" />
     </niobject>
 
     <niobject name="NiKeyframeController" abstract="0" inherit="NiSingleInterpController">
@@ -2889,7 +2914,7 @@
         Particle system emitter controller.
         NiInterpController::GetInterpolatorID() string format:
             ['BirthRate', 'EmitterActive'] (for "Interpolator" and "Visibility Interpolator" respectively)
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0" />
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.0" /><!-- Minimum may be none? -->
         <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.103" />
     </niobject>
 
@@ -3384,6 +3409,7 @@
 
     <niobject name="NiBlendTransformInterpolator" abstract="0" inherit="NiBlendInterpolator">
         Blends NiQuatTransform values together.
+        <add name="Value" type="NiQuatTransform" ver2="10.1.0.109" />
     </niobject>
 
     <niobject name="NiBoolData" abstract="0" inherit="NiObject">
