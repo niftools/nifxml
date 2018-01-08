@@ -6847,7 +6847,7 @@
     </niobject>
 
     <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator">
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38," />
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </niobject>
 
     <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator">
@@ -7248,10 +7248,24 @@
         <add name="Num Combined" type="uint" />
         <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <add name="Vertex Desc" type="BSVertexDesc" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" cond="!BSPackedCombinedSharedGeomDataExtra" />
-        <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" cond="!BSPackedCombinedSharedGeomDataExtra" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" />
+        <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
-	
+
+    <compound name="BSPackedSharedGeomData">
+        <add name="Num Verts" type="uint" />
+        <add name="LOD Levels" type="uint" />
+        <add name="Tri Count LOD0" type="uint" />
+        <add name="Tri Offset LOD0" type="uint" />
+        <add name="Tri Count LOD1" type="uint" />
+        <add name="Tri Offset LOD1" type="uint" />
+        <add name="Tri Count LOD2" type="uint" />
+        <add name="Tri Offset LOD2" type="uint" />
+        <add name="Num Combined" type="uint" />
+        <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
+        <add name="Vertex Desc" type="BSVertexDesc" />
+    </compound>
+
     <compound name="BSPackedGeomObject">
         This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
         <add name="Shape ID 1" type="uint" />
@@ -7267,14 +7281,21 @@
         <add name="Unknown Flags 1" type="uint" />
         <add name="Unknown Flags 2" type="uint" />
         <add name="Num Data" type="uint" />
-        <add name="Object" type="BSPackedGeomObject" arr1="Num Data" cond="BSPackedCombinedSharedGeomDataExtra" />
         <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
 
-    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="BSPackedCombinedGeomDataExtra">
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Shared Geometry Data.
         Geometry is NOT baked into the file. It is instead a reference to the shape via a Shape ID (currently undecoded)
         which loads the geometry via the STAT form for the NIF.
+        <add name="Vertex Desc" type="BSVertexDesc" />
+        <add name="Num Vertices" type="uint" />
+        <add name="Num Triangles" type="uint" />
+        <add name="Unknown Flags 1" type="uint" />
+        <add name="Unknown Flags 2" type="uint" />
+        <add name="Num Data" type="uint" />
+        <add name="Object" type="BSPackedGeomObject" arr1="Num Data" />
+        <add name="Object Data" type="BSPackedSharedGeomData" arr1="Num Data" />
     </niobject>
 
     <!-- Fallout 4 Animation -->
