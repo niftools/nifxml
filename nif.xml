@@ -1479,8 +1479,8 @@
         <add name="User Version" type="ulittle32" ver1="10.0.1.8">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="ulittle32" ver1="3.1.0.1">Number of file objects.</add>
         <!-- BSStreamHeader -->
-        <add name="User Version 2" type="ulittle32" default="0" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
-        <add name="Export Info" type="ExportInfo" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
+        <add name="User Version 2" type="ulittle32" default="0" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
+        <add name="Export Info" type="ExportInfo" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
         <add name="Max Filepath" type="ShortString" cond="(User Version 2 == 130)" />
         <!-- / BSStreamHeader -->
         <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
@@ -1760,8 +1760,7 @@
         <add name="Num Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
-        <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="10.1.0.111" />
-        <add name="Legacy Weight" type="float" ver1="10.2.0.0" ver2="20.1.0.2" vercond="User Version 2 &lt; 10" /> <!-- Exclude Bethesda -->
+        <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="20.1.0.2" vercond="User Version 2 &lt; 10" /> <!-- Exclude Bethesda -->
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -1837,6 +1836,7 @@
 
     <compound name="HavokMaterial">
         Bethesda Havok. Material wrapper for varying material enums by game.
+        <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The material of the shape.</add>
         <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
         <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
@@ -2265,6 +2265,7 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
+        <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Havok Filter" type="HavokFilter" />
         <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
         <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
@@ -2297,13 +2298,13 @@
         <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
         <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Havok Filter Copy" type="HavokFilter">Copy of Havok Filter</add>
-        <add name="Unused 2" type="byte" arr1="4">Garbage data from memory. Matches previous Unused value.</add>
-        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &gt; 34" />
-        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
-        <add name="Unused Byte 2" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
-        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" />
+        <add name="Unknown Int 1" type="uint" ver1="10.1.0.0">Unknown.</add>
+        <add name="Havok Filter Copy" type="HavokFilter" ver1="10.1.0.0">Copy of Havok Filter</add>
+        <add name="Unused 2" type="byte" arr1="4" ver1="10.1.0.0">Garbage data from memory. Matches previous Unused value.</add>
+        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" vercond="User Version 2 &gt; 34" />
+        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" ver1="10.1.0.0" />
+        <add name="Unused Byte 2" type="byte" ver1="10.1.0.0">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" ver1="10.1.0.0" />
         <add name="Unknown Int 2" type="uint" vercond="User Version 2 &lt;= 34" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
@@ -2322,9 +2323,9 @@
             How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
         </add>
-        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
-        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 != 130)">
+        <add name="Max Linear Velocity" type="float" default="104.4" ver1="10.1.0.0">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57" ver1="10.1.0.0">Maximal angular velocity.</add>
+        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 != 130)" ver1="10.1.0.0">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
@@ -2476,6 +2477,13 @@
         A convex transformed shape?
     </niobject>
 
+    <niobject name="bhkConvexSweepShape" inherit="bhkShape">
+        <add name="Shape" type="Ref" template="bhkShape" />
+        <add name="Material" type="HavokMaterial" />
+        <add name="Radius" type="float" />
+        <add name="Unknown" type="Vector3" />
+    </niobject>
+
     <niobject name="bhkMultiSphereShape" abstract="0" inherit="bhkSphereRepShape">
         Unknown.
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -2494,11 +2502,10 @@
         <add name="Unused" type="uint" arr1="3">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</add>
         <add name="Shape Scale" type="float" default="1.0">Scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
-        <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
-        <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
-        <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" binary="1" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
+        <add name="Origin" type="Vector3" ver1="10.1.0.0">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
+        <add name="Scale" type="float" ver1="10.1.0.0">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Build Type" type="MoppDataBuildType" vercond="User Version 2 &gt; 34">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
-        <add name="MOPP Data" ver1="10.0.1.2" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="MOPP Data" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
 
@@ -2531,13 +2538,16 @@
     XXX not completely decoded, also the 4 dummy separator bytes seem
     to be missing from nifs that have this block
     -->
-    <niobject name="bhkMeshShape" abstract="0" inherit="bhkShape"> 	 
-      <add name="Unknown 1" type="float" arr1="9" />
-      <add name="Num Unknown Floats" type="int" /> 	 
-      <add name="Unknown Floats" type="float" arr1="Num Unknown Floats" arr2="3" /> 	 
-      <add name="Unknown 2" type="int" arr1="3" />
-      <add name="Num Strips Data" type="uint" ver2="10.0.1.0">The number of strips data objects referenced.</add> 	 
-      <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add> 	 
+    <niobject name="bhkMeshShape" abstract="0" inherit="bhkShape">
+        <add name="Unknowns" type="uint" arr1="2" />
+        <add name="Radius" type="float" />
+        <add name="Unused 2" type="byte" arr1="8" />
+        <add name="Scale" type="Vector4" />
+        <add name="Num Shape Properties" type="uint" />
+        <add name="Shape Properties" type="hkWorldObjCinfoProperty" arr1="Num Shape Properties" />
+        <add name="Unknown 2" type="int" arr1="3" />
+        <add name="Num Strips Data" type="uint" ver2="10.0.1.0">The number of strips data objects referenced.</add>
+        <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
     </niobject>
 
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
@@ -2560,7 +2570,7 @@
         <add name="Radius" type="float" default="0.1" />
         <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
         <add name="Grow By" type="uint" default="1" />
-        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0" ver1="10.1.0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
@@ -2750,6 +2760,8 @@
         Unknown.
         <add name="Heir Gain" type="float" />
         <add name="Vel Gain" type="float" />
+        <add name="Unk Float 1" type="float" vercond="User Version 2 &lt; 9" />
+        <add name="Unk Float 2" type="float" vercond="User Version 2 &lt; 9" />
     </niobject>
 
     <niobject name="bhkPCollisionObject" abstract="0" inherit="bhkNiCollisionObject">
