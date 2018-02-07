@@ -2855,7 +2855,8 @@
             Bit 3 : Active
             Bit 4 : Play backwards
             Bit 5 : Is manager controlled
-            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function
+            Bit 6 : Compute scaled time (take frequency and phase into account)
+            Bit 7 : Force update
         </add>
         <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
