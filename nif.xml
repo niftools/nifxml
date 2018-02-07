@@ -1370,17 +1370,17 @@
 
     <compound name="hkMatrix3">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
-        <add name="m11" type="float" />
+        <add name="m11" type="float" default="1.0" />
         <add name="m12" type="float" />
         <add name="m13" type="float" />
         <add name="m14" type="float">Unused</add>
         <add name="m21" type="float" />
-        <add name="m22" type="float" />
+        <add name="m22" type="float" default="1.0" />
         <add name="m23" type="float" />
         <add name="m24" type="float">Unused</add>
         <add name="m31" type="float" />
         <add name="m32" type="float" />
-        <add name="m33" type="float" />
+        <add name="m33" type="float" default="1.0" />
         <add name="m34" type="float">Unused</add>
     </compound>
 
