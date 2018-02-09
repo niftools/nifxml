@@ -832,18 +832,11 @@ class Compound(Basic):
         # store all attribute data & calculate stuff
         for member in element.getElementsByTagName('add'):
             x = Member(member)
-            #***********************
-            #** NIFLIB HACK BEGIN **
-            #***********************
-            if self.name == "BoundingVolume" and x.name == "Union":
-                # ignore this one because niflib cannot handle
-                # recursively defined structures... so we remove
-                # this one to avoid the problem
-                # as a result a minority of nifs won't load
+
+            # Ignore infinite recursion on already visited compounds
+            if x in self.members:
                 continue
-            #*********************
-            #** NIFLIB HACK END **
-            #*********************
+
             self.members.append(x)
 
             # detect argument
