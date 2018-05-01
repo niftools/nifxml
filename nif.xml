@@ -1921,25 +1921,26 @@
     </compound>
 
     <compound name="LimitedHingeDescriptor">
-    	This constraint allows rotation about a specified axis, limited by specified boundaries.
+        This constraint allows rotation about a specified axis, limited by specified boundaries.
     
         <!-- Oblivion and Fallout 3, Havok 550 -->
         <add name="Pivot A" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle A" type="Vector4" vercond="User Version 2 &lt;= 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Axis A" type="Vector4" vercond="User Version 2 &lt;= 16">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot B" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4" vercond="User Version 2 &lt;= 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &lt;= 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" vercond="User Version 2 &lt;= 16">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" vercond="User Version 2 &lt;= 16">Perp Axis In A2 in second entity coordinate system.</add>
 
         <!-- Fallout 3 and later, Havok 660 and 2010 -->
-        <add name="Axle A" type="Vector4" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
+        <add name="Axis A" type="Vector4" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot A" type="Vector4" vercond="User Version 2 &gt; 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" vercond="User Version 2 &gt; 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" vercond="User Version 2 &gt; 16">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B1" type="Vector4" vercond="User Version 2 &gt; 16">Perp Axis In A1 in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" vercond="User Version 2 &gt; 16">Perp Axis In A2 in second entity coordinate system.</add>
         <add name="Pivot B" type="Vector4" vercond="User Version 2 &gt; 16">Pivot A in second entity coordinate system.</add>
 
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
@@ -1951,22 +1952,21 @@
 
     <compound name="HingeDescriptor">
     	This constraint allows rotation about a specified axis. 
-    	
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A (vector orthogonal on Perp2 Axles) in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" ver2="20.0.0.5">Axis A (vector orthogonal on Perp Axes) in second entity coordinate system.</add>
 
         <!-- Fallout 3 -->
-        <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Axis A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" ver1="20.2.0.7">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" ver1="20.2.0.7">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B1" type="Vector4" ver1="20.2.0.7">Perp Axis In A1 in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" ver1="20.2.0.7">Perp Axis In A2 in second entity coordinate system.</add>
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot A in second entity coordinate system.</add>
 
         <!-- no friction -->
