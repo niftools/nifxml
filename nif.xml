@@ -1978,18 +1978,18 @@
     </compound>
 
     <compound name="PrismaticDescriptor">
-        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
-        <!-- Oblivion (Order is a guess) -->
+        <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot.</add>
         <add name="Rotation A" type="Vector4" ver2="20.0.0.5">Rotation axis.</add>
         <add name="Plane A" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
         <add name="Sliding A" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot in B coordinates.</add>
         <add name="Rotation B" type="Vector4" ver2="20.0.0.5">Rotation axis.</add>
         <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
-        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
         
-        <!-- Fallout 3 -->
+        <!-- Fallout 3 and later, Havok 660 and 2010 -->
+        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
         <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
         <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
         <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
