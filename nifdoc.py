@@ -32,11 +32,11 @@ import logging
 import argparse
 from shutil import copy2
 
-from nifxml import Compound, Block, Enum, parse_xml, version2number
-from nifxml import TYPES_BLOCK, TYPES_BASIC, TYPES_COMPOUND, TYPES_ENUM, TYPES_FLAG, TYPES_VERSION
-from nifxml import NAMES_BLOCK, NAMES_BASIC, NAMES_COMPOUND, NAMES_ENUM, NAMES_FLAG, NAMES_VERSION
+from tools.nifxml import Compound, Block, Enum, parse_xml, version2number
+from tools.nifxml import TYPES_BLOCK, TYPES_BASIC, TYPES_COMPOUND, TYPES_ENUM, TYPES_FLAG, TYPES_VERSION
+from tools.nifxml import NAMES_BLOCK, NAMES_BASIC, NAMES_COMPOUND, NAMES_ENUM, NAMES_FLAG, NAMES_VERSION
 
-from doc import nifdoc_tmpl as tmpl
+from tools.nifdoc import nifdoc_tmpl as tmpl
 
 #
 # Globals

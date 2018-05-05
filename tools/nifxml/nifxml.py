@@ -58,12 +58,16 @@ import os
 import re
 import logging
 
+from .utility import export
+
 #
 # Globals
 #
 
 # The script will reject any versions older than this
 MIN_XML_VERSION = '0.9.1.0'
+
+XML_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../../nif.xml')
 
 TYPES_NATIVE = {}
 TYPES_NATIVE['TEMPLATE'] = 'T'
@@ -81,7 +85,10 @@ NAMES_FLAG = []
 NAMES_BLOCK = []
 NAMES_VERSION = []
 
+__all__ = ['TYPES_VERSION', 'TYPES_BASIC', 'TYPES_BLOCK', 'TYPES_COMPOUND', 'TYPES_ENUM', 'TYPES_FLAG', 'TYPES_NATIVE',
+           'NAMES_VERSION', 'NAMES_BASIC', 'NAMES_BLOCK', 'NAMES_COMPOUND', 'NAMES_ENUM', 'NAMES_FLAG']
 
+@export
 def class_name(name_in): # type: (str) -> str
     """
     Formats a valid C++ class name from the name format used in the XML.
@@ -113,6 +120,7 @@ def class_name(name_in): # type: (str) -> str
             name_out += '_'
     return name_out
 
+@export
 def define_name(name_in): # type: (str) -> str
     """
     Formats an all-uppercase version of the name for use in C++ defines.
@@ -131,6 +139,7 @@ def define_name(name_in): # type: (str) -> str
             name_out += '_'
     return name_out
 
+@export
 def member_name(name_in): # type: (str) -> str
     """
     Formats a version of the name for use as a C++ member variable.
@@ -155,6 +164,7 @@ def member_name(name_in): # type: (str) -> str
             lower = True
     return name_out
 
+@export
 def version2number(s): # type: (str) -> int
     """
     Translates a legible NIF version number to the packed-byte numeric representation.
@@ -182,6 +192,7 @@ def version2number(s): # type: (str) -> int
             version += int(ver) << ((3-i) * 8)
         return version
 
+@export
 def scanBrackets(expr_str, fromIndex=0): # type: (str, int) -> Tuple[int, int]
     """Looks for matching brackets.
 
@@ -567,6 +578,7 @@ class Option:
             self.description = element.firstChild.nodeValue.strip()
         self.cname = self.name.upper().replace(" ", "_").replace("-", "_").replace("/", "_").replace("=", "_").replace(":", "_") # type: str
 
+@export
 class Member:
     """
     This class represents the nif.xml <add> tag.
@@ -752,6 +764,7 @@ class Nifxml:
         """If the nif.xml version meets the requirements."""
         return self.version >= version2number(MIN_XML_VERSION)
 
+@export
 class Version:
     """This class represents the nif.xml <version> tag."""
     def __init__(self, element):
@@ -760,6 +773,7 @@ class Version:
         self.name = self.num # type: str
         self.description = element.firstChild.nodeValue.strip() # type: str
 
+@export
 class Basic:
     """This class represents the nif.xml <basic> tag."""
     def __init__(self, element, ntypes):
@@ -793,6 +807,7 @@ class Basic:
                     self.is_crossref = True
                     self.has_crossrefs = True
 
+@export
 class Enum(Basic):
     """This class represents the nif.xml <enum> tag."""
     def __init__(self, element, ntypes):
@@ -813,6 +828,7 @@ class Enum(Basic):
                 option.setAttribute('name', self.prefix + "_" + option.getAttribute('name'))
             self.options.append(Option(option))
 
+@export
 class Flag(Enum):
     """This class represents the nif.xml <bitflags> tag."""
     def __init__(self, element, ntypes):
@@ -821,6 +837,7 @@ class Flag(Enum):
             option.bit = option.value
             option.value = 1 << int(option.value)
 
+@export
 class Compound(Basic):
     """This class represents the nif.xml <compound> tag."""
     def __init__(self, element, ntypes):
@@ -892,6 +909,7 @@ class Compound(Basic):
                 return True
         return False
 
+@export
 class Block(Compound):
     """This class represents the nif.xml <niobject> tag."""
     def __init__(self, element, ntypes):
@@ -926,12 +944,11 @@ class Block(Compound):
             parent = parent.inherit
         return ancestors
 
-def parse_xml(ntypes=None): # type: (Optional[Dict[str, str]]) -> bool
+@export
+def parse_xml(ntypes=None, path=XML_PATH): # type: (Optional[Dict[str, str]], str) -> bool
     """Import elements into our NIF classes"""
-    if os.path.exists("nif.xml"):
-        xml = parse("nif.xml")
-    elif os.path.exists("nifxml/nif.xml"):
-        xml = parse("nifxml/nif.xml")
+    if os.path.exists(path):
+        xml = parse(path)
     else:
         raise ImportError("nif.xml not found")
 
