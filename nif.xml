@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.9.0.0">
+<niftoolsxml version="0.9.1.0">
     <!--These are the version numbers marked as supported by NifSkope.
         The num argument is the numeric representation created by storing
         each part of the version in a byte.  For example, 4.0.0.2 is
@@ -1370,17 +1370,17 @@
 
     <compound name="hkMatrix3">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
-        <add name="m11" type="float" />
+        <add name="m11" type="float" default="1.0" />
         <add name="m12" type="float" />
         <add name="m13" type="float" />
         <add name="m14" type="float">Unused</add>
         <add name="m21" type="float" />
-        <add name="m22" type="float" />
+        <add name="m22" type="float" default="1.0" />
         <add name="m23" type="float" />
         <add name="m24" type="float">Unused</add>
         <add name="m31" type="float" />
         <add name="m32" type="float" />
-        <add name="m33" type="float" />
+        <add name="m33" type="float" default="1.0" />
         <add name="m34" type="float">Unused</add>
     </compound>
 
@@ -1479,8 +1479,8 @@
         <add name="User Version" type="ulittle32" ver1="10.0.1.8">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="ulittle32" ver1="3.1.0.1">Number of file objects.</add>
         <!-- BSStreamHeader -->
-        <add name="User Version 2" type="ulittle32" default="0" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
-        <add name="Export Info" type="ExportInfo" cond="((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.0.1.2) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
+        <add name="User Version 2" type="ulittle32" default="0" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
+        <add name="Export Info" type="ExportInfo" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
         <add name="Max Filepath" type="ShortString" cond="(User Version 2 == 130)" />
         <!-- / BSStreamHeader -->
         <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
@@ -1760,8 +1760,7 @@
         <add name="Num Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
-        <add name="Unknown Int" type="uint" ver1="10.1.0.106" ver2="10.2.0.0">Unknown.</add>
-        <add name="Unknown Int" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" userver="0">Unknown.</add>
+        <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="20.1.0.2" vercond="User Version 2 &lt; 10" /> <!-- Exclude Bethesda -->
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -1789,7 +1788,7 @@
 
     <compound name="HavokFilter">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
-        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver1="20.0.0.4" ver2="20.0.0.5">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The layer the collision belongs to.</add>
 
@@ -1837,7 +1836,8 @@
 
     <compound name="HavokMaterial">
         Bethesda Havok. Material wrapper for varying material enums by game.
-        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver1="20.0.0.4" ver2="20.0.0.5">The material of the shape.</add>
+        <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
+        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The material of the shape.</add>
         <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The material of the shape.</add>
         <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
@@ -1921,25 +1921,26 @@
     </compound>
 
     <compound name="LimitedHingeDescriptor">
-    	This constraint allows rotation about a specified axis, limited by specified boundaries.
+        This constraint allows rotation about a specified axis, limited by specified boundaries.
     
         <!-- Oblivion and Fallout 3, Havok 550 -->
         <add name="Pivot A" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle A" type="Vector4" vercond="User Version 2 &lt;= 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Axis A" type="Vector4" vercond="User Version 2 &lt;= 16">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" vercond="User Version 2 &lt;= 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot B" type="Vector4" vercond="User Version 2 &lt;= 16">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4" vercond="User Version 2 &lt;= 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &lt;= 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" vercond="User Version 2 &lt;= 16">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" vercond="User Version 2 &lt;= 16">Perp Axis In A2 in second entity coordinate system.</add>
 
         <!-- Fallout 3 and later, Havok 660 and 2010 -->
-        <add name="Axle A" type="Vector4" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
+        <add name="Axis A" type="Vector4" vercond="User Version 2 &gt; 16">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" vercond="User Version 2 &gt; 16">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot A" type="Vector4" vercond="User Version 2 &gt; 16">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" vercond="User Version 2 &gt; 16">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" vercond="User Version 2 &gt; 16">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" vercond="User Version 2 &gt; 16">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B1" type="Vector4" vercond="User Version 2 &gt; 16">Perp Axis In A1 in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" vercond="User Version 2 &gt; 16">Perp Axis In A2 in second entity coordinate system.</add>
         <add name="Pivot B" type="Vector4" vercond="User Version 2 &gt; 16">Pivot A in second entity coordinate system.</add>
 
         <add name="Min Angle" type="float">Minimum rotation angle.</add>
@@ -1951,22 +1952,21 @@
 
     <compound name="HingeDescriptor">
     	This constraint allows rotation about a specified axis. 
-    	
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" ver2="20.0.0.5">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation.</add>
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot A in second entity coordinate system.</add>
-        <add name="Axle B" type="Vector4" ver2="20.0.0.5">Axle A (vector orthogonal on Perp2 Axles) in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" ver2="20.0.0.5">Axis A (vector orthogonal on Perp Axes) in second entity coordinate system.</add>
 
         <!-- Fallout 3 -->
-        <add name="Axle A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
-        <add name="Perp2 Axle In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
-        <add name="Perp2 Axle In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axle A and Perp2 Axle In A1.</add>
+        <add name="Axis A" type="Vector4" ver1="20.2.0.7">Axis of rotation.</add>
+        <add name="Perp Axis In A1" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane which defines the zero angle.</add>
+        <add name="Perp Axis In A2" type="Vector4" ver1="20.2.0.7">Vector in the rotation plane, orthogonal on the previous one, which defines the positive direction of rotation. This is always the vector product of Axis A and Perp Axis In A1.</add>
         <add name="Pivot A" type="Vector4" ver1="20.2.0.7">Pivot point around which the object will rotate.</add>
-        <add name="Axle B" type="Vector4" ver1="20.2.0.7">Axle A in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B1" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A1 in second entity coordinate system.</add>
-        <add name="Perp2 Axle In B2" type="Vector4" ver1="20.2.0.7">Perp2 Axle In A2 in second entity coordinate system.</add>
+        <add name="Axis B" type="Vector4" ver1="20.2.0.7">Axis A in second entity coordinate system.</add>
+        <add name="Perp Axis In B1" type="Vector4" ver1="20.2.0.7">Perp Axis In A1 in second entity coordinate system.</add>
+        <add name="Perp Axis In B2" type="Vector4" ver1="20.2.0.7">Perp Axis In A2 in second entity coordinate system.</add>
         <add name="Pivot B" type="Vector4" ver1="20.2.0.7">Pivot A in second entity coordinate system.</add>
 
         <!-- no friction -->
@@ -1978,18 +1978,18 @@
     </compound>
 
     <compound name="PrismaticDescriptor">
-        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
-        <!-- Oblivion (Order is a guess) -->
+        <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot.</add>
         <add name="Rotation A" type="Vector4" ver2="20.0.0.5">Rotation axis.</add>
         <add name="Plane A" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on.</add>
         <add name="Sliding A" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along. Unit vector.</add>
+        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
         <add name="Pivot B" type="Vector4" ver2="20.0.0.5">Pivot in B coordinates.</add>
         <add name="Rotation B" type="Vector4" ver2="20.0.0.5">Rotation axis.</add>
         <add name="Plane B" type="Vector4" ver2="20.0.0.5">Plane normal. Describes the plane the object is able to move on in B coordinates.</add>
-        <add name="Sliding B" type="Vector4" ver2="20.0.0.5">Describes the axis the object is able to travel along in B coordinates. Unit vector.</add>
         
-        <!-- Fallout 3 -->
+        <!-- Fallout 3 and later, Havok 660 and 2010 -->
+        <!-- In reality Havok loads these as Transform A and Transform B using hkTransform -->
         <add name="Sliding A" type="Vector4" ver1="20.2.0.7">Describes the axis the object is able to travel along. Unit vector.</add>
         <add name="Rotation A" type="Vector4" ver1="20.2.0.7">Rotation axis.</add>
         <add name="Plane A" type="Vector4" ver1="20.2.0.7">Plane normal. Describes the plane the object is able to move on.</add>
@@ -2265,6 +2265,7 @@
     <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
+        <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Havok Filter" type="HavokFilter" />
         <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
         <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
@@ -2297,13 +2298,13 @@
         <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</add>
         <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
         <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</add>
-        <add name="Unknown Int 1" type="uint">Unknown.</add>
-        <add name="Havok Filter Copy" type="HavokFilter">Copy of Havok Filter</add>
-        <add name="Unused 2" type="byte" arr1="4">Garbage data from memory. Matches previous Unused value.</add>
-        <add name="Unknown Int 2" type="uint" vercond="User Version 2 &gt; 34" />
-        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
-        <add name="Unused Byte 2" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
-        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" />
+        <add name="Unknown Int 1" type="uint" ver1="10.1.0.0">Unknown.</add>
+        <add name="Havok Filter Copy" type="HavokFilter" ver1="10.1.0.0">Copy of Havok Filter</add>
+        <add name="Unused 2" type="byte" arr1="4" ver1="10.1.0.0">Garbage data from memory. Matches previous Unused value.</add>
+        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" vercond="User Version 2 &gt; 34" />
+        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" ver1="10.1.0.0" />
+        <add name="Unused Byte 2" type="byte" ver1="10.1.0.0">Skipped over when writing Collision Response and Callback Delay.</add>
+        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" ver1="10.1.0.0" />
         <add name="Unknown Int 2" type="uint" vercond="User Version 2 &lt;= 34" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
@@ -2315,16 +2316,16 @@
         <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
         <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
         <add name="Time Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
-        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34)" />
+        <add name="Gravity Factor" type="float" default="1.0" vercond="(User Version 2 &gt; 34) &amp;&amp; (User Version 2 != 130)" />
         <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
         <add name="Rolling Friction Multiplier" type="float" vercond="(User Version 2 &gt; 34)" />
         <add name="Restitution" type="float" default="0.4">
             How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
         </add>
-        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
-        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
-        <add name="Penetration Depth" type="float" default="0.15">
+        <add name="Max Linear Velocity" type="float" default="104.4" ver1="10.1.0.0">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57" ver1="10.1.0.0">Maximal angular velocity.</add>
+        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 != 130)" ver1="10.1.0.0">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
@@ -2334,6 +2335,12 @@
         <add name="Enable Deactivation" type="bool" default="1" vercond="(User Version 2 &gt; 34)" />
         <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
         <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</add>
+        <add name="Penetration Depth" type="float" default="0.15" vercond="(User Version 2 == 130)">
+            The maximum allowed penetration for this object.
+            This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
+            A good choice is 5% - 20% of the smallest diameter of the object.
+        </add>
+        <add name="Unknown Float 1" type="float" vercond="(User Version 2 == 130)" />
         <add name="Unknown Bytes 1" type="byte" arr1="12">Unknown.</add>
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="(User Version 2 &gt; 34)">Unknown. Skyrim only.</add>
         <add name="Num Constraints" type="uint" />
@@ -2470,6 +2477,13 @@
         A convex transformed shape?
     </niobject>
 
+    <niobject name="bhkConvexSweepShape" inherit="bhkShape">
+        <add name="Shape" type="Ref" template="bhkShape" />
+        <add name="Material" type="HavokMaterial" />
+        <add name="Radius" type="float" />
+        <add name="Unknown" type="Vector3" />
+    </niobject>
+
     <niobject name="bhkMultiSphereShape" abstract="0" inherit="bhkSphereRepShape">
         Unknown.
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -2488,11 +2502,10 @@
         <add name="Unused" type="uint" arr1="3">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</add>
         <add name="Shape Scale" type="float" default="1.0">Scale.</add>
         <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
-        <add name="Origin" type="Vector3">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
-        <add name="Scale" type="float">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
-        <add name="Old MOPP Data" ver2="10.0.1.0" type="byte" binary="1" arr1="MOPP Data Size - 1">The tree of bounding volume data (old style, contains more than just the mopp script).</add>
+        <add name="Origin" type="Vector3" ver1="10.1.0.0">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
+        <add name="Scale" type="float" ver1="10.1.0.0">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Build Type" type="MoppDataBuildType" vercond="User Version 2 &gt; 34">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
-        <add name="MOPP Data" ver1="10.0.1.2" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="MOPP Data" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
 
@@ -2525,13 +2538,16 @@
     XXX not completely decoded, also the 4 dummy separator bytes seem
     to be missing from nifs that have this block
     -->
-    <niobject name="bhkMeshShape" abstract="0" inherit="bhkShape"> 	 
-      <add name="Unknown 1" type="float" arr1="9" />
-      <add name="Num Unknown Floats" type="int" /> 	 
-      <add name="Unknown Floats" type="float" arr1="Num Unknown Floats" arr2="3" /> 	 
-      <add name="Unknown 2" type="int" arr1="3" />
-      <add name="Num Strips Data" type="uint" ver2="10.0.1.0">The number of strips data objects referenced.</add> 	 
-      <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add> 	 
+    <niobject name="bhkMeshShape" abstract="0" inherit="bhkShape">
+        <add name="Unknowns" type="uint" arr1="2" />
+        <add name="Radius" type="float" />
+        <add name="Unused 2" type="byte" arr1="8" />
+        <add name="Scale" type="Vector4" />
+        <add name="Num Shape Properties" type="uint" />
+        <add name="Shape Properties" type="hkWorldObjCinfoProperty" arr1="Num Shape Properties" />
+        <add name="Unknown 2" type="int" arr1="3" />
+        <add name="Num Strips Data" type="uint" ver2="10.0.1.0">The number of strips data objects referenced.</add>
+        <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
     </niobject>
 
     <niobject name="bhkPackedNiTriStripsShape" abstract="0" inherit="bhkShapeCollection">
@@ -2554,7 +2570,7 @@
         <add name="Radius" type="float" default="0.1" />
         <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
         <add name="Grow By" type="uint" default="1" />
-        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
+        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0" ver1="10.1.0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
@@ -2634,24 +2650,43 @@
         <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
         <add name="Weight" type="float" />
         <add name="Normalized Weight" type="float" />
-        <add name="Priority" type="byte" />
+        <add name="Priority" type="int" ver2="10.1.0.109" />
+        <add name="Priority" type="byte" ver1="10.1.0.110" />
         <add name="Ease Spinner" type="float" />
     </compound>
 
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
         Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
-        <add name="Flags" type="InterpBlendFlags" />
-        <add name="Array Size" type="byte" />
-        <add name="Weight Threshold" type="float" />
-        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" />
-        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" />
-        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" />
-        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" />
+        <add name="Flags" type="InterpBlendFlags" ver1="10.1.0.112" />
+        <add name="Array Size" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Grow By" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Size" type="byte" ver1="10.1.0.110" />
+        <add name="Weight Threshold" type="float" ver1="10.1.0.112" />
+        <!-- Flags conds -->
+        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <!-- end Flags 1 conds -->
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
+        <add name="Managed Controlled" type="bool" ver2="10.1.0.111" />
+        <add name="Weight Threshold" type="float" ver2="10.1.0.111" />
+        <add name="Only Use Highest Weight" type="bool" ver2="10.1.0.111" />
+        <add name="Interp Count" type="ushort" ver2="10.1.0.109" />
+        <add name="Single Index" type="ushort" ver2="10.1.0.109" />
+        <add name="Interp Count" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Index" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="Single Time" type="float" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="High Priority" type="int" ver2="10.1.0.109" />
+        <add name="Next High Priority" type="int" ver2="10.1.0.109" />
+        <add name="High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Next High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
@@ -2725,6 +2760,8 @@
         Unknown.
         <add name="Heir Gain" type="float" />
         <add name="Vel Gain" type="float" />
+        <add name="Unk Float 1" type="float" vercond="User Version 2 &lt; 9" />
+        <add name="Unk Float 2" type="float" vercond="User Version 2 &lt; 9" />
     </niobject>
 
     <niobject name="bhkPCollisionObject" abstract="0" inherit="bhkNiCollisionObject">
@@ -2818,7 +2855,8 @@
             Bit 3 : Active
             Bit 4 : Play backwards
             Bit 5 : Is manager controlled
-            Bit 6 : Always seems to be set in Skyrim and Fallout NIFs, unknown function
+            Bit 6 : Compute scaled time (take frequency and phase into account)
+            Bit 7 : Force update
         </add>
         <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
@@ -2831,6 +2869,7 @@
 
     <niobject name="NiInterpController" abstract="1" inherit="NiTimeController">
         Abstract base class for all NiTimeController objects using NiInterpolator objects to animate their target objects.
+        <add name="Manager Controlled" type="bool" ver1="10.1.0.104" ver2="10.1.0.108" />
     </niobject>
 
     <niobject name="NiMultiTargetTransformController" abstract="0" inherit="NiInterpController">
@@ -2843,14 +2882,13 @@
         DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Time controller for geometry morphing.
         <add name="Extra Flags" type="Flags" ver1="10.0.1.2">1 = UPDATE NORMALS</add>
-        <add name="Unknown 2" type="byte" ver1="10.1.0.106" ver2="10.1.0.106">Unknown.</add>
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte" ver1="4.0.0.1" />
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.0.0.5" />
         <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.1.0.3" />
-        <add name="Num Unknown Ints" type="uint" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version 2 &gt; 0)" />
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="20.0.0.4" ver2="20.0.0.5" vercond="(User Version 2 &gt; 0)">Unknown.</add>
+        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="20.0.0.5" vercond="(User Version 2 &gt; 9)" />
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="20.0.0.5" vercond="(User Version 2 &gt; 9)">Unknown.</add>
     </niobject>
 
     <niobject name="NiMorphController" abstract="0" inherit="NiInterpController">
@@ -2864,7 +2902,7 @@
 
     <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
         Uses a single NiInterpolator to animate its target value.
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0" />
+        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.104" />
     </niobject>
 
     <niobject name="NiKeyframeController" abstract="0" inherit="NiSingleInterpController">
@@ -2889,7 +2927,7 @@
         Particle system emitter controller.
         NiInterpController::GetInterpolatorID() string format:
             ['BirthRate', 'EmitterActive'] (for "Interpolator" and "Visibility Interpolator" respectively)
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.2.0.0" />
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.0" /><!-- Minimum may be none? -->
         <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.103" />
     </niobject>
 
@@ -3384,6 +3422,7 @@
 
     <niobject name="NiBlendTransformInterpolator" abstract="0" inherit="NiBlendInterpolator">
         Blends NiQuatTransform values together.
+        <add name="Value" type="NiQuatTransform" ver2="10.1.0.109" />
     </niobject>
 
     <niobject name="NiBoolData" abstract="0" inherit="NiObject">
@@ -4370,7 +4409,7 @@
     <niobject name="NiSkinInstance" abstract="0" inherit="NiObject">
         Skinning instance.
         <add name="Data" type="Ref" template="NiSkinData">Skinning data reference.</add>
-        <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="10.2.0.0">Refers to a NiSkinPartition objects, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
+        <add name="Skin Partition" type="Ref" template="NiSkinPartition" ver1="10.1.0.101">Refers to a NiSkinPartition objects, which partitions the mesh such that every vertex is only influenced by a limited number of bones.</add>
         <add name="Skeleton Root" type="Ptr" template="NiNode">Armature root node.</add>
         <add name="Num Bones" type="uint">The number of node bones referenced as influences.</add>
         <add name="Bones" type="Ptr" template="NiNode" arr1="Num Bones">List of all armature bones.</add>
@@ -6809,7 +6848,7 @@
     </niobject>
 
     <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator">
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38," />
+        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </niobject>
 
     <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator">
@@ -7210,10 +7249,24 @@
         <add name="Num Combined" type="uint" />
         <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <add name="Vertex Desc" type="BSVertexDesc" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" cond="!BSPackedCombinedSharedGeomDataExtra" />
-        <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" cond="!BSPackedCombinedSharedGeomDataExtra" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" />
+        <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
-	
+
+    <compound name="BSPackedSharedGeomData">
+        <add name="Num Verts" type="uint" />
+        <add name="LOD Levels" type="uint" />
+        <add name="Tri Count LOD0" type="uint" />
+        <add name="Tri Offset LOD0" type="uint" />
+        <add name="Tri Count LOD1" type="uint" />
+        <add name="Tri Offset LOD1" type="uint" />
+        <add name="Tri Count LOD2" type="uint" />
+        <add name="Tri Offset LOD2" type="uint" />
+        <add name="Num Combined" type="uint" />
+        <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
+        <add name="Vertex Desc" type="BSVertexDesc" />
+    </compound>
+
     <compound name="BSPackedGeomObject">
         This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
         <add name="Shape ID 1" type="uint" />
@@ -7229,14 +7282,21 @@
         <add name="Unknown Flags 1" type="uint" />
         <add name="Unknown Flags 2" type="uint" />
         <add name="Num Data" type="uint" />
-        <add name="Object" type="BSPackedGeomObject" arr1="Num Data" cond="BSPackedCombinedSharedGeomDataExtra" />
         <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
 
-    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="BSPackedCombinedGeomDataExtra">
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
         Fallout 4 Packed Combined Shared Geometry Data.
         Geometry is NOT baked into the file. It is instead a reference to the shape via a Shape ID (currently undecoded)
         which loads the geometry via the STAT form for the NIF.
+        <add name="Vertex Desc" type="BSVertexDesc" />
+        <add name="Num Vertices" type="uint" />
+        <add name="Num Triangles" type="uint" />
+        <add name="Unknown Flags 1" type="uint" />
+        <add name="Unknown Flags 2" type="uint" />
+        <add name="Num Data" type="uint" />
+        <add name="Object" type="BSPackedGeomObject" arr1="Num Data" />
+        <add name="Object Data" type="BSPackedSharedGeomData" arr1="Num Data" />
     </niobject>
 
     <!-- Fallout 4 Animation -->
