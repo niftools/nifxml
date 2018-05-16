@@ -2591,6 +2591,12 @@
         Abstract base class for interpolators that use NiAnimationKeys (Key, KeyGrp) for interpolation.
     </niobject>
 
+    <niobject name="NiColorInterpolator" inherit="NiKeyBasedInterpolator">
+        Animates a color value over time.
+        <add name="Value" type="Color4" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <add name="Data" type="Ref" template="NiColorData" />
+    </niobject>
+
     <niobject name="NiFloatInterpolator" inherit="NiKeyBasedInterpolator">
         Uses NiFloatKeys to animate a float value over time.
         <add name="Value" type="float" default="-3.402823466e+38">Pose value if lacking NiFloatData.</add>
@@ -3045,6 +3051,10 @@
             '%s'
         Where %s = Value of "Extra Data Name"
         <add name="Extra Data Name" type="string" ver1="10.2.0.0" />
+    </niobject>
+
+    <niobject name="NiColorExtraDataController" inherit="NiExtraDataController">
+        Animates an NiColorExtraData object attached to an NiAVObject.
     </niobject>
 
     <niobject name="NiFloatExtraDataController" inherit="NiExtraDataController">
@@ -6691,6 +6701,12 @@
         A particle emitter that emits particles from a cylindrical volume.
         <add name="Emitter Radius" type="float" />
         <add name="Emitter Height" type="float" />
+    </niobject>
+
+    <niobject name="NiPSTorusEmitter" inherit="NiPSVolumeEmitter">
+        A particle emitter that emits particles from a toroidal volume.
+        <add name="Emitter Radius" type="float" />
+        <add name="Emitter Section Radius" type="float" />
     </niobject>
 
     <niobject name="NiPSMeshEmitter" inherit="NiPSEmitter">
