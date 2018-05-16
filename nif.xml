@@ -4824,12 +4824,152 @@
         Represents cube maps that are created from either a set of six image files, six blocks of pixel data, or a single pixel data with six faces.
     </niobject>
 
+    <!-- NiPhysX -->
+
+    <niobject name="NiPhysXScene" inherit="NiObjectNET">
+        Object which manages a NxScene object and the Gamebryo objects that interact with it.
+        <add name="Scene Transform" type="NiTransform" />
+        <add name="PhysX to World Scale" type="float" />
+        <add name="Num Props" type="uint" ver1="20.3.0.2" />
+        <add name="Props" type="Ref" template="NiPhysXProp" arr1="Num Props" ver1="20.3.0.2" />
+        <add name="Num Sources" type="uint" />
+        <add name="Sources" type="Ref" template="NiPhysXSrc" arr1="Num Sources" />
+        <add name="Num Dests" type="uint" />
+        <add name="Dests" type="Ref" template="NiPhysXDest" arr1="Num Dests" />
+        <add name="Num Modified Meshes" type="uint" ver1="20.4.0.0" />
+        <add name="Modified Meshes" type="Ref" template="NiMesh" arr1="Num Modified Meshes" ver1="20.4.0.0" />
+        <add name="Time Step" type="float" ver1="20.2.0.8" />
+        <add name="Keep Meshes" type="bool" ver1="20.2.0.8" ver2="20.3.0.1" />
+        <add name="Num Sub Steps" type="uint" ver1="20.3.0.9" />
+        <add name="Max Sub Steps" type="uint" ver1="20.3.0.9" />
+        <add name="Snapshot" type="Ref" template="NiPhysXSceneDesc" />
+        <add name="Flags" type="ushort" />
+    </niobject>
+
+    <enum name="NiSceneDescNxBroadPhaseType" storage="uint">
+        <option name="NX_BROADPHASE_QUADRATIC" value="0" />
+        <option name="NX_BROADPHASE_FULL" value="1" />
+        <option name="NX_BROADPHASE_COHERENT" value="2" />
+    </enum>
+
+    <enum name="NiSceneDescNxHwPipelineSpec" storage="uint">
+        <option name="NX_HW_RB_PIPELINE_HLP_ONLY" value="0" />
+        <option name="NX_HW_PIPELINE_FULL" value="1" />
+        <option name="NX_HW_PIPELINE_DEBUG" value="2" />
+    </enum>
+
+    <enum name="NiSceneDescNxHwSceneType" storage="uint">
+        <option name="NX_HW_SCENE_TYPE_RB" value="0" />
+        <option name="NX_HW_SCENE_TYPE_FLUID" value="1" />
+        <option name="NX_HW_SCENE_TYPE_FLUID_SOFTWARE" value="2" />
+        <option name="NX_HW_SCENE_TYPE_CLOTH" value="3" />
+    </enum>
+
+    <enum name="NxTimeStepMethod" storage="uint">
+        <option name="NX_TIMESTEP_FIXED" value="0" />
+        <option name="NX_TIMESTEP_VARIABLE" value="1" />
+    </enum>
+
+    <enum name="NxSimulationType" storage="uint">
+        <option name="NX_SIMULATION_SW" value="0" />
+        <option name="NX_SIMULATION_HW" value="1" />
+    </enum>
+
+    <enum name="NxBroadPhaseType" storage="uint">
+        <option name="NX_BP_TYPE_SAP_SINGLE" value="0" />
+        <option name="NX_BP_TYPE_SAP_MULTI" value="1" />
+    </enum>
+
+    <enum name="NxFilterOp" storage="uint">
+        <option name="NX_FILTEROP_AND" value="0" />
+        <option name="NX_FILTEROP_OR" value="1" />
+        <option name="NX_FILTEROP_XOR" value="2" />
+        <option name="NX_FILTEROP_NAND" value="3" />
+        <option name="NX_FILTEROP_NOR" value="4" />
+        <option name="NX_FILTEROP_NXOR" value="5" />
+        <option name="NX_FILTEROP_SWAP_AND" value="6" />
+    </enum>
+
+    <enum name="NxCompartmentType" storage="uint">
+        <option name="NX_SCT_RIGIDBODY" value="0" />
+        <option name="NX_SCT_FLUID" value="1" />
+        <option name="NX_SCT_CLOTH" value="2" />
+    </enum>
+
+    <compound name="PhysXSceneDescMaterial">
+        <add name="Key" type="ushort" />
+        <add name="Material" type="Ref" template="NiPhysXMaterialDesc" />
+    </compound>
+
+    <compound name="PhysXSceneDescCompartment">
+        <add name="ID" type="uint" />
+        <add name="Type" type="NxCompartmentType" />
+        <add name="Device Code" type="uint" />
+        <add name="Grid Hash Cell Size" type="float" />
+        <add name="Grid Hash Table Power" type="uint" />
+    </compound>
+
+    <niobject name="NiPhysXSceneDesc" inherit="NiObject">
+        Object which caches the properties of NxScene, stored as a snapshot in a NiPhysXScene.
+        <add name="Broad Phase Type" type="NiSceneDescNxBroadPhaseType" ver2="20.2.0.7" />
+        <add name="Gravity" type="Vector3" />
+        <add name="Max Timestep" type="float" />
+        <add name="Max Iterations" type="uint" />
+        <add name="Time Step Method" type="NxTimeStepMethod" />
+        <add name="Has Bound" type="bool" />
+        <add name="Max Bounds Min" type="Vector3" cond="Has Bound" />
+        <add name="Max Bounds Max" type="Vector3" cond="Has Bound" />
+        <add name="Has Limits" type="bool" />
+        <add name="Max Actors" type="uint" cond="Has Limits" />
+        <add name="Max Bodies" type="uint" cond="Has Limits" />
+        <add name="Max Static Shapes" type="uint" cond="Has Limits" />
+        <add name="Max Dynamic Shapes" type="uint" cond="Has Limits" />
+        <add name="Simulation Type" type="NxSimulationType" />
+        <add name="HW Scene Type" type="NiSceneDescNxHwSceneType" ver2="20.2.0.8" />
+        <add name="HW Pipeline Spec" type="NiSceneDescNxHwPipelineSpec" ver2="20.2.0.8" />
+        <add name="Ground Plane" type="bool" />
+        <add name="Bounds Plane" type="bool" />
+        <add name="Collision Detection" type="bool" ver2="20.2.0.7" />
+        <add name="Flags" type="uint" ver1="20.2.0.8" />
+        <add name="Internal Thread Count" type="uint" ver1="20.2.0.8" />
+        <add name="Background Thread Count" type="uint" ver1="20.2.0.8" />
+        <add name="Thread Mask" type="uint" ver1="20.2.0.8" />
+        <add name="Background Thread Priority" type="uint" ver1="20.5.0.3" />
+        <add name="Background Thread Mask" type="uint" ver1="20.2.0.8" />
+        <add name="Num HW Scenes" type="uint" ver1="20.3.0.1" ver2="20.3.0.5" />
+        <add name="Sim Thread Stack Size" type="uint" ver1="20.3.0.1" />
+        <add name="Sim Thread Priority" type="uint" ver1="20.3.0.1" />
+        <add name="Worker Thread Stack Size" type="uint" ver1="20.3.0.1" />
+        <add name="Worker Thread Priority" type="uint" ver1="20.3.0.1" />
+        <add name="Up Axis" type="uint" ver1="20.3.0.1" />
+        <add name="Subdivision Level" type="uint" ver1="20.3.0.1" />
+        <add name="Static Structure" type="uint" ver1="20.3.0.1" />
+        <add name="Dynamic Structure" type="uint" ver1="20.3.0.1" />
+        <add name="Dynamic Tree Rebuild Rate Hint" type="uint" ver1="20.5.0.3" />
+        <add name="Broad Phase Type" type="NxBroadPhaseType" ver1="20.4.0.0" />
+        <add name="Grid Cells X" type="uint" ver1="20.4.0.0" />
+        <add name="Grid Cells Y" type="uint" ver1="20.4.0.0" />
+        <add name="Num Actors" type="uint" ver2="20.3.0.1" />
+        <add name="Actors" type="Ref" template="NiPhysXActorDesc" arr1="Num Actors" ver2="20.3.0.1" />
+        <add name="Num Joints" type="uint" ver2="20.3.0.1" />
+        <add name="Joints" type="Ref" template="NiPhysXJointDesc" arr1="Num Joints" ver2="20.3.0.1" />
+        <add name="Num Materials" type="uint" ver2="20.3.0.1" />
+        <add name="Materials" type="PhysXSceneDescMaterial" arr1="Num Materials" ver2="20.3.0.1" />
+        <add name="Group Collision Flags" type="bool" arr1="1024" />
+        <add name="Filter Ops" type="NxFilterOp" arr1="3" />
+        <add name="Filter Constants" type="uint" arr1="8" />
+        <add name="Filter" type="bool" />
+        <add name="Num States" type="uint" ver2="20.3.0.1" />
+        <add name="Num Compartments" type="uint" ver1="20.3.0.6" />
+        <add name="Compartments" type="PhysXSceneDescCompartment" arr1="Num Compartments" ver1="20.3.0.6" />
+    </niobject>
+
     <niobject name="NiPhysXProp" inherit="NiObjectNET">
         A PhysX prop which holds information about PhysX actors in a Gamebryo scene
         <add name="PhysX to World Scale" type="float" />
         <add name="Num Sources" type="uint" />
-        <add name="Sources" type="Ref" template="NiObject" arr1="Num Sources" />
-        <add name="Num Dests" type="int" />
+        <add name="Sources" type="Ref" template="NiPhysXSrc" arr1="Num Sources" />
+        <add name="Num Dests" type="uint" />
         <add name="Dests" type="Ref" template="NiPhysXDest" arr1="Num Dests" />
         <add name="Num Modified Meshes" type="uint" ver1="20.4.0.0" />
         <add name="Modified Meshes" type="Ref" template="NiMesh" arr1="Num Modified Meshes" ver1="20.4.0.0" />
@@ -6862,6 +7002,46 @@
         <add name="Min to Spawn" type="uint" />
         <add name="Max to Spawn" type="uint" />
     </niobject>
+
+    <!-- NiPhysXPS -->
+
+    <niobject name="NiPhysXPSParticleSystem" inherit="NiPSParticleSystem">
+        Implements Gamebryo particle systems that use PhysX actors for the particles
+        <add name="Prop" type="Ptr" template="NiPhysXPSParticleSystemProp" />
+        <add name="Dest" type="Ptr" template="NiPhysXPSParticleSystemDest" />
+        <add name="Scene" type="Ptr" template="NiPhysXScene" />
+        <add name="Flags" type="byte" />
+        <add name="Default Actor Pool Size" type="uint" />
+        <add name="Generation Pool Size" type="uint" />
+        <add name="Actor Pool Center" type="Vector3" />
+        <add name="Actor Pool Dimensions" type="Vector3" />
+        <add name="Actor" type="Ptr" template="NiPhysXActorDesc" />
+    </niobject>
+
+    <niobject name="NiPhysXPSParticleSystemProp" inherit="NiPhysXProp">
+        A PhysX prop which holds information about a PhysX particle system prop.
+        <add name="Num Systems" type="uint" />
+        <add name="Systems" type="Ptr" template="NiPhysXPSParticleSystem" arr1="Num Systems" />
+    </niobject>
+
+    <niobject name="NiPhysXPSParticleSystemDest" inherit="NiPhysXDest">
+        An object which interfaces between the PhysX scene and the Gamebryo particle system.
+        <add name="Target" type="Ptr" template="NiPSParticleSystem" />
+    </niobject>
+
+    <niobject name="NiPhysXPSSimulator" inherit="NiPSSimulator">
+        Adds additional sync points to a NiPSSimulator mesh modifier.
+    </niobject>
+
+    <niobject name="NiPhysXPSSimulatorInitialStep" inherit="NiPSSimulatorStep">
+        Used to set the post-simulation state of particles in a physics-enabled particle system.
+    </niobject>
+
+    <niobject name="NiPhysXPSSimulatorFinalStep" inherit="NiPSSimulatorStep">
+        Used to push the results of the particle system update into the PhysX actors.
+    </niobject>
+
+    <!-- NiEvaluator -->
 
     <niobject name="NiEvaluator" abstract="1" inherit="NiObject">
         <add name="Node Name" type="string">The name of the animated NiAVObject.</add>
