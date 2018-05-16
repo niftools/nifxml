@@ -6568,6 +6568,15 @@
         <add name="Active" type="bool" />
     </niobject>
 
+    <niobject name="NiPSFieldForce" abstract="1" inherit="NiPSForce">
+        Abstract base class for all particle field forces.
+        <add name="Field Object" type="Ref" />
+        <add name="Magnitude" type="float" />
+        <add name="Attenuation" type="float" />
+        <add name="Use Max Distance" type="bool" />
+        <add name="Max Distance" type="float" />
+    </niobject>
+
     <niobject name="NiPSDragForce" inherit="NiPSForce">
         Applies a linear drag force to particles.
         <add name="Drag Axis" type="Vector3" />
@@ -6596,6 +6605,42 @@
         <add name="Decay Type" type="DecayType" />
         <add name="Symmetry Type" type="SymmetryType" />
         <add name="Bomb Object" type="Ptr" template="NiAVObject" />
+    </niobject>
+
+    <niobject name="NiPSAirFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of air movements.
+        <add name="Direction" type="Vector3" />
+        <add name="Air Friction" type="float" />
+        <add name="Inherited Velocity" type="float" />
+        <add name="Inherit Rotation" type="bool" />
+        <add name="Enable Spread" type="bool" />
+        <add name="Spread" type="float" />
+    </niobject>
+
+    <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of directional gravity.
+        <add name="Direction" type="Vector3" />
+    </niobject>
+
+    <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of drag.
+        <add name="Use Direction" type="bool" />
+        <add name="Direction" type="Vector3" />
+    </niobject>
+
+    <niobject name="NiPSRadialFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of point gravity.
+        <add name="Radial Factor" type="float" />
+    </niobject>
+
+    <niobject name="NiPSTurbulenceFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of turbulence.
+        <add name="Frequency" type="float" />
+    </niobject>
+
+    <niobject name="NiPSVortexFieldForce" inherit="NiPSFieldForce">
+        Inside a field, updates particle velocity to simulate the effects of a vortex.
+        <add name="Direction" type="Vector3" />
     </niobject>
 
     <!-- NiPS Emitters -->
@@ -6693,6 +6738,18 @@
 
     <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr">
         Animates the strength value of an NiPSGravityForce object.
+    </niobject>
+
+    <niobject name="NiPSFieldAttenuationCtlr" inherit="NiPSForceFloatCtlr">
+        Animates the attenuation value of an NiPSFieldForce object.
+    </niobject>
+
+    <niobject name="NiPSFieldMagnitudeCtlr" inherit="NiPSForceFloatCtlr">
+        Animates the magnitude value of an NiPSFieldForce object.
+    </niobject>
+
+    <niobject name="NiPSFieldMaxDistanceCtlr" inherit="NiPSForceFloatCtlr">
+        Animates the max distance value of an NiPSFieldForce object.
     </niobject>
 
     <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr">
