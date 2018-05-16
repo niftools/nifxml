@@ -6570,7 +6570,7 @@
 
     <niobject name="NiPSFieldForce" abstract="1" inherit="NiPSForce">
         Abstract base class for all particle field forces.
-        <add name="Field Object" type="Ref" />
+        <add name="Field Object" type="Ref" template="NiAVObject" />
         <add name="Magnitude" type="float" />
         <add name="Attenuation" type="float" />
         <add name="Use Max Distance" type="bool" />
