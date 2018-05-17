@@ -3106,8 +3106,8 @@
         <add name="Num Shape Groups 2" type="uint"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">The size of the second list of shape groups.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
         <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Group of NiTriShape indices.</add>
-        <add name="Unknown Int 2" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
-        <add name="Unknown Int 3" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Unknown.</add>
+        <add name="Unknown Int 2" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Unknown.</add>
+        <add name="Unknown Int 3" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Unknown.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" inherit="NiBoneLODController">
@@ -3213,6 +3213,8 @@
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
         <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Tangent vectors.</add>
         <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Has Unk Floats" type="bool" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)" />
+        <add name="Unk Floats" type="float" arr1="Num Vertices" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)" cond="Has Unk Floats" />
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Has Vertex Colors" type="bool">
             Do we have vertex colors? These are usually used to fine-tune the lighting of the model.
@@ -3552,8 +3554,9 @@
         <add name="Name" type="string">The sequence name by which the animation system finds and manages this sequence.</add>
         <add name="Accum Root Name" type="string" ver2="10.1.0.103">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.103" />
-        <add name="Unknown Int 4" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Divinity 2</add>
-        <add name="Unknown Int 5" type="int" ver1="20.3.0.9" ver2="20.3.0.9" userver="131072">Divinity 2</add>
+        <add name="Num Unknown Ints" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Divinity 2</add>
+        <add name="Unknown Ints" type="int" arr1="Num Unknown Ints" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Divinity 2</add>
+        <add name="Unknown Ref" type="Ref" template="NiObject" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Divinity 2</add>
         <add name="Num Controlled Blocks" type="uint" />
         <add name="Array Grow By" type="uint" ver1="10.1.0.106" />
         <add name="Controlled Blocks" type="ControlledBlock" arr1="Num Controlled Blocks" />
@@ -7238,10 +7241,13 @@
         <add name="Bones 2" type="Ptr" template="NiNode" arr1="Num Bones 2">List of all armature bones.</add>
     </niobject>
 
-    <!-- Divinity 2 (P_Island_VerySmall_A.item) -->
+    <!-- Divinity 2 -->
     <niobject name="CStreamableAssetData" inherit="NiObject">
         <add name="Root" type="Ref" template="NiNode" />
-        <add name="Unknown Bytes" type="byte" arr1="5" />
+        <add name="Has Data" type="bool" />
+        <add name="Data" type="ByteArray" cond="Has Data" />
+        <add name="Num Refs" type="uint" />
+        <add name="Refs" type="Ref" template="NiObject" arr1="Num Refs" />
     </niobject>
 
     <!-- Skyrim specific havok block -->
