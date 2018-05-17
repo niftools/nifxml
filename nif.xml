@@ -3124,7 +3124,7 @@
         <add name="Active Material" type="int" default="-1" ver1="20.2.0.5">The index of the currently active material.</add>
         <!-- Custom Versions -->
         <add name="Unknown Byte" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
-        <add name="Unknown Integer 2" type="int" ver1="10.4.0.1" ver2="10.4.0.1">Unknown.</add>
+        <add name="Unknown Integer 2" type="int" ver1="10.3.0.1" ver2="10.4.0.1">Unknown.</add>
         <!-- / Custom -->
         <add name="Material Needs Update" type="bool" ver1="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</add>
     </compound>
@@ -3985,25 +3985,26 @@
     -->
     <niobject name="NiPixelFormat" abstract="1" inherit="NiObject">
         <add name="Pixel Format" type="PixelFormat">The format of the pixels in this internally stored image.</add>
-        <add name="Red Mask" type="uint" ver2="10.3.0.2">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Green Mask" type="uint" ver2="10.3.0.2">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Blue Mask" type="uint" ver2="10.3.0.2">0x00ff0000 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
-        <add name="Alpha Mask" type="uint" ver2="10.3.0.2">0xff000000 (for 32bpp) or 0x00000000 (for 24bpp and 8bpp)</add>
-        <add name="Bits Per Pixel" type="uint" ver2="10.3.0.2">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
-        <add name="Old Fast Compare" type="byte" arr1="8" ver2="10.3.0.2">
+        <!-- Technically since 10.3.0.3, fudging for WorldShift custom version as no games have official 10.3 NIFs anyway. -->
+        <add name="Red Mask" type="uint" ver2="10.4.0.1">0x000000ff (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Green Mask" type="uint" ver2="10.4.0.1">0x0000ff00 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Blue Mask" type="uint" ver2="10.4.0.1">0x00ff0000 (for 24bpp and 32bpp) or 0x00000000 (for 8bpp)</add>
+        <add name="Alpha Mask" type="uint" ver2="10.4.0.1">0xff000000 (for 32bpp) or 0x00000000 (for 24bpp and 8bpp)</add>
+        <add name="Bits Per Pixel" type="uint" ver2="10.4.0.1">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
+        <add name="Old Fast Compare" type="byte" arr1="8" ver2="10.4.0.1">
             [96,8,130,0,0,65,0,0] if 24 bits per pixel
             [129,8,130,32,0,65,12,0] if 32 bits per pixel
             [34,0,0,0,0,0,0,0] if 8 bits per pixel
             [X,0,0,0,0,0,0,0] if 0 (Compressed) bits per pixel where X = PixelFormat
         </add>
-        <add name="Tiling" type="PixelTiling" ver1="10.1.0.0" ver2="10.3.0.2">Seems to always be zero.</add>
-        <add name="Bits Per Pixel" type="byte" ver1="10.3.0.3">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
-        <add name="Renderer Hint" type="uint" ver1="10.3.0.3" />
-        <add name="Extra Data" type="uint" ver1="10.3.0.3" />
-        <add name="Flags" type="byte" ver1="10.3.0.3" />
-        <add name="Tiling" type="PixelTiling" ver1="10.3.0.3" />
+        <add name="Tiling" type="PixelTiling" ver1="10.1.0.0" ver2="10.4.0.1">Seems to always be zero.</add>
+        <add name="Bits Per Pixel" type="byte" ver1="10.4.0.2">Bits per pixel, 0 (Compressed), 8, 24 or 32.</add>
+        <add name="Renderer Hint" type="uint" ver1="10.4.0.2" />
+        <add name="Extra Data" type="uint" ver1="10.4.0.2" />
+        <add name="Flags" type="byte" ver1="10.4.0.2" />
+        <add name="Tiling" type="PixelTiling" ver1="10.4.0.2" />
         <add name="sRGB Space" type="bool" ver1="20.3.0.4" />
-        <add name="Channels" type="PixelFormatComponent" arr1="4" ver1="10.3.0.3">Channel Data</add>
+        <add name="Channels" type="PixelFormatComponent" arr1="4" ver1="10.4.0.2">Channel Data</add>
     </niobject>
 
     <niobject name="NiPersistentSrcTextureRendererData" inherit="NiPixelFormat">
@@ -4026,9 +4027,10 @@
         <add name="Bytes Per Pixel" type="uint" />
         <add name="Mipmaps" type="MipMap" arr1="Num Mipmaps" />
         <add name="Num Pixels" type="uint" />
-        <add name="Num Faces" type="uint" ver1="10.3.0.6" default="1" />
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels" ver2="10.3.0.5" />
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" ver1="10.3.0.6" />
+        <!-- Technically since 10.3.0.6, fudging for WorldShift custom version as no games have official 10.3 NIFs anyway. -->
+        <add name="Num Faces" type="uint" ver1="10.4.0.2" default="1" />
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels" ver2="10.4.0.1" />
+        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" ver1="10.4.0.2" />
     </niobject>
 
     <niobject name="NiPlanarCollider" inherit="NiParticleModifier">
@@ -4237,11 +4239,18 @@
         <add name="Percentage Spawned" type="float" default="1.0">The likelihood of a particular particle being spawned. Must be between 0.0 and 1.0.</add>
         <add name="Min Num to Spawn" type="ushort" default="1">The minimum particles to spawn for any given original particle.</add>
         <add name="Max Num to Spawn" type="ushort" default="1">The maximum particles to spawn for any given original particle.</add>
-        <add name="Unknown Int" type="int" ver1="10.4.0.1" ver2="10.4.0.1">WorldShift</add>
+        <add name="Unknown Int" type="int" ver1="10.2.0.1" ver2="10.4.0.1">WorldShift</add>
         <add name="Spawn Speed Variation" type="float">How much the spawned particle speed can vary.</add>
         <add name="Spawn Dir Variation" type="float">How much the spawned particle direction can vary.</add>
         <add name="Life Span" type="float">Lifespan assigned to spawned particles.</add>
         <add name="Life Span Variation" type="float">The amount the lifespan can vary.</add>
+    </niobject>
+
+    <!-- WorldShift -->
+    <niobject name="NiPSysPartSpawnModifier" inherit="NiPSysModifier">
+        <add name="Unk Float 1" type="float" />
+        <add name="Unk Float 2" type="float" />
+        <add name="Spawner" type="Ref" template="NiPSysSpawnModifier" />
     </niobject>
 
     <niobject name="NiPSysSphereEmitter" inherit="NiPSysVolumeEmitter">
