@@ -1707,6 +1707,15 @@
         <add name="Radius" type="float">The sphere's radius.</add>
     </compound>
 
+    <compound name="NiCurve3">
+        A 3D curve made up of control points and knots.
+        <add name="Degree" type="uint" />
+        <add name="Num Control Points" type="uint" />
+        <add name="Control Points" type="Vector3" arr1="Num Control Points" />
+        <add name="Num Knots" type="uint" />
+        <add name="Knots" type="float" arr1="Num Knots" />
+    </compound>
+
     <compound name="NiQuatTransform">
         <add name="Translation" type="Vector3" />
         <add name="Rotation" type="Quaternion" />
@@ -6857,6 +6866,14 @@
         <add name="Emitter Object" type="Ptr" template="NiAVObject" ver1="20.6.1.0" />
         <add name="Mesh Emission Type" type="EmitFrom" />
         <add name="Initial Velocity Type" type="VelocityType" />
+    </niobject>
+
+    <niobject name="NiPSCurveEmitter" inherit="NiPSEmitter">
+        Emits particles from a curve.
+        <add name="Has Curve" type="bool" />
+        <add name="Curve" type="NiCurve3" cond="Has Curve" />
+        <add name="Curve Parent" type="Ptr" template="NiAVObject" />
+        <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <!-- NiPS Controllers -->
