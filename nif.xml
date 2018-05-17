@@ -2058,7 +2058,7 @@
         <add name="Sphere" type="NiBound" cond="Collision Type == 0" />
         <add name="Box" type="BoxBV" cond="Collision Type == 1" />
         <add name="Capsule" type="CapsuleBV" cond="Collision Type == 2" />
-        <add name="Union" type="UnionBV" cond="Collision Type == 4" />
+        <add name="Union BV" type="UnionBV" cond="Collision Type == 4" />
         <add name="Half Space" type="HalfSpaceBV" cond="Collision Type == 5" />
     </compound>
 
