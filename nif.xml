@@ -3130,16 +3130,10 @@
         <add name="Num LODs" type="uint">Number of LODs.</add>
         <add name="Num Node Groups" type="uint">Number of node arrays.</add>
         <add name="Node Groups" type="NodeSet" arr1="Num LODs">A list of node sets (each set a sequence of bones).</add>
-        <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" userver="0">Number of shape groups.</add>
-        <add name="Num Shape Groups" type="uint" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Number of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinInfoSet" arr1="Num Shape Groups"  ver1="4.2.2.0" userver="0">List of shape groups.</add>
-        <add name="Shape Groups 1" type="SkinInfoSet" arr1="Num Shape Groups"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">List of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint"  ver1="4.2.2.0" userver="0">The size of the second list of shape groups.</add>
-        <add name="Num Shape Groups 2" type="uint"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">The size of the second list of shape groups.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="4.2.2.0" userver="0">Group of NiTriShape indices.</add>
-        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2"  ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Group of NiTriShape indices.</add>
-        <add name="Unknown Int 2" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Unknown.</add>
-        <add name="Unknown Int 3" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="(User Version == 0x20000) || (User Version == 0x30000)">Unknown.</add>
+        <add name="Num Shape Groups" type="uint" ver1="4.2.2.0" vercond="(User Version 2 == 0)">Number of shape groups.</add>
+        <add name="Shape Groups 1" type="SkinInfoSet" arr1="Num Shape Groups" ver1="4.2.2.0" vercond="(User Version 2 == 0)">List of shape groups.</add>
+        <add name="Num Shape Groups 2" type="uint" ver1="4.2.2.0" vercond="(User Version 2 == 0)">The size of the second list of shape groups.</add>
+        <add name="Shape Groups 2" type="Ref" template="NiTriBasedGeom" arr1="Num Shape Groups 2" ver1="4.2.2.0" vercond="(User Version 2 == 0)">Group of NiTriShape indices.</add>
     </niobject>
 
     <niobject name="NiBSBoneLODController" inherit="NiBoneLODController">
