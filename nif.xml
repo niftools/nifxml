@@ -3,7 +3,7 @@
 <niftoolsxml version="0.9.1.0">
     <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
             NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
-    
+
         id = "VX_X_X_X": The unique identifier for this version. Can be used to generate C-style enums, etc.
         num = "X.X.X.X": The numeric representation created by storing each part of the version in a byte.
             Example:  4.0.0.2 == 0x04000002
@@ -21,35 +21,40 @@
             Note: A user or bsver of non-zero implies custom="true" and is not necessary.
         ext = "<List[string]>": Any custom NIF extensions associated with this version.
             Example: ext="bto btr"
+
+        Content: A comma-separated list of games which use this version.
+            `{{}}` around a game name denotes that this version is the primary version for that game.
+            A version without any `{{}}` names implies that this version is "secondary".
+            Note: A unique game name should only have `{{}}` around it once.
     -->
 
     <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
     <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
     <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
     <version id="V3_1" num="3.1" supported="false">Dark Age of Camelot, Star Trek: Bridge Commander</version>
-    <version id="V3_3_0_13" num="3.3.0.13">Oblivion, Munch's Oddysee</version>
+    <version id="V3_3_0_13" num="3.3.0.13">{{Munch's Oddysee}}, Oblivion</version>
     <version id="V4_0_0_0" num="4.0.0.0">Freedom Force</version>
-    <version id="V4_0_0_2" num="4.0.0.2">Morrowind, Freedom Force</version>
+    <version id="V4_0_0_2" num="4.0.0.2">{{Morrowind}}, {{Freedom Force}}</version>
     <version id="V4_1_0_12" num="4.1.0.12">Dark Age of Camelot</version>
     <version id="V4_2_0_2" num="4.2.0.2">Civilization IV</version>
     <version id="V4_2_1_0" num="4.2.1.0">Dark Age of Camelot, Civilization IV</version>
-    <version id="V4_2_2_0" num="4.2.2.0">Dark Age of Camelot, Civilization IV, Empire Earth II, Culpa Innata</version>
-    <version id="V10_0_1_0" num="10.0.1.0">Zoo Tycoon 2, Civilization IV, Oblivion</version>
+    <version id="V4_2_2_0" num="4.2.2.0">{{Culpa Innata}}, Civilization IV, Dark Age of Camelot, Empire Earth II</version>
+    <version id="V10_0_1_0" num="10.0.1.0">{{Zoo Tycoon 2}}, Civilization IV, Oblivion</version>
     <version id="V10_0_1_2" num="10.0.1.2" bsver="1 3">Oblivion</version>
-    <version id="V10_1_0_0" num="10.1.0.0">Dark Age of Camelot, Civilization IV, Freedom Force vs. the 3rd Reich, Axis and Allies, Kohan 2, Wildlife Park 2, The Guild 2, NeoSteam, Empire Earth II</version>
+    <version id="V10_1_0_0" num="10.1.0.0">{{Freedom Force vs. the 3rd Reich}}, {{Axis and Allies}}, {{Empire Earth II}}, {{Kohan 2}}, {{Sid Meier's Pirates!}}, Dark Age of Camelot, Civilization IV, Wildlife Park 2, The Guild 2, NeoSteam</version>
     <version id="V10_1_0_101" num="10.1.0.101" user="10" bsver="4">Oblivion</version>
     <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
-    <version id="V10_2_0_0" num="10.2.0.0" user="0">Civilization IV, Loki, Pro Cycling Manager, Prison Tycoon, Red Ocean, Wildlife Park 2</version>
+    <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
     <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
     <version id="V10_2_0_1" num="10.2.0.1" custom="true">Worldshift</version>
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">Worldshift</version>
-    <version id="V10_4_0_1" num="10.4.0.1" custom="true">Worldshift</version>
-    <version id="V20_0_0_4" num="20.0.0.4" user="0">Civilization IV, Sid Meier's Railroads, Florensia, Ragnarok Online 2, IRIS Online</version>
-    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">Oblivion</version>
-    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Fallout 3 (few KF files, used, 1 NIF file, unused?)</version>
-    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">Oblivion</version>
-    <version id="V20_1_0_3" num="20.1.0.3">Shin Megami Tensei: Imagine</version>
-    <version id="V20_2_0_7" num="20.2.0.7" user="0">Empire Earth III, Atlantica Online, Florensia, IRIS Online, Wizard101</version>
+    <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{Worldshift}}</version>
+    <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
+    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
+    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Fallout 3</version>
+    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">{{Oblivion}}</version>
+    <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
+    <version id="V20_2_0_7" num="20.2.0.7" user="0">{{Florensia}}, Empire Earth III, Atlantica Online, IRIS Online, Wizard101</version>
     <version id="V20_2_0_7__11_1" num="20.2.0.7" user="11" bsver="14">Fallout 3, Fallout NV</version>
     <version id="V20_2_0_7__11_2" num="20.2.0.7" user="11" bsver="16" ext="rdt">Fallout 3</version>
     <version id="V20_2_0_7__11_3" num="20.2.0.7" user="11" bsver="21">Fallout 3, Fallout NV</version>
@@ -58,19 +63,19 @@
     <version id="V20_2_0_7__11_6" num="20.2.0.7" user="11" bsver="26">Fallout 3, Fallout NV</version>
     <version id="V20_2_0_7__11_7" num="20.2.0.7" user="11" bsver="27 28">Fallout 3, Fallout NV</version>
     <version id="V20_2_0_7__11_8" num="20.2.0.7" user="11" bsver="30 31 32 33">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7_FO3" num="20.2.0.7" user="11" bsver="34" ext="rdt">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7_SKY" num="20.2.0.7" user="12" bsver="83" ext="bto btr">Skyrim</version>
-    <version id="V20_2_0_7_SSE" num="20.2.0.7" user="12" bsver="100" ext="bto btr">Skyrim SE</version>
-    <version id="V20_2_0_7_FO4" num="20.2.0.7" user="12" bsver="130" ext="bto btr">Fallout 4</version>
-    <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">Empire Earth III, Atlantica Online, FFT Online, IRIS Online, Wizard101</version>
+    <version id="V20_2_0_7_FO3" num="20.2.0.7" user="11" bsver="34" ext="rdt">{{Fallout 3}}, {{Fallout NV}}</version>
+    <version id="V20_2_0_7_SKY" num="20.2.0.7" user="12" bsver="83" ext="bto btr">{{Skyrim}}</version>
+    <version id="V20_2_0_7_SSE" num="20.2.0.7" user="12" bsver="100" ext="bto btr">{{Skyrim SE}}</version>
+    <version id="V20_2_0_7_FO4" num="20.2.0.7" user="12" bsver="130" ext="bto btr">{{Fallout 4}}</version>
+    <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">{{Empire Earth III}}, {{FFT Online}}, Atlantica Online, IRIS Online, Wizard101</version>
     <version id="V20_3_0_1" num="20.3.0.1">Emerge</version>
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
     <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
     <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
-    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">Warhammer, Lazeska, Howling Sword, Bully SE, Divinity 2 (0x10000)</version>
-    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">Divinity 2</version>
+    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000)</version>
+    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">{{Divinity 2}}</version>
     <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
-    <version id="V20_6_0_0" num="20.6.0.0">MicroVolts, KrazyRain, Ragnarok Online 2, Atlantica Online, IRIS Online, Wizard101</version>
+    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
     <version id="V20_6_5_0_DEM" num="20.6.5.0" user="17" supported="false">Epic Mickey 2</version>
     <version id="V30_0_0_2" num="30.0.0.2">Emerge</version>
     <version id="V30_1_0_1" num="30.1.0.1">Emerge</version>
