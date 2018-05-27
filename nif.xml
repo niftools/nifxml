@@ -1636,38 +1636,38 @@
 	</bitflags>
     
 	<compound name="BSVertexData">
-		<add name="Vertex" type="HalfVector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-		<add name="Bitangent X" type="hfloat" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-		<add name="Unknown Short" type="ushort" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) == 0)" />
-		
-		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-		<add name="Unknown Int" type="uint" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) == 0) &amp;&amp; ((ARG &amp; 16384) != 0)" />
-		
-		<add name="UV" type="HalfTexCoord" cond="((ARG &amp; 32) != 0)" />
-		<add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
-		<add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
-		<add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-		<add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
+		<add name="Vertex" type="Vector3" cond="(ARG &amp; 0x4010) == 0x4010" />
+		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x4110) == 0x4110" />
+		<add name="Unknown Int" type="uint" cond="(ARG &amp; 0x4110) == 0x4010" />
+
+		<add name="Vertex" type="HalfVector3" cond="(ARG &amp; 0x4010) == 0x10" />
+		<add name="Bitangent X" type="hfloat" cond="(ARG &amp; 0x4110) == 0x110" />
+		<add name="Unknown Short" type="ushort" cond="(ARG &amp; 0x4110) == 0x10" />
+
+		<add name="UV" type="HalfTexCoord" cond="ARG &amp; 0x20" />
+		<add name="Normal" type="ByteVector3" cond="ARG &amp; 0x80" />
+		<add name="Bitangent Y" type="byte" cond="ARG &amp; 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(ARG &amp; 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(ARG &amp; 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="ARG &amp; 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG &amp; 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="ARG &amp; 0x400" />
+		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
 	</compound>
 
 	<compound name="BSVertexDataSSE">
-		<add name="Vertex" type="Vector3" cond="((ARG &amp; 16) != 0)" />
-		<add name="Bitangent X" type="float" cond="((ARG &amp; 16) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-		<add name="Unknown Int" type="int" cond="((ARG &amp; 16) != 0) &amp;&amp; (ARG &amp; 256) == 0" />
-		<add name="UV" type="HalfTexCoord" cond="((ARG &amp; 32) != 0)" />
-		<add name="Normal" type="ByteVector3" cond="(ARG &amp; 128) != 0" />
-		<add name="Bitangent Y" type="byte" cond="(ARG &amp; 128) != 0" />
-		<add name="Tangent" type="ByteVector3" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-		<add name="Bitangent Z" type="byte" cond="((ARG &amp; 128) != 0) &amp;&amp; ((ARG &amp; 256) != 0)" />
-		<add name="Vertex Colors" type="ByteColor4" cond="(ARG &amp; 512) != 0" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="(ARG &amp; 1024) != 0" />
-		<add name="Eye Data" type="float" cond="(ARG &amp; 4096) != 0" />
+		<add name="Vertex" type="Vector3" cond="ARG &amp; 0x10" />
+		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x110) == 0x110" />
+		<add name="Unknown Int" type="int" cond="(ARG &amp; 0x110) == 0x10" />
+		<add name="UV" type="HalfTexCoord" cond="ARG &amp; 0x20" />
+		<add name="Normal" type="ByteVector3" cond="ARG &amp; 0x80" />
+		<add name="Bitangent Y" type="byte" cond="ARG &amp; 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(ARG &amp; 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(ARG &amp; 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="ARG &amp; 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG &amp; 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="ARG &amp; 0x400" />
+		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
 	</compound>
 
     <compound name="BSVertexDesc">
