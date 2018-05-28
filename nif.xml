@@ -2978,8 +2978,8 @@
         Particle system emitter controller.
         NiInterpController::GetInterpolatorID() string format:
             ['BirthRate', 'EmitterActive'] (for "Interpolator" and "Visibility Interpolator" respectively)
-        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.0" /><!-- Minimum may be none? -->
         <add name="Data" type="Ref" template="NiPSysEmitterCtlrData" ver2="10.1.0.103" />
+        <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.104" />
     </niobject>
 
     <niobject name="NiPSysModifierBoolCtlr" abstract="1" inherit="NiPSysModifierCtlr">
