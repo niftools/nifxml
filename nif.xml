@@ -45,6 +45,7 @@
     <version id="V10_1_0_101" num="10.1.0.101" user="10" bsver="4">Oblivion</version>
     <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
     <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
+    <version id="V10_2_0_0__1" num="10.2.0.0" user="1">{{Blood Bowl}}</version>
     <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
     <version id="V10_2_0_1" num="10.2.0.1" custom="true">Worldshift</version>
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">Worldshift</version>
@@ -3134,7 +3135,7 @@
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.5">Extra data associated with the material. A value of -1 means the material is the default implementation.</add>
         <add name="Active Material" type="int" default="-1" ver1="20.2.0.5">The index of the currently active material.</add>
         <!-- Custom Versions -->
-        <add name="Unknown Byte" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Cyanide extension (only in version 10.2.0.0?).</add>
+        <add name="Unknown Byte" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" userver="1">Cyanide extension (Blood Bowl).</add>
         <add name="Unknown Integer 2" type="int" ver1="10.3.0.1" ver2="10.4.0.1">Unknown.</add>
         <!-- / Custom -->
         <add name="Material Needs Update" type="bool" ver1="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</add>
@@ -7254,7 +7255,9 @@
         <add name="Directional Light Frustum Width" type="float" ver1="20.3.0.7" />
     </niobject>
 
-    <niobject name="NiFurSpringController" inherit="NiTimeController"><!-- BloodBowl -->
+    <niobject name="NiFurSpringController" inherit="NiTimeController" versions="V10_2_0_0__1">
+        Blood Bowl Specific
+        Used on things like hair/tails in conjunction with bones to animate them.
         <add name="Unknown Float" type="float"></add>
         <add name="Unknown Float 2" type="float"></add>
         <add name="Num Bones" type="uint">The number of node bones referenced as influences.</add>
