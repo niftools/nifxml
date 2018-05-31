@@ -1606,7 +1606,7 @@
         <add name="Translation" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The UV translation.</add>
         <add name="Scale" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="1.0, 1.0">The UV scale.</add>
         <add name="Rotation" type="float" default="0.0" cond="Has Texture Transform" ver1="10.1.0.0">The W axis rotation in texture space.</add>
-        <add name="Transform Method" type="TransformMethod" default="0" cond="Has Texture Transform" ver1="10.1.0.0">Depending on the source, scaling can occur before or after rotation.</add>
+        <add name="Transform Method" type="TransformMethod" cond="Has Texture Transform" ver1="10.1.0.0">Depending on the source, scaling can occur before or after rotation.</add>
         <add name="Center" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The origin around which the texture rotates.</add>
     </compound>
 
@@ -1710,27 +1710,7 @@
 		<add name="Unknown Short" type="ushort" vercond="User Version 2 &gt; 34">Unknown</add>
 		<add name="Vertex Desc" type="BSVertexDesc" ver="20.2.0.7" userver2="100" />
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver="20.2.0.7" userver2="100" />
-        <!-- related to the file posted in tracker item #3117836:
-            http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-        <!--<add name="Unknown 83 C3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1" ></add>
-        <add name="Unknown 00 00 1" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Num Vertices 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Unknown 00 00 2" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Unknown 00 00 3" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Unknown 00 00 4" type="ushort" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>
-        <add name="Unknown Arr 1" type="SkinPartitionUnknownItem1" arr1="Num Vertices 2" ver1="10.2.0.0" ver2="10.2.0.0" vercond="User Version == 1"></add>-->
     </compound>
-
-    <!-- related to the file posted in tracker item #3117836:
-        http://sourceforge.net/tracker/?func=detail&aid=3117836&group_id=149157&atid=776343 -->
-    <!--<compound name="SkinPartitionUnknownItem1">
-        <add name="Unknown Flags" type="uint"></add>
-        <add name="f1" type="float"></add>
-        <add name="f2" type="float"></add>
-        <add name="f3" type="float"></add>
-        <add name="f4" type="float"></add>
-        <add name="f5" type="float"></add>
-    </compound>-->
 
     <compound name="NiPlane">
         A plane.
@@ -2312,9 +2292,9 @@
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Havok Filter" type="HavokFilter" />
-        <add name="Unused" type="byte" arr1="4">Garbage data from memory.</add>
-        <add name="Broad Phase Type" type="BroadPhaseType" default="1" />
-        <add name="Unused Bytes" type="byte" arr1="3" />
+        <add name="Unused Bytes 1" type="byte" arr1="4">Garbage data from memory.</add>
+        <add name="Broad Phase Type" type="BroadPhaseType" default="BROAD_PHASE_ENTITY" />
+        <add name="Unused Bytes 2" type="byte" arr1="3" />
         <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
 
@@ -3029,7 +3009,7 @@
         Changes the image a Map (TexDesc) will use. Uses a float interpolator to animate the texture index.
         Often used for performing flipbook animation.
         <add name="Texture Slot" type="TexType">Target texture slot (0=base, 4=glow).</add>
-        <add name="Start Time" type="float" ver1="3.3.0.13" ver2="10.1.0.103" />
+        <add name="Accum Time" type="float" ver1="3.3.0.13" ver2="10.1.0.103" />
         <add name="Delta" type="float" ver2="10.1.0.103">
             Time between two flips.
             delta = (start_time - stop_time) / sources.num_indices
@@ -3731,7 +3711,7 @@
     <niobject name="NiLookAtController" inherit="NiTimeController">
         DEPRECATED (10.2), REMOVED (20.5)
         Replaced by NiTransformController and NiLookAtInterpolator.
-        <add name="Flags" type="LookAtFlags" ver1="10.1.0.0" />
+        <add name="Look At Flags" type="LookAtFlags" ver1="10.1.0.0" />
         <add name="Look At" type="Ptr" template="NiNode" />
     </niobject>
 
@@ -4203,22 +4183,20 @@
     </niobject>
     
     <niobject name="BSPSysInheritVelocityModifier" inherit="NiPSysModifier">
-        <add name="Target" type="Ptr" template="NiNode" />
+        <add name="Inherit Object" type="Ptr" template="NiAVObject" />
         <add name="Chance To Inherit" type="float" />
         <add name="Velocity Multiplier" type="float" />
         <add name="Velocity Variation" type="float" />
     </niobject>
     
-    <niobject name="BSPSysHavokUpdateModifier" inherit="NiPSysModifier">
-        <add name="Num Nodes" type="uint" />
-        <add name="Nodes" type="Ref" template="NiNode" arr1="Num Nodes" />
+    <niobject name="BSPSysHavokUpdateModifier" inherit="NiPSysMeshUpdateModifier">
         <add name="Modifier" type="Ref" template="NiPSysModifier" />
-    </niobject>   
+    </niobject>
 
     <niobject name="BSPSysRecycleBoundModifier" inherit="NiPSysModifier">
         <add name="Bound Offset" type="Vector3" />
         <add name="Bound Extent" type="Vector3" />
-        <add name="Target" type="Ptr" template="NiNode" />
+        <add name="Bound Object" type="Ptr" template="NiAVObject" />
     </niobject> 
     
     <niobject name="BSPSysSubTexModifier" inherit="NiPSysModifier">
@@ -5249,8 +5227,8 @@
         <add name="Is Convex" type="bool" ver2="20.3.0.4" />
         <add name="Mesh Name" type="string" />
         <add name="Mesh Data" type="ByteArray" />
-        <add name="Mesh Size" type="ushort" ver1="20.3.0.5" ver2="30.2.0.2" />
-        <add name="Mesh Data" type="ushort" arr1="Mesh Size" ver1="20.3.0.5" ver2="30.2.0.2" />
+        <add name="Back Compat Vertex Map Size" type="ushort" ver1="20.3.0.5" ver2="30.2.0.2" />
+        <add name="Back Compat Vertex Map" type="ushort" arr1="Back Compat Vertex Map Size" ver1="20.3.0.5" ver2="30.2.0.2" />
         <add name="Mesh Flags" type="uint" />
         <add name="Mesh Paging Mode" type="uint" ver1="20.3.0.1" />
         <add name="Is Hardware" type="bool" ver1="20.3.0.2" ver2="20.3.0.4" />
@@ -5490,9 +5468,9 @@
         <option value="4" name="Refraction_Tint">Refraction Tint</option>
         <option value="5" name="Vertex_Colors">Has Vertex Colors</option>
         <option value="6" name="Unknown1">Unknown</option>
-        <option value="7" name="1st_Light_is_Point_Light">1st Light is Point Light</option>
-        <option value="8" name="2nd_Light">2nd Light</option>
-        <option value="9" name="3rd_Light">3rd Light</option>
+        <option value="7" name="First_Light_is_Point_Light">1st Light is Point Light</option>
+        <option value="8" name="Second_Light">2nd Light</option>
+        <option value="9" name="Third_Light">3rd Light</option>
         <option value="10" name="Vertex_Lighting">Vertex Lighting</option>
         <option value="11" name="Uniform_Scale">Uniform Scale</option>
         <option value="12" name="Fit_Slope">Fit Slope</option>
@@ -5527,7 +5505,7 @@
 
     <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
         Bethesda-specific property.
-        <add name="Texture Clamp Mode" type="TexClampMode" default="3" vercond="(User Version 2 &lt;= 34)">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" vercond="(User Version 2 &lt;= 34)">How to handle texture borders.</add>
     </niobject>
 
     <niobject name="BSShaderNoLightingProperty" inherit="BSShaderLightingProperty">
@@ -5819,7 +5797,7 @@
         <add name="Emissive Color" type="Color3" default="0.0, 0.0, 0.0">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
         <add name="Wet Material" type="string" vercond="(User Version 2 == 130)" />
-        <add name="Texture Clamp Mode" type="TexClampMode" default="3">How to handle texture borders.</add>
+        <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Glossiness" type="float" default="80" vercond="User Version 2 &lt; 130">The material specular power, or glossiness (0-999).</add>
@@ -6225,7 +6203,7 @@
 
     <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom">
         Bethesda-specific Havok serializable.
-        <add name="Unused" type="byte" arr1="8" />
+        <add name="Unused Bytes 3" type="byte" arr1="8" />
         <add name="AABB Min" type="Vector4" />
         <add name="AABB Max" type="Vector4" />
     </niobject>
@@ -6664,7 +6642,7 @@
         <add name="Scale Amount V" type="float" />
         <add name="Scale Limit V" type="float" />
         <add name="Scale Rest V" type="float" />
-        <add name="Center U " type="float" />
+        <add name="Center U" type="float" />
         <add name="Center V" type="float" />
         <add name="UV Scrolling" type="bool" />
         <add name="Num Frames Across" type="ushort" />
