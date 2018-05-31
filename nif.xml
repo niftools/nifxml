@@ -6445,33 +6445,50 @@
         <add name="Complete Points" type="SyncPoint" arr1="Num Complete Points">The sync points supported by this mesh modifier for CompleteTasks.</add>
     </niobject>
 
-    <compound name="ExtraMeshDataEpicMickey">
-        <add name="Unknown Int 1" type="int" />
-        <add name="Unknown Int 2" type="int" />
-        <add name="Unknown Int 3" type="int" />
-        <add name="Unknown Int 4" type="float" />
-        <add name="Unknown Int 5" type="float" />
-        <add name="Unknown Int 6" type="float" />
+    <compound name="MeshDataEpicMickey" versions="V20_6_5_0_DEM">
+        <add name="Unknown 1" type="int" />
+        <add name="Unknown 2" type="int" />
+        <add name="Unknown 3" type="int" vercond="(User Version &gt; 14)" />
+        <add name="Unknown 4" type="int" />
+        <add name="Unknown 5" type="float" />
+        <add name="Unknown 6" type="int" />
     </compound>
 
-    <compound name="ExtraMeshDataEpicMickey2">
+    <compound name="WeightDataEpicMickey" versions="V20_6_5_0_DEM">
+        <add name="Bone Indices" type="int" arr1="3" />
+        <add name="Weights" type="float" arr1="3" />
+    </compound>
+
+    <compound name="PartitionDataEpicMickey" versions="V20_6_5_0_DEM">
         <add name="Start" type="int" />
         <add name="End" type="int" />
-        <add name="Unknown Shorts" type="short" arr1="10" />
+        <add name="Weight Indices" type="ushort" arr1="10" />
+    </compound>
+
+    <compound name="ExtraMeshDataEpicMickey" versions="V20_6_5_0_DEM">
+        <add name="Unknown 1" type="uint" />
+        <add name="Num Unk Floats" type="uint" />
+        <add name="Unk Floats 1" type="float" arr1="Num Unk Floats" />
+        <add name="Num Weights" type="uint" />
+        <add name="Weights" type="WeightDataEpicMickey" arr1="Num Weights" />
+        <add name="Vertex to Weight Map Size" type="uint" />
+        <add name="Vertex to Weight Map" type="uint" arr1="Vertex to Weight Map Size" />
+        <add name="Unknown Data Size" type="uint" />
+        <add name="Unknown Data Width" type="uint" />
+        <add name="Unknown Data" type="Vector3" arr1="Unknown Data Size" arr2="Unknown Data Width" />
+        <add name="Unknown Indices" type="ushort" arr1="Unknown Data Size" />
+        <add name="Num Mapped Primitives" type="ushort" vercond="(User Version &lt; 17)">When non-zero, equal to the number of primitives.</add>
+        <add name="Num Mapped Primitives" type="uint" userver="17">When non-zero, equal to the number of primitives.</add>
+        <add name="Mapped Primitives" type="byte" arr1="Num Mapped Primitives">Some integer associated with each primitive.</add>
+        <add name="Partition Size" type="uint" />
+        <add name="Partitions" type="PartitionDataEpicMickey" arr1="Partition Size" />
+        <add name="Max Primitive Map Index" type="uint">The max value to appear in the Mapped Primitives array.</add>
     </compound>
 
     <niobject name="NiMesh" inherit="NiRenderObject" since="V20_5_0_0">
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
-
-        <!-- start: epic mickey (user version 15) unknowns -->
-        <add name="Unknown 51" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 52" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 53" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 54" type="int" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 55" type="float" userver="15" /><!-- could also be some other type -->
-        <add name="Unknown 56" type="int" userver="15" /><!-- could also be some other type -->
-        <!-- end: epic mickey (user version 15) unknowns -->
-
+        <!-- Epic Mickey -->
+        <add name="EM Data" type="MeshDataEpicMickey" ver1="20.6.5.0" ver2="20.6.5.0" />
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
         <add name="Bound" type="NiBound">The combined bounding volume of all submeshes.</add>
@@ -6479,24 +6496,9 @@
         <add name="Datastreams" type="DataStreamRef" arr1="Num Datastreams" />
         <add name="Num Modifiers" type="uint" />
         <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" />
-
-        <!-- start: epic mickey (user version 15) unknowns -->
-        <add name="Unknown 100" type="byte" userver="15">Unknown.</add>
-        <add name="Unknown 101" type="int" userver="15">Unknown.</add>
-        <add name="Unknown 102" type="uint" userver="15">Size of additional data.</add>
-        <add name="Unknown 103" type="float" arr1="Unknown 102" userver="15" />
-        <add name="Unknown 200" type="int" userver="15" />
-        <add name="Unknown 201" type="ExtraMeshDataEpicMickey" arr1="Unknown 200" userver="15" />
-        <add name="Unknown 250" type="int" userver="15" />
-        <add name="Unknown 251" type="int" arr1="Unknown 250" userver="15" />
-        <add name="Unknown 300" type="int" userver="15" />
-        <add name="Unknown 301" type="short" userver="15" />
-        <add name="Unknown 302" type="int" userver="15" />
-        <add name="Unknown 303" type="byte" arr1="Unknown 302" userver="15" />
-        <add name="Unknown 350" type="int" userver="15" />
-        <add name="Unknown 351" type="ExtraMeshDataEpicMickey2" arr1="Unknown 350" userver="15" />
-        <add name="Unknown 400" type="int" userver="15" />
-        <!-- end: epic mickey (user version 15) unknowns -->
+        <!-- Epic Mickey -->
+        <add name="Has Extra EM Data" type="bool" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 9)" />
+        <add name="Extra EM Data" type="ExtraMeshDataEpicMickey" cond="Has Extra EM Data" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 9)" />
     </niobject>
 
     <niobject name="NiMorphWeightsController" inherit="NiInterpController" since="V20_5_0_0">
