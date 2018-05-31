@@ -1434,19 +1434,19 @@
         <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
-    <compound name="ShortString" ver1="10.1.0.0">
+    <compound name="ShortString">
         Another string format, for short strings.  Specific to Bethesda-specific header tags.
         <add name="Length" type="byte">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
     </compound>
 
-    <compound name="SkinInfo">
+    <compound name="SkinInfo" since="V4_2_2_0">
         NiBoneLODController::SkinInfo. Reference to shape and skin instance.
         <add name="Shape" type="Ptr" template="NiTriBasedGeom" />
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" />
     </compound>
 
-    <compound name="SkinInfoSet" ver1="10.0.1.0">
+    <compound name="SkinInfoSet" since="V4_2_2_0">
         A set of NiBoneLODController::SkinInfo.
         <add name="Num Skin Info" type="uint" />
         <add name="Skin Info" type="SkinInfo" arr1="Num Skin Info" />
@@ -1685,7 +1685,7 @@
         <add name="VF8" type="byte" />
     </compound>
 
-    <compound name="SkinPartition" ver1="4.2.1.0">
+    <compound name="SkinPartition" since="V4_2_1_0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
         <add name="Num Triangles" type="ushort" calculated="1">Number of triangles in this submesh.</add>
@@ -2207,7 +2207,7 @@
         Abstract object type.
     </niobject>
 
-    <niobject name="Ni3dsAlphaAnimator" inherit="NiObject">
+    <niobject name="Ni3dsAlphaAnimator" inherit="NiObject" versions="V2_3">
         Unknown.
         <add name="Unknown 1" type="byte" arr1="40">Unknown.</add>
         <add name="Parent" type="Ref" template="NiObject">The parent?</add>
@@ -2216,7 +2216,7 @@
         <add name="Unknown 2" type="uint" arr1="Num 1" arr2="Num 2" arr3="2">Unknown.</add>
     </niobject>
 
-    <niobject name="Ni3dsAnimationNode" inherit="NiObject">
+    <niobject name="Ni3dsAnimationNode" inherit="NiObject" versions="V2_3">
         Unknown. Only found in 2.3 nifs.
         <add name="Name" type="string">Name of this object.</add>
         <add name="Has Data" type="bool">Unknown.</add>
@@ -2228,28 +2228,28 @@
         <add name="Unknown Array" type="byte" arr1="Count" arr2="5" cond="Has Data">Unknown.</add>
     </niobject>
 
-    <niobject name="Ni3dsColorAnimator" inherit="NiObject">
+    <niobject name="Ni3dsColorAnimator" inherit="NiObject" versions="V2_3">
         Unknown!
         <add name="Unknown 1" type="byte" arr1="184">Unknown.</add>
     </niobject>
 
-    <niobject name="Ni3dsMorphShape" inherit="NiObject">
+    <niobject name="Ni3dsMorphShape" inherit="NiObject" versions="V2_3">
         Unknown!
         <add name="Unknown 1" type="byte" arr1="14">Unknown.</add>
     </niobject>
 
-    <niobject name="Ni3dsParticleSystem" inherit="NiObject">
+    <niobject name="Ni3dsParticleSystem" inherit="NiObject" versions="V2_3">
         Unknown!
         <add name="Unknown 1" type="byte" arr1="14">Unknown.</add>
     </niobject>
 
-    <niobject name="Ni3dsPathController" inherit="NiObject">
+    <niobject name="Ni3dsPathController" inherit="NiObject" versions="V2_3">
         Unknown!
         <add name="Unknown 1" type="byte" arr1="20">Unknown.</add>
     </niobject>
 
 
-    <niobject name="NiParticleModifier" abstract="1" inherit="NiObject">
+    <niobject name="NiParticleModifier" abstract="1" inherit="NiObject" until="V10_0_1_0">
         LEGACY (pre-10.1). Abstract base class for particle system modifiers.
         <add name="Next Modifier" type="Ref" template="NiParticleModifier">Next particle modifier.</add>
         <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="4.0.0.2">Points to the particle system controller parent.</add>
@@ -3368,13 +3368,13 @@
         <add name="Speed to Aspect Speed 2" type="float" vercond="(User Version 2 &gt; 34)" />
     </niobject>
 
-    <niobject name="NiRotatingParticlesData" inherit="NiParticlesData">
+    <niobject name="NiRotatingParticlesData" inherit="NiParticlesData" until="V10_0_1_0">
         Rotating particles data object.
         <add name="Has Rotations 2" type="bool" ver2="4.2.2.0">Is the particle rotation array present?</add>
         <add name="Rotations 2" type="Quaternion" arr1="Num Vertices" cond="Has Rotations 2" ver2="4.2.2.0">The individual particle rotations.</add>
     </niobject>
 
-    <niobject name="NiAutoNormalParticlesData" inherit="NiParticlesData">
+    <niobject name="NiAutoNormalParticlesData" inherit="NiParticlesData" until="V10_0_1_0">
         Particle system data object (with automatic normals?).
     </niobject>
 
@@ -3412,13 +3412,13 @@
         <add name="Binary Data" type="ByteArray">The binary data.</add>
     </niobject>
 
-    <niobject name="NiBinaryVoxelExtraData" inherit="NiExtraData">
+    <niobject name="NiBinaryVoxelExtraData" inherit="NiExtraData" until="V3_1">
         Voxel extra data object.
         <add name="Unknown Int" type="uint" default="0">Unknown.  0?</add>
         <add name="Data" type="Ref" template="NiBinaryVoxelData">Link to binary voxel data.</add>
     </niobject>
 
-    <niobject name="NiBinaryVoxelData" inherit="NiObject">
+    <niobject name="NiBinaryVoxelData" inherit="NiObject" until="V3_1">
         Voxel data object.
         <add name="Unknown Short 1" type="ushort">Unknown.</add>
         <add name="Unknown Short 2" type="ushort">Unknown.</add>
@@ -3613,7 +3613,7 @@
         <add name="Flags" type="Flags">1 = Enable dithering</add>
     </niobject>
 
-    <niobject name="NiRollController" inherit="NiSingleInterpController">
+    <niobject name="NiRollController" inherit="NiSingleInterpController" until="V20_5_0_0">
         DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiLookAtInterpolator.
         <add name="Data" type="Ref" template="NiFloatData">The data for the controller.</add>
     </niobject>
@@ -3647,7 +3647,7 @@
         <add name="Fog Color" type="Color3">The color of the fog.</add>
     </niobject>
 
-    <niobject name="NiGravity" inherit="NiParticleModifier">
+    <niobject name="NiGravity" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.
         <add name="Unknown Float 1" type="float" ver1="3.3.0.13">Unknown.</add>
         <add name="Force" type="float">The strength/force of this gravity.</add>
@@ -3708,7 +3708,7 @@
         <option value="2" name="LOOK_Z_AXIS">Z-Axis</option>
     </bitflags>
 
-    <niobject name="NiLookAtController" inherit="NiTimeController">
+    <niobject name="NiLookAtController" inherit="NiTimeController" until="V20_5_0_0">
         DEPRECATED (10.2), REMOVED (20.5)
         Replaced by NiTransformController and NiLookAtInterpolator.
         <add name="Look At Flags" type="LookAtFlags" ver1="10.1.0.0" />
@@ -3759,21 +3759,21 @@
         A NiNode used as a skeleton bone?
     </niobject>
 
-    <niobject name="AvoidNode" inherit="NiNode">
+    <niobject name="AvoidNode" inherit="NiNode" versions="V4_0_0_2">
         Morrowind specific.
     </niobject>
 
-    <niobject name="FxWidget" inherit="NiNode">
+    <niobject name="FxWidget" inherit="NiNode" versions="V10_0_1_0">
         Firaxis-specific UI widgets?
         <add name="Unknown 3" type="byte">Unknown.</add>
         <add name="Unknown 292 Bytes" type="byte" arr1="292">Looks like 9 links and some string data.</add>
     </niobject>
 
-    <niobject name="FxButton" inherit="FxWidget">
+    <niobject name="FxButton" inherit="FxWidget" versions="V10_0_1_0">
         Unknown.
     </niobject>
 
-    <niobject name="FxRadioButton" inherit="FxWidget">
+    <niobject name="FxRadioButton" inherit="FxWidget" versions="V10_0_1_0">
         Unknown.
         <add name="Unknown Int 1" type="uint">Unknown.</add>
         <add name="Unknown Int 2" type="uint">Unknown.</add>
@@ -3841,7 +3841,7 @@
         <add name="Palette" type="ByteColor4" arr1="256" cond="Num Entries != 16">The color palette.</add>
     </niobject>
 
-    <niobject name="NiParticleBomb" inherit="NiParticleModifier">
+    <niobject name="NiParticleBomb" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Decay" type="float" />
         <add name="Duration" type="float" />
@@ -3853,24 +3853,24 @@
         <add name="Direction" type="Vector3">The direction of the applied acceleration?</add>
     </niobject>
 
-    <niobject name="NiParticleColorModifier" inherit="NiParticleModifier">
+    <niobject name="NiParticleColorModifier" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Color Data" type="Ref" template="NiColorData" />
     </niobject>
 
-    <niobject name="NiParticleGrowFade" inherit="NiParticleModifier">
+    <niobject name="NiParticleGrowFade" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Grow" type="float">The time from the beginning of the particle lifetime during which the particle grows.</add>
         <add name="Fade" type="float">The time from the end of the particle lifetime during which the particle fades.</add>
     </niobject>
 
-    <niobject name="NiParticleMeshModifier" inherit="NiParticleModifier">
+    <niobject name="NiParticleMeshModifier" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Num Particle Meshes" type="uint" />
         <add name="Particle Meshes" arr1="Num Particle Meshes" type="Ref" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiParticleRotation" inherit="NiParticleModifier">
+    <niobject name="NiParticleRotation" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Random Initial Axis" type="byte" />
         <add name="Initial Axis" type="Vector3" />
@@ -3882,15 +3882,15 @@
         <add name="Vertex Desc" type="BSVertexDesc" vercond="(User Version 2 &gt;= 100)" />
     </niobject>
 
-    <niobject name="NiAutoNormalParticles" inherit="NiParticles">
+    <niobject name="NiAutoNormalParticles" inherit="NiParticles" until="V10_0_1_0">
         LEGACY (pre-10.1). NiParticles which do not house normals and generate them at runtime.
     </niobject>
 
-    <niobject name="NiParticleMeshes" inherit="NiParticles">
+    <niobject name="NiParticleMeshes" inherit="NiParticles" until="V10_0_1_0">
         LEGACY (pre-10.1). Particle meshes.
     </niobject>
 
-    <niobject name="NiParticleMeshesData" inherit="NiRotatingParticlesData">
+    <niobject name="NiParticleMeshesData" inherit="NiRotatingParticlesData" until="V10_0_1_0">
         LEGACY (pre-10.1). Particle meshes data.
         <add name="Unknown Link 2" type="Ref" template="NiAVObject">Refers to the mesh that makes up a particle?</add>
     </niobject>
@@ -3913,7 +3913,7 @@
         Particle system.
     </niobject>
 
-    <niobject name="NiParticleSystemController" inherit="NiTimeController">
+    <niobject name="NiParticleSystemController" inherit="NiTimeController" until="V10_0_1_0">
         A generic particle system time controller object.
         <add name="Old Speed" type="uint" ver2="3.1">Particle speed in old files</add>
         <add name="Speed" type="float" ver1="3.3.0.13">Particle speed</add>
@@ -3966,11 +3966,11 @@
         <add name="Unknown Floats 2" arr1="Particle Unknown Short" type="float" ver2="3.1" />
     </niobject>
 
-    <niobject name="NiBSPArrayController" inherit="NiParticleSystemController">
+    <niobject name="NiBSPArrayController" inherit="NiParticleSystemController" until="V10_0_1_0">
         A particle system controller, used by BS in conjunction with NiBSParticleNode.
     </niobject>
 
-    <niobject name="NiPathController" inherit="NiTimeController">
+    <niobject name="NiPathController" inherit="NiTimeController" until="V20_5_0_0">
         DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiPathInterpolator.
         Time controller for a path.
         <add name="Path Flags" type="PathFlags" ver1="10.1.0.0" />
@@ -4044,7 +4044,7 @@
         <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" ver1="10.4.0.2" />
     </niobject>
 
-    <niobject name="NiPlanarCollider" inherit="NiParticleModifier">
+    <niobject name="NiPlanarCollider" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Unknown Short" type="ushort" ver1="10.0.1.0">Usually 0?</add>
         <add name="Unknown Float 1" type="float">Unknown.</add>
@@ -4256,7 +4256,7 @@
     </niobject>
 
     <!-- WorldShift -->
-    <niobject name="NiPSysPartSpawnModifier" inherit="NiPSysModifier">
+    <niobject name="NiPSysPartSpawnModifier" inherit="NiPSysModifier" versions="V10_2_0_1 V10_3_0_1 V10_4_0_1">
         <add name="Unk Float 1" type="float" />
         <add name="Unk Float 2" type="float" />
         <add name="Spawner" type="Ref" template="NiPSysSpawnModifier" />
@@ -4416,11 +4416,11 @@
         <add name="Proportion Levels" type="float" arr1="Num Proportions" />
     </niobject>
 
-    <niobject name="NiRotatingParticles" inherit="NiParticles">
+    <niobject name="NiRotatingParticles" inherit="NiParticles" until="V10_0_1_0">
         Unknown.
     </niobject>
 
-    <niobject name="NiSequenceStreamHelper" inherit="NiObjectNET">
+    <niobject name="NiSequenceStreamHelper" inherit="NiObjectNET" until="V20_2_0_8">
         DEPRECATED (pre-10.1), REMOVED (20.3).
         Keyframe animation root node, in .kf files.
     </niobject>
@@ -4456,10 +4456,6 @@
         <add name="Vertex Counts" type="uint" arr1="Num Bones">The number of vertex weights stored for each bone.</add>
         <add name="Bones" type="Ptr" template="NiBone" arr1="Num Bones">List of all armature bones.</add>
         <add name="Bone Data" type="OldSkinData" arr1="Num Bones" arr2="Vertex Counts">Contains skin weight data for each node that this skin is influenced by.</add>
-    </niobject>
-
-    <niobject name="NiClodSkinInstance" inherit="NiSkinInstance">
-        A copy of NISkinInstance for use with NiClod meshes.
     </niobject>
 
     <niobject name="NiSkinPartition" inherit="NiObject">
@@ -4503,7 +4499,7 @@
         <add name="Flags" type="Flags">Bit 0 = Enable specular lighting on this shape.</add>
     </niobject>
 
-    <niobject name="NiSphericalCollider" inherit="NiParticleModifier">
+    <niobject name="NiSphericalCollider" inherit="NiParticleModifier" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
         <add name="Unknown Float 1" type="float">Unknown.</add>
         <add name="Unknown Short 1" type="ushort">Unknown.</add>
@@ -4588,7 +4584,7 @@
         <add name="Unknown Short" type="ushort" ver2="4.1.0.12">Unknown: 0.</add>
     </niobject>
 
-    <niobject name="NiTextureModeProperty" inherit="NiProperty">
+    <niobject name="NiTextureModeProperty" inherit="NiProperty" until="V10_0_1_0">
         LEGACY (pre-10.1)
         <add name="Unknown Ints" type="uint" arr1="3" ver2="2.3" />
         <add name="Unknown Short" type="short" ver1="3.0">Unknown. Either 210 or 194.</add>
@@ -4596,7 +4592,7 @@
         <add name="PS2 K" type="short" default="-75" ver1="3.1" ver2="10.2.0.0">-75?</add>
     </niobject>
 
-    <niobject name="NiImage" inherit="NiObject">
+    <niobject name="NiImage" inherit="NiObject" until="V10_0_1_0">
         LEGACY (pre-10.1)
         <add name="Use External" type="byte">0 if the texture is internal to the NIF file.</add>
         <add name="File Name" type="FilePath" cond="Use External != 0">The filepath to the texture.</add>
@@ -4605,7 +4601,7 @@
         <add name="Unknown Float" type="float" ver1="3.1" default="128.5">Unknown.  Perhaps fImageScale?</add>
     </niobject>
 
-    <niobject name="NiTextureProperty" inherit="NiProperty">
+    <niobject name="NiTextureProperty" inherit="NiProperty" until="V10_0_1_0">
         LEGACY (pre-10.1)
         <add name="Unknown Ints 1" type="uint" arr1="2" ver2="2.3">Property flags.</add>
         <add name="Flags" type="Flags" ver1="3.0">Property flags.</add>
@@ -4688,7 +4684,7 @@
         <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points" ver1="10.0.1.3">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</add>
     </niobject>
 
-    <niobject name="NiEnvMappedTriShape" inherit="NiObjectNET">
+    <niobject name="NiEnvMappedTriShape" inherit="NiObjectNET" until="V10_0_1_0">
         Unknown
         <add name="Unknown 1" type="ushort">unknown (=4 - 5)</add>
         <add name="Unknown Matrix" type="Matrix44">unknown</add>
@@ -4698,11 +4694,11 @@
         <add name="Child 3" type="Ref" template="NiObject">unknown</add>
     </niobject>
 
-    <niobject name="NiEnvMappedTriShapeData" inherit="NiTriShapeData">
+    <niobject name="NiEnvMappedTriShapeData" inherit="NiTriShapeData" until="V10_0_1_0">
         Holds mesh data using a list of singular triangles.
     </niobject>
 
-    <niobject name="NiBezierTriangle4" inherit="NiObject">
+    <niobject name="NiBezierTriangle4" inherit="NiObject" until="V10_0_1_0">
         LEGACY (pre-10.1)
         Sub data of NiBezierMesh
         <add name="Unknown 1" type="uint" arr1="6">unknown</add>
@@ -4716,7 +4712,7 @@
         <add name="Unknown 6" type="short" arr1="24">unknown</add>
     </niobject>
 
-    <niobject name="NiBezierMesh" inherit="NiAVObject">
+    <niobject name="NiBezierMesh" inherit="NiAVObject" until="V10_0_1_0">
         LEGACY (pre-10.1)
         Unknown
         <add name="Num Bezier Triangles" type="uint">references.</add>
@@ -4732,37 +4728,40 @@
         <add name="Data 2" type="ushort" arr1="Count 2" arr2="4">data count.</add>
     </niobject>
 
-
-
-    <niobject name="NiClod" inherit="NiTriBasedGeom">
+    <niobject name="NiClod" inherit="NiTriBasedGeom" until="V4_0_0_2">
         A shape node that holds continuous level of detail information.
         Seems to be specific to Freedom Force.
+        Found in: Freedom Force, Spellbinder
     </niobject>
 
-    <niobject name="NiClodData" inherit="NiTriBasedGeomData">
+    <niobject name="NiClodData" inherit="NiTriBasedGeomData" until="V4_0_0_2">
         Holds mesh data for continuous level of detail shapes.
-        Pesumably a progressive mesh with triangles specified by edge splits.
-        Seems to be specific to Freedom Force.
-        The structure of this is uncertain and highly experimental at this point.
-        <add name="Unknown Shorts" type="ushort"></add>
-        <add name="Unknown Count 1" type ="ushort"></add>
-        <add name="Unknown Count 2" type ="ushort"></add>
-        <add name="Unknown Count 3" type ="ushort"></add>
-        <add name="Unknown Float" type="float"></add>
-        <add name="Unknown Short" type="ushort"></add>
-        <add name="Unknown Clod Shorts 1" type="ushort" arr1="Unknown Count 1" arr2="6"></add>
-        <add name="Unknown Clod Shorts 2" type ="ushort" arr1="Unknown Count 2"></add>
-        <add name="Unknown Clod Shorts 3" type ="ushort" arr1="Unknown Count 3" arr2="6"></add>
+        Presumably a progressive mesh with triangles specified by edge splits.
+        Found in: Freedom Force, Spellbinder
+        <add name="Unknown Shorts" type="ushort" />
+        <add name="Unknown Count 1" type ="ushort" />
+        <add name="Unknown Count 2" type ="ushort" />
+        <add name="Unknown Count 3" type ="ushort" />
+        <add name="Unknown Float" type="float" />
+        <add name="Unknown Short" type="ushort" />
+        <add name="Unknown Clod Shorts 1" type="ushort" arr1="Unknown Count 1" arr2="6" />
+        <add name="Unknown Clod Shorts 2" type="ushort" arr1="Unknown Count 2" />
+        <add name="Unknown Clod Shorts 3" type="ushort" arr1="Unknown Count 3" arr2="6" />
     </niobject>
 
-    <niobject name="NiUVController" inherit="NiTimeController">
+    <niobject name="NiClodSkinInstance" inherit="NiSkinInstance" until="V4_0_0_2">
+        A copy of NiSkinInstance for use with NiClod meshes.
+        Found in: Freedom Force, Spellbinder
+    </niobject>
+
+    <niobject name="NiUVController" inherit="NiTimeController" until="V20_2_0_8">
         DEPRECATED (pre-10.1), REMOVED (20.3).
         Time controller for texture coordinates.
         <add name="Unknown Short" type="ushort">Always 0?</add>
         <add name="Data" type="Ref" template="NiUVData">Texture coordinate controller data index.</add>
     </niobject>
 
-    <niobject name="NiUVData" inherit="NiObject">
+    <niobject name="NiUVData" inherit="NiObject" until="V20_2_0_8">
         DEPRECATED (pre-10.1), REMOVED (20.3)
         Texture coordinate data.
         <add name="UV Groups" type="KeyGroup" template="float" arr1="4">
@@ -4823,11 +4822,11 @@
         </add>
     </niobject>
 
-    <niobject name="RootCollisionNode" inherit="NiNode">
+    <niobject name="RootCollisionNode" inherit="NiNode" versions="V4_0_0_2">
         Morrowind-specific node for collision mesh.
     </niobject>
 
-    <niobject name="NiRawImageData" inherit="NiObject">
+    <niobject name="NiRawImageData" inherit="NiObject" until="V3_1">
         LEGACY (pre-10.1)
         Raw image data.
         <add name="Width" type="uint">Image width</add>
@@ -4851,7 +4850,7 @@
 
     <!-- NiPhysX -->
 
-    <niobject name="NiPhysXScene" inherit="NiObjectNET">
+    <niobject name="NiPhysXScene" inherit="NiObjectNET" since="V20_2_0_8">
         Object which manages a NxScene object and the Gamebryo objects that interact with it.
         <add name="Scene Transform" type="NiTransform" />
         <add name="PhysX to World Scale" type="float" />
@@ -4871,41 +4870,41 @@
         <add name="Flags" type="ushort" />
     </niobject>
 
-    <enum name="NiSceneDescNxBroadPhaseType" storage="uint">
+    <enum name="NiSceneDescNxBroadPhaseType" storage="uint" since="V20_2_0_8">
         <option name="NX_BROADPHASE_QUADRATIC" value="0" />
         <option name="NX_BROADPHASE_FULL" value="1" />
         <option name="NX_BROADPHASE_COHERENT" value="2" />
     </enum>
 
-    <enum name="NiSceneDescNxHwPipelineSpec" storage="uint">
+    <enum name="NiSceneDescNxHwPipelineSpec" storage="uint" since="V20_2_0_8">
         <option name="NX_HW_RB_PIPELINE_HLP_ONLY" value="0" />
         <option name="NX_HW_PIPELINE_FULL" value="1" />
         <option name="NX_HW_PIPELINE_DEBUG" value="2" />
     </enum>
 
-    <enum name="NiSceneDescNxHwSceneType" storage="uint">
+    <enum name="NiSceneDescNxHwSceneType" storage="uint" since="V20_2_0_8">
         <option name="NX_HW_SCENE_TYPE_RB" value="0" />
         <option name="NX_HW_SCENE_TYPE_FLUID" value="1" />
         <option name="NX_HW_SCENE_TYPE_FLUID_SOFTWARE" value="2" />
         <option name="NX_HW_SCENE_TYPE_CLOTH" value="3" />
     </enum>
 
-    <enum name="NxTimeStepMethod" storage="uint">
+    <enum name="NxTimeStepMethod" storage="uint" since="V20_2_0_8">
         <option name="NX_TIMESTEP_FIXED" value="0" />
         <option name="NX_TIMESTEP_VARIABLE" value="1" />
     </enum>
 
-    <enum name="NxSimulationType" storage="uint">
+    <enum name="NxSimulationType" storage="uint" since="V20_2_0_8">
         <option name="NX_SIMULATION_SW" value="0" />
         <option name="NX_SIMULATION_HW" value="1" />
     </enum>
 
-    <enum name="NxBroadPhaseType" storage="uint">
+    <enum name="NxBroadPhaseType" storage="uint" since="V20_2_0_8">
         <option name="NX_BP_TYPE_SAP_SINGLE" value="0" />
         <option name="NX_BP_TYPE_SAP_MULTI" value="1" />
     </enum>
 
-    <enum name="NxFilterOp" storage="uint">
+    <enum name="NxFilterOp" storage="uint" since="V20_2_0_8">
         <option name="NX_FILTEROP_AND" value="0" />
         <option name="NX_FILTEROP_OR" value="1" />
         <option name="NX_FILTEROP_XOR" value="2" />
@@ -4915,18 +4914,18 @@
         <option name="NX_FILTEROP_SWAP_AND" value="6" />
     </enum>
 
-    <enum name="NxCompartmentType" storage="uint">
+    <enum name="NxCompartmentType" storage="uint" since="V20_2_0_8">
         <option name="NX_SCT_RIGIDBODY" value="0" />
         <option name="NX_SCT_FLUID" value="1" />
         <option name="NX_SCT_CLOTH" value="2" />
     </enum>
 
-    <compound name="PhysXSceneDescMaterial">
+    <compound name="PhysXSceneDescMaterial" since="V20_2_0_8">
         <add name="Key" type="ushort" />
         <add name="Material" type="Ref" template="NiPhysXMaterialDesc" />
     </compound>
 
-    <compound name="PhysXSceneDescCompartment">
+    <compound name="PhysXSceneDescCompartment" since="V20_2_0_8">
         <add name="ID" type="uint" />
         <add name="Type" type="NxCompartmentType" />
         <add name="Device Code" type="uint" />
@@ -4934,7 +4933,7 @@
         <add name="Grid Hash Table Power" type="uint" />
     </compound>
 
-    <niobject name="NiPhysXSceneDesc" inherit="NiObject">
+    <niobject name="NiPhysXSceneDesc" inherit="NiObject" since="V20_2_0_8">
         Object which caches the properties of NxScene, stored as a snapshot in a NiPhysXScene.
         <add name="Broad Phase Type" type="NiSceneDescNxBroadPhaseType" ver2="20.2.0.7" />
         <add name="Gravity" type="Vector3" />
@@ -4989,7 +4988,7 @@
         <add name="Compartments" type="PhysXSceneDescCompartment" arr1="Num Compartments" ver1="20.3.0.6" />
     </niobject>
 
-    <niobject name="NiPhysXProp" inherit="NiObjectNET">
+    <niobject name="NiPhysXProp" inherit="NiObjectNET" since="V20_2_0_8">
         A PhysX prop which holds information about PhysX actors in a Gamebryo scene
         <add name="PhysX to World Scale" type="float" />
         <add name="Num Sources" type="uint" />
@@ -5003,17 +5002,17 @@
         <add name="Prop Description" type="Ref" template="NiPhysXPropDesc" />
     </niobject>
 
-    <compound name="PhysXMaterialRef">
+    <compound name="PhysXMaterialRef" since="V20_2_0_8">
         <add name="Key" type="ushort" />
         <add name="Material Desc" type="Ref" template="NiPhysXMaterialDesc" />
     </compound>
 
-    <compound name="PhysXStateName">
+    <compound name="PhysXStateName" since="V20_2_0_8">
         <add name="Name" type="string" />
         <add name="Index" type="uint" />
     </compound>
 
-    <niobject name="NiPhysXPropDesc" inherit="NiObject">
+    <niobject name="NiPhysXPropDesc" inherit="NiObject" since="V20_2_0_8">
         For serialization of PhysX objects and to attach them to the scene.
         <add name="Num Actors" type="int" />
         <add name="Actors" type="Ref" template="NiPhysXActorDesc" arr1="Num Actors" />
@@ -5029,7 +5028,7 @@
         <add name="Flags" type="byte" ver1="20.4.0.0" />
     </niobject>
 
-    <niobject name="NiPhysXActorDesc" inherit="NiObject">
+    <niobject name="NiPhysXActorDesc" inherit="NiObject" since="V20_2_0_8">
         For serializing NxActor objects.
         <add name="Actor Name" type="string" />
         <add name="Num Poses" type="uint" />
@@ -5049,13 +5048,13 @@
         <add name="Dest" type="Ref" template="NiPhysXRigidBodyDest" />
     </niobject>
 
-    <compound name="PhysXBodyStoredVels">
+    <compound name="PhysXBodyStoredVels" since="V20_2_0_8">
         <add name="Linear Velocity" type="Vector3" />
         <add name="Angular Velocity" type="Vector3" />
         <add name="Sleep" type="bool" ver1="30.2.0.3" />
     </compound>
 
-    <niobject name="NiPhysXBodyDesc" inherit="NiObject">
+    <niobject name="NiPhysXBodyDesc" inherit="NiObject" since="V20_2_0_8">
         For serializing NxBodyDesc objects.
         <add name="Local Pose" type="Matrix34" />
         <add name="Space Inertia" type="Vector3" />
@@ -5076,7 +5075,7 @@
         <add name="Contact Report Threshold" type="float" ver1="20.4.0.0" />
     </niobject>
 
-    <enum name="NxJointType" storage="uint">
+    <enum name="NxJointType" storage="uint" since="V20_2_0_8">
         <option name="NX_JOINT_PRISMATIC" value="0" />
         <option name="NX_JOINT_REVOLUTE" value="1" />
         <option name="NX_JOINT_CYLINDRICAL" value="2" />
@@ -5089,51 +5088,51 @@
         <option name="NX_JOINT_D6" value="9" />
     </enum>
 
-    <enum name="NxD6JointMotion" storage="uint">
+    <enum name="NxD6JointMotion" storage="uint" since="V20_2_0_8">
         <option name="NX_D6JOINT_MOTION_LOCKED" value="0" />
         <option name="NX_D6JOINT_MOTION_LIMITED" value="1" />
         <option name="NX_D6JOINT_MOTION_FREE" value="2" />
     </enum>
 
-    <enum name="NxD6JointDriveType" storage="uint">
+    <enum name="NxD6JointDriveType" storage="uint" since="V20_2_0_8">
         <option name="NX_D6JOINT_DRIVE_POSITION" value="1" />
         <option name="NX_D6JOINT_DRIVE_VELOCITY" value="2" />
     </enum>
 
-    <enum name="NxJointProjectionMode" storage="uint">
+    <enum name="NxJointProjectionMode" storage="uint" since="V20_2_0_8">
         <option name="NX_JPM_NONE" value="0" />
         <option name="NX_JPM_POINT_MINDIST" value="1" />
         <option name="NX_JPM_LINEAR_MINDIST" value="2" />
     </enum>
 
-    <compound name="NiPhysXJointActor">
+    <compound name="NiPhysXJointActor" since="V20_2_0_8">
         <add name="Actor" type="Ref" template="NiPhysXActorDesc" />
         <add name="Local Normal" type="Vector3" />
         <add name="Local Axis" type="Vector3" />
         <add name="Local Anchor" type="Vector3" />
     </compound>
 
-    <compound name="NxJointLimitSoftDesc">
+    <compound name="NxJointLimitSoftDesc" since="V20_2_0_8">
         <add name="Value" type="float" />
         <add name="Restitution" type="float" />
         <add name="Spring" type="float" />
         <add name="Damping" type="float" />
     </compound>
 
-    <compound name="NxJointDriveDesc">
+    <compound name="NxJointDriveDesc" since="V20_2_0_8">
         <add name="Drive Type" type="NxD6JointDriveType" />
         <add name="Restitution" type="float" />
         <add name="Spring" type="float" />
         <add name="Damping" type="float" />
     </compound>
 
-    <compound name="NiPhysXJointLimit">
+    <compound name="NiPhysXJointLimit" since="V20_2_0_8">
         <add name="Limit Plane Normal" type="Vector3" />
         <add name="Limit Plane D" type="float" />
         <add name="Limit Plane R" type="float" ver1="20.4.0.0" />
     </compound>
 
-    <niobject name="NiPhysXJointDesc" inherit="NiObject" abstract="1">
+    <niobject name="NiPhysXJointDesc" inherit="NiObject" abstract="1" since="V20_2_0_8">
         A PhysX Joint abstract base class.
         <add name="Joint Type" type="NxJointType" />
         <add name="Joint Name" type="string" />
@@ -5148,7 +5147,7 @@
         <add name="Limits" type="NiPhysXJointLimit" arr1="Num Limits" />
     </niobject>
 
-    <niobject name="NiPhysXD6JointDesc" inherit="NiPhysXJointDesc">
+    <niobject name="NiPhysXD6JointDesc" inherit="NiPhysXJointDesc" since="V20_2_0_8">
         A 6DOF (6 degrees of freedom) joint.
         <add name="X Motion" type="NxD6JointMotion" />
         <add name="Y Motion" type="NxD6JointMotion" />
@@ -5178,7 +5177,7 @@
         <add name="Flags" type="uint" />
     </niobject>
 
-    <enum name="NxShapeType" storage="uint">
+    <enum name="NxShapeType" storage="uint" since="V20_2_0_8">
         <option name="NX_SHAPE_PLANE" value="0" />
         <option name="NX_SHAPE_SPHERE" value="1" />
         <option name="NX_SHAPE_BOX" value="2" />
@@ -5191,18 +5190,18 @@
         <option name="NX_SHAPE_COMPOUND" value="9" />
     </enum>
 
-    <compound name="NxPlane">
+    <compound name="NxPlane" since="V20_2_0_8">
         <add name="Val 1" type="float" />
         <add name="Point 1" type="Vector3" />
     </compound>
 
-    <compound name="NxCapsule">
+    <compound name="NxCapsule" since="V20_2_0_8">
         <add name="Val 1" type="float" />
         <add name="Val 2" type="float" />
         <add name="Capsule Flags" type="uint" />
     </compound>
 
-    <niobject name="NiPhysXShapeDesc" inherit="NiObject">
+    <niobject name="NiPhysXShapeDesc" inherit="NiObject" since="V20_2_0_8">
         For serializing NxShapeDesc objects
         <add name="Shape Type" type="NxShapeType" />
         <add name="Local Pose" type="Matrix34" />
@@ -5222,7 +5221,7 @@
         <add name="Mesh" type="Ref" template="NiPhysXMeshDesc" cond="(Shape Type == 5) || (Shape Type == 6)" />
     </niobject>
 
-    <niobject name="NiPhysXMeshDesc" inherit="NiObject">
+    <niobject name="NiPhysXMeshDesc" inherit="NiObject" since="V20_2_0_8">
         Holds mesh data for streaming.
         <add name="Is Convex" type="bool" ver2="20.3.0.4" />
         <add name="Mesh Name" type="string" />
@@ -5235,7 +5234,7 @@
         <add name="Flags" type="byte" ver1="20.3.0.5" />
     </niobject>
 
-    <bitflags name="NxMaterialFlag" storage="uint">
+    <bitflags name="NxMaterialFlag" storage="uint" since="V20_2_0_8">
         <option name="NX_MF_ANISOTROPIC" value="1" />
         <option name="NX_MF_DUMMY1" value="2" />
         <option name="NX_MF_DUMMY2" value="3" />
@@ -5244,20 +5243,20 @@
         <option name="NX_MF_DISABLE_STRONG_FRICTION" value="6" />
     </bitflags>
 
-    <compound name="NxSpringDesc">
+    <compound name="NxSpringDesc" since="V20_2_0_8">
         <add name="Spring" type="float" />
         <add name="Damper" type="float" />
         <add name="Target Value" type="float" />
     </compound>
 
-    <enum name="NxCombineMode" storage="uint">
+    <enum name="NxCombineMode" storage="uint" since="V20_2_0_8">
         <option name="NX_CM_AVERAGE" value="0" />
         <option name="NX_CM_MIN" value="1" />
         <option name="NX_CM_MULTIPLY" value="2" />
         <option name="NX_CM_MAX" value="3" />
     </enum>
 
-    <compound name="NxMaterialDesc">
+    <compound name="NxMaterialDesc" since="V20_2_0_8">
         <add name="Dynamic Friction" type="float" />
         <add name="Static Friction" type="float" />
         <add name="Restitution" type="float" />
@@ -5271,44 +5270,44 @@
         <add name="Spring" type="NxSpringDesc" ver2="20.2.3.0" cond="Has Spring" />
     </compound>
 
-    <niobject name="NiPhysXMaterialDesc" inherit="NiObject">
+    <niobject name="NiPhysXMaterialDesc" inherit="NiObject" since="V20_2_0_8">
         For serializing NxMaterialDesc objects.
         <add name="Index" type="ushort" />
         <add name="Num States" type="uint" />
         <add name="Material Descs" type="NxMaterialDesc" arr1="Num States" />
     </niobject>
 
-    <niobject name="NiPhysXDest" inherit="NiObject" abstract="1">
+    <niobject name="NiPhysXDest" inherit="NiObject" abstract="1" since="V20_2_0_8">
         A destination is a link between a PhysX actor and a Gamebryo object being driven by the physics.
         <add name="Active" type="bool" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
-    <niobject name="NiPhysXRigidBodyDest" inherit="NiPhysXDest" abstract="1">
+    <niobject name="NiPhysXRigidBodyDest" inherit="NiPhysXDest" abstract="1" since="V20_2_0_8">
         Base for destinations that set a rigid body state.
     </niobject>
 
-    <niobject name="NiPhysXTransformDest" inherit="NiPhysXRigidBodyDest">
+    <niobject name="NiPhysXTransformDest" inherit="NiPhysXRigidBodyDest" since="V20_2_0_8">
         Connects PhysX rigid body actors to a scene node.
         <add name="Target" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPhysXSrc" inherit="NiObject" abstract="1">
+    <niobject name="NiPhysXSrc" inherit="NiObject" abstract="1" since="V20_2_0_8">
         A source is a link between a Gamebryo object and a PhysX actor.
         <add name="Active" type="bool" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
-    <niobject name="NiPhysXRigidBodySrc" inherit="NiPhysXSrc" abstract="1">
+    <niobject name="NiPhysXRigidBodySrc" inherit="NiPhysXSrc" abstract="1" since="V20_2_0_8">
         Sets state of a rigid body PhysX actor.
         <add name="Source" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPhysXKinematicSrc" inherit="NiPhysXRigidBodySrc">
+    <niobject name="NiPhysXKinematicSrc" inherit="NiPhysXRigidBodySrc" since="V20_2_0_8">
         Sets state of kinematic PhysX actor.
     </niobject>
 
-    <niobject name="NiPhysXDynamicSrc" inherit="NiPhysXRigidBodySrc">
+    <niobject name="NiPhysXDynamicSrc" inherit="NiPhysXRigidBodySrc" since="V20_2_0_8">
         Sends Gamebryo scene state to a PhysX dynamic actor.
     </niobject>
 
@@ -6264,20 +6263,20 @@
         <add name="Constraint" type="ConstraintData" arr1="Num Constraints" />
     </niobject>
 
-    <compound name="Region">
+    <compound name="Region" since="V20_5_0_0">
         A range of indices, which make up a region (such as a submesh).
         <add name="Start Index" type="uint" />
         <add name="Num Indices" type="uint" />
     </compound>
 
-    <enum name="CloningBehavior" storage="uint">
+    <enum name="CloningBehavior" storage="uint" since="V20_5_0_0">
         Sets how objects are to be cloned.
         <option value="0" name="CLONING_SHARE">Share this object pointer with the newly cloned scene.</option>
         <option value="1" name="CLONING_COPY">Create an exact duplicate of this object for use with the newly cloned scene.</option>
         <option value="2" name="CLONING_BLANK_COPY">Create a copy of this object for use with the newly cloned stream, leaving some of the data to be written later.</option>
     </enum>
 
-    <enum name="ComponentFormat" storage="uint">
+    <enum name="ComponentFormat" storage="uint" since="V20_5_0_0">
         The data format of components.
         <option value="0x00000000" name="F_UNKNOWN">Unknown, or don't care, format.</option>
         <option value="0x00010101" name="F_INT8_1"></option>
@@ -6344,7 +6343,7 @@
         <option value="0x0001043E" name="F_UINT_10_10_10_2"></option>
     </enum>
 
-    <enum name="DataStreamUsage" storage="uint">
+    <enum name="DataStreamUsage" storage="uint" since="V20_5_0_0">
         Determines how a data stream is used?
         <option value="0" name="USAGE_VERTEX_INDEX"></option>
         <option value="1" name="USAGE_VERTEX"></option>
@@ -6352,7 +6351,7 @@
         <option value="3" name="USAGE_USER"></option>
     </enum>
     
-    <bitflags name="DataStreamAccess" storage="uint">
+    <bitflags name="DataStreamAccess" storage="uint" since="V20_5_0_0">
         Determines how the data stream is accessed?
         <option value="0" name="CPU Read"></option>
         <option value="1" name="CPU Write Static"></option>
@@ -6364,7 +6363,7 @@
     </bitflags>
 
 
-    <niobject name="NiDataStream" inherit="NiObject">
+    <niobject name="NiDataStream" inherit="NiObject" since="V20_5_0_0">
         <add name="Usage" type="DataStreamUsage" abstract="1"></add>
         <add name="Access" type="DataStreamAccess" abstract="1"></add>
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
@@ -6377,7 +6376,7 @@
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
-    <compound name="SemanticData">
+    <compound name="SemanticData" since="V20_5_0_0">
         <add name="Name" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
@@ -6390,7 +6389,7 @@
         </add>
     </compound>
 
-    <compound name="DataStreamRef">
+    <compound name="DataStreamRef" since="V20_5_0_0">
         <add name="Stream" type="Ref" template="NiDataStream">
             Reference to a data stream object which holds the data used by
             this reference.
@@ -6411,12 +6410,12 @@
         <add name="Component Semantics" type="SemanticData" arr1="Num Components">Describes the semantic of each component.</add>
     </compound>
 
-    <niobject name="NiRenderObject" abstract="1" inherit="NiAVObject">
+    <niobject name="NiRenderObject" abstract="1" inherit="NiAVObject" since="V20_5_0_0">
         An object that can be rendered.
         <add name="Material Data" type="MaterialData">Per-material data.</add>
     </niobject>
 
-    <enum name="MeshPrimitiveType" storage="uint">
+    <enum name="MeshPrimitiveType" storage="uint" since="V20_5_0_0">
         Describes the type of primitives stored in a mesh object.
         <option value="0" name="MESH_PRIMITIVE_TRIANGLES">Triangle primitive type.</option>
         <option value="1" name="MESH_PRIMITIVE_TRISTRIPS">Triangle strip primitive type.</option>
@@ -6426,7 +6425,7 @@
         <option value="5" name="MESH_PRIMITIVE_POINTS">Point primitive type.</option>
     </enum>
 
-    <enum name="SyncPoint" storage="ushort">
+    <enum name="SyncPoint" storage="ushort" since="V20_5_0_0">
         A sync point corresponds to a particular stage in per-frame processing.
         <option value="0x8000" name="SYNC_ANY">Synchronize for any sync points that the modifier supports.</option>
         <option value="0x8010" name="SYNC_UPDATE">Synchronize when an object is updated.</option>
@@ -6461,7 +6460,7 @@
         <add name="Unknown Shorts" type="short" arr1="10" />
     </compound>
 
-    <niobject name="NiMesh" inherit="NiRenderObject">
+    <niobject name="NiMesh" inherit="NiRenderObject" since="V20_5_0_0">
         <add name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</add>
 
         <!-- start: epic mickey (user version 15) unknowns -->
@@ -6500,7 +6499,7 @@
         <!-- end: epic mickey (user version 15) unknowns -->
     </niobject>
 
-    <niobject name="NiMorphWeightsController" inherit="NiInterpController">
+    <niobject name="NiMorphWeightsController" inherit="NiInterpController" since="V20_5_0_0">
         Manipulates a mesh with the semantic MORPHWEIGHTS using an NiMorphMeshModifier.
         <add name="Count" type="uint" />
         <add name="Num Interpolators" type="uint" />
@@ -6509,12 +6508,12 @@
         <add name="Target Names" type="string" arr1="Num Targets" />
     </niobject>
 
-    <compound name="ElementReference" ver1="20.5.0.0">
+    <compound name="ElementReference" since="V20_5_0_0">
         <add name="Semantic" type="SemanticData">The element semantic.</add>
         <add name="Normalize Flag" type="uint">Whether or not to normalize the data.</add>
     </compound>
 
-    <niobject name="NiMorphMeshModifier" inherit="NiMeshModifier">
+    <niobject name="NiMorphMeshModifier" inherit="NiMeshModifier" since="V20_5_0_0">
         Performs linear-weighted blending between a set of target data streams.
         <add name="Flags" type="byte">
             FLAG_RELATIVETARGETS = 0x01
@@ -6530,7 +6529,7 @@
         <add name="Elements" type="ElementReference" arr1="Num Elements">Semantics and normalization of the morphing data stream elements.</add>
     </niobject>
 
-    <niobject name="NiSkinningMeshModifier" inherit="NiMeshModifier">
+    <niobject name="NiSkinningMeshModifier" inherit="NiMeshModifier" since="V20_5_0_0">
         <add name="Flags" type="ushort">
             USE_SOFTWARE_SKINNING = 0x0001
             RECOMPUTE_BOUNDS = 0x0002
@@ -6543,13 +6542,13 @@
         <add name="Bone Bounds" type="NiBound" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add>
     </niobject>
 
-    <niobject name="NiMeshHWInstance" inherit="NiAVObject">
+    <niobject name="NiMeshHWInstance" inherit="NiAVObject" since="V20_5_0_0">
         An instance of a hardware-instanced mesh in a scene graph.
         <add name="Master Mesh" type="Ref" template="NiMesh">The instanced mesh this object represents.</add>
         <add name="Mesh Modifier" type="Ref" template="NiInstancingMeshModifier" />
     </niobject>
 
-    <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier">
+    <niobject name="NiInstancingMeshModifier" inherit="NiMeshModifier" since="V20_5_0_0">
         Mesh modifier that provides per-frame instancing capabilities in Gamebryo.
         <add name="Has Instance Nodes" type="bool" />
         <add name="Per Instance Culling" type="bool" />
@@ -6580,12 +6579,12 @@
 
     <!-- NiPS Particle System -->
 
-    <compound name="PSSpawnRateKey">
+    <compound name="PSSpawnRateKey" since="V20_5_0_0">
         <add name="Value" type="float" />
         <add name="Time" type="float" />
     </compound>
 
-    <enum name="AlignMethod" storage="uint">
+    <enum name="AlignMethod" storage="uint" since="V20_5_0_0">
         Describes the various methods that may be used to specify the orientation of the particles.
         <option value="0" name="ALIGN_INVALID" />
         <option value="1" name="ALIGN_PER_PARTICLE" />
@@ -6595,7 +6594,7 @@
         <option value="16" name="ALIGN_CAMERA" />
     </enum>
 
-    <niobject name="NiPSParticleSystem" inherit="NiMesh">
+    <niobject name="NiPSParticleSystem" inherit="NiMesh" since="V20_5_0_0">
         Represents a particle system.
         <add name="Simulator" type="Ref" template="NiPSSimulator" />
         <add name="Generator" type="Ref" template="NiPSBoundUpdater" />
@@ -6618,9 +6617,12 @@
         <add name="Num Spawn Rate Keys" type="byte" ver1="20.6.1.0" />
         <add name="Spawn Rate Keys" type="PSSpawnRateKey" arr1="Num Spawn Rate Keys" ver1="20.6.1.0" />
         <add name="Pre RPI" type="bool" ver1="20.6.1.0" />
+        <!-- Epic Mickey -->
+        <add name="Unk Int" type="uint" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="Unk Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
     </niobject>
 
-    <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem">
+    <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem" since="V20_5_0_0">
         Represents a particle system that uses mesh particles instead of sprite-based particles.
         <add name="Num Generations" type="uint" />
         <add name="Master Particles" type="Ref" template="NiAVObject" arr1="Num Generations" />
@@ -6630,11 +6632,11 @@
 
     <!-- NiPS Generators -->
 
-    <niobject name="NiPSFacingQuadGenerator" inherit="NiMeshModifier">
+    <niobject name="NiPSFacingQuadGenerator" inherit="NiMeshModifier" since="V20_5_0_0">
         A mesh modifier that uses particle system data to generate camera-facing quads.
     </niobject>
 
-    <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier">
+    <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier" since="V20_5_0_0">
         A mesh modifier that uses particle system data to generate aligned quads for each particle.
         <add name="Scale Amount U" type="float" />
         <add name="Scale Limit U" type="float" />
@@ -6658,17 +6660,17 @@
 
     <!-- NiPS Simulators -->
 
-    <niobject name="NiPSSimulator" inherit="NiMeshModifier">
+    <niobject name="NiPSSimulator" inherit="NiMeshModifier" since="V20_5_0_0">
         The mesh modifier that performs all particle system simulation.
         <add name="Num Simulation Steps" type="uint" />
         <add name="Simulation Steps" type="Ref" template="NiPSSimulatorStep" arr1="Num Simulation Steps" />
     </niobject>
 
-    <niobject name="NiPSSimulatorStep" inherit="NiObject" abstract="1">
+    <niobject name="NiPSSimulatorStep" inherit="NiObject" abstract="1" since="V20_5_0_0">
         Abstract base class for a single step in the particle system simulation process.  It has no seralized data.
     </niobject>
 
-    <enum name="PSLoopBehavior" ver1="20.5.0.0" storage="uint">
+    <enum name="PSLoopBehavior" ver1="20.5.0.0" storage="uint" since="V20_5_0_0">
         <option name="PS_LOOP_CLAMP_BIRTH" value="0">Key times map such that the first key occurs at the birth of the particle, and times later than the last key get the last key value.</option>
         <option name="PS_LOOP_CLAMP_DEATH" value="1">Key times map such that the last key occurs at the death of the particle, and times before the initial key time get the value of the initial key.</option>
         <option name="PS_LOOP_AGESCALE" value="2">Scale the animation to fit the particle lifetime, so that the first key is age zero, and the last key comes at the particle death.</option>
@@ -6676,7 +6678,7 @@
         <option name="PS_LOOP_REFLECT" value="4">The time is reflection looped, as if the keys played forward then backward the forward then backward etc for all time.</option>
     </enum>
 
-    <niobject name="NiPSSimulatorGeneralStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPSSimulatorGeneralStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Encapsulates a floodgate kernel that updates particle size, colors, and rotations.
         <add name="Num Size Keys" type="byte" ver1="20.6.1.0" />
         <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys" ver1="20.6.1.0">The particle size keys.</add>
@@ -6693,37 +6695,37 @@
         <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorForcesStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPSSimulatorForcesStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Encapsulates a floodgate kernel that simulates particle forces.
         <add name="Num Forces" type="uint" />
         <add name="Forces" type="Ref" template="NiPSForce" arr1="Num Forces">The forces affecting the particle system.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorCollidersStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPSSimulatorCollidersStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Encapsulates a floodgate kernel that simulates particle colliders.
         <add name="Num Colliders" type="uint" />
         <add name="Colliders" type="Ref" template="NiPSCollider" arr1="Num Colliders">The colliders affecting the particle system.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorMeshAlignStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPSSimulatorMeshAlignStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Encapsulates a floodgate kernel that updates mesh particle alignment and transforms.
         <add name="Num Rotation Keys" type="byte" />
         <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys">The particle rotation keys.</add>
         <add name="Rotation Loop Behavior" type="PSLoopBehavior">The loop behavior for the rotation keys.</add>
     </niobject>
 
-    <niobject name="NiPSSimulatorFinalStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPSSimulatorFinalStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Encapsulates a floodgate kernel that updates particle positions and ages. As indicated by its name, this step should be attached last in the NiPSSimulator mesh modifier.
     </niobject>
 
-    <niobject name="NiPSBoundUpdater" inherit="NiObject">
+    <niobject name="NiPSBoundUpdater" inherit="NiObject" since="V20_5_0_0">
         Updates the bounding volume for an NiPSParticleSystem object.
         <add name="Update Skip" type="ushort">Number of particle bounds to skip updating every frame. Higher = more updates each frame.</add>
     </niobject>
 
     <!-- NiPS Forces -->
 
-    <enum name="PSForceType" storage="uint">
+    <enum name="PSForceType" storage="uint" since="V20_5_0_0">
         This is used by the Floodgate kernel to determine which NiPSForceHelpers functions to call.
         <option value="0" name="FORCE_BOMB" />
         <option value="1" name="FORCE_DRAG" />
@@ -6736,14 +6738,14 @@
         <option value="8" name="FORCE_GRAVITY" />
     </enum>
 
-    <niobject name="NiPSForce" abstract="1" inherit="NiObject">
+    <niobject name="NiPSForce" abstract="1" inherit="NiObject" since="V20_5_0_0">
         Abstract base class for all particle forces.
         <add name="Name" type="string" />
         <add name="Type" type="PSForceType" />
         <add name="Active" type="bool" />
     </niobject>
 
-    <niobject name="NiPSFieldForce" abstract="1" inherit="NiPSForce">
+    <niobject name="NiPSFieldForce" abstract="1" inherit="NiPSForce" since="V20_5_0_0">
         Abstract base class for all particle field forces.
         <add name="Field Object" type="Ref" template="NiAVObject" />
         <add name="Magnitude" type="float" />
@@ -6752,7 +6754,7 @@
         <add name="Max Distance" type="float" />
     </niobject>
 
-    <niobject name="NiPSDragForce" inherit="NiPSForce">
+    <niobject name="NiPSDragForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies a linear drag force to particles.
         <add name="Drag Axis" type="Vector3" />
         <add name="Percentage" type="float" />
@@ -6761,7 +6763,7 @@
         <add name="Drag Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSGravityForce" inherit="NiPSForce">
+    <niobject name="NiPSGravityForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies a gravitational force to particles.
         <add name="Gravity Axis" type="Vector3" />
         <add name="Decay" type="float" />
@@ -6772,7 +6774,7 @@
         <add name="Gravity Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSBombForce" inherit="NiPSForce">
+    <niobject name="NiPSBombForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies an explosive force to particles.
         <add name="Bomb Axis" type="Vector3" />
         <add name="Decay" type="float" />
@@ -6782,7 +6784,7 @@
         <add name="Bomb Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSAirFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSAirFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of air movements.
         <add name="Direction" type="Vector3" />
         <add name="Air Friction" type="float" />
@@ -6792,35 +6794,35 @@
         <add name="Spread" type="float" />
     </niobject>
 
-    <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of directional gravity.
         <add name="Direction" type="Vector3" />
     </niobject>
 
-    <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of drag.
         <add name="Use Direction" type="bool" />
         <add name="Direction" type="Vector3" />
     </niobject>
 
-    <niobject name="NiPSRadialFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSRadialFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of point gravity.
         <add name="Radial Factor" type="float" />
     </niobject>
 
-    <niobject name="NiPSTurbulenceFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSTurbulenceFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of turbulence.
         <add name="Frequency" type="float" />
     </niobject>
 
-    <niobject name="NiPSVortexFieldForce" inherit="NiPSFieldForce">
+    <niobject name="NiPSVortexFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of a vortex.
         <add name="Direction" type="Vector3" />
     </niobject>
 
     <!-- NiPS Emitters -->
 
-    <niobject name="NiPSEmitter" abstract="1" inherit="NiObject">
+    <niobject name="NiPSEmitter" abstract="1" inherit="NiObject" since="V20_5_0_0">
         Abstract base class for all particle emitters.
         <add name="Name" type="string" />
         <add name="Speed" type="float" />
@@ -6845,36 +6847,36 @@
         <add name="Unknown" type="bool" ver1="30.0.0.0" ver2="30.0.0.1" />
     </niobject>
 
-    <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter">
+    <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter" since="V20_5_0_0">
         Abstract base class for particle emitters that emit particles from a volume.
         <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSBoxEmitter" inherit="NiPSVolumeEmitter">
+    <niobject name="NiPSBoxEmitter" inherit="NiPSVolumeEmitter" since="V20_5_0_0">
         A particle emitter that emits particles from a rectangular volume.
         <add name="Emitter Width" type="float" />
         <add name="Emitter Height" type="float" />
         <add name="Emitter Depth" type="float" />
     </niobject>
 
-    <niobject name="NiPSSphereEmitter" inherit="NiPSVolumeEmitter">
+    <niobject name="NiPSSphereEmitter" inherit="NiPSVolumeEmitter" since="V20_5_0_0">
         A particle emitter that emits particles from a spherical volume.
         <add name="Emitter Radius" type="float" />
     </niobject>
 
-    <niobject name="NiPSCylinderEmitter" inherit="NiPSVolumeEmitter">
+    <niobject name="NiPSCylinderEmitter" inherit="NiPSVolumeEmitter" since="V20_5_0_0">
         A particle emitter that emits particles from a cylindrical volume.
         <add name="Emitter Radius" type="float" />
         <add name="Emitter Height" type="float" />
     </niobject>
 
-    <niobject name="NiPSTorusEmitter" inherit="NiPSVolumeEmitter">
+    <niobject name="NiPSTorusEmitter" inherit="NiPSVolumeEmitter" since="V20_5_0_0">
         A particle emitter that emits particles from a toroidal volume.
         <add name="Emitter Radius" type="float" />
         <add name="Emitter Section Radius" type="float" />
     </niobject>
 
-    <niobject name="NiPSMeshEmitter" inherit="NiPSEmitter">
+    <niobject name="NiPSMeshEmitter" inherit="NiPSEmitter" since="V20_5_0_0">
         Emits particles from one or more NiMesh objects. A random mesh emitter is selected for each particle emission.
         <add name="Num Mesh Emitters" type="uint" />
         <add name="Mesh Emitters" type="Ptr" template="NiMesh" arr1="Num Mesh Emitters" />
@@ -6884,7 +6886,7 @@
         <add name="Initial Velocity Type" type="VelocityType" />
     </niobject>
 
-    <niobject name="NiPSCurveEmitter" inherit="NiPSEmitter">
+    <niobject name="NiPSCurveEmitter" inherit="NiPSEmitter" since="V20_5_0_0">
         Emits particles from a curve.
         <add name="Has Curve" type="bool" />
         <add name="Curve" type="NiCurve3" cond="Has Curve" />
@@ -6894,110 +6896,110 @@
 
     <!-- NiPS Controllers -->
 
-    <niobject name="NiPSEmitterCtlr" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiPSEmitterCtlr" abstract="1" inherit="NiSingleInterpController" since="V20_5_0_0">
         Abstract base class for all particle emitter time controllers.
         <add name="Emitter Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr">
+    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a floating point value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitParticlesCtlr" inherit="NiPSEmitterCtlr">
+    <niobject name="NiPSEmitParticlesCtlr" inherit="NiPSEmitterCtlr" since="V20_5_0_0">
         Animates particle emission and birth rate.
         <add name="Emitter Active Interpolator" type="Ref" template="NiInterpolator" />
     </niobject>
 
-    <niobject name="NiPSForceCtlr" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiPSForceCtlr" abstract="1" inherit="NiSingleInterpController" since="V20_5_0_0">
         Abstract base class for all particle force time controllers.
         <add name="Force Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSForceBoolCtlr" abstract="1" inherit="NiPSForceCtlr">
+    <niobject name="NiPSForceBoolCtlr" abstract="1" inherit="NiPSForceCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a Boolean value on an NiPSForce object.
     </niobject>
 
-    <niobject name="NiPSForceFloatCtlr" abstract="1" inherit="NiPSForceCtlr">
+    <niobject name="NiPSForceFloatCtlr" abstract="1" inherit="NiPSForceCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a floating point value on an NiPSForce object.
     </niobject>
 
-    <niobject name="NiPSForceActiveCtlr" inherit="NiPSForceBoolCtlr">
+    <niobject name="NiPSForceActiveCtlr" inherit="NiPSForceBoolCtlr" since="V20_5_0_0">
         Animates whether or not an NiPSForce object is active.
     </niobject>
 
-    <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr">
+    <niobject name="NiPSGravityStrengthCtlr" inherit="NiPSForceFloatCtlr" since="V20_5_0_0">
         Animates the strength value of an NiPSGravityForce object.
     </niobject>
 
-    <niobject name="NiPSFieldAttenuationCtlr" inherit="NiPSForceFloatCtlr">
+    <niobject name="NiPSFieldAttenuationCtlr" inherit="NiPSForceFloatCtlr" since="V20_5_0_0">
         Animates the attenuation value of an NiPSFieldForce object.
     </niobject>
 
-    <niobject name="NiPSFieldMagnitudeCtlr" inherit="NiPSForceFloatCtlr">
+    <niobject name="NiPSFieldMagnitudeCtlr" inherit="NiPSForceFloatCtlr" since="V20_5_0_0">
         Animates the magnitude value of an NiPSFieldForce object.
     </niobject>
 
-    <niobject name="NiPSFieldMaxDistanceCtlr" inherit="NiPSForceFloatCtlr">
+    <niobject name="NiPSFieldMaxDistanceCtlr" inherit="NiPSForceFloatCtlr" since="V20_5_0_0">
         Animates the max distance value of an NiPSFieldForce object.
     </niobject>
 
-    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterSpeedCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the speed value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterRadiusCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the size value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterDeclinationCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the declination value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterDeclinationVarCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the declination variation value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterPlanarAngleCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the planar angle value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterPlanarAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the planar angle variation value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterRotAngleCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the rotation angle value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterRotAngleVarCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the rotation angle variation value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterRotSpeedCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the rotation speed value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterRotSpeedVarCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the rotation speed variation value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSEmitterFloatCtlr">
+    <niobject name="NiPSEmitterLifeSpanCtlr" inherit="NiPSEmitterFloatCtlr" since="V20_5_0_0">
         Animates the lifespan value on an NiPSEmitter object.
     </niobject>
 
-    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController">
+    <niobject name="NiPSResetOnLoopCtlr" inherit="NiTimeController" since="V20_5_0_0">
         Calls ResetParticleSystem on an NiPSParticleSystem target upon looping.
     </niobject>
 
     <!-- NiPS Colliders -->
 
-    <enum name="ColliderType" storage="uint">
+    <enum name="ColliderType" storage="uint" since="V20_5_0_0">
         This is used by the Floodgate kernel to determine which NiPSColliderHelpers functions to call.
         <option value="0" name="COLLIDER_PLANAR" />
         <option value="1" name="COLLIDER_SPHERICAL" />
     </enum>
 
-    <niobject name="NiPSCollider" inherit="NiObject">
+    <niobject name="NiPSCollider" inherit="NiObject" since="V20_5_0_0">
         Abstract base class for all particle colliders.
         <add name="Spawner" type="Ref" template="NiPSSpawner" />
         <add name="Type" type="ColliderType" />
@@ -7007,7 +7009,7 @@
         <add name="Die on Collide" type="bool" />
     </niobject>
 
-    <niobject name="NiPSPlanarCollider" inherit="NiPSCollider">
+    <niobject name="NiPSPlanarCollider" inherit="NiPSCollider" since="V20_5_0_0">
         A planar collider for particles.
         <add name="Width" type="float" />
         <add name="Height" type="float" />
@@ -7016,13 +7018,13 @@
         <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSSphericalCollider" inherit="NiPSCollider">
+    <niobject name="NiPSSphericalCollider" inherit="NiPSCollider" since="V20_5_0_0">
         A spherical collider for particles.
         <add name="Radius" type="float" />
         <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPSSpawner" inherit="NiObject">
+    <niobject name="NiPSSpawner" inherit="NiObject" since="V20_5_0_0">
         Creates a new particle whose initial parameters are based on an existing particle.
         <add name="Master Particle System" type="Ptr" template="NiPSParticleSystem" ver1="20.6.1.0" />
         <add name="Percentage Spawned" type="float" />
@@ -7038,7 +7040,7 @@
 
     <!-- NiPhysXPS -->
 
-    <niobject name="NiPhysXPSParticleSystem" inherit="NiPSParticleSystem">
+    <niobject name="NiPhysXPSParticleSystem" inherit="NiPSParticleSystem" since="V20_5_0_0">
         Implements Gamebryo particle systems that use PhysX actors for the particles
         <add name="Prop" type="Ptr" template="NiPhysXPSParticleSystemProp" />
         <add name="Dest" type="Ptr" template="NiPhysXPSParticleSystemDest" />
@@ -7051,32 +7053,32 @@
         <add name="Actor" type="Ptr" template="NiPhysXActorDesc" />
     </niobject>
 
-    <niobject name="NiPhysXPSParticleSystemProp" inherit="NiPhysXProp">
+    <niobject name="NiPhysXPSParticleSystemProp" inherit="NiPhysXProp" since="V20_5_0_0">
         A PhysX prop which holds information about a PhysX particle system prop.
         <add name="Num Systems" type="uint" />
         <add name="Systems" type="Ptr" template="NiPhysXPSParticleSystem" arr1="Num Systems" />
     </niobject>
 
-    <niobject name="NiPhysXPSParticleSystemDest" inherit="NiPhysXDest">
+    <niobject name="NiPhysXPSParticleSystemDest" inherit="NiPhysXDest" since="V20_5_0_0">
         An object which interfaces between the PhysX scene and the Gamebryo particle system.
         <add name="Target" type="Ptr" template="NiPSParticleSystem" />
     </niobject>
 
-    <niobject name="NiPhysXPSSimulator" inherit="NiPSSimulator">
+    <niobject name="NiPhysXPSSimulator" inherit="NiPSSimulator" since="V20_5_0_0">
         Adds additional sync points to a NiPSSimulator mesh modifier.
     </niobject>
 
-    <niobject name="NiPhysXPSSimulatorInitialStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPhysXPSSimulatorInitialStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Used to set the post-simulation state of particles in a physics-enabled particle system.
     </niobject>
 
-    <niobject name="NiPhysXPSSimulatorFinalStep" inherit="NiPSSimulatorStep">
+    <niobject name="NiPhysXPSSimulatorFinalStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
         Used to push the results of the particle system update into the PhysX actors.
     </niobject>
 
     <!-- NiEvaluator -->
 
-    <niobject name="NiEvaluator" abstract="1" inherit="NiObject">
+    <niobject name="NiEvaluator" abstract="1" inherit="NiObject" since="V20_5_0_0">
         <add name="Node Name" type="string">The name of the animated NiAVObject.</add>
         <add name="Property Type" type="string">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
         <add name="Controller Type" type="string">The RTTI type of the NiTimeController.</add>
@@ -7092,101 +7094,101 @@
         </add>
     </niobject>
 
-    <niobject name="NiKeyBasedEvaluator" abstract="1" inherit="NiEvaluator" />
+    <niobject name="NiKeyBasedEvaluator" abstract="1" inherit="NiEvaluator" since="V20_5_0_0" />
 
-    <niobject name="NiBoolEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiBoolEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiBoolData" />
     </niobject>
 
-    <niobject name="NiBoolTimelineEvaluator" inherit="NiBoolEvaluator" />
+    <niobject name="NiBoolTimelineEvaluator" inherit="NiBoolEvaluator" since="V20_5_0_0" />
 
-    <niobject name="NiColorEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiColorEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiColorData" />
     </niobject>
 
-    <niobject name="NiFloatEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiFloatEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
 
-    <niobject name="NiPoint3Evaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiPoint3Evaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiPosData" />
     </niobject>
 
-    <niobject name="NiQuaternionEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiQuaternionEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiRotData" />
     </niobject>
 
-    <niobject name="NiTransformEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiTransformEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Value" type="NiQuatTransform" />
         <add name="Data" type="Ref" template="NiTransformData" />
     </niobject>
 
-    <niobject name="NiConstBoolEvaluator" inherit="NiEvaluator">
+    <niobject name="NiConstBoolEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="float" default="-3.402823466e+38" /> <!-- Yes, this is actually a float. -->
     </niobject>
 
-    <niobject name="NiConstColorEvaluator" inherit="NiEvaluator">
+    <niobject name="NiConstColorEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="Color4" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiConstFloatEvaluator" inherit="NiEvaluator">
+    <niobject name="NiConstFloatEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="float" default="-3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator">
+    <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator">
+    <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="Quaternion" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiConstTransformEvaluator" inherit="NiEvaluator">
+    <niobject name="NiConstTransformEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Value" type="NiQuatTransform" />
     </niobject>
 
-    <niobject name="NiBSplineEvaluator" inherit="NiEvaluator">
+    <niobject name="NiBSplineEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Start Time" type="float" default="3.402823466e+38" />
         <add name="End Time" type="float" default="-3.402823466e+38" />
         <add name="Data" type="Ref" template="NiBSplineData" />
         <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
 
-    <niobject name="NiBSplineColorEvaluator" inherit="NiBSplineEvaluator">
+    <niobject name="NiBSplineColorEvaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
-    <niobject name="NiBSplineCompColorEvaluator" inherit="NiBSplineColorEvaluator">
+    <niobject name="NiBSplineCompColorEvaluator" inherit="NiBSplineColorEvaluator" since="V20_5_0_0">
         <add name="Offset" type="float" default="3.402823466e+38" />
         <add name="Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiBSplineFloatEvaluator" inherit="NiBSplineEvaluator">
+    <niobject name="NiBSplineFloatEvaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
-    <niobject name="NiBSplineCompFloatEvaluator" inherit="NiBSplineFloatEvaluator">
+    <niobject name="NiBSplineCompFloatEvaluator" inherit="NiBSplineFloatEvaluator" since="V20_5_0_0">
         <add name="Offset" type="float" default="3.402823466e+38" />
         <add name="Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiBSplinePoint3Evaluator" inherit="NiBSplineEvaluator">
+    <niobject name="NiBSplinePoint3Evaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
-    <niobject name="NiBSplineCompPoint3Evaluator" inherit="NiBSplinePoint3Evaluator">
+    <niobject name="NiBSplineCompPoint3Evaluator" inherit="NiBSplinePoint3Evaluator" since="V20_5_0_0">
         <add name="Offset" type="float" default="3.402823466e+38" />
         <add name="Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiBSplineTransformEvaluator" inherit="NiBSplineEvaluator">
+    <niobject name="NiBSplineTransformEvaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
         <add name="Transform" type="NiQuatTransform" />
         <add name="Translation Handle" type="uint" default="0xFFFF">Handle into the translation data. (USHRT_MAX for invalid handle.)</add>
         <add name="Rotation Handle" type="uint" default="0xFFFF">Handle into the rotation data. (USHRT_MAX for invalid handle.)</add>
         <add name="Scale Handle" type="uint" default="0xFFFF">Handle into the scale data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
-    <niobject name="NiBSplineCompTransformEvaluator" inherit="NiBSplineTransformEvaluator">
+    <niobject name="NiBSplineCompTransformEvaluator" inherit="NiBSplineTransformEvaluator" since="V20_5_0_0">
         <add name="Translation Offset" type="float" default="3.402823466e+38" />
         <add name="Translation Half Range" type="float" default="3.402823466e+38" />
         <add name="Rotation Offset" type="float" default="3.402823466e+38" />
@@ -7195,7 +7197,7 @@
         <add name="Scale Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 
-    <niobject name="NiLookAtEvaluator" inherit="NiEvaluator">
+    <niobject name="NiLookAtEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
         <add name="Flags" type="LookAtFlags" />
         <add name="Look At Name" type="string" />
         <add name="Driven Name" type="string" />
@@ -7204,7 +7206,7 @@
         <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator" />
     </niobject>
 
-    <niobject name="NiPathEvaluator" inherit="NiKeyBasedEvaluator">
+    <niobject name="NiPathEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Flags" type="PathFlags" default="3" />
         <add name="Bank Dir" type="int" default="1">-1 = Negative, 1 = Positive</add>
         <add name="Max Bank Angle" type="float">Max angle in radians.</add>
@@ -7214,7 +7216,7 @@
         <add name="Percent Data" type="Ref" template="NiFloatData" />
     </niobject>
 
-    <niobject name="NiSequenceData" inherit="NiObject">
+    <niobject name="NiSequenceData" inherit="NiObject" since="V20_5_0_0">
         Root node in Gamebryo .kf files (20.5.0.1 and up).
         For 20.5.0.0, "NiSequenceData" is an alias for "NiControllerSequence" and this is not handled in nifxml.
         This was not found in any 20.5.0.0 KFs available and they instead use NiControllerSequence directly.
@@ -7260,7 +7262,7 @@
     </niobject>
 
     <!-- Divinity 2 -->
-    <niobject name="CStreamableAssetData" inherit="NiObject">
+    <niobject name="CStreamableAssetData" inherit="NiObject" versions="V20_3_0_9 V20_3_0_9_DIV2">
         <add name="Root" type="Ref" template="NiNode" />
         <add name="Has Data" type="bool" />
         <add name="Data" type="ByteArray" cond="Has Data" />
@@ -7372,7 +7374,7 @@
     
     <!-- Fallout 4 Geometry -->
     
-    <niobject name="BSTriShape" inherit="NiAVObject">
+    <niobject name="BSTriShape" inherit="NiAVObject" versions="V20_2_0_7_FO4 V20_2_0_7_SSE">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Skin" type="Ref" template="NiObject" />
@@ -7391,21 +7393,21 @@
         <add name="Triangles Copy" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" userver2="100" />
     </niobject>
 
-    <niobject name="BSMeshLODTriShape" inherit="BSTriShape">
+    <niobject name="BSMeshLODTriShape" inherit="BSTriShape" versions="V20_2_0_7_FO4">
         Fallout 4 LOD Tri Shape
         <add name="LOD0 Size" type="uint" />
         <add name="LOD1 Size" type="uint" />
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSGeometryPerSegmentSharedData">
+    <compound name="BSGeometryPerSegmentSharedData" versions="V20_2_0_7_FO4">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint">A hash of the bone name string.</add>
         <add name="Num Cut Offsets" type="uint">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
-    <compound name="BSGeometrySegmentSharedData">
+    <compound name="BSGeometrySegmentSharedData" versions="V20_2_0_7_FO4">
         <add name="Num Segments" type="uint" />
         <add name="Total Segments" type="uint" />
         <add name="Segment Starts" type="uint" arr1="Num Segments" />
@@ -7415,7 +7417,7 @@
         <add name="SSF File" type="byte" arr1="SSF Length" />
     </compound>
 
-    <niobject name="BSSubIndexTriShape" inherit="BSTriShape">
+    <niobject name="BSSubIndexTriShape" inherit="BSTriShape" versions="V20_2_0_7_FO4 V20_2_0_7_SSE">
         Fallout 4 Sub-Index Tri Shape
 		<add name="Num Primitives" type="uint" userver2="130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" userver2="130" cond="Data Size &gt; 0" />
@@ -7428,11 +7430,11 @@
     
     <!-- Fallout 4 Physics -->
 
-    <niobject name="bhkSystem" abstract="1" inherit="NiObject">
+    <niobject name="bhkSystem" abstract="1" inherit="NiObject" versions="V20_2_0_7_FO4">
         Fallout 4 Physics System
     </niobject>
     
-    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject">
+    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" versions="V20_2_0_7_FO4">
         Fallout 4 Collision Object
         <add name="Flags" type="ushort">
             Due to inaccurate reporting in the CK the Reset and Sync On Update positions are a guess.
@@ -7442,28 +7444,28 @@
         <add name="Body ID" type="uint" />
     </niobject>
     
-    <niobject name="bhkPhysicsSystem" inherit="bhkSystem">
+    <niobject name="bhkPhysicsSystem" inherit="bhkSystem" versions="V20_2_0_7_FO4">
         Fallout 4 Collision System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="bhkRagdollSystem" inherit="bhkSystem">
+    <niobject name="bhkRagdollSystem" inherit="bhkSystem" versions="V20_2_0_7_FO4">
         Fallout 4 Ragdoll System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="BSExtraData" inherit="NiExtraData">
+    <niobject name="BSExtraData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Extra Data
     </niobject>
 
-    <niobject name="BSClothExtraData" inherit="BSExtraData">
+    <niobject name="BSClothExtraData" inherit="BSExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Cloth data
         <add name="Binary Data" type="ByteArray" />
     </niobject>
     
     <!-- Fallout 4 Skeleton -->
 
-    <compound name="BSSkinBoneTrans">
+    <compound name="BSSkinBoneTrans" versions="V20_2_0_7_FO4">
         Fallout 4 Bone Transform
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Rotation" type="Matrix33" />
@@ -7471,7 +7473,7 @@
         <add name="Scale" type="float" />
     </compound>
 
-    <niobject name="BSSkin::Instance" inherit="NiObject">
+    <niobject name="BSSkin::Instance" inherit="NiObject" versions="V20_2_0_7_FO4">
         Fallout 4 Skin Instance
         <add name="Skeleton Root" type="Ptr" template="NiAVObject" />
         <add name="Data" type="Ref" template="BSSkin::BoneData" />
@@ -7481,19 +7483,19 @@
         <add name="Unknown" type="Vector3" arr1="Num Unknown" />
     </niobject>
 
-    <niobject name="BSSkin::BoneData" inherit="NiObject">
+    <niobject name="BSSkin::BoneData" inherit="NiObject" versions="V20_2_0_7_FO4">
         Fallout 4 Bone Data
         <add name="Num Bones" type="uint" />
         <add name="Bone List" type="BSSkinBoneTrans" arr1="Num Bones" />
     </niobject>
 
-    <niobject name="BSPositionData" inherit="NiExtraData">
+    <niobject name="BSPositionData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Positional Data
         <add name="Num Data" type="uint" />
         <add name="Data" type="hfloat" arr1="Num Data" />
     </niobject>
 
-    <compound name="BSConnectPoint">
+    <compound name="BSConnectPoint" versions="V20_2_0_7_FO4">
         <add name="Parent" type="SizedString" default="WorkshopConnectPoints" />
         <add name="Name" type="SizedString" />
         <add name="Rotation" type="Quaternion" />
@@ -7501,32 +7503,32 @@
         <add name="Scale" type="float" default="1.0" />
     </compound>
 
-    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData">
+    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Item Slot Parent
         <add name="Num Connect Points" type="uint" />
         <add name="Connect Points" type="BSConnectPoint" arr1="Num Connect Points" />
     </niobject>
 
-    <niobject name="BSConnectPoint::Children" inherit="NiExtraData">
+    <niobject name="BSConnectPoint::Children" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
         <add name="Num Points" type="int" />
         <add name="Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
-    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData">
+    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Eye Center Data
         <add name="Num Data" type="int" />
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-    <compound name="BSPackedGeomDataCombined">
+    <compound name="BSPackedGeomDataCombined" versions="V20_2_0_7_FO4">
         <add name="Grayscale to Palette Scale" type="float" />
         <add name="Transform" type="NiTransform" />
         <add name="Bounding Sphere" type="NiBound" />
     </compound>
 
-    <compound name="BSPackedGeomData">
+    <compound name="BSPackedGeomData" versions="V20_2_0_7_FO4">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -7542,7 +7544,7 @@
         <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
 
-    <compound name="BSPackedSharedGeomData">
+    <compound name="BSPackedSharedGeomData" versions="V20_2_0_7_FO4">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -7556,13 +7558,13 @@
         <add name="Vertex Desc" type="BSVertexDesc" />
     </compound>
 
-    <compound name="BSPackedGeomObject">
+    <compound name="BSPackedGeomObject" versions="V20_2_0_7_FO4">
         This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
         <add name="Shape ID 1" type="uint" />
         <add name="Shape ID 2" type="uint" />
     </compound>
 
-    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData">
+    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Packed Combined Geometry Data.
         Geometry is baked into the file and given a list of transforms to position each copy.
         <add name="Vertex Desc" type="BSVertexDesc" />
@@ -7574,7 +7576,7 @@
         <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
 
-    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData">
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" versions="V20_2_0_7_FO4">
         Fallout 4 Packed Combined Shared Geometry Data.
         Geometry is NOT baked into the file. It is instead a reference to the shape via a Shape ID (currently undecoded)
         which loads the geometry via the STAT form for the NIF.
@@ -7590,18 +7592,18 @@
 
     <!-- Fallout 4 Animation -->
     
-    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController">
+    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController" versions="V20_2_0_7_FO4">
     
     </niobject>
 	
 	<!-- Skyrim SE --> 
 
-	<niobject name="BSDynamicTriShape" inherit="BSTriShape">
+	<niobject name="BSDynamicTriShape" inherit="BSTriShape" versions="V20_2_0_7_SSE">
 		<add name="Vertex Data Size" type="uint" />
 		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Vertex Data Size &gt; 0" />
 	</niobject>
 	
-	<niobject name="BSDistantObjectLargeRefExtraData" inherit="NiExtraData">
+	<niobject name="BSDistantObjectLargeRefExtraData" inherit="NiExtraData" versions="V20_2_0_7_SSE">
         Large ref flag.
 		<add name="Large Ref" type="bool" />
 	</niobject>
