@@ -7048,7 +7048,7 @@
         <add name="Prop" type="Ptr" template="NiPhysXPSParticleSystemProp" />
         <add name="Dest" type="Ptr" template="NiPhysXPSParticleSystemDest" />
         <add name="Scene" type="Ptr" template="NiPhysXScene" />
-        <add name="Flags" type="byte" />
+        <add name="PhysX Flags" type="byte" />
         <add name="Default Actor Pool Size" type="uint" />
         <add name="Generation Pool Size" type="uint" />
         <add name="Actor Pool Center" type="Vector3" />
@@ -7394,8 +7394,9 @@
         <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size &gt; 0" userver2="100" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
         <add name="Particle Data Size" type="uint" userver2="100" />
-        <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
-        <add name="Triangles Copy" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" userver2="100" />
+        <add name="Particle Vertices" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
+        <add name="Particle Normals" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" userver2="100" />
+        <add name="Particle Triangles" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" userver2="100" />
     </niobject>
 
     <niobject name="BSMeshLODTriShape" inherit="BSTriShape" versions="V20_2_0_7_FO4">
@@ -7518,7 +7519,7 @@
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
         <add name="Num Points" type="int" />
-        <add name="Name" type="SizedString" arr1="Num Points" />
+        <add name="Point Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
     <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
@@ -7604,8 +7605,8 @@
 	<!-- Skyrim SE --> 
 
 	<niobject name="BSDynamicTriShape" inherit="BSTriShape" versions="V20_2_0_7_SSE">
-		<add name="Vertex Data Size" type="uint" />
-		<add name="Vertices" type="Vector4" arr1="Num Vertices" cond="Vertex Data Size &gt; 0" />
+		<add name="Dynamic Data Size" type="uint" />
+		<add name="Vertices" type="Vector4" arr1="Dynamic Data Size / 16" />
 	</niobject>
 	
 	<niobject name="BSDistantObjectLargeRefExtraData" inherit="NiExtraData" versions="V20_2_0_7_SSE">
