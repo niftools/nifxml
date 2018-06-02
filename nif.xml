@@ -2729,15 +2729,20 @@
         <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
 
+    <compound name="LegacyExtraData" until="V2_3">
+        Extra Data for pre-3.0 versions
+        <add name="Has Extra Data" type="bool" />
+        <add name="Extra Prop Name" cond="Has Extra Data" type="string" />
+        <add name="Extra Ref ID" cond="Has Extra Data" type="uint" />
+        <add name="Extra String" cond="Has Extra Data" type="string" />
+        <add name="Unknown Byte 1" type="byte" />
+    </compound>
+
     <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
         <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="User Version 2 &gt;= 83" cond="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
-        <add name="Has Old Extra Data" type="bool" ver2="2.3">Extra data for pre-3.0 versions.</add>
-        <add name="Old Extra Prop Name" cond="Has Old Extra Data" ver2="2.3" type="string">(=NiStringExtraData)</add>
-        <add name="Old Extra Internal Id" cond="Has Old Extra Data" ver2="2.3" type="uint">ref</add>
-        <add name="Old Extra String" cond="Has Old Extra Data" ver2="2.3" type="string">Extra string data.</add>
-        <add name="Unknown Byte" type="byte" ver2="2.3">Always 0.</add>
+        <add name="Legacy Extra Data" type="LegacyExtraData" ver2="2.3" />
         <add name="Extra Data" type="Ref" template="NiExtraData" ver1="3.0" ver2="4.2.2.0">Extra data object index. (The first in a chain)</add>
         <add name="Num Extra Data List" type="uint" ver1="10.0.1.0">The number of Extra Data objects referenced through the list.</add>
         <add name="Extra Data List" type="Ref" template="NiExtraData" arr1="Num Extra Data List" ver1="10.0.1.0">List of extra data indices.</add>
