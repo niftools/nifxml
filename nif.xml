@@ -2607,7 +2607,7 @@
         A generic extra data object.
         <add name="Name" type="string" ver1="10.0.1.0" cond="!BSExtraData">Name of this object.</add>
         <add name="Next Extra Data" type="Ref" template="NiExtraData" ver2="4.2.2.0">Block number of the next extra data object.</add>
-        <add name="Data" type="ByteArray" ver2="3.3.0.13">The extra data was sometimes stored as binary directly on NiExtraData.</add>
+        <add name="Extra Data" type="ByteArray" ver2="3.3.0.13">The extra data was sometimes stored as binary directly on NiExtraData.</add>
         <add name="Num Bytes" type="uint" ver1="4.0.0.0" ver2="4.2.2.0">Ignore binary data after 4.x as the child block will cover it.</add>
     </niobject>
 
