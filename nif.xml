@@ -2253,7 +2253,7 @@
     <niobject name="NiParticleModifier" abstract="1" inherit="NiObject" until="V10_0_1_0">
         LEGACY (pre-10.1). Abstract base class for particle system modifiers.
         <add name="Next Modifier" type="Ref" template="NiParticleModifier">Next particle modifier.</add>
-        <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="4.0.0.2">Points to the particle system controller parent.</add>
+        <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="3.3.0.13">Points to the particle system controller parent.</add>
     </niobject>
 
     <niobject name="NiPSysCollider" abstract="1" inherit="NiObject">
@@ -2607,6 +2607,8 @@
         A generic extra data object.
         <add name="Name" type="string" ver1="10.0.1.0" cond="!BSExtraData">Name of this object.</add>
         <add name="Next Extra Data" type="Ref" template="NiExtraData" ver2="4.2.2.0">Block number of the next extra data object.</add>
+        <add name="Data" type="ByteArray" ver2="3.3.0.13">The extra data was sometimes stored as binary directly on NiExtraData.</add>
+        <add name="Num Bytes" type="uint" ver1="4.0.0.0" ver2="4.2.2.0">Ignore binary data after 4.x as the child block will cover it.</add>
     </niobject>
 
     <niobject name="NiInterpolator" abstract="1" inherit="NiObject">
@@ -3021,7 +3023,7 @@
             delta = (start_time - stop_time) / sources.num_indices
         </add>
         <add name="Num Sources" type="uint" />
-        <add name="Sources" type="Ref" template="NiSourceTexture" arr1="Num Sources" ver1="4.0.0.0">The texture sources.</add>
+        <add name="Sources" type="Ref" template="NiSourceTexture" arr1="Num Sources" ver1="3.3.0.13">The texture sources.</add>
         <add name="Images" type="Ref" template="NiImage" arr1="Num Sources" ver2="3.1">The image sources</add>
     </niobject>
 
@@ -3420,7 +3422,6 @@
 
     <niobject name="NiBinaryVoxelExtraData" inherit="NiExtraData" until="V3_1">
         Voxel extra data object.
-        <add name="Unknown Int" type="uint" default="0" />
         <add name="Data" type="Ref" template="NiBinaryVoxelData" />
     </niobject>
 
@@ -3765,6 +3766,10 @@
         A NiNode used as a skeleton bone?
     </niobject>
 
+    <niobject name="NiCollisionSwitch" inherit="NiNode" until="V10_0_1_0">
+        Found in Munch's Oddysee
+    </niobject>
+
     <niobject name="AvoidNode" inherit="NiNode" versions="V4_0_0_2">
         Morrowind specific.
     </niobject>
@@ -3938,20 +3943,19 @@
         <add name="Size" type="float">Particle size</add>
         <add name="Emit Start Time" type="float">Particle emit start time</add>
         <add name="Emit Stop Time" type="float">Particle emit stop time</add>
-        <add name="Unknown Byte" type="byte" ver1="4.0.0.2" />
+        <add name="Unknown Byte" type="byte" ver1="3.3.0.13" />
         <add name="Old Emit Rate" type="uint" ver2="3.1">Particle emission rate in old files</add>
         <add name="Emit Rate" type="float" ver1="3.3.0.13">Particle emission rate (particles per second)</add>
         <add name="Lifetime" type="float">Particle lifetime</add>
         <add name="Lifetime Random" type="float">Particle lifetime random modifier</add>
-        <add name="Emit Flags" type="ushort" ver1="4.0.0.2">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
+        <add name="Emit Flags" type="ushort" ver1="3.3.0.13">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
         <add name="Start Random" type="Vector3">Particle random start translation vector</add>
         <add name="Emitter" type="Ptr" template="NiObject">This index targets the particle emitter object (TODO: find out what type of object this refers to).</add>
-        <add name="Unknown Short 2" type="ushort" ver1="4.0.0.2" />
-        <add name="Unknown Float 13" type="float" ver1="4.0.0.2" />
-        <add name="Unknown Int 1" type="uint" ver1="4.0.0.2" />
-        <add name="Unknown Int 2" type="uint" ver1="4.0.0.2" />
-        <add name="Unknown Short 3" type="ushort" ver1="4.0.0.2" />
-        <!-- <add name="Particle" type="Particle" ver2="3.1">The particle (older NIF versions only have a single particle per controller?)</add> -->
+        <add name="Unknown Short 2" type="ushort" ver1="3.3.0.13" />
+        <add name="Unknown Float 13" type="float" ver1="3.3.0.13" />
+        <add name="Unknown Int 1" type="uint" ver1="3.3.0.13" />
+        <add name="Unknown Int 2" type="uint" ver1="3.3.0.13" />
+        <add name="Unknown Short 3" type="ushort" ver1="3.3.0.13" />
         <add name="Particle Velocity" type="Vector3" ver2="3.1">Particle velocity</add>
         <add name="Particle Unknown Vector" type="Vector3" ver2="3.1" />
         <add name="Particle Lifetime" type="float" ver2="3.1">The particle's age.</add>
@@ -3960,10 +3964,10 @@
         <add name="Particle Unknown Short" type="ushort" ver2="3.1">Unknown short</add>
         <add name="Particle Vertex Id" type="ushort" ver2="3.1">Particle/vertex index matches array index</add>
 
-        <add name="Num Particles" type="ushort" ver1="4.0.0.2">Size of the following array. (Maximum number of simultaneous active particles)</add>
-        <add name="Num Valid" type="ushort" ver1="4.0.0.2">Number of valid entries in the following array. (Number of active particles at the time the system was saved)</add>
-        <add name="Particles" type="Particle" arr1="Num Particles" ver1="4.0.0.2">Individual particle modifiers?</add>
-        <add name="Unknown Link" type="Ref" template="NiObject" ver1="4.0.0.2" />
+        <add name="Num Particles" type="ushort" ver1="3.3.0.13">Size of the following array. (Maximum number of simultaneous active particles)</add>
+        <add name="Num Valid" type="ushort" ver1="3.3.0.13">Number of valid entries in the following array. (Number of active particles at the time the system was saved)</add>
+        <add name="Particles" type="Particle" arr1="Num Particles" ver1="3.3.0.13">Individual particle modifiers?</add>
+        <add name="Unknown Link" type="Ref" template="NiObject" ver1="3.3.0.13" />
         <add name="Particle Extra" type="Ref" template="NiParticleModifier">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
         <add name="Unknown Link 2" type="Ref" template="NiObject" />
         <add name="Trailer" type="byte" ver1="4.0.0.2">Trailing null byte</add>
@@ -4550,8 +4554,7 @@
     <niobject name="NiStringExtraData" inherit="NiExtraData">
         Apparently commands for an optimizer instructing it to keep things it would normally discard.
         Also refers to NiNode objects (through their name) in animation .kf files.
-        <add name="Bytes Remaining" type="uint" ver2="4.2.2.0">The number of bytes left in the record.  Equals the length of the following string + 4.</add>
-        <add name="String Data" type="string">The string.</add>
+        <add name="String Data" type="string" ver1="4.0.0.0">The string.</add>
     </niobject>
 
     <niobject name="NiStringPalette" inherit="NiObject">
@@ -4567,7 +4570,6 @@
 
     <niobject name="NiTextKeyExtraData" inherit="NiExtraData">
         Extra data, used to name different animation sequences.
-        <add name="Unknown Int 1" type="uint" ver2="4.2.2.0" default="0" />
         <add name="Num Text Keys" type="uint">The number of text keys that follow.</add>
         <add name="Text Keys" type="Key" arg="1" template="string" arr1="Num Text Keys">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
     </niobject>
@@ -4582,7 +4584,7 @@
         <add name="Texture Type" default="TEX_ENVIRONMENT_MAP" type="TextureType">The type of effect that the texture is used for.</add>
         <add name="Coordinate Generation Type" default="CG_SPHERE_MAP" type="CoordGenType">The method that will be used to generate UV coordinates for the texture effect.</add>
         <add name="Image" type="Ref" template="NiImage" ver2="3.1">Image index.</add>
-        <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="4.0.0.0">Source texture index.</add>
+        <add name="Source Texture" type="Ref" template="NiSourceTexture" ver1="3.1">Source texture index.</add>
         <add name="Enable Plane" default="0" type="byte">Determines whether a clipping plane is used.</add> <!-- Not bool as always 8-bit -->
         <add name="Plane" type="NiPlane" />
         <add name="PS2 L" type="short" default="0" ver2="10.2.0.0" />
@@ -4796,7 +4798,6 @@
         DEPRECATED (10.x), REMOVED (?)
         Not used in skinning.
         Unsure of use - perhaps for morphing animation or gravity.
-        <add name="Num Bytes" type="uint">Number of bytes in this data object.</add>
         <add name="Num Vertices" type="ushort">Number of vertices.</add>
         <add name="Weight" type="float" arr1="Num Vertices">The vertex weights.</add>
     </niobject>
@@ -5360,15 +5361,21 @@
         <add name="Rooms" type="Ptr" template="NiRoom" arr1="Num Rooms" />
     </niobject>
 
+    <niobject name="NiWall" inherit="NiNode" until="V3_3_0_13">
+        <add name="Wall Plane" type="NiPlane" />
+    </niobject>
+
     <niobject name="NiRoom" inherit="NiNode">
         NiRoom objects represent cells in a cell-portal culling system.
         <add name="Num Walls" type="int" />
-        <add name="Wall Planes" type="NiPlane" arr1="Num Walls" />
+        <add name="Walls" type="Ref" template="NiWall" arr1="Num Walls" ver2="3.3.0.13" />
+        <add name="Wall Planes" type="NiPlane" arr1="Num Walls" ver1="4.0.0.0" />
         <add name="Num In Portals" type="uint" />
         <add name="In Portals" type="Ptr" template="NiPortal" arr1="Num In Portals">The portals which see into the room.</add>
         <add name="Num Out Portals" type="uint" />
         <add name="Out Portals" type="Ptr" template="NiPortal" arr1="Num Out Portals">The portals which see out of the room.</add>
         <add name="Num Fixtures" type="uint" />
+        <!-- May actually be Ref, at least for legacy -->
         <add name="Fixtures" type="Ptr" template="NiAVObject" arr1="Num Fixtures">All geometry associated with the room.</add>
     </niobject>
 
