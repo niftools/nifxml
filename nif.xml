@@ -6626,8 +6626,8 @@
         <add name="Spawn Rate Keys" type="PSSpawnRateKey" arr1="Num Spawn Rate Keys" ver1="20.6.1.0" />
         <add name="Pre RPI" type="bool" ver1="20.6.1.0" />
         <!-- Epic Mickey -->
-        <add name="Unk Int" type="uint" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
-        <add name="Unk Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Int" type="uint" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem" since="V20_5_0_0">
@@ -6701,6 +6701,8 @@
         <add name="Shrink Time" type="float">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
         <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
         <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
+        <!-- Epic Mickey -->
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
     </niobject>
 
     <niobject name="NiPSSimulatorForcesStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
@@ -6804,7 +6806,9 @@
 
     <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of directional gravity.
+        <add name="DEM Unknown Short" type="ushort" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
         <add name="Direction" type="Vector3" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
     </niobject>
 
     <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
@@ -6857,6 +6861,8 @@
 
     <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter" since="V20_5_0_0">
         Abstract base class for particle emitters that emit particles from a volume.
+        <!-- Epic Mickey -->
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
         <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
