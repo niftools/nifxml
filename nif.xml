@@ -2179,13 +2179,13 @@
         <add name="Scale" type="Vector3" />
     </compound>
 
-    <compound name="BonePose">
+    <compound name="BonePose" versions="#FO3_AND_LATER#">
         A list of transforms for each bone in bhkPoseArray.
         <add name="Num Transforms" type="uint" />
         <add name="Transforms" type="BoneTransform" arr1="Num Transforms" />
     </compound>
 
-    <compound name="DecalVectorArray">
+    <compound name="DecalVectorArray" versions="#FO3_AND_LATER#">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <add name="Num Vectors" type="short" />
         <add name="Points" type="Vector3" arr1="Num Vectors">Vector XYZ coords</add>
@@ -2204,7 +2204,7 @@
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
     
-    <compound name="BoneLOD" size="8">
+    <compound name="BoneLOD" size="8" versions="#SKY_AND_LATER#">
         Stores Bone Level of Detail info in a BSBoneLODExtraData
         <add name="Distance" type="uint" />
         <add name="Bone Name" type="string" />
