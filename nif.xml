@@ -167,44 +167,44 @@
 
     <!--Basic Types-->
 
-    <basic name="bool" count="1">
+    <basic name="bool" countable="true">
         A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
     </basic>
 
-    <basic name="byte" count="1">
+    <basic name="byte" countable="true" size="1">
         An unsigned 8-bit integer.
     </basic>
 
-    <basic name="uint" count="1">
+    <basic name="uint" countable="true" size="4">
         An unsigned 32-bit integer.
     </basic>
 
-    <basic name="ulittle32" count="1">
+    <basic name="ulittle32" countable="true" size="4">
         A litte-endian unsigned 32-bit integer.
     </basic>
 
-    <basic name="ushort" count="1">
+    <basic name="ushort" countable="true" size="2">
         An unsigned 16-bit integer.
     </basic>
 
-    <basic name="int" count="1">
+    <basic name="int" countable="true" size="4">
         A signed 32-bit integer.
     </basic>
 
-    <basic name="short" count="1">
+    <basic name="short" countable="true" size="2">
         A signed 16-bit integer.
     </basic>
 
-    <basic name="BlockTypeIndex" count="0">
+    <basic name="BlockTypeIndex" countable="false" size="2">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
         The upper bit appears to be a flag used for PhysX block types.
     </basic>
 
-    <basic name="char" count="0">
+    <basic name="char" countable="false" size="1">
         An 8-bit character.
     </basic>
 
-    <basic name="FileVersion" count="0">
+    <basic name="FileVersion" countable="false" size="4">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
         Some widely-used versions and their hex representation:
@@ -220,42 +220,42 @@
         20.0.0.5:   0x14000005
     </basic>
 
-    <basic name="Flags" count="0">
+    <basic name="Flags" countable="false" size="2">
         A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
 
-    <basic name="float" count="0">
+    <basic name="float" countable="false" size="4">
         A standard 32-bit floating point number.
     </basic>
     
-    <basic name="hfloat" count="0">
+    <basic name="hfloat" countable="false" size="2">
         A 16-bit floating point number.
     </basic>
     
-    <basic name="HeaderString" count="0">
+    <basic name="HeaderString" countable="false">
         A variable length string that ends with a newline character (0x0A).  The string starts as follows depending on the version:
 
         Version &lt;= 10.0.1.0:  'NetImmerse File Format'
         Version &gt;= 10.1.0.0:  'Gamebryo File Format'
     </basic>
 
-    <basic name="LineString" count="0">
+    <basic name="LineString" countable="false">
         A variable length string that ends with a newline character (0x0A).
     </basic>
 
-    <basic name="Ptr" count="0" istemplate="1">
+    <basic name="Ptr" countable="false" istemplate="1" size="4">
         A signed 32-bit integer, referring to a object before this one in the hierarchy.  Examples:  Bones, gravity objects.
     </basic>
 
-    <basic name="Ref" count="0" istemplate="1">
+    <basic name="Ref" countable="false" istemplate="1" size="4">
         A signed 32-bit integer, used to refer to another object; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to objects higher up.
     </basic>
 
-    <basic name="StringOffset" count="0">
+    <basic name="StringOffset" countable="false" size="4">
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
-    <basic name="StringIndex" count="0">
+    <basic name="StringIndex" countable="false" size="4">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
