@@ -311,7 +311,7 @@
         <option value="5" name="CONST_KEY">Step function. Used for visibility keys in NiBoolData.</option>
     </enum>
 
-    <enum name="OblivionHavokMaterial" storage="uint">
+    <enum name="OblivionHavokMaterial" storage="uint" versions="#BETHESDA#">
         Bethesda Havok. Material descriptor for a Havok shape in Oblivion.
         <option value="0" name="OB_HAV_MAT_STONE">Stone</option>
         <option value="1" name="OB_HAV_MAT_CLOTH">Cloth</option>
@@ -347,7 +347,7 @@
         <option value="31" name="OB_HAV_MAT_RUBBER">Rubber</option>
     </enum>
 
-    <enum name="Fallout3HavokMaterial" storage="uint">
+    <enum name="Fallout3HavokMaterial" storage="uint" versions="#BETHESDA#">
         Bethesda Havok. Material descriptor for a Havok shape in Fallout 3 and Fallout NV.
         <option value="0" name="FO_HAV_MAT_STONE">Stone</option>
         <option value="1" name="FO_HAV_MAT_CLOTH">Cloth</option>
@@ -479,7 +479,7 @@
         <option value="127" name="FO_HAV_MAT_RUBBER_BALL_STAIRS_PLATFORM">Rubber Ball</option>
     </enum>
 
-    <enum name="SkyrimHavokMaterial" storage="uint">
+    <enum name="SkyrimHavokMaterial" storage="uint" versions="#SKY_AND_LATER#">
         Bethesda Havok. Material descriptor for a Havok shape in Skyrim.
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
         <option value="365420259" name="SKY_HAV_MAT_LIGHT_WOOD">Light Wood</option>
@@ -544,7 +544,7 @@
         <option value="4283869410" name="SKY_HAV_MAT_MATERIAL_BOULDER_MEDIUM">Material Boulder Medium</option>
     </enum>
 
-    <enum name="OblivionLayer" storage="byte">
+    <enum name="OblivionLayer" storage="byte" versions="#BETHESDA#">
         Bethesda Havok. Describes the collision layer a body belongs to in Oblivion.
         <option value="0" name="OL_UNIDENTIFIED">Unidentified (white)</option>
         <option value="1" name="OL_STATIC">Static (red)</option>
@@ -606,7 +606,7 @@
         <option value="57" name="OL_NULL">Null</option>
     </enum>
 
-    <enum name="Fallout3Layer" storage="byte">
+    <enum name="Fallout3Layer" storage="byte" versions="#BETHESDA#">
         Bethesda Havok. Describes the collision layer a body belongs to in Fallout 3 and Fallout NV.
         <option value="0" name="FOL_UNIDENTIFIED">Unidentified (white)</option>
         <option value="1" name="FOL_STATIC">Static (red)</option>
@@ -654,7 +654,7 @@
         <option value="43" name="FOL_NULL">Null (white)</option>
     </enum>
 
-    <enum name="SkyrimLayer" storage="byte">
+    <enum name="SkyrimLayer" storage="byte" versions="#SKY_AND_LATER#">
         Bethesda Havok. Describes the collision layer a body belongs to in Skyrim.
         <option value="0" name="SKYL_UNIDENTIFIED">Unidentified</option>
         <option value="1" name="SKYL_STATIC">Static</option>
@@ -706,7 +706,7 @@
         <option value="47" name="SKYL_NULL">Null</option>
     </enum>
 
-    <enum name="MoppDataBuildType" storage="byte">
+    <enum name="MoppDataBuildType" storage="byte" versions="#SKY_AND_LATER#">
         Bethesda Havok.
         A byte describing if MOPP Data is organized into chunks (PS3) or not (PC)
         <option value="0" name="BUILT_WITH_CHUNK_SUBDIVISION">Organized in chunks for PS3.</option>
@@ -936,7 +936,7 @@
         <option value="7" name="ZCOMP_NEVER">Always false. Ref value is ignored.</option>
     </enum>
 
-    <enum name="hkMotionType" storage="byte">
+    <enum name="hkMotionType" storage="byte" versions="#BETHESDA#">
         Bethesda Havok, based on hkpMotion::MotionType. Motion type of a rigid body determines what happens when it is simulated.
         <option value="0" name="MO_SYS_INVALID">Invalid</option>
         <option value="1" name="MO_SYS_DYNAMIC">A fully-simulated, movable rigid body. At construction time the engine checks the input inertia and selects MO_SYS_SPHERE_INERTIA or MO_SYS_BOX_INERTIA as appropriate.</option>
@@ -950,7 +950,7 @@
         <option value="9" name="MO_SYS_CHARACTER">A specialized motion used for character controllers</option>
     </enum>
 
-    <enum name="hkDeactivatorType" storage="byte">
+    <enum name="hkDeactivatorType" storage="byte" versions="#BETHESDA#">
         Bethesda Havok, based on hkpRigidBodyDeactivator::DeactivatorType.
         Deactivator Type determines which mechanism Havok will use to classify the body as deactivated.
         <option value="0" name="DEACTIVATOR_INVALID">Invalid</option>
@@ -958,7 +958,7 @@
         <option value="2" name="DEACTIVATOR_SPATIAL">Tells Havok to use a spatial deactivation scheme. This makes use of high and low frequencies of positional motion to determine when deactivation should occur.</option>
     </enum>
 
-    <enum name="hkSolverDeactivation" storage="byte">
+    <enum name="hkSolverDeactivation" storage="byte" versions="#BETHESDA#">
         Bethesda Havok, based on hkpRigidBodyCinfo::SolverDeactivation.
         A list of possible solver deactivation settings. This value defines how aggressively the solver deactivates objects.
         Note: Solver deactivation does not save CPU, but reduces creeping of movable objects in a pile quite dramatically.
@@ -970,7 +970,7 @@
         <option value="5" name="SOLVER_DEACTIVATION_MAX">Very fast deactivation, visible artifacts.</option>
     </enum>
 
-    <enum name="hkQualityType" storage="byte">
+    <enum name="hkQualityType" storage="byte" versions="#BETHESDA#">
         Bethesda Havok, based on hkpCollidableQualityType. Describes the priority and quality of collisions for a body,
             e.g. you may expect critical game play objects to have solid high-priority collisions so that they never sink into ground,
             or may allow penetrations for visual debris objects.
@@ -1115,7 +1115,7 @@
         <option value="5" name="HALFSPACE_BV">Half Space</option>
     </enum>
 
-    <enum name="hkResponseType" storage="byte">
+    <enum name="hkResponseType" storage="byte" versions="#BETHESDA#">
         Bethesda Havok.
         <option value="0" name="RESPONSE_INVALID">Invalid Response</option>
         <option value="1" name="RESPONSE_SIMPLE_CONTACT">Do normal collision resolution</option>
@@ -1123,7 +1123,7 @@
         <option value="3" name="RESPONSE_NONE">Do nothing, ignore all the results.</option>
     </enum>
     
-    <enum name="BSDismemberBodyPartType" storage="ushort">
+    <enum name="BSDismemberBodyPartType" storage="ushort" versions="#BETHESDA#">
         Biped bodypart data used for visibility control of triangles.  Options are Fallout 3, except where marked for Skyrim (uses SBP prefix)
         Skyrim BP names are listed only for vanilla names, different creatures have different defnitions for naming.
         <option value="0" name="BP_TORSO">Torso</option>
@@ -1226,7 +1226,7 @@
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
 	
-    <enum name="BSLightingShaderPropertyShaderType" storage="uint" prefix="ST">
+    <enum name="BSLightingShaderPropertyShaderType" storage="uint" prefix="ST" versions="#SKY_AND_LATER#">
         Values for configuring the shader type in a BSLightingShaderProperty
         <option value="0" name="Default" />
         <option value="1" name="Environment Map">Enables EnvMap Mask(TS6), EnvMap Scale</option>
@@ -1251,7 +1251,7 @@
         <option value="20" name="FO4 Dismemberment" />
     </enum>
 
-    <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV">
+    <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV" versions="#SKY_AND_LATER#">
         An unsigned 32-bit integer, describing which float variable in BSEffectShaderProperty to animate.
         <option value="0" name="EmissiveMultiple">EmissiveMultiple.</option>
         <option value="1" name="Falloff Start Angle">Falloff Start Angle (degrees).</option>
@@ -1265,12 +1265,12 @@
         <option value="9" name="V Scale">V Scale.</option>
     </enum>
 
-    <enum name="EffectShaderControlledColor" storage="uint" prefix="ECSC">
+    <enum name="EffectShaderControlledColor" storage="uint" prefix="ECSC" versions="#SKY_AND_LATER#">
         An unsigned 32-bit integer, describing which color in BSEffectShaderProperty to animate.
         <option value="0" name="Emissive Color">Emissive Color.</option>
     </enum>
 
-    <enum name="LightingShaderControlledVariable" storage="uint" prefix="LSCV">
+    <enum name="LightingShaderControlledVariable" storage="uint" prefix="LSCV" versions="#SKY_AND_LATER#">
         An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
         <option value="0" name="Refraction Strength">The amount of distortion.</option>
         <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
@@ -1284,13 +1284,13 @@
         <option value="23" name="V Scale">V Scale.</option>
     </enum>
 
-    <enum name="LightingShaderControlledColor" storage="uint" prefix="LSCC">
+    <enum name="LightingShaderControlledColor" storage="uint" prefix="LSCC" versions="#SKY_AND_LATER#">
         An unsigned 32-bit integer, describing which color in BSLightingShaderProperty to animate.
         <option value="0" name="Specular Color">Specular Color.</option>
         <option value="1" name="Emissive Color">Emissive Color.</option>
     </enum>
 
-    <enum name="hkConstraintType" storage="uint">
+    <enum name="hkConstraintType" storage="uint" versions="#BETHESDA#">
         Bethesda Havok. Describes the type of bhkConstraint.
         <option value="0" name="BallAndSocket">A ball and socket constraint.</option>
         <option value="1" name="Hinge">A hinge constraint.</option>
@@ -1423,7 +1423,7 @@
         <add name="z" type="float" default="0.0">The z-coordinate.</add>
     </compound>
 
-    <compound name="hkQuaternion">
+    <compound name="hkQuaternion" versions="#BETHESDA#">
         A quaternion as it appears in the havok objects.
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
         <add name="y" type="float" default="0.0">The y-coordinate.</add>
@@ -1488,7 +1488,7 @@
         <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
-    <compound name="hkMatrix3">
+    <compound name="hkMatrix3" versions="#BETHESDA#">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
         <add name="m11" type="float" default="1.0" />
         <add name="m12" type="float" />
@@ -1582,7 +1582,7 @@
         <add name="Interpolator ID" type="string" ver1="20.1.0.1">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
     </compound>
 
-    <compound name="ExportInfo">
+    <compound name="ExportInfo" versions="#BETHESDA#">
     	Information about how the file was exported
         <add name="Author" type="ShortString" />
         <add name="Process Script" type="ShortString" />
@@ -1707,7 +1707,7 @@
         <add name="v3" type="ushort">Third vertex index.</add>
     </compound>
 	
-	<bitflags name="VertexFlags" storage="ushort" prefix="VF">
+	<bitflags name="VertexFlags" storage="ushort" prefix="VF" versions="#SSE# #FO4#">
 		<!-- First 4 bits are unused -->
 		<option value="4" name="Vertex" />          <!-- & 16 -->
 		<option value="5" name="UVs" />             <!-- & 32 -->
@@ -1723,7 +1723,7 @@
 		<!-- Last bit unused -->
 	</bitflags>
     
-	<compound name="BSVertexData">
+	<compound name="BSVertexData" versions="#SSE# #FO4#">
 		<add name="Vertex" type="Vector3" cond="(ARG &amp; 0x4010) == 0x4010" />
 		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x4110) == 0x4110" />
 		<add name="Unknown Int" type="uint" cond="(ARG &amp; 0x4110) == 0x4010" />
@@ -1743,7 +1743,7 @@
 		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
 	</compound>
 
-	<compound name="BSVertexDataSSE">
+	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
 		<add name="Vertex" type="Vector3" cond="ARG &amp; 0x10" />
 		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x110) == 0x110" />
 		<add name="Unknown Int" type="int" cond="(ARG &amp; 0x110) == 0x10" />
@@ -1758,7 +1758,7 @@
 		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
 	</compound>
 
-    <compound name="BSVertexDesc">
+    <compound name="BSVertexDesc" versions="#SSE# #FO4#">
         <add name="VF1" type="byte" />
         <add name="VF2" type="byte" />
         <add name="VF3" type="byte" />
@@ -1830,7 +1830,7 @@
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
     </compound>
 
-	<bitflags name="FurnitureEntryPoints" storage="ushort">
+	<bitflags name="FurnitureEntryPoints" storage="ushort" versions="#BETHESDA#">
 		Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
 		<option value="0" name="Front">front entry point</option>
 		<option value="1" name="Behind">behind entry point</option>
@@ -1839,14 +1839,14 @@
 		<option value="4" name="Up">up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
 	</bitflags>
 
-	<enum name="AnimationType" storage="ushort">
+	<enum name="AnimationType" storage="ushort" versions="#BETHESDA#">
 		Bethesda Animation. Animation type used on this position. This specifies the function of this position.
 		<option value="1" name="Sit">Actor use sit animation.</option>
 		<option value="2" name="Sleep">Actor use sleep animation.</option>
 		<option value="4" name="Lean">Used for lean animations?</option>
 	</enum>
 
-    <compound name="FurniturePosition">
+    <compound name="FurniturePosition" versions="#BETHESDA#">
         Bethesda Animation. Describes a furniture position?
         <add name="Offset" type="Vector3">Offset of furniture marker.</add>
         <add name="Orientation" type="ushort" vercond="User Version 2 &lt;= 34">Furniture marker orientation.</add>
@@ -1857,7 +1857,7 @@
         <add name="Entry Properties" type="FurnitureEntryPoints" vercond="User Version 2 &gt; 34" />
     </compound>
 
-    <compound name="TriangleData">
+    <compound name="TriangleData" versions="#BETHESDA#">
         Bethesda Havok. A triangle with extra data used for physics.
         <add name="Triangle" type="Triangle">The triangle.</add>
         <add name="Welding Info" type="ushort">Additional havok information on how triangles are welded.</add>
@@ -1894,7 +1894,7 @@
         <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
     </compound>
 
-    <compound name="HavokFilter">
+    <compound name="HavokFilter" versions="#BETHESDA#">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
         <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &lt;= 34)">The layer the collision belongs to.</add>
@@ -1942,7 +1942,7 @@
         <add name="Group" type="ushort" />
     </compound>
 
-    <compound name="HavokMaterial">
+    <compound name="HavokMaterial" versions="#BETHESDA#">
         Bethesda Havok. Material wrapper for varying material enums by game.
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The material of the shape.</add>
@@ -1950,14 +1950,14 @@
         <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 34)">The material of the shape.</add>
     </compound>
 
-    <compound name="OblivionSubShape">
+    <compound name="OblivionSubShape" versions="#BETHESDA#">
         Bethesda Havok. Havok Information for packed TriStrip shapes.
         <add name="Havok Filter" type="HavokFilter" />
         <add name="Num Vertices" type="uint">The number of vertices that form this sub shape.</add>
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
-    <compound name="bhkPositionConstraintMotor">
+    <compound name="bhkPositionConstraintMotor" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0.8">Relative stiffness</add>
@@ -1967,7 +1967,7 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkVelocityConstraintMotor">
+    <compound name="bhkVelocityConstraintMotor" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0">Relative stiffness</add>
@@ -1976,7 +1976,7 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkSpringDamperConstraintMotor">
+    <compound name="bhkSpringDamperConstraintMotor" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Spring Constant" type="float" default="0">The spring constant in N/m</add>
@@ -1984,21 +1984,21 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
     
-    <enum name="MotorType" storage="byte">
+    <enum name="MotorType" storage="byte" versions="#BETHESDA#">
         <option value="0" name="MOTOR_NONE" />
         <option value="1" name="MOTOR_POSITION" />
         <option value="2" name="MOTOR_VELOCITY" />
         <option value="3" name="MOTOR_SPRING" />
     </enum>
 
-    <compound name="MotorDescriptor">
+    <compound name="MotorDescriptor" versions="#BETHESDA#">
         <add name="Type" type="MotorType" default="MOTOR_NONE" />
         <add name="Position Motor" type="bhkPositionConstraintMotor" cond="Type == 1" />
         <add name="Velocity Motor" type="bhkVelocityConstraintMotor" cond="Type == 2" />
         <add name="Spring Damper Motor" type="bhkSpringDamperConstraintMotor" cond="Type == 3" />
     </compound>
 
-    <compound name="RagdollDescriptor">
+    <compound name="RagdollDescriptor" versions="#BETHESDA#">
         This constraint defines a cone in which an object can rotate. The shape of the cone can be controlled in two (orthogonal) directions.
         <!-- Oblivion and Fallout 3, Havok 550 -->
         <add name="Pivot A" type="Vector4" vercond="User Version 2 &lt;= 16">The point where the constraint is attached to its parent rigidbody.</add>
@@ -2028,7 +2028,7 @@
         <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
-    <compound name="LimitedHingeDescriptor">
+    <compound name="LimitedHingeDescriptor" versions="#BETHESDA#">
         This constraint allows rotation about a specified axis, limited by specified boundaries.
     
         <!-- Oblivion and Fallout 3, Havok 550 -->
@@ -2058,7 +2058,7 @@
         <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
-    <compound name="HingeDescriptor">
+    <compound name="HingeDescriptor" versions="#BETHESDA#">
     	This constraint allows rotation about a specified axis. 
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot point around which the object will rotate.</add>
@@ -2080,12 +2080,12 @@
         <!-- no friction -->
     </compound>
 
-    <compound name="BallAndSocketDescriptor">
+    <compound name="BallAndSocketDescriptor" versions="#BETHESDA#">
         <add name="Pivot A" type="Vector4">Pivot point in the local space of entity A.</add>
         <add name="Pivot B" type="Vector4">Pivot point in the local space of entity B.</add>
     </compound>
 
-    <compound name="PrismaticDescriptor">
+    <compound name="PrismaticDescriptor" versions="#BETHESDA#">
         <!-- Oblivion -->
         <add name="Pivot A" type="Vector4" ver2="20.0.0.5">Pivot.</add>
         <add name="Rotation A" type="Vector4" ver2="20.0.0.5">Rotation axis.</add>
@@ -2114,7 +2114,7 @@
         <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="User Version 2 &gt; 16" />
     </compound>
 
-    <compound name="StiffSpringDescriptor">
+    <compound name="StiffSpringDescriptor" versions="#BETHESDA#">
         <add name="Pivot A" type="Vector4" />
         <add name="Pivot B" type="Vector4" />
         <add name="Length" type="float" />
@@ -2192,13 +2192,13 @@
         <add name="Normals" type="Vector3" arr1="Num Vectors">Vector Normals</add>
     </compound>
 
-    <bitflags name="BSPartFlag" storage="ushort">
+    <bitflags name="BSPartFlag" storage="ushort" versions="#BETHESDA#">
         Editor flags for the Body Partitions. 
         <option value="0" name="PF_EDITOR_VISIBLE">Visible in Editor</option>
         <option value="8" name="PF_START_NET_BONESET">Start a new shared boneset.  It is expected this BoneSet and the following sets in the Skin Partition will have the same bones.</option>
     </bitflags>
 
-    <compound name="BodyPartList">
+    <compound name="BodyPartList" versions="#BETHESDA#">
         Body part list for DismemberSkinInstance
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
@@ -2210,13 +2210,13 @@
         <add name="Bone Name" type="string" />
     </compound>
 
-    <compound name="bhkCMSDMaterial">
+    <compound name="bhkCMSDMaterial" versions="#SKY_AND_LATER#">
         Per-chunk material, used in bhkCompressedMeshShapeData
         <add name="Material" type="SkyrimHavokMaterial" />
         <add name="Filter" type="HavokFilter" />
     </compound>
 
-    <compound name="bhkCMSDBigTris">
+    <compound name="bhkCMSDBigTris" versions="#SKY_AND_LATER#">
         Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
         <add name="Triangle 1" type="ushort" />
         <add name="Triangle 2" type="ushort" />
@@ -2225,13 +2225,13 @@
         <add name="Welding Info" type="ushort" />
     </compound>
     
-    <compound name="bhkCMSDTransform">
+    <compound name="bhkCMSDTransform" versions="#SKY_AND_LATER#">
         A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
         <add name="Rotation" type="hkQuaternion">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
     </compound>
     
-    <compound name="bhkCMSDChunk">
+    <compound name="bhkCMSDChunk" versions="#SKY_AND_LATER#">
         Defines subshape chunks in bhkCompressedMeshShapeData
         <add name="Translation" type="Vector4" />
         <add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
@@ -2247,7 +2247,7 @@
         <add name="Welding Info" type="ushort" arr1="Num Welding Info" />
     </compound>
 
-    <compound name="MalleableDescriptor">
+    <compound name="MalleableDescriptor" versions="#BETHESDA#">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
         <add name="Num Entities" type="uint" default="2">Always 2 (Hardcoded). Number of bodies affected by this constraint.</add>
         <add name="Entity A" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
@@ -2264,7 +2264,7 @@
         <add name="Strength" type="float" ver1="20.2.0.7" /><!-- In GECK and Creation Kit described as Strength -->
     </compound>
 
-    <compound name="ConstraintData">
+    <compound name="ConstraintData" versions="#BETHESDA#">
         <add name="Type" type="hkConstraintType">Type of constraint.</add>
         <add name="Num Entities 2" type="uint" default="2">Always 2 (Hardcoded). Number of bodies affected by this constraint.</add>
         <add name="Entity A" type="Ptr" template="bhkEntity">Usually NONE. The entity affected by this constraint.</add>
@@ -2349,28 +2349,28 @@
         <add name="Collider Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the collider.</add>
     </niobject>
 
-    <enum name="BroadPhaseType" storage="byte">
+    <enum name="BroadPhaseType" storage="byte" versions="#BETHESDA#">
         <option value="0" name="BROAD_PHASE_INVALID" />
         <option value="1" name="BROAD_PHASE_ENTITY" />
         <option value="2" name="BROAD_PHASE_PHANTOM" />
         <option value="3" name="BROAD_PHASE_BORDER" />
     </enum>
 
-    <compound name="hkWorldObjCinfoProperty">
+    <compound name="hkWorldObjCinfoProperty" versions="#BETHESDA#">
         <add name="Data" type="uint" default="0" />
         <add name="Size" type="uint" default="0" />
         <add name="Capacity and Flags" type="uint" default="0x80000000" />
     </compound>
 
-    <niobject name="bhkRefObject" abstract="1" inherit="NiObject">
+    <niobject name="bhkRefObject" abstract="1" inherit="NiObject" versions="#BETHESDA#">
         The base type of most Bethesda-specific Havok-related NIF objects.
     </niobject>
 
-    <niobject name="bhkSerializable" abstract="1" inherit="bhkRefObject">
+    <niobject name="bhkSerializable" abstract="1" inherit="bhkRefObject" versions="#BETHESDA#">
         Havok objects that can be saved and loaded from disk?
     </niobject>
 
-    <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable">
+    <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
@@ -2381,25 +2381,25 @@
         <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
 
-    <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject">
+    <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject" versions="#BETHESDA#">
         Havok object that do not react with other objects when they collide (causing deflection, etc.) but still trigger collision notifications to the game.  Possible uses are traps, portals, AI fields, etc.
     </niobject>
 
-    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkPhantom">
+    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkPhantom" versions="#BETHESDA#">
         A Havok phantom that uses a Havok shape object for its collision volume instead of just a bounding box.
     </niobject>
 
-    <niobject name="bhkSimpleShapePhantom" inherit="bhkShapePhantom">
+    <niobject name="bhkSimpleShapePhantom" inherit="bhkShapePhantom" versions="#BETHESDA#">
         Unknown shape.
         <add name="Unused 2" type="byte" arr1="8">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44" />
     </niobject>
 
-    <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject">
+    <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject" versions="#BETHESDA#">
         A havok node, describes physical properties.
     </niobject>
 
-    <niobject name="bhkRigidBody" inherit="bhkEntity">
+    <niobject name="bhkRigidBody" inherit="bhkEntity" versions="#BETHESDA#">
         This is the default body type for all "normal" usable and static world objects. The "T" suffix
         marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
         properties. Because the properties are equal, a bhkRigidBody may be renamed into a bhkRigidBodyT and vice-versa.
@@ -2457,59 +2457,59 @@
         <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
     </niobject>
 
-    <niobject name="bhkRigidBodyT" inherit="bhkRigidBody">
+    <niobject name="bhkRigidBodyT" inherit="bhkRigidBody" versions="#BETHESDA#">
         The "T" suffix marks this body as active for translation and rotation.
     </niobject>
 
-    <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable">
+    <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
         Describes a physical constraint.
         <add name="Num Entities" type="uint">Number of bodies affected by this constraint.</add>
         <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">The entities affected by this constraint.</add>
         <add name="Priority" type="uint" default="1">Usually 1. Higher values indicate higher priority of this constraint?</add>
     </niobject>
 
-    <niobject name="bhkLimitedHingeConstraint" inherit="bhkConstraint">
+    <niobject name="bhkLimitedHingeConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         Hinge constraint.
         <add name="Limited Hinge" type="LimitedHingeDescriptor">Describes a limited hinge constraint</add>
     </niobject>
 
-    <niobject name="bhkMalleableConstraint" inherit="bhkConstraint">
+    <niobject name="bhkMalleableConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A malleable constraint.
         <add name="Malleable" type="MalleableDescriptor">Constraint within constraint.</add>
     </niobject>
 
-    <niobject name="bhkStiffSpringConstraint" inherit="bhkConstraint">
+    <niobject name="bhkStiffSpringConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A spring constraint.
         <add name="Stiff Spring" type="StiffSpringDescriptor">Stiff Spring constraint.</add>
     </niobject>
 
-    <niobject name="bhkRagdollConstraint" inherit="bhkConstraint">
+    <niobject name="bhkRagdollConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         Ragdoll constraint.
         <add name="Ragdoll" type="RagdollDescriptor">Ragdoll constraint.</add>
     </niobject>
 
-    <niobject name="bhkPrismaticConstraint" inherit="bhkConstraint">
+    <niobject name="bhkPrismaticConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A prismatic constraint.
         <add name="Prismatic" type="PrismaticDescriptor">Describes a prismatic constraint</add>
     </niobject>
 
-    <niobject name="bhkHingeConstraint" inherit="bhkConstraint">
+    <niobject name="bhkHingeConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A hinge constraint.
         <add name="Hinge" type="HingeDescriptor">Hinge constraing.</add>
     </niobject>
 
-    <niobject name="bhkBallAndSocketConstraint" inherit="bhkConstraint">
+    <niobject name="bhkBallAndSocketConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A Ball and Socket Constraint.
         <add name="Ball and Socket" type="BallAndSocketDescriptor">Describes a ball and socket constraint</add>
     </niobject>
 
-    <compound name="ConstraintInfo">
+    <compound name="ConstraintInfo" versions="#BETHESDA#">
         Two Vector4 for pivot in A and B.
         <add name="Pivot In A" type="Vector4" />
         <add name="Pivot In B" type="Vector4" />
     </compound>
 
-    <niobject name="bhkBallSocketConstraintChain" inherit="bhkSerializable">
+    <niobject name="bhkBallSocketConstraintChain" inherit="bhkSerializable" versions="#BETHESDA#">
         A Ball and Socket Constraint chain.
         <add name="Num Pivots" type="uint">Number of pivot points. Divide by 2 to get the number of constraints.</add>
         <add name="Pivots" type="ConstraintInfo" arr1="Num Pivots / 2">Two pivot points A and B for each constraint.</add>
@@ -2525,11 +2525,11 @@
         <add name="Priority" type="uint" />
     </niobject>
 
-    <niobject name="bhkShape" abstract="1" inherit="bhkSerializable">
+    <niobject name="bhkShape" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
         A Havok Shape?
     </niobject>
 
-    <niobject name="bhkTransformShape" inherit="bhkShape">
+    <niobject name="bhkTransformShape" inherit="bhkShape" versions="#BETHESDA#">
         Transforms a shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
@@ -2538,21 +2538,21 @@
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
-    <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape">
+    <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
         A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
-    <niobject name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape">
+    <niobject name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape" versions="#BETHESDA#">
         A havok shape.
     </niobject>
 
-    <niobject name="bhkSphereShape" inherit="bhkConvexShape">
+    <niobject name="bhkSphereShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A sphere.
     </niobject>
 
-    <niobject name="bhkCapsuleShape" inherit="bhkConvexShape">
+    <niobject name="bhkCapsuleShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A capsule.
         <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
@@ -2561,14 +2561,14 @@
         <add name="Radius 2" type="float">Matches second capsule radius.</add>
     </niobject>
 
-    <niobject name="bhkBoxShape" inherit="bhkConvexShape">
+    <niobject name="bhkBoxShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A box.
         <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="Dimensions" type="Vector3">A cube stored in Half Extents. A unit cube (1.0, 1.0, 1.0) would be stored as 0.5, 0.5, 0.5.</add>
         <add name="Unused Float" type="float">Unused as Havok stores the Half Extents as hkVector4 with the W component unused.</add>
     </niobject>
 
-    <niobject name="bhkConvexVerticesShape" inherit="bhkConvexShape">
+    <niobject name="bhkConvexVerticesShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A convex shape built from vertices. Note that if the shape is used in
         a non-static object (such as clutter), then they will simply fall
         through ground when they are under a bhkListShape.
@@ -2581,18 +2581,18 @@
     </niobject>
 
     <!--Should inherit from bhkConvexShape according to hierarchy, but seems to be exactly the same as bhkTransformShape.-->
-    <niobject name="bhkConvexTransformShape" inherit="bhkTransformShape">
+    <niobject name="bhkConvexTransformShape" inherit="bhkTransformShape" versions="#BETHESDA#">
         A convex transformed shape?
     </niobject>
 
-    <niobject name="bhkConvexSweepShape" inherit="bhkShape">
+    <niobject name="bhkConvexSweepShape" inherit="bhkShape" versions="V10_0_1_0">
         <add name="Shape" type="Ref" template="bhkShape" />
         <add name="Material" type="HavokMaterial" />
         <add name="Radius" type="float" />
         <add name="Unknown" type="Vector3" />
     </niobject>
 
-    <niobject name="bhkMultiSphereShape" inherit="bhkSphereRepShape">
+    <niobject name="bhkMultiSphereShape" inherit="bhkSphereRepShape" versions="#BETHESDA#">
         Unknown.
         <add name="Unknown Float 1" type="float" />
         <add name="Unknown Float 2" type="float" />
@@ -2600,11 +2600,11 @@
         <add name="Spheres" type="NiBound" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
     </niobject>
 
-    <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape">
+    <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
         A tree-like Havok data structure stored in an assembly-like binary code?
     </niobject>
 
-    <niobject name="bhkMoppBvTreeShape" inherit="bhkBvTreeShape">
+    <niobject name="bhkMoppBvTreeShape" inherit="bhkBvTreeShape" versions="#BETHESDA#">
         Memory optimized partial polytope bounding volume tree shape (not an entity).
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Unused" type="uint" arr1="3">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</add>
@@ -2617,11 +2617,11 @@
     </niobject>
 
 
-    <niobject name="bhkShapeCollection" abstract="1" inherit="bhkShape">
+    <niobject name="bhkShapeCollection" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
         Havok collision object that uses multiple shapes?
     </niobject>
 
-    <niobject name="bhkListShape" inherit="bhkShapeCollection">
+    <niobject name="bhkListShape" inherit="bhkShapeCollection" versions="#BETHESDA#">
         A list of shapes.
 
         Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a
@@ -2646,7 +2646,7 @@
     XXX not completely decoded, also the 4 dummy separator bytes seem
     to be missing from nifs that have this block
     -->
-    <niobject name="bhkMeshShape" inherit="bhkShape">
+    <niobject name="bhkMeshShape" inherit="bhkShape" versions="V10_0_1_0">
         <add name="Unknowns" type="uint" arr1="2" />
         <add name="Radius" type="float" />
         <add name="Unused 2" type="byte" arr1="8" />
@@ -2658,7 +2658,7 @@
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data" ver2="10.0.1.0">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
     </niobject>
 
-    <niobject name="bhkPackedNiTriStripsShape" inherit="bhkShapeCollection">
+    <niobject name="bhkPackedNiTriStripsShape" inherit="bhkShapeCollection" versions="#BETHESDA#">
         A shape constructed from strips data.
         <add name="Num Sub Shapes" type="ushort" ver2="20.0.0.5" />
         <add name="Sub Shapes" type="OblivionSubShape" arr1="Num Sub Shapes" ver2="20.0.0.5" />
@@ -2672,7 +2672,7 @@
         <add name="Data" type="Ref" template="hkPackedNiTriStripsData" />
     </niobject>
 
-    <niobject name="bhkNiTriStripsShape" inherit="bhkShapeCollection">
+    <niobject name="bhkNiTriStripsShape" inherit="bhkShapeCollection" versions="#BETHESDA#">
         A shape constructed from a bunch of strips.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" default="0.1" />
@@ -2849,7 +2849,7 @@
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1" />
     </niobject>
 
-    <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO">
+    <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO" versions="#BETHESDA#">
         bhkNiCollisionObject flags. The flags 0x2, 0x100, and 0x200 are not seen in any NIF nor get/set by the engine.
         <option value="0" name="ACTIVE" />
         <!--<option value="1" name="UNK1" />-->
@@ -3274,7 +3274,7 @@
         <option value="15" name="Unk32768" />
     </bitflags>
     
-    <bitflags name="BSVectorFlags" storage="ushort" prefix="BSVF">
+    <bitflags name="BSVectorFlags" storage="ushort" prefix="BSVF" versions="#BETHESDA#">
         <option value="0" name="Has_UV" />
         <option value="1" name="Unk2" />
         <option value="2" name="Unk4" />
@@ -3349,28 +3349,28 @@
         <add name="Keys" type="uint">Seems to be always zero.</add>
     </niobject>
 
-    <niobject name="BSBound" inherit="NiExtraData">
+    <niobject name="BSBound" inherit="NiExtraData" versions="#BETHESDA#">
         Bethesda-specific collision bounding box for skeletons.
         <add name="Center" type="Vector3">Center of the bounding box.</add>
         <add name="Dimensions" type="Vector3">Dimensions of the bounding box from center.</add>
     </niobject>
 
-    <niobject name="BSFurnitureMarker" inherit="NiExtraData">
+    <niobject name="BSFurnitureMarker" inherit="NiExtraData" versions="#BETHESDA#">
         Unknown. Marks furniture sitting positions?
         <add name="Num Positions" type="uint" />
         <add name="Positions" type="FurniturePosition" arr1="Num Positions" />
     </niobject>
 
-    <niobject name="BSParentVelocityModifier" inherit="NiPSysModifier">
+    <niobject name="BSParentVelocityModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         Particle modifier that adds a blend of object space translation and rotation to particles born in world space.
         <add name="Damping" type="float">Amount of blending?</add>
     </niobject>
 
-    <niobject name="BSPSysArrayEmitter" inherit="NiPSysVolumeEmitter">
+    <niobject name="BSPSysArrayEmitter" inherit="NiPSysVolumeEmitter" versions="#BETHESDA#">
         Particle emitter that uses a node, its children and subchildren to emit from.  Emission will be evenly spread along points from nodes leading to their direct parents/children only.
     </niobject>
 
-    <niobject name="BSWindModifier" inherit="NiPSysModifier">
+    <niobject name="BSWindModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         Particle Modifier that uses the wind value from the gamedata to alter the path of particles.
         <add name="Strength" type="float">The amount of force wind will have on particles.</add>
     </niobject>
@@ -3599,7 +3599,7 @@
         <add name="Scale Half Range" type="float" default="3.402823466e+38" />
     </niobject>
 	
-	<niobject name="BSRotAccumTransfInterpolator" inherit="NiTransformInterpolator">
+	<niobject name="BSRotAccumTransfInterpolator" inherit="NiTransformInterpolator" versions="#BETHESDA#">
 	</niobject>
 
     <niobject name="NiBSplineData" inherit="NiObject">
@@ -3750,7 +3750,7 @@
         <add name="Integer Data" type="uint">The value of the extra data.</add>
     </niobject>
 
-    <niobject name="BSXFlags" inherit="NiIntegerExtraData">
+    <niobject name="BSXFlags" inherit="NiIntegerExtraData" versions="#BETHESDA#">
         Controls animation and collision.  Integer holds flags:
         Bit 0 : enable havok, bAnimated(Skyrim)
         Bit 1 : enable collision, bHavok(Skyrim)
@@ -3774,7 +3774,7 @@
         <add name="Data" type="uint" arr1="Num Integers">Integers.</add>
     </niobject>
 
-    <niobject name="BSKeyframeController" inherit="NiKeyframeController">
+    <niobject name="BSKeyframeController" inherit="NiKeyframeController" versions="#BETHESDA#">
         An extended keyframe controller.
         <add name="Data 2" type="Ref" template="NiKeyframeData">A link to more keyframe data.</add>
     </niobject>
@@ -4274,24 +4274,24 @@
         <add name="Meshes" type="Ref" template="NiAVObject" arr1="Num Meshes" />
     </niobject>
     
-    <niobject name="BSPSysInheritVelocityModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysInheritVelocityModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         <add name="Inherit Object" type="Ptr" template="NiAVObject" />
         <add name="Chance To Inherit" type="float" />
         <add name="Velocity Multiplier" type="float" />
         <add name="Velocity Variation" type="float" />
     </niobject>
     
-    <niobject name="BSPSysHavokUpdateModifier" inherit="NiPSysMeshUpdateModifier">
+    <niobject name="BSPSysHavokUpdateModifier" inherit="NiPSysMeshUpdateModifier" versions="#BETHESDA#">
         <add name="Modifier" type="Ref" template="NiPSysModifier" />
     </niobject>
 
-    <niobject name="BSPSysRecycleBoundModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysRecycleBoundModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         <add name="Bound Offset" type="Vector3" />
         <add name="Bound Extent" type="Vector3" />
         <add name="Bound Object" type="Ptr" template="NiAVObject" />
     </niobject> 
     
-    <niobject name="BSPSysSubTexModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysSubTexModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         Similar to a Flip Controller, this handles particle texture animation on a single texture atlas
         <add name="Start Frame" type="uint">Starting frame/position on atlas</add>
         <add name="Start Frame Fudge" type="float">Random chance to start on a different frame?</add>
@@ -4393,14 +4393,14 @@
         <add name="Frequency" type="float">How many turbulence updates per second.</add>
     </niobject>
 
-    <niobject name="BSPSysLODModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysLODModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         <add name="LOD Begin Distance" type="float" default="0.1" />
         <add name="LOD End Distance" type="float" default="0.7" />
         <add name="End Emit Scale" type="float" default="0.2" />
         <add name="End Size" type="float" default="1.0" />
     </niobject>
     
-    <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysScaleModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         <add name="Num Scales" type="uint" />
         <add name="Scales" type="float" arr1="Num Scales" />
     </niobject>
@@ -5471,11 +5471,11 @@
         <add name="Adjoiner" type="Ptr" template="NiNode">Root of the scenegraph which is to be seen through this portal.</add>
     </niobject>
 
-    <niobject name="BSFadeNode" inherit="NiNode">
+    <niobject name="BSFadeNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-specific fade node.
     </niobject>
 
-    <enum name="BSShaderType" storage="uint">
+    <enum name="BSShaderType" storage="uint" versions="#FO3#">
         The type of animation interpolation (blending) that will be used on the associated key frames.
         <option value="0" name="SHADER_TALL_GRASS">Tall Grass Shader</option>
         <option value="1" name="SHADER_DEFAULT">Standard Lighting Shader</option>
@@ -5487,7 +5487,7 @@
         <option value="33" name="SHADER_NOLIGHTING">No Lighting Shader</option>
     </enum>
     
-    <bitflags name="BSShaderFlags" storage="uint" prefix="F3SF1">
+    <bitflags name="BSShaderFlags" storage="uint" prefix="F3SF1" versions="#FO3#">
         Shader Property Flags
         <option value="0" name="Specular">Enables Specularity</option>
         <option value="1" name="Skinned">Required For Skinned Meshes</option>
@@ -5523,7 +5523,7 @@
         <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
 
-    <bitflags name="BSShaderFlags2" storage="uint" prefix="F3SF2">
+    <bitflags name="BSShaderFlags2" storage="uint" prefix="F3SF2" versions="#FO3#">
         Shader Property Flags 2
         <option value="0" name="ZBuffer_Write">ZBuffer Write</option>
         <option value="1" name="LOD_Landscape">LOD Landscape</option>
@@ -5559,7 +5559,7 @@
         <option value="31" name="Unknown10">Unknown</option>
     </bitflags>
     
-    <niobject name="BSShaderProperty" inherit="NiShadeProperty">
+    <niobject name="BSShaderProperty" inherit="NiShadeProperty" versions="#FO3_AND_LATER#">
         Bethesda-specific property.
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" vercond="(User Version 2 &lt;= 34)" />
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" vercond="(User Version 2 &lt;= 34)" />
@@ -5567,12 +5567,12 @@
         <add name="Environment Map Scale" type="float" default="1.0" vercond="(User Version 2 &lt;= 34)">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
-    <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty">
+    <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" vercond="(User Version 2 &lt;= 34)">How to handle texture borders.</add>
     </niobject>
 
-    <niobject name="BSShaderNoLightingProperty" inherit="BSShaderLightingProperty">
+    <niobject name="BSShaderNoLightingProperty" inherit="BSShaderLightingProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">The texture glow map.</add>
         <add name="Falloff Start Angle" type="float" default="1.0" vercond="(User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
@@ -5581,7 +5581,7 @@
         <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="(User Version 2 &gt; 26)">Alpha falloff multiplier at end angle</add>
     </niobject>
 
-    <niobject name="BSShaderPPLightingProperty" inherit="BSShaderLightingProperty">
+    <niobject name="BSShaderPPLightingProperty" inherit="BSShaderLightingProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
         <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
@@ -5593,29 +5593,29 @@
     </niobject>
 
     <!-- Skyrim specific Node -->
-    <niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController">
+    <niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController" versions="#SKY_AND_LATER#">
         This controller is used to animate float variables in BSEffectShaderProperty.
         <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
     </niobject>
 	
-	<niobject name="BSEffectShaderPropertyColorController" inherit="NiPoint3InterpController">
+	<niobject name="BSEffectShaderPropertyColorController" inherit="NiPoint3InterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate colors in BSEffectShaderProperty.
 		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
 	</niobject>
 	
-	<niobject name="BSLightingShaderPropertyFloatController" inherit="NiFloatInterpController">
+	<niobject name="BSLightingShaderPropertyFloatController" inherit="NiFloatInterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate float variables in BSLightingShaderProperty.
 		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
 	</niobject>
 	
-	<niobject name="BSLightingShaderPropertyColorController" inherit="NiPoint3InterpController">
+	<niobject name="BSLightingShaderPropertyColorController" inherit="NiPoint3InterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate colors in BSLightingShaderProperty.
 		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
 	</niobject>	
 	
-	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiFloatInterpController" />
+	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiFloatInterpController" versions="#BETHESDA#" />
 	
-	<niobject name="BSProceduralLightningController" inherit="NiTimeController">
+	<niobject name="BSProceduralLightningController" inherit="NiTimeController" versions="#BETHESDA#">
     Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.
     First interpolator controls Generation.
         <add name="Interpolator 1: Generation" type="Ref" template="NiInterpolator">References generation interpolator.</add>
@@ -5641,7 +5641,7 @@
         <add name="Shader Property" type="Ref" template="BSShaderProperty">Reference to a shader property.</add>
 	</niobject>
 
-   <niobject name="BSShaderTextureSet" inherit="NiObject">
+   <niobject name="BSShaderTextureSet" inherit="NiObject" versions="#BETHESDA#">
         Bethesda-specific Texture Set.
         <add name="Num Textures" type="int" default="6" />
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
@@ -5656,11 +5656,11 @@
         </add>
     </niobject>
 
-    <niobject name="WaterShaderProperty" inherit="BSShaderProperty">
+    <niobject name="WaterShaderProperty" inherit="BSShaderProperty" versions="#FO3_AND_LATER#">
         Bethesda-specific property. Found in Fallout3
     </niobject>
 
-    <enum name="SkyObjectType" storage="uint">
+    <enum name="SkyObjectType" storage="uint" versions="#BETHESDA#">
         Sets what sky function this object fulfills in BSSkyShaderProperty or SkyShaderProperty.
         <option value="0" name="BSSM_SKY_TEXTURE">BSSM_Sky_Texture</option>
         <option value="1" name="BSSM_SKY_SUNGLARE">BSSM_Sky_Sunglare</option>
@@ -5669,43 +5669,43 @@
         <option value="5" name="BSSM_SKY_STARS">BSSM_Sky_Stars</option>
         <option value="7" name="BSSM_SKY_MOON_STARS_MASK">BSSM_Sky_Moon_Stars_Mask</option>
     </enum>
-    <niobject name="SkyShaderProperty" inherit="BSShaderLightingProperty">
+    <niobject name="SkyShaderProperty" inherit="BSShaderLightingProperty" versions="#BETHESDA#">
         Bethesda-specific property. Found in Fallout3
         <add name="File Name" type="SizedString">The texture.</add>
         <add name="Sky Object Type" type="SkyObjectType">Sky Object Type</add>
     </niobject>
 
-    <niobject name="TileShaderProperty" inherit="BSShaderLightingProperty">
+    <niobject name="TileShaderProperty" inherit="BSShaderLightingProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">Texture file name</add>
     </niobject>
 
-    <niobject name="DistantLODShaderProperty" inherit="BSShaderProperty">
+    <niobject name="DistantLODShaderProperty" inherit="BSShaderProperty" versions="#BETHESDA#">
         Bethesda-specific property.
     </niobject>
 
-    <niobject name="BSDistantTreeShaderProperty" inherit="BSShaderProperty">
+    <niobject name="BSDistantTreeShaderProperty" inherit="BSShaderProperty" versions="#FO3_AND_LATER#">
         Bethesda-specific property.
     </niobject>
 
-    <niobject name="TallGrassShaderProperty" inherit="BSShaderProperty">
+    <niobject name="TallGrassShaderProperty" inherit="BSShaderProperty" versions="#BETHESDA#">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">Texture file name</add>
     </niobject>
 
-    <niobject name="VolumetricFogShaderProperty" inherit="BSShaderProperty">
+    <niobject name="VolumetricFogShaderProperty" inherit="BSShaderProperty" versions="#FO3_AND_LATER#">
         Bethesda-specific property.
     </niobject>
 
-    <niobject name="HairShaderProperty" inherit="BSShaderProperty">
+    <niobject name="HairShaderProperty" inherit="BSShaderProperty" versions="#BETHESDA#">
         Bethesda-specific property.
     </niobject>
 
-    <niobject name="Lighting30ShaderProperty" inherit="BSShaderPPLightingProperty">
+    <niobject name="Lighting30ShaderProperty" inherit="BSShaderPPLightingProperty" versions="#BETHESDA#">
         Bethesda-specific property.
     </niobject>
 
-    <bitflags name="SkyrimShaderPropertyFlags1" storage="uint" prefix="SLSF1">
+    <bitflags name="SkyrimShaderPropertyFlags1" storage="uint" prefix="SLSF1" versions="#SKY# #SSE#">
         Skyrim Shader Property Flags 1
         <option value="0" name="Specular">Enables Specularity</option>
         <option value="1" name="Skinned">Required For Skinned Meshes.</option>
@@ -5741,7 +5741,7 @@
         <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
     
-    <bitflags name="SkyrimShaderPropertyFlags2" storage="uint" prefix="SLSF2">
+    <bitflags name="SkyrimShaderPropertyFlags2" storage="uint" prefix="SLSF2" versions="#SKY# #SSE#">
         Skyrim Shader Property Flags 2
         <option value="0" name="ZBuffer_Write">Enables writing to the Z-Buffer</option>
         <option value="1" name="LOD_Landscape"></option>
@@ -5777,7 +5777,7 @@
         <option value="31" name="HD_LOD_Objects"></option>
     </bitflags>
 
-    <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint" prefix="F4SF1">
+    <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint" prefix="F4SF1" versions="#FO4#">
         Fallout 4 Shader Property Flags 1
         <option value="0" name="Specular" />
         <option value="1" name="Skinned" />
@@ -5813,7 +5813,7 @@
         <option value="31" name="ZBuffer_Test" />
     </bitflags>
     
-    <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint" prefix="F4SF2">
+    <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint" prefix="F4SF2" versions="#FO4#">
         Fallout 4 Shader Property Flags 2
         <option value="0" name="ZBuffer_Write" />
         <option value="1" name="LOD_Landscape" />
@@ -5849,7 +5849,7 @@
         <option value="31" name="Refraction_Writes_Depth" />
     </bitflags>
 
-    <niobject name="BSLightingShaderProperty" inherit="BSShaderProperty">
+    <niobject name="BSLightingShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Bethesda shader property for Skyrim and later.
         <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="(User Version 2 != 130)" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="(User Version 2 != 130)" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
@@ -5898,7 +5898,7 @@
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
 
-    <niobject name="BSEffectShaderProperty" inherit="BSShaderProperty">
+    <niobject name="BSEffectShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Bethesda effect shader property for Skyrim and later.
         <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="2147483648" vercond="(User Version 2 != 130)" />
         <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="32" vercond="(User Version 2 != 130)" />
@@ -5927,7 +5927,7 @@
         <add name="Environment Map Scale" type="float" vercond="(User Version 2 == 130)" />
     </niobject>
     
-    <bitflags name="SkyrimWaterShaderFlags" storage="byte">
+    <bitflags name="SkyrimWaterShaderFlags" storage="byte" versions="#SKY_AND_LATER#">
         Skyrim water shader property flags
         <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
         <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
@@ -5939,7 +5939,7 @@
         <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
     </bitflags>
     
-    <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty">
+    <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
@@ -5950,7 +5950,7 @@
         <add name="Unknown Short 3" type="ushort" /> 
     </niobject>
     
-    <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty">
+    <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim Sky shader block.
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
@@ -5960,19 +5960,19 @@
         <add name="Sky Object Type" type="SkyObjectType" />
     </niobject>
 
-    <niobject name="BSDismemberSkinInstance" inherit="NiSkinInstance">
+    <niobject name="BSDismemberSkinInstance" inherit="NiSkinInstance" versions="#BETHESDA#">
         Bethesda-specific skin instance.
         <add name="Num Partitions" type="int" />
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions" />
     </niobject>
 
-    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData">
+    <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData" versions="#FO3_AND_LATER#">
         Bethesda-specific extra data. Lists locations and normals on a mesh that are appropriate for decal placement.
         <add name="Num Vector Blocks" type="short" />
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks" />
     </niobject>
 
-    <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier" versions="#FO3_AND_LATER#">
         Bethesda-specific particle modifier.
         <add name="Fade In Percent" type="float" />
         <add name="Fade out Percent" type="float" />
@@ -5984,25 +5984,25 @@
     </niobject>
 
 
-    <bitflags name="BSValueNodeFlags" storage="byte">
+    <bitflags name="BSValueNodeFlags" storage="byte" versions="#FO3_AND_LATER#">
         Flags for BSValueNode.
         <option value="0" name="BillboardWorldZ" />
         <option value="1" name="UsePlayerAdjust" />
     </bitflags>
 
-    <niobject name="BSValueNode" inherit="NiNode">
+    <niobject name="BSValueNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-specific node. Found on fxFire effects
         <add name="Value" type="uint" />
         <add name="Value Node Flags" type="BSValueNodeFlags" />
     </niobject>
 
 
-    <niobject name="BSStripParticleSystem" inherit="NiParticleSystem">
+    <niobject name="BSStripParticleSystem" inherit="NiParticleSystem" versions="#FO3_AND_LATER#">
         Bethesda-Specific (mesh?) Particle System.
     </niobject>
 
 
-    <niobject name="BSStripPSysData" inherit="NiPSysData">
+    <niobject name="BSStripPSysData" inherit="NiPSysData" versions="#FO3_AND_LATER#">
         Bethesda-Specific (mesh?) Particle System Data.
         <add name="Max Point Count" type="ushort" />
         <add name="Start Cap Size" type="float" />
@@ -6011,19 +6011,19 @@
     </niobject>
 
 
-    <niobject name="BSPSysStripUpdateModifier" inherit="NiPSysModifier">
+    <niobject name="BSPSysStripUpdateModifier" inherit="NiPSysModifier" versions="#FO3_AND_LATER#">
         Bethesda-Specific (mesh?) Particle System Modifier.
         <add name="Update Delta Time" type="float" />
     </niobject>
 
 
-    <niobject name="BSMaterialEmittanceMultController" inherit="NiFloatInterpController">
+    <niobject name="BSMaterialEmittanceMultController" inherit="NiFloatInterpController" versions="#FO3#">
         Bethesda-Specific time controller.
     </niobject>
 
 
 
-    <niobject name="BSMasterParticleSystem" inherit="NiNode">
+    <niobject name="BSMasterParticleSystem" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific particle system.
         <add name="Max Emitter Objects" type="ushort" />
         <add name="Num Particle Systems" type="int" />
@@ -6032,47 +6032,47 @@
     </niobject>
 
 
-    <niobject name="BSPSysMultiTargetEmitterCtlr" inherit="NiPSysEmitterCtlr">
+    <niobject name="BSPSysMultiTargetEmitterCtlr" inherit="NiPSysEmitterCtlr" versions="#FO3_AND_LATER#">
         Particle system (multi?) emitter controller.
         <add name="Max Emitters" type="ushort" />
         <add name="Master Particle System" type="Ptr" template="BSMasterParticleSystem" />
     </niobject>
 
 
-    <niobject name="BSRefractionStrengthController" inherit="NiFloatInterpController">
+    <niobject name="BSRefractionStrengthController" inherit="NiFloatInterpController" versions="#FO3#">
         Bethesda-Specific time controller.
     </niobject>
 
 
-    <niobject name="BSOrderedNode" inherit="NiNode">
+    <niobject name="BSOrderedNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
         <add name="Alpha Sort Bound" type="Vector4" />
         <add name="Static Bound" type="bool" />
     </niobject>
 
 
-    <niobject name="BSRangeNode" inherit="NiNode">
+    <niobject name="BSRangeNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
         <add name="Min" type="byte" />
         <add name="Max" type="byte" />
         <add name="Current" type="byte" />
     </niobject>
 
-    <niobject name="BSBlastNode" inherit="BSRangeNode">
+    <niobject name="BSBlastNode" inherit="BSRangeNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
     </niobject>
 
-    <niobject name="BSDamageStage" inherit="BSBlastNode">
+    <niobject name="BSDamageStage" inherit="BSBlastNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
     </niobject>
 
 
-    <niobject name="BSRefractionFirePeriodController" inherit="NiTimeController">
+    <niobject name="BSRefractionFirePeriodController" inherit="NiTimeController" versions="#FO3#">
         Bethesda-specific time controller.
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="20.2.0.7" />
     </niobject>
 
-    <niobject name="bhkConvexListShape" inherit="bhkShape">
+    <niobject name="bhkConvexListShape" inherit="bhkShape" versions="#FO3#">
         A havok shape.
         A list of convex shapes.
 
@@ -6092,28 +6092,28 @@
         <add name="Unknown Float 2" type="float" />
     </niobject>
 
-    <compound name="BSTreadTransform">
+    <compound name="BSTreadTransform" versions="#FO3_AND_LATER#">
         Bethesda-specific compound.
         <add name="Name" type="string" />
         <add name="Transform 1" type="NiQuatTransform" />
         <add name="Transform 2" type="NiQuatTransform" />
     </compound>
 
-    <niobject name="BSTreadTransfInterpolator" inherit="NiInterpolator">
+    <niobject name="BSTreadTransfInterpolator" inherit="NiInterpolator" versions="#FO3_AND_LATER#">
         Bethesda-specific interpolator.
         <add name="Num Tread Transforms" type="int" />
         <add name="Tread Transforms" type="BSTreadTransform" arr1="Num Tread Transforms" />
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
 
-    <enum name="AnimNoteType" storage="uint">
+    <enum name="AnimNoteType" storage="uint" versions="#FO3_AND_LATER#">
         Anim note types.
         <option value="0" name="ANT_INVALID">ANT_INVALID</option>
         <option value="1" name="ANT_GRABIK">ANT_GRABIK</option>
         <option value="2" name="ANT_LOOKIK">ANT_LOOKIK</option>
     </enum>
 
-    <niobject name="BSAnimNote" inherit="NiObject">
+    <niobject name="BSAnimNote" inherit="NiObject" versions="#FO3_AND_LATER#">
         Bethesda-specific object.
         <add name="Type" type="AnimNoteType">Type of this note.</add>
         <add name="Time" type="float">Location in time.</add>
@@ -6122,13 +6122,13 @@
         <add name="State" type="uint" cond="Type == 2" />
     </niobject>
 
-    <niobject name="BSAnimNotes" inherit="NiObject">
+    <niobject name="BSAnimNotes" inherit="NiObject" versions="#FO3_AND_LATER#">
         Bethesda-specific object.
         <add name="Num Anim Notes" type="ushort">Number of BSAnimNote objects.</add>
         <add name="Anim Notes" type="Ref" template="BSAnimNote" arr1="Num Anim Notes">BSAnimNote objects.</add>
     </niobject>
 
-    <niobject name="bhkLiquidAction" inherit="bhkSerializable">
+    <niobject name="bhkLiquidAction" inherit="bhkSerializable" versions="#FO3_AND_LATER#">
         Bethesda-specific Havok serializable.
         <add name="User Data" type="uint" />
         <add name="Unknown Int 2" type="int" />
@@ -6139,7 +6139,7 @@
         <add name="Neighbor Strength" type="float" />
     </niobject>
 
-    <enum name="BSCPCullingType" storage="uint">
+    <enum name="BSCPCullingType" storage="uint" versions="#FO3_AND_LATER#">
         Culling modes for multi bound nodes.
         <option value="0" name="BSCP_CULL_NORMAL">Normal</option>
         <option value="1" name="BSCP_CULL_ALLPASS">All Pass</option>
@@ -6148,35 +6148,35 @@
         <option value="4" name="BSCP_CULL_FORCEMULTIBOUNDSNOUPDATE">Force Multi Bounds No Update</option>
     </enum>
 
-    <niobject name="BSMultiBoundNode" inherit="NiNode">
+    <niobject name="BSMultiBoundNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-specific node.
         <add name="Multi Bound" type="Ref" template="BSMultiBound" />
 		<add name="Culling Mode" type="BSCPCullingType" vercond="(User Version 2 &gt;= 83)" />
     </niobject>
 
-    <niobject name="BSMultiBound" inherit="NiObject">
+    <niobject name="BSMultiBound" inherit="NiObject" versions="#FO3_AND_LATER#">
         Bethesda-specific object.
         <add name="Data" type="Ref" template="BSMultiBoundData" />
     </niobject>
 
-    <niobject name="BSMultiBoundData" inherit="NiObject">
+    <niobject name="BSMultiBoundData" inherit="NiObject" versions="#FO3_AND_LATER#">
         Abstract base type for bounding data.
     </niobject>
 
-    <niobject name="BSMultiBoundOBB" inherit="BSMultiBoundData">
+    <niobject name="BSMultiBoundOBB" inherit="BSMultiBoundData" versions="#FO3_AND_LATER#">
         Oriented bounding box.
         <add name="Center" type="Vector3">Center of the box.</add>
         <add name="Size" type="Vector3">Size of the box along each axis.</add>
         <add name="Rotation" type="Matrix33">Rotation of the bounding box.</add>
     </niobject>
     
-    <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData">
+    <niobject name="BSMultiBoundSphere" inherit="BSMultiBoundData" versions="#FO3_AND_LATER#">
         Bethesda-specific object.
         <add name="Center" type="Vector3" />
         <add name="Radius" type="float" />
     </niobject>
 
-    <compound name="BSGeometrySubSegment">
+    <compound name="BSGeometrySubSegment" versions="#FO3_AND_LATER#">
         This is only defined because of recursion issues.
         <add name="Start Index" type="uint" />
         <add name="Num Primitives" type="uint" />
@@ -6184,7 +6184,7 @@
         <add name="Unused" type="uint" />
     </compound>
 
-    <compound name="BSGeometrySegmentData">
+    <compound name="BSGeometrySegmentData" versions="#FO3_AND_LATER#">
         Bethesda-specific. Describes groups of triangles either segmented in a grid (for LOD) or by body part for skinned FO4 meshes.
         <add name="Flags" type="byte" vercond="(User Version 2 &lt; 130)" />
         <add name="Index" type="uint" vercond="(User Version 2 &lt; 130)">Index = previous Index + previous Num Tris in Segment * 3</add>
@@ -6196,13 +6196,13 @@
         <add name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" vercond="User Version 2 == 130" />
     </compound>
 
-    <niobject name="BSSegmentedTriShape" inherit="NiTriShape">
+    <niobject name="BSSegmentedTriShape" inherit="NiTriShape" versions="#FO3_AND_LATER#">
         Bethesda-specific AV object.
         <add name="Num Segments" type="int" >Number of segments in the square grid</add>
         <add name="Segment" type="BSGeometrySegmentData" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
-    <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData">
+    <niobject name="BSMultiBoundAABB" inherit="BSMultiBoundData" versions="#FO3_AND_LATER#">
         Bethesda-specific object.
         <add name="Position" type="Vector3">Position of the AABB's center</add>
         <add name="Extent" type="Vector3">Extent of the AABB in all directions</add>
@@ -6230,7 +6230,7 @@
         <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" cond="Has Data" />
     </compound>
 
-    <compound name="BSPackedAdditionalDataBlock">
+    <compound name="BSPackedAdditionalDataBlock" versions="#BETHESDA#">
         <!-- see Fallout NV (nvdlc01vaultposter01.nif) -->
         <add name="Has Data" type="bool">Has data</add>
         <add name="Num Total Bytes" type="int" cond="Has Data">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</add>
@@ -6253,7 +6253,7 @@
     </niobject>
 
     <!-- Fallout NV (nvdlc01vaultposter01.nif) -->
-    <niobject name="BSPackedAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
+    <niobject name="BSPackedAdditionalGeometryData" inherit="AbstractAdditionalGeometryData" versions="#BETHESDA#">
         <add name="Num Vertices" type="ushort" />
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
         <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
@@ -6261,35 +6261,35 @@
         <add name="Blocks" type="BSPackedAdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
-    <niobject name="BSWArray" inherit="NiExtraData">
+    <niobject name="BSWArray" inherit="NiExtraData" versions="#FO3_AND_LATER#">
         Bethesda-specific extra data.
         <add name="Num Items" type="int" />
         <add name="Items" type="int" arr1="Num Items" />
     </niobject>
 
-    <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom">
+    <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom" versions="#BETHESDA#">
         Bethesda-specific Havok serializable.
         <add name="Unused Bytes 3" type="byte" arr1="8" />
         <add name="AABB Min" type="Vector4" />
         <add name="AABB Max" type="Vector4" />
     </niobject>
 
-    <niobject name="BSFrustumFOVController" inherit="NiFloatInterpController">
+    <niobject name="BSFrustumFOVController" inherit="NiFloatInterpController" versions="#BETHESDA#">
         Bethesda-specific time controller.
     </niobject>
 
-    <niobject name="BSDebrisNode" inherit="BSRangeNode">
+    <niobject name="BSDebrisNode" inherit="BSRangeNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
     </niobject>
 
-    <niobject name="bhkBreakableConstraint" inherit="bhkConstraint">
+    <niobject name="bhkBreakableConstraint" inherit="bhkConstraint" versions="#BETHESDA#">
         A breakable constraint.
         <add name="Constraint Data" type="ConstraintData">Constraint within constraint.</add>
         <add name="Threshold" type="float">Amount of force to break the rigid bodies apart?</add>
         <add name="Remove When Broken" type="bool" default="0">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</add>
     </niobject>
 
-    <niobject name="bhkOrientHingedBodyAction" inherit="bhkSerializable">
+    <niobject name="bhkOrientHingedBodyAction" inherit="bhkSerializable" versions="#BETHESDA#">
         Bethesda-Specific Havok serializable.
         <add name="Body" type="Ptr" template="bhkRigidBody" />
         <add name="Unknown Int 1" type="uint" />
@@ -6302,7 +6302,7 @@
         <add name="Unused 2" type="byte" arr1="8" />
     </niobject>
 
-    <niobject name="bhkPoseArray" inherit="NiObject">
+    <niobject name="bhkPoseArray" inherit="NiObject" versions="#FO3_AND_LATER#">
         Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
         Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.
         Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
@@ -6312,13 +6312,13 @@
         <add name="Poses" type="BonePose" arr1="Num Poses" />
     </niobject>
 
-    <niobject name="bhkRagdollTemplate" inherit="NiExtraData">
+    <niobject name="bhkRagdollTemplate" inherit="NiExtraData" versions="#FO3_AND_LATER#">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
         <add name="Num Bones" type="int" />
         <add name="Bones" type="Ref" template="NiObject" arr1="Num Bones" />
     </niobject>
 
-    <niobject name="bhkRagdollTemplateData" inherit="NiObject">
+    <niobject name="bhkRagdollTemplateData" inherit="NiObject" versions="#FO3_AND_LATER#">
         Data for bhkRagdollTemplate
         <add name="Name" type="string" />
         <add name="Mass" type="float" default="9.0" />
@@ -7348,7 +7348,7 @@
     </niobject>
 
     <!-- Skyrim specific havok block -->
-    <niobject name="bhkCompressedMeshShape" inherit="bhkShape">
+    <niobject name="bhkCompressedMeshShape" inherit="bhkShape" versions="#SKY_AND_LATER#">
         Compressed collision mesh.
         <add name="Target" type="Ptr" template="NiAVObject">Points to root node?</add>
         <add name="User Data" type="uint" />
@@ -7360,7 +7360,7 @@
         <add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
-    <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject">
+    <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject" versions="#SKY_AND_LATER#">
          A compressed mesh shape for collision in Skyrim.
 		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
 		<add name="Bits Per W Index" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
@@ -7392,7 +7392,7 @@
 	</niobject>
 	
     <!-- Skyrim specific blocks -->
-    <niobject name="BSInvMarker" inherit="NiExtraData">
+    <niobject name="BSInvMarker" inherit="NiExtraData" versions="#SKY_AND_LATER#">
     Orientation marker for Skyrim's inventory view.
         How to show the nif in the player's inventory.
         Typically attached to the root node of the nif tree.
@@ -7406,41 +7406,41 @@
         <add name="Zoom" type="float" default="1.0">Zoom factor.</add>
     </niobject>
 
-	<niobject name="BSBoneLODExtraData" inherit="NiExtraData">
+	<niobject name="BSBoneLODExtraData" inherit="NiExtraData" versions="#SKY_AND_LATER#">
     Unknown
 		<add name="BoneLOD Count" type="uint">Number of bone entries</add>
         <add name="BoneLOD Info" type="BoneLOD" arr1="BoneLOD Count">Bone Entry</add>
 	</niobject>
 	
-	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData">
+	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData" versions="#SKY_AND_LATER#">
     Links a nif with a Havok Behavior .hkx animation file
 		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
 		<add name="Controls Base Skeleton" type="bool">Unknown, has to do with blending appended bones onto an actor.</add>
 	</niobject>
 
-	<niobject name="BSLagBoneController" inherit="NiTimeController">
+	<niobject name="BSLagBoneController" inherit="NiTimeController" versions="#SKY_AND_LATER#">
     A controller that trails a bone behind an actor.
 		<add name="Linear Velocity" type="float">How long it takes to rotate about an actor back to rest position.</add>
 		<add name="Linear Rotation" type="float">How the bone lags rotation</add>
 		<add name="Maximum Distance" type="float">How far bone will tail an actor.</add>
 	</niobject>
 
-	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom">
+	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom" versions="#SKY# #SSE#">
 		A variation on NiTriShape, for visibility control over vertex groups.
 		<add name="LOD0 Size" type="uint" />
 		<add name="LOD1 Size" type="uint" />
 		<add name="LOD2 Size" type="uint" />
 	</niobject>
 
-	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker">
+	<niobject name="BSFurnitureMarkerNode" inherit="BSFurnitureMarker" versions="#SKY_AND_LATER#">
         Furniture Marker for actors
     </niobject>
 	
-    <niobject name="BSLeafAnimNode" inherit="NiNode">
+    <niobject name="BSLeafAnimNode" inherit="NiNode" versions="#BETHESDA#">
         Unknown, related to trees.
     </niobject>
     
-    <niobject name="BSTreeNode" inherit="NiNode">
+    <niobject name="BSTreeNode" inherit="NiNode" versions="#BETHESDA#">
         Node for handling Trees, Switches branch configurations for variation?
         <add name="Num Bones 1" type="uint" />
         <add name="Bones 1" type="Ref" arr1="Num Bones 1" template="NiNode" />
@@ -7451,7 +7451,7 @@
     
     <!-- Fallout 4 Geometry -->
     
-    <niobject name="BSTriShape" inherit="NiAVObject" versions="V20_2_0_7_FO4 V20_2_0_7_SSE">
+    <niobject name="BSTriShape" inherit="NiAVObject" versions="#SSE# #FO4#">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Skin" type="Ref" template="NiObject" />
@@ -7471,21 +7471,21 @@
         <add name="Particle Triangles" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" vercond="User Version 2 == 100" />
     </niobject>
 
-    <niobject name="BSMeshLODTriShape" inherit="BSTriShape" versions="V20_2_0_7_FO4">
+    <niobject name="BSMeshLODTriShape" inherit="BSTriShape" versions="#FO4#">
         Fallout 4 LOD Tri Shape
         <add name="LOD0 Size" type="uint" />
         <add name="LOD1 Size" type="uint" />
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSGeometryPerSegmentSharedData" versions="V20_2_0_7_FO4">
+    <compound name="BSGeometryPerSegmentSharedData" versions="#FO4#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint">A hash of the bone name string.</add>
         <add name="Num Cut Offsets" type="uint">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
-    <compound name="BSGeometrySegmentSharedData" versions="V20_2_0_7_FO4">
+    <compound name="BSGeometrySegmentSharedData" versions="#FO4#">
         <add name="Num Segments" type="uint" />
         <add name="Total Segments" type="uint" />
         <add name="Segment Starts" type="uint" arr1="Num Segments" />
@@ -7495,7 +7495,7 @@
         <add name="SSF File" type="byte" arr1="SSF Length" />
     </compound>
 
-    <niobject name="BSSubIndexTriShape" inherit="BSTriShape" versions="V20_2_0_7_FO4 V20_2_0_7_SSE">
+    <niobject name="BSSubIndexTriShape" inherit="BSTriShape" versions="#SSE# #FO4#">
         Fallout 4 Sub-Index Tri Shape
 		<add name="Num Primitives" type="uint" vercond="User Version 2 == 130" cond="Data Size &gt; 0" />
 		<add name="Num Segments" type="uint" vercond="User Version 2 == 130" cond="Data Size &gt; 0" />
@@ -7508,11 +7508,11 @@
     
     <!-- Fallout 4 Physics -->
 
-    <niobject name="bhkSystem" abstract="1" inherit="NiObject" versions="V20_2_0_7_FO4">
+    <niobject name="bhkSystem" abstract="1" inherit="NiObject" versions="#FO4#">
         Fallout 4 Physics System
     </niobject>
     
-    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" versions="V20_2_0_7_FO4">
+    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" versions="#FO4#">
         Fallout 4 Collision Object
         <add name="Flags" type="ushort">
             Due to inaccurate reporting in the CK the Reset and Sync On Update positions are a guess.
@@ -7522,28 +7522,28 @@
         <add name="Body ID" type="uint" />
     </niobject>
     
-    <niobject name="bhkPhysicsSystem" inherit="bhkSystem" versions="V20_2_0_7_FO4">
+    <niobject name="bhkPhysicsSystem" inherit="bhkSystem" versions="#FO4#">
         Fallout 4 Collision System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="bhkRagdollSystem" inherit="bhkSystem" versions="V20_2_0_7_FO4">
+    <niobject name="bhkRagdollSystem" inherit="bhkSystem" versions="#FO4#">
         Fallout 4 Ragdoll System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="BSExtraData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSExtraData" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Extra Data
     </niobject>
 
-    <niobject name="BSClothExtraData" inherit="BSExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSClothExtraData" inherit="BSExtraData" versions="#FO4#">
         Fallout 4 Cloth data
         <add name="Binary Data" type="ByteArray" />
     </niobject>
     
     <!-- Fallout 4 Skeleton -->
 
-    <compound name="BSSkinBoneTrans" versions="V20_2_0_7_FO4">
+    <compound name="BSSkinBoneTrans" versions="#FO4#">
         Fallout 4 Bone Transform
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Rotation" type="Matrix33" />
@@ -7551,7 +7551,7 @@
         <add name="Scale" type="float" />
     </compound>
 
-    <niobject name="BSSkin::Instance" inherit="NiObject" versions="V20_2_0_7_FO4">
+    <niobject name="BSSkin::Instance" inherit="NiObject" versions="#FO4#">
         Fallout 4 Skin Instance
         <add name="Skeleton Root" type="Ptr" template="NiAVObject" />
         <add name="Data" type="Ref" template="BSSkin::BoneData" />
@@ -7561,19 +7561,19 @@
         <add name="Unknown" type="Vector3" arr1="Num Unknown" />
     </niobject>
 
-    <niobject name="BSSkin::BoneData" inherit="NiObject" versions="V20_2_0_7_FO4">
+    <niobject name="BSSkin::BoneData" inherit="NiObject" versions="#FO4#">
         Fallout 4 Bone Data
         <add name="Num Bones" type="uint" />
         <add name="Bone List" type="BSSkinBoneTrans" arr1="Num Bones" />
     </niobject>
 
-    <niobject name="BSPositionData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSPositionData" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Positional Data
         <add name="Num Data" type="uint" />
         <add name="Data" type="hfloat" arr1="Num Data" />
     </niobject>
 
-    <compound name="BSConnectPoint" versions="V20_2_0_7_FO4">
+    <compound name="BSConnectPoint" versions="#FO4#">
         <add name="Parent" type="SizedString" default="WorkshopConnectPoints" />
         <add name="Name" type="SizedString" />
         <add name="Rotation" type="Quaternion" />
@@ -7581,32 +7581,32 @@
         <add name="Scale" type="float" default="1.0" />
     </compound>
 
-    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Item Slot Parent
         <add name="Num Connect Points" type="uint" />
         <add name="Connect Points" type="BSConnectPoint" arr1="Num Connect Points" />
     </niobject>
 
-    <niobject name="BSConnectPoint::Children" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSConnectPoint::Children" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
         <add name="Num Points" type="int" />
         <add name="Point Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
-    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Eye Center Data
         <add name="Num Data" type="int" />
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-    <compound name="BSPackedGeomDataCombined" versions="V20_2_0_7_FO4">
+    <compound name="BSPackedGeomDataCombined" versions="#FO4#">
         <add name="Grayscale to Palette Scale" type="float" />
         <add name="Transform" type="NiTransform" />
         <add name="Bounding Sphere" type="NiBound" />
     </compound>
 
-    <compound name="BSPackedGeomData" versions="V20_2_0_7_FO4">
+    <compound name="BSPackedGeomData" versions="#FO4#">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -7622,7 +7622,7 @@
         <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
 
-    <compound name="BSPackedSharedGeomData" versions="V20_2_0_7_FO4">
+    <compound name="BSPackedSharedGeomData" versions="#FO4#">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -7636,13 +7636,13 @@
         <add name="Vertex Desc" type="BSVertexDesc" />
     </compound>
 
-    <compound name="BSPackedGeomObject" versions="V20_2_0_7_FO4">
+    <compound name="BSPackedGeomObject" versions="#FO4#">
         This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
         <add name="Shape ID 1" type="uint" />
         <add name="Shape ID 2" type="uint" />
     </compound>
 
-    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Packed Combined Geometry Data.
         Geometry is baked into the file and given a list of transforms to position each copy.
         <add name="Vertex Desc" type="BSVertexDesc" />
@@ -7654,7 +7654,7 @@
         <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
 
-    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" versions="V20_2_0_7_FO4">
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Packed Combined Shared Geometry Data.
         Geometry is NOT baked into the file. It is instead a reference to the shape via a Shape ID (currently undecoded)
         which loads the geometry via the STAT form for the NIF.
@@ -7670,18 +7670,18 @@
 
     <!-- Fallout 4 Animation -->
     
-    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController" versions="V20_2_0_7_FO4">
+    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController" versions="#FO4#">
     
     </niobject>
 	
 	<!-- Skyrim SE --> 
 
-	<niobject name="BSDynamicTriShape" inherit="BSTriShape" versions="V20_2_0_7_SSE">
+	<niobject name="BSDynamicTriShape" inherit="BSTriShape" versions="#SSE#">
 		<add name="Dynamic Data Size" type="uint" />
 		<add name="Vertices" type="Vector4" arr1="Dynamic Data Size / 16" />
 	</niobject>
 	
-	<niobject name="BSDistantObjectLargeRefExtraData" inherit="NiExtraData" versions="V20_2_0_7_SSE">
+	<niobject name="BSDistantObjectLargeRefExtraData" inherit="NiExtraData" versions="#SSE#">
         Large ref flag.
 		<add name="Large Ref" type="bool" />
 	</niobject>
