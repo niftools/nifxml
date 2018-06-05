@@ -1331,21 +1331,21 @@
         <add name="Data" type="byte" arr1="Data Size 2" arr2="Data Size 1">The bytes which make up the array</add>
     </compound>
 
-    <compound name="Color3">
+    <compound name="Color3" size="12">
         A color without alpha (red, green, blue).
         <add name="r" type="float">Red color component.</add>
         <add name="g" type="float">Green color component.</add>
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
-    <compound name="ByteColor3">
+    <compound name="ByteColor3" size="3">
         A color without alpha (red, green, blue).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
         <add name="b" type="byte">Blue color component.</add>
     </compound>
 
-    <compound name="Color4">
+    <compound name="Color4" size="16">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="float">Red component.</add>
         <add name="g" type="float">Green component.</add>
@@ -1353,7 +1353,7 @@
         <add name="a" type="float">Alpha.</add>
     </compound>
 
-    <compound name="ByteColor4">
+    <compound name="ByteColor4" size="4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
@@ -1386,28 +1386,28 @@
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
     
-    <compound name="ByteVector3">
+    <compound name="ByteVector3" size="3">
         A vector in 3D space (x,y,z).
         <add name="x" type="byte">First coordinate.</add>
         <add name="y" type="byte">Second coordinate.</add>
         <add name="z" type="byte">Third coordinate.</add>
     </compound>
     
-    <compound name="HalfVector3">
+    <compound name="HalfVector3" size="6">
         A vector in 3D space (x,y,z).
         <add name="x" type="hfloat">First coordinate.</add>
         <add name="y" type="hfloat">Second coordinate.</add>
         <add name="z" type="hfloat">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector3">
+    <compound name="Vector3" size="12">
         A vector in 3D space (x,y,z).
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
         <add name="z" type="float">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector4">
+    <compound name="Vector4" size="16">
         A 4-dimensional vector.
         <add name="x" type="float">First coordinate.</add>
         <add name="y" type="float">Second coordinate.</add>
@@ -1415,7 +1415,7 @@
         <add name="w" type="float">Fourth coordinate.</add>
     </compound>
 
-    <compound name="Quaternion">
+    <compound name="Quaternion" size="16">
         A quaternion.
         <add name="w" type="float" default="1.0">The w-coordinate.</add>
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
@@ -1423,7 +1423,7 @@
         <add name="z" type="float" default="0.0">The z-coordinate.</add>
     </compound>
 
-    <compound name="hkQuaternion" versions="#BETHESDA#">
+    <compound name="hkQuaternion" size="16" versions="#BETHESDA#">
         A quaternion as it appears in the havok objects.
         <add name="x" type="float" default="0.0">The x-coordinate.</add>
         <add name="y" type="float" default="0.0">The y-coordinate.</add>
@@ -1431,7 +1431,7 @@
         <add name="w" type="float" default="1.0">The w-coordinate.</add>
     </compound>
 
-    <compound name="Matrix22">
+    <compound name="Matrix22" size="16">
         A 2x2 matrix of float values.  Stored in OpenGL column-major format.
         <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
         <add name="m21" type="float" default="0.0">Member 2,1 (bottom left)</add>
@@ -1439,7 +1439,7 @@
         <add name="m22" type="float" default="1.0">Member 2,2 (bottom right)</add>
     </compound>
 
-    <compound name="Matrix33">
+    <compound name="Matrix33" size="36">
         A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
         <add name="m11" type="float" default="1.0">Member 1,1 (top left)</add>
         <add name="m21" type="float" default="0.0">Member 2,1</add>
@@ -1452,7 +1452,7 @@
         <add name="m33" type="float" default="1.0">Member 3,3 (bottom left)</add>
     </compound>
 
-    <compound name="Matrix34">
+    <compound name="Matrix34" size="48">
         A 3x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
@@ -1468,7 +1468,7 @@
         <add name="m34" type="float" default="0.0">The (3,4) element.</add>
     </compound>
 
-    <compound name="Matrix44">
+    <compound name="Matrix44" size="64">
         A 4x4 transformation matrix.
         <add name="m11" type="float" default="1.0">The (1,1) element.</add>
         <add name="m21" type="float" default="0.0">The (2,1) element.</add>
@@ -1488,7 +1488,7 @@
         <add name="m44" type="float" default="1.0">The (4,4) element.</add>
     </compound>
 
-    <compound name="hkMatrix3" versions="#BETHESDA#">
+    <compound name="hkMatrix3" size="48" versions="#BETHESDA#">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
         <add name="m11" type="float" default="1.0" />
         <add name="m12" type="float" />
@@ -1504,7 +1504,7 @@
         <add name="m34" type="float">Unused</add>
     </compound>
 
-    <compound name="MipMap">
+    <compound name="MipMap" size="12">
         Description of a mipmap within an NiPixelData object.
         <add name="Width" type="uint">Width of the mipmap image.</add>
         <add name="Height" type="uint">Height of the mipmap image.</add>
@@ -1523,7 +1523,7 @@
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
     </compound>
 
-    <compound name="SkinInfo" since="V4_2_2_0">
+    <compound name="SkinInfo" size="8" since="V4_2_2_0">
         NiBoneLODController::SkinInfo. Reference to shape and skin instance.
         <add name="Shape" type="Ptr" template="NiTriBasedGeom" />
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" />
@@ -1535,7 +1535,7 @@
         <add name="Skin Info" type="SkinInfo" arr1="Num Skin Info" />
     </compound>
 
-    <compound name="BoneVertData">
+    <compound name="BoneVertData" size="6">
         NiSkinData::BoneVertData. A vertex and its weight.
         <add name="Index" type="ushort">The vertex index, in the mesh.</add>
         <add name="Weight" type="float">The vertex weight - between 0.0 and 1.0</add>
@@ -1621,7 +1621,7 @@
         <add name="Length" type="uint">Length of the palette string is repeated here.</add>
     </compound>
 
-    <compound name="TBC">
+    <compound name="TBC" size="12">
         Tension, bias, continuity.
         <add name="t" type="float">Tension.</add>
         <add name="b" type="float">Bias.</add>
@@ -1652,13 +1652,13 @@
         <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
     </compound>
 
-    <compound name="TexCoord">
+    <compound name="TexCoord" size="8">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <add name="u" type="float">First coordinate.</add>
         <add name="v" type="float">Second coordinate.</add>
     </compound>
     
-    <compound name="HalfTexCoord">
+    <compound name="HalfTexCoord" size="4">
         Texture coordinates (u,v).
         <add name="u" type="hfloat">First coordinate.</add>
         <add name="v" type="hfloat">Second coordinate.</add>
@@ -1700,7 +1700,7 @@
         <add name="Map ID" type="uint" cond="Has Map">Unique identifier for the Gamebryo shader system.</add>
     </compound>
 
-    <compound name="Triangle">
+    <compound name="Triangle" size="6">
         List of three vertex indices.
         <add name="v1" type="ushort">First vertex index.</add>
         <add name="v2" type="ushort">Second vertex index.</add>
@@ -1758,7 +1758,7 @@
 		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
 	</compound>
 
-    <compound name="BSVertexDesc" versions="#SSE# #FO4#">
+    <compound name="BSVertexDesc" size="8" versions="#SSE# #FO4#">
         <add name="VF1" type="byte" />
         <add name="VF2" type="byte" />
         <add name="VF3" type="byte" />
@@ -1795,7 +1795,7 @@
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
     </compound>
 
-    <compound name="NiPlane">
+    <compound name="NiPlane" size="16">
         A plane.
         <add name="Normal" type="Vector3">The plane normal.</add>
         <add name="Constant" type="float">The plane constant.</add>
@@ -1824,7 +1824,7 @@
         <add name="TRS Valid" type="bool" arr1="3" ver2="10.1.0.109">Whether each transform component is valid.</add>
     </compound>
 
-    <compound name="NiTransform">
+    <compound name="NiTransform" size="52">
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -1874,7 +1874,7 @@
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
-    <compound name="Particle">
+    <compound name="Particle" size="40">
         particle array entry
         <add name="Velocity" type="Vector3">Particle velocity</add>
         <add name="Unknown Vector" type="Vector3" />
@@ -1894,7 +1894,7 @@
         <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
     </compound>
 
-    <compound name="HavokFilter" versions="#BETHESDA#">
+    <compound name="HavokFilter" size="4" versions="#BETHESDA#">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
         <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; #NI_BS_LTE_FO3#">The layer the collision belongs to.</add>
@@ -1957,7 +1957,7 @@
         <add name="Material" type="HavokMaterial">The material of the subshape.</add>
     </compound>
 
-    <compound name="bhkPositionConstraintMotor" versions="#BETHESDA#">
+    <compound name="bhkPositionConstraintMotor" size="25" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0.8">Relative stiffness</add>
@@ -1967,7 +1967,7 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkVelocityConstraintMotor" versions="#BETHESDA#">
+    <compound name="bhkVelocityConstraintMotor" size="18" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Tau" type="float" default="0">Relative stiffness</add>
@@ -1976,7 +1976,7 @@
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
 
-    <compound name="bhkSpringDamperConstraintMotor" versions="#BETHESDA#">
+    <compound name="bhkSpringDamperConstraintMotor" size="17" versions="#BETHESDA#">
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
         <add name="Spring Constant" type="float" default="0">The spring constant in N/m</add>
@@ -2080,7 +2080,7 @@
         <!-- no friction -->
     </compound>
 
-    <compound name="BallAndSocketDescriptor" versions="#BETHESDA#">
+    <compound name="BallAndSocketDescriptor" size="32" versions="#BETHESDA#">
         <add name="Pivot A" type="Vector4">Pivot point in the local space of entity A.</add>
         <add name="Pivot B" type="Vector4">Pivot point in the local space of entity B.</add>
     </compound>
@@ -2114,13 +2114,13 @@
         <add name="Motor" type="MotorDescriptor" ver1="20.2.0.7" vercond="!#NI_BS_LTE_16#" />
     </compound>
 
-    <compound name="StiffSpringDescriptor" versions="#BETHESDA#">
+    <compound name="StiffSpringDescriptor" size="36" versions="#BETHESDA#">
         <add name="Pivot A" type="Vector4" />
         <add name="Pivot B" type="Vector4" />
         <add name="Length" type="float" />
     </compound>
 
-    <compound name="OldSkinData">
+    <compound name="OldSkinData" size="18">
         Used to store skin weights in NiTriShapeSkinController.
         <add name="Vertex Weight" type="float">The amount that this bone affects the vertex.</add>
         <add name="Vertex Index" type="ushort">The index of the vertex that this weight applies to.</add>
@@ -2133,14 +2133,14 @@
         <option value="2" name="RGBA">Colors store red, blue, green, and alpha components.</option>
     </enum>
 
-    <compound name="BoxBV">
+    <compound name="BoxBV" size="60">
         Box Bounding Volume
         <add name="Center" type="Vector3" />
         <add name="Axis" type="Vector3" arr1="3" />
         <add name="Extent" type="Vector3" />
     </compound>
 
-    <compound name="CapsuleBV">
+    <compound name="CapsuleBV" size="32">
         Capsule Bounding Volume
         <add name="Center" type="Vector3" />
         <add name="Origin" type="Vector3" />
@@ -2148,7 +2148,7 @@
         <add name="Radius" type="float" />
     </compound>
 
-    <compound name="HalfSpaceBV">
+    <compound name="HalfSpaceBV" size="28">
         <add name="Plane" type="NiPlane" />
         <add name="Center" type="Vector3" />
     </compound>
@@ -2167,12 +2167,12 @@
         <add name="Bounding Volumes" type="BoundingVolume" arr1="Num BV" />
     </compound>
 
-    <compound name="MorphWeight">
+    <compound name="MorphWeight" size="8">
         <add name="Interpolator" type="Ref" template="NiInterpolator" />
         <add name="Weight" type="float" />
     </compound>
 
-    <compound name="BoneTransform">
+    <compound name="BoneTransform" size="40">
         Transformation data for the bone at this index in bhkPoseArray.
         <add name="Translation" type="Vector3" />
         <add name="Rotation" type="hkQuaternion" />
@@ -2198,25 +2198,25 @@
         <option value="8" name="PF_START_NET_BONESET">Start a new shared boneset.  It is expected this BoneSet and the following sets in the Skin Partition will have the same bones.</option>
     </bitflags>
 
-    <compound name="BodyPartList" versions="#BETHESDA#">
+    <compound name="BodyPartList" size="4" versions="#BETHESDA#">
         Body part list for DismemberSkinInstance
         <add name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</add>
         <add name="Body Part" type="BSDismemberBodyPartType">Body Part Index</add>
     </compound>
     
-    <compound name="BoneLOD">
+    <compound name="BoneLOD" size="8">
         Stores Bone Level of Detail info in a BSBoneLODExtraData
         <add name="Distance" type="uint" />
         <add name="Bone Name" type="string" />
     </compound>
 
-    <compound name="bhkCMSDMaterial" versions="#SKY_AND_LATER#">
+    <compound name="bhkCMSDMaterial" size="8" versions="#SKY_AND_LATER#">
         Per-chunk material, used in bhkCompressedMeshShapeData
         <add name="Material" type="SkyrimHavokMaterial" />
         <add name="Filter" type="HavokFilter" />
     </compound>
 
-    <compound name="bhkCMSDBigTris" versions="#SKY_AND_LATER#">
+    <compound name="bhkCMSDBigTris" size="12" versions="#SKY_AND_LATER#">
         Triangle indices used in pair with "Big Verts" in a bhkCompressedMeshShapeData.
         <add name="Triangle 1" type="ushort" />
         <add name="Triangle 2" type="ushort" />
@@ -2225,7 +2225,7 @@
         <add name="Welding Info" type="ushort" />
     </compound>
     
-    <compound name="bhkCMSDTransform" versions="#SKY_AND_LATER#">
+    <compound name="bhkCMSDTransform" size="32" versions="#SKY_AND_LATER#">
         A set of transformation data: translation and rotation
         <add name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</add>
         <add name="Rotation" type="hkQuaternion">Rotation. Reference point for rotation is bhkRigidBody translation.</add>
@@ -2356,7 +2356,7 @@
         <option value="3" name="BROAD_PHASE_BORDER" />
     </enum>
 
-    <compound name="hkWorldObjCinfoProperty" versions="#BETHESDA#">
+    <compound name="hkWorldObjCinfoProperty" size="12" versions="#BETHESDA#">
         <add name="Data" type="uint" default="0" />
         <add name="Size" type="uint" default="0" />
         <add name="Capacity and Flags" type="uint" default="0x80000000" />
@@ -2503,7 +2503,7 @@
         <add name="Ball and Socket" type="BallAndSocketDescriptor">Describes a ball and socket constraint</add>
     </niobject>
 
-    <compound name="ConstraintInfo" versions="#BETHESDA#">
+    <compound name="ConstraintInfo" size="32" versions="#BETHESDA#">
         Two Vector4 for pivot in A and B.
         <add name="Pivot In A" type="Vector4" />
         <add name="Pivot In B" type="Vector4" />
@@ -4565,7 +4565,7 @@
         A texture.
     </niobject>
 
-    <compound name="FormatPrefs">
+    <compound name="FormatPrefs" size="12">
         NiTexture::FormatPrefs. These preferences are a request to the renderer to use a format the most closely matches the settings and may be ignored.
         <add name="Pixel Layout" type="PixelLayout">Requests the way the image will be stored.</add>
         <add name="Use Mipmaps" type="MipMapFormat" default="MIP_FMT_DEFAULT">Requests if mipmaps are used or not.</add>
@@ -5009,12 +5009,12 @@
         <option name="NX_SCT_CLOTH" value="2" />
     </enum>
 
-    <compound name="PhysXSceneDescMaterial" since="V20_2_0_8">
+    <compound name="PhysXSceneDescMaterial" size="6" since="V20_2_0_8">
         <add name="Key" type="ushort" />
         <add name="Material" type="Ref" template="NiPhysXMaterialDesc" />
     </compound>
 
-    <compound name="PhysXSceneDescCompartment" since="V20_2_0_8">
+    <compound name="PhysXSceneDescCompartment" size="20" since="V20_2_0_8">
         <add name="ID" type="uint" />
         <add name="Type" type="NxCompartmentType" />
         <add name="Device Code" type="uint" />
@@ -5091,12 +5091,12 @@
         <add name="Prop Description" type="Ref" template="NiPhysXPropDesc" />
     </niobject>
 
-    <compound name="PhysXMaterialRef" since="V20_2_0_8">
+    <compound name="PhysXMaterialRef" size="6" since="V20_2_0_8">
         <add name="Key" type="ushort" />
         <add name="Material Desc" type="Ref" template="NiPhysXMaterialDesc" />
     </compound>
 
-    <compound name="PhysXStateName" since="V20_2_0_8">
+    <compound name="PhysXStateName" size="8" since="V20_2_0_8">
         <add name="Name" type="string" />
         <add name="Index" type="uint" />
     </compound>
@@ -5194,21 +5194,21 @@
         <option name="NX_JPM_LINEAR_MINDIST" value="2" />
     </enum>
 
-    <compound name="NiPhysXJointActor" since="V20_2_0_8">
+    <compound name="NiPhysXJointActor" size="40" since="V20_2_0_8">
         <add name="Actor" type="Ref" template="NiPhysXActorDesc" />
         <add name="Local Normal" type="Vector3" />
         <add name="Local Axis" type="Vector3" />
         <add name="Local Anchor" type="Vector3" />
     </compound>
 
-    <compound name="NxJointLimitSoftDesc" since="V20_2_0_8">
+    <compound name="NxJointLimitSoftDesc" size="16" since="V20_2_0_8">
         <add name="Value" type="float" />
         <add name="Restitution" type="float" />
         <add name="Spring" type="float" />
         <add name="Damping" type="float" />
     </compound>
 
-    <compound name="NxJointDriveDesc" since="V20_2_0_8">
+    <compound name="NxJointDriveDesc" size="16" since="V20_2_0_8">
         <add name="Drive Type" type="NxD6JointDriveType" />
         <add name="Restitution" type="float" />
         <add name="Spring" type="float" />
@@ -5279,12 +5279,12 @@
         <option name="NX_SHAPE_COMPOUND" value="9" />
     </enum>
 
-    <compound name="NxPlane" since="V20_2_0_8">
+    <compound name="NxPlane" size="16" since="V20_2_0_8">
         <add name="Val 1" type="float" />
         <add name="Point 1" type="Vector3" />
     </compound>
 
-    <compound name="NxCapsule" since="V20_2_0_8">
+    <compound name="NxCapsule" size="12" since="V20_2_0_8">
         <add name="Val 1" type="float" />
         <add name="Val 2" type="float" />
         <add name="Capsule Flags" type="uint" />
@@ -5332,7 +5332,7 @@
         <option name="NX_MF_DISABLE_STRONG_FRICTION" value="6" />
     </bitflags>
 
-    <compound name="NxSpringDesc" since="V20_2_0_8">
+    <compound name="NxSpringDesc" size="12" since="V20_2_0_8">
         <add name="Spring" type="float" />
         <add name="Damper" type="float" />
         <add name="Target Value" type="float" />
@@ -5409,7 +5409,7 @@
         <add name="Lines" type="bool" arr1="Num Vertices">Is vertex connected to other (next?) vertex?</add>
     </niobject>
 
-    <compound name="Polygon">
+    <compound name="Polygon" size="8">
         Two dimensional screen elements.
         <add name="Num Vertices" type="ushort" />
         <add name="Vertex Offset" type="ushort">Offset in vertex array.</add>
@@ -6092,7 +6092,7 @@
         <add name="Unknown Float 2" type="float" />
     </niobject>
 
-    <compound name="BSTreadTransform" versions="#FO3_AND_LATER#">
+    <compound name="BSTreadTransform" size="68" versions="#FO3_AND_LATER#">
         Bethesda-specific compound.
         <add name="Name" type="string" />
         <add name="Transform 1" type="NiQuatTransform" />
@@ -6176,7 +6176,7 @@
         <add name="Radius" type="float" />
     </niobject>
 
-    <compound name="BSGeometrySubSegment" versions="#FO3_AND_LATER#">
+    <compound name="BSGeometrySubSegment" size="16" versions="#FO3_AND_LATER#">
         This is only defined because of recursion issues.
         <add name="Start Index" type="uint" />
         <add name="Num Primitives" type="uint" />
@@ -6330,7 +6330,7 @@
         <add name="Constraint" type="ConstraintData" arr1="Num Constraints" />
     </niobject>
 
-    <compound name="Region" since="V20_5_0_0">
+    <compound name="Region" size="8" since="V20_5_0_0">
         A range of indices, which make up a region (such as a submesh).
         <add name="Start Index" type="uint" />
         <add name="Num Indices" type="uint" />
@@ -6443,7 +6443,7 @@
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
-    <compound name="SemanticData" since="V20_5_0_0">
+    <compound name="SemanticData" size="8" since="V20_5_0_0">
         <add name="Name" type="string">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
@@ -6521,12 +6521,12 @@
         <add name="Unknown 6" type="int" />
     </compound>
 
-    <compound name="WeightDataEpicMickey" versions="V20_6_5_0_DEM">
+    <compound name="WeightDataEpicMickey" size="24" versions="V20_6_5_0_DEM">
         <add name="Bone Indices" type="int" arr1="3" />
         <add name="Weights" type="float" arr1="3" />
     </compound>
 
-    <compound name="PartitionDataEpicMickey" versions="V20_6_5_0_DEM">
+    <compound name="PartitionDataEpicMickey" size="28" versions="V20_6_5_0_DEM">
         <add name="Start" type="int" />
         <add name="End" type="int" />
         <add name="Weight Indices" type="ushort" arr1="10" />
@@ -6577,7 +6577,7 @@
         <add name="Target Names" type="string" arr1="Num Targets" />
     </niobject>
 
-    <compound name="ElementReference" since="V20_5_0_0">
+    <compound name="ElementReference" size="12" since="V20_5_0_0">
         <add name="Semantic" type="SemanticData">The element semantic.</add>
         <add name="Normalize Flag" type="uint">Whether or not to normalize the data.</add>
     </compound>
@@ -6648,7 +6648,7 @@
 
     <!-- NiPS Particle System -->
 
-    <compound name="PSSpawnRateKey" since="V20_5_0_0">
+    <compound name="PSSpawnRateKey" size="8" since="V20_5_0_0">
         <add name="Value" type="float" />
         <add name="Time" type="float" />
     </compound>
@@ -7478,7 +7478,7 @@
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSGeometryPerSegmentSharedData" versions="#FO4#">
+    <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint">A hash of the bone name string.</add>
         <add name="Num Cut Offsets" type="uint">Maximum of 8.</add>
@@ -7543,7 +7543,7 @@
     
     <!-- Fallout 4 Skeleton -->
 
-    <compound name="BSSkinBoneTrans" versions="#FO4#">
+    <compound name="BSSkinBoneTrans" size="68" versions="#FO4#">
         Fallout 4 Bone Transform
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Rotation" type="Matrix33" />
@@ -7600,7 +7600,7 @@
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-    <compound name="BSPackedGeomDataCombined" versions="#FO4#">
+    <compound name="BSPackedGeomDataCombined" size="72" versions="#FO4#">
         <add name="Grayscale to Palette Scale" type="float" />
         <add name="Transform" type="NiTransform" />
         <add name="Bounding Sphere" type="NiBound" />
@@ -7636,7 +7636,7 @@
         <add name="Vertex Desc" type="BSVertexDesc" />
     </compound>
 
-    <compound name="BSPackedGeomObject" versions="#FO4#">
+    <compound name="BSPackedGeomObject" size="8" versions="#FO4#">
         This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
         <add name="Shape ID 1" type="uint" />
         <add name="Shape ID 2" type="uint" />
