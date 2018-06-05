@@ -83,6 +83,88 @@
     <version id="V30_1_0_3" num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
     <version id="V30_2_0_3" num="30.2.0.3">Ghost In The Shell: First Assault, MapleStory 2</version>
 
+    <token name="verexpr" attrs="vercond">
+        Commonly used version expressions.
+        NOTE: `string` should be wrapped in parentheses for string subsitutions in larger expressions.
+        NOTE: BSVER 'Greater Than' Expressions only ever apply to BS i.e. BSVER GT 0.
+        WARNING: BSVER 'Less Than' Expressions also apply to NI i.e. BSVER EQ 0.
+        <verexpr token="#NISTREAM#" string="(#BSVER# #EQ# 0)">NiStream that are not Bethesda.</verexpr>
+        <verexpr token="#BSSTREAM#" string="(#BSVER# #GT# 0)">NiStream that are Bethesda.</verexpr>
+        <verexpr token="#NI_BS_LTE_16#" string="(#BSVER# #LTE# 16)">All NI + BS until BSVER 16.</verexpr>
+        <verexpr token="#NI_BS_LT_FO3#" string="(#BSVER# #LT# 34)">All NI + BS before Fallout 3.</verexpr>
+        <verexpr token="#NI_BS_LTE_FO3#" string="(#BSVER# #LTE# 34)">All NI + BS until Fallout 3.</verexpr>
+        <verexpr token="#NI_BS_LT_SSE#" string="(#BSVER# #LT# 100)">All NI + BS before SSE.</verexpr>
+        <verexpr token="#NI_BS_LT_FO4#" string="(#BSVER# #LT# 130)">All NI + BS before Fallout 4.</verexpr>
+        <verexpr token="#BS_GT_FO3#" string="(#BSVER# #GT# 34)">Skyrim, SSE, and Fallout 4</verexpr>
+        <verexpr token="#BS_GTE_FO3#" string="(#BSVER# #GTE# 34)">FO3 and later.</verexpr>
+        <verexpr token="#BS_GTE_SKY#" string="(#BSVER# #GTE# 83)">Skyrim and later.</verexpr>
+        <verexpr token="#BS_GTE_SSE#" string="(#BSVER# #GTE# 100)">SSE and later.</verexpr>
+        <verexpr token="#BS_SSE#" string="(#BSVER# #EQ# 100)">SSE only.</verexpr>
+        <verexpr token="#BS_FO4#" string="(#BSVER# #EQ# 130)">Fallout 4 only.</verexpr>
+        <verexpr token="#BS202#" string="((#VER# #EQ# 20.2.0.7) #AND# (#BSVER# #GT# 0))">Bethesda 20.2 only.</verexpr>
+        <verexpr token="#DIVINITY2#" string="((#USER# #EQ# 0x20000) #OR# (#USER# #EQ# 0x30000))">Divinity 2</verexpr>
+    </token>
+
+    <token name="verset" attrs="versions">
+        The set of versions that any Basic, Compound, NiObject, Enum, or Bitflags is restricted to.
+        <verset token="#BETHESDA#" string="V10_0_1_2 V10_1_0_101 V10_1_0_106 V10_2_0_0__10 V20_0_0_4__10 V20_0_0_4__11 V20_0_0_5_OBL V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
+        <verset token="#FO3#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3" />
+        <verset token="#SKY#" string="V20_2_0_7_SKY" />
+        <verset token="#SSE#" string="V20_2_0_7_SSE" />
+        <verset token="#FO4#" string="V20_2_0_7_FO4" />
+        <verset token="#FO3_AND_LATER#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
+        <verset token="#SKY_AND_LATER#" string="V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
+    </token>
+
+    <token name="default" attrs="default">
+        Commonly used default values.
+        <default token="#UINT_MAX#" string="0xFFFFFFFF" />
+        <default token="#USHRT_MAX#" string="0xFFFF" />
+        <default token="#VEC2_ONE#" string="1.0, 1.0" />
+        <default token="#VEC3_ONE#" string="1.0, 1.0, 1.0" />
+        <default token="#VEC3_ZERO#" string="0.0, 0.0, 0.0" />
+        <default token="#VEC4_1110#" string="1.0, 1.0, 1.0, 0.0" />
+        <default token="#X_AXIS#" string="1.0, 0.0, 0.0" />
+        <default token="#Y_AXIS#" string="0.0, 1.0, 0.0" />
+        <default token="#Z_AXIS#" string="0.0, 0.0, 1.0" />
+        <default token="#NEG_X_AXIS#" string="-1.0, 0.0, 0.0" />
+        <default token="#NEG_Y_AXIS#" string="0.0, -1.0, 0.0" />
+        <default token="#NEG_Z_AXIS#" string="0.0, 0.0, -1.0" />
+        <default token="#FLT_MAX#" string="3.402823466e+38" />
+        <default token="#FLT_MIN#" string="-3.402823466e+38" />
+        <default token="#INV_FLT#" string="-3.402823466e+38" />
+        <default token="#INV_VEC3#" string="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <default token="#INV_VEC4#" string="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+    </token>
+    
+    <token name="global" attrs="vercond">
+        Global Tokens.
+        NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
+        <global token="#VER#" string="Version" />
+        <global token="#USER#" string="User Version" />
+        <global token="#BSVER#" string="User Version 2" />
+    </token>
+
+    <token name="operator" attrs="cond vercond arr1 arr2 arg">
+        All Operators except for unary not (!), parentheses, and member of (\)
+        NOTE: These can be ignored entirely by string substitution and dealt with directly.
+        NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
+        <operator token="#ADD#" string="+" />
+        <operator token="#SUB#" string="-" />
+        <operator token="#MUL#" string="*" />
+        <operator token="#DIV#" string="/" />
+        <operator token="#AND#" string="&amp;&amp;" />
+        <operator token="#OR#" string="||" />
+        <operator token="#LT#" string="&lt;" />
+        <operator token="#GT#" string="&gt;" />
+        <operator token="#LTE#" string="&lt;=" />
+        <operator token="#GTE#" string="&gt;=" />
+        <operator token="#EQ#" string="==" />
+        <operator token="#NEQ#" string="!=" />
+        <operator token="#BITAND#" string="&amp;" />
+        <operator token="#BITOR#" string="|" />
+    </token>
+
     <!--Basic Types-->
 
     <basic name="bool" count="1">
