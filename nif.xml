@@ -1687,7 +1687,7 @@
         <!-- NiTextureTransform -->
         <add name="Has Texture Transform" type="bool" default="false" ver1="10.1.0.0">Whether or not the texture coordinates are transformed.</add>
         <add name="Translation" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The UV translation.</add>
-        <add name="Scale" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="1.0, 1.0">The UV scale.</add>
+        <add name="Scale" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0" default="#VEC2_ONE#">The UV scale.</add>
         <add name="Rotation" type="float" default="0.0" cond="Has Texture Transform" ver1="10.1.0.0">The W axis rotation in texture space.</add>
         <add name="Transform Method" type="TransformMethod" cond="Has Texture Transform" ver1="10.1.0.0">Depending on the source, scaling can occur before or after rotation.</add>
         <add name="Center" type="TexCoord" cond="Has Texture Transform" ver1="10.1.0.0">The origin around which the texture rotates.</add>
@@ -2666,9 +2666,9 @@
         <add name="Unused 1" type="uint">Looks like a memory pointer and may be garbage.</add>
         <add name="Radius" type="float" default="0.1" />
         <add name="Unused 2" type="uint">Looks like a memory pointer and may be garbage.</add>
-        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0" />
+        <add name="Scale" type="Vector4" default="#VEC4_1110#" />
         <add name="Radius Copy" type="float" default="0.1">Same as radius</add>
-        <add name="Scale Copy" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Same as scale.</add>
+        <add name="Scale Copy" type="Vector4" default="#VEC4_1110#">Same as scale.</add>
         <add name="Data" type="Ref" template="hkPackedNiTriStripsData" />
     </niobject>
 
@@ -2678,7 +2678,7 @@
         <add name="Radius" type="float" default="0.1" />
         <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
         <add name="Grow By" type="uint" default="1" />
-        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0" ver1="10.1.0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
+        <add name="Scale" type="Vector4" default="#VEC4_1110#" ver1="10.1.0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
         <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
         <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
@@ -2703,13 +2703,13 @@
 
     <niobject name="NiColorInterpolator" inherit="NiKeyBasedInterpolator">
         Animates a color value over time.
-        <add name="Value" type="Color4" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <add name="Value" type="Color4" default="#INV_VEC4#" />
         <add name="Data" type="Ref" template="NiColorData" />
     </niobject>
 
     <niobject name="NiFloatInterpolator" inherit="NiKeyBasedInterpolator">
         Uses NiFloatKeys to animate a float value over time.
-        <add name="Value" type="float" default="-3.402823466e+38">Pose value if lacking NiFloatData.</add>
+        <add name="Value" type="float" default="#INV_FLT#">Pose value if lacking NiFloatData.</add>
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
 
@@ -2721,7 +2721,7 @@
 
     <niobject name="NiPoint3Interpolator" inherit="NiKeyBasedInterpolator">
         Uses NiPosKeys to animate an NiPoint3 value over time.
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Pose value if lacking NiPosData.</add>
+        <add name="Value" type="Vector3" default="#INV_VEC3#">Pose value if lacking NiPosData.</add>
         <add name="Data" type="Ref" template="NiPosData" />
     </niobject>
 
@@ -2783,10 +2783,10 @@
         <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
         <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
         <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Single Time" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Single Time" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Weights Sum" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="High Ease Spinner" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
         <!-- end Flags 1 conds -->
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
@@ -2807,8 +2807,8 @@
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
         Abstract base class for interpolators storing data via a B-spline.
-        <add name="Start Time" type="float" default="3.402823466e+38">Animation start time.</add>
-        <add name="Stop Time" type="float" default="-3.402823466e+38">Animation stop time.</add>
+        <add name="Start Time" type="float" default="#FLT_MAX#">Animation start time.</add>
+        <add name="Stop Time" type="float" default="#FLT_MIN#">Animation stop time.</add>
         <add name="Spline Data" type="Ref" template="NiBSplineData" />
         <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
@@ -2924,9 +2924,9 @@
         Abstract base class that represents light sources in a scene graph.
         For Bethesda Stream 130 (FO4), NiLight now directly inherits from NiAVObject.
         <add name="Dimmer" type="float" default="1.0">Scales the overall brightness of all light components.</add>
-        <add name="Ambient Color" type="Color3" default="0.0, 0.0, 0.0" />
-        <add name="Diffuse Color" type="Color3" default="0.0, 0.0, 0.0" />
-        <add name="Specular Color" type="Color3" default="0.0, 0.0, 0.0" />
+        <add name="Ambient Color" type="Color3" default="#VEC3_ZERO#" />
+        <add name="Diffuse Color" type="Color3" default="#VEC3_ZERO#" />
+        <add name="Specular Color" type="Color3" default="#VEC3_ZERO#" />
     </niobject>
 
     <niobject name="NiProperty" abstract="1" inherit="NiObjectNET">
@@ -2981,8 +2981,8 @@
         </add>
         <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
-        <add name="Start Time" type="float" default="3.402823466e+38">Controller start time.</add>
-        <add name="Stop Time" type="float" default="-3.402823466e+38">Controller stop time.</add>
+        <add name="Start Time" type="float" default="#FLT_MAX#">Controller start time.</add>
+        <add name="Stop Time" type="float" default="#FLT_MIN#">Controller stop time.</add>
         <add name="Target" type="Ptr" template="NiObjectNET" ver1="3.3.0.13">Controller target (object index of the first controllable ancestor of this object).</add>
         <add name="Unknown Integer" type="uint" ver2="3.1" />
     </niobject>
@@ -3528,12 +3528,12 @@
 
     <niobject name="NiBlendFloatInterpolator" inherit="NiBlendInterpolator">
         Blends float values together.
-        <add name="Value" type="float" default="-3.402823466e+38">The pose value. Invalid if using data.</add>
+        <add name="Value" type="float" default="#INV_FLT#">The pose value. Invalid if using data.</add>
     </niobject>
 
     <niobject name="NiBlendPoint3Interpolator" inherit="NiBlendInterpolator">
         Blends NiPoint3 values together.
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">The pose value. Invalid if using data.</add>
+        <add name="Value" type="Vector3" default="#INV_VEC3#">The pose value. Invalid if using data.</add>
     </niobject>
 
     <niobject name="NiBlendTransformInterpolator" inherit="NiBlendInterpolator">
@@ -3558,26 +3558,26 @@
 
     <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate a float value over time.
-        <add name="Value" type="float" default="-3.402823466e+38">Base value when curve not defined.</add>
+        <add name="Value" type="float" default="#INV_FLT#">Base value when curve not defined.</add>
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompFloatInterpolator" inherit="NiBSplineFloatInterpolator">
         NiBSplineFloatInterpolator plus the information required for using compact control points.
-        <add name="Float Offset" type="float" default="3.402823466e+38" />
-        <add name="Float Half Range" type="float" default="3.402823466e+38" />
+        <add name="Float Offset" type="float" default="#FLT_MAX#" />
+        <add name="Float Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate an NiPoint3 value over time.
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38">Base value when curve not defined.</add>
+        <add name="Value" type="Vector3" default="#INV_VEC3#">Base value when curve not defined.</add>
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
     </niobject>
 
     <niobject name="NiBSplineCompPoint3Interpolator" inherit="NiBSplinePoint3Interpolator">
         NiBSplinePoint3Interpolator plus the information required for using compact control points.
-        <add name="Position Offset" type="float" default="3.402823466e+38" />
-        <add name="Position Half Range" type="float" default="3.402823466e+38" />
+        <add name="Position Offset" type="float" default="#FLT_MAX#" />
+        <add name="Position Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiBSplineTransformInterpolator" inherit="NiBSplineInterpolator">
@@ -3591,12 +3591,12 @@
 
     <niobject name="NiBSplineCompTransformInterpolator" inherit="NiBSplineTransformInterpolator">
         NiBSplineTransformInterpolator plus the information required for using compact control points.
-        <add name="Translation Offset" type="float" default="3.402823466e+38" />
-        <add name="Translation Half Range" type="float" default="3.402823466e+38" />
-        <add name="Rotation Offset" type="float" default="3.402823466e+38" />
-        <add name="Rotation Half Range" type="float" default="3.402823466e+38" />
-        <add name="Scale Offset" type="float" default="3.402823466e+38" />
-        <add name="Scale Half Range" type="float" default="3.402823466e+38" />
+        <add name="Translation Offset" type="float" default="#FLT_MAX#" />
+        <add name="Translation Half Range" type="float" default="#FLT_MAX#" />
+        <add name="Rotation Offset" type="float" default="#FLT_MAX#" />
+        <add name="Rotation Half Range" type="float" default="#FLT_MAX#" />
+        <add name="Scale Offset" type="float" default="#FLT_MAX#" />
+        <add name="Scale Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 	
 	<niobject name="BSRotAccumTransfInterpolator" inherit="NiTransformInterpolator" versions="#BETHESDA#">
@@ -3669,8 +3669,8 @@
         <add name="Cycle Type" type="CycleType" ver1="10.1.0.106" />
         <add name="Frequency" type="float" default="1.0" ver1="10.1.0.106" />
         <add name="Phase" type="float" ver1="10.1.0.106" ver2="10.4.0.1" /> <!-- Actually ver2="10.3.0.1" but WorldShift 10.4.0.1 custom version acts like 10.3.0.1 -->
-        <add name="Start Time" type="float" default="3.402823466e+38" ver1="10.1.0.106" />
-        <add name="Stop Time" type="float" default="-3.402823466e+38" ver1="10.1.0.106" />
+        <add name="Start Time" type="float" default="#FLT_MAX#" ver1="10.1.0.106" />
+        <add name="Stop Time" type="float" default="#FLT_MIN#" ver1="10.1.0.106" />
         <add name="Play Backwards" type="bool" ver1="10.1.0.106" ver2="10.1.0.106" />
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">The owner of this sequence.</add>
         <add name="Accum Root Name" type="string" ver1="10.1.0.106">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
@@ -3818,10 +3818,10 @@
     <niobject name="NiMaterialProperty" inherit="NiProperty">
         Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
         <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
-        <add name="Ambient Color" type="Color3" default="1.0, 1.0, 1.0" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
-        <add name="Diffuse Color" type="Color3" default="1.0, 1.0, 1.0" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
-        <add name="Specular Color" type="Color3" default="1.0, 1.0, 1.0">How much light the material reflects in a specular manner.</add>
-        <add name="Emissive Color" type="Color3" default="0.0, 0.0, 0.0">How much light the material emits.</add>
+        <add name="Ambient Color" type="Color3" default="#VEC3_ONE#" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
+        <add name="Diffuse Color" type="Color3" default="#VEC3_ONE#" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
+        <add name="Specular Color" type="Color3" default="#VEC3_ONE#">How much light the material reflects in a specular manner.</add>
+        <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">How much light the material emits.</add>
         <add name="Glossiness" type="float" default="10.0">The material glossiness.</add>
         <add name="Alpha" type="float" default="1.0">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material's parent NiTriShape object, when alpha is not 1.</add>
         <add name="Emissive Mult" type="float" default="1.0" vercond="(User Version 2 &gt; 21)" />
@@ -4225,10 +4225,10 @@
     <niobject name="NiPSysDragModifier" inherit="NiPSysModifier">
         Particle modifier that applies a linear drag force to particles.
         <add name="Drag Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
-        <add name="Drag Axis" type="Vector3" default="1.0, 0.0, 0.0">The local direction of the force.</add>
+        <add name="Drag Axis" type="Vector3" default="#X_AXIS#">The local direction of the force.</add>
         <add name="Percentage" type="float" default="0.05">The amount of drag to apply to particles.</add>
-        <add name="Range" type="float" default="3.402823466e+38">The distance up to which particles are fully affected.</add>
-        <add name="Range Falloff" type="float" default="3.402823466e+38">The distance at which particles cease to be affected.</add>
+        <add name="Range" type="float" default="#FLT_MAX#">The distance up to which particles are fully affected.</add>
+        <add name="Range Falloff" type="float" default="#FLT_MAX#">The distance at which particles cease to be affected.</add>
     </niobject>
 
     <niobject name="NiPSysEmitterCtlrData" inherit="NiObject">
@@ -4241,7 +4241,7 @@
     <niobject name="NiPSysGravityModifier" inherit="NiPSysModifier">
         Particle modifier that applies a gravitational force to particles.
         <add name="Gravity Object" type="Ptr" template="NiAVObject">The object whose position and orientation are the basis of the force.</add>
-        <add name="Gravity Axis" type="Vector3" default="1.0, 0.0, 0.0">The local direction of the force.</add>
+        <add name="Gravity Axis" type="Vector3" default="#X_AXIS#">The local direction of the force.</add>
         <add name="Decay" type="float">How the force diminishes by distance.</add>
         <add name="Strength" type="float" default="1.0">The acceleration of the force.</add>
         <add name="Force Type" type="ForceType">The type of gravitational force.</add>
@@ -4265,7 +4265,7 @@
         <add name="Emitter Meshes" type="Ptr" template="NiAVObject" arr1="Num Emitter Meshes">The meshes which are emitted from.</add>
         <add name="Initial Velocity Type" type="VelocityType">The method by which the initial particle velocity will be computed.</add>
         <add name="Emission Type" type="EmitFrom">The manner in which particles are emitted from the Emitter Meshes.</add>
-        <add name="Emission Axis" type="Vector3" default="1.0, 0.0, 0.0">The emission axis if VELOCITY_USE_DIRECTION.</add>
+        <add name="Emission Axis" type="Vector3" default="#X_AXIS#">The emission axis if VELOCITY_USE_DIRECTION.</add>
     </niobject>
 
     <niobject name="NiPSysMeshUpdateModifier" inherit="NiPSysModifier">
@@ -4331,7 +4331,7 @@
         <add name="Rotation Angle Variation" type="float" ver1="20.0.0.2">Distributes rotation angle over the range [Angle - Variation, Angle + Variation].</add>
         <add name="Random Rot Speed Sign" type="bool" ver1="20.0.0.2">Randomly negate the initial rotation speed?</add>
         <add name="Random Axis" type="bool" default="1">Assign a random axis to new particles?</add>
-        <add name="Axis" type="Vector3" default="1.0, 0.0, 0.0">Initial rotation axis.</add>
+        <add name="Axis" type="Vector3" default="#X_AXIS#">Initial rotation axis.</add>
     </niobject>
 
     <niobject name="NiPSysSpawnModifier" inherit="NiPSysModifier">
@@ -4379,7 +4379,7 @@
 
     <niobject name="NiPSysGravityFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, implements a gravity field force for particles.
-        <add name="Direction" type="Vector3" default="0.0, -1.0, 0.0">Direction of the gravity field in Field Object's space.</add>
+        <add name="Direction" type="Vector3" default="#NEG_Y_AXIS#">Direction of the gravity field in Field Object's space.</add>
     </niobject>
 
     <niobject name="NiPSysDragFieldModifier" inherit="NiPSysFieldModifier">
@@ -4456,7 +4456,7 @@
 
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier">
         Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.
-        <add name="Direction" type="Vector3" default="-1.0, 0.0, 0.0">Direction of the particle velocity</add>
+        <add name="Direction" type="Vector3" default="#NEG_X_AXIS#">Direction of the particle velocity</add>
         <add name="Air Friction" type="float">How quickly particles will accelerate to the magnitude of the air field.</add>
         <add name="Inherit Velocity" type="float">How much of the air field velocity will be added to the particle velocity.</add>
         <add name="Inherit Rotation" type="bool" />
@@ -4615,7 +4615,7 @@
         <add name="Stencil Enabled" type="byte" ver2="20.0.0.5">Enables or disables the stencil test.</add>
         <add name="Stencil Function" type="StencilCompareMode" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
         <add name="Stencil Ref" type="uint" ver2="20.0.0.5" />
-        <add name="Stencil Mask" type="uint" default="4294967295" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
+        <add name="Stencil Mask" type="uint" default="#UINT_MAX#" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5" />
@@ -4630,7 +4630,7 @@
             Bits 12-14: Stencil Function
         </add>
         <add name="Stencil Ref" type="uint" ver1="20.1.0.3" />
-        <add name="Stencil Mask" type="uint" default="4294967295" ver1="20.1.0.3">A bit mask. The default is 0xffffffff.</add>
+        <add name="Stencil Mask" type="uint" default="#UINT_MAX#" ver1="20.1.0.3">A bit mask. The default is 0xffffffff.</add>
     </niobject>
 
     <niobject name="NiStringExtraData" inherit="NiExtraData">
@@ -5856,9 +5856,9 @@
         <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="(User Version 2 == 130)" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="(User Version 2 == 130)" default="1">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
-        <add name="Emissive Color" type="Color3" default="0.0, 0.0, 0.0">Glow color and alpha</add>
+        <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
         <add name="Wet Material" type="string" vercond="(User Version 2 == 130)" />
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
@@ -5905,7 +5905,7 @@
         <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" default="2147483648" vercond="(User Version 2 == 130)" />
         <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" default="32" vercond="(User Version 2 == 130)" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures</add>
+        <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <!-- TODO: Requires bitfield, read as single int -->
         <add name="Texture Clamp Mode" type="byte">How to handle texture borders.</add>
@@ -5944,7 +5944,7 @@
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
         <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
         <add name="Unknown Short 3" type="ushort" /> 
@@ -5955,7 +5955,7 @@
         <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
-        <add name="UV Scale" type="TexCoord" default="1.0, 1.0">Offset UV Scale to repeat tiling textures, see above.</add>
+        <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Source Texture" type="SizedString">points to an external texture.</add>
         <add name="Sky Object Type" type="SkyObjectType" />
     </niobject>
@@ -7199,23 +7199,23 @@
     </niobject>
 
     <niobject name="NiConstBoolEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Value" type="float" default="-3.402823466e+38" /> <!-- Yes, this is actually a float. -->
+        <add name="Value" type="float" default="#INV_FLT#" /> <!-- Yes, this is actually a float. -->
     </niobject>
 
     <niobject name="NiConstColorEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Value" type="Color4" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <add name="Value" type="Color4" default="#INV_VEC4#" />
     </niobject>
 
     <niobject name="NiConstFloatEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Value" type="float" default="-3.402823466e+38" />
+        <add name="Value" type="float" default="#INV_FLT#" />
     </niobject>
 
     <niobject name="NiConstPoint3Evaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Value" type="Vector3" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <add name="Value" type="Vector3" default="#INV_VEC3#" />
     </niobject>
 
     <niobject name="NiConstQuaternionEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Value" type="Quaternion" default="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
+        <add name="Value" type="Quaternion" default="#INV_VEC4#" />
     </niobject>
 
     <niobject name="NiConstTransformEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
@@ -7223,8 +7223,8 @@
     </niobject>
 
     <niobject name="NiBSplineEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
-        <add name="Start Time" type="float" default="3.402823466e+38" />
-        <add name="End Time" type="float" default="-3.402823466e+38" />
+        <add name="Start Time" type="float" default="#FLT_MAX#" />
+        <add name="End Time" type="float" default="#FLT_MIN#" />
         <add name="Data" type="Ref" template="NiBSplineData" />
         <add name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
@@ -7234,8 +7234,8 @@
     </niobject>
 
     <niobject name="NiBSplineCompColorEvaluator" inherit="NiBSplineColorEvaluator" since="V20_5_0_0">
-        <add name="Offset" type="float" default="3.402823466e+38" />
-        <add name="Half Range" type="float" default="3.402823466e+38" />
+        <add name="Offset" type="float" default="#FLT_MAX#" />
+        <add name="Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiBSplineFloatEvaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
@@ -7243,8 +7243,8 @@
     </niobject>
 
     <niobject name="NiBSplineCompFloatEvaluator" inherit="NiBSplineFloatEvaluator" since="V20_5_0_0">
-        <add name="Offset" type="float" default="3.402823466e+38" />
-        <add name="Half Range" type="float" default="3.402823466e+38" />
+        <add name="Offset" type="float" default="#FLT_MAX#" />
+        <add name="Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiBSplinePoint3Evaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
@@ -7252,8 +7252,8 @@
     </niobject>
 
     <niobject name="NiBSplineCompPoint3Evaluator" inherit="NiBSplinePoint3Evaluator" since="V20_5_0_0">
-        <add name="Offset" type="float" default="3.402823466e+38" />
-        <add name="Half Range" type="float" default="3.402823466e+38" />
+        <add name="Offset" type="float" default="#FLT_MAX#" />
+        <add name="Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiBSplineTransformEvaluator" inherit="NiBSplineEvaluator" since="V20_5_0_0">
@@ -7264,12 +7264,12 @@
     </niobject>
 
     <niobject name="NiBSplineCompTransformEvaluator" inherit="NiBSplineTransformEvaluator" since="V20_5_0_0">
-        <add name="Translation Offset" type="float" default="3.402823466e+38" />
-        <add name="Translation Half Range" type="float" default="3.402823466e+38" />
-        <add name="Rotation Offset" type="float" default="3.402823466e+38" />
-        <add name="Rotation Half Range" type="float" default="3.402823466e+38" />
-        <add name="Scale Offset" type="float" default="3.402823466e+38" />
-        <add name="Scale Half Range" type="float" default="3.402823466e+38" />
+        <add name="Translation Offset" type="float" default="#FLT_MAX#" />
+        <add name="Translation Half Range" type="float" default="#FLT_MAX#" />
+        <add name="Rotation Offset" type="float" default="#FLT_MAX#" />
+        <add name="Rotation Half Range" type="float" default="#FLT_MAX#" />
+        <add name="Scale Offset" type="float" default="#FLT_MAX#" />
+        <add name="Scale Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
     <niobject name="NiLookAtEvaluator" inherit="NiEvaluator" since="V20_5_0_0">
@@ -7354,9 +7354,9 @@
         <add name="User Data" type="uint" />
         <add name="Radius" type="float" default="0.005">A shell that is added around the shape.</add>
         <add name="Unknown Float 1" type="float" />
-        <add name="Scale" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Scale" type="Vector4" default="#VEC4_1110#">Scale</add>
         <add name="Radius Copy" type="float" default="0.005">A shell that is added around the shape.</add>
-        <add name="Scale Copy" type="Vector4" default="1.0, 1.0, 1.0, 0.0">Scale</add>
+        <add name="Scale Copy" type="Vector4" default="#VEC4_1110#">Scale</add>
         <add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
