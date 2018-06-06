@@ -1724,38 +1724,38 @@
 	</bitflags>
     
 	<compound name="BSVertexData" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="(ARG &amp; 0x4010) == 0x4010" />
-		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x4110) == 0x4110" />
-		<add name="Unknown Int" type="uint" cond="(ARG &amp; 0x4110) == 0x4010" />
+		<add name="Vertex" type="Vector3" cond="(ARG #BITAND# 0x4010) == 0x4010" />
+		<add name="Bitangent X" type="float" cond="(ARG #BITAND# 0x4110) == 0x4110" />
+		<add name="Unknown Int" type="uint" cond="(ARG #BITAND# 0x4110) == 0x4010" />
 
-		<add name="Vertex" type="HalfVector3" cond="(ARG &amp; 0x4010) == 0x10" />
-		<add name="Bitangent X" type="hfloat" cond="(ARG &amp; 0x4110) == 0x110" />
-		<add name="Unknown Short" type="ushort" cond="(ARG &amp; 0x4110) == 0x10" />
+		<add name="Vertex" type="HalfVector3" cond="(ARG #BITAND# 0x4010) == 0x10" />
+		<add name="Bitangent X" type="hfloat" cond="(ARG #BITAND# 0x4110) == 0x110" />
+		<add name="Unknown Short" type="ushort" cond="(ARG #BITAND# 0x4110) == 0x10" />
 
-		<add name="UV" type="HalfTexCoord" cond="ARG &amp; 0x20" />
-		<add name="Normal" type="ByteVector3" cond="ARG &amp; 0x80" />
-		<add name="Bitangent Y" type="byte" cond="ARG &amp; 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(ARG &amp; 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(ARG &amp; 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="ARG &amp; 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG &amp; 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="ARG &amp; 0x400" />
-		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
+		<add name="UV" type="HalfTexCoord" cond="ARG #BITAND# 0x20" />
+		<add name="Normal" type="ByteVector3" cond="ARG #BITAND# 0x80" />
+		<add name="Bitangent Y" type="byte" cond="ARG #BITAND# 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(ARG #BITAND# 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(ARG #BITAND# 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="ARG #BITAND# 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG #BITAND# 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="ARG #BITAND# 0x400" />
+		<add name="Eye Data" type="float" cond="ARG #BITAND# 0x1000" />
 	</compound>
 
 	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="ARG &amp; 0x10" />
-		<add name="Bitangent X" type="float" cond="(ARG &amp; 0x110) == 0x110" />
-		<add name="Unknown Int" type="int" cond="(ARG &amp; 0x110) == 0x10" />
-		<add name="UV" type="HalfTexCoord" cond="ARG &amp; 0x20" />
-		<add name="Normal" type="ByteVector3" cond="ARG &amp; 0x80" />
-		<add name="Bitangent Y" type="byte" cond="ARG &amp; 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(ARG &amp; 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(ARG &amp; 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="ARG &amp; 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG &amp; 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="ARG &amp; 0x400" />
-		<add name="Eye Data" type="float" cond="ARG &amp; 0x1000" />
+		<add name="Vertex" type="Vector3" cond="ARG #BITAND# 0x10" />
+		<add name="Bitangent X" type="float" cond="(ARG #BITAND# 0x110) == 0x110" />
+		<add name="Unknown Int" type="int" cond="(ARG #BITAND# 0x110) == 0x10" />
+		<add name="UV" type="HalfTexCoord" cond="ARG #BITAND# 0x20" />
+		<add name="Normal" type="ByteVector3" cond="ARG #BITAND# 0x80" />
+		<add name="Bitangent Y" type="byte" cond="ARG #BITAND# 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(ARG #BITAND# 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(ARG #BITAND# 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="ARG #BITAND# 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG #BITAND# 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="ARG #BITAND# 0x400" />
+		<add name="Eye Data" type="float" cond="ARG #BITAND# 0x1000" />
 	</compound>
 
     <compound name="BSVertexDesc" size="8" versions="#SSE# #FO4#">
@@ -1785,9 +1785,9 @@
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The strip lengths.</add>
         <add name="Has Faces" type="bool" ver1="10.1.0.0">Do we have triangle or strip data?</add>
         <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Num Strips != 0" ver2="10.0.1.2">The strips.</add>
-        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces) &amp;&amp; (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
+        <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces) #AND# (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Num Strips == 0" ver2="10.0.1.2">The triangles.</add>
-        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) &amp;&amp; (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
+        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) #AND# (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into 'Bones'.</add>
 		<add name="Unknown Short" type="ushort" vercond="#BS_GT_FO3#" />
@@ -1870,7 +1870,7 @@
         <add name="Num Keys" type="uint" ver2="10.1.0.0">The number of morph keys that follow.</add>
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
-        <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="20.1.0.2" vercond="User Version 2 &lt; 10" /> <!-- Exclude Bethesda -->
+        <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="20.1.0.2" vercond="#BSVER# #LT# 10" /> <!-- Exclude Bethesda -->
         <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
     </compound>
 
@@ -1896,9 +1896,9 @@
 
     <compound name="HavokFilter" size="4" versions="#BETHESDA#">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
-        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The layer the collision belongs to.</add>
-        <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; #NI_BS_LTE_FO3#">The layer the collision belongs to.</add>
-        <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(Version == 20.2.0.7) &amp;&amp; #BS_GT_FO3#">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="#BSVER# #LT# 16">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #NI_BS_LTE_FO3#">The layer the collision belongs to.</add>
+        <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #BS_GT_FO3#">The layer the collision belongs to.</add>
 
         <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
         	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
@@ -1945,9 +1945,9 @@
     <compound name="HavokMaterial" versions="#BETHESDA#">
         Bethesda Havok. Material wrapper for varying material enums by game.
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
-        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="(User Version 2 &lt; 16)">The material of the shape.</add>
-        <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; #NI_BS_LTE_FO3#">The material of the shape.</add>
-        <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(Version == 20.2.0.7) &amp;&amp; #BS_GT_FO3#">The material of the shape.</add>
+        <add name="Material" suffix="OB" type="OblivionHavokMaterial" ver2="20.0.0.5" vercond="#BSVER# #LT# 16">The material of the shape.</add>
+        <add name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(#VER# == 20.2.0.7) #AND# #NI_BS_LTE_FO3#">The material of the shape.</add>
+        <add name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(#VER# == 20.2.0.7) #AND# #BS_GT_FO3#">The material of the shape.</add>
     </compound>
 
     <compound name="OblivionSubShape" versions="#BETHESDA#">
@@ -2424,7 +2424,7 @@
         <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
         <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
         <add name="Time Factor" type="float" default="1.0" vercond="#BS_GT_FO3#" />
-        <add name="Gravity Factor" type="float" default="1.0" vercond="#BS_GT_FO3# &amp;&amp; (!#BS_FO4#)" />
+        <add name="Gravity Factor" type="float" default="1.0" vercond="#BS_GT_FO3# #AND# (!#BS_FO4#)" />
         <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
         <add name="Rolling Friction Multiplier" type="float" vercond="#BS_GT_FO3#" />
         <add name="Restitution" type="float" default="0.4">
@@ -2453,8 +2453,8 @@
         <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="#BS_GT_FO3#" />
         <add name="Num Constraints" type="uint" />
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints" />
-        <add name="Body Flags" type="uint" vercond="(User Version 2 &lt; 76)">1 = respond to wind</add>
-        <add name="Body Flags" type="ushort" vercond="(User Version 2 &gt;= 76)">1 = respond to wind</add>
+        <add name="Body Flags" type="uint" vercond="#BSVER# #LT# 76">1 = respond to wind</add>
+        <add name="Body Flags" type="ushort" vercond="#BSVER# #GTE# 76">1 = respond to wind</add>
     </niobject>
 
     <niobject name="bhkRigidBodyT" inherit="bhkRigidBody" versions="#BETHESDA#">
@@ -2779,15 +2779,15 @@
         <add name="Array Size" type="byte" ver1="10.1.0.110" />
         <add name="Weight Threshold" type="float" ver1="10.1.0.112" />
         <!-- Flags conds -->
-        <add name="Interp Count" type="byte" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Single Index" type="byte" default="255" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Next High Priority" type="char" default="-128" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Single Time" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="High Weights Sum" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="High Ease Spinner" type="float" default="#FLT_MIN#" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
-        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="(Flags &amp; 1) == 0" ver1="10.1.0.112" />
+        <add name="Interp Count" type="byte" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Single Index" type="byte" default="255" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="High Priority" type="char" default="-128" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Next High Priority" type="char" default="-128" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Single Time" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="High Ease Spinner" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
         <!-- end Flags 1 conds -->
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
         <add name="Managed Controlled" type="bool" ver2="10.1.0.111" />
@@ -2881,8 +2881,8 @@
         Unknown.
         <add name="Heir Gain" type="float" />
         <add name="Vel Gain" type="float" />
-        <add name="Unknown Float 1" type="float" vercond="User Version 2 &lt; 9" />
-        <add name="Unknown Float 2" type="float" vercond="User Version 2 &lt; 9" />
+        <add name="Unknown Float 1" type="float" vercond="#BSVER# #LT# 9" />
+        <add name="Unknown Float 2" type="float" vercond="#BSVER# #LT# 9" />
     </niobject>
 
     <niobject name="bhkPCollisionObject" inherit="bhkNiCollisionObject">
@@ -2895,8 +2895,8 @@
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
-        <add name="Flags" type="uint" default="14" vercond="(User Version 2 &gt; 26)">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
-        <add name="Flags" type="Flags" ver1="3.0" vercond="(User Version 2 &lt;= 26)">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="14" vercond="#BSVER# #GT# 26">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
+        <add name="Flags" type="Flags" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -3008,8 +3008,8 @@
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" ver1="10.1.0.106" ver2="20.0.0.5" />
         <add name="Interpolator Weights" type="MorphWeight" arr1="Num Interpolators" ver1="20.1.0.3" />
-        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="20.0.0.5" vercond="(User Version 2 &gt; 9)" />
-        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="20.0.0.5" vercond="(User Version 2 &gt; 9)" />
+        <add name="Num Unknown Ints" type="uint" ver1="10.2.0.0" ver2="20.0.0.5" vercond="#BSVER# #GT# 9" />
+        <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" ver1="10.2.0.0" ver2="20.0.0.5" vercond="#BSVER# #GT# 9" />
     </niobject>
 
     <niobject name="NiMorphController" inherit="NiInterpController">
@@ -3224,7 +3224,7 @@
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.5">Extra data associated with the material. A value of -1 means the material is the default implementation.</add>
         <add name="Active Material" type="int" default="-1" ver1="20.2.0.5">The index of the currently active material.</add>
         <!-- Custom Versions -->
-        <add name="Cyanide Unknown" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" vercond="(User Version == 1)">Cyanide extension (Blood Bowl).</add>
+        <add name="Cyanide Unknown" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" vercond="#USER# == 1">Cyanide extension (Blood Bowl).</add>
         <add name="WorldShift Unknown" type="int" ver1="10.3.0.1" ver2="10.4.0.1" />
         <!-- / Custom -->
         <add name="Material Needs Update" type="bool" ver1="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</add>
@@ -3312,8 +3312,8 @@
         <add name="Material CRC" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) &amp;&amp; ((Vector Flags | BS Vector Flags) &amp; 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Vector Flags | BS Vector Flags) #BITAND# 4096)" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Vector Flags | BS Vector Flags) #BITAND# 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Has DIV2 Floats" type="bool" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="DIV2 Floats" type="float" arr1="Num Vertices" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" cond="Has DIV2 Floats" />
         <add name="Bounding Sphere" type="NiBound" />
@@ -3331,7 +3331,7 @@
 
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
-        <add name="UV Sets" type="TexCoord" arr1="((Num UV Sets &amp; 63) | (Vector Flags &amp; 63) | (BS Vector Flags &amp; 1))" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" arr1="((Num UV Sets #BITAND# 63) | (Vector Flags #BITAND# 63) | (BS Vector Flags #BITAND# 1))" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" />
     </niobject>
@@ -3430,9 +3430,7 @@
 
     <niobject name="NiParticlesData" inherit="NiGeometryData">
         Generic rotating particles data object.
-        <!-- Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. 
-            `!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))` means "Not Bethesda 20.2"
-        -->
+        Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly.
         <add name="Num Particles" type="ushort" ver2="4.0.0.2">The maximum number of particles (matches the number of vertices).</add>
         <add name="Particle Radius" type="float" ver2="10.0.1.0">The particles' size.</add>
         <add name="Has Radii" type="bool" ver1="10.1.0.0">Is the particle size array present?</add>
@@ -3480,7 +3478,6 @@
 
     <niobject name="NiPSysData" inherit="NiParticlesData">
         Particle system data.
-        <!-- `!((Version == 20.2.0.7) &amp;&amp; (User Version 2 &gt; 0))` means "Not Bethesda 20.2" -->
         <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!#BS202#" />
         <add name="Has Rotation Speeds" type="bool" ver1="20.0.0.2" />
         <add name="Rotation Speeds" type="float" arr1="Num Vertices" cond="Has Rotation Speeds" ver1="20.0.0.2" vercond="!#BS202#" />
@@ -3677,9 +3674,9 @@
         <add name="Accum Flags" type="AccumFlags" ver1="20.3.0.8" default="ACCUM_X_FRONT" />
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.1.0.113" ver2="20.1.0.0" />
         <!-- Bethesda -->
-        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(User Version 2 &gt;= 24) &amp;&amp; (User Version 2 &lt;= 28)" />
-        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="(User Version 2 &gt; 28)" />
-        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="(User Version 2 &gt; 28)" />
+        <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(#BSVER# #GTE# 24) #AND# (#BSVER# #LTE# 28)" />
+        <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="#BSVER# #GT# 28" />
+        <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="#BSVER# #GT# 28" />
     </niobject>
 
     <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
@@ -3818,13 +3815,13 @@
     <niobject name="NiMaterialProperty" inherit="NiProperty">
         Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
         <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
-        <add name="Ambient Color" type="Color3" default="#VEC3_ONE#" vercond="(User Version 2 &lt; 26)">How much the material reflects ambient light.</add>
-        <add name="Diffuse Color" type="Color3" default="#VEC3_ONE#" vercond="(User Version 2 &lt; 26)">How much the material reflects diffuse light.</add>
+        <add name="Ambient Color" type="Color3" default="#VEC3_ONE#" vercond="#BSVER# #LT# 26">How much the material reflects ambient light.</add>
+        <add name="Diffuse Color" type="Color3" default="#VEC3_ONE#" vercond="#BSVER# #LT# 26">How much the material reflects diffuse light.</add>
         <add name="Specular Color" type="Color3" default="#VEC3_ONE#">How much light the material reflects in a specular manner.</add>
         <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">How much light the material emits.</add>
         <add name="Glossiness" type="float" default="10.0">The material glossiness.</add>
         <add name="Alpha" type="float" default="1.0">The material transparency (1=non-transparant). Refer to a NiAlphaProperty object in this material's parent NiTriShape object, when alpha is not 1.</add>
-        <add name="Emissive Mult" type="float" default="1.0" vercond="(User Version 2 &gt; 21)" />
+        <add name="Emissive Mult" type="float" default="1.0" vercond="#BSVER# #GT# 21" />
     </niobject>
 
     <niobject name="NiMorphData" inherit="NiObject">
@@ -4557,7 +4554,7 @@
 		<add name="Data Size" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Size" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
-		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size &gt; 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
+		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size #GT# 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
     </niobject>
 
@@ -4705,40 +4702,41 @@
         <add name="Flags" type="Flags" ver1="20.1.0.2">Property flags.</add>
         <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver1="3.3.0.13" ver2="20.1.0.1">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures.</add>
-        <add name="Has Base Texture" type="bool">Do we have a base texture?</add>
-        <add name="Base Texture" type="TexDesc" cond="Has Base Texture">The base texture.</add>
-        <add name="Has Dark Texture" type="bool">Do we have a dark texture?</add>
-        <add name="Dark Texture" type="TexDesc" cond="Has Dark Texture">The dark texture.</add>
-        <add name="Has Detail Texture" type="bool">Do we have a detail texture?</add>
-        <add name="Detail Texture" type="TexDesc" cond="Has Detail Texture">The detail texture.</add>
-        <add name="Has Gloss Texture" type="bool">Do we have a gloss texture?</add>
-        <add name="Gloss Texture" type="TexDesc" cond="Has Gloss Texture">The gloss texture.</add>
-        <add name="Has Glow Texture" type="bool">Do we have a glow texture?</add>
-        <add name="Glow Texture" type="TexDesc" cond="Has Glow Texture">The glowing texture.</add>
-        <add name="Has Bump Map Texture" type="bool" ver1="3.3.0.13" cond="Texture Count &gt; 5">Do we have a bump map texture?</add>
-        <add name="Bump Map Texture" type="TexDesc" cond="Has Bump Map Texture">The bump map texture.</add>
-        <add name="Bump Map Luma Scale" type="float" cond="Has Bump Map Texture" />
-        <add name="Bump Map Luma Offset" type="float" cond="Has Bump Map Texture" />
-        <add name="Bump Map Matrix" type="Matrix22" cond="Has Bump Map Texture" />
-        <add name="Has Normal Texture" type="bool" cond="Texture Count &gt; 6" ver1="20.2.0.5">Do we have a normal texture?</add>
-        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture">Normal texture.</add>
-        <add name="Has Parallax Texture" type="bool" cond="Texture Count &gt; 7" ver1="20.2.0.5" />
-        <add name="Parallax Texture" type="TexDesc" cond="Has Parallax Texture" />
-        <add name="Parallax Offset" type="float" cond="Has Parallax Texture" />
-        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count &gt; 6" ver2="20.2.0.4">Do we have a decal 0 texture?</add>
-        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count &gt; 8" ver1="20.2.0.5">Do we have a decal 0 texture?</add>
-        <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture">The decal texture.</add>
-        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt; 7" ver2="20.2.0.4">Do we have a decal 1 texture?</add>
-        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count &gt; 9" ver1="20.2.0.5">Do we have a decal 1 texture?</add>
-        <add name="Decal 1 Texture" type="TexDesc" cond="Has Decal 1 Texture">Another decal texture.</add>
-        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt; 8" ver2="20.2.0.4">Do we have a decal 2 texture?</add>
-        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count &gt; 10" ver1="20.2.0.5">Do we have a decal 2 texture?</add>
-        <add name="Decal 2 Texture" type="TexDesc" cond="Has Decal 2 Texture">Another decal texture.</add>
-        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt; 9" ver2="20.2.0.4">Do we have a decal 3 texture?</add>
-        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count &gt; 11" ver1="20.2.0.5">Do we have a decal 3 texture?</add>
-        <add name="Decal 3 Texture" type="TexDesc" cond="Has Decal 3 Texture">Another decal texture. Who knows the limit.</add>
-        <add name="Num Shader Textures" type="uint" ver1="10.0.1.0">Number of Shader textures that follow.</add>
-        <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0">Shader textures.</add>
+        <add name="Has Base Texture" type="bool" />
+        <add name="Base Texture" type="TexDesc" cond="Has Base Texture" />
+        <add name="Has Dark Texture" type="bool" />
+        <add name="Dark Texture" type="TexDesc" cond="Has Dark Texture" />
+        <add name="Has Detail Texture" type="bool" />
+        <add name="Detail Texture" type="TexDesc" cond="Has Detail Texture" />
+        <add name="Has Gloss Texture" type="bool" />
+        <add name="Gloss Texture" type="TexDesc" cond="Has Gloss Texture" />
+        <add name="Has Glow Texture" type="bool" />
+        <add name="Glow Texture" type="TexDesc" cond="Has Glow Texture" />
+        <add name="Has Bump Map Texture" type="bool" ver1="3.3.0.13" cond="Texture Count #GT# 5" />
+        <add name="Bump Map Texture" type="TexDesc" ver1="3.3.0.13" cond="Has Bump Map Texture" />
+        <add name="Bump Map Luma Scale" type="float" ver1="3.3.0.13" cond="Has Bump Map Texture" />
+        <add name="Bump Map Luma Offset" type="float" ver1="3.3.0.13" cond="Has Bump Map Texture" />
+        <add name="Bump Map Matrix" type="Matrix22" ver1="3.3.0.13" cond="Has Bump Map Texture" />
+        <add name="Has Normal Texture" type="bool" cond="Texture Count #GT# 6" ver1="20.2.0.5" />
+        <add name="Normal Texture" type="TexDesc" cond="Has Normal Texture" ver1="20.2.0.5" />
+        <add name="Has Parallax Texture" type="bool" cond="Texture Count #GT# 7" ver1="20.2.0.5" />
+        <add name="Parallax Texture" type="TexDesc" cond="Has Parallax Texture" ver1="20.2.0.5" />
+        <add name="Parallax Offset" type="float" cond="Has Parallax Texture" ver1="20.2.0.5" />
+        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count #GT# 6" ver2="20.2.0.4" />
+        <add name="Has Decal 0 Texture" type="bool" cond="Texture Count #GT# 8" ver1="20.2.0.5" />
+        <add name="Decal 0 Texture" type="TexDesc" cond="Has Decal 0 Texture" />
+        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count #GT# 7" ver2="20.2.0.4" />
+        <add name="Has Decal 1 Texture" type="bool" cond="Texture Count #GT# 9" ver1="20.2.0.5" />
+        <add name="Decal 1 Texture" type="TexDesc" cond="Has Decal 1 Texture" />
+        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count #GT# 8" ver2="20.2.0.4" />
+        <add name="Has Decal 2 Texture" type="bool" cond="Texture Count #GT# 10" ver1="20.2.0.5" />
+        <add name="Decal 2 Texture" type="TexDesc" cond="Has Decal 2 Texture" />
+        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count #GT# 9" ver2="20.2.0.4" />
+        <add name="Has Decal 3 Texture" type="bool" cond="Texture Count #GT# 11" ver1="20.2.0.5" />
+        <add name="Decal 3 Texture" type="TexDesc" cond="Has Decal 3 Texture" />
+        
+        <add name="Num Shader Textures" type="uint" ver1="10.0.1.0" />
+        <add name="Shader Textures" type="ShaderTexDesc" arr1="Num Shader Textures" ver1="10.0.1.0" />
     </niobject>
 
     <niobject name="NiMultiTextureProperty" inherit="NiTexturingProperty" />
@@ -5575,19 +5573,19 @@
     <niobject name="BSShaderNoLightingProperty" inherit="BSShaderLightingProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">The texture glow map.</add>
-        <add name="Falloff Start Angle" type="float" default="1.0" vercond="(User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="(User Version 2 &gt; 26)">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="(User Version 2 &gt; 26)">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="(User Version 2 &gt; 26)">Alpha falloff multiplier at end angle</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at end angle</add>
     </niobject>
 
     <niobject name="BSShaderPPLightingProperty" inherit="BSShaderLightingProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Refraction Strength" type="float" default="0.0" vercond="(User Version 2 &gt; 14)">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
-        <add name="Refraction Fire Period" type="int" default="0" vercond="(User Version 2 &gt; 14)">Rate of texture movement for refraction shader.</add>
-        <add name="Parallax Max Passes" type="float" default="4.0" vercond="(User Version 2 &gt; 24)">The number of passes the parallax shader can apply.</add>
-        <add name="Parallax Scale" type="float" default="1.0" vercond="(User Version 2 &gt; 24)">The strength of the parallax.</add>
+        <add name="Refraction Strength" type="float" default="0.0" vercond="#BSVER# #GT# 14">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
+        <add name="Refraction Fire Period" type="int" default="0" vercond="#BSVER# #GT# 14">Rate of texture movement for refraction shader.</add>
+        <add name="Parallax Max Passes" type="float" default="4.0" vercond="#BSVER# #GT# 24">The number of passes the parallax shader can apply.</add>
+        <add name="Parallax Scale" type="float" default="1.0" vercond="#BSVER# #GT# 24">The strength of the parallax.</add>
         <!-- TODO: Find where this could have even come from as > 34 doesn't exist for this block. -->
         <add name="Emissive Color" type="Color4" vercond="#BS_GT_FO3#">Glow color and alpha</add>
     </niobject>
@@ -6515,7 +6513,7 @@
     <compound name="MeshDataEpicMickey" versions="V20_6_5_0_DEM">
         <add name="Unknown 1" type="int" />
         <add name="Unknown 2" type="int" />
-        <add name="Unknown 3" type="int" vercond="(User Version &gt; 14)" />
+        <add name="Unknown 3" type="int" vercond="#USER# #GT# 14" />
         <add name="Unknown 4" type="int" />
         <add name="Unknown 5" type="float" />
         <add name="Unknown 6" type="int" />
@@ -6544,8 +6542,8 @@
         <add name="Unknown Data Width" type="uint" />
         <add name="Unknown Data" type="Vector3" arr1="Unknown Data Size" arr2="Unknown Data Width" />
         <add name="Unknown Indices" type="ushort" arr1="Unknown Data Size" />
-        <add name="Num Mapped Primitives" type="ushort" vercond="(User Version &lt; 17)">When non-zero, equal to the number of primitives.</add>
-        <add name="Num Mapped Primitives" type="uint" vercond="(User Version == 17)">When non-zero, equal to the number of primitives.</add>
+        <add name="Num Mapped Primitives" type="ushort" vercond="#USER# #LT# 17">When non-zero, equal to the number of primitives.</add>
+        <add name="Num Mapped Primitives" type="uint" vercond="#USER# == 17">When non-zero, equal to the number of primitives.</add>
         <add name="Mapped Primitives" type="byte" arr1="Num Mapped Primitives">Some integer associated with each primitive.</add>
         <add name="Partition Size" type="uint" />
         <add name="Partitions" type="PartitionDataEpicMickey" arr1="Partition Size" />
@@ -6564,8 +6562,8 @@
         <add name="Num Modifiers" type="uint" />
         <add name="Modifiers" type="Ref" template="NiMeshModifier" arr1="Num Modifiers" />
         <!-- Epic Mickey -->
-        <add name="Has Extra EM Data" type="bool" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 9)" />
-        <add name="Extra EM Data" type="ExtraMeshDataEpicMickey" cond="Has Extra EM Data" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 9)" />
+        <add name="Has Extra EM Data" type="bool" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 9" />
+        <add name="Extra EM Data" type="ExtraMeshDataEpicMickey" cond="Has Extra EM Data" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 9" />
     </niobject>
 
     <niobject name="NiMorphWeightsController" inherit="NiInterpController" since="V20_5_0_0">
@@ -6608,7 +6606,7 @@
         <add name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</add>
         <add name="Bones" type="Ptr" template="NiAVObject" arr1="Num Bones">Pointers to the bone nodes that affect this skin.</add>
         <add name="Bone Transforms" type="NiTransform" arr1="Num Bones">The transforms that go from bind-pose space to bone space.</add>
-        <add name="Bone Bounds" type="NiBound" cond="(Flags &amp; 2)!=0" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add>
+        <add name="Bone Bounds" type="NiBound" cond="Flags #BITAND# 2" arr1="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</add>
     </niobject>
 
     <niobject name="NiMeshHWInstance" inherit="NiAVObject" since="V20_5_0_0">
@@ -6687,8 +6685,8 @@
         <add name="Spawn Rate Keys" type="PSSpawnRateKey" arr1="Num Spawn Rate Keys" ver1="20.6.1.0" />
         <add name="Pre RPI" type="bool" ver1="20.6.1.0" />
         <!-- Epic Mickey -->
-        <add name="DEM Unknown Int" type="uint" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
-        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Int" type="uint" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
     </niobject>
 
     <niobject name="NiPSMeshParticleSystem" inherit="NiPSParticleSystem" since="V20_5_0_0">
@@ -6763,7 +6761,7 @@
         <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
         <add name="Shrink Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system, so that particles will shrink immediately before getting killed.</add>
         <!-- Epic Mickey -->
-        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
     </niobject>
 
     <niobject name="NiPSSimulatorForcesStep" inherit="NiPSSimulatorStep" since="V20_5_0_0">
@@ -6867,9 +6865,9 @@
 
     <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of directional gravity.
-        <add name="DEM Unknown Short" type="ushort" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Short" type="ushort" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
         <add name="Direction" type="Vector3" />
-        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
     </niobject>
 
     <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
@@ -6923,7 +6921,7 @@
     <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter" since="V20_5_0_0">
         Abstract base class for particle emitters that emit particles from a volume.
         <!-- Epic Mickey -->
-        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="(User Version &gt; 14)" />
+        <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
         <add name="Emitter Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
@@ -7462,13 +7460,13 @@
         <add name="Num Triangles" type="ushort" vercond="#NI_BS_LT_FO4#" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size &gt; 0" vercond="#BS_FO4#" />
-        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size &gt; 0" vercond="#BS_SSE#" />
-        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size &gt; 0" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_FO4#" />
+        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_SSE#" />
+        <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size #GT# 0" />
         <add name="Particle Data Size" type="uint" vercond="#BS_SSE#" />
-        <add name="Particle Vertices" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" vercond="#BS_SSE#" />
-        <add name="Particle Normals" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size &gt; 0" vercond="#BS_SSE#" />
-        <add name="Particle Triangles" type="Triangle" arr1="Num Triangles" cond="Particle Data Size &gt; 0" vercond="#BS_SSE#" />
+        <add name="Particle Vertices" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
+        <add name="Particle Normals" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
+        <add name="Particle Triangles" type="Triangle" arr1="Num Triangles" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
     </niobject>
 
     <niobject name="BSMeshLODTriShape" inherit="BSTriShape" versions="#FO4#">
@@ -7497,11 +7495,11 @@
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape" versions="#SSE# #FO4#">
         Fallout 4 Sub-Index Tri Shape
-		<add name="Num Primitives" type="uint" vercond="#BS_FO4#" cond="Data Size &gt; 0" />
-		<add name="Num Segments" type="uint" vercond="#BS_FO4#" cond="Data Size &gt; 0" />
-		<add name="Total Segments" type="uint" vercond="#BS_FO4#" cond="Data Size &gt; 0" />
-		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_FO4#" arr1="Num Segments" cond="Data Size &gt; 0" />
-		<add name="Segment Data" type="BSGeometrySegmentSharedData" vercond="#BS_FO4#" cond="(Num Segments &lt; Total Segments) &amp;&amp; (Data Size &gt; 0)" />
+		<add name="Num Primitives" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
+		<add name="Num Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
+		<add name="Total Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
+		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_FO4#" arr1="Num Segments" cond="Data Size #GT# 0" />
+		<add name="Segment Data" type="BSGeometrySegmentSharedData" vercond="#BS_FO4#" cond="(Num Segments #LT# Total Segments) #AND# (Data Size #GT# 0)" />
 		<add name="Num Segments" type="uint" vercond="#BS_SSE#" />
 		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_SSE#" arr1="Num Segments" />
     </niobject>
