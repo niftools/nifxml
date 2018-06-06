@@ -2296,7 +2296,7 @@
         <add name="Parent" type="Ref" template="NiObject" />
         <add name="Num 1" type="uint" />
         <add name="Num 2" type="uint" />
-        <add name="Unknown 2" type="uint" arr1="Num 1" arr2="Num 2" arr3="2" />
+        <add name="Unknown 2" type="uint" arr1="Num 1 * Num 2" arr2="2" />
     </niobject>
 
     <niobject name="Ni3dsAnimationNode" inherit="NiObject" versions="V2_3">
