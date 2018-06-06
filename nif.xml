@@ -105,6 +105,10 @@
         <verexpr token="#DIVINITY2#" string="((#USER# #EQ# 0x20000) #OR# (#USER# #EQ# 0x30000))">Divinity 2</verexpr>
     </token>
 
+    <token name="condexpr" attrs="cond">
+        <condexpr token="#BSSTREAMHEADER#" string="(Version #EQ# 10.0.1.2) #OR# ((Version #EQ# 20.2.0.7) #OR# (Version #EQ# 20.0.0.5) #OR# ((Version #GTE# 10.1.0.0) #AND# (Version #LTE# 20.0.0.4) #AND# (User Version #LTE# 11))) #AND# (User Version #GTE# 3)" />
+    </token>
+
     <token name="verset" attrs="versions">
         The set of versions that any Basic, Compound, NiObject, Enum, or Bitflags is restricted to.
         <verset token="#BETHESDA#" string="V10_0_1_2 V10_1_0_101 V10_1_0_106 V10_2_0_0__10 V20_0_0_4__10 V20_0_0_4__11 V20_0_0_5_OBL V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
@@ -142,7 +146,7 @@
         NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
         <global token="#VER#" string="Version" />
         <global token="#USER#" string="User Version" />
-        <global token="#BSVER#" string="User Version 2" />
+        <global token="#BSVER#" string="BS Header\BS Version" />
     </token>
 
     <token name="operator" attrs="cond vercond arr1 arr2 arg">
@@ -1582,11 +1586,13 @@
         <add name="Interpolator ID" type="string" ver1="20.1.0.1">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
     </compound>
 
-    <compound name="ExportInfo" versions="#BETHESDA#">
+    <compound name="BSStreamHeader" versions="#BETHESDA#">
     	Information about how the file was exported
+        <add name="BS Version" type="ulittle32" />
         <add name="Author" type="ShortString" />
         <add name="Process Script" type="ShortString" />
         <add name="Export Script" type="ShortString" />
+        <add name="Max Filepath" type="ShortString" cond="BS Version == 130" />
     </compound>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
@@ -1598,11 +1604,7 @@
         <add name="Endian Type" type="EndianType" default="ENDIAN_LITTLE" ver1="20.0.0.3">Determines the endianness of the data in the file.</add>
         <add name="User Version" type="ulittle32" ver1="10.0.1.8">An extra version number, for companies that decide to modify the file format.</add>
         <add name="Num Blocks" type="ulittle32" ver1="3.1.0.1">Number of file objects.</add>
-        <!-- BSStreamHeader -->
-        <add name="User Version 2" type="ulittle32" default="0" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
-        <add name="Export Info" type="ExportInfo" cond="(Version == 10.0.1.2) || ((Version == 20.2.0.7) || (Version == 20.0.0.5) || ((Version &gt;= 10.1.0.0) &amp;&amp; (Version &lt;= 20.0.0.4) &amp;&amp; (User Version &lt;= 11))) &amp;&amp; (User Version &gt;= 3)" />
-        <add name="Max Filepath" type="ShortString" cond="(User Version 2 == 130)" />
-        <!-- / BSStreamHeader -->
+        <add name="BS Header" type="BSStreamHeader" cond="#BSSTREAMHEADER#" />
         <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
         <add name="Num Block Types" type="ushort" ver1="5.0.0.1">Number of object types in this NIF file.</add>
         <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="5.0.0.1">List of all object types used in this NIF file.</add>
