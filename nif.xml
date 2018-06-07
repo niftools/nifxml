@@ -1633,25 +1633,25 @@
     <compound name="Key" istemplate="1">
         A generic key with support for interpolation. Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
         <add name="Time" type="float">Time of the key.</add>
-        <add name="Value" type="TEMPLATE">The key value.</add>
-        <add name="Forward" type="TEMPLATE" cond="ARG == 2">Key forward tangent.</add>
-        <add name="Backward" type="TEMPLATE" cond="ARG == 2">The key backward tangent.</add>
-        <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
+        <add name="Value" type="#T#">The key value.</add>
+        <add name="Forward" type="#T#" cond="#ARG# == 2">Key forward tangent.</add>
+        <add name="Backward" type="#T#" cond="#ARG# == 2">The key backward tangent.</add>
+        <add name="TBC" type="TBC" cond="#ARG# == 3">The TBC of the key.</add>
     </compound>
 
     <compound name="KeyGroup" istemplate="1">
         Array of vector keys (anything that can be interpolated, except rotations).
         <add name="Num Keys" type="uint">Number of keys in the array.</add>
         <add name="Interpolation" type="KeyType" cond="Num Keys != 0">The key type.</add>
-        <add name="Keys" type="Key" arg="Interpolation" template="TEMPLATE" arr1="Num Keys">The keys.</add>
+        <add name="Keys" type="Key" arg="Interpolation" template="#T#" arr1="Num Keys">The keys.</add>
     </compound>
 
-    <compound name="QuatKey" istemplate="1"><!-- TEMPLATE should always be Quaternion -->
+    <compound name="QuatKey" istemplate="1"><!-- #T# should always be Quaternion -->
         A special version of the key type used for quaternions.  Never has tangents.
         <add name="Time" type="float" ver2="10.1.0.0">Time the key applies.</add>
-        <add name="Time" type="float" cond="ARG != 4" ver1="10.1.0.106">Time the key applies.</add>
-        <add name="Value" type="TEMPLATE" cond="ARG != 4">Value of the key.</add>
-        <add name="TBC" type="TBC" cond="ARG == 3">The TBC of the key.</add>
+        <add name="Time" type="float" cond="#ARG# != 4" ver1="10.1.0.106">Time the key applies.</add>
+        <add name="Value" type="#T#" cond="#ARG# != 4">Value of the key.</add>
+        <add name="TBC" type="TBC" cond="#ARG# == 3">The TBC of the key.</add>
     </compound>
 
     <compound name="TexCoord" size="8">
@@ -1726,38 +1726,38 @@
 	</bitflags>
     
 	<compound name="BSVertexData" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="(ARG #BITAND# 0x4010) == 0x4010" />
-		<add name="Bitangent X" type="float" cond="(ARG #BITAND# 0x4110) == 0x4110" />
-		<add name="Unknown Int" type="uint" cond="(ARG #BITAND# 0x4110) == 0x4010" />
+		<add name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x4010) == 0x4010" />
+		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x4110) == 0x4110" />
+		<add name="Unknown Int" type="uint" cond="(#ARG# #BITAND# 0x4110) == 0x4010" />
 
-		<add name="Vertex" type="HalfVector3" cond="(ARG #BITAND# 0x4010) == 0x10" />
-		<add name="Bitangent X" type="hfloat" cond="(ARG #BITAND# 0x4110) == 0x110" />
-		<add name="Unknown Short" type="ushort" cond="(ARG #BITAND# 0x4110) == 0x10" />
+		<add name="Vertex" type="HalfVector3" cond="(#ARG# #BITAND# 0x4010) == 0x10" />
+		<add name="Bitangent X" type="hfloat" cond="(#ARG# #BITAND# 0x4110) == 0x110" />
+		<add name="Unknown Short" type="ushort" cond="(#ARG# #BITAND# 0x4110) == 0x10" />
 
-		<add name="UV" type="HalfTexCoord" cond="ARG #BITAND# 0x20" />
-		<add name="Normal" type="ByteVector3" cond="ARG #BITAND# 0x80" />
-		<add name="Bitangent Y" type="byte" cond="ARG #BITAND# 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(ARG #BITAND# 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(ARG #BITAND# 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="ARG #BITAND# 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG #BITAND# 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="ARG #BITAND# 0x400" />
-		<add name="Eye Data" type="float" cond="ARG #BITAND# 0x1000" />
+		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x20" />
+		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x80" />
+		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x400" />
+		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x1000" />
 	</compound>
 
 	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="ARG #BITAND# 0x10" />
-		<add name="Bitangent X" type="float" cond="(ARG #BITAND# 0x110) == 0x110" />
-		<add name="Unknown Int" type="int" cond="(ARG #BITAND# 0x110) == 0x10" />
-		<add name="UV" type="HalfTexCoord" cond="ARG #BITAND# 0x20" />
-		<add name="Normal" type="ByteVector3" cond="ARG #BITAND# 0x80" />
-		<add name="Bitangent Y" type="byte" cond="ARG #BITAND# 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(ARG #BITAND# 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(ARG #BITAND# 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="ARG #BITAND# 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="ARG #BITAND# 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="ARG #BITAND# 0x400" />
-		<add name="Eye Data" type="float" cond="ARG #BITAND# 0x1000" />
+		<add name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x10" />
+		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x110) == 0x110" />
+		<add name="Unknown Int" type="int" cond="(#ARG# #BITAND# 0x110) == 0x10" />
+		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x20" />
+		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x80" />
+		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x80" />
+		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x180) == 0x180" />
+		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x180) == 0x180" />
+		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x200" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x400" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x400" />
+		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x1000" />
 	</compound>
 
     <compound name="BSVertexDesc" size="8" versions="#SSE# #FO4#">
@@ -1873,7 +1873,7 @@
         <add name="Interpolation" type="KeyType" ver2="10.1.0.0">Unlike most objects, the presense of this value is not conditional on there being keys.</add>
         <add name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" ver2="10.1.0.0">The morph key frames.</add>
         <add name="Legacy Weight" type="float" ver1="10.1.0.104" ver2="20.1.0.2" vercond="#BSVER# #LT# 10" /> <!-- Exclude Bethesda -->
-        <add name="Vectors" type="Vector3" arr1="ARG">Morph vectors.</add>
+        <add name="Vectors" type="Vector3" arr1="#ARG#">Morph vectors.</add>
     </compound>
 
     <compound name="Particle" size="40">
@@ -1893,7 +1893,7 @@
         <add name="Bounding Sphere" type="NiBound">Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere</add>
         <add name="Num Vertices" type="ushort">Number of weighted vertices.</add>
         <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver2="4.2.1.0">The vertex weights.</add>
-        <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver1="4.2.2.0" cond="ARG != 0">The vertex weights.</add>
+        <add name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" ver1="4.2.2.0" cond="#ARG# != 0">The vertex weights.</add>
     </compound>
 
     <compound name="HavokFilter" size="4" versions="#BETHESDA#">
