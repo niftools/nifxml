@@ -175,16 +175,16 @@
         A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
     </basic>
 
+    <basic name="char" countable="false" size="1">
+        An 8-bit character.
+    </basic>
+
     <basic name="byte" countable="true" size="1">
         An unsigned 8-bit integer.
     </basic>
 
-    <basic name="uint" countable="true" size="4">
-        An unsigned 32-bit integer.
-    </basic>
-
-    <basic name="ulittle32" countable="true" size="4">
-        A litte-endian unsigned 32-bit integer.
+    <basic name="short" countable="true" size="2">
+        A signed 16-bit integer.
     </basic>
 
     <basic name="ushort" countable="true" size="2">
@@ -195,17 +195,25 @@
         A signed 32-bit integer.
     </basic>
 
-    <basic name="short" countable="true" size="2">
-        A signed 16-bit integer.
+    <basic name="uint" countable="true" size="4">
+        An unsigned 32-bit integer.
+    </basic>
+
+    <basic name="ulittle32" countable="true" size="4">
+        A little-endian unsigned 32-bit integer.
+    </basic>
+
+    <basic name="int64" countable="true" size="8">
+        A signed 64-bit integer.
+    </basic>
+
+    <basic name="uint64" countable="true" size="8">
+        An unsigned 64-bit integer.
     </basic>
 
     <basic name="BlockTypeIndex" countable="false" size="2">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
         The upper bit appears to be a flag used for PhysX block types.
-    </basic>
-
-    <basic name="char" countable="false" size="1">
-        An 8-bit character.
     </basic>
 
     <basic name="FileVersion" countable="false" size="4">
