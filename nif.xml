@@ -171,52 +171,52 @@
 
     <!--Basic Types-->
 
-    <basic name="bool" countable="true">
-        A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
-    </basic>
-
-    <basic name="char" countable="false" size="1">
-        An 8-bit character.
-    </basic>
-
-    <basic name="byte" countable="true" size="1">
-        An unsigned 8-bit integer.
-    </basic>
-
-    <basic name="short" countable="true" size="2">
-        A signed 16-bit integer.
-    </basic>
-
-    <basic name="ushort" countable="true" size="2">
-        An unsigned 16-bit integer.
-    </basic>
-
-    <basic name="int" countable="true" size="4">
-        A signed 32-bit integer.
-    </basic>
-
-    <basic name="uint" countable="true" size="4">
-        An unsigned 32-bit integer.
-    </basic>
-
-    <basic name="ulittle32" countable="true" size="4">
-        A little-endian unsigned 32-bit integer.
-    </basic>
-
-    <basic name="int64" countable="true" size="8">
-        A signed 64-bit integer.
-    </basic>
-
-    <basic name="uint64" countable="true" size="8">
+    <basic name="uint64" integral="true" countable="true" size="8">
         An unsigned 64-bit integer.
     </basic>
 
-    <basic name="BlockTypeIndex" countable="false" size="2">
+    <basic name="int64" integral="true" countable="false" size="8">
+        A signed 64-bit integer.
+    </basic>
+
+    <basic name="ulittle32" integral="true" countable="true" size="4">
+        A little-endian unsigned 32-bit integer.
+    </basic>
+
+    <basic name="uint" integral="true" countable="true" size="4" convertible="uint64">
+        An unsigned 32-bit integer.
+    </basic>
+
+    <basic name="int" integral="true" countable="false" size="4" convertible="int64">
+        A signed 32-bit integer.
+    </basic>
+
+    <basic name="ushort" integral="true" countable="true" size="2" convertible="uint uint64">
+        An unsigned 16-bit integer.
+    </basic>
+
+    <basic name="short" integral="true" countable="false" size="2" convertible="int int64">
+        A signed 16-bit integer.
+    </basic>
+
+    <basic name="char" integral="true" countable="false" size="1" convertible="short int int64">
+        An 8-bit character.
+    </basic>
+
+    <basic name="byte" boolean="true" integral="true" countable="true" size="1" convertible="ushort uint uint64">
+        An unsigned 8-bit integer.
+    </basic>
+
+    <basic name="bool" boolean="true" integral="true" countable="false">
+        A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
+    </basic>
+
+    <basic name="BlockTypeIndex" integral="true" countable="false" size="2">
         A 16-bit (signed?) integer, which is used in the header to refer to a particular object type in a object type string array.
         The upper bit appears to be a flag used for PhysX block types.
     </basic>
 
-    <basic name="FileVersion" countable="false" size="4">
+    <basic name="FileVersion" integral="true" countable="false" size="4">
         A 32-bit integer that stores the version in hexadecimal format with each byte representing a number in the version string.
 
         Some widely-used versions and their hex representation:
@@ -232,42 +232,42 @@
         20.0.0.5:   0x14000005
     </basic>
 
-    <basic name="Flags" countable="false" size="2">
+    <basic name="Flags" integral="true" countable="false" size="2">
         A 16-bit integer, used for bit flags.  Function varies by object type.
     </basic>
 
-    <basic name="float" countable="false" size="4">
+    <basic name="float" integral="false" size="4">
         A standard 32-bit floating point number.
     </basic>
     
-    <basic name="hfloat" countable="false" size="2">
+    <basic name="hfloat" integral="false" size="2" convertible="float">
         A 16-bit floating point number.
     </basic>
     
-    <basic name="HeaderString" countable="false">
+    <basic name="HeaderString" integral="false">
         A variable length string that ends with a newline character (0x0A).  The string starts as follows depending on the version:
 
         Version &lt;= 10.0.1.0:  'NetImmerse File Format'
         Version &gt;= 10.1.0.0:  'Gamebryo File Format'
     </basic>
 
-    <basic name="LineString" countable="false">
+    <basic name="LineString" integral="false">
         A variable length string that ends with a newline character (0x0A).
     </basic>
 
-    <basic name="Ptr" countable="false" istemplate="1" size="4">
+    <basic name="Ptr" integral="true" countable="false" istemplate="1" size="4">
         A signed 32-bit integer, referring to a object before this one in the hierarchy.  Examples:  Bones, gravity objects.
     </basic>
 
-    <basic name="Ref" countable="false" istemplate="1" size="4">
+    <basic name="Ref" integral="true" countable="false" istemplate="1" size="4">
         A signed 32-bit integer, used to refer to another object; -1 means no reference. These should always point down the hierarchy. Other types are used for indexes that point to objects higher up.
     </basic>
 
-    <basic name="StringOffset" countable="false" size="4">
+    <basic name="StringOffset" integral="true" countable="false" size="4">
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
-    <basic name="StringIndex" countable="false" size="4">
+    <basic name="StringIndex" integral="true" countable="false" size="4">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
@@ -1350,7 +1350,7 @@
         <add name="b" type="float">Blue color component.</add>
     </compound>
 
-    <compound name="ByteColor3" size="3">
+    <compound name="ByteColor3" size="3" convertible="Color3">
         A color without alpha (red, green, blue).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
@@ -1365,7 +1365,7 @@
         <add name="a" type="float">Alpha.</add>
     </compound>
 
-    <compound name="ByteColor4" size="4">
+    <compound name="ByteColor4" size="4" convertible="Color4">
         A color with alpha (red, green, blue, alpha).
         <add name="r" type="byte">Red color component.</add>
         <add name="g" type="byte">Green color component.</add>
@@ -1398,25 +1398,25 @@
         <add name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</add>
     </compound>
     
-    <compound name="ByteVector3" size="3">
+    <compound name="Vector3" size="12">
         A vector in 3D space (x,y,z).
-        <add name="x" type="byte">First coordinate.</add>
-        <add name="y" type="byte">Second coordinate.</add>
-        <add name="z" type="byte">Third coordinate.</add>
+        <add name="x" type="float">First coordinate.</add>
+        <add name="y" type="float">Second coordinate.</add>
+        <add name="z" type="float">Third coordinate.</add>
     </compound>
     
-    <compound name="HalfVector3" size="6">
+    <compound name="HalfVector3" size="6" convertible="Vector3">
         A vector in 3D space (x,y,z).
         <add name="x" type="hfloat">First coordinate.</add>
         <add name="y" type="hfloat">Second coordinate.</add>
         <add name="z" type="hfloat">Third coordinate.</add>
     </compound>
 
-    <compound name="Vector3" size="12">
+    <compound name="ByteVector3" size="3" convertible="Vector3">
         A vector in 3D space (x,y,z).
-        <add name="x" type="float">First coordinate.</add>
-        <add name="y" type="float">Second coordinate.</add>
-        <add name="z" type="float">Third coordinate.</add>
+        <add name="x" type="byte">First coordinate.</add>
+        <add name="y" type="byte">Second coordinate.</add>
+        <add name="z" type="byte">Third coordinate.</add>
     </compound>
 
     <compound name="Vector4" size="16">
