@@ -2197,7 +2197,7 @@
 
     <compound name="DecalVectorArray" versions="#FO3_AND_LATER#">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
-        <add name="Num Vectors" type="short" />
+        <add name="Num Vectors" type="ushort" />
         <add name="Points" type="Vector3" arr1="Num Vectors">Vector XYZ coords</add>
         <add name="Normals" type="Vector3" arr1="Num Vectors">Vector Normals</add>
     </compound>
@@ -3661,7 +3661,7 @@
         <add name="Name" type="string">The sequence name by which the animation system finds and manages this sequence.</add>
         <add name="Accum Root Name" type="string" ver2="10.1.0.103">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver2="10.1.0.103" />
-        <add name="Num DIV2 Ints" type="int" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
+        <add name="Num DIV2 Ints" type="uint" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="DIV2 Ints" type="int" arr1="Num DIV2 Ints" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="DIV2 Ref" type="Ref" template="NiObject" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="Num Controlled Blocks" type="uint" />
@@ -5111,7 +5111,7 @@
 
     <niobject name="NiPhysXPropDesc" inherit="NiObject" since="V20_2_0_8">
         For serialization of PhysX objects and to attach them to the scene.
-        <add name="Num Actors" type="int" />
+        <add name="Num Actors" type="uint" />
         <add name="Actors" type="Ref" template="NiPhysXActorDesc" arr1="Num Actors" />
         <add name="Num Joints" type="uint" />
         <add name="Joints" type="Ref" template="NiPhysXJointDesc" arr1="Num Joints" />
@@ -5447,7 +5447,7 @@
     <niobject name="NiRoomGroup" inherit="NiNode">
         NiRoomGroup represents a set of connected rooms i.e. a game level.
         <add name="Shell" type="Ptr" template="NiNode">Object that represents the room group as seen from the outside.</add>
-        <add name="Num Rooms" type="int" />
+        <add name="Num Rooms" type="uint" />
         <add name="Rooms" type="Ptr" template="NiRoom" arr1="Num Rooms" />
     </niobject>
 
@@ -5457,7 +5457,7 @@
 
     <niobject name="NiRoom" inherit="NiNode">
         NiRoom objects represent cells in a cell-portal culling system.
-        <add name="Num Walls" type="int" />
+        <add name="Num Walls" type="uint" />
         <add name="Walls" type="Ref" template="NiWall" arr1="Num Walls" ver2="3.3.0.13" />
         <add name="Wall Planes" type="NiPlane" arr1="Num Walls" ver1="4.0.0.0" />
         <add name="Num In Portals" type="uint" />
@@ -5651,7 +5651,7 @@
 
    <niobject name="BSShaderTextureSet" inherit="NiObject" versions="#BETHESDA#">
         Bethesda-specific Texture Set.
-        <add name="Num Textures" type="int" default="6" />
+        <add name="Num Textures" type="uint" default="6" />
         <add name="Textures" type="SizedString" arr1="Num Textures">Textures.
             0: Diffuse
             1: Normal/Gloss
@@ -5970,13 +5970,13 @@
 
     <niobject name="BSDismemberSkinInstance" inherit="NiSkinInstance" versions="#BETHESDA#">
         Bethesda-specific skin instance.
-        <add name="Num Partitions" type="int" />
+        <add name="Num Partitions" type="uint" />
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions" />
     </niobject>
 
     <niobject name="BSDecalPlacementVectorExtraData" inherit="NiFloatExtraData" versions="#FO3_AND_LATER#">
         Bethesda-specific extra data. Lists locations and normals on a mesh that are appropriate for decal placement.
-        <add name="Num Vector Blocks" type="short" />
+        <add name="Num Vector Blocks" type="ushort" />
         <add name="Vector Blocks" type="DecalVectorArray" arr1="Num Vector Blocks" />
     </niobject>
 
@@ -6034,7 +6034,7 @@
     <niobject name="BSMasterParticleSystem" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific particle system.
         <add name="Max Emitter Objects" type="ushort" />
-        <add name="Num Particle Systems" type="int" />
+        <add name="Num Particle Systems" type="uint" />
         <add name="Particle Systems" type="Ref" template="NiAVObject" arr1="Num Particle Systems" />
 
     </niobject>
@@ -6109,7 +6109,7 @@
 
     <niobject name="BSTreadTransfInterpolator" inherit="NiInterpolator" versions="#FO3_AND_LATER#">
         Bethesda-specific interpolator.
-        <add name="Num Tread Transforms" type="int" />
+        <add name="Num Tread Transforms" type="uint" />
         <add name="Tread Transforms" type="BSTreadTransform" arr1="Num Tread Transforms" />
         <add name="Data" type="Ref" template="NiFloatData" />
     </niobject>
@@ -6206,7 +6206,7 @@
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape" versions="#FO3_AND_LATER#">
         Bethesda-specific AV object.
-        <add name="Num Segments" type="int" >Number of segments in the square grid</add>
+        <add name="Num Segments" type="uint" >Number of segments in the square grid</add>
         <add name="Segment" type="BSGeometrySegmentData" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
@@ -6229,11 +6229,11 @@
     <compound name="AdditionalDataBlock">
         <!-- todo: check if this is essentially the same as BSPackedAdditionalData, i.e. if this is identical to BSPackedAdditionalData minus its last two fields -->
         <add name="Has Data" type="bool">Has data</add>
-        <add name="Block Size" type="int" cond="Has Data">Size of Block</add>
-        <add name="Num Blocks" type="int" cond="Has Data" />
+        <add name="Block Size" type="uint" cond="Has Data">Size of Block</add>
+        <add name="Num Blocks" type="uint" cond="Has Data" />
         <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data" />
 
-        <add name="Num Data" type="int" cond="Has Data" />
+        <add name="Num Data" type="uint" cond="Has Data" />
         <add name="Data Sizes" type="int" arr1="Num Data" cond="Has Data" />
         <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" cond="Has Data" />
     </compound>
@@ -6241,11 +6241,11 @@
     <compound name="BSPackedAdditionalDataBlock" versions="#BETHESDA#">
         <!-- see Fallout NV (nvdlc01vaultposter01.nif) -->
         <add name="Has Data" type="bool">Has data</add>
-        <add name="Num Total Bytes" type="int" cond="Has Data">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</add>
-        <add name="Num Blocks" type="int" cond="Has Data">Number of blocks? Usually equal to one.</add>
+        <add name="Num Total Bytes" type="uint" cond="Has Data">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</add>
+        <add name="Num Blocks" type="uint" cond="Has Data">Number of blocks? Usually equal to one.</add>
         <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data">Block offsets in the data? Usually equal to zero.</add>
 
-        <add name="Num Atoms" type="int" cond="Has Data">Number of atoms?</add>
+        <add name="Num Atoms" type="uint" cond="Has Data">Number of atoms?</add>
         <add name="Atom Sizes" type="int" arr1="Num Atoms" cond="Has Data">The sum of all of these equal num total bytes per element, so this probably describes how each data element breaks down into smaller chunks (i.e. atoms).</add>
         <add name="Data" type="byte" arr1="Num Total Bytes" cond="Has Data" />
         <add name="Unknown Int 1" type="int" />
@@ -6256,7 +6256,7 @@
         <add name="Num Vertices" type="ushort">Number of vertices</add>
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
         <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
-        <add name="Num Blocks" type="int">Number of additional data blocks</add>
+        <add name="Num Blocks" type="uint">Number of additional data blocks</add>
         <add name="Blocks" type="AdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
@@ -6265,13 +6265,13 @@
         <add name="Num Vertices" type="ushort" />
         <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
         <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
-        <add name="Num Blocks" type="int">Number of additional data blocks. Usually there is exactly one block.</add>
+        <add name="Num Blocks" type="uint">Number of additional data blocks. Usually there is exactly one block.</add>
         <add name="Blocks" type="BSPackedAdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
     </niobject>
 
     <niobject name="BSWArray" inherit="NiExtraData" versions="#FO3_AND_LATER#">
         Bethesda-specific extra data.
-        <add name="Num Items" type="int" />
+        <add name="Num Items" type="uint" />
         <add name="Items" type="int" arr1="Num Items" />
     </niobject>
 
@@ -6314,15 +6314,15 @@
         Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)
         Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.
         Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
-        <add name="Num Bones" type="int" />
+        <add name="Num Bones" type="uint" />
         <add name="Bones" type="string" arr1="Num Bones" />
-        <add name="Num Poses" type="int" />
+        <add name="Num Poses" type="uint" />
         <add name="Poses" type="BonePose" arr1="Num Poses" />
     </niobject>
 
     <niobject name="bhkRagdollTemplate" inherit="NiExtraData" versions="#FO3_AND_LATER#">
         Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)
-        <add name="Num Bones" type="int" />
+        <add name="Num Bones" type="uint" />
         <add name="Bones" type="Ref" template="NiObject" arr1="Num Bones" />
     </niobject>
 
@@ -7598,13 +7598,13 @@
     <niobject name="BSConnectPoint::Children" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
-        <add name="Num Points" type="int" />
+        <add name="Num Points" type="uint" />
         <add name="Point Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
     <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Eye Center Data
-        <add name="Num Data" type="int" />
+        <add name="Num Data" type="uint" />
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
