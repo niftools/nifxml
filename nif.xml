@@ -165,6 +165,8 @@
         <operator token="#GTE#" string="&gt;=" />
         <operator token="#EQ#" string="==" />
         <operator token="#NEQ#" string="!=" />
+        <operator token="#RSH#" string="&gt;&gt;" />
+        <operator token="#LSH#" string="&lt;&lt;" />
         <operator token="#BITAND#" string="&amp;" />
         <operator token="#BITOR#" string="|" />
     </token>
