@@ -234,10 +234,6 @@
         20.0.0.5:   0x14000005
     </basic>
 
-    <basic name="Flags" integral="true" countable="false" size="2">
-        A 16-bit integer, used for bit flags.  Function varies by object type.
-    </basic>
-
     <basic name="float" integral="false" size="4">
         A standard 32-bit floating point number.
     </basic>
@@ -868,14 +864,14 @@
         <option value="6" name="FILTER_ANISOTROPIC">Anisotropic filtering. One or many trilinear samples depending on anisotropy.</option>
     </enum>
 
-    <enum name="VertMode" storage="uint">
+    <enum name="SourceVertexMode" storage="uint">
         Describes how to apply vertex colors for NiVertexColorProperty.
         <option value="0" name="VERT_MODE_SRC_IGNORE">Emissive, ambient, and diffuse colors are all specified by the NiMaterialProperty.</option>
         <option value="1" name="VERT_MODE_SRC_EMISSIVE">Emissive colors are specified by the source vertex colors. Ambient+Diffuse are specified by the NiMaterialProperty.</option>
         <option value="2" name="VERT_MODE_SRC_AMB_DIF">Ambient+Diffuse colors are specified by the source vertex colors. Emissive is specified by the NiMaterialProperty. (Default)</option>
     </enum>
 
-    <enum name="LightMode" storage="uint">
+    <enum name="LightingMode" storage="uint">
         Describes which lighting equation components influence the final vertex color for NiVertexColorProperty.
         <option value="0" name="LIGHT_MODE_EMISSIVE">Emissive.</option>
         <option value="1" name="LIGHT_MODE_EMI_AMB_DIF">Emissive + Ambient + Diffuse. (Default)</option>
@@ -907,7 +903,7 @@
         <option value="9" name="ROTATE_ABOUT_UP2">The billboard will only rotate around the up axis (same as ROTATE_ABOUT_UP?).</option>
     </enum>
 
-    <enum name="StencilCompareMode" storage="uint">
+    <enum name="StencilTestFunc" storage="uint" prefix="STENCIL">
         Describes stencil buffer test modes for NiStencilProperty.
         <option value="0" name="TEST_NEVER">Always false. Ref value is ignored.</option>
         <option value="1" name="TEST_LESS">VRef ‹ VBuf</option>
@@ -937,17 +933,32 @@
         <option value="3" name="DRAW_BOTH">Draw all triangles, regardless of orientation. (Effectively force double-sided)</option>
     </enum>
 
-    <enum name="ZCompareMode" storage="uint">
+    <enum name="TestFunction" storage="uint">
         Describes Z-buffer test modes for NiZBufferProperty.
         "Less than" = closer to camera, "Greater than" = further from camera.
-        <option value="0" name="ZCOMP_ALWAYS">Always true. Buffer is ignored.</option>
-        <option value="1" name="ZCOMP_LESS">VRef ‹ VBuf</option>
-        <option value="2" name="ZCOMP_EQUAL">VRef = VBuf</option>
-        <option value="3" name="ZCOMP_LESS_EQUAL">VRef ≤ VBuf</option>
-        <option value="4" name="ZCOMP_GREATER">VRef › VBuf</option>
-        <option value="5" name="ZCOMP_NOT_EQUAL">VRef ≠ VBuf</option>
-        <option value="6" name="ZCOMP_GREATER_EQUAL">VRef ≥ VBuf</option>
-        <option value="7" name="ZCOMP_NEVER">Always false. Ref value is ignored.</option>
+        <option value="0" name="TEST_ALWAYS">Always true. Buffer is ignored.</option>
+        <option value="1" name="TEST_LESS">VRef ‹ VBuf</option>
+        <option value="2" name="TEST_EQUAL">VRef = VBuf</option>
+        <option value="3" name="TEST_LESS_EQUAL">VRef ≤ VBuf</option>
+        <option value="4" name="TEST_GREATER">VRef › VBuf</option>
+        <option value="5" name="TEST_NOT_EQUAL">VRef ≠ VBuf</option>
+        <option value="6" name="TEST_GREATER_EQUAL">VRef ≥ VBuf</option>
+        <option value="7" name="TEST_NEVER">Always false. Ref value is ignored.</option>
+    </enum>
+
+    <enum name="AlphaFunction" storage="ushort" prefix="ALPHA">
+        Describes alpha blend modes for NiAlphaProperty.
+        <option value="0" name="ONE" />
+        <option value="1" name="ZERO" />
+        <option value="2" name="SRC_COLOR" />
+        <option value="3" name="INV_SRC_COLOR" />
+        <option value="4" name="DEST_COLOR" />
+        <option value="5" name="INV_DEST_COLOR" />
+        <option value="6" name="SRC_ALPHA" />
+        <option value="7" name="INV_SRC_ALPHA" />
+        <option value="8" name="DEST_ALPHA" />
+        <option value="9" name="INV_DEST_ALPHA" />
+        <option value="10" name="SRC_ALPHA_SATURATE" />
     </enum>
 
     <enum name="hkMotionType" storage="byte" versions="#BETHESDA#">
@@ -1315,6 +1326,114 @@
         <!--<option value="10" name="Generic">A generic constraint.</option>-->
         <option value="13" name="Malleable">A malleable constraint.</option>
     </enum>
+
+    <enum name="FogFunction" storage="ushort">
+        <option value="0" name="FOG_Z_LINEAR" />
+        <option value="1" name="FOG_RANGE_SQ" />
+        <option value="2" name="FOG_VERTEX_ALPHA" />
+    </enum>
+
+    <enum name="AnimType" storage="ushort">
+        <option value="0" name="APP_TIME" />
+        <option value="1" name="APP_INIT" />
+    </enum>
+
+    <enum name="DitherFlags" storage="ushort">
+        Flags for NiDitherProperty
+        <option value="0" name="DITHER_DISABLED" />
+        <option value="1" name="DITHER_ENABLED" />
+    </enum>
+
+    <enum name="ShadeFlags" storage="ushort">
+        Flags for NiShadeProperty
+        <option value="0" name="SHADING_HARD" />
+        <option value="1" name="SHADING_SMOOTH" />
+    </enum>
+
+    <enum name="SpecularFlags" storage="ushort">
+        Flags for NiSpecularProperty
+        <option value="0" name="SPECULAR_DISABLED" />
+        <option value="1" name="SPECULAR_ENABLED" />
+    </enum>
+
+    <enum name="WireframeFlags" storage="ushort">
+        Flags for NiWireframeProperty
+        <option value="0" name="WIREFRAME_DISABLED" />
+        <option value="1" name="WIREFRAME_ENABLED" />
+    </enum>
+
+    <enum name="GeomMorpherFlags" storage="ushort">
+        Flags for NiGeomMorpherController
+        <option value="0" name="UPDATE_NORMALS_DISABLED" />
+        <option value="1" name="UPDATE_NORMALS_ENABLED" />
+    </enum>
+
+    <!-- Bitfields -->
+
+    <bitfield name="TimeControllerFlags" storage="ushort">
+        Flags for NiTimeController
+        <member width="1" pos="0" mask="0x0001" name="Anim Type" type="AnimType" />
+        <member width="2" pos="1" mask="0x0006" name="Cycle Type" type="CycleType" default="CYCLE_CLAMP" />
+        <member width="1" pos="3" mask="0x0008" name="Active" type="bool" default="1" />
+        <member width="1" pos="4" mask="0x0010" name="Play Backwards" type="bool" />
+        <member width="1" pos="5" mask="0x0020" name="Manager Controlled" type="bool" />
+        <member width="1" pos="6" mask="0x0040" name="Compute Scaled Time" type="bool" default="1" />
+        <member width="1" pos="7" mask="0x0080" name="Forced Update" type="bool" />
+    </bitfield>
+
+    <bitfield name="AlphaFlags" storage="ushort">
+        Flags for NiAlphaProperty
+        <member width="1" pos="0" mask="0x0001" name="Alpha Blend" type="bool" />
+        <member width="4" pos="1" mask="0x001E" name="Source Blend Mode" type="AlphaFunction" default="SRC_ALPHA" />
+        <member width="4" pos="5" mask="0x01E0" name="Destination Blend Mode" type="AlphaFunction" default="INV_SRC_ALPHA" />
+        <member width="1" pos="9" mask="0x0200" name="Alpha Test" type="bool" default="1" />
+        <member width="3" pos="10" mask="0x1C00" name="Test Func" type="TestFunction" default="TEST_GREATER" />
+        <member width="1" pos="13" mask="0x2000" name="No Sorter" type="bool" />
+    </bitfield>
+
+    <bitfield name="FogFlags" storage="ushort">
+        Flags for NiFogProperty
+        <member width="1" pos="0" mask="0x0001" name="Enable" type="bool" />
+        <member width="3" pos="1" mask="0x0006" name="Fog Function" type="FogFunction" />
+    </bitfield>
+
+    <bitfield name="StencilFlags" storage="ushort">
+        Flags for NiStencilProperty
+        <member width="1" pos="0" mask="0x0001" name="Enable" type="bool" />
+        <member width="3" pos="1" mask="0x000E" name="Fail Action" type="StencilAction" default="ACTION_KEEP" />
+        <member width="3" pos="4" mask="0x0070" name="ZFail Action" type="StencilAction" default="ACTION_KEEP" />
+        <member width="3" pos="7" mask="0x0380" name="Pass Action" type="StencilAction" default="ACTION_INCREMENT" />
+        <member width="2" pos="10" mask="0x0C00" name="Draw Mode" type="StencilDrawMode" default="DRAW_BOTH" />
+        <member width="3" pos="12" mask="0xF000" name="Test Func" type="StencilTestFunc" default="TEST_GREATER" />
+    </bitfield>
+
+    <bitfield name="TexturingFlags" storage="ushort">
+        Flags for NiTexturingProperty
+        <member width="1" pos="0" mask="0x0001" name="Multitexture" type="bool" />
+        <member width="3" pos="1" mask="0x000E" name="Apply Mode" type="ApplyMode" />
+        <member width="8" pos="4" mask="0x0FF0" name="Decal Count" type="ushort" />
+    </bitfield>
+
+    <bitfield name="TexturingMapFlags" storage="ushort">
+        Flags for NiTexturingProperty
+        <member width="8" pos="0" mask="0x00FF" name="Texture Index" type="ushort" />
+        <member width="4" pos="8" mask="0x0F00" name="Filter Mode" type="TexFilterMode" />
+        <member width="4" pos="12" mask="0x3000" name="Clamp Mode" type="TexClampMode" />
+    </bitfield>
+
+    <bitfield name="VertexColorFlags" storage="ushort">
+        Flags for NiVertexColorProperty
+        <member width="3" pos="0" mask="0x0007" name="Color Mode" type="ushort" />
+        <member width="1" pos="3" mask="0x0008" name="Lighting Mode" type="LightingMode" />
+        <member width="2" pos="4" mask="0x0030" name="Source Vertex Mode" type="SourceVertexMode" />
+    </bitfield>
+
+    <bitfield name="ZBufferFlags" storage="ushort">
+        Flags for NiZBufferProperty
+        <member width="1" pos="0" mask="0x0001" name="ZBuffer Test" type="bool" />
+        <member width="1" pos="1" mask="0x0002" name="ZBuffer Write" type="bool" />
+        <member width="3" pos="2" mask="0x003C" name="Test Func" type="TestFunction" />
+    </bitfield>
 
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
@@ -1690,7 +1809,7 @@
         <add name="Source" type="Ref" template="NiSourceTexture" ver1="3.3.0.13">NiSourceTexture object index.</add>
         <add name="Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" ver2="20.0.0.5">0=clamp S clamp T, 1=clamp S wrap T, 2=wrap S clamp T, 3=wrap S wrap T</add>
         <add name="Filter Mode" type="TexFilterMode" default="FILTER_TRILERP" ver2="20.0.0.5">0=nearest, 1=bilinear, 2=trilinear, 3=..., 4=..., 5=...</add>
-        <add name="Flags" type="Flags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
+        <add name="Flags" type="TexturingMapFlags" ver1="20.1.0.3">Texture mode flags; clamp and filter mode stored in upper byte with 0xYZ00 = clamp mode Y, filter mode Z.</add>
         <add name="Max Anisotropy" type="ushort" ver1="20.5.0.4" />
         <add name="UV Set" type="uint" default="0" ver2="20.0.0.5">The texture coordinate set in NiGeometryData that this texture slot will use.</add>
         <add name="PS2 L" type="short" default="0" ver2="10.4.0.1">L can range from 0 to 3 and are used to specify how fast a texture gets blurry.</add>
@@ -2907,8 +3026,8 @@
 
     <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
-        <add name="Flags" type="uint" default="14" vercond="#BSVER# #GT# 26">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
-        <add name="Flags" type="Flags" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="524302" vercond="#BSVER# #GT# 26">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
+        <add name="Flags" type="ushort" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -2981,16 +3100,7 @@
     <niobject name="NiTimeController" abstract="1" inherit="NiObject">
         Abstract base class that provides the base timing and update functionality for all the Gamebryo animation controllers.
         <add name="Next Controller" type="Ref" template="NiTimeController">Index of the next controller.</add>
-        <add name="Flags" type="Flags">
-            Controller flags.
-            Bit 0 : Anim type, 0=APP_TIME 1=APP_INIT
-            Bit 1-2 : Cycle type, 00=Loop 01=Reverse 10=Clamp
-            Bit 3 : Active
-            Bit 4 : Play backwards
-            Bit 5 : Is manager controlled
-            Bit 6 : Compute scaled time (take frequency and phase into account)
-            Bit 7 : Force update
-        </add>
+        <add name="Flags" type="TimeControllerFlags" default="76" />
         <add name="Frequency" type="float" default="1.0">Frequency (is usually 1.0).</add>
         <add name="Phase" type="float">Phase (usually 0.0).</add>
         <add name="Start Time" type="float" default="#FLT_MAX#">Controller start time.</add>
@@ -3014,7 +3124,7 @@
     <niobject name="NiGeomMorpherController" inherit="NiInterpController">
         DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Time controller for geometry morphing.
-        <add name="Extra Flags" type="Flags" ver1="10.0.1.2">1 = UPDATE NORMALS</add>
+        <add name="Extra Flags" type="GeomMorpherFlags" ver1="10.0.1.2" />
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte" ver1="4.0.0.1" />
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
@@ -3400,37 +3510,7 @@
 
     <niobject name="NiAlphaProperty" inherit="NiProperty">
         Transparency. Flags 0x00ED.
-        <add name="Flags" type="Flags" default="4844">
-            Bit 0 : alpha blending enable
-            Bits 1-4 : source blend mode
-            Bits 5-8 : destination blend mode
-            Bit 9 : alpha test enable
-            Bit 10-12 : alpha test mode
-            Bit 13 : no sorter flag ( disables triangle sorting )
-
-            blend modes (glBlendFunc):
-            0000 GL_ONE
-            0001 GL_ZERO
-            0010 GL_SRC_COLOR
-            0011 GL_ONE_MINUS_SRC_COLOR
-            0100 GL_DST_COLOR
-            0101 GL_ONE_MINUS_DST_COLOR
-            0110 GL_SRC_ALPHA
-            0111 GL_ONE_MINUS_SRC_ALPHA
-            1000 GL_DST_ALPHA
-            1001 GL_ONE_MINUS_DST_ALPHA
-            1010 GL_SRC_ALPHA_SATURATE
-
-            test modes (glAlphaFunc):
-            000 GL_ALWAYS
-            001 GL_LESS
-            010 GL_EQUAL
-            011 GL_LEQUAL
-            100 GL_GREATER
-            101 GL_NOTEQUAL
-            110 GL_GEQUAL
-            111 GL_NEVER
-        </add>
+        <add name="Flags" type="AlphaFlags" default="4844" />
         <add name="Threshold" type="byte" default="128">Threshold for alpha testing (see: glAlphaFunc)</add>
         <add name="Unknown Short 1" type="ushort" ver2="2.3" />
         <add name="Unknown Int 2" type="uint" ver2="2.3" />
@@ -3708,7 +3788,7 @@
 
     <niobject name="NiDitherProperty" inherit="NiProperty">
         NiDitherProperty allows the application to turn the dithering of interpolated colors and fog values on and off.
-        <add name="Flags" type="Flags">1 = Enable dithering</add>
+        <add name="Flags" type="DitherFlags" />
     </niobject>
 
     <niobject name="NiRollController" inherit="NiSingleInterpController" until="V20_5_0_0">
@@ -3734,13 +3814,7 @@
 
     <niobject name="NiFogProperty" inherit="NiProperty">
         NiFogProperty allows the application to enable, disable and control the appearance of fog.
-        <add name="Flags" type="Flags">
-            Bit 0: Enables Fog
-            Bit 1: Sets Fog Function to FOG_RANGE_SQ
-            Bit 2: Sets Fog Function to FOG_VERTEX_ALPHA
-
-            If Bit 1 and Bit 2 are not set, but fog is enabled, Fog function is FOG_Z_LINEAR.
-        </add>
+        <add name="Flags" type="FogFlags" />
         <add name="Fog Depth" type="float" default="1.0">Depth of the fog in normalized units. 1.0 = begins at near plane. 0.5 = begins halfway between the near and far planes.</add>
         <add name="Fog Color" type="Color3">The color of the fog.</add>
     </niobject>
@@ -3826,7 +3900,7 @@
 
     <niobject name="NiMaterialProperty" inherit="NiProperty">
         Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.
-        <add name="Flags" type="Flags" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
+        <add name="Flags" type="ushort" ver1="3.0" ver2="10.0.1.2">Property flags.</add>
         <add name="Ambient Color" type="Color3" default="#VEC3_ONE#" vercond="#BSVER# #LT# 26">How much the material reflects ambient light.</add>
         <add name="Diffuse Color" type="Color3" default="#VEC3_ONE#" vercond="#BSVER# #LT# 26">How much the material reflects diffuse light.</add>
         <add name="Specular Color" type="Color3" default="#VEC3_ONE#">How much light the material reflects in a specular manner.</add>
@@ -4528,9 +4602,7 @@
 
     <niobject name="NiShadeProperty" inherit="NiProperty">
         Determines whether flat shading or smooth shading is used on a shape.
-        <add name="Flags" type="Flags" default="1" vercond="#NI_BS_LTE_FO3#">
-            Bit 0: Enable smooth phong shading on this shape. Otherwise, hard-edged flat shading will be used on this shape.
-        </add>
+        <add name="Flags" type="ShadeFlags" default="SHADING_SMOOTH" vercond="#NI_BS_LTE_FO3#" />
     </niobject>
 
     <niobject name="NiSkinData" inherit="NiObject">
@@ -4597,7 +4669,7 @@
 
     <niobject name="NiSpecularProperty" inherit="NiProperty">
         Gives specularity to a shape. Flags 0x0001.
-        <add name="Flags" type="Flags">Bit 0 = Enable specular lighting on this shape.</add>
+        <add name="Flags" type="SpecularFlags" />
     </niobject>
 
     <niobject name="NiSphericalCollider" inherit="NiParticleModifier" until="V10_0_1_0">
@@ -4620,24 +4692,16 @@
 
     <niobject name="NiStencilProperty" inherit="NiProperty">
         Allows control of stencil testing.
-        <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
+        <add name="Flags" type="ushort" ver2="10.0.1.2">Property flags.</add>
         <add name="Stencil Enabled" type="byte" ver2="20.0.0.5">Enables or disables the stencil test.</add>
-        <add name="Stencil Function" type="StencilCompareMode" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
+        <add name="Stencil Function" type="StencilTestFunc" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
         <add name="Stencil Ref" type="uint" ver2="20.0.0.5" />
         <add name="Stencil Mask" type="uint" default="#UINT_MAX#" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Z Fail Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Pass Action" type="StencilAction" ver2="20.0.0.5" />
         <add name="Draw Mode" default="DRAW_BOTH" type="StencilDrawMode" ver2="20.0.0.5">Used to enabled double sided faces. Default is 3 (DRAW_BOTH).</add>
-        <add name="Flags" type="Flags" default="19840" ver1="20.1.0.3">
-            Property flags:
-            Bit 0: Stencil Enable
-            Bits 1-3: Fail Action
-            Bits 4-6: Z Fail Action
-            Bits 7-9: Pass Action
-            Bits 10-11: Draw Mode
-            Bits 12-14: Stencil Function
-        </add>
+        <add name="Flags" type="StencilFlags" default="19840" ver1="20.1.0.3" />
         <add name="Stencil Ref" type="uint" ver1="20.1.0.3" />
         <add name="Stencil Mask" type="uint" default="#UINT_MAX#" ver1="20.1.0.3">A bit mask. The default is 0xffffffff.</add>
     </niobject>
@@ -4686,7 +4750,7 @@
     <niobject name="NiTextureModeProperty" inherit="NiProperty" until="V10_0_1_0">
         LEGACY (pre-10.1)
         <add name="Unknown Ints" type="uint" arr1="3" ver2="2.3" />
-        <add name="Flags" type="short" ver1="3.0">Either 210 or 194.</add>
+        <add name="Flags" type="ushort" ver1="3.0">Either 210 or 194.</add>
         <add name="PS2 L" type="short" default="0" ver1="3.1" ver2="10.2.0.0" />
         <add name="PS2 K" type="short" default="-75" ver1="3.1" ver2="10.2.0.0" />
     </niobject>
@@ -4703,15 +4767,15 @@
     <niobject name="NiTextureProperty" inherit="NiProperty" until="V10_0_1_0">
         LEGACY (pre-10.1)
         <add name="Unknown Ints 1" type="uint" arr1="2" ver2="2.3" />
-        <add name="Flags" type="Flags" ver1="3.0">Property flags.</add>
+        <add name="Flags" type="ushort" ver1="3.0">Property flags.</add>
         <add name="Image" type="Ref" template="NiImage">Link to the texture image.</add>
         <add name="Unknown Ints 2" type="uint" arr1="2" ver1="3.0" ver2="3.03" />
     </niobject>
 
     <niobject name="NiTexturingProperty" inherit="NiProperty">
         Describes how a fragment shader should be configured for a given piece of geometry.
-        <add name="Flags" type="Flags" ver2="10.0.1.2">Property flags.</add>
-        <add name="Flags" type="Flags" ver1="20.1.0.2">Property flags.</add>
+        <add name="Flags" type="ushort" ver2="10.0.1.2">Property flags.</add>
+        <add name="Flags" type="TexturingFlags" ver1="20.1.0.2">Property flags.</add>
         <add name="Apply Mode" type="ApplyMode" default="APPLY_MODULATE" ver1="3.3.0.13" ver2="20.1.0.1">Determines how the texture will be applied.  Seems to have special functions in Oblivion.</add>
         <add name="Texture Count" type="uint" default="7">Number of textures.</add>
         <add name="Has Base Texture" type="bool" />
@@ -4877,13 +4941,9 @@
 
     <niobject name="NiVertexColorProperty" inherit="NiProperty">
         Property of vertex colors. This object is referred to by the root object of the NIF file whenever some NiTriShapeData object has vertex colors with non-default settings; if not present, vertex colors have vertex_mode=2 and lighting_mode=1.
-        <add name="Flags" type="Flags">
-            Bits 0-2: Unknown
-            Bit 3: Lighting Mode
-            Bits 4-5: Vertex Mode
-        </add>
-        <add name="Vertex Mode" type="VertMode" ver2="20.0.0.5">In Flags from 20.1.0.3 on.</add>
-        <add name="Lighting Mode" type="LightMode" ver2="20.0.0.5">In Flags from 20.1.0.3 on.</add>
+        <add name="Flags" type="VertexColorFlags" />
+        <add name="Vertex Mode" type="SourceVertexMode" ver2="20.0.0.5">In Flags from 20.1.0.3 on.</add>
+        <add name="Lighting Mode" type="LightingMode" ver2="20.0.0.5">In Flags from 20.1.0.3 on.</add>
     </niobject>
 
     <niobject name="NiVertWeightsExtraData" inherit="NiExtraData">
@@ -4903,20 +4963,13 @@
 
     <niobject name="NiWireframeProperty" inherit="NiProperty">
         Allows applications to switch between drawing solid geometry or wireframe outlines.
-        <add name="Flags" type="Flags">
-            Property flags.
-            0 - Wireframe Mode Disabled
-            1 - Wireframe Mode Enabled
-        </add>
+        <add name="Flags" type="WireframeFlags" />
     </niobject>
 
     <niobject name="NiZBufferProperty" inherit="NiProperty">
         Allows applications to set the test and write modes of the renderer's Z-buffer and to set the comparison function used for the Z-buffer test.
-        <add name="Flags" type="Flags" default="3">
-            Bit 0 enables the z test
-            Bit 1 controls wether the Z buffer is read only (0) or read/write (1)
-        </add>
-        <add name="Function" type="ZCompareMode" default="ZCOMP_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
+        <add name="Flags" type="ZBufferFlags" default="3" />
+        <add name="Function" type="TestFunction" default="TEST_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
             Z-Test function (see: glDepthFunc). In Flags from 20.1.0.3 on.
         </add>
     </niobject>
