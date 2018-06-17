@@ -2522,7 +2522,7 @@
 
     <niobject name="bhkSimpleShapePhantom" inherit="bhkShapePhantom" versions="#BETHESDA#">
         Unknown shape.
-        <add name="Unused 2" type="byte" arr1="8">Garbage data from memory.</add>
+        <add name="Unused 2" type="byte" arr1="8" binary="true">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44" />
     </niobject>
 
@@ -2657,35 +2657,59 @@
     </niobject>
 
     <niobject name="bhkShape" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
-        A Havok Shape?
+        The base class for narrowphase collision detection objects.
+        All narrowphase collision detection is performed between pairs of bhkShape objects by creating appropriate collision agents.
     </niobject>
 
     <niobject name="bhkTransformShape" inherit="bhkShape" versions="#BETHESDA#">
-        Transforms a shape.
+        Contains an bhkShape and an additional transform for that shape.
         <add name="Shape" type="Ref" template="bhkShape">The shape that this object transforms.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" />
-        <add name="Unused" type="byte" arr1="8">Garbage data from memory.</add>
+        <add name="Unused" type="byte" arr1="8" binary="true">Garbage data from memory.</add>
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
     <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
-        A havok shape, perhaps with a bounding sphere for quick rejection in addition to more detailed shape data?
+        An interface that produces a set of spheres that represent a simplified version of the shape.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
-        <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
     </niobject>
 
     <niobject name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape" versions="#BETHESDA#">
-        A havok shape.
+        An interface that allows testing convex sets using the GJK algorithm. Also holds a radius value for creating a shell.
+        <add name="Radius" type="float" default="0.05">The radius is used to create a thin shell that is used as the shape surface.</add>
+    </niobject>
+
+    <niobject name="bhkHeightFieldShape" inherit="bhkShape" abstract="1" versions="#BETHESDA#">
+        An interface for a shape which can collide with an array of spheres.
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
+    </niobject>
+
+    <niobject name="bhkPlaneShape" inherit="bhkHeightFieldShape" versions="#BETHESDA#">
+        Contains a normal and distance from the origin, bounded by a given AABB.
+        <add name="Unused" type="byte" arr1="12" binary="true">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Plane Normal" type="Vector3" />
+        <add name="Plane Constant" type="float">Distance from the origin to the plane.</add>
+        <add name="AABB Half Extents" type="Vector4" />
+        <add name="AABB Center" type="Vector4" />
     </niobject>
 
     <niobject name="bhkSphereShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A sphere.
     </niobject>
 
+    <niobject name="bhkCylinderShape" inherit="bhkConvexShape" versions="#BETHESDA#">
+        A cylinder.
+        <add name="Unused" type="byte" arr1="8" binary="true">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Vertex A" type="Vector4" />
+        <add name="Vertex B" type="Vector4" />
+        <add name="Cylinder Radius" type="float" />
+        <add name="Unused 2" type="byte" arr1="12" binary="true">Not used. The block is padded to 16 bytes.</add>
+    </niobject>
+
     <niobject name="bhkCapsuleShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A capsule.
-        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Unused" type="byte" arr1="8" binary="true">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="First Point" type="Vector3">First point on the capsule's axis.</add>
         <add name="Radius 1" type="float">Matches first capsule radius.</add>
         <add name="Second Point" type="Vector3">Second point on the capsule's axis.</add>
@@ -2694,7 +2718,7 @@
 
     <niobject name="bhkBoxShape" inherit="bhkConvexShape" versions="#BETHESDA#">
         A box.
-        <add name="Unused" type="byte" arr1="8">Not used. The following wants to be aligned at 16 bytes.</add>
+        <add name="Unused" type="byte" arr1="8" binary="true">Not used. The following wants to be aligned at 16 bytes.</add>
         <add name="Dimensions" type="Vector3">A cube stored in Half Extents. A unit cube (1.0, 1.0, 1.0) would be stored as 0.5, 0.5, 0.5.</add>
         <add name="Unused Float" type="float">Unused as Havok stores the Half Extents as hkVector4 with the W component unused.</add>
     </niobject>
@@ -2711,9 +2735,9 @@
         <add name="Normals" type="Vector4" arr1="Num Normals">Half spaces as determined by the set of vertices above. First three components define the normal pointing to the exterior, fourth component is the signed distance of the separating plane to the origin: it is minus the dot product of v and n, where v is any vertex on the separating plane, and n is the normal. Lexicographically sorted.</add>
     </niobject>
 
-    <!--Should inherit from bhkConvexShape according to hierarchy, but seems to be exactly the same as bhkTransformShape.-->
     <niobject name="bhkConvexTransformShape" inherit="bhkTransformShape" versions="#BETHESDA#">
-        A convex transformed shape?
+        Contains a bhkShape and an additional transform for that shape.
+        The advantage of using bhkConvexTransformShape over bhkTransformShape is that it does not require additional agents to be created as it is itself convex.
     </niobject>
 
     <niobject name="bhkConvexSweepShape" inherit="bhkShape" versions="V10_0_1_0">
@@ -2724,7 +2748,11 @@
     </niobject>
 
     <niobject name="bhkMultiSphereShape" inherit="bhkSphereRepShape" versions="#BETHESDA#">
-        Unknown.
+        A compound shape made up of spheres. This is useful as an approximation for complex shapes, as collision detection for spheres is very fast.
+        However, if two bhkMultiSphereShape collide, every sphere needs to be checked against every other sphere.
+            Example: 10 spheres colliding with 10 spheres will result in 100 collision checks.
+            Therefore shapes like bhkCapsuleShape or bhkConvexVerticesShape should be preferred.
+        <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
         <add name="Unknown Float 1" type="float" />
         <add name="Unknown Float 2" type="float" />
         <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
@@ -2732,7 +2760,8 @@
     </niobject>
 
     <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
-        A tree-like Havok data structure stored in an assembly-like binary code?
+        Adds bounding volume tree information to an shape collection.
+        A bounding volume tree is useful for testing collision between a moving object and large static geometry.
     </niobject>
 
     <niobject name="bhkMoppBvTreeShape" inherit="bhkBvTreeShape" versions="#BETHESDA#">
@@ -2749,7 +2778,7 @@
 
 
     <niobject name="bhkShapeCollection" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
-        Havok collision object that uses multiple shapes?
+        An interface to a collection of bhkShapes.
     </niobject>
 
     <niobject name="bhkListShape" inherit="bhkShapeCollection" versions="#BETHESDA#">
@@ -2769,18 +2798,13 @@
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" />
     </niobject>
 
-    <!--
-    bhkMeshShape appears in some old Oblivion nifs, for instance
-    meshes/architecture/basementsections/ungrdltraphingedoor.nif 
-    but only in some distributions of Oblivion
-
-    XXX not completely decoded, also the 4 dummy separator bytes seem
-    to be missing from nifs that have this block
-    -->
     <niobject name="bhkMeshShape" inherit="bhkShape" versions="V10_0_1_0">
+        bhkMeshShape appears in some old Oblivion nifs, for instance
+        meshes/architecture/basementsections/ungrdltraphingedoor.nif 
+        but only in some distributions of Oblivion
         <add name="Unknowns" type="uint" arr1="2" />
         <add name="Radius" type="float" />
-        <add name="Unused 2" type="byte" arr1="8" />
+        <add name="Unused 2" type="byte" arr1="8" binary="true" />
         <add name="Scale" type="Vector4" />
         <add name="Num Shape Properties" type="uint" />
         <add name="Shape Properties" type="hkWorldObjCinfoProperty" arr1="Num Shape Properties" />
