@@ -2423,7 +2423,7 @@
          are treated as object types by the NIF format and can inherit
          from other classes.-->
 
-    <niobject name="NiObject" abstract="1">
+    <niobject name="NiObject" abstract="true">
         Abstract object type.
     </niobject>
 
@@ -2469,13 +2469,13 @@
     </niobject>
 
 
-    <niobject name="NiParticleModifier" abstract="1" inherit="NiObject" until="V10_0_1_0">
+    <niobject name="NiParticleModifier" abstract="true" inherit="NiObject" until="V10_0_1_0">
         LEGACY (pre-10.1). Abstract base class for particle system modifiers.
         <add name="Next Modifier" type="Ref" template="NiParticleModifier">Next particle modifier.</add>
         <add name="Controller" type="Ptr" template="NiParticleSystemController" ver1="3.3.0.13">Points to the particle system controller parent.</add>
     </niobject>
 
-    <niobject name="NiPSysCollider" abstract="1" inherit="NiObject">
+    <niobject name="NiPSysCollider" abstract="true" inherit="NiObject">
         Particle system collider.
         <add name="Bounce" type="float" default="1.0">Amount of bounce for the collider.</add>
         <add name="Spawn on Collide" type="bool">Spawn particles on impact?</add>
@@ -2499,15 +2499,15 @@
         <add name="Capacity and Flags" type="uint" default="0x80000000" />
     </compound>
 
-    <niobject name="bhkRefObject" abstract="1" inherit="NiObject" versions="#BETHESDA#">
+    <niobject name="bhkRefObject" abstract="true" inherit="NiObject" versions="#BETHESDA#">
         The base type of most Bethesda-specific Havok-related NIF objects.
     </niobject>
 
-    <niobject name="bhkSerializable" abstract="1" inherit="bhkRefObject" versions="#BETHESDA#">
+    <niobject name="bhkSerializable" abstract="true" inherit="bhkRefObject" versions="#BETHESDA#">
         Havok objects that can be saved and loaded from disk?
     </niobject>
 
-    <niobject name="bhkWorldObject" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
+    <niobject name="bhkWorldObject" abstract="true" inherit="bhkSerializable" versions="#BETHESDA#">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
@@ -2518,11 +2518,11 @@
         <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
     </niobject>
 
-    <niobject name="bhkPhantom" abstract="1" inherit="bhkWorldObject" versions="#BETHESDA#">
+    <niobject name="bhkPhantom" abstract="true" inherit="bhkWorldObject" versions="#BETHESDA#">
         Havok object that do not react with other objects when they collide (causing deflection, etc.) but still trigger collision notifications to the game.  Possible uses are traps, portals, AI fields, etc.
     </niobject>
 
-    <niobject name="bhkShapePhantom" abstract="1" inherit="bhkPhantom" versions="#BETHESDA#">
+    <niobject name="bhkShapePhantom" abstract="true" inherit="bhkPhantom" versions="#BETHESDA#">
         A Havok phantom that uses a Havok shape object for its collision volume instead of just a bounding box.
     </niobject>
 
@@ -2532,7 +2532,7 @@
         <add name="Transform" type="Matrix44" />
     </niobject>
 
-    <niobject name="bhkEntity" abstract="1" inherit="bhkWorldObject" versions="#BETHESDA#">
+    <niobject name="bhkEntity" abstract="true" inherit="bhkWorldObject" versions="#BETHESDA#">
         A havok node, describes physical properties.
     </niobject>
 
@@ -2598,7 +2598,7 @@
         The "T" suffix marks this body as active for translation and rotation.
     </niobject>
 
-    <niobject name="bhkConstraint" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
+    <niobject name="bhkConstraint" abstract="true" inherit="bhkSerializable" versions="#BETHESDA#">
         Describes a physical constraint.
         <add name="Num Entities" type="uint">Number of bodies affected by this constraint.</add>
         <add name="Entities" type="Ptr" template="bhkEntity" arr1="Num Entities">The entities affected by this constraint.</add>
@@ -2662,7 +2662,7 @@
         <add name="Priority" type="uint" />
     </niobject>
 
-    <niobject name="bhkShape" abstract="1" inherit="bhkSerializable" versions="#BETHESDA#">
+    <niobject name="bhkShape" abstract="true" inherit="bhkSerializable" versions="#BETHESDA#">
         The base class for narrowphase collision detection objects.
         All narrowphase collision detection is performed between pairs of bhkShape objects by creating appropriate collision agents.
     </niobject>
@@ -2676,17 +2676,17 @@
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
-    <niobject name="bhkSphereRepShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
+    <niobject name="bhkSphereRepShape" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
         An interface that produces a set of spheres that represent a simplified version of the shape.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
     </niobject>
 
-    <niobject name="bhkConvexShape" abstract="1" inherit="bhkSphereRepShape" versions="#BETHESDA#">
+    <niobject name="bhkConvexShape" abstract="true" inherit="bhkSphereRepShape" versions="#BETHESDA#">
         An interface that allows testing convex sets using the GJK algorithm. Also holds a radius value for creating a shell.
         <add name="Radius" type="float" default="0.05">The radius is used to create a thin shell that is used as the shape surface.</add>
     </niobject>
 
-    <niobject name="bhkHeightFieldShape" inherit="bhkShape" abstract="1" versions="#BETHESDA#">
+    <niobject name="bhkHeightFieldShape" inherit="bhkShape" abstract="true" versions="#BETHESDA#">
         An interface for a shape which can collide with an array of spheres.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
     </niobject>
@@ -2765,7 +2765,7 @@
         <add name="Spheres" type="NiBound" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
     </niobject>
 
-    <niobject name="bhkBvTreeShape" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
+    <niobject name="bhkBvTreeShape" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
         Adds bounding volume tree information to an shape collection.
         A bounding volume tree is useful for testing collision between a moving object and large static geometry.
     </niobject>
@@ -2779,11 +2779,11 @@
         <add name="Origin" type="Vector3" ver1="10.1.0.0">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float" ver1="10.1.0.0">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Build Type" type="MoppDataBuildType" vercond="#BS_GT_FO3#">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
-        <add name="MOPP Data" type="byte" binary="1" arr1="MOPP Data Size">The tree of bounding volume data.</add>
+        <add name="MOPP Data" type="byte" binary="true" arr1="MOPP Data Size">The tree of bounding volume data.</add>
     </niobject>
 
 
-    <niobject name="bhkShapeCollection" abstract="1" inherit="bhkShape" versions="#BETHESDA#">
+    <niobject name="bhkShapeCollection" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
         An interface to a collection of bhkShapes.
     </niobject>
 
@@ -2854,11 +2854,11 @@
         <add name="Num Bytes" type="uint" ver1="4.0.0.0" ver2="4.2.2.0">Ignore binary data after 4.x as the child block will cover it.</add>
     </niobject>
 
-    <niobject name="NiInterpolator" abstract="1" inherit="NiObject">
+    <niobject name="NiInterpolator" abstract="true" inherit="NiObject">
         Abstract base class for all interpolators of bool, float, NiQuaternion, NiPoint3, NiColorA, and NiQuatTransform data.
     </niobject>
 
-    <niobject name="NiKeyBasedInterpolator" abstract="1" inherit="NiInterpolator">
+    <niobject name="NiKeyBasedInterpolator" abstract="true" inherit="NiInterpolator">
         Abstract base class for interpolators that use NiAnimationKeys (Key, KeyGrp) for interpolation.
     </niobject>
 
@@ -2932,7 +2932,7 @@
         <add name="Ease Spinner" type="float" />
     </compound>
 
-    <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
+    <niobject name="NiBlendInterpolator" abstract="true" inherit="NiInterpolator">
         Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
         <add name="Flags" type="InterpBlendFlags" ver1="10.1.0.112" />
         <add name="Array Size" type="ushort" ver2="10.1.0.109" />
@@ -2966,7 +2966,7 @@
         <add name="Next High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
     </niobject>
 
-    <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">
+    <niobject name="NiBSplineInterpolator" abstract="true" inherit="NiInterpolator">
         Abstract base class for interpolators storing data via a B-spline.
         <add name="Start Time" type="float" default="#FLT_MAX#">Animation start time.</add>
         <add name="Stop Time" type="float" default="#FLT_MIN#">Animation stop time.</add>
@@ -2983,7 +2983,7 @@
         <add name="Unknown Byte 1" type="byte" />
     </compound>
 
-    <niobject name="NiObjectNET" abstract="1" inherit="NiObject">
+    <niobject name="NiObjectNET" abstract="true" inherit="NiObject">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
         <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="#BS_GTE_SKY#" onlyT="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
@@ -3023,7 +3023,7 @@
         <option value="11" name="DISMEMBERED_LIMB" />
     </bitflags>
 
-    <niobject name="bhkNiCollisionObject" abstract="1" inherit="NiCollisionObject">
+    <niobject name="bhkNiCollisionObject" abstract="true" inherit="NiCollisionObject">
         Havok related collision object?
         <add name="Flags" type="bhkCOFlags" default="1">
             Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
@@ -3051,7 +3051,7 @@
         Unknown.
     </niobject>
 
-    <niobject name="NiAVObject" abstract="1" inherit="NiObjectNET">
+    <niobject name="NiAVObject" abstract="true" inherit="NiObjectNET">
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
         <add name="Flags" type="uint" default="524302" vercond="#BSVER# #GT# 26">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
         <add name="Flags" type="ushort" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
@@ -3068,7 +3068,7 @@
         <add name="Collision Object" type="Ref" template="NiCollisionObject" ver1="10.0.1.0" />
     </niobject>
 
-    <niobject name="NiDynamicEffect" abstract="1" inherit="NiAVObject">
+    <niobject name="NiDynamicEffect" abstract="true" inherit="NiAVObject">
         Abstract base class for dynamic effects such as NiLights or projected texture effects.
         <add name="Switch State" type="bool" default="1" ver1="10.1.0.106" vercond="#NI_BS_LT_FO4#">If true, then the dynamic effect is applied to affected nodes during rendering.</add>
         <add name="Num Affected Nodes" type="uint" ver2="4.0.0.2" />
@@ -3078,7 +3078,7 @@
         <add name="Affected Nodes" type="Ptr" template="NiNode" arr1="Num Affected Nodes" ver1="10.1.0.0" vercond="#NI_BS_LT_FO4#">If a node appears in this list, then its entire subtree will be affected by the effect.</add>
     </niobject>
 
-    <niobject name="NiLight" abstract="1" inherit="NiDynamicEffect">
+    <niobject name="NiLight" abstract="true" inherit="NiDynamicEffect">
         Abstract base class that represents light sources in a scene graph.
         For Bethesda Stream 130 (FO4), NiLight now directly inherits from NiAVObject.
         <add name="Dimmer" type="float" default="1.0">Scales the overall brightness of all light components.</add>
@@ -3087,7 +3087,7 @@
         <add name="Specular Color" type="Color3" default="#VEC3_ZERO#" />
     </niobject>
 
-    <niobject name="NiProperty" abstract="1" inherit="NiObjectNET">
+    <niobject name="NiProperty" abstract="true" inherit="NiObjectNET">
         Abstract base class representing all rendering properties. Subclasses are attached to NiAVObjects to control their rendering.
     </niobject>
 
@@ -3096,7 +3096,7 @@
         <add name="Unknown" type="byte" arr1="6" />
     </niobject>
 
-    <niobject name="NiPSysModifier" abstract="1" inherit="NiObject">
+    <niobject name="NiPSysModifier" abstract="true" inherit="NiObject">
         Abstract base class for all particle system modifiers.
         <add name="Name" type="string">Used to locate the modifier.</add>
         <add name="Order" type="uint">Modifier ID in the particle modifier chain (always a multiple of 1000)?</add>
@@ -3104,7 +3104,7 @@
         <add name="Active" type="bool" default="1">Whether or not the modifier is active.</add>
     </niobject>
 
-    <niobject name="NiPSysEmitter" abstract="1" inherit="NiPSysModifier">
+    <niobject name="NiPSysEmitter" abstract="true" inherit="NiPSysModifier">
         Abstract base class for all particle system emitters.
         <add name="Speed" type="float">Speed / Inertia of particle movement.</add>
         <add name="Speed Variation" type="float">Adds an amount of randomness to Speed.</add>
@@ -3119,12 +3119,12 @@
         <add name="Life Span Variation" type="float">Adds randomness to Life Span.</add>
     </niobject>
 
-    <niobject name="NiPSysVolumeEmitter" abstract="1" inherit="NiPSysEmitter">
+    <niobject name="NiPSysVolumeEmitter" abstract="true" inherit="NiPSysEmitter">
         Abstract base class for particle emitters that emit particles from a volume.
         <add name="Emitter Object" type="Ptr" template="NiNode" ver1="10.1.0.0">Node parent of this modifier?</add>
     </niobject>
 
-    <niobject name="NiTimeController" abstract="1" inherit="NiObject">
+    <niobject name="NiTimeController" abstract="true" inherit="NiObject">
         Abstract base class that provides the base timing and update functionality for all the Gamebryo animation controllers.
         <add name="Next Controller" type="Ref" template="NiTimeController">Index of the next controller.</add>
         <add name="Flags" type="TimeControllerFlags" default="76" />
@@ -3137,7 +3137,7 @@
     </niobject>
 
 
-    <niobject name="NiInterpController" abstract="1" inherit="NiTimeController">
+    <niobject name="NiInterpController" abstract="true" inherit="NiTimeController">
         Abstract base class for all NiTimeController objects using NiInterpolator objects to animate their target objects.
         <add name="Manager Controlled" type="bool" ver1="10.1.0.104" ver2="10.1.0.108" />
     </niobject>
@@ -3170,7 +3170,7 @@
         <add name="Data" type="Ref" template="NiMorphData">This controller's data.</add>
     </niobject>
 
-    <niobject name="NiSingleInterpController" abstract="1" inherit="NiInterpController">
+    <niobject name="NiSingleInterpController" abstract="true" inherit="NiInterpController">
         Uses a single NiInterpolator to animate its target value.
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.104" />
     </niobject>
@@ -3185,7 +3185,7 @@
         NiTransformController replaces NiKeyframeController.
     </niobject>
 
-    <niobject name="NiPSysModifierCtlr" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiPSysModifierCtlr" abstract="true" inherit="NiSingleInterpController">
         A particle system modifier controller.
         NiInterpController::GetCtlrID() string format:
             '%s'
@@ -3201,7 +3201,7 @@
         <add name="Visibility Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.104" />
     </niobject>
 
-    <niobject name="NiPSysModifierBoolCtlr" abstract="1" inherit="NiPSysModifierCtlr">
+    <niobject name="NiPSysModifierBoolCtlr" abstract="true" inherit="NiPSysModifierCtlr">
         A particle system modifier controller that animates a boolean value for particles.
     </niobject>
 
@@ -3210,7 +3210,7 @@
         <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.103" />
     </niobject>
 
-    <niobject name="NiPSysModifierFloatCtlr" abstract="1" inherit="NiPSysModifierCtlr">
+    <niobject name="NiPSysModifierFloatCtlr" abstract="true" inherit="NiPSysModifierCtlr">
         A particle system modifier controller that animates a floating point value for particles.
         <add name="Data" type="Ref" template="NiFloatData" ver2="10.1.0.103" />
     </niobject>
@@ -3240,7 +3240,7 @@
     </niobject>
 
 
-    <niobject name="NiFloatInterpController" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiFloatInterpController" abstract="true" inherit="NiSingleInterpController">
         Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target float value.
     </niobject>
 
@@ -3278,7 +3278,7 @@
         Unknown controller.
     </niobject>
 
-    <niobject name="NiBoolInterpController" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiBoolInterpController" abstract="true" inherit="NiSingleInterpController">
         Abstract base class for all NiInterpControllers that use a NiInterpolator to animate their target boolean value.
     </niobject>
 
@@ -3287,7 +3287,7 @@
         <add name="Data" type="Ref" template="NiVisData" ver2="10.1.0.103" />
     </niobject>
 
-    <niobject name="NiPoint3InterpController" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiPoint3InterpController" abstract="true" inherit="NiSingleInterpController">
         Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target NiPoint3 value.
     </niobject>
 
@@ -3309,7 +3309,7 @@
     </niobject>
 
 
-    <niobject name="NiExtraDataController" abstract="1" inherit="NiSingleInterpController">
+    <niobject name="NiExtraDataController" abstract="true" inherit="NiSingleInterpController">
         Abstract base class for all extra data controllers.
         NiInterpController::GetCtlrID() string format:
             '%s'
@@ -3377,7 +3377,7 @@
         <add name="Material Needs Update" type="bool" ver1="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</add>
     </compound>
 
-    <niobject name="NiGeometry" abstract="1" inherit="NiAVObject">
+    <niobject name="NiGeometry" abstract="true" inherit="NiAVObject">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
             Bethesda 20.2.0.7 NIFs: NiGeometry was changed to BSGeometry. 
             Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except NiParticleSystem was changed to use BSGeometry.
@@ -3395,7 +3395,7 @@
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
     </niobject>
 
-    <niobject name="NiTriBasedGeom" abstract="1" inherit="NiGeometry">
+    <niobject name="NiTriBasedGeom" abstract="true" inherit="NiGeometry">
         Describes a mesh, built from triangles.
     </niobject>
 
@@ -3437,7 +3437,7 @@
         <option value="15" name="Unk32768" />
     </bitflags>
 
-    <niobject name="NiGeometryData" abstract="1" inherit="NiObject">
+    <niobject name="NiGeometryData" abstract="true" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
             Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. 
             "Num Vertices" is renamed to "BS Max Vertices" for Bethesda 20.2 because Vertices, Normals, Tangents, Colors, and UV arrays
@@ -3480,10 +3480,10 @@
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" />
     </niobject>
 
-    <niobject name="AbstractAdditionalGeometryData" abstract="1" inherit="NiObject">
+    <niobject name="AbstractAdditionalGeometryData" abstract="true" inherit="NiObject">
     </niobject>
 
-    <niobject name="NiTriBasedGeomData" abstract="1" inherit="NiGeometryData">
+    <niobject name="NiTriBasedGeomData" abstract="true" inherit="NiGeometryData">
         Describes a mesh, built from triangles.
         <add name="Num Triangles" type="ushort">Number of triangles.</add>
     </niobject>
@@ -3667,7 +3667,7 @@
         <add name="Num Control Points" type="uint">The number of control points of the B-spline (number of frames of animation plus degree of B-spline minus one).</add>
     </niobject>
 
-    <niobject name="NiBSplineFloatInterpolator" abstract="1" inherit="NiBSplineInterpolator">
+    <niobject name="NiBSplineFloatInterpolator" abstract="true" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate a float value over time.
         <add name="Value" type="float" default="#INV_FLT#">Base value when curve not defined.</add>
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
@@ -3679,7 +3679,7 @@
         <add name="Float Half Range" type="float" default="#FLT_MAX#" />
     </niobject>
 
-    <niobject name="NiBSplinePoint3Interpolator" abstract="1" inherit="NiBSplineInterpolator">
+    <niobject name="NiBSplinePoint3Interpolator" abstract="true" inherit="NiBSplineInterpolator">
         Uses B-Splines to animate an NiPoint3 value over time.
         <add name="Value" type="Vector3" default="#INV_VEC3#">Base value when curve not defined.</add>
         <add name="Handle" type="uint" default="0xFFFF">Handle into the data. (USHRT_MAX for invalid handle.)</add>
@@ -3793,7 +3793,7 @@
         <add name="Anim Note Arrays" type="Ref" template="BSAnimNotes" arr1="Num Anim Note Arrays" ver1="20.2.0.7" vercond="#BSVER# #GT# 28" />
     </niobject>
 
-    <niobject name="NiAVObjectPalette" abstract="1" inherit="NiObject">
+    <niobject name="NiAVObjectPalette" abstract="true" inherit="NiObject">
         Abstract base class for indexing NiAVObject by name.
     </niobject>
 
@@ -4185,7 +4185,7 @@
         <add name="Is Signed" type="bool" />
     </compound>
 
-    <niobject name="NiPixelFormat" abstract="1" inherit="NiObject">
+    <niobject name="NiPixelFormat" abstract="true" inherit="NiObject">
         NiPixelFormat is not the parent to NiPixelData/NiPersistentSrcTextureRendererData,
         but actually a member class loaded at the top of each. The two classes are not related.
         However, faking this inheritance is useful for several things.
@@ -4222,7 +4222,7 @@
         <add name="Num Faces" type="uint" />
         <add name="Platform" type="PlatformID" ver2="30.1.0.0" />
         <add name="Renderer" type="RendererID" ver1="30.1.0.1" />
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" />
+        <add name="Pixel Data" type="byte" binary="true" arr1="Num Pixels * Num Faces" />
     </niobject>
 
     <niobject name="NiPixelData" inherit="NiPixelFormat">
@@ -4234,8 +4234,8 @@
         <add name="Num Pixels" type="uint" />
         <!-- Technically since 10.3.0.6, fudging for WorldShift custom version as no games have official 10.3 NIFs anyway. -->
         <add name="Num Faces" type="uint" ver1="10.4.0.2" default="1" />
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels" ver2="10.4.0.1" />
-        <add name="Pixel Data" type="byte" binary="1" arr1="Num Pixels * Num Faces" ver1="10.4.0.2" />
+        <add name="Pixel Data" type="byte" binary="true" arr1="Num Pixels" ver2="10.4.0.1" />
+        <add name="Pixel Data" type="byte" binary="true" arr1="Num Pixels * Num Faces" ver1="10.4.0.2" />
     </niobject>
 
     <niobject name="NiPlanarCollider" inherit="NiParticleModifier" until="V10_0_1_0">
@@ -4465,7 +4465,7 @@
         Particle system controller, tells the system to update its simulation.
     </niobject>
 
-    <niobject name="NiPSysFieldModifier" abstract="1" inherit="NiPSysModifier">
+    <niobject name="NiPSysFieldModifier" abstract="true" inherit="NiPSysModifier">
         Base for all force field particle modifiers.
         <add name="Field Object" type="Ref" template="NiAVObject">The object whose position and orientation are the basis of the field.</add>
         <add name="Magnitude" type="float">Magnitude of the force.</add>
@@ -4591,7 +4591,7 @@
         <add name="Radial Type" type="float">If zero, no attenuation.</add>
     </niobject>
 
-    <niobject name="NiLODData" abstract="1" inherit="NiObject">
+    <niobject name="NiLODData" abstract="true" inherit="NiObject">
         Abstract class used for different types of LOD selections.
     </niobject>
 
@@ -4661,7 +4661,7 @@
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
     </niobject>
 
-    <niobject name="NiTexture" abstract="1" inherit="NiObjectNET">
+    <niobject name="NiTexture" abstract="true" inherit="NiObjectNET">
         A texture.
     </niobject>
 
@@ -5007,7 +5007,7 @@
         <add name="RGBA Image Data" type="ByteColor4" arr1="Width" arr2="Height" cond="Image Type == 2" >Image pixel data.</add>
     </niobject>
     
-    <niobject name="NiAccumulator" abstract="1" inherit="NiObject" />
+    <niobject name="NiAccumulator" abstract="true" inherit="NiObject" />
 
     <niobject name="NiSortAdjustNode" inherit="NiNode">
         Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.
@@ -5303,7 +5303,7 @@
         <add name="Limit Plane R" type="float" ver1="20.4.0.0" />
     </compound>
 
-    <niobject name="NiPhysXJointDesc" inherit="NiObject" abstract="1" since="V20_2_0_8">
+    <niobject name="NiPhysXJointDesc" inherit="NiObject" abstract="true" since="V20_2_0_8">
         A PhysX Joint abstract base class.
         <add name="Joint Type" type="NxJointType" />
         <add name="Joint Name" type="string" />
@@ -5513,13 +5513,13 @@
         <add name="Target Mesh" type="Ref" template="NiMesh" ver2="20.5.0.0" />
     </niobject>
 
-    <niobject name="NiPhysXDest" inherit="NiObject" abstract="1" since="V20_2_0_8">
+    <niobject name="NiPhysXDest" inherit="NiObject" abstract="true" since="V20_2_0_8">
         A destination is a link between a PhysX actor and a Gamebryo object being driven by the physics.
         <add name="Active" type="bool" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
-    <niobject name="NiPhysXRigidBodyDest" inherit="NiPhysXDest" abstract="1" since="V20_2_0_8">
+    <niobject name="NiPhysXRigidBodyDest" inherit="NiPhysXDest" abstract="true" since="V20_2_0_8">
         Base for destinations that set a rigid body state.
     </niobject>
 
@@ -5528,13 +5528,13 @@
         <add name="Target" type="Ptr" template="NiAVObject" />
     </niobject>
 
-    <niobject name="NiPhysXSrc" inherit="NiObject" abstract="1" since="V20_2_0_8">
+    <niobject name="NiPhysXSrc" inherit="NiObject" abstract="true" since="V20_2_0_8">
         A source is a link between a Gamebryo object and a PhysX actor.
         <add name="Active" type="bool" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
-    <niobject name="NiPhysXRigidBodySrc" inherit="NiPhysXSrc" abstract="1" since="V20_2_0_8">
+    <niobject name="NiPhysXRigidBodySrc" inherit="NiPhysXSrc" abstract="true" since="V20_2_0_8">
         Sets state of a rigid body PhysX actor.
         <add name="Source" type="Ptr" template="NiAVObject" />
     </niobject>
@@ -5713,7 +5713,7 @@
         <add name="Environment Map Scale" type="float" default="1.0" vercond="#NI_BS_LTE_FO3#">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
-    <niobject name="BSShaderLightingProperty" abstract="1" inherit="BSShaderProperty" versions="#FO3#">
+    <niobject name="BSShaderLightingProperty" abstract="true" inherit="BSShaderProperty" versions="#FO3#">
         Bethesda-specific property.
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T" vercond="#NI_BS_LTE_FO3#">How to handle texture borders.</add>
     </niobject>
@@ -6404,7 +6404,7 @@
 
     <niobject name="bhkAabbPhantom" inherit="bhkShapePhantom" versions="#BETHESDA#">
         Bethesda-specific Havok serializable.
-        <add name="Unused Bytes 3" type="byte" arr1="8" />
+        <add name="Unused Bytes 3" type="byte" arr1="8" binary="true" />
         <add name="AABB Min" type="Vector4" />
         <add name="AABB Max" type="Vector4" />
     </niobject>
@@ -6429,12 +6429,12 @@
         <add name="Body" type="Ptr" template="bhkRigidBody" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Int 2" type="uint" />
-        <add name="Unused 1" type="byte" arr1="8" />
+        <add name="Unused 1" type="byte" arr1="8" binary="true" />
         <add name="Hinge Axis LS" type="Vector4" />
         <add name="Forward LS" type="Vector4" />
         <add name="Strength" type="float" />
         <add name="Damping" type="float" />
-        <add name="Unused 2" type="byte" arr1="8" />
+        <add name="Unused 2" type="byte" arr1="8" binary="true" />
     </niobject>
 
     <niobject name="bhkPoseArray" inherit="NiObject" versions="#FO3_AND_LATER#">
@@ -6566,15 +6566,15 @@
 
 
     <niobject name="NiDataStream" inherit="NiObject" since="V20_5_0_0">
-        <add name="Usage" type="DataStreamUsage" abstract="1"></add>
-        <add name="Access" type="DataStreamAccess" abstract="1"></add>
+        <add name="Usage" type="DataStreamUsage" abstract="true"></add>
+        <add name="Access" type="DataStreamAccess" abstract="true"></add>
         <add name="Num Bytes" type="uint">The size in bytes of this data stream.</add>
         <add name="Cloning Behavior" type="CloningBehavior" default="CLONING_SHARE" />
         <add name="Num Regions" type="uint">Number of regions (such as submeshes).</add>
         <add name="Regions" type="Region" arr1="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</add>
         <add name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</add>
         <add name="Component Formats" type="ComponentFormat" arr1="Num Components">The format of each component in this data stream.</add>
-        <add name="Data" type="byte" binary="1" arr1="Num Bytes" />
+        <add name="Data" type="byte" binary="true" arr1="Num Bytes" />
         <add name="Streamable" type="bool" default="1" />
     </niobject>
 
@@ -6600,7 +6600,7 @@
         <add name="Component Semantics" type="SemanticData" arr1="Num Components">Describes the semantic of each component.</add>
     </compound>
 
-    <niobject name="NiRenderObject" abstract="1" inherit="NiAVObject" since="V20_5_0_0">
+    <niobject name="NiRenderObject" abstract="true" inherit="NiAVObject" since="V20_5_0_0">
         An object that can be rendered.
         <add name="Material Data" type="MaterialData">Per-material data.</add>
     </niobject>
@@ -6627,7 +6627,7 @@
         <option value="0x8070" name="SYNC_REFLECTIONS">Synchronize after all data necessary to calculate reflections is ready.</option>
     </enum>
 
-    <niobject name="NiMeshModifier" abstract="1" inherit="NiObject">
+    <niobject name="NiMeshModifier" abstract="true" inherit="NiObject">
         Base class for mesh modifiers.
         <add name="Num Submit Points" type="uint" />
         <add name="Submit Points" type="SyncPoint" arr1="Num Submit Points">The sync points supported by this mesh modifier for SubmitTasks.</add>
@@ -6855,7 +6855,7 @@
         <add name="Simulation Steps" type="Ref" template="NiPSSimulatorStep" arr1="Num Simulation Steps" />
     </niobject>
 
-    <niobject name="NiPSSimulatorStep" inherit="NiObject" abstract="1" since="V20_5_0_0">
+    <niobject name="NiPSSimulatorStep" inherit="NiObject" abstract="true" since="V20_5_0_0">
         Abstract base class for a single step in the particle system simulation process.  It has no seralized data.
     </niobject>
 
@@ -6928,14 +6928,14 @@
         <option value="8" name="FORCE_GRAVITY" />
     </enum>
 
-    <niobject name="NiPSForce" abstract="1" inherit="NiObject" since="V20_5_0_0">
+    <niobject name="NiPSForce" abstract="true" inherit="NiObject" since="V20_5_0_0">
         Abstract base class for all particle forces.
         <add name="Name" type="string" />
         <add name="Type" type="PSForceType" />
         <add name="Active" type="bool" />
     </niobject>
 
-    <niobject name="NiPSFieldForce" abstract="1" inherit="NiPSForce" since="V20_5_0_0">
+    <niobject name="NiPSFieldForce" abstract="true" inherit="NiPSForce" since="V20_5_0_0">
         Abstract base class for all particle field forces.
         <add name="Field Object" type="Ref" template="NiAVObject" />
         <add name="Magnitude" type="float" />
@@ -7014,7 +7014,7 @@
 
     <!-- NiPS Emitters -->
 
-    <niobject name="NiPSEmitter" abstract="1" inherit="NiObject" since="V20_5_0_0">
+    <niobject name="NiPSEmitter" abstract="true" inherit="NiObject" since="V20_5_0_0">
         Abstract base class for all particle emitters.
         <add name="Name" type="string" />
         <add name="Speed" type="float" />
@@ -7039,7 +7039,7 @@
         <add name="Unknown" type="bool" ver1="30.0.0.0" ver2="30.0.0.1" />
     </niobject>
 
-    <niobject name="NiPSVolumeEmitter" abstract="1" inherit="NiPSEmitter" since="V20_5_0_0">
+    <niobject name="NiPSVolumeEmitter" abstract="true" inherit="NiPSEmitter" since="V20_5_0_0">
         Abstract base class for particle emitters that emit particles from a volume.
         <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
         <add name="Emitter Object" type="Ptr" template="NiAVObject" />
@@ -7089,12 +7089,12 @@
 
     <!-- NiPS Controllers -->
 
-    <niobject name="NiPSEmitterCtlr" abstract="1" inherit="NiSingleInterpController" since="V20_5_0_0">
+    <niobject name="NiPSEmitterCtlr" abstract="true" inherit="NiSingleInterpController" since="V20_5_0_0">
         Abstract base class for all particle emitter time controllers.
         <add name="Emitter Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSEmitterFloatCtlr" abstract="1" inherit="NiPSEmitterCtlr" since="V20_5_0_0">
+    <niobject name="NiPSEmitterFloatCtlr" abstract="true" inherit="NiPSEmitterCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a floating point value on an NiPSEmitter object.
     </niobject>
 
@@ -7103,16 +7103,16 @@
         <add name="Emitter Active Interpolator" type="Ref" template="NiInterpolator" />
     </niobject>
 
-    <niobject name="NiPSForceCtlr" abstract="1" inherit="NiSingleInterpController" since="V20_5_0_0">
+    <niobject name="NiPSForceCtlr" abstract="true" inherit="NiSingleInterpController" since="V20_5_0_0">
         Abstract base class for all particle force time controllers.
         <add name="Force Name" type="string" />
     </niobject>
 
-    <niobject name="NiPSForceBoolCtlr" abstract="1" inherit="NiPSForceCtlr" since="V20_5_0_0">
+    <niobject name="NiPSForceBoolCtlr" abstract="true" inherit="NiPSForceCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a Boolean value on an NiPSForce object.
     </niobject>
 
-    <niobject name="NiPSForceFloatCtlr" abstract="1" inherit="NiPSForceCtlr" since="V20_5_0_0">
+    <niobject name="NiPSForceFloatCtlr" abstract="true" inherit="NiPSForceCtlr" since="V20_5_0_0">
         Abstract base class for controllers that animate a floating point value on an NiPSForce object.
     </niobject>
 
@@ -7271,7 +7271,7 @@
 
     <!-- NiEvaluator -->
 
-    <niobject name="NiEvaluator" abstract="1" inherit="NiObject" since="V20_5_0_0">
+    <niobject name="NiEvaluator" abstract="true" inherit="NiObject" since="V20_5_0_0">
         <add name="Node Name" type="string">The name of the animated NiAVObject.</add>
         <add name="Property Type" type="string">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
         <add name="Controller Type" type="string">The RTTI type of the NiTimeController.</add>
@@ -7287,7 +7287,7 @@
         </add>
     </niobject>
 
-    <niobject name="NiKeyBasedEvaluator" abstract="1" inherit="NiEvaluator" since="V20_5_0_0" />
+    <niobject name="NiKeyBasedEvaluator" abstract="true" inherit="NiEvaluator" since="V20_5_0_0" />
 
     <niobject name="NiBoolEvaluator" inherit="NiKeyBasedEvaluator" since="V20_5_0_0">
         <add name="Data" type="Ref" template="NiBoolData" />
@@ -7623,7 +7623,7 @@
     
     <!-- Fallout 4 Physics -->
 
-    <niobject name="bhkSystem" abstract="1" inherit="NiObject" versions="#FO4#">
+    <niobject name="bhkSystem" abstract="true" inherit="NiObject" versions="#FO4#">
         Fallout 4 Physics System
     </niobject>
     
