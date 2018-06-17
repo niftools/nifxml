@@ -1433,6 +1433,18 @@
         <member width="3" pos="2" mask="0x003C" name="Test Func" type="TestFunction" />
     </bitfield>
 
+    <enum name="AGDConsistencyType" storage="byte">
+        <option value="0" name="AGD_MUTABLE" />
+        <option value="1" name="AGD_STATIC" />
+        <option value="2" name="AGD_VOLATILE" />
+    </enum>
+
+    <bitfield name="NiAGDDataStreamFlags" storage="byte">
+        Flags for NiAGDDataStream
+        <member width="1" pos="0" mask="0x0001" name="Keep" type="bool" />
+        <member width="3" pos="1" mask="0x0006" name="Consistency Type" type="AGDConsistencyType" default="AGD_MUTABLE" />
+    </bitfield>
+
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
@@ -6276,57 +6288,48 @@
         <add name="Extent" type="Vector3">Extent of the AABB in all directions</add>
     </niobject>
 
-    <compound name="AdditionalDataInfo">
-        <add name="Data Type" type="int" >Type of data in this channel</add>
-        <add name="Num Channel Bytes Per Element" type="int" >Number of bytes per element of this channel</add>
-        <add name="Num Channel Bytes" type="int" >Total number of bytes of this channel (num vertices times num bytes per element)</add>
-        <add name="Num Total Bytes Per Element" type="int" >Number of bytes per element in all channels together. Sum of num channel bytes per element over all block infos.</add>
-        <add name="Block Index" type="int" >Unsure. The block in which this channel is stored? Usually there is only one block, and so this is zero.</add>
-        <add name="Channel Offset" type="int" >Offset (in bytes) of this channel. Sum of all num channel bytes per element of all preceeding block infos.</add>
-        <add name="Unknown Byte 1" type="byte" default="2" />
+    <compound name="NiAGDDataStream">
+        <add name="Type" type="uint">Type of data in this channel</add>
+        <add name="Unit Size" type="uint">Number of bytes per element of this channel</add>
+        <add name="Total Size" type="uint">Total number of bytes of this channel (num vertices times num bytes per element)</add>
+        <add name="Stride" type="uint">Number of bytes per element in all channels together. Sum of num channel bytes per element over all block infos.</add>
+        <add name="Block Index" type="uint">Unsure. The block in which this channel is stored? Usually there is only one block, and so this is zero.</add>
+        <add name="Block Offset" type="uint">Offset (in bytes) of this channel. Sum of all num channel bytes per element of all preceeding block infos.</add>
+        <add name="Flags" type="NiAGDDataStreamFlags" default="2" />
     </compound>
 
-    <compound name="AdditionalDataBlock">
-        <!-- todo: check if this is essentially the same as BSPackedAdditionalData, i.e. if this is identical to BSPackedAdditionalData minus its last two fields -->
-        <add name="Has Data" type="bool">Has data</add>
-        <add name="Block Size" type="uint" cond="Has Data">Size of Block</add>
-        <add name="Num Blocks" type="uint" cond="Has Data" />
-        <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data" />
-
-        <add name="Num Data" type="uint" cond="Has Data" />
-        <add name="Data Sizes" type="int" arr1="Num Data" cond="Has Data" />
-        <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" cond="Has Data" />
+    <compound name="NiAGDDataBlock">
+        <add name="Block Size" type="uint" />
+        <add name="Num Blocks" type="uint" />
+        <add name="Block Offsets" type="uint" arr1="Num Blocks" />
+        <add name="Num Data" type="uint" />
+        <add name="Data Sizes" type="uint" arr1="Num Data" />
+        <add name="Data" type="byte" arr1="Num Data" arr2="Block Size" />
+        <!-- NiBSPackedAGDDataBlock -->
+        <add name="Shader Index" type="uint" cond="#ARG# == 1" />
+        <add name="Total Size" type="uint" cond="#ARG# == 1" />
     </compound>
 
-    <compound name="BSPackedAdditionalDataBlock" versions="#BETHESDA#">
-        <!-- see Fallout NV (nvdlc01vaultposter01.nif) -->
-        <add name="Has Data" type="bool">Has data</add>
-        <add name="Num Total Bytes" type="uint" cond="Has Data">Total number of bytes (over all channels and all elements, equals num total bytes per element times num vertices).</add>
-        <add name="Num Blocks" type="uint" cond="Has Data">Number of blocks? Usually equal to one.</add>
-        <add name="Block Offsets" type="int" arr1="Num Blocks" cond="Has Data">Block offsets in the data? Usually equal to zero.</add>
-
-        <add name="Num Atoms" type="uint" cond="Has Data">Number of atoms?</add>
-        <add name="Atom Sizes" type="int" arr1="Num Atoms" cond="Has Data">The sum of all of these equal num total bytes per element, so this probably describes how each data element breaks down into smaller chunks (i.e. atoms).</add>
-        <add name="Data" type="byte" arr1="Num Total Bytes" cond="Has Data" />
-        <add name="Unknown Int 1" type="int" />
-        <add name="Num Total Bytes Per Element" type="int">Unsure, but this seems to correspond again to the number of total bytes per element.</add>
+    <compound name="NiAGDDataBlocks">
+        <add name="Has Data" type="bool" />
+        <add name="Data Block" type="NiAGDDataBlock" cond="Has Data" arg="#ARG#" />
     </compound>
 
     <niobject name="NiAdditionalGeometryData" inherit="AbstractAdditionalGeometryData">
-        <add name="Num Vertices" type="ushort">Number of vertices</add>
-        <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
-        <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
-        <add name="Num Blocks" type="uint">Number of additional data blocks</add>
-        <add name="Blocks" type="AdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
+        <add name="Num Vertices" type="ushort" />
+        <add name="Num Block Infos" type="uint" />
+        <add name="Block Infos" type="NiAGDDataStream" arr1="Num Block Infos" />
+        <add name="Num Blocks" type="uint" />
+        <add name="Blocks" type="NiAGDDataBlocks" arg="0" arr1="Num Blocks" />
     </niobject>
 
     <niobject name="BSPackedAdditionalGeometryData" inherit="AbstractAdditionalGeometryData" versions="#BETHESDA#">
         No longer appears to occur in any vanilla files. Older versions of FNV had the block in nvdlc01vaultposter01.nif.
         <add name="Num Vertices" type="ushort" />
-        <add name="Num Block Infos" type="uint">Information about additional data blocks</add>
-        <add name="Block Infos" type="AdditionalDataInfo" arr1="Num Block Infos">Number of additional data blocks</add>
-        <add name="Num Blocks" type="uint">Number of additional data blocks. Usually there is exactly one block.</add>
-        <add name="Blocks" type="BSPackedAdditionalDataBlock" arr1="Num Blocks">Number of additional data blocks</add>
+        <add name="Num Block Infos" type="uint" />
+        <add name="Block Infos" type="NiAGDDataStream" arr1="Num Block Infos" />
+        <add name="Num Blocks" type="uint">Usually there is exactly one block.</add>
+        <add name="Blocks" type="NiAGDDataBlocks" arg="1" arr1="Num Blocks" />
     </niobject>
 
     <niobject name="BSWArray" inherit="NiExtraData" versions="#FO3_AND_LATER#">
