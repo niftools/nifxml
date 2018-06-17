@@ -5190,7 +5190,7 @@
         <add name="Num Joints" type="uint" />
         <add name="Joints" type="Ref" template="NiPhysXJointDesc" arr1="Num Joints" />
         <add name="Num Clothes" type="uint" ver1="20.3.0.5" />
-        <add name="Clothes" type="Ref" template="NiObject" arr1="Num Clothes" ver1="20.3.0.5" /> <!-- NiPhysXClothDesc -->
+        <add name="Clothes" type="Ref" template="NiPhysXClothDesc" arr1="Num Clothes" ver1="20.3.0.5" />
         <add name="Num Materials" type="uint" />
         <add name="Materials" type="PhysXMaterialRef" arr1="Num Materials" />
         <add name="Num States" type="uint" />
@@ -5446,6 +5446,71 @@
         <add name="Index" type="ushort" />
         <add name="Num States" type="uint" />
         <add name="Material Descs" type="NxMaterialDesc" arr1="Num States" />
+    </niobject>
+
+    <compound name="PhysXClothState" since="V20_2_0_8">
+        <add name="Pose" type="Matrix34" />
+        <add name="Num Vertex Positions" type="ushort" />
+        <add name="Vertex Positions" type="Vector3" arr1="Num Vertex Positions" />
+        <add name="Num Tear Indices" type="ushort" />
+        <add name="Tear Indices" type="ushort" arr1="Num Tear Indices" />
+        <add name="Tear Split Planes" type="Vector3" arr1="Num Tear Indices" />
+    </compound>
+
+    <compound name="PhysXClothAttachmentPosition" since="V20_2_0_8">
+        <add name="Vertex ID" type="uint" />
+        <add name="Position" type="Vector3" />
+        <add name="Flags" type="uint" />
+    </compound>
+
+    <compound name="PhysXClothAttachment" since="V20_2_0_8">
+        <add name="Shape" type="Ref" template="NiPhysXShapeDesc" />
+        <add name="Num Vertices" type="uint" />
+        <add name="Flags" type="uint" cond="Num Vertices == 0" />
+        <add name="Positions" type="PhysXClothAttachmentPosition" cond="Num Vertices #GT# 0" arr1="Num Vertices" />
+    </compound>
+
+    <niobject name="NiPhysXClothDesc" inherit="NiObject" since="V20_2_0_8">
+        For serializing NxClothDesc objects.
+        <add name="Name" type="string" />
+        <add name="Mesh" type="Ref" template="NiPhysXMeshDesc" />
+        <add name="Pose" type="Matrix34" ver2="20.3.0.9" />
+        <add name="Thickness" type="float" />
+        <add name="Self Collision Thickness" type="float" ver1="30.1.0.3" />
+        <add name="Density" type="float" />
+        <add name="Bending Stiffness" type="float" />
+        <add name="Stretching Stiffness" type="float" />
+        <add name="Damping Coefficient" type="float" />
+        <add name="Hard Stretch Limitation Factor" type="float" ver1="30.1.0.3" />
+        <add name="Friction" type="float" />
+        <add name="Pressure" type="float" />
+        <add name="Tear Factor" type="float" />
+        <add name="Collision Response Coeff" type="float" />
+        <add name="Attach Response Coeff" type="float" />
+        <add name="Attach Tear Factor" type="float" />
+        <add name="To Fluid Response Coeff" type="float" ver1="20.4.0.0" />
+        <add name="From Fluid Response Coeff" type="float" ver1="20.4.0.0" />
+        <add name="Min Adhere Velocity" type="float" ver1="20.4.0.0" />
+        <add name="Relative Grid Spacing" type="float" ver1="20.4.0.0" />
+        <add name="Solver Iterations" type="uint" />
+        <add name="Hier Solver Iterations" type="uint" ver1="30.1.0.3" />
+        <add name="External Acceleration" type="Vector3" />
+        <add name="Wind Acceleration" type="float" ver1="20.4.0.0" />
+        <add name="Wake Up Counter" type="float" />
+        <add name="Sleep Linear Velocity" type="float" />
+        <add name="Collision Group" type="ushort" />
+        <add name="Collision Bits" type="uint" arr1="4" />
+        <add name="Force Field Material" type="ushort" ver1="20.4.0.0" />
+        <add name="Flags" type="uint" />
+        <add name="Vertex Map Size" type="ushort" ver1="30.2.0.3" />
+        <add name="Vertex Map" type="ushort" arr1="Vertex Map Size" ver1="30.2.0.3" />
+        <add name="Num States" type="uint" ver1="20.4.0.0" />
+        <add name="States" type="PhysXClothState" arr1="Num States" ver1="20.4.0.0" />
+        <add name="Num Attachments" type="uint" />
+        <add name="Attachments" type="PhysXClothAttachment" arr1="Num Attachments" />
+        <add name="Parent Actor" type="Ref" template="NiPhysXActorDesc" />
+        <add name="Dest" type="Ref" template="NiPhysXDest" ver2="20.4.0.9" />
+        <add name="Target Mesh" type="Ref" template="NiMesh" ver2="20.5.0.0" />
     </niobject>
 
     <niobject name="NiPhysXDest" inherit="NiObject" abstract="1" since="V20_2_0_8">
