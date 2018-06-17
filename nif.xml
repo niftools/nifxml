@@ -4077,7 +4077,13 @@
 
     <niobject name="NiParticles" inherit="NiGeometry">
         Generic particle system node.
+        Contains members to mimic inheritance shifts for Bethesda 20.2, which switched to using BSGeometry.
         <add name="Vertex Desc" type="BSVertexDesc" vercond="#BS_GTE_SSE#" />
+        <add name="Far Begin" type="ushort" vercond="#BS_GTE_SKY#" />
+        <add name="Far End" type="ushort" vercond="#BS_GTE_SKY#" />
+        <add name="Near Begin" type="ushort" vercond="#BS_GTE_SKY#" />
+        <add name="Near End" type="ushort" vercond="#BS_GTE_SKY#" />
+        <add name="Data" type="Ref" template="NiPSysData" vercond="#BS_GTE_SSE#" />
     </niobject>
 
     <niobject name="NiAutoNormalParticles" inherit="NiParticles" until="V10_0_1_0">
@@ -4095,13 +4101,6 @@
 
     <niobject name="NiParticleSystem" inherit="NiParticles">
         A particle system.
-        <!-- Bethesda -->
-        <add name="Far Begin" type="ushort" vercond="#BS_GTE_SKY#" />
-        <add name="Far End" type="ushort" vercond="#BS_GTE_SKY#" />
-        <add name="Near Begin" type="ushort" vercond="#BS_GTE_SKY#" />
-        <add name="Near End" type="ushort" vercond="#BS_GTE_SKY#" />
-        <add name="Data" type="Ref" template="NiPSysData" vercond="#BS_GTE_SSE#" />
-        <!-- / Bethesda -->
         <add name="World Space" type="bool" default="1" ver1="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</add>
         <add name="Num Modifiers" type="uint" ver1="10.1.0.0">The number of modifier references.</add>
         <add name="Modifiers" type="Ref" template="NiPSysModifier" arr1="Num Modifiers" ver1="10.1.0.0">The list of particle modifiers.</add>
