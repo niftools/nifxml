@@ -1294,7 +1294,7 @@
         <option value="0" name="Emissive Color">Emissive Color.</option>
     </enum>
 
-    <enum name="LightingShaderControlledVariable" storage="uint" prefix="LSCV" versions="#SKY_AND_LATER#">
+    <enum name="LightingShaderControlledFloat" storage="uint" prefix="LSCF" versions="#SKY_AND_LATER#">
         An unsigned 32-bit integer, describing which float variable in BSLightingShaderProperty to animate.
         <option value="0" name="Refraction Strength">The amount of distortion.</option>
         <option value="8" name="Environment Map Scale">Environment Map Scale.</option>
@@ -1306,6 +1306,12 @@
         <option value="21" name="U Scale">U Scale.</option>
         <option value="22" name="V Offset">V Offset.</option>
         <option value="23" name="V Scale">V Scale.</option>
+    </enum>
+
+    <enum name="LightingShaderControlledUShort" storage="uint" prefix="LSCU" versions="#SKY_AND_LATER#">
+        An unsigned 32-bit integer, describing which integral value in BSLightingShaderProperty to animate.
+        <option value="0" name="Unknown 1" />
+        <option value="1" name="Unknown 2" />
     </enum>
 
     <enum name="LightingShaderControlledColor" storage="uint" prefix="LSCC" versions="#SKY_AND_LATER#">
@@ -5747,22 +5753,28 @@
 
     <niobject name="BSEffectShaderPropertyFloatController" inherit="NiFloatInterpController" versions="#SKY_AND_LATER#">
         This controller is used to animate float variables in BSEffectShaderProperty.
-        <add name="Type of Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate:</add>
+        <add name="Controlled Variable" type="EffectShaderControlledVariable">Which float variable in BSEffectShaderProperty to animate.</add>
     </niobject>
 	
 	<niobject name="BSEffectShaderPropertyColorController" inherit="NiPoint3InterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate colors in BSEffectShaderProperty.
-		<add name="Type of Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate:</add>
+		<add name="Controlled Color" type="EffectShaderControlledColor">Which color in BSEffectShaderProperty to animate.</add>
 	</niobject>
 	
 	<niobject name="BSLightingShaderPropertyFloatController" inherit="NiFloatInterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate float variables in BSLightingShaderProperty.
-		<add name="Type of Controlled Variable" type="LightingShaderControlledVariable">Which float variable in BSLightingShaderProperty to animate:</add>
+		<add name="Controlled Variable" type="LightingShaderControlledFloat">Which float variable in BSLightingShaderProperty to animate.</add>
 	</niobject>
-	
+
+	<niobject name="BSLightingShaderPropertyUShortController" inherit="NiFloatInterpController" versions="#SKY_AND_LATER#">
+		This controller is used to animate float variables in BSLightingShaderProperty.
+		NOTE: FO4 CK reports this block as unsupported.
+		<add name="Controlled Variable" type="LightingShaderControlledUShort">NOTE: FO4 CK reports this as unsupported. Which integral variable in BSLightingShaderProperty to animate.</add>
+	</niobject>
+
 	<niobject name="BSLightingShaderPropertyColorController" inherit="NiPoint3InterpController" versions="#SKY_AND_LATER#">
 		This controller is used to animate colors in BSLightingShaderProperty.
-		<add name="Type of Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate:</add>
+		<add name="Controlled Color" type="LightingShaderControlledColor">Which color in BSLightingShaderProperty to animate.</add>
 	</niobject>	
 	
 	<niobject name="BSNiAlphaPropertyTestRefController" inherit="NiFloatInterpController" versions="#BETHESDA#" />
@@ -6034,7 +6046,8 @@
         <add name="Wetness Fresnel Power" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Metalness" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Environment Map Scale" type="float" default="1.0" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
-        <add name="Unknown Env Map Short" type="ushort" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
+        <add name="Use Screen Space Reflections" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
+        <add name="Wetness Control: Use SSR" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
         <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Unknown Skin Tint Int" type="uint" cond="Skyrim Shader Type == 5" vercond="#BS_FO4#" />
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
