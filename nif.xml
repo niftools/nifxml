@@ -2676,7 +2676,11 @@
         <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
-    <niobject name="bhkSphereRepShape" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
+    <niobject name="bhkConvexShapeBase" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
+        An imaginary abstract base to solve inheritance issues in nif.xml with Havok serialization not matching class hierarchy.
+    </niobject>
+
+    <niobject name="bhkSphereRepShape" abstract="true" inherit="bhkConvexShapeBase" versions="#BETHESDA#">
         An interface that produces a set of spheres that represent a simplified version of the shape.
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
     </niobject>
@@ -2741,13 +2745,18 @@
         <add name="Normals" type="Vector4" arr1="Num Normals">Half spaces as determined by the set of vertices above. First three components define the normal pointing to the exterior, fourth component is the signed distance of the separating plane to the origin: it is minus the dot product of v and n, where v is any vertex on the separating plane, and n is the normal. Lexicographically sorted.</add>
     </niobject>
 
-    <niobject name="bhkConvexTransformShape" inherit="bhkTransformShape" versions="#BETHESDA#">
-        Contains a bhkShape and an additional transform for that shape.
+    <niobject name="bhkConvexTransformShape" inherit="bhkConvexShapeBase" versions="#BETHESDA#">
+        Contains a bhkConvexShape and an additional transform for that shape.
         The advantage of using bhkConvexTransformShape over bhkTransformShape is that it does not require additional agents to be created as it is itself convex.
+        <add name="Shape" type="Ref" template="bhkConvexShape">The shape that this object transforms.</add>
+        <add name="Material" type="HavokMaterial">The material of the shape.</add>
+        <add name="Radius" type="float" />
+        <add name="Unused" type="byte" arr1="8" binary="true">Garbage data from memory.</add>
+        <add name="Transform" type="Matrix44">A transform matrix.</add>
     </niobject>
 
-    <niobject name="bhkConvexSweepShape" inherit="bhkShape" versions="V10_0_1_0">
-        <add name="Shape" type="Ref" template="bhkShape" />
+    <niobject name="bhkConvexSweepShape" inherit="bhkConvexShapeBase" versions="V10_0_1_0">
+        <add name="Shape" type="Ref" template="bhkConvexShape" />
         <add name="Material" type="HavokMaterial" />
         <add name="Radius" type="float" />
         <add name="Unknown" type="Vector3" />
@@ -2758,11 +2767,9 @@
         However, if two bhkMultiSphereShape collide, every sphere needs to be checked against every other sphere.
             Example: 10 spheres colliding with 10 spheres will result in 100 collision checks.
             Therefore shapes like bhkCapsuleShape or bhkConvexVerticesShape should be preferred.
-        <add name="Radius" type="float">The radius of the sphere that encloses the shape.</add>
-        <add name="Unknown Float 1" type="float" />
-        <add name="Unknown Float 2" type="float" />
-        <add name="Num Spheres" type="uint">The number of spheres in this multi sphere shape.</add>
-        <add name="Spheres" type="NiBound" arr1="Num Spheres">This array holds the spheres which make up the multi sphere shape.</add>
+        <add name="Shape Property" type="hkWorldObjCinfoProperty" />
+        <add name="Num Spheres" type="uint" />
+        <add name="Spheres" type="NiBound" arr1="Num Spheres">The spheres which make up the multi sphere shape. Max of 8.</add>
     </niobject>
 
     <niobject name="bhkBvTreeShape" abstract="true" inherit="bhkShape" versions="#BETHESDA#">
@@ -2795,12 +2802,12 @@
 
         Also, shapes collected in a bhkListShape may not have the correct
         walking noise, so only use it for non-walkable objects.
-        <add name="Num Sub Shapes" type="uint">The number of sub shapes referenced.</add>
-        <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes.</add>
+        <add name="Num Sub Shapes" type="uint" />
+        <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes. Max of 256.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
         <add name="Child Filter Property" type="hkWorldObjCinfoProperty" />
-        <add name="Num Unknown Ints" type="uint">Count.</add>
+        <add name="Num Unknown Ints" type="uint" />
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" />
     </niobject>
 
@@ -6216,24 +6223,26 @@
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="20.2.0.7" />
     </niobject>
 
-    <niobject name="bhkConvexListShape" inherit="bhkShape" versions="#FO3#">
-        A havok shape.
-        A list of convex shapes.
+    <niobject name="bhkConvexListShape" inherit="bhkConvexShapeBase" versions="#FO3#">
+        A list of shapes. However,
+            - The sub shapes must ALL be convex: Sphere, Capsule, Cylinder, Convex Vertices, Convex Transform
+            - The radius of all shapes must be identical
+            - The number of sub shapes is restricted to 255
+            - The number of vertices of each sub shape is restricted to 255
 
-        Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a
-        separate collision nodes without a list shape for those.
-
-        Also, shapes collected in a bhkListShape may not have the correct
-        walking noise, so only use it for non-walkable objects.
+        For this reason you most likely cannot combine Sphere Shapes, Capsule Shapes, and Convex Vertices Shapes,
+        as their Radius values differ in function. (Sphere/Capsule radius = physical size, CVS radius = padding/shell)
+        
+        Shapes collected in a bhkConvexListShape may not have the correct material noise.
         <add name="Num Sub Shapes" type="uint" />
-        <add name="Sub Shapes" type="Ref" template="bhkConvexShape" arr1="Num Sub Shapes">List of shapes.</add>
+        <add name="Sub Shapes" type="Ref" template="bhkConvexShapeBase" arr1="Num Sub Shapes">List of shapes. Max of 255.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" />
         <add name="Unknown Int 1" type="uint" />
         <add name="Unknown Float 1" type="float" />
         <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
-        <add name="Unknown Byte 1" type="byte" />
-        <add name="Unknown Float 2" type="float" />
+        <add name="Use Cached AABB" type="bool">If true, an AABB of the children's AABBs is used, which is faster but larger than building an AABB from each child.</add>
+        <add name="Closest Point Min Distance" type="float">A distance which is used for getClosestPoint(). If the object being tested is closer, the children are recursed. Otherwise it returns this value.</add>
     </niobject>
 
     <compound name="BSTreadTransform" size="68" versions="#FO3_AND_LATER#">
