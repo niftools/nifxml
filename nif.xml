@@ -1916,7 +1916,7 @@
     <compound name="SkinPartition" since="V4_2_1_0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <add name="Num Vertices" type="ushort">Number of vertices in this submesh.</add>
-        <add name="Num Triangles" type="ushort" calculated="1">Number of triangles in this submesh.</add>
+        <add name="Num Triangles" type="ushort" calc="(#LEN2[Strips]# #GT# 0) #THEN# (#LEN2[Strips]# - 2) #ELSE# (#LEN[Triangles]#)">Number of triangles in this submesh.</add>
         <add name="Num Bones" type="ushort">Number of bones influencing this submesh.</add>
         <add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
         <add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
@@ -1928,7 +1928,7 @@
         <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" ver2="10.0.1.2">The vertex weights.</add>
         <add name="Vertex Weights" type="float" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Vertex Weights" ver1="10.1.0.0">The vertex weights.</add>
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The strip lengths.</add>
-        <add name="Has Faces" type="bool" ver1="10.1.0.0">Do we have triangle or strip data?</add>
+        <add name="Has Faces" type="bool" calc="(#LEN[Strips]# #ADD# #LEN[Triangles]# #GT# 0) #THEN# 1 #ELSE# 0" ver1="10.1.0.0">Do we have triangle or strip data?</add>
         <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Num Strips != 0" ver2="10.0.1.2">The strips.</add>
         <add name="Strips" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="(Has Faces) #AND# (Num Strips != 0)" ver1="10.1.0.0">The strips.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Num Strips == 0" ver2="10.0.1.2">The triangles.</add>
@@ -2774,7 +2774,7 @@
             Example: 10 spheres colliding with 10 spheres will result in 100 collision checks.
             Therefore shapes like bhkCapsuleShape or bhkConvexVerticesShape should be preferred.
         <add name="Shape Property" type="hkWorldObjCinfoProperty" />
-        <add name="Num Spheres" type="uint" />
+        <add name="Num Spheres" type="uint" calc="(#LEN[Spheres]# #LT# 8) #THEN# #LEN[Spheres]# #ELSE# 8" />
         <add name="Spheres" type="NiBound" arr1="Num Spheres">The spheres which make up the multi sphere shape. Max of 8.</add>
     </niobject>
 
@@ -2788,7 +2788,7 @@
         <add name="Shape" type="Ref" template="bhkShape">The shape.</add>
         <add name="Unused" type="uint" arr1="3">Garbage data from memory. Referred to as User Data, Shape Collection, and Code.</add>
         <add name="Shape Scale" type="float" default="1.0">Scale.</add>
-        <add name="MOPP Data Size" type="uint" calculated="1">Number of bytes for MOPP data.</add>
+        <add name="MOPP Data Size" type="uint">Number of bytes for MOPP data.</add>
         <add name="Origin" type="Vector3" ver1="10.1.0.0">Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.</add>
         <add name="Scale" type="float" ver1="10.1.0.0">The scaling factor to quantize the MOPP: the quantization factor is equal to 256*256 divided by this number. In Oblivion files, scale is taken equal to 256*256*254 / (size + 0.2) where size is the largest dimension of the bounding box of the packed shape.</add>
         <add name="Build Type" type="MoppDataBuildType" vercond="#BS_GT_FO3#">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</add>
@@ -2808,12 +2808,12 @@
 
         Also, shapes collected in a bhkListShape may not have the correct
         walking noise, so only use it for non-walkable objects.
-        <add name="Num Sub Shapes" type="uint" />
+        <add name="Num Sub Shapes" type="uint" calc="(#LEN[Sub Shapes]# #LT# 256) #THEN# #LEN[Sub Shapes]# #ELSE# 256" />
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes. Max of 256.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
         <add name="Child Filter Property" type="hkWorldObjCinfoProperty" />
-        <add name="Num Unknown Ints" type="uint" />
+        <add name="Num Unknown Ints" type="uint" calc="#LEN[Sub Shapes]#" />
         <add name="Unknown Ints" type="uint" arr1="Num Unknown Ints" />
     </niobject>
 
@@ -4667,8 +4667,8 @@
         Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.
         <add name="Num Skin Partition Blocks" type="uint" />
 		<add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks" vercond="!#BS_SSE#">Skin partition objects.</add>
-		<add name="Data Size" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
-		<add name="Vertex Size" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
+		<add name="Data Size" type="uint" calc="#LEN[Vertex Data]# #MUL# Vertex Size" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
+		<add name="Vertex Size" type="uint" calc="(Vertex Desc #BITAND# 0xF) #MUL# 4" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size #GT# 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
@@ -4860,7 +4860,7 @@
     <niobject name="NiTriShapeData" inherit="NiTriBasedGeomData">
         Holds mesh data using a list of singular triangles.
         <add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
-        <add name="Has Triangles" type="bool" ver1="10.1.0.0" calculated="1">Do we have triangle data?</add>
+        <add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles" ver1="10.0.1.3">Triangle face data.</add>
         <add name="Num Match Groups" type="ushort" ver1="3.1">Number of shared normals groups.</add>
@@ -6247,7 +6247,7 @@
         as their Radius values differ in function. (Sphere/Capsule radius = physical size, CVS radius = padding/shell)
         
         Shapes collected in a bhkConvexListShape may not have the correct material noise.
-        <add name="Num Sub Shapes" type="uint" />
+        <add name="Num Sub Shapes" type="uint" calc="(#LEN[Sub Shapes]# #LT# 255) #THEN# #LEN[Sub Shapes]# #ELSE# 255" />
         <add name="Sub Shapes" type="Ref" template="bhkConvexShapeBase" arr1="Num Sub Shapes">List of shapes. Max of 255.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" />
@@ -7598,11 +7598,11 @@
         <add name="Num Triangles" type="uint" vercond="#BS_FO4#" />
         <add name="Num Triangles" type="ushort" vercond="#NI_BS_LT_FO4#" />
         <add name="Num Vertices" type="ushort" />
-        <add name="Data Size" type="uint" />
+        <add name="Data Size" type="uint" calc="((Vertex Desc #BITAND# 0xF) #MUL# Num Vertices #MUL# 4) #ADD# (Num Triangles #MUL# 6)" />
         <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_FO4#" />
         <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_SSE#" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size #GT# 0" />
-        <add name="Particle Data Size" type="uint" vercond="#BS_SSE#" />
+        <add name="Particle Data Size" type="uint" calc="(Num Vertices #MUL# 6) #ADD# (Num Triangles #MUL# 3)" vercond="#BS_SSE#" />
         <add name="Particle Vertices" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
         <add name="Particle Normals" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
         <add name="Particle Triangles" type="Triangle" arr1="Num Triangles" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
@@ -7618,7 +7618,7 @@
     <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint">A hash of the bone name string.</add>
-        <add name="Num Cut Offsets" type="uint">Maximum of 8.</add>
+        <add name="Num Cut Offsets" type="uint" calc="(#LEN[Cut Offsets]# #LT# 8) #THEN# #LEN[Cut Offsets]# #ELSE# 8">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
@@ -7634,7 +7634,7 @@
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape" versions="#SSE# #FO4#">
         Fallout 4 Sub-Index Tri Shape
-		<add name="Num Primitives" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
+		<add name="Num Primitives" type="uint" calc="#LEN[Triangles]#" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
 		<add name="Num Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
 		<add name="Total Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
 		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_FO4#" arr1="Num Segments" cond="Data Size #GT# 0" />
@@ -7814,7 +7814,7 @@
 	<!-- Skyrim SE --> 
 
 	<niobject name="BSDynamicTriShape" inherit="BSTriShape" versions="#SSE#">
-		<add name="Dynamic Data Size" type="uint" />
+		<add name="Dynamic Data Size" type="uint" calc="Num Vertices #MUL# 16" />
 		<add name="Vertices" type="Vector4" arr1="Dynamic Data Size / 16" />
 	</niobject>
 	
