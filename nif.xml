@@ -1919,7 +1919,7 @@
         <add name="Num Triangles" type="ushort" calc="(#LEN2[Strips]# #GT# 0) #THEN# (#LEN2[Strips]# - 2) #ELSE# (#LEN[Triangles]#)">Number of triangles in this submesh.</add>
         <add name="Num Bones" type="ushort">Number of bones influencing this submesh.</add>
         <add name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</add>
-        <add name="Num Weights Per Vertex" type="ushort">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
+        <add name="Num Weights Per Vertex" type="ushort" default="4">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</add>
         <add name="Bones" type="ushort" arr1="Num Bones">List of bones.</add>
         <add name="Has Vertex Map" type="bool" ver1="10.1.0.0">Do we have a vertex map?</add>
         <add name="Vertex Map" type="ushort" arr1="Num Vertices" ver2="10.0.1.2">Maps the weight/influence lists in this submesh to the vertices in the shape being skinned.</add>
@@ -1935,7 +1935,8 @@
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="(Has Faces) #AND# (Num Strips == 0)" ver1="10.1.0.0">The triangles.</add>
         <add name="Has Bone Indices" type="bool">Do we have bone indices?</add>
         <add name="Bone Indices" type="byte" arr1="Num Vertices" arr2="Num Weights Per Vertex" cond="Has Bone Indices">Bone indices, they index into 'Bones'.</add>
-		<add name="Unknown Short" type="ushort" vercond="#BS_GT_FO3#" />
+        <add name="LOD Level" type="byte" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
+        <add name="Global VB" type="bool" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Triangles Copy" type="Triangle" arr1="Num Triangles" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
     </compound>
@@ -4665,13 +4666,12 @@
 
     <niobject name="NiSkinPartition" inherit="NiObject">
         Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.
-        <add name="Num Skin Partition Blocks" type="uint" />
-		<add name="Skin Partition Blocks" type="SkinPartition" arr1="Num Skin Partition Blocks" vercond="!#BS_SSE#">Skin partition objects.</add>
+        <add name="Num Partitions" type="uint" />
 		<add name="Data Size" type="uint" calc="#LEN[Vertex Data]# #MUL# Vertex Size" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Size" type="uint" calc="(Vertex Desc #BITAND# 0xF) #MUL# 4" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size #GT# 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
-		<add name="Partition" type="SkinPartition" arr1="Num Skin Partition Blocks" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
+		<add name="Partitions" type="SkinPartition" arr1="Num Partitions" />
     </niobject>
 
     <niobject name="NiTexture" abstract="true" inherit="NiObjectNET">
