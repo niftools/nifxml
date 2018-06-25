@@ -2999,7 +2999,7 @@
 
     <niobject name="NiObjectNET" abstract="true" inherit="NiObject">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
-        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" vercond="#BS_GTE_SKY#" onlyT="BSLightingShaderProperty">Configures the main shader path</add>
+        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SKY#" onlyT="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Legacy Extra Data" type="LegacyExtraData" ver2="2.3" />
         <add name="Extra Data" type="Ref" template="NiExtraData" ver1="3.0" ver2="4.2.2.0">Extra data object index. (The first in a chain)</add>
@@ -3397,14 +3397,14 @@
             Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except NiParticleSystem was changed to use BSGeometry.
             This causes massive inheritance problems so the rows below are doubled up to exclude NiParticleSystem for Bethesda Stream 100+
             and to add data exclusive to BSGeometry.
-        <add name="Bound" type="NiBound" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
-        <add name="Skin" type="Ref" template="NiObject" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
+        <add name="Bound" type="NiBound" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
+        <add name="Skin" type="Ref" template="NiObject" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
         <add name="Data" type="Ref" template="NiGeometryData" vercond="#NI_BS_LT_SSE#">Data index (NiTriShapeData/NiTriStripData).</add>
-        <add name="Data" type="Ref" template="NiGeometryData" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
+        <add name="Data" type="Ref" template="NiGeometryData" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="3.3.0.13" vercond="#NI_BS_LT_SSE#" />
-        <add name="Skin Instance" type="Ref" template="NiSkinInstance" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem" />
+        <add name="Skin Instance" type="Ref" template="NiSkinInstance" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem" />
         <add name="Material Data" type="MaterialData" ver1="10.0.1.0" vercond="#NI_BS_LT_SSE#" />
-        <add name="Material Data" type="MaterialData" ver1="10.0.1.0" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem" />
+        <add name="Material Data" type="MaterialData" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem" />
         <add name="Shader Property" type="Ref" template="BSShaderProperty" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
     </niobject>
@@ -3460,7 +3460,7 @@
         <add name="Group ID" type="int" ver1="10.1.0.114">Always zero.</add>
         <add name="Num Vertices" type="ushort" excludeT="NiPSysData">Number of vertices.</add>
         <add name="Num Vertices" type="ushort" onlyT="NiPSysData" vercond="#NI_BS_LT_FO3#">Number of vertices.</add>
-        <add name="BS Max Vertices" type="ushort" onlyT="NiPSysData" vercond="#BS_GTE_FO3#">Bethesda uses this for max number of particles in NiPSysData.</add>
+        <add name="BS Max Vertices" type="ushort" onlyT="NiPSysData" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_FO3#">Bethesda uses this for max number of particles in NiPSysData.</add>
         <add name="Keep Flags" type="byte" ver1="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</add>
         <add name="Compress Flags" type="byte" ver1="10.1.0.0" />
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
@@ -4372,7 +4372,7 @@
         <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
         <add name="Fade Time" type="float">The time taken to shrink from their specified size to 0.</add>
         <add name="Fade Generation" type="ushort">Specifies the particle generation to which the shrink effect should be applied. This is usually the highest supported generation for the particle system.</add>
-        <add name="Base Scale" type="float" vercond="#BS_GTE_FO3#">A multiplier on the base particle scale.</add>
+        <add name="Base Scale" type="float" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_FO3#">A multiplier on the base particle scale.</add>
     </niobject>
 
     <niobject name="NiPSysMeshEmitter" inherit="NiPSysEmitter">
@@ -6233,7 +6233,7 @@
 
     <niobject name="BSRefractionFirePeriodController" inherit="NiTimeController" versions="#FO3#">
         Bethesda-specific time controller.
-        <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="20.2.0.7" />
+        <add name="Interpolator" type="Ref" template="NiInterpolator" />
     </niobject>
 
     <niobject name="bhkConvexListShape" inherit="bhkConvexShapeBase" versions="#FO3#">
