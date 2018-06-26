@@ -1451,6 +1451,26 @@
         <member width="3" pos="1" mask="0x0006" name="Consistency Type" type="AGDConsistencyType" default="AGD_MUTABLE" />
     </bitfield>
 
+    <enum name="NiNBTMethod" storage="ushort">
+        <option value="0" name="NBT_METHOD_NONE" />
+        <option value="1" name="NBT_METHOD_NDL" />
+        <option value="2" name="NBT_METHOD_MAX" />
+        <option value="3" name="NBT_METHOD_ATI" />
+    </enum>
+
+    <bitfield name="NiGeometryDataFlags" storage="ushort">
+        <member width="6" pos="0" mask="0x003F" name="Num UV Sets" type="bool" />
+        <member width="6" pos="6" mask="0x0FC0" name="Havok Material" type="ushort">Unused for non-Bethesda, non-bhk NiGeometryData.</member>
+        <member width="2" pos="12" mask="0xF000" name="NBT Method" type="NiNBTMethod" />
+    </bitfield>
+
+    <bitfield name="BSGeometryDataFlags" storage="ushort">
+        <member width="6" pos="0" mask="0x0001" name="Has UV" type="bool" />
+        <member width="6" pos="6" mask="0x0FC0" name="Havok Material" type="ushort" />
+        <member width="1" pos="12" mask="0x1000" name="Has Tangents" type="bool" />
+    </bitfield>
+
+
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
@@ -3413,44 +3433,6 @@
         Describes a mesh, built from triangles.
     </niobject>
 
-    <bitflags name="VectorFlags" storage="ushort" prefix="VF">
-        <option value="0" name="UV_1" />
-        <option value="1" name="UV_2" />
-        <option value="2" name="UV_4" />
-        <option value="3" name="UV_8" />
-        <option value="4" name="UV_16" />
-        <option value="5" name="UV_32" />
-        <option value="6" name="Unk64" />
-        <option value="7" name="Unk128" />
-        <option value="8" name="Unk256" />
-        <option value="9" name="Unk512" />
-        <option value="10" name="Unk1024" />
-        <option value="11" name="Unk2048" />
-        <option value="12" name="Has_Tangents" />
-        <option value="13" name="Unk8192" />
-        <option value="14" name="Unk16384" />
-        <option value="15" name="Unk32768" />
-    </bitflags>
-    
-    <bitflags name="BSVectorFlags" storage="ushort" prefix="BSVF" versions="#BETHESDA#">
-        <option value="0" name="Has_UV" />
-        <option value="1" name="Unk2" />
-        <option value="2" name="Unk4" />
-        <option value="3" name="Unk8" />
-        <option value="4" name="Unk16" />
-        <option value="5" name="Unk32" />
-        <option value="6" name="Unk64" />
-        <option value="7" name="Unk128" />
-        <option value="8" name="Unk256" />
-        <option value="9" name="Unk512" />
-        <option value="10" name="Unk1024" />
-        <option value="11" name="Unk2048" />
-        <option value="12" name="Has_Tangents" />
-        <option value="13" name="Unk8192" />
-        <option value="14" name="Unk16384" />
-        <option value="15" name="Unk32768" />
-    </bitflags>
-
     <niobject name="NiGeometryData" abstract="true" inherit="NiObject">
         Mesh data: vertices, vertex normals, etc.
             Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. 
@@ -3465,13 +3447,13 @@
         <add name="Compress Flags" type="byte" ver1="10.1.0.0" />
         <add name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</add>
         <add name="Vertices" type="Vector3" arr1="Num Vertices" cond="Has Vertices">The mesh vertices.</add>
-        <add name="Vector Flags" type="VectorFlags" ver1="10.0.1.0" vercond="!#BS202#" />
-        <add name="BS Vector Flags" type="BSVectorFlags" vercond="#BS202#" />
+        <add name="Data Flags" type="NiGeometryDataFlags" ver1="10.0.1.0" vercond="!#BS202#" />
+        <add name="BS Data Flags" type="BSGeometryDataFlags" vercond="#BS202#" />
         <add name="Material CRC" type="uint" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</add>
         <add name="Normals" type="Vector3" arr1="Num Vertices" cond="Has Normals">The lighting normals.</add>
-        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Vector Flags | BS Vector Flags) #BITAND# 4096)" ver1="10.1.0.0">Tangent vectors.</add>
-        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Vector Flags | BS Vector Flags) #BITAND# 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
+        <add name="Tangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Data Flags | BS Data Flags) #BITAND# 4096)" ver1="10.1.0.0">Tangent vectors.</add>
+        <add name="Bitangents" type="Vector3" arr1="Num Vertices" cond="(Has Normals) #AND# ((Data Flags | BS Data Flags) #BITAND# 4096)" ver1="10.1.0.0">Bitangent vectors.</add>
         <add name="Has DIV2 Floats" type="bool" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="DIV2 Floats" type="float" arr1="Num Vertices" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" cond="Has DIV2 Floats" />
         <add name="Bounding Sphere" type="NiBound" />
@@ -3483,13 +3465,13 @@
             Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
         </add>
         <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
-        <add name="Num UV Sets" type="ushort" ver2="4.2.2.0">The lower 6 (or less?) bits of this field represent the number of UV texture sets. The other bits are probably flag bits. For versions 10.1.0.0 and up, if bit 12 is set then extra vectors are present after the normals.</add>
+        <add name="Data Flags" type="NiGeometryDataFlags" ver2="4.2.2.0">The lower 6 bits of this field represent the number of UV texture sets. The rest is unused.</add>
         <add name="Has UV" type="bool" ver2="4.0.0.2">
             Do we have UV coordinates?
 
             Note: for compatibility with NifTexture, set this value to either 0x00000000 or 0xFFFFFFFF.
         </add>
-        <add name="UV Sets" type="TexCoord" arr1="((Num UV Sets #BITAND# 63) | (Vector Flags #BITAND# 63) | (BS Vector Flags #BITAND# 1))" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
+        <add name="UV Sets" type="TexCoord" arr1="((Data Flags #BITAND# 63) | (BS Data Flags #BITAND# 1))" arr2="Num Vertices">The UV texture coordinates. They follow the OpenGL standard: some programs may require you to flip the second coordinate.</add>
         <add name="Consistency Flags" type="ConsistencyType" ver1="10.0.1.0" default="CT_MUTABLE">Consistency Flags</add>
         <add name="Additional Data" type="Ref" template="AbstractAdditionalGeometryData" ver1="20.0.0.4" />
     </niobject>
