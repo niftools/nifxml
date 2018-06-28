@@ -716,6 +716,38 @@
         <option value="47" name="SKYL_NULL">Null</option>
     </enum>
 
+    <enum name="BipedPart" storage="byte">
+        <option value="0" name="P_OTHER">Other</option>
+        <option value="1" name="P_HEAD">Head</option>
+        <option value="2" name="P_BODY">Body</option>
+        <option value="3" name="P_SPINE1">Spine1</option>
+        <option value="4" name="P_SPINE2">Spine2</option>
+        <option value="5" name="P_L_UPPER_ARM">LUpperArm</option>
+        <option value="6" name="P_L_FOREARM">LForeArm</option>
+        <option value="7" name="P_L_HAND">LHand</option>
+        <option value="8" name="P_L_THIGH">LThigh</option>
+        <option value="9" name="P_L_CALF">LCalf</option>
+        <option value="10" name="P_L_FOOT">LFoot</option>
+        <option value="11" name="P_R_UPPER_ARM">RUpperArm</option>
+        <option value="12" name="P_R_FOREARM">RForeArm</option>
+        <option value="13" name="P_R_HAND">RHand</option>
+        <option value="14" name="P_R_THIGH">RThigh</option>
+        <option value="15" name="P_R_CALF">RCalf</option>
+        <option value="16" name="P_R_FOOT">RFoot</option>
+        <option value="17" name="P_TAIL">Tail</option>
+        <option value="18" name="P_SHIELD">Shield</option>
+        <option value="19" name="P_QUIVER">Quiver</option>
+        <option value="20" name="P_WEAPON">Weapon</option>
+        <option value="21" name="P_PONYTAIL">Ponytail</option>
+        <option value="22" name="P_WING">Wing</option>
+        <option value="23" name="P_PACK">Pack</option>
+        <option value="24" name="P_CHAIN">Chain</option>
+        <option value="25" name="P_ADDON_HEAD">AddonHead</option>
+        <option value="26" name="P_ADDON_CHEST">AddonChest</option>
+        <option value="27" name="P_ADDON_LEG">AddonLeg</option>
+        <option value="28" name="P_ADDON_ARM">AddonArm</option>
+    </enum>
+
     <enum name="MoppDataBuildType" storage="byte" versions="#SKY_AND_LATER#">
         Bethesda Havok.
         A byte describing if MOPP Data is organized into chunks (PS3) or not (PC)
@@ -1470,6 +1502,13 @@
         <member width="1" pos="12" mask="0x1000" name="Has Tangents" type="bool" />
     </bitfield>
 
+    <bitfield name="CollisionFilterFlags" storage="byte">
+        <member width="5" pos="0" mask="0x001F" name="Biped Part" type="BipedPart">Used only if the Layer is 8 (or 32/33 for Skyrim and later).</member>
+        <member width="1" pos="5" mask="0x0020" name="MOPP Scaled" type="bool" />
+        <member width="1" pos="6" mask="0x0040" name="No Collision" type="bool" />
+        <member width="1" pos="7" mask="0x0080" name="Linked Group" type="bool">If Layer is CHARCONTROLLER (CC), true means "CC Trigger Only".</member>
+    </bitfield>
+
 
     <!--Compounds
         These are like C structures and are used as sub-parts of more complex
@@ -2065,46 +2104,7 @@
         <add name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" ver2="20.0.0.5" vercond="#BSVER# #LT# 16">The layer the collision belongs to.</add>
         <add name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #NI_BS_LTE_FO3#">The layer the collision belongs to.</add>
         <add name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #BS_GT_FO3#">The layer the collision belongs to.</add>
-
-        <add name="Flags and Part Number" type="byte" default="0">FLAGS are stored in highest 3 bits:
-        	Bit 7: sets the LINK property and controls whether this body is physically linked to others.
-        	Bit 6: turns collision off (not used for Layer BIPED).
-        	Bit 5: sets the SCALED property.
-
-        	PART NUMBER is stored in bits 0-4. Used only when Layer is set to BIPED.
-
-        	Part Numbers for Oblivion, Fallout 3, Skyrim:
-        	0 - OTHER
-        	1 - HEAD
-        	2 - BODY
-        	3 - SPINE1
-        	4 - SPINE2
-        	5 - LUPPERARM
-        	6 - LFOREARM
-        	7 - LHAND
-        	8 - LTHIGH
-        	9 - LCALF
-        	10 - LFOOT
-        	11 - RUPPERARM
-        	12 - RFOREARM
-        	13 - RHAND
-        	14 - RTHIGH
-        	15 - RCALF
-        	16 - RFOOT
-        	17 - TAIL
-        	18 - SHIELD
-        	19 - QUIVER
-        	20 - WEAPON
-        	21 - PONYTAIL
-        	22 - WING
-        	23 - PACK
-        	24 - CHAIN
-        	25 - ADDONHEAD
-        	26 - ADDONCHEST
-        	27 - ADDONARM
-        	28 - ADDONLEG
-        	29-31 - NULL
-        </add>
+        <add name="Flags" type="CollisionFilterFlags" default="0" />
         <add name="Group" type="ushort" />
     </compound>
 
