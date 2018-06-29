@@ -124,6 +124,11 @@
         Commonly used default values.
         <default token="#UINT_MAX#" string="0xFFFFFFFF" />
         <default token="#USHRT_MAX#" string="0xFFFF" />
+        <default token="#BYTE_MAX#" string="0xFF" />
+        <default token="#INT_MAX#" string="2147483647" />
+        <default token="#INT_MIN#" string="-2147483648" />
+        <default token="#CHAR_MAX#" string="127" />
+        <default token="#CHAR_MIN#" string="-128" />
         <default token="#VEC2_ONE#" string="1.0, 1.0" />
         <default token="#VEC3_ONE#" string="1.0, 1.0, 1.0" />
         <default token="#VEC3_ZERO#" string="0.0, 0.0, 0.0" />
@@ -2399,7 +2404,7 @@
         Defines subshape chunks in bhkCompressedMeshShapeData
         <add name="Translation" type="Vector4" />
         <add name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</add>
-        <add name="Reference" type="ushort">Always 65535?</add>
+        <add name="Reference" type="ushort" default="#USHRT_MAX#">Index of another chunk in the chunks list.</add>
         <add name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</add>
         <add name="Num Vertices" type="uint" />
         <add name="Vertices" type="ushort" arr1="Num Vertices" />
@@ -2775,7 +2780,7 @@
         <add name="Num Entities" type="uint" default="2">Hardcoded to 2. Don't change.</add>
         <add name="Entity A" type="Ptr" template="bhkRigidBody" />
         <add name="Entity B" type="Ptr" template="bhkRigidBody" />
-        <add name="Priority" type="uint" />
+        <add name="Priority" type="uint" default="1" />
     </niobject>
 
     <niobject name="bhkShape" abstract="true" inherit="bhkSerializable" versions="#BETHESDA#">
@@ -2918,7 +2923,7 @@
 
         Also, shapes collected in a bhkListShape may not have the correct
         walking noise, so only use it for non-walkable objects.
-        <add name="Num Sub Shapes" type="uint" calc="(#LEN[Sub Shapes]# #LT# 256) #THEN# #LEN[Sub Shapes]# #ELSE# 256" />
+        <add name="Num Sub Shapes" type="uint" default="1" calc="(#LEN[Sub Shapes]# #LT# 256) #THEN# #LEN[Sub Shapes]# #ELSE# 256" />
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes. Max of 256.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Child Shape Property" type="hkWorldObjCinfoProperty" />
@@ -2963,9 +2968,9 @@
         <add name="Unused" type="uint" arr1="5">Garbage data from memory though the last 3 are referred to as maxSize, size, and eSize.</add>
         <add name="Grow By" type="uint" default="1" />
         <add name="Scale" type="Vector4" default="#VEC4_1110#" ver1="10.1.0.0">Scale. Usually (1.0, 1.0, 1.0, 0.0).</add>
-        <add name="Num Strips Data" type="uint">The number of strips data objects referenced.</add>
+        <add name="Num Strips Data" type="uint" default="1">The number of strips data objects referenced.</add>
         <add name="Strips Data" type="Ref" template="NiTriStripsData" arr1="Num Strips Data">Refers to a bunch of NiTriStripsData objects that make up this shape.</add>
-        <add name="Num Data Layers" type="uint">Number of Havok Layers, equal to Number of strips data objects.</add>
+        <add name="Num Data Layers" type="uint" default="1" calc="#LEN[Strips Data]#" />
         <add name="Data Layers" type="HavokFilter" arr1="Num Data Layers">Havok Layers for each strip data.</add>
     </niobject>
 
@@ -3064,9 +3069,9 @@
         <add name="Weight Threshold" type="float" ver1="10.1.0.112" />
         <!-- Flags conds -->
         <add name="Interp Count" type="byte" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
-        <add name="Single Index" type="byte" default="255" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
-        <add name="High Priority" type="char" default="-128" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
-        <add name="Next High Priority" type="char" default="-128" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Single Index" type="byte" default="#BYTE_MAX#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
+        <add name="Next High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
         <add name="Single Time" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
         <add name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
         <add name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
@@ -3074,19 +3079,19 @@
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="!(Flags #BITAND# 1)" ver1="10.1.0.112" />
         <!-- /Flags conds -->
         <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
-        <add name="Managed Controlled" type="bool" ver2="10.1.0.111" />
+        <add name="Manager Controlled" type="bool" ver2="10.1.0.111" />
         <add name="Weight Threshold" type="float" ver2="10.1.0.111" />
         <add name="Only Use Highest Weight" type="bool" ver2="10.1.0.111" />
         <add name="Interp Count" type="ushort" ver2="10.1.0.109" />
-        <add name="Single Index" type="ushort" ver2="10.1.0.109" />
+        <add name="Single Index" type="ushort" default="#USHRT_MAX#" ver2="10.1.0.109" />
         <add name="Interp Count" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
-        <add name="Single Index" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Index" type="byte" default="#BYTE_MAX#" ver1="10.1.0.110" ver2="10.1.0.111" />
         <add name="Single Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.108" ver2="10.1.0.111" />
-        <add name="Single Time" type="float" ver1="10.1.0.108" ver2="10.1.0.111" />
-        <add name="High Priority" type="int" ver2="10.1.0.109" />
-        <add name="Next High Priority" type="int" ver2="10.1.0.109" />
-        <add name="High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
-        <add name="Next High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Time" type="float" default="#FLT_MIN#" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="High Priority" type="int" default="#INT_MIN#" ver2="10.1.0.109" />
+        <add name="Next High Priority" type="int" default="#INT_MIN#" ver2="10.1.0.109" />
+        <add name="High Priority" type="char" default="#CHAR_MIN#" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Next High Priority" type="char" default="#CHAR_MIN#" ver1="10.1.0.110" ver2="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="true" inherit="NiInterpolator">
@@ -3160,8 +3165,8 @@
 
     <niobject name="bhkBlendCollisionObject" inherit="bhkCollisionObject">
         Unknown.
-        <add name="Heir Gain" type="float" />
-        <add name="Vel Gain" type="float" />
+        <add name="Heir Gain" type="float" default="1.0" />
+        <add name="Vel Gain" type="float" default="1.0" />
         <add name="Unknown Float 1" type="float" vercond="#BSVER# #LT# 9" />
         <add name="Unknown Float 2" type="float" vercond="#BSVER# #LT# 9" />
     </niobject>
@@ -3601,7 +3606,7 @@
 
     <niobject name="BSWindModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         Particle Modifier that uses the wind value from the gamedata to alter the path of particles.
-        <add name="Strength" type="float">The amount of force wind will have on particles.</add>
+        <add name="Strength" type="float" default="0.25">The amount of force wind will have on particles.</add>
     </niobject>
 
     <niobject name="hkPackedNiTriStripsData" inherit="bhkShapeCollection">
@@ -3809,21 +3814,21 @@
     <niobject name="NiCamera" inherit="NiAVObject">
         Camera object.
         <add name="Camera Flags" type="ushort" ver1="10.1.0.0">Obsolete flags.</add>
-        <add name="Frustum Left" type="float">Frustrum left.</add>
-        <add name="Frustum Right" type="float">Frustrum right.</add>
-        <add name="Frustum Top" type="float">Frustrum top.</add>
-        <add name="Frustum Bottom" type="float">Frustrum bottom.</add>
-        <add name="Frustum Near" type="float">Frustrum near.</add>
-        <add name="Frustum Far" type="float">Frustrum far.</add>
+        <add name="Frustum Left" type="float" default="-0.63707">Frustrum left.</add>
+        <add name="Frustum Right" type="float" default="0.63707">Frustrum right.</add>
+        <add name="Frustum Top" type="float" default="0.385714">Frustrum top.</add>
+        <add name="Frustum Bottom" type="float" default="-0.385714">Frustrum bottom.</add>
+        <add name="Frustum Near" type="float" default="1.0">Frustrum near.</add>
+        <add name="Frustum Far" type="float" default="5000.0">Frustrum far.</add>
         <add name="Use Orthographic Projection" type="bool" ver1="10.1.0.0">Determines whether perspective is used.  Orthographic means no perspective.</add>
         <add name="Viewport Left" type="float">Viewport left.</add>
-        <add name="Viewport Right" type="float">Viewport right.</add>
-        <add name="Viewport Top" type="float">Viewport top.</add>
+        <add name="Viewport Right" type="float" default="1.0">Viewport right.</add>
+        <add name="Viewport Top" type="float" default="1.0">Viewport top.</add>
         <add name="Viewport Bottom" type="float">Viewport bottom.</add>
-        <add name="LOD Adjust" type="float">Level of detail adjust.</add>
+        <add name="LOD Adjust" type="float" default="1.0">Level of detail adjust.</add>
         <add name="Scene" type="Ref" template="NiAVObject" />
-        <add name="Num Screen Polygons" type="uint" default="0">Deprecated. Array is always zero length on disk write.</add>
-        <add name="Num Screen Textures" type="uint" default="0" ver1="4.2.1.0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Num Screen Polygons" type="uint" calc="0">Deprecated. Array is always zero length on disk write.</add>
+        <add name="Num Screen Textures" type="uint" calc="0" ver1="4.2.1.0">Deprecated. Array is always zero length on disk write.</add>
         <add name="Unknown Int 3" type="uint" ver2="3.1" />
     </niobject>
 
@@ -3862,7 +3867,7 @@
         Root node in Gamebryo .kf files (version 10.0.1.0 and up).
         <add name="Weight" type="float" default="1.0" ver1="10.1.0.106">The weight of a sequence describes how it blends with other sequences at the same priority.</add>
         <add name="Text Keys" type="Ref" template="NiTextKeyExtraData" ver1="10.1.0.106" />
-        <add name="Cycle Type" type="CycleType" ver1="10.1.0.106" />
+        <add name="Cycle Type" type="CycleType" default="CYCLE_CLAMP" ver1="10.1.0.106" />
         <add name="Frequency" type="float" default="1.0" ver1="10.1.0.106" />
         <!-- Actually 10.3.0.1 but WorldShift 10.4.0.1 custom version acts like 10.3.0.1 -->
         <add name="Phase" type="float" ver1="10.1.0.106" ver2="10.4.0.1" />
@@ -3871,7 +3876,7 @@
         <add name="Play Backwards" type="bool" ver1="10.1.0.106" ver2="10.1.0.106" />
         <add name="Manager" type="Ptr" template="NiControllerManager" ver1="10.1.0.106">The owner of this sequence.</add>
         <add name="Accum Root Name" type="string" ver1="10.1.0.106">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
-        <add name="Accum Flags" type="AccumFlags" ver1="20.3.0.8" default="ACCUM_X_FRONT" />
+        <add name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" ver1="20.3.0.8" />
         <add name="String Palette" type="Ref" template="NiStringPalette" ver1="10.1.0.113" ver2="20.1.0.0" />
         <add name="Anim Notes" type="Ref" template="BSAnimNotes" ver1="20.2.0.7" vercond="(#BSVER# #GTE# 24) #AND# (#BSVER# #LTE# 28)" />
         <add name="Num Anim Note Arrays" type="ushort" ver1="20.2.0.7" vercond="#BSVER# #GT# 28" />
@@ -4463,8 +4468,8 @@
     
     <niobject name="BSPSysInheritVelocityModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         <add name="Inherit Object" type="Ptr" template="NiAVObject" />
-        <add name="Chance To Inherit" type="float" />
-        <add name="Velocity Multiplier" type="float" />
+        <add name="Chance To Inherit" type="float" default="100.0" />
+        <add name="Velocity Multiplier" type="float" default="0.5" />
         <add name="Velocity Variation" type="float" />
     </niobject>
     
@@ -4480,12 +4485,12 @@
     
     <niobject name="BSPSysSubTexModifier" inherit="NiPSysModifier" versions="#BETHESDA#">
         Similar to a Flip Controller, this handles particle texture animation on a single texture atlas
-        <add name="Start Frame" type="uint">Starting frame/position on atlas</add>
-        <add name="Start Frame Fudge" type="float">Random chance to start on a different frame?</add>
-        <add name="End Frame" type="float">Ending frame/position on atlas</add>
+        <add name="Start Frame" type="float">Starting frame/position on atlas</add>
+        <add name="Start Frame Fudge" type="float" default="64.0">Random chance to start on a different frame?</add>
+        <add name="End Frame" type="float" default="63.0">Ending frame/position on atlas</add>
         <add name="Loop Start Frame" type="float">Frame to start looping</add>
         <add name="Loop Start Frame Fudge" type="float" />
-        <add name="Frame Count" type="float" />
+        <add name="Frame Count" type="float" default="30.0" />
         <add name="Frame Count Fudge" type="float" />
     </niobject>
     
@@ -5862,17 +5867,17 @@
         <add name="Interpolator 7: Length Var" type="Ref" template="NiInterpolator">References length variation interpolator.</add>
         <add name="Interpolator 8: Width" type="Ref" template="NiInterpolator">References width interpolator.</add>
         <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for amplitude control. 0=straight, 50=wide</add>
-        <add name="Subdivisions" type="ushort" />
-        <add name="Num Branches" type="ushort" />
-        <add name="Num Branches Variation" type="ushort" />
-        <add name="Length" type="float">How far lightning will stretch to.</add>
-        <add name="Length Variation" type="float">How far lightning variation will stretch to.</add>
-        <add name="Width" type="float">How wide the bolt will be.</add>
-        <add name="Child Width Mult" type="float">Influences forking behavior with a multiplier.</add>
-        <add name="Arc Offset" type="float" />
-        <add name="Fade Main Bolt" type="bool" />
-        <add name="Fade Child Bolts" type="bool" />
-        <add name="Animate Arc Offset" type="bool" />
+        <add name="Subdivisions" type="ushort" default="6" />
+        <add name="Num Branches" type="ushort" default="1" />
+        <add name="Num Branches Variation" type="ushort" default="1" />
+        <add name="Length" type="float" default="512.0">How far lightning will stretch to.</add>
+        <add name="Length Variation" type="float" default="30.0">How far lightning variation will stretch to.</add>
+        <add name="Width" type="float" default="16.0">How wide the bolt will be.</add>
+        <add name="Child Width Mult" type="float" default="0.75">Influences forking behavior with a multiplier.</add>
+        <add name="Arc Offset" type="float" default="20.0" />
+        <add name="Fade Main Bolt" type="bool" default="1" />
+        <add name="Fade Child Bolts" type="bool" default="1" />
+        <add name="Animate Arc Offset" type="bool" default="1" />
         <add name="Shader Property" type="Ref" template="BSShaderProperty">Reference to a shader property.</add>
 	</niobject>
 
@@ -6094,7 +6099,7 @@
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">Glow color and alpha</add>
-        <add name="Emissive Multiple" type="float">Multiplied emissive colors</add>
+        <add name="Emissive Multiple" type="float" default="1.0">Multiplied emissive colors</add>
         <add name="Wet Material" type="string" vercond="#BS_FO4#" />
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
@@ -6105,10 +6110,10 @@
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float" default="0.3" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float" default="2.0" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Subsurface Rolloff" type="float" default="0.3" vercond="#BS_FO4#" />
+        <add name="Subsurface Rolloff" type="float" default="0.0" vercond="#BS_FO4#" />
         <add name="Rimlight Power" type="float" default="#FLT_MAX#" vercond="#BS_FO4#" />
         <add name="Backlight Power" type="float" cond="Rimlight Power == 0x7F7FFFFF" vercond="#BS_FO4#" />
-        <add name="Grayscale to Palette Scale" type="float" vercond="#BS_FO4#" />
+        <add name="Grayscale to Palette Scale" type="float" default="1.0" vercond="#BS_FO4#" />
         <add name="Fresnel Power" type="float" default="5.0" vercond="#BS_FO4#" />
         <add name="Wetness Spec Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Spec Power" type="float" default="-1.0" vercond="#BS_FO4#" />
@@ -6124,12 +6129,12 @@
         <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
         <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
-        <add name="Parallax Inner Layer Thickness" type="float" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
-        <add name="Parallax Refraction Scale" type="float" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
+        <add name="Parallax Inner Layer Thickness" type="float" default="5.0" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
+        <add name="Parallax Refraction Scale" type="float" default="0.25" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
         <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
-        <add name="Parallax Envmap Strength" type="float" cond="Skyrim Shader Type == 11">How strong the environment/cube map is. (0-??)</add>
+        <add name="Parallax Envmap Strength" type="float" default="1.0" cond="Skyrim Shader Type == 11">How strong the environment/cube map is. (0-??)</add>
         <add name="Sparkle Parameters" type="Vector4" cond="Skyrim Shader Type == 14">CK lists "snow material" when used.</add>
-        <add name="Eye Cubemap Scale" type="float" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
+        <add name="Eye Cubemap Scale" type="float" default="1.3" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
         <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
@@ -6153,7 +6158,7 @@
         <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
         <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
         <add name="Emissive Color" type="Color4">Emissive color</add>
-        <add name="Emissive Multiple" type="float">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Emissive Multiple" type="float" default="1.0">Multiplier for Emissive Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float"></add>
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
         <add name="Env Map Texture" type="SizedString" vercond="#BS_FO4#" />
@@ -6176,23 +6181,23 @@
     
     <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="2147483656" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="33" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
-        <add name="Water Direction" type="byte" default="3">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
+        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags" default="196">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
+        <add name="Water Direction" type="byte" default="0">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
         <add name="Unknown Short 3" type="ushort" /> 
     </niobject>
     
     <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim Sky shader block.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1"></add>
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2"></add>
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="2147483648" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="33" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Source Texture" type="SizedString">points to an external texture.</add>
-        <add name="Sky Object Type" type="SkyObjectType" />
+        <add name="Sky Object Type" type="SkyObjectType" default="BSSM_SKY_CLOUDS" />
     </niobject>
 
     <niobject name="BSDismemberSkinInstance" inherit="NiSkinInstance" versions="#BETHESDA#">
@@ -6209,12 +6214,12 @@
 
     <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier" versions="#FO3_AND_LATER#">
         Bethesda-specific particle modifier.
-        <add name="Fade In Percent" type="float" />
-        <add name="Fade out Percent" type="float" />
+        <add name="Fade In Percent" type="float" default="0.1" />
+        <add name="Fade out Percent" type="float" default="0.9" />
         <add name="Color 1 End Percent" type="float" />
         <add name="Color 1 Start Percent" type="float" />
         <add name="Color 2 End Percent" type="float" />
-        <add name="Color 2 Start Percent" type="float" />
+        <add name="Color 2 Start Percent" type="float" default="1.0" />
         <add name="Colors" type="Color4" arr1="3" />
     </niobject>
 
@@ -6282,7 +6287,7 @@
     <niobject name="BSOrderedNode" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
         <add name="Alpha Sort Bound" type="Vector4" />
-        <add name="Static Bound" type="bool" />
+        <add name="Static Bound" type="bool" default="1" />
     </niobject>
 
 
@@ -7039,27 +7044,27 @@
 
     <niobject name="NiPSDragForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies a linear drag force to particles.
-        <add name="Drag Axis" type="Vector3" />
-        <add name="Percentage" type="float" />
-        <add name="Range" type="float" />
-        <add name="Range Falloff" type="float" />
+        <add name="Drag Axis" type="Vector3" default="#X_AXIS#" />
+        <add name="Percentage" type="float" default="0.05" />
+        <add name="Range" type="float" default="#FLT_MAX#" />
+        <add name="Range Falloff" type="float" default="#FLT_MAX#" />
         <add name="Drag Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSGravityForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies a gravitational force to particles.
-        <add name="Gravity Axis" type="Vector3" />
+        <add name="Gravity Axis" type="Vector3" default="#X_AXIS#" />
         <add name="Decay" type="float" />
         <add name="Strength" type="float" />
         <add name="Force Type" type="ForceType" />
         <add name="Turbulence" type="float" />
-        <add name="Turbulence Scale" type="float" />
+        <add name="Turbulence Scale" type="float" default="1.0" />
         <add name="Gravity Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSBombForce" inherit="NiPSForce" since="V20_5_0_0">
         Applies an explosive force to particles.
-        <add name="Bomb Axis" type="Vector3" />
+        <add name="Bomb Axis" type="Vector3" default="#X_AXIS#" />
         <add name="Decay" type="float" />
         <add name="Delta V" type="float" />
         <add name="Decay Type" type="DecayType" />
@@ -7080,14 +7085,14 @@
     <niobject name="NiPSGravityFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of directional gravity.
         <add name="DEM Unknown Short" type="ushort" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
-        <add name="Direction" type="Vector3" />
+        <add name="Direction" type="Vector3" default="#X_AXIS#" />
         <add name="DEM Unknown Byte" type="byte" ver1="20.6.5.0" ver2="20.6.5.0" vercond="#USER# #GT# 14" />
     </niobject>
 
     <niobject name="NiPSDragFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of drag.
         <add name="Use Direction" type="bool" />
-        <add name="Direction" type="Vector3" />
+        <add name="Direction" type="Vector3" default="#X_AXIS#" />
     </niobject>
 
     <niobject name="NiPSRadialFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
@@ -7102,7 +7107,7 @@
 
     <niobject name="NiPSVortexFieldForce" inherit="NiPSFieldForce" since="V20_5_0_0">
         Inside a field, updates particle velocity to simulate the effects of a vortex.
-        <add name="Direction" type="Vector3" />
+        <add name="Direction" type="Vector3" default="#X_AXIS#" />
     </niobject>
 
     <!-- NiPS Emitters -->
@@ -7290,38 +7295,38 @@
         <add name="Spawner" type="Ref" template="NiPSSpawner" />
         <add name="Type" type="ColliderType" />
         <add name="Active" type="bool" />
-        <add name="Bounce" type="float" />
+        <add name="Bounce" type="float" default="1.0" />
         <add name="Spawn on Collide" type="bool" />
         <add name="Die on Collide" type="bool" />
     </niobject>
 
     <niobject name="NiPSPlanarCollider" inherit="NiPSCollider" since="V20_5_0_0">
         A planar collider for particles.
-        <add name="Width" type="float" />
-        <add name="Height" type="float" />
-        <add name="X Axis" type="Vector3" />
-        <add name="Y Axis" type="Vector3" />
+        <add name="Width" type="float" default="1.0" />
+        <add name="Height" type="float" default="1.0" />
+        <add name="X Axis" type="Vector3" default="#X_AXIS#" />
+        <add name="Y Axis" type="Vector3" default="#Y_AXIS#" />
         <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSSphericalCollider" inherit="NiPSCollider" since="V20_5_0_0">
         A spherical collider for particles.
-        <add name="Radius" type="float" />
+        <add name="Radius" type="float" default="1.0" />
         <add name="Collider Object" type="Ptr" template="NiAVObject" />
     </niobject>
 
     <niobject name="NiPSSpawner" inherit="NiObject" since="V20_5_0_0">
         Creates a new particle whose initial parameters are based on an existing particle.
         <add name="Master Particle System" type="Ptr" template="NiPSParticleSystem" ver1="20.6.1.0" />
-        <add name="Percentage Spawned" type="float" />
-        <add name="Spawn Speed Factor" type="float" ver1="20.6.1.0" />
+        <add name="Percentage Spawned" type="float" default="1.0" />
+        <add name="Spawn Speed Factor" type="float" default="1.0" ver1="20.6.1.0" />
         <add name="Spawn Speed Factor Var" type="float" />
         <add name="Spawn Dir Chaos" type="float" />
         <add name="Life Span" type="float" />
         <add name="Life Span Var" type="float" />
-        <add name="Num Spawn Generations" type="ushort" />
-        <add name="Min to Spawn" type="uint" />
-        <add name="Max to Spawn" type="uint" />
+        <add name="Num Spawn Generations" type="ushort" default="1" />
+        <add name="Min to Spawn" type="uint" default="1" />
+        <add name="Max to Spawn" type="uint" default="1" />
     </niobject>
 
     <!-- NiPhysXPS -->
@@ -7569,33 +7574,47 @@
         <add name="Data" type="Ref" template="bhkCompressedMeshShapeData">The collision mesh data.</add>
     </niobject>
 
+    <enum name="hkWeldingType" storage="byte" prefix="WT">
+        <option value="0" name="ANTICLOCKWISE" />
+        <!--<option value="4" name="CLOCKWISE" />-->
+        <!--<option value="5" name="TWO_SIDED" />-->
+        <!--<option value="6" name="NONE" />-->
+    </enum>
+
+    <enum name="CMSDMatType" storage="byte" prefix="CMS">
+        <option value="1" name="SINGLE_VALUE_PER_CHUNK" />
+        <!--<option value="2" name="ONE_BYTE_PER_TRIANGLE" />-->
+        <!--<option value="3" name="TWO_BYTES_PER_TRIANGLE" />-->
+        <!--<option value="4" name="FOUR_BYTES_PER_TRIANGLE" />-->
+    </enum>
+
     <niobject name="bhkCompressedMeshShapeData" inherit="bhkRefObject" versions="#SKY_AND_LATER#">
          A compressed mesh shape for collision in Skyrim.
-		<add name="Bits Per Index" type="uint">Number of bits in the shape-key reserved for a triangle index</add>
-		<add name="Bits Per W Index" type="uint">Number of bits in the shape-key reserved for a triangle index and its winding</add>
-		<add name="Mask W Index" type="uint">Mask used to get the triangle index and winding from a shape-key (common: 262143 = 0x3ffff)</add>
-		<add name="Mask Index" type="uint">Mask used to get the triangle index from a shape-key (common: 131071 = 0x1ffff)</add>
-		<add name="Error" type="float">The radius of the storage mesh shape? Quantization error?</add>
+		<add name="Bits Per Index" type="uint" default="17">Number of bits in the shape-key reserved for a triangle index</add>
+		<add name="Bits Per W Index" type="uint" default="18">Number of bits in the shape-key reserved for a triangle index and its winding</add>
+		<add name="Mask W Index" type="uint" default="0x3FFFF">Mask used to get the triangle index and winding from a shape-key/</add>
+		<add name="Mask Index" type="uint" default="0x1FFFF">Mask used to get the triangle index from a shape-key.</add>
+		<add name="Error" type="float" default="0.001">The radius of the storage mesh shape? Quantization error?</add>
 		<add name="Bounds Min" type="Vector4">The minimum boundary of the AABB (the coordinates of the corner with the lowest numerical values)</add>
 		<add name="Bounds Max" type="Vector4">The maximum boundary of the AABB (the coordinates of the corner with the highest numerical values)</add>
-		<add name="Welding Type" type="byte" />
-		<add name="Material Type" type="byte" />
+		<add name="Welding Type" type="hkWeldingType" default="ANTICLOCKWISE" />
+		<add name="Material Type" type="CMSDMatType" default="SINGLE_VALUE_PER_CHUNK" />
 		<add name="Num Materials 32" type="uint" />
 		<add name="Materials 32" type="uint" arr1="Num Materials 32">Does not appear to be used.</add>
 		<add name="Num Materials 16" type="uint" />
 		<add name="Materials 16" type="uint" arr1="Num Materials 16">Does not appear to be used.</add>
 		<add name="Num Materials 8" type="uint" />
 		<add name="Materials 8" type="uint" arr1="Num Materials 8">Does not appear to be used.</add>
-		<add name="Num Materials" type="uint">Number of chunk materials</add>
+		<add name="Num Materials" type="uint" default="1">Number of chunk materials</add>
 		<add name="Chunk Materials" type="bhkCMSDMaterial" arr1="Num Materials">Table (array) with sets of materials. Chunks refers to this table by index.</add>
 		<add name="Num Named Materials" type="uint" />
-		<add name="Num Transforms" type="uint">Number of chunk transformations</add>
+		<add name="Num Transforms" type="uint" default="1">Number of chunk transformations</add>
         <add name="Chunk Transforms" type="bhkCMSDTransform" arr1="Num Transforms">Table (array) with sets of transformations. Chunks refers to this table by index.</add>
 		<add name="Num Big Verts" type="uint" />
 		<add name="Big Verts" type="Vector4" arr1="Num Big Verts">Compressed Vertices?</add>
         <add name="Num Big Tris" type="uint" />
         <add name="Big Tris" type="bhkCMSDBigTris" arr1="Num Big Tris" />
-        <add name="Num Chunks" type="uint" />
+        <add name="Num Chunks" type="uint" default="1" />
         <add name="Chunks" type="bhkCMSDChunk" arr1="Num Chunks" />
         <add name="Num Convex Piece A" type="uint">Does not appear to be used. Needs array.</add>
 	</niobject>
@@ -7616,7 +7635,7 @@
 
 	<niobject name="BSBoneLODExtraData" inherit="NiExtraData" versions="#SKY_AND_LATER#">
     Unknown
-		<add name="BoneLOD Count" type="uint">Number of bone entries</add>
+		<add name="BoneLOD Count" type="uint" default="3">Number of bone entries</add>
         <add name="BoneLOD Info" type="BoneLOD" arr1="BoneLOD Count">Bone Entry</add>
 	</niobject>
 	
@@ -7628,9 +7647,9 @@
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController" versions="#SKY_AND_LATER#">
     A controller that trails a bone behind an actor.
-		<add name="Linear Velocity" type="float">How long it takes to rotate about an actor back to rest position.</add>
-		<add name="Linear Rotation" type="float">How the bone lags rotation</add>
-		<add name="Maximum Distance" type="float">How far bone will tail an actor.</add>
+		<add name="Linear Velocity" type="float" default="3.0">How long it takes to rotate about an actor back to rest position.</add>
+		<add name="Linear Rotation" type="float" default="1.0">How the bone lags rotation</add>
+		<add name="Maximum Distance" type="float" default="400.0">How far bone will tail an actor.</add>
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom" versions="#SKY# #SSE#">
@@ -7650,9 +7669,9 @@
     
     <niobject name="BSTreeNode" inherit="NiNode" versions="#BETHESDA#">
         Node for handling Trees, Switches branch configurations for variation?
-        <add name="Num Bones 1" type="uint" />
+        <add name="Num Bones 1" type="uint" default="1" />
         <add name="Bones 1" type="Ref" arr1="Num Bones 1" template="NiNode" />
-        <add name="Num Bones 2" type="uint" />
+        <add name="Num Bones 2" type="uint" default="3" />
         <add name="Bones" type="Ref" arr1="Num Bones 2" template="NiNode" />
     </niobject>
     
@@ -7688,7 +7707,7 @@
     
     <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
-        <add name="Bone ID" type="uint">A hash of the bone name string.</add>
+        <add name="Bone ID" type="uint" default="#UINT_MAX#">A hash of the bone name string.</add>
         <add name="Num Cut Offsets" type="uint" calc="(#LEN[Cut Offsets]# #LT# 8) #THEN# #LEN[Cut Offsets]# #ELSE# 8">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
@@ -7791,14 +7810,14 @@
 
     <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Item Slot Parent
-        <add name="Num Connect Points" type="uint" />
+        <add name="Num Connect Points" type="uint" default="1" />
         <add name="Connect Points" type="BSConnectPoint" arr1="Num Connect Points" />
     </niobject>
 
     <niobject name="BSConnectPoint::Children" inherit="NiExtraData" versions="#FO4#">
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
-        <add name="Num Points" type="uint" />
+        <add name="Num Points" type="uint" default="1" />
         <add name="Point Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
