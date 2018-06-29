@@ -2534,15 +2534,19 @@
         Havok objects that can be saved and loaded from disk?
     </niobject>
 
+    <compound name="bhkWorldObjectCInfo">
+        <add name="Unused 01" type="byte" arr1="4" binary="true" />
+        <add name="Broad Phase Type" type="BroadPhaseType" default="BROAD_PHASE_ENTITY" />
+        <add name="Unused 02" type="byte" arr1="3" binary="true" />
+        <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
+    </compound>
+
     <niobject name="bhkWorldObject" abstract="true" inherit="bhkSerializable" versions="#BETHESDA#">
         Havok objects that have a position in the world?
         <add name="Shape" type="Ref" template="bhkShape"> Link to the body for this collision object.</add>
         <add name="Unknown Int" type="uint" ver2="10.0.1.2" />
         <add name="Havok Filter" type="HavokFilter" />
-        <add name="Unused Bytes 1" type="byte" arr1="4">Garbage data from memory.</add>
-        <add name="Broad Phase Type" type="BroadPhaseType" default="BROAD_PHASE_ENTITY" />
-        <add name="Unused Bytes 2" type="byte" arr1="3" />
-        <add name="Cinfo Property" type="hkWorldObjCinfoProperty" />
+        <add name="World Object CInfo" type="bhkWorldObjectCInfo" />
     </niobject>
 
     <niobject name="bhkPhantom" abstract="true" inherit="bhkWorldObject" versions="#BETHESDA#">
@@ -2559,25 +2563,25 @@
         <add name="Transform" type="Matrix44" />
     </niobject>
 
+    <compound name="bhkEntityCInfo">
+        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</add>
+        <add name="Unused 01" type="byte" />
+        <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</add>
+    </compound>
+
     <niobject name="bhkEntity" abstract="true" inherit="bhkWorldObject" versions="#BETHESDA#">
         A havok node, describes physical properties.
+        <add name="Entity CInfo" type="bhkEntityCInfo" />
     </niobject>
 
-    <niobject name="bhkRigidBody" inherit="bhkEntity" versions="#BETHESDA#">
-        This is the default body type for all "normal" usable and static world objects. The "T" suffix
-        marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
-        properties. Because the properties are equal, a bhkRigidBody may be renamed into a bhkRigidBodyT and vice-versa.
-        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</add>
-        <add name="Unused Byte 1" type="byte">Skipped over when writing Collision Response and Callback Delay.</add>
-        <add name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</add>
-        <add name="Unknown Int 1" type="uint" ver1="10.1.0.0" />
-        <add name="Havok Filter Copy" type="HavokFilter" ver1="10.1.0.0">Copy of Havok Filter</add>
-        <add name="Unused 2" type="byte" arr1="4" ver1="10.1.0.0">Garbage data from memory. Matches previous Unused value.</add>
-        <add name="Unknown Int 2" type="uint" ver1="10.1.0.0" vercond="#BS_GT_FO3#" />
-        <add name="Collision Response 2" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" ver1="10.1.0.0" />
-        <add name="Unused Byte 2" type="byte" ver1="10.1.0.0">Skipped over when writing Collision Response and Callback Delay.</add>
-        <add name="Process Contact Callback Delay 2" type="ushort" default="0xffff" ver1="10.1.0.0" />
-        <add name="Unknown Int 2" type="uint" vercond="#NI_BS_LTE_FO3#" />
+    <compound name="bhkRigidBodyCInfo550_660">
+        <add name="Unused 01" type="byte" arr1="4" binary="true" ver1="10.1.0.0" />
+        <add name="Havok Filter" type="HavokFilter" ver1="10.1.0.0" />
+        <add name="Unused 02" type="byte" arr1="4" binary="true" ver1="10.1.0.0" />
+        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" ver1="10.1.0.0" />
+        <add name="Unused 03" type="byte" ver1="10.1.0.0" />
+        <add name="Process Contact Callback Delay" type="ushort" default="0xffff" ver1="10.1.0.0" />
+        <add name="Unused 04" type="byte" arr1="4" binary="true" />
         <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
         <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
@@ -2587,34 +2591,119 @@
         <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
         <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
         <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
-        <add name="Time Factor" type="float" default="1.0" vercond="#BS_GT_FO3#" />
-        <add name="Gravity Factor" type="float" default="1.0" vercond="#BS_GT_FO3# #AND# (!#BS_FO4#)" />
         <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
-        <add name="Rolling Friction Multiplier" type="float" vercond="#BS_GT_FO3#" />
         <add name="Restitution" type="float" default="0.4">
             How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.
             If the restitution is not 0.0 the object will need extra CPU for all new collisions.
         </add>
         <add name="Max Linear Velocity" type="float" default="104.4" ver1="10.1.0.0">Maximal linear velocity.</add>
         <add name="Max Angular Velocity" type="float" default="31.57" ver1="10.1.0.0">Maximal angular velocity.</add>
-        <add name="Penetration Depth" type="float" default="0.15" ver1="10.1.0.0" vercond="!#BS_FO4#">
+        <add name="Penetration Depth" type="float" default="0.15" ver1="10.1.0.0">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
         <add name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
-        <add name="Deactivator Type" type="hkDeactivatorType" default="DEACTIVATOR_NEVER" vercond="#NI_BS_LTE_FO3#">The initial deactivator type of the body.</add>
-        <add name="Enable Deactivation" type="bool" default="1" vercond="#BS_GT_FO3#" />
+        <add name="Deactivator Type" type="hkDeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</add>
         <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
         <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</add>
-        <add name="Penetration Depth" type="float" default="0.15" vercond="#BS_FO4#">
+        <add name="Unknown Bytes 1" type="byte" arr1="12" />
+    </compound>
+
+    <compound name="bhkRigidBodyCInfo2010">
+        <add name="Unused 01" type="byte" arr1="4" binary="true" />
+        <add name="Havok Filter" type="HavokFilter" />
+        <add name="Unused 02" type="byte" arr1="4" binary="true" />
+        <add name="Unknown Int 1" type="uint" />
+        <add name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT" />
+        <add name="Unused 03" type="byte" />
+        <add name="Process Contact Callback Delay" type="ushort" default="0xffff" />
+        <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
+        <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
+        <add name="Inertia Tensor" type="hkMatrix3">Defines how the mass is distributed among the body, i.e. how difficult it is to rotate around any given axis.</add>
+        <add name="Center" type="Vector4">The body's center of mass.</add>
+        <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
+        <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
+        <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
+        <add name="Time Factor" type="float" default="1.0" />
+        <add name="Gravity Factor" type="float" default="1.0" />
+        <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
+        <add name="Rolling Friction Multiplier" type="float" />
+        <add name="Restitution" type="float" default="0.4">
+            How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.
+            If the restitution is not 0.0 the object will need extra CPU for all new collisions.
+        </add>
+        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
+        <add name="Penetration Depth" type="float" default="0.15">
             The maximum allowed penetration for this object.
             This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
             A good choice is 5% - 20% of the smallest diameter of the object.
         </add>
-        <add name="Unknown Float 1" type="float" vercond="#BS_FO4#" />
+        <add name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Enable Deactivation" type="bool" default="1" />
+        <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
+        <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</add>
+        <add name="Auto Remove Level" type="byte" />
+        <add name="Response Modifier Flags" type="byte" />
+        <add name="Num Shape Keys in Contact Point" type="byte" default="3" />
+        <add name="Force Collided Onto PPU" type="bool" />
         <add name="Unknown Bytes 1" type="byte" arr1="12" />
-        <add name="Unknown Bytes 2" type="byte" arr1="4" vercond="#BS_GT_FO3#" />
+    </compound>
+
+    <compound name="bhkRigidBodyCInfo2014">
+        <add name="Unused 01" type="byte" arr1="4" binary="true" />
+        <add name="Havok Filter" type="HavokFilter" />
+        <add name="Unused 02" type="byte" arr1="12" binary="true" />
+        <add name="Translation" type="Vector4"> A vector that moves the body by the specified amount. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Rotation" type="hkQuaternion">The rotation Yaw/Pitch/Roll to apply to the body. Only enabled in bhkRigidBodyT objects.</add>
+        <add name="Linear Velocity" type="Vector4">Linear velocity.</add>
+        <add name="Angular Velocity" type="Vector4">Angular velocity.</add>
+        <add name="Inertia Tensor" type="hkMatrix3">Defines how the mass is distributed among the body, i.e. how difficult it is to rotate around any given axis.</add>
+        <add name="Center" type="Vector4">The body's center of mass.</add>
+        <add name="Mass" type="float" default="1.0">The body's mass in kg. A mass of zero represents an immovable object.</add>
+        <add name="Linear Damping" type="float" default="0.1">Reduces the movement of the body over time. A value of 0.1 will remove 10% of the linear velocity every second.</add>
+        <add name="Angular Damping" type="float" default="0.05">Reduces the movement of the body over time. A value of 0.05 will remove 5% of the angular velocity every second.</add>
+        <add name="Gravity Factor" type="float" default="1.0"/>
+        <add name="Friction" type="float" default="0.5">How smooth its surfaces is and how easily it will slide along other bodies.</add>
+        <add name="Rolling Friction Multiplier" type="float" />
+        <add name="Restitution" type="float" default="0.4">
+            How "bouncy" the body is, i.e. how much energy it has after colliding. Less than 1.0 loses energy, greater than 1.0 gains energy.
+            If the restitution is not 0.0 the object will need extra CPU for all new collisions.
+        </add>
+        <add name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</add>
+        <add name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</add>
+        <add name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</add>
+        <add name="Enable Deactivation" type="bool" default="1" />
+        <add name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</add>
+        <add name="Unused 03" type="byte" />
+        <add name="Penetration Depth" type="float" default="0.15">
+            The maximum allowed penetration for this object.
+            This is a hint to the engine to see how much CPU the engine should invest to keep this object from penetrating.
+            A good choice is 5% - 20% of the smallest diameter of the object.
+        </add>
+        <add name="Time Factor" type="float" />
+        <add name="Unused 04" type="byte" arr1="4" />
+        <add name="Collision Response" type="hkResponseType" />
+        <add name="Unused 05" type="byte" />
+        <add name="Process Contact Callback Delay 3" type="ushort" default="0xffff" />
+        <add name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED" />
+        <add name="Auto Remove Level" type="byte" />
+        <add name="Response Modifier Flags" type="byte" />
+        <add name="Num Shape Keys in Contact Point" type="byte" default="3" />
+        <add name="Force Collided Onto PPU" type="bool" />
+        <add name="Unused 06" type="byte" arr1="3" />
+    </compound>
+
+    <niobject name="bhkRigidBody" inherit="bhkEntity" versions="#BETHESDA#">
+        This is the default body type for all "normal" usable and static world objects. The "T" suffix
+        marks this body as active for translation and rotation, a normal bhkRigidBody ignores those
+        properties. Because the properties are equal, a bhkRigidBody may be renamed into a bhkRigidBodyT and vice-versa.
+        <add name="Rigid Body CInfo" suffix="550_660" type="bhkRigidBodyCInfo550_660" vercond="#NI_BS_LTE_FO3#" />
+        <add name="Rigid Body CInfo" suffix="2010" type="bhkRigidBodyCInfo2010" vercond="#BS_GTE_SKY# #AND# (!#BS_FO4#)" />
+        <add name="Rigid Body CInfo" suffix="2014" type="bhkRigidBodyCInfo2014" vercond="#BS_FO4#" />
         <add name="Num Constraints" type="uint" />
         <add name="Constraints" type="Ref" template="bhkSerializable" arr1="Num Constraints" />
         <add name="Body Flags" type="uint" vercond="#BSVER# #LT# 76">1 = respond to wind</add>
