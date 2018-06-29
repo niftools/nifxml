@@ -3506,7 +3506,7 @@
             Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except NiParticleSystem was changed to use BSGeometry.
             This causes massive inheritance problems so the rows below are doubled up to exclude NiParticleSystem for Bethesda Stream 100+
             and to add data exclusive to BSGeometry.
-        <add name="Bound" type="NiBound" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
+        <add name="Bounding Sphere" type="NiBound" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
         <add name="Skin" type="Ref" template="NiObject" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
         <add name="Data" type="Ref" template="NiGeometryData" vercond="#NI_BS_LT_SSE#">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Data" type="Ref" template="NiGeometryData" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
@@ -4689,8 +4689,8 @@
 
     <niobject name="NiScreenLODData" inherit="NiLODData">
         NiScreenLODData controls switching LOD levels based on proportion of the screen that a bound would include.
-        <add name="Bound" type="NiBound" />
-        <add name="World Bound" type="NiBound" />
+        <add name="Bounding Sphere" type="NiBound" />
+        <add name="World Bounding Sphere" type="NiBound" />
         <add name="Num Proportions" type="uint" />
         <add name="Proportion Levels" type="float" arr1="Num Proportions" />
     </niobject>
@@ -6773,7 +6773,7 @@
         <add name="EM Data" type="MeshDataEpicMickey" ver1="20.6.5.0" ver2="20.6.5.0" />
         <add name="Num Submeshes" type="ushort">The number of submeshes contained in this mesh.</add>
         <add name="Instancing Enabled" type="bool">Sets whether hardware instancing is being used.</add>
-        <add name="Bound" type="NiBound">The combined bounding volume of all submeshes.</add>
+        <add name="Bounding Sphere" type="NiBound">The combined bounding volume of all submeshes.</add>
         <add name="Num Datastreams" type="uint" />
         <add name="Datastreams" type="DataStreamRef" arr1="Num Datastreams" />
         <add name="Num Modifiers" type="uint" />
@@ -6837,7 +6837,7 @@
         <add name="Per Instance Culling" type="bool" />
         <add name="Has Static Bounds" type="bool" />
         <add name="Affected Mesh" type="Ref" template="NiMesh" />
-        <add name="Bound" type="NiBound" cond="Has Static Bounds" />
+        <add name="Bounding Sphere" type="NiBound" cond="Has Static Bounds" />
         <add name="Num Instance Nodes" type="uint" cond="Has Instance Nodes" />
         <add name="Instance Nodes" type="Ref" template="NiMeshHWInstance" arr1="Num Instance Nodes" cond="Has Instance Nodes" />
     </niobject>
