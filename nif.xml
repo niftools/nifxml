@@ -6167,16 +6167,22 @@
         <add name="Environment Map Scale" type="float" vercond="#BS_FO4#" />
     </niobject>
     
-    <bitflags name="SkyrimWaterShaderFlags" storage="byte" versions="#SKY_AND_LATER#">
+    <bitflags name="WaterShaderPropertyFlags" storage="uint" prefix="BSWSP" versions="#SKY_AND_LATER#">
         Skyrim water shader property flags
-        <option value="0" name="SWSF1_UNKNOWN0">Unknown</option>
-        <option value="1" name="SWSF1_Bypass_Refraction_Map">Bypasses refraction map when set to 1</option>
-        <option value="2" name="SWSF1_Water_Toggle">Main water Layer on/off</option>
-        <option value="3" name="SWSF1_UNKNOWN3">Unknown</option>
-        <option value="4" name="SWSF1_UNKNOWN4">Unknown</option>
-        <option value="5" name="SWSF1_UNKNOWN5">Unknown</option>
-        <option value="6" name="SWSF1_Highlight_Layer_Toggle">Reflection layer 2 on/off. (is this scene reflection?)</option>
-        <option value="7" name="SWSF1_Enabled">Water layer on/off</option>
+        <option value="0" name="DISPLACEMENT" />
+        <option value="1" name="LOD" />
+        <option value="2" name="DEPTH" />
+        <option value="3" name="ACTOR_IN_WATER" />
+        <option value="4" name="ACTOR_IN_WATER_IS_MOVING" />
+        <option value="5" name="UNDERWATER" />
+        <option value="6" name="REFLECTIONS" />
+        <option value="7" name="REFRACTIONS" />
+        <option value="8" name="VERTEX_UV" />
+        <option value="9" name="VERTEX_ALPHA_DEPTH" />
+        <option value="10" name="PROCEDURAL" />
+        <option value="11" name="FOG" />
+        <option value="12" name="UPDATE_CONSTANTS" />
+        <option value="13" name="CUBEMAP" />
     </bitflags>
     
     <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
@@ -6185,9 +6191,7 @@
         <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="33" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Water Shader Flags" type="SkyrimWaterShaderFlags" default="196">Defines attributes for the water shader (will use SkyrimWaterShaderFlags)</add>
-        <add name="Water Direction" type="byte" default="0">A bitflag, only the first/second bit controls water flow positive or negative along UVs.</add>
-        <add name="Unknown Short 3" type="ushort" /> 
+        <add name="Water Shader Flags" type="WaterShaderPropertyFlags" default="196" />
     </niobject>
     
     <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
