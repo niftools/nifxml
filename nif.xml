@@ -1916,67 +1916,71 @@
         <add name="v2" type="ushort">Second vertex index.</add>
         <add name="v3" type="ushort">Third vertex index.</add>
     </compound>
-	
-	<bitflags name="VertexFlags" storage="ushort" prefix="VF" versions="#SSE# #FO4#">
-		The two bytes of BSVertexDesc that describe the enabled vertex attributes.
-		The first 4 bits are skipped and the last bit is unused.
-		<option value="4" name="Vertex" />
-		<option value="5" name="UVs" />
-		<option value="6" name="UVs_2" />
-		<option value="7" name="Normals" />
-		<option value="8" name="Tangents" />
-		<option value="9" name="Vertex_Colors" />
-		<option value="10" name="Skinned" />
-		<option value="11" name="Land_Data" />
-		<option value="12" name="Eye_Data" />
-		<option value="13" name="Instance" />
-		<option value="14" name="Full_Precision" />
-	</bitflags>
-    
+
+    <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4#">
+        The bits of BSVertexDesc that describe the enabled vertex attributes.
+        <option value="1" name="Vertex" />
+        <option value="2" name="UVs" />
+        <option value="3" name="UVs_2" />
+        <option value="4" name="Normals" />
+        <option value="5" name="Tangents" />
+        <option value="6" name="Vertex_Colors" />
+        <option value="7" name="Skinned" />
+        <option value="8" name="Land_Data" />
+        <option value="9" name="Eye_Data" />
+        <option value="10" name="Instance" />
+        <option value="11" name="Full_Precision" />
+    </bitflags>
+
+    <bitfield name="BSVertexDesc" storage="uint64" versions="#SSE# #FO4#">
+        <member width="4" pos="0" mask="0xF" name="Vertex Data Size" type="uint" />
+        <member width="4" pos="4" mask="0xF0" name="Dynamic Vertex Size" type="uint" />
+        <member width="4" pos="8" mask="0xF00" name="UV1 Offset" type="uint" />
+        <member width="4" pos="12" mask="0xF000" name="UV2 Offset" type="uint" />
+        <member width="4" pos="16" mask="0xF0000" name="Normal Offset" type="uint" />
+        <member width="4" pos="20" mask="0xF00000" name="Tangent Offset" type="uint" />
+        <member width="4" pos="24" mask="0xF000000" name="Color Offset" type="uint" />
+        <member width="4" pos="28" mask="0xF0000000" name="Skinning Data Offset" type="uint" />
+        <member width="4" pos="32" mask="0xF00000000" name="Landscape Data Offset" type="uint" />
+        <member width="4" pos="36" mask="0xF000000000" name="Eye Data Offset" type="uint" />
+        <member width="4" pos="40" mask="0xF0000000000" name="Unused 01" type="uint" />
+        <member width="12" pos="44" mask="0xFFF00000000000" name="Vertex Attributes" type="VertexAttribute" />
+    </bitfield>
+
 	<compound name="BSVertexData" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x4010) == 0x4010" />
-		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x4110) == 0x4110" />
-		<add name="Unknown Int" type="uint" cond="(#ARG# #BITAND# 0x4110) == 0x4010" />
+		<add name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x401) == 0x401" />
+		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x411) == 0x411" />
+		<add name="Unknown Int" type="uint" cond="(#ARG# #BITAND# 0x411) == 0x401" />
 
-		<add name="Vertex" type="HalfVector3" cond="(#ARG# #BITAND# 0x4010) == 0x10" />
-		<add name="Bitangent X" type="hfloat" cond="(#ARG# #BITAND# 0x4110) == 0x110" />
-		<add name="Unknown Short" type="ushort" cond="(#ARG# #BITAND# 0x4110) == 0x10" />
+		<add name="Vertex" type="HalfVector3" cond="(#ARG# #BITAND# 0x401) == 0x1" />
+		<add name="Bitangent X" type="hfloat" cond="(#ARG# #BITAND# 0x411) == 0x11" />
+		<add name="Unknown Short" type="ushort" cond="(#ARG# #BITAND# 0x411) == 0x1" />
 
-		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x20" />
-		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x80" />
-		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x400" />
-		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x1000" />
+		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
+		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
+		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x8" />
+		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x40" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x40" />
+		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
 	</compound>
 
 	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
-		<add name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x10" />
-		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x110) == 0x110" />
-		<add name="Unknown Int" type="int" cond="(#ARG# #BITAND# 0x110) == 0x10" />
-		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x20" />
-		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x80" />
-		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x80" />
-		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x180) == 0x180" />
-		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x180) == 0x180" />
-		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x200" />
-		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x400" />
-		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x400" />
-		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x1000" />
+		<add name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x1" />
+		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x11) == 0x11" />
+		<add name="Unknown Int" type="int" cond="(#ARG# #BITAND# 0x11) == 0x1" />
+		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
+		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
+		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x8" />
+		<add name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<add name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<add name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
+		<add name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x40" />
+		<add name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x40" />
+		<add name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
 	</compound>
-
-    <compound name="BSVertexDesc" size="8" versions="#SSE# #FO4#">
-        <add name="VF1" type="byte" />
-        <add name="VF2" type="byte" />
-        <add name="VF3" type="byte" />
-        <add name="VF4" type="byte" />
-        <add name="VF5" type="byte" />
-        <add name="Vertex Attributes" type="VertexFlags" />
-        <add name="VF8" type="byte" />
-    </compound>
 
     <compound name="SkinPartition" since="V4_2_1_0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
@@ -4814,7 +4818,7 @@
 		<add name="Data Size" type="uint" calc="#LEN[Vertex Data]# #MUL# Vertex Size" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Size" type="uint" calc="(Vertex Desc #BITAND# 0xF) #MUL# 4" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Vertex Desc" type="BSVertexDesc" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
-		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc\Vertex Attributes" arr1="Data Size / Vertex Size" cond="Data Size #GT# 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
+		<add name="Vertex Data" type="BSVertexDataSSE" arg="Vertex Desc #RSH# 44" arr1="Data Size / Vertex Size" cond="Data Size #GT# 0" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_SSE#" />
 		<add name="Partitions" type="SkinPartition" arr1="Num Partitions" />
     </niobject>
 
@@ -7751,8 +7755,8 @@
         <add name="Num Triangles" type="ushort" vercond="#NI_BS_LT_FO4#" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" calc="((Vertex Desc #BITAND# 0xF) #MUL# Num Vertices #MUL# 4) #ADD# (Num Triangles #MUL# 6)" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_FO4#" />
-        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc\Vertex Attributes" cond="Data Size #GT# 0" vercond="#BS_SSE#" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc #RSH# 44" cond="Data Size #GT# 0" vercond="#BS_FO4#" />
+        <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc #RSH# 44" cond="Data Size #GT# 0" vercond="#BS_SSE#" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size #GT# 0" />
         <add name="Particle Data Size" type="uint" calc="(Num Vertices #MUL# 6) #ADD# (Num Triangles #MUL# 3)" vercond="#BS_SSE#" />
         <add name="Particle Vertices" type="HalfVector3" arr1="Num Vertices" cond="Particle Data Size #GT# 0" vercond="#BS_SSE#" />
@@ -7907,7 +7911,7 @@
         <add name="Num Combined" type="uint" />
         <add name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <add name="Vertex Desc" type="BSVertexDesc" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc\Vertex Attributes" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc #RSH# 44" />
         <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
 
