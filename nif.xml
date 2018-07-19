@@ -270,7 +270,7 @@
         A 32-bit unsigned integer, used to refer to strings in a NiStringPalette.
     </basic>
 
-    <basic name="StringIndex" integral="true" countable="false" size="4">
+    <basic name="NiFixedString" integral="true" countable="false" size="4">
         A 32-bit unsigned integer, used to refer to strings in the header.
     </basic>
     
@@ -1529,7 +1529,20 @@
     <compound name="string">
         A string type.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
-        <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
+        <add name="Index" type="NiFixedString" ver1="20.1.0.3">The string index.</add>
+    </compound>
+
+    <compound name="NiTFixedStringMapItem" generic="true">
+        Currently, #T# must be a basic type due to nif.xml restrictions.
+        <add name="String" type="NiFixedString" />
+        <add name="Value" type="#T#" />
+    </compound>
+
+    <compound name="NiTFixedStringMap" generic="true">
+        A mapping or hash table between NiFixedString keys and a generic value.
+        Currently, #T# must be a basic type due to nif.xml restrictions.
+        <add name="Num Strings" type="uint" />
+        <add name="Strings" type="NiTFixedStringMapItem" template="#T#" arr1="Num Strings" />
     </compound>
 
     <compound name="ByteArray">
@@ -1578,7 +1591,7 @@
     <compound name="FilePath">
         A string that contains the path to a file.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
-        <add name="Index" type="StringIndex" ver1="20.1.0.3">The string index.</add>
+        <add name="Index" type="NiFixedString" ver1="20.1.0.3">The string index.</add>
     </compound>
 
     <compound name="Footer">
