@@ -132,6 +132,8 @@
         <default token="#VEC2_ONE#" string="1.0, 1.0" />
         <default token="#VEC3_ONE#" string="1.0, 1.0, 1.0" />
         <default token="#VEC3_ZERO#" string="0.0, 0.0, 0.0" />
+        <default token="#VEC4_ONE#" string="1.0, 1.0, 1.0, 1.0" />
+        <default token="#VEC4_ZERO#" string="0.0, 0.0, 0.0, 0.0" />
         <default token="#VEC4_1110#" string="1.0, 1.0, 1.0, 0.0" />
         <default token="#X_AXIS#" string="1.0, 0.0, 0.0" />
         <default token="#Y_AXIS#" string="0.0, 1.0, 0.0" />
@@ -3944,7 +3946,7 @@
         <add name="DIV2 Ints" type="int" arr1="Num DIV2 Ints" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="DIV2 Ref" type="Ref" template="NiObject" ver1="20.3.0.9" ver2="20.3.0.9" vercond="#DIVINITY2#" />
         <add name="Num Controlled Blocks" type="uint" />
-        <add name="Array Grow By" type="uint" ver1="10.1.0.106" />
+        <add name="Array Grow By" type="uint" default="1" ver1="10.1.0.106" />
         <add name="Controlled Blocks" type="ControlledBlock" arr1="Num Controlled Blocks" />
     </niobject>
 
@@ -4013,7 +4015,7 @@
         NiFogProperty allows the application to enable, disable and control the appearance of fog.
         <add name="Flags" type="FogFlags" />
         <add name="Fog Depth" type="float" default="1.0">Depth of the fog in normalized units. 1.0 = begins at near plane. 0.5 = begins halfway between the near and far planes.</add>
-        <add name="Fog Color" type="Color3">The color of the fog.</add>
+        <add name="Fog Color" type="Color3" default="#VEC3_ZERO#">The color of the fog.</add>
     </niobject>
 
     <niobject name="NiGravity" inherit="NiParticleModifier" until="V10_0_1_0">
@@ -4194,7 +4196,7 @@
 
     <niobject name="NiSwitchNode" inherit="NiNode">
         Represents groups of multiple scenegraph subtrees, only one of which (the "active child") is drawn at any given time.
-        <add name="Switch Node Flags" type="NiSwitchFlags" ver1="10.1.0.0" />
+        <add name="Switch Node Flags" type="NiSwitchFlags" default="3" ver1="10.1.0.0" />
         <add name="Index" type="uint" />
     </niobject>
 
@@ -4912,7 +4914,7 @@
 
     <niobject name="NiStringsExtraData" inherit="NiExtraData">
         List of strings; for example, a list of all bone names.
-        <add name="Num Strings" type="uint">Number of strings.</add>
+        <add name="Num Strings" type="uint" default="1">Number of strings.</add>
         <add name="Data" type="SizedString" arr1="Num Strings">The strings.</add>
     </niobject>
 
@@ -5198,7 +5200,7 @@
     <niobject name="NiPhysXScene" inherit="NiObjectNET" since="V20_2_0_8">
         Object which manages a NxScene object and the Gamebryo objects that interact with it.
         <add name="Scene Transform" type="NiTransform" />
-        <add name="PhysX to World Scale" type="float" />
+        <add name="PhysX to World Scale" type="float" default="1.0" />
         <add name="Num Props" type="uint" ver1="20.3.0.2" />
         <add name="Props" type="Ref" template="NiPhysXProp" arr1="Num Props" ver1="20.3.0.2" />
         <add name="Num Sources" type="uint" />
@@ -5207,84 +5209,130 @@
         <add name="Dests" type="Ref" template="NiPhysXDest" arr1="Num Dests" />
         <add name="Num Modified Meshes" type="uint" ver1="20.4.0.0" />
         <add name="Modified Meshes" type="Ref" template="NiMesh" arr1="Num Modified Meshes" ver1="20.4.0.0" />
-        <add name="Time Step" type="float" ver1="20.2.0.8" />
+        <add name="Time Step" type="float" default="0.016666" ver1="20.2.0.8" />
         <add name="Keep Meshes" type="bool" ver1="20.2.0.8" ver2="20.3.0.1" />
-        <add name="Num Sub Steps" type="uint" ver1="20.3.0.9" />
-        <add name="Max Sub Steps" type="uint" ver1="20.3.0.9" />
+        <add name="Num Sub Steps" type="uint" default="1" ver1="20.3.0.9" />
+        <add name="Max Sub Steps" type="uint" default="8" ver1="20.3.0.9" />
         <add name="Snapshot" type="Ref" template="NiPhysXSceneDesc" />
         <add name="Flags" type="ushort" />
     </niobject>
 
-    <enum name="NiSceneDescNxBroadPhaseType" storage="uint" since="V20_2_0_8">
-        <option name="NX_BROADPHASE_QUADRATIC" value="0" />
-        <option name="NX_BROADPHASE_FULL" value="1" />
-        <option name="NX_BROADPHASE_COHERENT" value="2" />
+    <enum name="NiSceneDescNxBroadPhaseType" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="BROADPHASE_QUADRATIC" />
+        <option value="1" name="BROADPHASE_FULL" />
+        <option value="2" name="BROADPHASE_COHERENT" />
     </enum>
 
-    <enum name="NiSceneDescNxHwPipelineSpec" storage="uint" since="V20_2_0_8">
-        <option name="NX_HW_RB_PIPELINE_HLP_ONLY" value="0" />
-        <option name="NX_HW_PIPELINE_FULL" value="1" />
-        <option name="NX_HW_PIPELINE_DEBUG" value="2" />
+    <enum name="NiSceneDescNxHwPipelineSpec" storage="uint" prefix="NX_HW" since="V20_2_0_8">
+        <option value="0" name="RB_PIPELINE_HLP_ONLY" />
+        <option value="1" name="PIPELINE_FULL" />
+        <option value="2" name="PIPELINE_DEBUG" />
     </enum>
 
-    <enum name="NiSceneDescNxHwSceneType" storage="uint" since="V20_2_0_8">
-        <option name="NX_HW_SCENE_TYPE_RB" value="0" />
-        <option name="NX_HW_SCENE_TYPE_FLUID" value="1" />
-        <option name="NX_HW_SCENE_TYPE_FLUID_SOFTWARE" value="2" />
-        <option name="NX_HW_SCENE_TYPE_CLOTH" value="3" />
+    <enum name="NiSceneDescNxHwSceneType" storage="uint" prefix="NX_HW" since="V20_2_0_8">
+        <option value="0" name="SCENE_TYPE_RB" />
+        <option value="1" name="SCENE_TYPE_FLUID" />
+        <option value="2" name="SCENE_TYPE_FLUID_SOFTWARE" />
+        <option value="3" name="SCENE_TYPE_CLOTH" />
     </enum>
 
-    <enum name="NxTimeStepMethod" storage="uint" since="V20_2_0_8">
-        <option name="NX_TIMESTEP_FIXED" value="0" />
-        <option name="NX_TIMESTEP_VARIABLE" value="1" />
+    <enum name="NxTimeStepMethod" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="TIMESTEP_FIXED" />
+        <option value="1" name="TIMESTEP_VARIABLE" />
+        <option value="2" name="TIMESTEP_INHERIT" />
     </enum>
 
-    <enum name="NxSimulationType" storage="uint" since="V20_2_0_8">
-        <option name="NX_SIMULATION_SW" value="0" />
-        <option name="NX_SIMULATION_HW" value="1" />
+    <enum name="NxSimulationType" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="SIMULATION_SW" />
+        <option value="1" name="SIMULATION_HW" />
     </enum>
 
-    <enum name="NxBroadPhaseType" storage="uint" since="V20_2_0_8">
-        <option name="NX_BP_TYPE_SAP_SINGLE" value="0" />
-        <option name="NX_BP_TYPE_SAP_MULTI" value="1" />
+    <enum name="NxBroadPhaseType" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="BP_TYPE_SAP_SINGLE" />
+        <option value="1" name="BP_TYPE_SAP_MULTI" />
     </enum>
 
-    <enum name="NxFilterOp" storage="uint" since="V20_2_0_8">
-        <option name="NX_FILTEROP_AND" value="0" />
-        <option name="NX_FILTEROP_OR" value="1" />
-        <option name="NX_FILTEROP_XOR" value="2" />
-        <option name="NX_FILTEROP_NAND" value="3" />
-        <option name="NX_FILTEROP_NOR" value="4" />
-        <option name="NX_FILTEROP_NXOR" value="5" />
-        <option name="NX_FILTEROP_SWAP_AND" value="6" />
+    <enum name="NxFilterOp" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="FILTEROP_AND" />
+        <option value="1" name="FILTEROP_OR" />
+        <option value="2" name="FILTEROP_XOR" />
+        <option value="3" name="FILTEROP_NAND" />
+        <option value="4" name="FILTEROP_NOR" />
+        <option value="5" name="FILTEROP_NXOR" />
+        <option value="6" name="FILTEROP_SWAP_AND" />
     </enum>
 
-    <enum name="NxCompartmentType" storage="uint" since="V20_2_0_8">
-        <option name="NX_SCT_RIGIDBODY" value="0" />
-        <option name="NX_SCT_FLUID" value="1" />
-        <option name="NX_SCT_CLOTH" value="2" />
+    <enum name="NxThreadPriority" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="TP_HIGH" />
+        <option value="1" name="TP_ABOVE_NORMAL" />
+        <option value="2" name="TP_NORMAL" />
+        <option value="3" name="TP_BELOW_NORMAL" />
+        <option value="4" name="TP_LOW" />
     </enum>
 
-    <compound name="PhysXSceneDescMaterial" size="6" since="V20_2_0_8">
+    <enum name="NxPruningStructure" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="PRUNING_NONE" />
+        <option value="1" name="PRUNING_OCTREE" />
+        <option value="2" name="PRUNING_QUADTREE" />
+        <option value="3" name="PRUNING_DYNAMIC_AABB_TREE" />
+        <option value="4" name="PRUNING_STATIC_AABB_TREE" />
+    </enum>
+
+    <enum name="NxCompartmentType" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="SCT_RIGIDBODY" />
+        <option value="1" name="SCT_FLUID" />
+        <option value="2" name="SCT_CLOTH" />
+    </enum>
+
+    <enum name="NxDeviceCode" storage="uint" prefix="NX_DC" since="V20_2_0_8">
+        <option value="0" name="PPU_0" />
+        <option value="1" name="PPU_1" />
+        <option value="2" name="PPU_2" />
+        <option value="3" name="PPU_3" />
+        <option value="4" name="PPU_4" />
+        <option value="5" name="PPU_5" />
+        <option value="6" name="PPU_6" />
+        <option value="7" name="PPU_7" />
+        <option value="8" name="PPU_8" />
+        <option value="4294901760" name="CPU" />
+        <option value="4294901761" name="PPU_AUTO_ASSIGN" />
+    </enum>
+
+    <bitflags name="NxBodyFlag" storage="uint" prefix="NX_BF" since="V20_2_0_8">
+        <option value="0" name="DISABLE_GRAVITY" />
+        <option value="1" name="FROZEN_POS_X" />
+        <option value="2" name="FROZEN_POS_Y" />
+        <option value="3" name="FROZEN_POS_Z" />
+        <option value="4" name="FROZEN_ROT_X" />
+        <option value="5" name="FROZEN_ROT_Y" />
+        <option value="6" name="FROZEN_ROT_Z" />
+        <option value="7" name="KINEMATIC" />
+        <option value="8" name="VISUALIZATION" />
+        <option value="9" name="POSE_SLEEP_TEST" />
+        <option value="10" name="FILTER_SLEEP_VEL" />
+        <option value="11" name="ENERGY_SLEEP_TEST" />
+    </bitflags>
+
+    <compound name="NiPhysXMaterialDescMap" size="6" since="V20_2_0_8">
         <add name="Key" type="ushort" />
         <add name="Material" type="Ref" template="NiPhysXMaterialDesc" />
     </compound>
 
-    <compound name="PhysXSceneDescCompartment" size="20" since="V20_2_0_8">
+    <compound name="NxCompartmentDescMap" size="20" since="V20_2_0_8">
         <add name="ID" type="uint" />
-        <add name="Type" type="NxCompartmentType" />
-        <add name="Device Code" type="uint" />
-        <add name="Grid Hash Cell Size" type="float" />
-        <add name="Grid Hash Table Power" type="uint" />
+        <add name="Type" type="NxCompartmentType" default="SCT_RIGIDBODY" />
+        <add name="Device Code" type="NxDeviceCode" default="CPU" />
+        <add name="Grid Hash Cell Size" type="float" default="100.0" />
+        <add name="Grid Hash Table Power" type="uint" default="8" />
     </compound>
 
     <niobject name="NiPhysXSceneDesc" inherit="NiObject" since="V20_2_0_8">
         Object which caches the properties of NxScene, stored as a snapshot in a NiPhysXScene.
         <add name="Broad Phase Type" type="NiSceneDescNxBroadPhaseType" ver2="20.2.0.7" />
         <add name="Gravity" type="Vector3" />
-        <add name="Max Timestep" type="float" />
-        <add name="Max Iterations" type="uint" />
-        <add name="Time Step Method" type="NxTimeStepMethod" />
+        <add name="Max Timestep" type="float" default="0.016666" />
+        <add name="Max Iterations" type="uint" default="8" />
+        <add name="Time Step Method" type="NxTimeStepMethod" default="TIMESTEP_FIXED" />
         <add name="Has Bound" type="bool" />
         <add name="Max Bounds Min" type="Vector3" cond="Has Bound" />
         <add name="Max Bounds Max" type="Vector3" cond="Has Bound" />
@@ -5293,7 +5341,7 @@
         <add name="Max Bodies" type="uint" cond="Has Limits" />
         <add name="Max Static Shapes" type="uint" cond="Has Limits" />
         <add name="Max Dynamic Shapes" type="uint" cond="Has Limits" />
-        <add name="Simulation Type" type="NxSimulationType" />
+        <add name="Simulation Type" type="NxSimulationType" default="SIMULATION_SW" />
         <add name="HW Scene Type" type="NiSceneDescNxHwSceneType" ver2="20.2.0.8" />
         <add name="HW Pipeline Spec" type="NiSceneDescNxHwPipelineSpec" ver2="20.2.0.8" />
         <add name="Ground Plane" type="bool" />
@@ -5307,13 +5355,13 @@
         <add name="Background Thread Mask" type="uint" ver1="20.2.0.8" />
         <add name="Num HW Scenes" type="uint" ver1="20.3.0.1" ver2="20.3.0.5" />
         <add name="Sim Thread Stack Size" type="uint" ver1="20.3.0.1" />
-        <add name="Sim Thread Priority" type="uint" ver1="20.3.0.1" />
+        <add name="Sim Thread Priority" type="NxThreadPriority" default="TP_NORMAL" ver1="20.3.0.1" />
         <add name="Worker Thread Stack Size" type="uint" ver1="20.3.0.1" />
-        <add name="Worker Thread Priority" type="uint" ver1="20.3.0.1" />
+        <add name="Worker Thread Priority" type="NxThreadPriority" default="TP_NORMAL" ver1="20.3.0.1" />
         <add name="Up Axis" type="uint" ver1="20.3.0.1" />
-        <add name="Subdivision Level" type="uint" ver1="20.3.0.1" />
-        <add name="Static Structure" type="uint" ver1="20.3.0.1" />
-        <add name="Dynamic Structure" type="uint" ver1="20.3.0.1" />
+        <add name="Subdivision Level" type="uint" default="5" ver1="20.3.0.1" />
+        <add name="Static Structure" type="NxPruningStructure" default="PRUNING_NONE" ver1="20.3.0.1" />
+        <add name="Dynamic Structure" type="NxPruningStructure" default="PRUNING_STATIC_AABB_TREE" ver1="20.3.0.1" />
         <add name="Dynamic Tree Rebuild Rate Hint" type="uint" ver1="20.5.0.3" />
         <add name="Broad Phase Type" type="NxBroadPhaseType" ver1="20.4.0.0" />
         <add name="Grid Cells X" type="uint" ver1="20.4.0.0" />
@@ -5323,19 +5371,19 @@
         <add name="Num Joints" type="uint" ver2="20.3.0.1" />
         <add name="Joints" type="Ref" template="NiPhysXJointDesc" arr1="Num Joints" ver2="20.3.0.1" />
         <add name="Num Materials" type="uint" ver2="20.3.0.1" />
-        <add name="Materials" type="PhysXSceneDescMaterial" arr1="Num Materials" ver2="20.3.0.1" />
+        <add name="Materials" type="NiPhysXMaterialDescMap" arr1="Num Materials" ver2="20.3.0.1" />
         <add name="Group Collision Flags" type="bool" arr1="1024" />
         <add name="Filter Ops" type="NxFilterOp" arr1="3" />
         <add name="Filter Constants" type="uint" arr1="8" />
-        <add name="Filter" type="bool" />
+        <add name="Filter" type="bool" default="1" />
         <add name="Num States" type="uint" ver2="20.3.0.1" />
         <add name="Num Compartments" type="uint" ver1="20.3.0.6" />
-        <add name="Compartments" type="PhysXSceneDescCompartment" arr1="Num Compartments" ver1="20.3.0.6" />
+        <add name="Compartments" type="NxCompartmentDescMap" arr1="Num Compartments" ver1="20.3.0.6" />
     </niobject>
 
     <niobject name="NiPhysXProp" inherit="NiObjectNET" since="V20_2_0_8">
         A PhysX prop which holds information about PhysX actors in a Gamebryo scene
-        <add name="PhysX to World Scale" type="float" />
+        <add name="PhysX to World Scale" type="float" default="1.0" />
         <add name="Num Sources" type="uint" />
         <add name="Sources" type="Ref" template="NiPhysXSrc" arr1="Num Sources" />
         <add name="Num Dests" type="uint" />
@@ -5344,18 +5392,8 @@
         <add name="Modified Meshes" type="Ref" template="NiMesh" arr1="Num Modified Meshes" ver1="20.4.0.0" />
         <add name="Temp Name" type="string" ver1="30.1.0.2" ver2="30.2.0.2" />
         <add name="Keep Meshes" type="bool" />
-        <add name="Prop Description" type="Ref" template="NiPhysXPropDesc" />
+        <add name="Snapshot" type="Ref" template="NiPhysXPropDesc" />
     </niobject>
-
-    <compound name="PhysXMaterialRef" size="6" since="V20_2_0_8">
-        <add name="Key" type="ushort" />
-        <add name="Material Desc" type="Ref" template="NiPhysXMaterialDesc" />
-    </compound>
-
-    <compound name="PhysXStateName" size="8" since="V20_2_0_8">
-        <add name="Name" type="string" />
-        <add name="Index" type="uint" />
-    </compound>
 
     <niobject name="NiPhysXPropDesc" inherit="NiObject" since="V20_2_0_8">
         For serialization of PhysX objects and to attach them to the scene.
@@ -5366,10 +5404,9 @@
         <add name="Num Clothes" type="uint" ver1="20.3.0.5" />
         <add name="Clothes" type="Ref" template="NiPhysXClothDesc" arr1="Num Clothes" ver1="20.3.0.5" />
         <add name="Num Materials" type="uint" />
-        <add name="Materials" type="PhysXMaterialRef" arr1="Num Materials" />
+        <add name="Materials" type="NiPhysXMaterialDescMap" arr1="Num Materials" />
         <add name="Num States" type="uint" />
-        <add name="Num State Names" type="uint" ver1="20.4.0.0" />
-        <add name="State Names" type="PhysXStateName" arr1="Num State Names" ver1="20.4.0.0" />
+        <add name="State Names" type="NiTFixedStringMap" template="uint" ver1="20.4.0.0" />
         <add name="Flags" type="byte" ver1="20.4.0.0" />
     </niobject>
 
@@ -5406,48 +5443,48 @@
         <add name="Mass" type="float" />
         <add name="Num Vels" type="uint" />
         <add name="Vels" type="PhysXBodyStoredVels" arr1="Num Vels" />
-        <add name="Wake Up Counter" type="float" />
+        <add name="Wake Up Counter" type="float" default="0.4" />
         <add name="Linear Damping" type="float" />
-        <add name="Angular Damping" type="float" />
-        <add name="Max Angular Velocity" type="float" />
+        <add name="Angular Damping" type="float" default="0.05" />
+        <add name="Max Angular Velocity" type="float" default="-1.0" />
         <add name="CCD Motion Threshold" type="float" />
-        <add name="Flags" type="uint" />
-        <add name="Sleep Linear Velocity" type="float" />
-        <add name="Sleep Angular Velocity" type="float" />
-        <add name="Solver Iteration Count" type="uint" />
-        <add name="Sleep Energy Threshold" type="float" ver1="20.3.0.0" />
+        <add name="Flags" type="NxBodyFlag" default="0x900" />
+        <add name="Sleep Linear Velocity" type="float" default="-1.0" />
+        <add name="Sleep Angular Velocity" type="float" default="-1.0" />
+        <add name="Solver Iteration Count" type="uint" default="4" />
+        <add name="Sleep Energy Threshold" type="float" default="-1.0" ver1="20.3.0.0" />
         <add name="Sleep Damping" type="float" ver1="20.3.0.0" />
-        <add name="Contact Report Threshold" type="float" ver1="20.4.0.0" />
+        <add name="Contact Report Threshold" type="float" default="#FLT_MAX#" ver1="20.4.0.0" />
     </niobject>
 
-    <enum name="NxJointType" storage="uint" since="V20_2_0_8">
-        <option name="NX_JOINT_PRISMATIC" value="0" />
-        <option name="NX_JOINT_REVOLUTE" value="1" />
-        <option name="NX_JOINT_CYLINDRICAL" value="2" />
-        <option name="NX_JOINT_SPHERICAL" value="3" />
-        <option name="NX_JOINT_POINT_ON_LINE" value="4" />
-        <option name="NX_JOINT_POINT_IN_PLANE" value="5" />
-        <option name="NX_JOINT_DISTANCE" value="6" />
-        <option name="NX_JOINT_PULLEY" value="7" />
-        <option name="NX_JOINT_FIXED" value="8" />
-        <option name="NX_JOINT_D6" value="9" />
+    <enum name="NxJointType" storage="uint" prefix="NX_JOINT" since="V20_2_0_8">
+        <option value="0" name="PRISMATIC" />
+        <option value="1" name="REVOLUTE" />
+        <option value="2" name="CYLINDRICAL" />
+        <option value="3" name="SPHERICAL" />
+        <option value="4" name="POINT_ON_LINE" />
+        <option value="5" name="POINT_IN_PLANE" />
+        <option value="6" name="DISTANCE" />
+        <option value="7" name="PULLEY" />
+        <option value="8" name="FIXED" />
+        <option value="9" name="D6" />
     </enum>
 
-    <enum name="NxD6JointMotion" storage="uint" since="V20_2_0_8">
-        <option name="NX_D6JOINT_MOTION_LOCKED" value="0" />
-        <option name="NX_D6JOINT_MOTION_LIMITED" value="1" />
-        <option name="NX_D6JOINT_MOTION_FREE" value="2" />
+    <enum name="NxD6JointMotion" storage="uint" prefix="NX_D6JOINT" since="V20_2_0_8">
+        <option value="0" name="MOTION_LOCKED" />
+        <option value="1" name="MOTION_LIMITED" />
+        <option value="2" name="MOTION_FREE" />
     </enum>
 
-    <enum name="NxD6JointDriveType" storage="uint" since="V20_2_0_8">
-        <option name="NX_D6JOINT_DRIVE_POSITION" value="1" />
-        <option name="NX_D6JOINT_DRIVE_VELOCITY" value="2" />
+    <enum name="NxD6JointDriveType" storage="uint" prefix="NX_D6JOINT" since="V20_2_0_8">
+        <option value="1" name="DRIVE_POSITION" />
+        <option value="2" name="DRIVE_VELOCITY" />
     </enum>
 
-    <enum name="NxJointProjectionMode" storage="uint" since="V20_2_0_8">
-        <option name="NX_JPM_NONE" value="0" />
-        <option name="NX_JPM_POINT_MINDIST" value="1" />
-        <option name="NX_JPM_LINEAR_MINDIST" value="2" />
+    <enum name="NxJointProjectionMode" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="JPM_NONE"/>
+        <option value="1" name="JPM_POINT_MINDIST" />
+        <option value="2" name="JPM_LINEAR_MINDIST" />
     </enum>
 
     <compound name="NiPhysXJointActor" size="40" since="V20_2_0_8">
@@ -5466,9 +5503,9 @@
 
     <compound name="NxJointDriveDesc" size="16" since="V20_2_0_8">
         <add name="Drive Type" type="NxD6JointDriveType" />
-        <add name="Restitution" type="float" />
         <add name="Spring" type="float" />
         <add name="Damping" type="float" />
+        <add name="Force Limit" type="float" default="#FLT_MAX#" />
     </compound>
 
     <compound name="NiPhysXJointLimit" since="V20_2_0_8">
@@ -5494,12 +5531,12 @@
 
     <niobject name="NiPhysXD6JointDesc" inherit="NiPhysXJointDesc" since="V20_2_0_8">
         A 6DOF (6 degrees of freedom) joint.
-        <add name="X Motion" type="NxD6JointMotion" />
-        <add name="Y Motion" type="NxD6JointMotion" />
-        <add name="Z Motion" type="NxD6JointMotion" />
-        <add name="Swing 1 Motion" type="NxD6JointMotion" />
-        <add name="Swing 2 Motion" type="NxD6JointMotion" />
-        <add name="Twist Motion" type="NxD6JointMotion" />
+        <add name="X Motion" type="NxD6JointMotion" default="MOTION_FREE" />
+        <add name="Y Motion" type="NxD6JointMotion" default="MOTION_FREE" />
+        <add name="Z Motion" type="NxD6JointMotion" default="MOTION_FREE" />
+        <add name="Swing 1 Motion" type="NxD6JointMotion" default="MOTION_FREE" />
+        <add name="Swing 2 Motion" type="NxD6JointMotion" default="MOTION_FREE" />
+        <add name="Twist Motion" type="NxD6JointMotion" default="MOTION_FREE" />
         <add name="Linear Limit" type="NxJointLimitSoftDesc" />
         <add name="Swing 1 Limit" type="NxJointLimitSoftDesc" />
         <add name="Swing 2 Limit" type="NxJointLimitSoftDesc" />
@@ -5516,24 +5553,47 @@
         <add name="Drive Linear Velocity" type="Vector3" />
         <add name="Drive Angular Velocity" type="Vector3" />
         <add name="Projection Mode" type="NxJointProjectionMode" />
-        <add name="Projection Distance" type="float" />
-        <add name="Projection Angle" type="float" />
-        <add name="Gear Ratio" type="float" />
+        <add name="Projection Distance" type="float" default="0.1" />
+        <add name="Projection Angle" type="float" default="0.0872" />
+        <add name="Gear Ratio" type="float" default="1.0" />
         <add name="Flags" type="uint" />
     </niobject>
 
-    <enum name="NxShapeType" storage="uint" since="V20_2_0_8">
-        <option name="NX_SHAPE_PLANE" value="0" />
-        <option name="NX_SHAPE_SPHERE" value="1" />
-        <option name="NX_SHAPE_BOX" value="2" />
-        <option name="NX_SHAPE_CAPSULE" value="3" />
-        <option name="NX_SHAPE_WHEEL" value="4" />
-        <option name="NX_SHAPE_CONVEX" value="5" />
-        <option name="NX_SHAPE_MESH" value="6" />
-        <option name="NX_SHAPE_HEIGHTFIELD" value="7" />
-        <option name="NX_SHAPE_RAW_MESH" value="8" />
-        <option name="NX_SHAPE_COMPOUND" value="9" />
+    <enum name="NxShapeType" storage="uint" prefix="NX" since="V20_2_0_8">
+        <option value="0" name="SHAPE_PLANE" />
+        <option value="1" name="SHAPE_SPHERE" />
+        <option value="2" name="SHAPE_BOX" />
+        <option value="3" name="SHAPE_CAPSULE" />
+        <option value="4" name="SHAPE_WHEEL" />
+        <option value="5" name="SHAPE_CONVEX" />
+        <option value="6" name="SHAPE_MESH" />
+        <option value="7" name="SHAPE_HEIGHTFIELD" />
+        <option value="8" name="SHAPE_RAW_MESH" />
+        <option value="9" name="SHAPE_COMPOUND" />
     </enum>
+
+    <bitflags name="NxShapeFlag" storage="uint" prefix="NX_SF" since="V20_2_0_8">
+        <option value="0" name="TRIGGER_ON_ENTER" />
+        <option value="1" name="TRIGGER_ON_LEAVE" />
+        <option value="2" name="TRIGGER_ON_STAY" />
+        <option value="3" name="VISUALIZATION" />
+        <option value="4" name="DISABLE_COLLISION" />
+        <option value="5" name="FEATURE_INDICES" />
+        <option value="6" name="DISABLE_RAYCASTING" />
+        <option value="7" name="POINT_CONTACT_FORCE" />
+        <option value="8" name="FLUID_DRAIN" />
+        <option value="10" name="FLUID_DISABLE_COLLISION" />
+        <option value="11" name="FLUID_TWOWAY" />
+        <option value="12" name="DISABLE_RESPONSE" />
+        <option value="13" name="DYNAMIC_DYNAMIC_CCD" />
+        <option value="14" name="DISABLE_SCENE_QUERIES" />
+        <option value="15" name="CLOTH_DRAIN" />
+        <option value="16" name="CLOTH_DISABLE_COLLISION" />
+        <option value="17" name="CLOTH_TWOWAY" />
+        <option value="18" name="SOFTBODY_DRAIN" />
+        <option value="19" name="SOFTBODY_DISABLE_COLLISION" />
+        <option value="20" name="SOFTBODY_TWOWAY" />
+    </bitflags>
 
     <compound name="NxPlane" size="16" since="V20_2_0_8">
         <add name="Val 1" type="float" />
@@ -5550,12 +5610,12 @@
         For serializing NxShapeDesc objects
         <add name="Shape Type" type="NxShapeType" />
         <add name="Local Pose" type="Matrix34" />
-        <add name="Shape Flags" type="uint" />
+        <add name="Flags" type="NxShapeFlag" default="0x120008" />
         <add name="Collision Group" type="ushort" />
         <add name="Material Index" type="ushort" />
-        <add name="Density" type="float" />
-        <add name="Mass" type="float" />
-        <add name="Skin Width" type="float" />
+        <add name="Density" type="float" default="1.0" />
+        <add name="Mass" type="float" default="-1.0" />
+        <add name="Skin Width" type="float" default="-1.0" />
         <add name="Shape Name" type="string" />
         <add name="Non Interacting Compartment Types" type="uint" ver1="20.4.0.0" />
         <add name="Collision Bits" type="uint" arr1="4" />
@@ -5579,13 +5639,10 @@
         <add name="Flags" type="byte" ver1="20.3.0.5" />
     </niobject>
 
-    <bitflags name="NxMaterialFlag" storage="uint" since="V20_2_0_8">
-        <option name="NX_MF_ANISOTROPIC" value="1" />
-        <option name="NX_MF_DUMMY1" value="2" />
-        <option name="NX_MF_DUMMY2" value="3" />
-        <option name="NX_MF_DUMMY3" value="4" />
-        <option name="NX_MF_DISABLE_FRICTION" value="5" />
-        <option name="NX_MF_DISABLE_STRONG_FRICTION" value="6" />
+    <bitflags name="NxMaterialFlag" storage="uint" prefix="NX_MF" since="V20_2_0_8">
+        <option value="0" name="ANISOTROPIC" />
+        <option value="4" name="DISABLE_FRICTION" />
+        <option value="5" name="DISABLE_STRONG_FRICTION" />
     </bitflags>
 
     <compound name="NxSpringDesc" size="12" since="V20_2_0_8">
@@ -5594,11 +5651,11 @@
         <add name="Target Value" type="float" />
     </compound>
 
-    <enum name="NxCombineMode" storage="uint" since="V20_2_0_8">
-        <option name="NX_CM_AVERAGE" value="0" />
-        <option name="NX_CM_MIN" value="1" />
-        <option name="NX_CM_MULTIPLY" value="2" />
-        <option name="NX_CM_MAX" value="3" />
+    <enum name="NxCombineMode" storage="uint" prefix="NX_CM" since="V20_2_0_8">
+        <option value="0" name="AVERAGE" />
+        <option value="1" name="MIN" />
+        <option value="2" name="MULTIPLY" />
+        <option value="3" name="MAX" />
     </enum>
 
     <compound name="NxMaterialDesc" since="V20_2_0_8">
@@ -5607,7 +5664,7 @@
         <add name="Restitution" type="float" />
         <add name="Dynamic Friction V" type="float" />
         <add name="Static Friction V" type="float" />
-        <add name="Direction of Anisotropy" type="Vector3" />
+        <add name="Direction of Anisotropy" type="Vector3" default="#X_AXIS#" />
         <add name="Flags" type="NxMaterialFlag" />
         <add name="Friction Combine Mode" type="NxCombineMode" />
         <add name="Restitution Combine Mode" type="NxCombineMode" />
@@ -5621,6 +5678,27 @@
         <add name="Num States" type="uint" />
         <add name="Material Descs" type="NxMaterialDesc" arr1="Num States" />
     </niobject>
+
+    <bitflags name="NxClothFlag" storage="uint" prefix="NX_CLF" since="V20_2_0_8">
+        <option value="0" name="PRESSURE" />
+        <option value="1" name="STATIC" />
+        <option value="2" name="DISABLE_COLLISION" />
+        <option value="3" name="SELFCOLLISION" />
+        <option value="4" name="VISUALIZATION" />
+        <option value="5" name="GRAVITY" />
+        <option value="6" name="BENDING" />
+        <option value="7" name="BENDING_ORTHO" />
+        <option value="8" name="DAMPING" />
+        <option value="9" name="COLLISION_TWOWAY" />
+        <option value="11" name="TRIANGLE_COLLISION" />
+        <option value="12" name="TEARABLE" />
+        <option value="13" name="HARDWARE" />
+        <option value="14" name="COMDAMPING" />
+        <option value="15" name="VALIDBOUNDS" />
+        <option value="16" name="FLUID_COLLISION" />
+        <option value="17" name="DISABLE_DYNAMIC_CCD" />
+        <option value="18" name="ADHERE" />
+    </bitflags>
 
     <compound name="PhysXClothState" since="V20_2_0_8">
         <add name="Pose" type="Matrix34" />
@@ -5649,33 +5727,33 @@
         <add name="Name" type="string" />
         <add name="Mesh" type="Ref" template="NiPhysXMeshDesc" />
         <add name="Pose" type="Matrix34" ver2="20.3.0.9" />
-        <add name="Thickness" type="float" />
+        <add name="Thickness" type="float" default="0.01" />
         <add name="Self Collision Thickness" type="float" ver1="30.1.0.3" />
-        <add name="Density" type="float" />
-        <add name="Bending Stiffness" type="float" />
-        <add name="Stretching Stiffness" type="float" />
-        <add name="Damping Coefficient" type="float" />
+        <add name="Density" type="float" default="1.0" />
+        <add name="Bending Stiffness" type="float" default="1.0" />
+        <add name="Stretching Stiffness" type="float" default="1.0" />
+        <add name="Damping Coefficient" type="float" default="0.5" />
         <add name="Hard Stretch Limitation Factor" type="float" ver1="30.1.0.3" />
-        <add name="Friction" type="float" />
-        <add name="Pressure" type="float" />
-        <add name="Tear Factor" type="float" />
-        <add name="Collision Response Coeff" type="float" />
-        <add name="Attach Response Coeff" type="float" />
-        <add name="Attach Tear Factor" type="float" />
-        <add name="To Fluid Response Coeff" type="float" ver1="20.4.0.0" />
-        <add name="From Fluid Response Coeff" type="float" ver1="20.4.0.0" />
-        <add name="Min Adhere Velocity" type="float" ver1="20.4.0.0" />
-        <add name="Relative Grid Spacing" type="float" ver1="20.4.0.0" />
-        <add name="Solver Iterations" type="uint" />
+        <add name="Friction" type="float" default="0.5" />
+        <add name="Pressure" type="float" default="1.0" />
+        <add name="Tear Factor" type="float" default="1.5" />
+        <add name="Collision Response Coeff" type="float" default="0.2" />
+        <add name="Attach Response Coeff" type="float" default="0.2" />
+        <add name="Attach Tear Factor" type="float" default="1.5" />
+        <add name="To Fluid Response Coeff" type="float" default="1.0" ver1="20.4.0.0" />
+        <add name="From Fluid Response Coeff" type="float" default="1.0" ver1="20.4.0.0" />
+        <add name="Min Adhere Velocity" type="float" default="1.0" ver1="20.4.0.0" />
+        <add name="Relative Grid Spacing" type="float" default="0.25" ver1="20.4.0.0" />
+        <add name="Solver Iterations" type="uint" default="5" />
         <add name="Hier Solver Iterations" type="uint" ver1="30.1.0.3" />
         <add name="External Acceleration" type="Vector3" />
-        <add name="Wind Acceleration" type="float" ver1="20.4.0.0" />
-        <add name="Wake Up Counter" type="float" />
-        <add name="Sleep Linear Velocity" type="float" />
+        <add name="Wind Acceleration" type="Vector3" ver1="20.4.0.0" />
+        <add name="Wake Up Counter" type="float" default="0.4" />
+        <add name="Sleep Linear Velocity" type="float" default="-1.0" />
         <add name="Collision Group" type="ushort" />
         <add name="Collision Bits" type="uint" arr1="4" />
         <add name="Force Field Material" type="ushort" ver1="20.4.0.0" />
-        <add name="Flags" type="uint" />
+        <add name="Flags" type="NxClothFlag" default="0x20" />
         <add name="Vertex Map Size" type="ushort" ver1="30.2.0.3" />
         <add name="Vertex Map" type="ushort" arr1="Vertex Map Size" ver1="30.2.0.3" />
         <add name="Num States" type="uint" ver1="20.4.0.0" />
@@ -5689,7 +5767,7 @@
 
     <niobject name="NiPhysXDest" inherit="NiObject" abstract="true" since="V20_2_0_8">
         A destination is a link between a PhysX actor and a Gamebryo object being driven by the physics.
-        <add name="Active" type="bool" />
+        <add name="Active" type="bool" default="1" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
@@ -5704,7 +5782,7 @@
 
     <niobject name="NiPhysXSrc" inherit="NiObject" abstract="true" since="V20_2_0_8">
         A source is a link between a Gamebryo object and a PhysX actor.
-        <add name="Active" type="bool" />
+        <add name="Active" type="bool" default="1" />
         <add name="Interpolate" type="bool" />
     </niobject>
 
@@ -6176,9 +6254,9 @@
 
     <niobject name="BSLightingShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Bethesda shader property for Skyrim and later.
-        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="!#BS_FO4#" default="2185233153">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="!#BS_FO4#" default="32801">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="#BS_FO4#" default="2151678465">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="!#BS_FO4#" default="0x82400301">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="!#BS_FO4#" default="0x8021">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="#BS_FO4#" default="0x80400201">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="#BS_FO4#" default="1">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
@@ -6191,7 +6269,7 @@
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
         <add name="Glossiness" type="float" default="80" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness (0-999).</add>
         <add name="Smoothness" type="float" default="1.0" vercond="#BS_FO4#">The base roughness (0.0-1.0), multiplied by the smoothness map.</add>
-        <add name="Specular Color" type="Color3">Adds a colored highlight.</add>
+        <add name="Specular Color" type="Color3" default="#VEC3_ONE#">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
         <add name="Lighting Effect 1" type="float" default="0.3" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
         <add name="Lighting Effect 2" type="float" default="2.0" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
@@ -6209,9 +6287,9 @@
         <add name="Environment Map Scale" type="float" default="1.0" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
         <add name="Use Screen Space Reflections" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
         <add name="Wetness Control: Use SSR" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
-        <add name="Skin Tint Color" type="Color3" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
+        <add name="Skin Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Skin Tint Alpha" type="float" default="1.0" cond="Skyrim Shader Type == 5" vercond="#BS_FO4#" />
-        <add name="Hair Tint Color" type="Color3" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
+        <add name="Hair Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
         <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
         <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
         <add name="Parallax Inner Layer Thickness" type="float" default="5.0" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
@@ -6226,30 +6304,30 @@
 
     <niobject name="BSEffectShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Bethesda effect shader property for Skyrim and later.
-        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="2147483648" vercond="!#BS_FO4#" />
-        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="32" vercond="!#BS_FO4#" />
-        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" default="2147483648" vercond="#BS_FO4#" />
-        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" default="32" vercond="#BS_FO4#" />
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="0x80000000" vercond="!#BS_FO4#" />
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="0x20" vercond="!#BS_FO4#" />
+        <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" default="0x80000000" vercond="#BS_FO4#" />
+        <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" default="0x20" vercond="#BS_FO4#" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
         <!-- TODO: Next 4 bytes requires bitfield, read as single int -->
-        <add name="Texture Clamp Mode" type="byte">How to handle texture borders.</add>
-        <add name="Lighting Influence" type="byte" />
+        <add name="Texture Clamp Mode" type="byte" default="3">How to handle texture borders.</add>
+        <add name="Lighting Influence" type="byte" default="255" />
         <add name="Env Map Min LOD" type="byte" />
         <add name="Unused Byte" type="byte" />
         <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
         <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
         <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
         <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
-        <add name="Emissive Color" type="Color4">Emissive color</add>
+        <add name="Emissive Color" type="Color4" default="#VEC4_ONE#">Emissive color</add>
         <add name="Emissive Multiple" type="float" default="1.0">Multiplier for Emissive Color (RGB part)</add>
-        <add name="Soft Falloff Depth" type="float"></add>
+        <add name="Soft Falloff Depth" type="float" default="100.0" />
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
         <add name="Env Map Texture" type="SizedString" vercond="#BS_FO4#" />
         <add name="Normal Texture" type="SizedString" vercond="#BS_FO4#" />
         <add name="Env Mask Texture" type="SizedString" vercond="#BS_FO4#" />
-        <add name="Environment Map Scale" type="float" vercond="#BS_FO4#" />
+        <add name="Environment Map Scale" type="float" default="1.0" vercond="#BS_FO4#" />
     </niobject>
     
     <bitflags name="WaterShaderPropertyFlags" storage="uint" prefix="BSWSP" versions="#SKY_AND_LATER#">
@@ -6272,17 +6350,17 @@
     
     <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="2147483656" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="33" />
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000008" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
-        <add name="Water Shader Flags" type="WaterShaderPropertyFlags" default="196" />
+        <add name="Water Shader Flags" type="WaterShaderPropertyFlags" default="0xC4" />
     </niobject>
     
     <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty" versions="#SKY_AND_LATER#">
         Skyrim Sky shader block.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="2147483648" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="33" />
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000000" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Source Texture" type="SizedString">points to an external texture.</add>
@@ -6291,7 +6369,7 @@
 
     <niobject name="BSDismemberSkinInstance" inherit="NiSkinInstance" versions="#BETHESDA#">
         Bethesda-specific skin instance.
-        <add name="Num Partitions" type="uint" />
+        <add name="Num Partitions" type="uint" default="1" />
         <add name="Partitions" type="BodyPartList" arr1="Num Partitions" />
     </niobject>
 
@@ -6342,7 +6420,7 @@
 
     <niobject name="BSPSysStripUpdateModifier" inherit="NiPSysModifier" versions="#FO3_AND_LATER#">
         Bethesda-Specific (mesh?) Particle System Modifier.
-        <add name="Update Delta Time" type="float" />
+        <add name="Update Delta Time" type="float" default="0.033333" />
     </niobject>
 
 
@@ -6354,7 +6432,7 @@
 
     <niobject name="BSMasterParticleSystem" inherit="NiNode" versions="#FO3_AND_LATER#">
         Bethesda-Specific particle system.
-        <add name="Max Emitter Objects" type="ushort" />
+        <add name="Max Emitter Objects" type="ushort" default="20" />
         <add name="Num Particle Systems" type="uint" />
         <add name="Particle Systems" type="Ref" template="NiAVObject" arr1="Num Particle Systems" />
 
@@ -6974,10 +7052,10 @@
         <add name="Has Rotations" type="bool" />
         <add name="Has Rotation Axes" type="bool" />
         <add name="Has Animated Textures" type="bool" ver1="20.6.1.0" />
-        <add name="World Space" type="bool" />
-        <add name="Normal Method" type="AlignMethod" ver1="20.6.1.0" />
+        <add name="World Space" type="bool" default="1" />
+        <add name="Normal Method" type="AlignMethod" default="ALIGN_CAMERA" ver1="20.6.1.0" />
         <add name="Normal Direction" type="Vector3" ver1="20.6.1.0" />
-        <add name="Up Method" type="AlignMethod" ver1="20.6.1.0" />
+        <add name="Up Method" type="AlignMethod" default="ALIGN_CAMERA" ver1="20.6.1.0" />
         <add name="Up Direction" type="Vector3" ver1="20.6.1.0" />
         <add name="Living Spawner" type="Ref" template="NiPSSpawner" ver1="20.6.1.0" />
         <add name="Num Spawn Rate Keys" type="byte" ver1="20.6.1.0" />
@@ -7004,23 +7082,23 @@
     <niobject name="NiPSAlignedQuadGenerator" inherit="NiMeshModifier" since="V20_5_0_0">
         A mesh modifier that uses particle system data to generate aligned quads for each particle.
         <add name="Scale Amount U" type="float" />
-        <add name="Scale Limit U" type="float" />
-        <add name="Scale Rest U" type="float" />
+        <add name="Scale Limit U" type="float" default="10000.0" />
+        <add name="Scale Rest U" type="float" default="1.0" />
         <add name="Scale Amount V" type="float" />
-        <add name="Scale Limit V" type="float" />
-        <add name="Scale Rest V" type="float" />
+        <add name="Scale Limit V" type="float" default="10000.0" />
+        <add name="Scale Rest V" type="float" default="1.0" />
         <add name="Center U" type="float" />
         <add name="Center V" type="float" />
         <add name="UV Scrolling" type="bool" />
-        <add name="Num Frames Across" type="ushort" />
-        <add name="Num Frames Down" type="ushort" />
+        <add name="Num Frames Across" type="ushort" default="1" />
+        <add name="Num Frames Down" type="ushort" default="1" />
         <add name="Ping Pong" type="bool" />
         <add name="Initial Frame" type="ushort" />
         <add name="Initial Frame Variation" type="float" />
         <add name="Num Frames" type="ushort" />
         <add name="Num Frames Variation" type="float" />
         <add name="Initial Time" type="float" />
-        <add name="Final Time" type="float" />
+        <add name="Final Time" type="float" default="1.0" />
     </niobject>
 
     <!-- NiPS Simulators -->
@@ -7047,13 +7125,13 @@
         Encapsulates a floodgate kernel that updates particle size, colors, and rotations.
         <add name="Num Size Keys" type="byte" ver1="20.6.1.0" />
         <add name="Size Keys" type="Key" template="float" arg="1" arr1="Num Size Keys" ver1="20.6.1.0">The particle size keys.</add>
-        <add name="Size Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the size keys.</add>
+        <add name="Size Loop Behavior" type="PSLoopBehavior" default="PS_LOOP_AGESCALE" ver1="20.6.1.0">The loop behavior for the size keys.</add>
         <add name="Num Color Keys" type="byte" />
         <add name="Color Keys" type="Key" template="ByteColor4" arg="1" arr1="Num Color Keys">The particle color keys.</add>
-        <add name="Color Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the color keys.</add>
+        <add name="Color Loop Behavior" type="PSLoopBehavior" default="PS_LOOP_AGESCALE" ver1="20.6.1.0">The loop behavior for the color keys.</add>
         <add name="Num Rotation Keys" type="byte" ver1="20.6.1.0" />
         <add name="Rotation Keys" type="QuatKey" template="Quaternion" arg="1" arr1="Num Rotation Keys" ver1="20.6.1.0">The particle rotation keys.</add>
-        <add name="Rotation Loop Behavior" type="PSLoopBehavior" ver1="20.6.1.0">The loop behavior for the rotation keys.</add>
+        <add name="Rotation Loop Behavior" type="PSLoopBehavior" default="PS_LOOP_AGESCALE" ver1="20.6.1.0">The loop behavior for the rotation keys.</add>
         <add name="Grow Time" type="float"> The the amount of time over which a particle's size is ramped from 0.0 to 1.0 in seconds</add>
         <add name="Shrink Time" type="float">The the amount of time over which a particle's size is ramped from 1.0 to 0.0 in seconds</add>
         <add name="Grow Generation" type="ushort">Specifies the particle generation to which the grow effect should be applied. This is usually generation 0, so that newly created particles will grow.</add>
@@ -7604,17 +7682,34 @@
         <add name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" />
     </niobject>
 
+    <bitflags name="NiShadowGeneratorFlags" storage="ushort">
+        Flags for NiShadowGenerator.
+        Bit Patterns:
+            AUTO_CALC_NEARFAR = (AUTO_NEAR_DIST | AUTO_FAR_DIST) = 0xC0
+            AUTO_CALC_FULL = (AUTO_NEAR_DIST | AUTO_FAR_DIST | AUTO_DIR_LIGHT_FRUSTUM_WIDTH | AUTO_DIR_LIGHT_FRUSTUM_POSITION) = 0x3C0
+        <option value="0" name="DIRTY_SHADOWMAP" />
+        <option value="1" name="DIRTY_RENDERVIEWS" />
+        <option value="2" name="GEN_STATIC" />
+        <option value="3" name="GEN_ACTIVE" />
+        <option value="4" name="RENDER_BACKFACES" />
+        <option value="5" name="STRICTLY_OBSERVE_SIZE_HINT" />
+        <option value="6" name="AUTO_NEAR_DIST" />
+        <option value="7" name="AUTO_FAR_DIST" />
+        <option value="8" name="AUTO_DIR_LIGHT_FRUSTUM_WIDTH" />
+        <option value="9" name="AUTO_DIR_LIGHT_FRUSTUM_POSITION" />
+    </bitflags>
+
     <niobject name="NiShadowGenerator" inherit="NiObject">
         An NiShadowGenerator object is attached to an NiDynamicEffect object to inform the shadowing system that the effect produces shadows.
-        <add name="Name" type="string" />
-        <add name="Flags" type="ushort" />
+        <add name="Name" type="string" default="NiStandardShadowTechnique" />
+        <add name="Flags" type="NiShadowGeneratorFlags" default="0x3DB" />
         <add name="Num Shadow Casters" type="uint" />
         <add name="Shadow Casters" type="Ref" template="NiNode" arr1="Num Shadow Casters" />
         <add name="Num Shadow Receivers" type="uint" />
         <add name="Shadow Receivers" type="Ref" template="NiNode" arr1="Num Shadow Receivers" />
         <add name="Target" type="Ptr" template="NiDynamicEffect" />
-        <add name="Depth Bias" type="float" default="0.98" />
-        <add name="Size Hint" type="ushort" />
+        <add name="Depth Bias" type="float" />
+        <add name="Size Hint" type="ushort" default="1024" />
         <add name="Near Clipping Distance" type="float" ver1="20.3.0.7" />
         <add name="Far Clipping Distance" type="float" ver1="20.3.0.7" />
         <add name="Directional Light Frustum Width" type="float" ver1="20.3.0.7" />
