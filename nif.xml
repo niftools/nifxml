@@ -90,12 +90,12 @@
     <module name="NiPSParticle" priority="80" depends="NiMain NiMesh NiAnimation" />
     <module name="NiPhysX" priority="90" depends="NiMain NiMesh NiPSParticle" />
     <module name="NiLegacy" priority="99" depends="NiMain NiAnimation NiParticle" />
-    <module name="BSMain" priority="100" depends="NiMain" />
-    <module name="BSAnimation" priority="125" depends="NiMain BSMain NiAnimation" />
-    <module name="BSParticle" priority="150" depends="NiMain NiParticle" />
-    <module name="BSHavok" priority="190" depends="NiMain" />
-    <module name="BSLegacy" priority="199" depends="NiMain NiLegacy" />
-    <module name="NiCustom" priority="255" depends="NiMain NiParticle" />
+    <module name="BSMain" priority="100" depends="NiMain" custom="true" />
+    <module name="BSAnimation" priority="125" depends="NiMain BSMain NiAnimation" custom="true" />
+    <module name="BSParticle" priority="150" depends="NiMain NiParticle" custom="true" />
+    <module name="BSHavok" priority="190" depends="NiMain" custom="true" />
+    <module name="BSLegacy" priority="199" depends="NiMain NiLegacy" custom="true" />
+    <module name="NiCustom" priority="255" depends="NiMain NiParticle" custom="true" />
 
     <token name="verexpr" attrs="vercond">
         Commonly used version expressions.
