@@ -3237,20 +3237,24 @@
     </niobject>
 
     <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO" versions="#BETHESDA#">
-        bhkNiCollisionObject flags. The flags 0x2, 0x100, and 0x200 are not seen in any NIF nor get/set by the engine.
+        bhkNiCollisionObject flags.
+        0x100 and 0x200 are only for bhkBlendCollisionObject
         <option value="0" name="ACTIVE" />
+        <option value="1" name="RESET_TRANS" />
         <option value="2" name="NOTIFY" />
         <option value="3" name="SET_LOCAL" />
         <option value="4" name="DBG_DISPLAY" />
         <option value="5" name="USE_VEL" />
         <option value="6" name="RESET" />
         <option value="7" name="SYNC_ON_UPDATE" />
+        <option value="8" name="BLEND_POS" />
+        <option value="9" name="ALWAYS_BLEND" />
         <option value="10" name="ANIM_TARGETED" />
         <option value="11" name="DISMEMBERED_LIMB" />
     </bitflags>
 
     <niobject name="bhkNiCollisionObject" abstract="true" inherit="NiCollisionObject" module="BSHavok">
-        Havok related collision object?
+        Abstract base class to merge NiCollisionObject with Bethesda Havok.
         <add name="Flags" type="bhkCOFlags" default="1">
             Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
         </add>
@@ -3258,11 +3262,11 @@
     </niobject>
 
     <niobject name="bhkCollisionObject" inherit="bhkNiCollisionObject" module="BSHavok">
-        Havok related collision object?
+        Primary Bethesda Havok object.
     </niobject>
 
     <niobject name="bhkBlendCollisionObject" inherit="bhkCollisionObject" module="BSHavok">
-        Unknown.
+        Bethesda Havok object used in skeletons.
         <add name="Heir Gain" type="float" default="1.0" />
         <add name="Vel Gain" type="float" default="1.0" />
         <add name="Unknown Float 1" type="float" vercond="#BSVER# #LT# 9" />
@@ -3270,11 +3274,11 @@
     </niobject>
 
     <niobject name="bhkPCollisionObject" inherit="bhkNiCollisionObject" module="BSHavok">
-        Unknown.
+        Bethesda Havok object for phantoms such as bhkAabbPhantom.
     </niobject>
 
     <niobject name="bhkSPCollisionObject" inherit="bhkPCollisionObject" module="BSHavok">
-        Unknown.
+        Bethesda Havok object for shape phantoms such as bhkSimpleShapePhantom.
     </niobject>
 
     <niobject name="NiAVObject" abstract="true" inherit="NiObjectNET" module="NiMain">
@@ -7928,12 +7932,11 @@
     <niobject name="bhkSystem" abstract="true" inherit="NiObject" module="BSHavok" versions="#FO4#">
         Fallout 4 Physics System
     </niobject>
-    
+
     <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" module="BSHavok" versions="#FO4#">
         Fallout 4 Collision Object
-        <add name="Flags" type="ushort">
-            Due to inaccurate reporting in the CK the Reset and Sync On Update positions are a guess.
-            Bits: 0=Reset, 2=Notify, 3=SetLocal, 7=SyncOnUpdate, 10=AnimTargeted
+        <add name="Flags" type="bhkCOFlags" default="0x80">
+            Note: The CK Preview scenegraph reports these bits incorrectly.
         </add>
         <add name="Data" type="Ref" template="bhkSystem" />
         <add name="Body ID" type="uint" />
