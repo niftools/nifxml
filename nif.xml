@@ -1173,13 +1173,13 @@
         <option value="3" name="PROPAGATE_NEVER">Propagation never occurs regardless of collision result.</option>
     </enum>
 
-    <enum name="CollisionMode" storage="uint">
+    <enum name="CollisionMode" prefix="CM" storage="uint">
         The collision mode controls the type of collision operation that is to take place for NiCollisionData.
-        <option value="0" name="CM_USE_OBB">Use Bounding Box</option>
-        <option value="1" name="CM_USE_TRI">Use Triangles</option>
-        <option value="2" name="CM_USE_ABV">Use Alternate Bounding Volumes</option>
-        <option value="3" name="CM_NOTEST">Indicates that no collision test should be made.</option>
-        <option value="4" name="CM_USE_NIBOUND">Use NiBound</option>
+        <option value="0" name="USE_OBB">Use Bounding Box</option>
+        <option value="1" name="USE_TRI">Use Triangles</option>
+        <option value="2" name="USE_ABV">Use Alternate Bounding Volumes</option>
+        <option value="3" name="NOTEST">Indicates that no collision test should be made.</option>
+        <option value="4" name="USE_NIBOUND">Use NiBound</option>
     </enum>
 
     <enum name="BoundVolumeType" storage="uint">
@@ -3230,8 +3230,8 @@
 
     <niobject name="NiCollisionData" inherit="NiCollisionObject" module="NiMain">
         Collision box.
-        <add name="Propagation Mode" type="PropagationMode" />
-        <add name="Collision Mode" type="CollisionMode" ver1="10.1.0.0" />
+        <add name="Propagation Mode" type="PropagationMode" default="PROPAGATE_ALWAYS" />
+        <add name="Collision Mode" type="CollisionMode" default="NOTEST" ver1="10.1.0.0" />
         <add name="Use ABV" type="byte">Use Alternate Bounding Volume.</add>
         <add name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1" />
     </niobject>
@@ -3256,7 +3256,16 @@
     <niobject name="bhkNiCollisionObject" abstract="true" inherit="NiCollisionObject" module="BSHavok">
         Abstract base class to merge NiCollisionObject with Bethesda Havok.
         <add name="Flags" type="bhkCOFlags" default="1">
-            Set to 1 for most objects, and to 41 for animated objects (ANIM_STATIC). Bits: 0=Active 2=Notify 3=Set Local 6=Reset.
+            OB-FO3: Add 0x28 (SET_LOCAL | USE_VEL) for ANIM_STATIC layer objects.
+            Post-FO3: Always add 0x80 (SYNC_ON_UPDATE).
+            <default type="bhkCollisionObject" value="0x81" />
+            <default type="bhkPCollisionObject" value="0x81" />
+            <default type="bhkSPCollisionObject" value="0x81" />
+            <default type="bhkBlendCollisionObject" value="0x89" />
+            <default type="bhkCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkSPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkBlendCollisionObject" value="0x9" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
         </add>
         <add name="Body" type="Ref" template="bhkWorldObject" />
     </niobject>
@@ -3283,8 +3292,48 @@
 
     <niobject name="NiAVObject" abstract="true" inherit="NiObjectNET" module="NiMain">
         Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.
-        <add name="Flags" type="uint" default="524302" vercond="#BSVER# #GT# 26">Basic flags for AV objects. For Bethesda streams above 26 only.</add>
-        <add name="Flags" type="ushort" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects; commonly 0x000C or 0x000A.</add>
+        <add name="Flags" type="uint" default="0x8000E" vercond="#BSVER# #GT# 26">
+            Basic flags for AV objects. For Bethesda streams above 26 only.
+            ALL: FO4 lacks the 0x80000 flag always. Skyrim lacks it sometimes.
+            BSTreeNode: 0x8080E (pre-FO4), 0x400E (FO4)
+            BSLeafAnimNode: 0x808000E (pre-FO4), 0x500E (FO4)
+            BSDamageStage, BSBlastNode: 0x8000F (pre-FO4), 0x2000000F (FO4)
+            <default type="NiNode" value="0xE" />
+            <default type="NiNode" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default type="NiLight" value="0xE" />
+            <default type="NiLight" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default type="BSMultiBoundNode" value="0xE" />
+            <default type="BSMultiBoundNode" value="0x8080E" versions="V20_2_0_7_FO3" />
+            <default type="BSTriShape" value="0xE" />
+            <default type="BSTriShape" value="0x8000E" versions="V20_2_0_7_SSE" />
+            <default type="BSSubIndexTriShape" value="0xE" />
+            <default type="BSSegmentedTriShape" value="0xE" />
+            <default type="BSSegmentedTriShape" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default type="BSMeshLODTriShape" value="0x100E" />
+            <default type="BSFadeNode" value="0x8000E" />
+            <default type="NiParticleSystem" value="0x8000E" />
+            <default type="BSMasterParticleSystem" value="0x8000E" />
+            <default type="NiParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
+            <default type="BSMasterParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
+            <default type="BSStripParticleSystem" value="0x8000E" />
+            <default type="NiTriShape" value="0x8000E" />
+            <default type="NiTriStrips" value="0x8000E" />
+            <default type="BSLeafAnimNode" value="0x808000E" />
+            <default type="BSLeafAnimNode" value="0x500E" versions="V20_2_0_7_FO4" />
+            <default type="BSTreeNode" value="0x8080E" />
+            <default type="BSTreeNode" value="0x400E" versions="V20_2_0_7_FO4" />
+            <default type="BSDebrisNode" value="0x8000F" />
+            <default type="BSBlastNode" value="0x8000F" />
+            <default type="BSDamageStage" value="0x8000F" />
+            <default type="BSOrderedNode" value="0x8200E" />
+            <default type="BSOrderedNode" value="0x200E" versions="V20_2_0_7_FO4" />
+            <default type="BSOrderedNode" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default type="BSBlastNode" value="0x2000000F" versions="V20_2_0_7_FO4" />
+            <default type="BSDamageStage" value="0x2000000F" versions="V20_2_0_7_FO4" />
+            <default type="BSLODTriShape" value="0x800000E" versions="V20_2_0_7_SSE" />
+            <default type="BSLODTriShape" value="0x808000E" versions="V20_2_0_7_SKY" />
+        </add>
+        <add name="Flags" type="ushort" ver1="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects.</add>
         <add name="Translation" type="Vector3">The translation vector.</add>
         <add name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</add>
         <add name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</add>
@@ -3326,10 +3375,54 @@
         <add name="Unknown" type="byte" arr1="6" />
     </niobject>
 
+    <enum name="NiPSysModifierOrder" storage="uint">
+        The set order for each derived class of NiPSysModifier.
+        Note: For Skyrim, BSPSysStripUpdateModifier is 8000 and for FO3 it is 2500.
+        <option value="0" name="ORDER_KILLOLDPARTICLES" />
+        <option value="1" name="ORDER_BSLOD" />
+        <option value="1000" name="ORDER_EMITTER" />
+        <option value="2000" name="ORDER_SPAWN" />
+        <option value="2500" name="ORDER_FO3_BSSTRIPUPDATE" />
+        <option value="3000" name="ORDER_GENERAL" />
+        <option value="4000" name="ORDER_FORCE" />
+        <option value="5000" name="ORDER_COLLIDER" />
+        <option value="6000" name="ORDER_POS_UPDATE" />
+        <option value="6500" name="ORDER_POSTPOS_UPDATE" />
+        <option value="7000" name="ORDER_BOUND_UPDATE" />
+        <option value="8000" name="ORDER_SK_BSSTRIPUPDATE" />
+    </enum>
+
     <niobject name="NiPSysModifier" abstract="true" inherit="NiObject" module="NiParticle">
         Abstract base class for all particle system modifiers.
         <add name="Name" type="string">Used to locate the modifier.</add>
-        <add name="Order" type="uint">Modifier ID in the particle modifier chain (always a multiple of 1000)?</add>
+        <add name="Order" type="NiPSysModifierOrder" default="ORDER_GENERAL">
+            Modifier's priority in the particle modifier chain.
+            <default type="NiPSysAgeDeathModifier" value="ORDER_KILLOLDPARTICLES" />
+            <default type="NiPSysMeshEmitter" value="ORDER_EMITTER" />
+            <default type="NiPSysVolumeEmitter" value="ORDER_EMITTER" />
+            <default type="NiPSysSpawnModifier" value="ORDER_EMITTER" />
+            <default type="NiPSysColorModifier" value="ORDER_GENERAL" />
+            <default type="NiPSysGrowFadeModifier" value="ORDER_GENERAL" />
+            <default type="NiPSysRotationModifier" value="ORDER_GENERAL" />
+            <default type="NiPSysBombModifier" value="ORDER_FORCE" />
+            <default type="NiPSysDragModifier" value="ORDER_FORCE" />
+            <default type="NiPSysFieldModifier" value="ORDER_FORCE" />
+            <default type="NiPSysGravityModifier" value="ORDER_FORCE" />
+            <default type="NiPSysColliderManager" value="ORDER_COLLIDER" />
+            <default type="NiPSysPositionModifier" value="ORDER_POS_UPDATE" />
+            <default type="NiPSysMeshUpdateModifier" value="ORDER_POSTPOS_UPDATE" />
+            <default type="NiPSysBoundUpdateModifier" value="ORDER_BOUND_UPDATE" />
+            <default type="BSPSysInheritVelocityModifier" value="ORDER_EMITTER" />
+            <default type="BSPSysScaleModifier" value="ORDER_GENERAL" />
+            <default type="BSPSysSimpleColorModifier" value="ORDER_GENERAL" />
+            <default type="BSPSysSubTexModifier" value="ORDER_GENERAL" />
+            <default type="BSParentVelocityModifier" value="ORDER_GENERAL" />
+            <default type="BSWindModifier" value="ORDER_FORCE" />
+            <default type="BSPSysRecycleBoundModifier" value="ORDER_POSTPOS_UPDATE" />
+            <default type="BSPSysLODModifier" value="ORDER_BSLOD" />
+            <default type="BSPSysStripUpdateModifier" value="ORDER_FO3_BSSTRIPUPDATE" versions="V20_2_0_7_FO3" />
+            <default type="BSPSysStripUpdateModifier" value="ORDER_SK_BSSTRIPUPDATE" versions="V20_2_0_7_SKY V20_2_0_7_SSE" />
+        </add>
         <add name="Target" type="Ptr" template="NiParticleSystem">NiParticleSystem parent of this modifier.</add>
         <add name="Active" type="bool" default="1">Whether or not the modifier is active.</add>
     </niobject>
@@ -3342,7 +3435,7 @@
         <add name="Declination Variation" type="float">Declination randomness / First axis.</add>
         <add name="Planar Angle" type="float">Planar Angle / Second axis.</add>
         <add name="Planar Angle Variation" type="float">Planar Angle randomness / Second axis .</add>
-        <add name="Initial Color" type="Color4">Defines color of a birthed particle.</add>
+        <add name="Initial Color" type="Color4" default="#VEC4_ONE#">Defines color of a birthed particle.</add>
         <add name="Initial Radius" type="float" default="1.0">Size of a birthed particle.</add>
         <add name="Radius Variation" type="float" ver1="10.4.0.1">Particle Radius randomness.</add>
         <add name="Life Span" type="float">Duration until a particle dies.</add>
@@ -3660,7 +3753,7 @@
 
             Note 2: set to either 0 or 0xFFFFFFFF for NifTexture compatibility.
         </add>
-        <add name="Vertex Colors" type="Color4" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
+        <add name="Vertex Colors" type="Color4" default="#VEC4_ONE#" arr1="Num Vertices" cond="Has Vertex Colors">The vertex colors.</add>
         <add name="Data Flags" type="NiGeometryDataFlags" ver2="4.2.2.0">The lower 6 bits of this field represent the number of UV texture sets. The rest is unused.</add>
         <add name="Has UV" type="bool" ver2="4.0.0.2">
             Do we have UV coordinates?
@@ -5056,9 +5149,9 @@
 
     <niobject name="NiTriStripsData" inherit="NiTriBasedGeomData" module="NiMain">
         Holds mesh data using strips of triangles.
-        <add name="Num Strips" type="ushort">Number of OpenGL triangle strips that are present.</add>
+        <add name="Num Strips" type="ushort" default="1" />
         <add name="Strip Lengths" type="ushort" arr1="Num Strips">The number of points in each triangle strip.</add>
-        <add name="Has Points" type="bool" ver1="10.0.1.3">Do we have strip point data?</add>
+        <add name="Has Points" type="bool" default="1" ver1="10.0.1.3">Do we have strip point data?</add>
         <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" ver2="10.0.1.2">The points in the Triangle strips.  Size is the sum of all entries in Strip Lengths.</add>
         <add name="Points" type="ushort" arr1="Num Strips" arr2="Strip Lengths" cond="Has Points" ver1="10.0.1.3">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</add>
     </niobject>
@@ -6560,25 +6653,25 @@
     <niobject name="bhkLiquidAction" inherit="bhkAction" module="BSHavok" versions="#FO3_AND_LATER#">
         Bethesda custom bhkUnaryAction. Does not hold a link to the body like other bhkUnaryActions however.
         <add name="Unused 01" type="byte" arr1="12" binary="true" />
-        <add name="Initial Stick Force" type="float" />
-        <add name="Stick Strength" type="float" />
-        <add name="Neighbor Distance" type="float" />
-        <add name="Neighbor Strength" type="float" />
+        <add name="Initial Stick Force" type="float" default="25.0" />
+        <add name="Stick Strength" type="float" default="100.0" />
+        <add name="Neighbor Distance" type="float" default="128.0" />
+        <add name="Neighbor Strength" type="float" default="500.0" />
     </niobject>
 
-    <enum name="BSCPCullingType" storage="uint" versions="#FO3_AND_LATER#">
+    <enum name="BSCPCullingType" storage="uint" prefix="BSCP" versions="#FO3_AND_LATER#">
         Culling modes for multi bound nodes.
-        <option value="0" name="BSCP_CULL_NORMAL">Normal</option>
-        <option value="1" name="BSCP_CULL_ALLPASS">All Pass</option>
-        <option value="2" name="BSCP_CULL_ALLFAIL">All Fail</option>
-        <option value="3" name="BSCP_CULL_IGNOREMULTIBOUNDS">Ignore Multi Bounds</option>
-        <option value="4" name="BSCP_CULL_FORCEMULTIBOUNDSNOUPDATE">Force Multi Bounds No Update</option>
+        <option value="0" name="CULL_NORMAL">Normal</option>
+        <option value="1" name="CULL_ALLPASS">All Pass</option>
+        <option value="2" name="CULL_ALLFAIL">All Fail</option>
+        <option value="3" name="CULL_IGNOREMULTIBOUNDS">Ignore Multi Bounds</option>
+        <option value="4" name="CULL_FORCEMULTIBOUNDSNOUPDATE">Force Multi Bounds No Update</option>
     </enum>
 
     <niobject name="BSMultiBoundNode" inherit="NiNode" module="BSMain" versions="#FO3_AND_LATER#">
         Bethesda-specific node.
         <add name="Multi Bound" type="Ref" template="BSMultiBound" />
-		<add name="Culling Mode" type="BSCPCullingType" vercond="#BS_GTE_SKY#" />
+		<add name="Culling Mode" type="BSCPCullingType" default="CULL_ALLPASS" vercond="#BS_GTE_SKY#" />
     </niobject>
 
     <niobject name="BSMultiBound" inherit="NiObject" module="BSMain" versions="#FO3_AND_LATER#">
@@ -6625,7 +6718,7 @@
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape" module="BSMain" versions="#FO3_AND_LATER#">
         Bethesda-specific AV object.
-        <add name="Num Segments" type="uint" >Number of segments in the square grid</add>
+        <add name="Num Segments" type="uint" default="16">Number of segments in the square grid</add>
         <add name="Segment" type="BSGeometrySegmentData" arr1="Num Segments">Configuration of each segment</add>
     </niobject>
 
@@ -7205,7 +7298,18 @@
     <niobject name="NiPSForce" abstract="true" inherit="NiObject" module="NiPSParticle" since="V20_5_0_0">
         Abstract base class for all particle forces.
         <add name="Name" type="string" />
-        <add name="Type" type="PSForceType" />
+        <add name="Type" type="PSForceType">
+            The force type is set by each derived class and cannot be changed.
+            <default type="NiPSBombForce" value="FORCE_BOMB" />
+            <default type="NiPSDragForce" value="FORCE_DRAG" />
+            <default type="NiPSAirFieldForce" value="FORCE_AIR_FIELD" />
+            <default type="NiPSDragFieldForce" value="FORCE_DRAG_FIELD" />
+            <default type="NiPSGravityFieldForce" value="FORCE_GRAVITY_FIELD" />
+            <default type="NiPSRadialFieldForce" value="FORCE_RADIAL_FIELD" />
+            <default type="NiPSTurbulenceFieldForce" value="FORCE_TURBULENCE_FIELD" />
+            <default type="NiPSVortexFieldForce" value="FORCE_VORTEX_FIELD" />
+            <default type="NiPSGravityForce" value="FORCE_GRAVITY" />
+        </add>
         <add name="Active" type="bool" />
     </niobject>
 
