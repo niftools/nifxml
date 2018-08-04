@@ -1542,6 +1542,12 @@
         <add name="Value" type="char" arr1="Length">The string itself.</add>
     </compound>
 
+    <compound name="SizedString16">
+        A string of given length, using a ushort to store string length.
+        <add name="Length" type="ushort">The string length.</add>
+        <add name="Value" type="char" arr1="Length">The string itself.</add>
+    </compound>
+
     <compound name="string">
         A string type.
         <add name="String" type="SizedString" ver2="20.0.0.5">The normal string.</add>
@@ -1760,8 +1766,8 @@
         <add name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</add>
     </compound>
 
-    <compound name="ShortString">
-        Another string format, for short strings.  Specific to Bethesda-specific header tags.
+    <compound name="ExportString">
+        Specific to Bethesda-specific header export strings.
         <add name="Length" type="byte">The string length.</add>
         <add name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</add>
     </compound>
@@ -1795,7 +1801,7 @@
         For Controller ID, NiInterpController::GetCtlrID() virtual function returns a string formatted specifically for the derived type.
         For Interpolator ID, NiInterpController::GetInterpolatorID() virtual function returns a string formatted specifically for the derived type.
         The string formats are documented on the relevant niobject blocks.
-        <add name="Target Name" type="string" ver2="10.1.0.103">Name of a controllable object in another NIF file.</add>
+        <add name="Target Name" type="SizedString" ver2="10.1.0.103">Name of a controllable object in another NIF file.</add>
         <!-- NiControllerSequence::InterpArrayItem -->
         <add name="Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.106" />
         <add name="Controller" type="Ref" template="NiTimeController" ver2="20.5.0.0" />
@@ -1826,10 +1832,10 @@
     <compound name="BSStreamHeader" versions="#BETHESDA#">
     	Information about how the file was exported
         <add name="BS Version" type="ulittle32" />
-        <add name="Author" type="ShortString" />
-        <add name="Process Script" type="ShortString" />
-        <add name="Export Script" type="ShortString" />
-        <add name="Max Filepath" type="ShortString" cond="BS Version == 130" />
+        <add name="Author" type="ExportString" />
+        <add name="Process Script" type="ExportString" />
+        <add name="Export Script" type="ExportString" />
+        <add name="Max Filepath" type="ExportString" cond="BS Version == 130" />
     </compound>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
@@ -2454,7 +2460,7 @@
     <compound name="BoneLOD" size="8" versions="#SKY_AND_LATER#">
         Stores Bone Level of Detail info in a BSBoneLODExtraData
         <add name="Distance" type="uint" />
-        <add name="Bone Name" type="string" />
+        <add name="Bone Name" type="NiFixedString" />
     </compound>
 
     <compound name="bhkMeshMaterial" size="8" versions="#SKY_AND_LATER#">
@@ -2542,7 +2548,7 @@
 
     <niobject name="Ni3dsAnimationNode" inherit="NiObject" module="NiLegacy" versions="V2_3">
         Unknown. Only found in 2.3 nifs.
-        <add name="Name" type="string">Name of this object.</add>
+        <add name="Name" type="SizedString">Name of this object.</add>
         <add name="Has Data" type="bool" />
         <add name="Unknown Floats 1" type="float" arr1="21" cond="Has Data" />
         <add name="Unknown Short" type="ushort" cond="Has Data" />
@@ -3203,9 +3209,9 @@
     <compound name="LegacyExtraData" until="V2_3">
         Extra Data for pre-3.0 versions
         <add name="Has Extra Data" type="bool" />
-        <add name="Extra Prop Name" cond="Has Extra Data" type="string" />
+        <add name="Extra Prop Name" cond="Has Extra Data" type="SizedString" />
         <add name="Extra Ref ID" cond="Has Extra Data" type="uint" />
-        <add name="Extra String" cond="Has Extra Data" type="string" />
+        <add name="Extra String" cond="Has Extra Data" type="SizedString" />
         <add name="Unknown Byte 1" type="byte" />
     </compound>
 
@@ -3692,7 +3698,7 @@
         <add name="Shader Name" type="string" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">The shader name.</add>
         <add name="Shader Extra Data" type="int" cond="Has Shader" ver1="10.0.1.0" ver2="20.1.0.3">Extra data associated with the shader. A value of -1 means the shader is the default implementation.</add>
         <add name="Num Materials" type="uint" ver1="20.2.0.5" />
-        <add name="Material Name" type="string" arr1="Num Materials" ver1="20.2.0.5">The name of the material.</add>
+        <add name="Material Name" type="NiFixedString" arr1="Num Materials" ver1="20.2.0.5">The name of the material.</add>
         <add name="Material Extra Data" type="int" arr1="Num Materials" ver1="20.2.0.5">Extra data associated with the material. A value of -1 means the material is the default implementation.</add>
         <add name="Active Material" type="int" default="-1" ver1="20.2.0.5">The index of the currently active material.</add>
         <add name="Cyanide Unknown" type="byte" default="255" ver1="10.2.0.0" ver2="10.2.0.0" vercond="#USER# == 1">Cyanide extension (Blood Bowl).</add>
@@ -5503,7 +5509,7 @@
         <add name="Dests" type="Ref" template="NiPhysXDest" arr1="Num Dests" />
         <add name="Num Modified Meshes" type="uint" ver1="20.4.0.0" />
         <add name="Modified Meshes" type="Ref" template="NiMesh" arr1="Num Modified Meshes" ver1="20.4.0.0" />
-        <add name="Temp Name" type="string" ver1="30.1.0.2" ver2="30.2.0.2" />
+        <add name="Temp Name" type="NiFixedString" ver1="30.1.0.2" ver2="30.2.0.2" />
         <add name="Keep Meshes" type="bool" />
         <add name="Snapshot" type="Ref" template="NiPhysXPropDesc" />
     </niobject>
@@ -5525,7 +5531,7 @@
 
     <niobject name="NiPhysXActorDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxActor objects.
-        <add name="Actor Name" type="string" />
+        <add name="Actor Name" type="NiFixedString" />
         <add name="Num Poses" type="uint" />
         <add name="Poses" type="Matrix34" arr1="Num Poses" />
         <add name="Body Desc" type="Ref" template="NiPhysXBodyDesc" />
@@ -5630,7 +5636,7 @@
     <niobject name="NiPhysXJointDesc" abstract="true" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         A PhysX Joint abstract base class.
         <add name="Joint Type" type="NxJointType" />
-        <add name="Joint Name" type="string" />
+        <add name="Joint Name" type="NiFixedString" />
         <add name="Actors" type="NiPhysXJointActor" arr1="2" />
         <add name="Max Force" type="float" />
         <add name="Max Torque" type="float" />
@@ -5729,7 +5735,7 @@
         <add name="Density" type="float" default="1.0" />
         <add name="Mass" type="float" default="-1.0" />
         <add name="Skin Width" type="float" default="-1.0" />
-        <add name="Shape Name" type="string" />
+        <add name="Shape Name" type="NiFixedString" />
         <add name="Non Interacting Compartment Types" type="uint" ver1="20.4.0.0" />
         <add name="Collision Bits" type="uint" arr1="4" />
         <add name="Plane" type="NxPlane" cond="Shape Type == 0" />
@@ -5742,7 +5748,7 @@
     <niobject name="NiPhysXMeshDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         Holds mesh data for streaming.
         <add name="Is Convex" type="bool" ver2="20.3.0.4" />
-        <add name="Mesh Name" type="string" />
+        <add name="Mesh Name" type="NiFixedString" />
         <add name="Mesh Data" type="ByteArray" />
         <add name="Back Compat Vertex Map Size" type="ushort" ver1="20.3.0.5" ver2="30.2.0.2" />
         <add name="Back Compat Vertex Map" type="ushort" arr1="Back Compat Vertex Map Size" ver1="20.3.0.5" ver2="30.2.0.2" />
@@ -5837,7 +5843,7 @@
 
     <niobject name="NiPhysXClothDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxClothDesc objects.
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Mesh" type="Ref" template="NiPhysXMeshDesc" />
         <add name="Pose" type="Matrix34" ver2="20.3.0.9" />
         <add name="Thickness" type="float" default="0.01" />
@@ -6376,7 +6382,7 @@
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float" default="1.0">Multiplied emissive colors</add>
-        <add name="Wet Material" type="string" vercond="#BS_FO4#" />
+        <add name="Wet Material" type="NiFixedString" vercond="#BS_FO4#" />
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
         <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
@@ -6616,7 +6622,7 @@
 
     <compound name="BSTreadTransform" size="68" versions="#FO3_AND_LATER#">
         Bethesda-specific compound.
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Transform 1" type="NiQuatTransform" />
         <add name="Transform 2" type="NiQuatTransform" />
     </compound>
@@ -6809,7 +6815,7 @@
         Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.
         Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.
         <add name="Num Bones" type="uint" />
-        <add name="Bones" type="string" arr1="Num Bones" />
+        <add name="Bones" type="NiFixedString" arr1="Num Bones" />
         <add name="Num Poses" type="uint" />
         <add name="Poses" type="BonePose" arr1="Num Poses" />
     </niobject>
@@ -6822,7 +6828,7 @@
 
     <niobject name="bhkRagdollTemplateData" inherit="NiObject" module="BSHavok" versions="#FO3_AND_LATER#">
         Data for bhkRagdollTemplate
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Mass" type="float" default="9.0" />
         <add name="Restitution" type="float" default="0.8" />
         <add name="Friction" type="float" default="0.3" />
@@ -6946,7 +6952,7 @@
     </niobject>
 
     <compound name="SemanticData" size="8" since="V20_5_0_0">
-        <add name="Name" type="string">
+        <add name="Name" type="NiFixedString">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
             MORPH_POSITION, BINORMAL_BP, TANGENT_BP).
@@ -7062,7 +7068,7 @@
         <add name="Num Interpolators" type="uint" />
         <add name="Interpolators" type="Ref" template="NiInterpolator" arr1="Num Interpolators" />
         <add name="Num Targets" type="uint" />
-        <add name="Target Names" type="string" arr1="Num Targets" />
+        <add name="Target Names" type="NiFixedString" arr1="Num Targets" />
     </niobject>
 
     <compound name="ElementReference" size="12" since="V20_5_0_0">
@@ -7297,7 +7303,7 @@
 
     <niobject name="NiPSForce" abstract="true" inherit="NiObject" module="NiPSParticle" since="V20_5_0_0">
         Abstract base class for all particle forces.
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Type" type="PSForceType">
             The force type is set by each derived class and cannot be changed.
             <default type="NiPSBombForce" value="FORCE_BOMB" />
@@ -7394,7 +7400,7 @@
 
     <niobject name="NiPSEmitter" abstract="true" inherit="NiObject" module="NiPSParticle" since="V20_5_0_0">
         Abstract base class for all particle emitters.
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Speed" type="float" />
         <add name="Speed Var" type="float" />
         <add name="Speed Flip Ratio" type="float" ver1="20.6.1.0" />
@@ -7469,7 +7475,7 @@
 
     <niobject name="NiPSEmitterCtlr" abstract="true" inherit="NiSingleInterpController" module="NiPSParticle" since="V20_5_0_0">
         Abstract base class for all particle emitter time controllers.
-        <add name="Emitter Name" type="string" />
+        <add name="Emitter Name" type="NiFixedString" />
     </niobject>
 
     <niobject name="NiPSEmitterFloatCtlr" abstract="true" inherit="NiPSEmitterCtlr" module="NiPSParticle" since="V20_5_0_0">
@@ -7483,7 +7489,7 @@
 
     <niobject name="NiPSForceCtlr" abstract="true" inherit="NiSingleInterpController" module="NiPSParticle" since="V20_5_0_0">
         Abstract base class for all particle force time controllers.
-        <add name="Force Name" type="string" />
+        <add name="Force Name" type="NiFixedString" />
     </niobject>
 
     <niobject name="NiPSForceBoolCtlr" abstract="true" inherit="NiPSForceCtlr" module="NiPSParticle" since="V20_5_0_0">
@@ -7650,11 +7656,11 @@
     <!-- NiEvaluator -->
 
     <niobject name="NiEvaluator" abstract="true" inherit="NiObject" module="NiAnimation" since="V20_5_0_0">
-        <add name="Node Name" type="string">The name of the animated NiAVObject.</add>
-        <add name="Property Type" type="string">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
-        <add name="Controller Type" type="string">The RTTI type of the NiTimeController.</add>
-        <add name="Controller ID" type="string">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
-        <add name="Interpolator ID" type="string">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
+        <add name="Node Name" type="NiFixedString">The name of the animated NiAVObject.</add>
+        <add name="Property Type" type="NiFixedString">The RTTI type of the NiProperty the controller is attached to, if applicable.</add>
+        <add name="Controller Type" type="NiFixedString">The RTTI type of the NiTimeController.</add>
+        <add name="Controller ID" type="NiFixedString">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</add>
+        <add name="Interpolator ID" type="NiFixedString">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</add>
         <add name="Channel Types" type="byte" arr1="4">
             Channel Indices are BASE/POS = 0, ROT = 1, SCALE = 2, FLAG = 3
             Channel Types are:
@@ -7770,8 +7776,8 @@
 
     <niobject name="NiLookAtEvaluator" inherit="NiEvaluator" module="NiAnimation" since="V20_5_0_0">
         <add name="Flags" type="LookAtFlags" />
-        <add name="Look At Name" type="string" />
-        <add name="Driven Name" type="string" />
+        <add name="Look At Name" type="NiFixedString" />
+        <add name="Driven Name" type="NiFixedString" />
         <add name="Interpolator: Translation" type="Ref" template="NiPoint3Interpolator" />
         <add name="Interpolator: Roll" type="Ref" template="NiFloatInterpolator" />
         <add name="Interpolator: Scale" type="Ref" template="NiFloatInterpolator" />
@@ -7792,7 +7798,7 @@
         For 20.5.0.0, "NiSequenceData" is an alias for "NiControllerSequence" and this is not handled in nifxml.
         This was not found in any 20.5.0.0 KFs available and they instead use NiControllerSequence directly.
         After 20.5.0.1, Controlled Blocks are no longer used and instead the sequences uses NiEvaluator.
-        <add name="Name" type="string" />
+        <add name="Name" type="NiFixedString" />
         <add name="Num Controlled Blocks" type="uint" ver2="20.5.0.1" />
         <add name="Array Grow By" type="uint" ver2="20.5.0.1" />
         <add name="Controlled Blocks" type="ControlledBlock" arr1="Num Controlled Blocks" ver2="20.5.0.1" />
@@ -7802,7 +7808,7 @@
         <add name="Duration" type="float" />
         <add name="Cycle Type" type="CycleType" />
         <add name="Frequency" type="float" default="1.0" />
-        <add name="Accum Root Name" type="string">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
+        <add name="Accum Root Name" type="NiFixedString">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</add>
         <add name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" />
     </niobject>
 
@@ -7939,7 +7945,7 @@
 	
 	<niobject name="BSBehaviorGraphExtraData" inherit="NiExtraData" module="BSMain" versions="#SKY_AND_LATER#">
     Links a nif with a Havok Behavior .hkx animation file
-		<add name="Behaviour Graph File" type="string">Name of the hkx file.</add>
+		<add name="Behaviour Graph File" type="NiFixedString">Name of the hkx file.</add>
 		<add name="Controls Base Skeleton" type="bool">Unknown, has to do with blending appended bones onto an actor.</add>
 	</niobject>
 
@@ -8014,10 +8020,8 @@
         <add name="Num Segments" type="uint" />
         <add name="Total Segments" type="uint" />
         <add name="Segment Starts" type="uint" arr1="Num Segments" />
-        <add name="Per Segment Data" type="BSGeometryPerSegmentSharedData" arr1="Total Segments" />
-        <!-- TODO: Actual ShortString type (current "ShortString" is actually a byte) -->
-        <add name="SSF Length" type="ushort" />
-        <add name="SSF File" type="byte" arr1="SSF Length" />
+        <add name="Per Segment Data" type="BSGeometryPerSegmentSharedData" arr1="Total Segments" />>
+        <add name="SSF File" type="SizedString16" />
     </compound>
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape" module="BSMain" versions="#SSE# #FO4#">
