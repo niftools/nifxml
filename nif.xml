@@ -161,7 +161,28 @@
         <default token="#INV_VEC3#" string="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
         <default token="#INV_VEC4#" string="-3.402823466e+38, -3.402823466e+38, -3.402823466e+38, -3.402823466e+38" />
     </token>
-    
+
+    <token name="range" attrs="range">
+        Commonly used range values.
+        <range token="#F_POS#" string="0.0:" />
+        <range token="#F_NEG#" string=":-0.0" />
+        <range token="#F_PNZ#" string="0.000001:" />
+        <range token="#F_NNZ#" string=":-0.000001" />
+        <range token="#F_NRM#" string="-1.0:1.0" />
+        <range token="#F_DEG#" string="-360.0:360.0" />
+        <range token="#F0_1#" string="0.0:1.0" />
+        <range token="#F0_PI#" string="0.0:3.1415926" />
+        <range token="#F0_10#" string="0.0:10.0" />
+        <range token="#F0_100#" string="0.0:100.0" />
+        <range token="#F0_999#" string="0.0:999.0" />
+        <range token="#F0_1000#" string="0.0:1000.0" />
+        <range token="#F0_10000#" string="0.0:10000.0" />
+        <range token="#FPM_1#" string="-1.0:1.0" />
+        <range token="#FPM_PI#" string="-3.1415926:3.1415926" />
+        <range token="#FPM_10#" string="-10.0:10.0" />
+        <range token="#FPM_100#" string="-100.0:100.0" />
+    </token>
+
     <token name="global" attrs="vercond">
         Global Tokens.
         NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
@@ -1787,7 +1808,7 @@
     <compound name="BoneVertData" size="6">
         NiSkinData::BoneVertData. A vertex and its weight.
         <add name="Index" type="ushort">The vertex index, in the mesh.</add>
-        <add name="Weight" type="float">The vertex weight - between 0.0 and 1.0</add>
+        <add name="Weight" type="float" range="#F0_1#">The vertex weight - between 0.0 and 1.0</add>
     </compound>
 
     <compound name="AVObject">
@@ -1899,14 +1920,14 @@
 
     <compound name="TexCoord" size="8">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
-        <add name="u" type="float">First coordinate.</add>
-        <add name="v" type="float">Second coordinate.</add>
+        <add name="u" type="float" range="#FPM_100#">First coordinate.</add>
+        <add name="v" type="float" range="#FPM_100#">Second coordinate.</add>
     </compound>
     
     <compound name="HalfTexCoord" size="4">
         Texture coordinates (u,v).
-        <add name="u" type="hfloat">First coordinate.</add>
-        <add name="v" type="hfloat">Second coordinate.</add>
+        <add name="u" type="hfloat" range="#FPM_10#">First coordinate.</add>
+        <add name="v" type="hfloat" range="#FPM_10#">Second coordinate.</add>
     </compound>
     
     <enum name="TransformMethod" storage="uint" prefix="TM">
@@ -2990,7 +3011,7 @@
             Example: 10 spheres colliding with 10 spheres will result in 100 collision checks.
             Therefore shapes like bhkCapsuleShape or bhkConvexVerticesShape should be preferred.
         <add name="Shape Property" type="bhkWorldObjCInfoProperty" />
-        <add name="Num Spheres" type="uint" calc="(#LEN[Spheres]# #LT# 8) #THEN# #LEN[Spheres]# #ELSE# 8" />
+        <add name="Num Spheres" type="uint" default="2" range="1:8" />
         <add name="Spheres" type="NiBound" arr1="Num Spheres">The spheres which make up the multi sphere shape. Max of 8.</add>
     </niobject>
 
@@ -3028,7 +3049,7 @@
 
         Shapes collected in a bhkListShape may not have the correct collision sound/FX due to HavokMaterial issues.
         Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a separate collision nodes without a list shape for those.
-        <add name="Num Sub Shapes" type="uint" default="1" calc="(#LEN[Sub Shapes]# #LT# 256) #THEN# #LEN[Sub Shapes]# #ELSE# 256" />
+        <add name="Num Sub Shapes" type="uint" default="1" range="1:256" />
         <add name="Sub Shapes" type="Ref" template="bhkShape" arr1="Num Sub Shapes">List of shapes. Max of 256.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Child Shape Property" type="bhkWorldObjCInfoProperty" />
@@ -4861,12 +4882,12 @@
     <niobject name="NiPSysAirFieldModifier" inherit="NiPSysFieldModifier" module="NiParticle">
         Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.
         <add name="Direction" type="Vector3" default="#NEG_X_AXIS#">Direction of the particle velocity</add>
-        <add name="Air Friction" type="float">How quickly particles will accelerate to the magnitude of the air field.</add>
-        <add name="Inherit Velocity" type="float">How much of the air field velocity will be added to the particle velocity.</add>
+        <add name="Air Friction" type="float" range="#F0_1#">How quickly particles will accelerate to the magnitude of the air field.</add>
+        <add name="Inherit Velocity" type="float" range="#F0_1#">How much of the air field velocity will be added to the particle velocity.</add>
         <add name="Inherit Rotation" type="bool" />
         <add name="Component Only" type="bool" />
         <add name="Enable Spread" type="bool" />
-        <add name="Spread" type="float">The angle of the air field cone if Enable Spread is true.</add>
+        <add name="Spread" type="float" range="#F0_1#">The angle of the air field cone if Enable Spread is true.</add>
     </niobject>
     
     <niobject name="NiPSysTrailEmitter" inherit="NiPSysEmitter" module="NiCustom">
@@ -5005,9 +5026,9 @@
 
     <niobject name="NiSpotLight" inherit="NiPointLight" module="NiMain">
         A spot.
-        <add name="Outer Spot Angle" type="float" />
-        <add name="Inner Spot Angle" type="float" ver1="20.2.0.5" />
-        <add name="Exponent" type="float" default="1.0">Describes the distribution of light. (see: glLight)</add>
+        <add name="Outer Spot Angle" type="float" range="#F_DEG#" />
+        <add name="Inner Spot Angle" type="float" range="#F_DEG#" ver1="20.2.0.5" />
+        <add name="Exponent" type="float" default="1.0">Describes the distribution of light.</add>
     </niobject>
 
     <niobject name="NiStencilProperty" inherit="NiProperty" module="NiMain">
@@ -5147,7 +5168,7 @@
 
     <niobject name="NiTriShapeData" inherit="NiTriBasedGeomData" module="NiMain">
         Holds mesh data using a list of singular triangles.
-        <add name="Num Triangle Points" type="uint">Num Triangles times 3.</add>
+        <add name="Num Triangle Points" type="uint" range="0:196605">Num Triangles times 3.</add>
         <add name="Has Triangles" type="bool" ver1="10.1.0.0">Do we have triangle data?</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" ver2="10.0.1.2">Triangle data.</add>
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Has Triangles" ver1="10.0.1.3">Triangle face data.</add>
@@ -6087,7 +6108,7 @@
         <add name="Shader Type" type="BSShaderType" default="SHADER_DEFAULT" vercond="#NI_BS_LTE_FO3#" />
         <add name="Shader Flags" type="BSShaderFlags" default="0x82000000" vercond="#NI_BS_LTE_FO3#" />
         <add name="Shader Flags 2" type="BSShaderFlags2" default="1" vercond="#NI_BS_LTE_FO3#" />
-        <add name="Environment Map Scale" type="float" default="1.0" vercond="#NI_BS_LTE_FO3#">Scales the intensity of the environment/cube map.</add>
+        <add name="Environment Map Scale" type="float" default="1.0" range="#F0_10#" vercond="#NI_BS_LTE_FO3#">Scales the intensity of the environment/cube map.</add>
     </niobject>
 
     <niobject name="BSShaderLightingProperty" abstract="true" inherit="BSShaderProperty" module="BSMain" versions="#FO3#">
@@ -6098,19 +6119,19 @@
     <niobject name="BSShaderNoLightingProperty" inherit="BSShaderLightingProperty" module="BSMain" versions="#FO3#">
         Bethesda-specific property.
         <add name="File Name" type="SizedString">The texture glow map.</add>
-        <add name="Falloff Start Angle" type="float" default="1.0" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="0.0" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float" default="1.0" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float" default="0.0" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at end angle</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" range="#F_NRM#" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="0.0" range="#F_NRM#" vercond="#BSVER# #GT# 26">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" default="1.0" range="#F0_1#" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" default="0.0" range="#F0_1#" vercond="#BSVER# #GT# 26">Alpha falloff multiplier at end angle</add>
     </niobject>
 
     <niobject name="BSShaderPPLightingProperty" inherit="BSShaderLightingProperty" module="BSMain" versions="#FO3#">
         Bethesda-specific property.
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set</add>
-        <add name="Refraction Strength" type="float" default="0.0" vercond="#BSVER# #GT# 14">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
-        <add name="Refraction Fire Period" type="int" default="0" vercond="#BSVER# #GT# 14">Rate of texture movement for refraction shader.</add>
-        <add name="Parallax Max Passes" type="float" default="4.0" vercond="#BSVER# #GT# 24">The number of passes the parallax shader can apply.</add>
-        <add name="Parallax Scale" type="float" default="1.0" vercond="#BSVER# #GT# 24">The strength of the parallax.</add>
+        <add name="Refraction Strength" type="float" default="0.0" range="#F0_1#" vercond="#BSVER# #GT# 14">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
+        <add name="Refraction Fire Period" type="int" default="0" range="#FPM_1000#" vercond="#BSVER# #GT# 14">Rate of texture movement for refraction shader.</add>
+        <add name="Parallax Max Passes" type="float" default="4.0" range="1.0:320.0" vercond="#BSVER# #GT# 24">The number of passes the parallax shader can apply.</add>
+        <add name="Parallax Scale" type="float" default="1.0" range="#F0_10#" vercond="#BSVER# #GT# 24">The strength of the parallax.</add>
         <!-- TODO: Find where this could have even come from as > 34 doesn't exist for this block. -->
         <add name="Emissive Color" type="Color4" vercond="#BS_GT_FO3#">Glow color and alpha</add>
     </niobject>
@@ -6155,14 +6176,14 @@
         <add name="Interpolator 7: Length Var" type="Ref" template="NiInterpolator">References length variation interpolator.</add>
         <add name="Interpolator 8: Width" type="Ref" template="NiInterpolator">References width interpolator.</add>
         <add name="Interpolator 9: Arc Offset" type="Ref" template="NiInterpolator">References interpolator for amplitude control. 0=straight, 50=wide</add>
-        <add name="Subdivisions" type="ushort" default="6" />
-        <add name="Num Branches" type="ushort" default="1" />
-        <add name="Num Branches Variation" type="ushort" default="1" />
-        <add name="Length" type="float" default="512.0">How far lightning will stretch to.</add>
-        <add name="Length Variation" type="float" default="30.0">How far lightning variation will stretch to.</add>
-        <add name="Width" type="float" default="16.0">How wide the bolt will be.</add>
-        <add name="Child Width Mult" type="float" default="0.75">Influences forking behavior with a multiplier.</add>
-        <add name="Arc Offset" type="float" default="20.0" />
+        <add name="Subdivisions" type="ushort" default="6" range="0:12" />
+        <add name="Num Branches" type="ushort" default="1" range="0:10" />
+        <add name="Num Branches Variation" type="ushort" default="1" range="0:10" />
+        <add name="Length" type="float" default="512.0" range="#F0_10000#">How far lightning will stretch to.</add>
+        <add name="Length Variation" type="float" default="30.0" range="#F0_10000#">How far lightning variation will stretch to.</add>
+        <add name="Width" type="float" default="16.0" range="#F0_100#">How wide the bolt will be.</add>
+        <add name="Child Width Mult" type="float" default="0.75" range="#F0_10#">Influences forking behavior with a multiplier.</add>
+        <add name="Arc Offset" type="float" default="20.0" range="#F0_1000#" />
         <add name="Fade Main Bolt" type="bool" default="1" />
         <add name="Fade Child Bolts" type="bool" default="1" />
         <add name="Animate Arc Offset" type="bool" default="1" />
@@ -6387,42 +6408,42 @@
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">Glow color and alpha</add>
-        <add name="Emissive Multiple" type="float" default="1.0">Multiplied emissive colors</add>
+        <add name="Emissive Multiple" type="float" default="1.0" range="#F0_10#">Multiplied emissive colors</add>
         <add name="Wet Material" type="NiFixedString" vercond="#BS_FO4#" />
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
-        <add name="Alpha" type="float" default="1.0">The material opacity (1=non-transparent).</add>
-        <add name="Refraction Strength" type="float">The amount of distortion. **Not based on physically accurate refractive index** (0=none) (0-1)</add>
-        <add name="Glossiness" type="float" default="80" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness (0-999).</add>
-        <add name="Smoothness" type="float" default="1.0" vercond="#BS_FO4#">The base roughness (0.0-1.0), multiplied by the smoothness map.</add>
+        <add name="Alpha" type="float" default="1.0" range="0.0:128.0">The material opacity (1=opaque). Greater than 1.0 is used to affect alpha falloff i.e. staying opaque longer based on vertex alpha and alpha mask.</add>
+        <add name="Refraction Strength" type="float" range="#F0_1#">The amount of distortion. **Not based on physically accurate refractive index** (0=none)</add>
+        <add name="Glossiness" type="float" default="80" range="#F0_999#" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness.</add>
+        <add name="Smoothness" type="float" default="1.0" range="#F0_1#" vercond="#BS_FO4#">The base roughness, multiplied by the smoothness map.</add>
         <add name="Specular Color" type="Color3" default="#VEC3_ONE#">Adds a colored highlight.</add>
-        <add name="Specular Strength" type="float" default="1.0">Brightness of specular highlight. (0=not visible) (0-999)</add>
-        <add name="Lighting Effect 1" type="float" default="0.3" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Lighting Effect 2" type="float" default="2.0" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
-        <add name="Subsurface Rolloff" type="float" default="0.0" vercond="#BS_FO4#" />
+        <add name="Specular Strength" type="float" default="1.0" range="#F0_10#">Brightness of specular highlight. (0=not visible)</add>
+        <add name="Lighting Effect 1" type="float" default="0.3" range="#F0_10#" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Lighting Effect 2" type="float" default="2.0" range="#F0_1000#" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
+        <add name="Subsurface Rolloff" type="float" default="0.0" range="#F0_10#" vercond="#BS_FO4#" />
         <add name="Rimlight Power" type="float" default="#FLT_MAX#" vercond="#BS_FO4#" />
-        <add name="Backlight Power" type="float" cond="Rimlight Power == 0x7F7FFFFF" vercond="#BS_FO4#" />
-        <add name="Grayscale to Palette Scale" type="float" default="1.0" vercond="#BS_FO4#" />
-        <add name="Fresnel Power" type="float" default="5.0" vercond="#BS_FO4#" />
+        <add name="Backlight Power" type="float" range="#F0_1000#" cond="Rimlight Power == 0x7F7FFFFF" vercond="#BS_FO4#" />
+        <add name="Grayscale to Palette Scale" type="float" default="1.0" range="#F0_1#" vercond="#BS_FO4#" />
+        <add name="Fresnel Power" type="float" default="5.0" range="#F_PNZ#" vercond="#BS_FO4#" />
         <add name="Wetness Spec Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Spec Power" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Min Var" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Env Map Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Fresnel Power" type="float" default="-1.0" vercond="#BS_FO4#" />
         <add name="Wetness Metalness" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Environment Map Scale" type="float" default="1.0" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map. (0-1)</add>
+        <add name="Environment Map Scale" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map.</add>
         <add name="Use Screen Space Reflections" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
         <add name="Wetness Control: Use SSR" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
         <add name="Skin Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
         <add name="Skin Tint Alpha" type="float" default="1.0" cond="Skyrim Shader Type == 5" vercond="#BS_FO4#" />
         <add name="Hair Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
-        <add name="Max Passes" type="float" cond="Skyrim Shader Type == 7">Max Passes</add>
-        <add name="Scale" type="float" cond="Skyrim Shader Type == 7">Scale</add>
-        <add name="Parallax Inner Layer Thickness" type="float" default="5.0" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
-        <add name="Parallax Refraction Scale" type="float" default="0.25" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
+        <add name="Max Passes" type="float" default="4.0" range="1.0:320.0" cond="Skyrim Shader Type == 7" />
+        <add name="Scale" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 7" />
+        <add name="Parallax Inner Layer Thickness" type="float" default="5.0" range="5.0:500.0" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
+        <add name="Parallax Refraction Scale" type="float" default="0.25" range="#F0_1#" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
         <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
-        <add name="Parallax Envmap Strength" type="float" default="1.0" cond="Skyrim Shader Type == 11">How strong the environment/cube map is. (0-??)</add>
+        <add name="Parallax Envmap Strength" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 11">How strong the environment/cube map is.</add>
         <add name="Sparkle Parameters" type="Vector4" cond="Skyrim Shader Type == 14">CK lists "snow material" when used.</add>
-        <add name="Eye Cubemap Scale" type="float" default="1.3" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
+        <add name="Eye Cubemap Scale" type="float" default="1.3" range="#F0_10#" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
         <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
         <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
@@ -6439,20 +6460,20 @@
         <!-- TODO: Next 4 bytes requires bitfield, read as single int -->
         <add name="Texture Clamp Mode" type="byte" default="3">How to handle texture borders.</add>
         <add name="Lighting Influence" type="byte" default="255" />
-        <add name="Env Map Min LOD" type="byte" />
+        <add name="Env Map Min LOD" type="byte" range="0:16" />
         <add name="Unused Byte" type="byte" />
-        <add name="Falloff Start Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
-        <add name="Falloff Stop Angle" type="float" default="1.0">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
-        <add name="Falloff Start Opacity" type="float">Alpha falloff multiplier at start angle</add>
-        <add name="Falloff Stop Opacity" type="float">Alpha falloff multiplier at end angle</add>
+        <add name="Falloff Start Angle" type="float" default="1.0" range="#F_NRM#">At this cosine of angle falloff will be equal to Falloff Start Opacity</add>
+        <add name="Falloff Stop Angle" type="float" default="1.0" range="#F_NRM#">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
+        <add name="Falloff Start Opacity" type="float" range="#F0_1#">Alpha falloff multiplier at start angle</add>
+        <add name="Falloff Stop Opacity" type="float" range="#F0_1#">Alpha falloff multiplier at end angle</add>
         <add name="Emissive Color" type="Color4" default="#VEC4_ONE#">Emissive color</add>
-        <add name="Emissive Multiple" type="float" default="1.0">Multiplier for Emissive Color (RGB part)</add>
-        <add name="Soft Falloff Depth" type="float" default="100.0" />
+        <add name="Emissive Multiple" type="float" default="1.0" range="0.0:360.0">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Soft Falloff Depth" type="float" default="100.0" range="0.0:9999.0" />
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
         <add name="Env Map Texture" type="SizedString" vercond="#BS_FO4#" />
         <add name="Normal Texture" type="SizedString" vercond="#BS_FO4#" />
         <add name="Env Mask Texture" type="SizedString" vercond="#BS_FO4#" />
-        <add name="Environment Map Scale" type="float" default="1.0" vercond="#BS_FO4#" />
+        <add name="Environment Map Scale" type="float" default="1.0" range="0.01:20.0" vercond="#BS_FO4#" />
     </niobject>
     
     <bitflags name="WaterShaderPropertyFlags" storage="uint" prefix="BSWSP" versions="#SKY_AND_LATER#">
@@ -6506,12 +6527,12 @@
 
     <niobject name="BSPSysSimpleColorModifier" inherit="NiPSysModifier" module="BSParticle" versions="#FO3_AND_LATER#">
         Bethesda-specific particle modifier.
-        <add name="Fade In Percent" type="float" default="0.1" />
-        <add name="Fade out Percent" type="float" default="0.9" />
-        <add name="Color 1 End Percent" type="float" />
-        <add name="Color 1 Start Percent" type="float" />
-        <add name="Color 2 End Percent" type="float" />
-        <add name="Color 2 Start Percent" type="float" default="1.0" />
+        <add name="Fade In Percent" type="float" default="0.1" range="#F0_1#" />
+        <add name="Fade Out Percent" type="float" default="0.9" range="#F0_1#" />
+        <add name="Color 1 End Percent" type="float" range="#F0_1#" />
+        <add name="Color 1 Start Percent" type="float" range="#F0_1#" />
+        <add name="Color 2 End Percent" type="float" range="#F0_1#" />
+        <add name="Color 2 Start Percent" type="float" default="1.0" range="#F0_1#" />
         <add name="Colors" type="Color4" arr1="3" />
     </niobject>
 
@@ -6615,7 +6636,7 @@
         as their Radius values differ in function. (Sphere/Capsule radius = physical size, CVS radius = padding/shell)
         
         Shapes collected in a bhkConvexListShape may not have the correct material noise.
-        <add name="Num Sub Shapes" type="uint" calc="(#LEN[Sub Shapes]# #LT# 255) #THEN# #LEN[Sub Shapes]# #ELSE# 255" />
+        <add name="Num Sub Shapes" type="uint" default="1" range="1:255" />
         <add name="Sub Shapes" type="Ref" template="bhkConvexShapeBase" arr1="Num Sub Shapes">List of shapes. Max of 255.</add>
         <add name="Material" type="HavokMaterial">The material of the shape.</add>
         <add name="Radius" type="float" />
@@ -7955,9 +7976,9 @@
 
 	<niobject name="BSLagBoneController" inherit="NiTimeController" module="BSAnimation" versions="#SKY_AND_LATER#">
     A controller that trails a bone behind an actor.
-		<add name="Linear Velocity" type="float" default="3.0">How long it takes to rotate about an actor back to rest position.</add>
-		<add name="Linear Rotation" type="float" default="1.0">How the bone lags rotation</add>
-		<add name="Maximum Distance" type="float" default="400.0">How far bone will tail an actor.</add>
+		<add name="Linear Velocity" type="float" default="3.0" range="0.0:500.0">How long it takes to rotate about an actor back to rest position.</add>
+		<add name="Linear Rotation" type="float" default="1.0" range="0.0:15.0">How the bone lags rotation</add>
+		<add name="Maximum Distance" type="float" default="400.0" range="#F0_1000#">How far bone will tail an actor.</add>
 	</niobject>
 
 	<niobject name="BSLODTriShape" inherit="NiTriBasedGeom" module="BSMain" versions="#SKY# #SSE#">
@@ -8016,7 +8037,7 @@
     <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint" default="#UINT_MAX#">A hash of the bone name string.</add>
-        <add name="Num Cut Offsets" type="uint" calc="(#LEN[Cut Offsets]# #LT# 8) #THEN# #LEN[Cut Offsets]# #ELSE# 8">Maximum of 8.</add>
+        <add name="Num Cut Offsets" type="uint" range="0:8">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
