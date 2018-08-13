@@ -1985,11 +1985,11 @@
 	<compound name="BSVertexData" versions="#SSE# #FO4#">
 		<add name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x401) == 0x401" />
 		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x411) == 0x411" />
-		<add name="Unknown Int" type="uint" cond="(#ARG# #BITAND# 0x411) == 0x401" />
+		<add name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x411) == 0x401" />
 
 		<add name="Vertex" type="HalfVector3" cond="(#ARG# #BITAND# 0x401) == 0x1" />
 		<add name="Bitangent X" type="hfloat" cond="(#ARG# #BITAND# 0x411) == 0x11" />
-		<add name="Unknown Short" type="ushort" cond="(#ARG# #BITAND# 0x411) == 0x1" />
+		<add name="Unused W" type="ushort" cond="(#ARG# #BITAND# 0x411) == 0x1" />
 
 		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
 		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
@@ -2005,7 +2005,7 @@
 	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
 		<add name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x1" />
 		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x11) == 0x11" />
-		<add name="Unknown Int" type="int" cond="(#ARG# #BITAND# 0x11) == 0x1" />
+		<add name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x11) == 0x1" />
 		<add name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
 		<add name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
 		<add name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x8" />
@@ -3480,7 +3480,7 @@
     <niobject name="NiGeomMorpherController" inherit="NiInterpController" module="NiAnimation">
         DEPRECATED (20.5), replaced by NiMorphMeshModifier.
         Time controller for geometry morphing.
-        <add name="Extra Flags" type="GeomMorpherFlags" ver1="10.0.1.2" />
+        <add name="Morpher Flags" type="GeomMorpherFlags" ver1="10.0.1.2" />
         <add name="Data" type="Ref" template="NiMorphData">Geometry morphing data index.</add>
         <add name="Always Update" type="byte" ver1="4.0.0.1" />
         <add name="Num Interpolators" type="uint" ver1="10.1.0.106" />
@@ -3827,7 +3827,7 @@
     <niobject name="NiAlphaProperty" inherit="NiProperty" module="NiMain">
         Transparency. Flags 0x00ED.
         <add name="Flags" type="AlphaFlags" default="4844" />
-        <add name="Threshold" type="byte" default="128">Threshold for alpha testing (see: glAlphaFunc)</add>
+        <add name="Threshold" type="byte" default="128">Threshold for alpha testing</add>
         <add name="Unknown Short 1" type="ushort" ver2="2.3" />
         <add name="Unknown Int 2" type="uint" ver2="2.3" />
     </niobject>
@@ -3835,6 +3835,12 @@
     <niobject name="NiAmbientLight" inherit="NiLight" module="NiMain">
         Ambient light source.
     </niobject>
+
+    <bitflags name="AspectFlags" storage="ushort" versions="#FO3_AND_LATER#">
+        <option value="0" name="Velocity Orientation" />
+        <option value="1" name="Initial Rotation from Velocity" />
+        <option value="8" name="Speed to Aspect Enabled" />
+    </bitflags>
 
     <niobject name="NiParticlesData" inherit="NiGeometryData" module="NiMain">
         Generic rotating particles data object.
@@ -3858,7 +3864,7 @@
         <add name="Num Subtexture Offsets" type="byte" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BSSTREAM# #AND# #NI_BS_LTE_FO3#">2,4,8,16,32,64 are potential values. If "Has" was no then this should be 256, which represents a 16x16 framed image, which is invalid</add>
         <add name="Subtexture Offsets" type="Vector4" arr1="Num Subtexture Offsets" vercond="#BS202#">Defines UV offsets</add>
         <add name="Aspect Ratio" type="float" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#">Sets aspect ratio for Subtexture Offset UV quads</add>
-        <add name="Aspect Flags" type="ushort" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
+        <add name="Aspect Flags" type="AspectFlags" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Speed to Aspect Aspect 2" type="float" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Speed to Aspect Speed 1" type="float" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
         <add name="Speed to Aspect Speed 2" type="float" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GT_FO3#" />
@@ -5008,7 +5014,7 @@
         Allows control of stencil testing.
         <add name="Flags" type="ushort" ver2="10.0.1.2">Property flags.</add>
         <add name="Stencil Enabled" type="byte" ver2="20.0.0.5">Enables or disables the stencil test.</add>
-        <add name="Stencil Function" type="StencilTestFunc" ver2="20.0.0.5">Selects the compare mode function (see: glStencilFunc).</add>
+        <add name="Stencil Function" type="StencilTestFunc" ver2="20.0.0.5">Selects the compare mode function.</add>
         <add name="Stencil Ref" type="uint" ver2="20.0.0.5" />
         <add name="Stencil Mask" type="uint" default="#UINT_MAX#" ver2="20.0.0.5">A bit mask. The default is 0xffffffff.</add>
         <add name="Fail Action" type="StencilAction" ver2="20.0.0.5" />
@@ -5021,8 +5027,8 @@
     </niobject>
 
     <niobject name="NiStringExtraData" inherit="NiExtraData" module="NiMain">
-        Apparently commands for an optimizer instructing it to keep things it would normally discard.
-        Also refers to NiNode objects (through their name) in animation .kf files.
+        Extra data in the form of text.
+        Used in various official or user-defined ways, e.g. preventing optimization on objects ("NiOptimizeKeep", "sgoKeep").
         <add name="String Data" type="string" ver1="4.0.0.0">The string.</add>
     </niobject>
 
@@ -5032,13 +5038,13 @@
     </niobject>
 
     <niobject name="NiStringsExtraData" inherit="NiExtraData" module="NiMain">
-        List of strings; for example, a list of all bone names.
+        Extra data in the form of a list of strings.
         <add name="Num Strings" type="uint" default="1">Number of strings.</add>
         <add name="Data" type="SizedString" arr1="Num Strings">The strings.</add>
     </niobject>
 
     <niobject name="NiTextKeyExtraData" inherit="NiExtraData" module="NiMain">
-        Extra data, used to name different animation sequences.
+        Extra data that holds an array of NiTextKey objects for use in animation sequences.
         <add name="Num Text Keys" type="uint">The number of text keys that follow.</add>
         <add name="Text Keys" type="Key" arg="1" template="string" arr1="Num Text Keys">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</add>
     </niobject>
@@ -5284,7 +5290,7 @@
         Allows applications to set the test and write modes of the renderer's Z-buffer and to set the comparison function used for the Z-buffer test.
         <add name="Flags" type="ZBufferFlags" default="3" />
         <add name="Function" type="TestFunction" default="TEST_LESS_EQUAL" ver1="4.1.0.12" ver2="20.0.0.5">
-            Z-Test function (see: glDepthFunc). In Flags from 20.1.0.3 on.
+            Z-Test function. In Flags from 20.1.0.3 on.
         </add>
     </niobject>
 
@@ -6713,10 +6719,8 @@
     <compound name="BSGeometrySegmentData" versions="#FO3_AND_LATER#">
         Bethesda-specific. Describes groups of triangles either segmented in a grid (for LOD) or by body part for skinned FO4 meshes.
         <add name="Flags" type="byte" vercond="#NI_BS_LT_FO4#" />
-        <add name="Index" type="uint" vercond="#NI_BS_LT_FO4#">Index = previous Index + previous Num Tris in Segment * 3</add>
-        <add name="Num Tris in Segment" type="uint" vercond="#NI_BS_LT_FO4#">The number of triangles belonging to this segment</add>
-        <add name="Start Index" type="uint" vercond="#BS_FO4#" />
-        <add name="Num Primitives" type="uint" vercond="#BS_FO4#" />
+        <add name="Start Index" type="uint">Index = previous Index + previous Num Tris in Segment * 3</add>
+        <add name="Num Primitives" type="uint">The number of triangles belonging to this segment</add>
         <add name="Parent Array Index" type="uint" vercond="#BS_FO4#" />
         <add name="Num Sub Segments" type="uint" vercond="#BS_FO4#" />
         <add name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" vercond="#BS_FO4#" />
