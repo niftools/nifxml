@@ -181,6 +181,7 @@
         <range token="#FPM_PI#" string="-3.1415926:3.1415926" />
         <range token="#FPM_10#" string="-10.0:10.0" />
         <range token="#FPM_100#" string="-100.0:100.0" />
+        <range token="#FPM_1000#" string="-1000.0:1000.0" />
     </token>
 
     <token name="global" attrs="vercond">
