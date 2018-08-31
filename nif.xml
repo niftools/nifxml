@@ -8191,9 +8191,9 @@
     </compound>
 
     <compound name="BSPackedGeomObject" size="8" versions="#FO4#">
-        This appears to be a 64-bit hash but nif.xml does not have a 64-bit type.
-        <add name="Shape ID 1" type="uint" />
-        <add name="Shape ID 2" type="uint" />
+        This is the data necessary to access the shared geometry in a PSG/CSG file.
+        <add name="Filename Hash" type="uint">BSCRC32 of the filename without the PSG/CSG extension.</add>
+        <add name="Data Offset" type="uint">Offset of the geometry data in the PSG/CSG file.</add>
     </compound>
 
     <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4#">
@@ -8210,8 +8210,7 @@
 
     <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4#">
         Fallout 4 Packed Combined Shared Geometry Data.
-        Geometry is NOT baked into the file. It is instead a reference to the shape via a Shape ID (currently undecoded)
-        which loads the geometry via the STAT form for the NIF.
+        Geometry is NOT baked into the file. It is instead a reference to the geometry via a CSG filename hash and data offset.
         <add name="Vertex Desc" type="BSVertexDesc" />
         <add name="Num Vertices" type="uint" />
         <add name="Num Triangles" type="uint" />
