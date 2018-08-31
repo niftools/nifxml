@@ -2236,8 +2236,8 @@
         Bethesda extension of hkpVelocityConstraintMotor. Tries to reach and keep a desired target velocity.
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
-        <add name="Tau" type="float" default="0">Relative stiffness</add>
-        <add name="Target Velocity" type="float" default="0" />
+        <add name="Tau" type="float" default="0.0">Relative stiffness</add>
+        <add name="Target Velocity" type="float" default="0.0" />
         <add name="Use Velocity Target" type="bool" default="0" />
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
@@ -2247,8 +2247,8 @@
         Tries to reach a given target position using an angular spring which has a spring constant.
         <add name="Min Force" type="float" default="-1000000.0">Minimum motor force</add>
         <add name="Max Force" type="float" default="1000000.0">Maximum motor force</add>
-        <add name="Spring Constant" type="float" default="0">The spring constant in N/m</add>
-        <add name="Spring Damping" type="float" default="0">The spring damping in Nsec/m</add>
+        <add name="Spring Constant" type="float" default="0.0">The spring constant in N/m</add>
+        <add name="Spring Damping" type="float" default="0.0">The spring damping in Nsec/m</add>
         <add name="Motor Enabled" type="bool" default="0">Is Motor enabled</add>
     </compound>
     
@@ -6414,7 +6414,7 @@
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0" range="0.0:128.0">The material opacity (1=opaque). Greater than 1.0 is used to affect alpha falloff i.e. staying opaque longer based on vertex alpha and alpha mask.</add>
         <add name="Refraction Strength" type="float" range="#F0_1#">The amount of distortion. **Not based on physically accurate refractive index** (0=none)</add>
-        <add name="Glossiness" type="float" default="80" range="#F0_999#" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness.</add>
+        <add name="Glossiness" type="float" default="80.0" range="#F0_999#" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness.</add>
         <add name="Smoothness" type="float" default="1.0" range="#F0_1#" vercond="#BS_FO4#">The base roughness, multiplied by the smoothness map.</add>
         <add name="Specular Color" type="Color3" default="#VEC3_ONE#">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0" range="#F0_10#">Brightness of specular highlight. (0=not visible)</add>
