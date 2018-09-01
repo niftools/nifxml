@@ -2146,15 +2146,16 @@
         <add name="Vectors" type="Vector3" arr1="#ARG#">Morph vectors.</add>
     </compound>
 
-    <compound name="Particle" size="40">
-        particle array entry
-        <add name="Velocity" type="Vector3">Particle velocity</add>
-        <add name="Unknown Vector" type="Vector3" />
-        <add name="Lifetime" type="float">The particle age.</add>
-        <add name="Lifespan" type="float">Maximum age of the particle.</add>
-        <add name="Timestamp" type="float">Timestamp of the last update.</add>
-        <add name="Unknown Short" type="ushort" default="0" />
-        <add name="Vertex ID" type="ushort">Particle/vertex index matches array index</add>
+    <compound name="NiParticleInfo" size="40">
+        Called NiPerParticleData in NiOldParticles.
+        Holds the state of a particle at the time the system was saved.
+        <add name="Velocity" type="Vector3">Particle direction and speed.</add>
+        <add name="Rotation Axis" type="Vector3" ver2="10.4.0.1" />
+        <add name="Age" type="float" />
+        <add name="Life Span" type="float" />
+        <add name="Last Update" type="float">Timestamp of the last update.</add>
+        <add name="Spawn Generation" type="ushort" default="0" />
+        <add name="Code" type="ushort">Usually matches array index</add>
     </compound>
 
     <compound name="BoneData">
@@ -3902,19 +3903,9 @@
         Particle system data object (with automatic normals?).
     </niobject>
 
-    <compound name="ParticleDesc">
-        Particle Description.
-        <add name="Translation" type="Vector3" />
-        <add name="Unknown Floats 1" type="float" arr1="3" ver2="10.4.0.1" />
-        <add name="Unknown Float 1" type="float" default="0.9" />
-        <add name="Unknown Float 2" type="float" default="0.9" />
-        <add name="Unknown Float 3" type="float" default="3.0" />
-        <add name="Unknown Int 1" type="int" />
-    </compound>
-
     <niobject name="NiPSysData" inherit="NiParticlesData" module="NiParticle">
         Particle system data.
-        <add name="Particle Descriptions" type="ParticleDesc" arr1="Num Vertices" vercond="!#BS202#" />
+        <add name="Particle Info" type="NiParticleInfo" arr1="Num Vertices" vercond="!#BS202#" />
         <add name="Has Rotation Speeds" type="bool" ver1="20.0.0.2" />
         <add name="Rotation Speeds" type="float" arr1="Num Vertices" cond="Has Rotation Speeds" ver1="20.0.0.2" vercond="!#BS202#" />
         <add name="Num Added Particles" type="ushort" vercond="!#BS202#" />
@@ -4165,7 +4156,7 @@
 
     <niobject name="NiGravity" inherit="NiParticleModifier" module="NiLegacy" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.
-        <add name="Unknown Float 1" type="float" ver1="3.3.0.13" />
+        <add name="Decay" type="float" ver1="3.3.0.13" />
         <add name="Force" type="float">The strength/force of this gravity.</add>
         <add name="Type" type="FieldType">The force field type.</add>
         <add name="Position" type="Vector3">The position of the mass point relative to the particle system.</add>
@@ -4411,7 +4402,7 @@
 
     <niobject name="NiParticleMeshesData" inherit="NiRotatingParticlesData" module="NiLegacy" until="V10_0_1_0">
         LEGACY (pre-10.1). Particle meshes data.
-        <add name="Unknown Link 2" type="Ref" template="NiAVObject" />
+        <add name="Container Node" type="Ref" template="NiNode" />
     </niobject>
 
     <niobject name="NiParticleSystem" inherit="NiParticles" module="NiParticle">
@@ -4434,38 +4425,44 @@
         Particle system.
     </niobject>
 
+    <niobject name="NiEmitterModifier" inherit="NiObject" module="NiLegacy" until="V10_0_1_0">
+        <add name="Next Modifier" type="Ref" template="NiEmitterModifier" />
+        <add name="Controller" type="Ptr" template="NiParticleSystemController" />
+    </niobject>
+
     <niobject name="NiParticleSystemController" inherit="NiTimeController" module="NiLegacy" until="V10_0_1_0">
         A generic particle system time controller object.
         <add name="Old Speed" type="uint" ver2="3.1">Particle speed in old files</add>
         <add name="Speed" type="float" ver1="3.3.0.13">Particle speed</add>
-        <add name="Speed Random" type="float">Particle random speed modifier</add>
-        <add name="Vertical Direction" type="float">
+        <add name="Speed Variation" type="float">Particle random speed modifier</add>
+        <add name="Declination" type="float">
             vertical emit direction [radians]
             0.0 : up
             1.6 : horizontal
             3.1416 : down
         </add>
-        <add name="Vertical Angle" type="float">emitter's vertical opening angle [radians]</add>
-        <add name="Horizontal Direction" type="float">horizontal emit direction</add>
-        <add name="Horizontal Angle" type="float">emitter's horizontal opening angle</add>
-        <add name="Unknown Normal" type="Vector3" />
-        <add name="Unknown Color" type="Color4" />
-        <add name="Size" type="float">Particle size</add>
+        <add name="Declination Variation" type="float">emitter's vertical opening angle [radians]</add>
+        <add name="Planar Angle" type="float">horizontal emit direction</add>
+        <add name="Planar Angle Variation" type="float">emitter's horizontal opening angle</add>
+        <add name="Initial Normal" type="Vector3" default="#X_AXIS#" />
+        <add name="Initial Color" type="Color4" default="#VEC4_ONE#" />
+        <add name="Initial Size" type="float" default="1.0">Particle size</add>
         <add name="Emit Start Time" type="float">Particle emit start time</add>
         <add name="Emit Stop Time" type="float">Particle emit stop time</add>
-        <add name="Unknown Byte" type="byte" ver1="3.3.0.13" />
+        <add name="Reset Particle System" type="byte" ver1="3.3.0.13" />
         <add name="Old Emit Rate" type="uint" ver2="3.1">Particle emission rate in old files</add>
-        <add name="Emit Rate" type="float" ver1="3.3.0.13">Particle emission rate (particles per second)</add>
+        <add name="Birth Rate" type="float" ver1="3.3.0.13">Particle emission rate (particles per second)</add>
         <add name="Lifetime" type="float">Particle lifetime</add>
-        <add name="Lifetime Random" type="float">Particle lifetime random modifier</add>
-        <add name="Emit Flags" type="ushort" ver1="3.3.0.13">Bit 0: Emit Rate toggle bit (0 = auto adjust, 1 = use Emit Rate value)</add>
-        <add name="Start Random" type="Vector3">Particle random start translation vector</add>
-        <add name="Emitter" type="Ptr" template="NiObject">This index targets the particle emitter object (TODO: find out what type of object this refers to).</add>
-        <add name="Unknown Short 2" type="ushort" ver1="3.3.0.13" />
-        <add name="Unknown Float 13" type="float" ver1="3.3.0.13" />
-        <add name="Unknown Int 1" type="uint" ver1="3.3.0.13" />
-        <add name="Unknown Int 2" type="uint" ver1="3.3.0.13" />
-        <add name="Unknown Short 3" type="ushort" ver1="3.3.0.13" />
+        <add name="Lifetime Variation" type="float">Particle lifetime random modifier</add>
+        <add name="Use Birth Rate" type="byte" ver1="3.3.0.13" />
+        <add name="Spawn On Death" type="byte" ver1="3.3.0.13" />
+        <add name="Emitter Dimensions" type="Vector3" />
+        <add name="Emitter" type="Ptr" template="NiAVObject">The object which acts as the basis for the particle emitter.</add>
+        <add name="Num Spawn Generations" type="ushort" default="1" ver1="3.3.0.13" />
+        <add name="Percentage Spawned" type="float" default="1.0" ver1="3.3.0.13" />
+        <add name="Spawn Multiplier" type="ushort" ver1="3.3.0.13" />
+        <add name="Spawn Speed Chaos" type="float" ver1="3.3.0.13" />
+        <add name="Spawn Dir Chaos" type="float" ver1="3.3.0.13" />
         <add name="Particle Velocity" type="Vector3" ver2="3.1">Particle velocity</add>
         <add name="Particle Unknown Vector" type="Vector3" ver2="3.1" />
         <add name="Particle Lifetime" type="float" ver2="3.1">The particle's age.</add>
@@ -4476,11 +4473,11 @@
 
         <add name="Num Particles" type="ushort" ver1="3.3.0.13">Size of the following array. (Maximum number of simultaneous active particles)</add>
         <add name="Num Valid" type="ushort" ver1="3.3.0.13">Number of valid entries in the following array. (Number of active particles at the time the system was saved)</add>
-        <add name="Particles" type="Particle" arr1="Num Particles" ver1="3.3.0.13">Individual particle modifiers?</add>
-        <add name="Unknown Link" type="Ref" template="NiObject" ver1="3.3.0.13" />
-        <add name="Particle Extra" type="Ref" template="NiParticleModifier">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
-        <add name="Unknown Link 2" type="Ref" template="NiObject" />
-        <add name="Trailer" type="byte" ver1="4.0.0.2">Trailing null byte</add>
+        <add name="Particles" type="NiParticleInfo" arr1="Num Particles" ver1="3.3.0.13" />
+        <add name="Emitter Modifier" type="Ref" template="NiEmitterModifier" ver1="3.3.0.13" />
+        <add name="Particle Modifier" type="Ref" template="NiParticleModifier">Link to some optional particle modifiers (NiGravity, NiParticleGrowFade, NiParticleBomb, ...)</add>
+        <add name="Particle Collider" type="Ref" template="NiParticleCollider" />
+        <add name="Static Target Bound" type="byte" ver1="3.3.0.15" />
         <add name="Color Data" type="Ref" template="NiColorData" ver2="3.1" />
         <add name="Unknown Float 1" type="float" ver2="3.1" />
         <add name="Unknown Floats 2" arr1="Particle Unknown Short" type="float" ver2="3.1" />
@@ -4562,26 +4559,20 @@
         <add name="Pixel Data" type="byte" binary="true" arr1="Num Pixels * Num Faces" ver1="10.4.0.2" />
     </niobject>
 
-    <niobject name="NiPlanarCollider" inherit="NiParticleModifier" module="NiLegacy" until="V10_0_1_0">
+    <niobject name="NiParticleCollider" inherit="NiParticleModifier" module="NiLegacy" until="V10_0_1_0">
+        <add name="Bounce" type="float" />
+        <add name="Spawn On Collide" type="bool" ver1="4.2.0.2" />
+        <add name="Die On Collide" type="bool" ver1="4.2.0.2" />
+    </niobject>
+
+    <niobject name="NiPlanarCollider" inherit="NiParticleCollider" module="NiLegacy" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
-        <add name="Unknown Short" type="ushort" ver1="10.0.1.0" />
-        <add name="Unknown Float 1" type="float" />
-        <add name="Unknown Float 2" type="float" />
-        <add name="Unknown Short 2" type="ushort" ver1="4.2.2.0" ver2="4.2.2.0" />
-        <add name="Unknown Float 3" type="float" />
-        <add name="Unknown Float 4" type="float" />
-        <add name="Unknown Float 5" type="float" />
-        <add name="Unknown Float 6" type="float" />
-        <add name="Unknown Float 7" type="float" />
-        <add name="Unknown Float 8" type="float" />
-        <add name="Unknown Float 9" type="float" />
-        <add name="Unknown Float 10" type="float" />
-        <add name="Unknown Float 11" type="float" />
-        <add name="Unknown Float 12" type="float" />
-        <add name="Unknown Float 13" type="float" />
-        <add name="Unknown Float 14" type="float" />
-        <add name="Unknown Float 15" type="float" />
-        <add name="Unknown Float 16" type="float" />
+        <add name="Height" type="float" />
+        <add name="Width" type="float" />
+        <add name="Position" type="Vector3" />
+        <add name="X Vector" type="Vector3" />
+        <add name="Y Vector" type="Vector3" />
+        <add name="Plane" type="NiPlane" />
     </niobject>
 
     <niobject name="NiPointLight" inherit="NiLight" module="NiMain">
@@ -5014,15 +5005,10 @@
         <add name="Flags" type="SpecularFlags" />
     </niobject>
 
-    <niobject name="NiSphericalCollider" inherit="NiParticleModifier" module="NiLegacy" until="V10_0_1_0">
+    <niobject name="NiSphericalCollider" inherit="NiParticleCollider" module="NiLegacy" until="V10_0_1_0">
         LEGACY (pre-10.1) particle modifier.
-        <add name="Unknown Float 1" type="float" />
-        <add name="Unknown Short 1" type="ushort" />
-        <add name="Unknown Float 2" type="float" />
-        <add name="Unknown Short 2" type="ushort" ver2="4.2.0.2" />
-        <add name="Unknown Float 3" type="float" ver1="4.2.1.0" />
-        <add name="Unknown Float 4" type="float" />
-        <add name="Unknown Float 5" type="float" />
+        <add name="Radius" type="float" />
+        <add name="Position" type="Vector3" />
     </niobject>
 
     <niobject name="NiSpotLight" inherit="NiPointLight" module="NiMain">
