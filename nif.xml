@@ -3294,12 +3294,12 @@
             OB-FO3: Add 0x28 (SET_LOCAL | USE_VEL) for ANIM_STATIC layer objects.
             Post-FO3: Always add 0x80 (SYNC_ON_UPDATE).
             <default type="bhkCollisionObject" value="0x81" />
-            <default type="bhkPCollisionObject" value="0x81" />
-            <default type="bhkSPCollisionObject" value="0x81" />
-            <default type="bhkBlendCollisionObject" value="0x89" />
             <default type="bhkCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkPCollisionObject" value="0x81" />
             <default type="bhkPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkSPCollisionObject" value="0x81" />
             <default type="bhkSPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default type="bhkBlendCollisionObject" value="0x89" />
             <default type="bhkBlendCollisionObject" value="0x9" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
         </add>
         <add name="Body" type="Ref" template="bhkWorldObject" />
@@ -3342,8 +3342,6 @@
             <default type="BSTriShape" value="0xE" />
             <default type="BSTriShape" value="0x8000E" versions="V20_2_0_7_SSE" />
             <default type="BSSubIndexTriShape" value="0xE" />
-            <default type="BSSegmentedTriShape" value="0xE" />
-            <default type="BSSegmentedTriShape" value="0x8000E" versions="V20_2_0_7_FO3" />
             <default type="BSMeshLODTriShape" value="0x100E" />
             <default type="BSFadeNode" value="0x8000E" />
             <default type="NiParticleSystem" value="0x8000E" />
@@ -3353,18 +3351,20 @@
             <default type="BSStripParticleSystem" value="0x8000E" />
             <default type="NiTriShape" value="0x8000E" />
             <default type="NiTriStrips" value="0x8000E" />
+            <default type="BSSegmentedTriShape" value="0xE" />
+            <default type="BSSegmentedTriShape" value="0x8000E" versions="V20_2_0_7_FO3" />
             <default type="BSLeafAnimNode" value="0x808000E" />
             <default type="BSLeafAnimNode" value="0x500E" versions="V20_2_0_7_FO4" />
             <default type="BSTreeNode" value="0x8080E" />
             <default type="BSTreeNode" value="0x400E" versions="V20_2_0_7_FO4" />
             <default type="BSDebrisNode" value="0x8000F" />
             <default type="BSBlastNode" value="0x8000F" />
+            <default type="BSBlastNode" value="0x2000000F" versions="V20_2_0_7_FO4" />
             <default type="BSDamageStage" value="0x8000F" />
+            <default type="BSDamageStage" value="0x2000000F" versions="V20_2_0_7_FO4" />
             <default type="BSOrderedNode" value="0x8200E" />
             <default type="BSOrderedNode" value="0x200E" versions="V20_2_0_7_FO4" />
             <default type="BSOrderedNode" value="0x8000E" versions="V20_2_0_7_FO3" />
-            <default type="BSBlastNode" value="0x2000000F" versions="V20_2_0_7_FO4" />
-            <default type="BSDamageStage" value="0x2000000F" versions="V20_2_0_7_FO4" />
             <default type="BSLODTriShape" value="0x800000E" versions="V20_2_0_7_SSE" />
             <default type="BSLODTriShape" value="0x808000E" versions="V20_2_0_7_SKY" />
         </add>
