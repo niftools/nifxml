@@ -68,6 +68,7 @@
     <version id="V20_2_0_7_SKY" num="20.2.0.7" user="12" bsver="83" ext="bto btr">{{Skyrim}}</version>
     <version id="V20_2_0_7_SSE" num="20.2.0.7" user="12" bsver="100" ext="bto btr">{{Skyrim SE}}</version>
     <version id="V20_2_0_7_FO4" num="20.2.0.7" user="12" bsver="130" ext="bto btr">{{Fallout 4}}</version>
+    <version id="V20_2_0_7_F76" num="20.2.0.7" user="12" bsver="155" ext="bto">{{Fallout 76}}</version>
     <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">{{Empire Earth III}}, {{FFT Online}}, Atlantica Online, IRIS Online, Wizard101</version>
     <version id="V20_3_0_1" num="20.3.0.1">Emerge</version>
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
@@ -109,12 +110,15 @@
         <verexpr token="#NI_BS_LTE_FO3#" string="(#BSVER# #LTE# 34)">All NI + BS until Fallout 3.</verexpr>
         <verexpr token="#NI_BS_LT_SSE#" string="(#BSVER# #LT# 100)">All NI + BS before SSE.</verexpr>
         <verexpr token="#NI_BS_LT_FO4#" string="(#BSVER# #LT# 130)">All NI + BS before Fallout 4.</verexpr>
+        <verexpr token="#NI_BS_LTE_FO4#" string="(#BSVER# #LTE# 130)">All NI + BS until Fallout 4.</verexpr>
         <verexpr token="#BS_GT_FO3#" string="(#BSVER# #GT# 34)">Skyrim, SSE, and Fallout 4</verexpr>
         <verexpr token="#BS_GTE_FO3#" string="(#BSVER# #GTE# 34)">FO3 and later.</verexpr>
         <verexpr token="#BS_GTE_SKY#" string="(#BSVER# #GTE# 83)">Skyrim and later.</verexpr>
         <verexpr token="#BS_GTE_SSE#" string="(#BSVER# #GTE# 100)">SSE and later.</verexpr>
         <verexpr token="#BS_SSE#" string="(#BSVER# #EQ# 100)">SSE only.</verexpr>
         <verexpr token="#BS_FO4#" string="(#BSVER# #EQ# 130)">Fallout 4 only.</verexpr>
+        <verexpr token="#BS_GTE_FO4#" string="(#BSVER# #GTE# 130)">Fallout 4 and FO76.</verexpr>
+        <verexpr token="#BS_F76#" string="(#BSVER# #EQ# 155)">Fallout 76 only.</verexpr>
         <verexpr token="#BS202#" string="((#VER# #EQ# 20.2.0.7) #AND# (#BSVER# #GT# 0))">Bethesda 20.2 only.</verexpr>
         <verexpr token="#DIVINITY2#" string="((#USER# #EQ# 0x20000) #OR# (#USER# #EQ# 0x30000))">Divinity 2</verexpr>
     </token>
@@ -125,13 +129,14 @@
 
     <token name="verset" attrs="versions">
         The set of versions that any Basic, Compound, NiObject, Enum, or Bitflags is restricted to.
-        <verset token="#BETHESDA#" string="V10_0_1_2 V10_1_0_101 V10_1_0_106 V10_2_0_0__10 V20_0_0_4__10 V20_0_0_4__11 V20_0_0_5_OBL V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
+        <verset token="#BETHESDA#" string="V10_0_1_2 V10_1_0_101 V10_1_0_106 V10_2_0_0__10 V20_0_0_4__10 V20_0_0_4__11 V20_0_0_5_OBL V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4 V20_2_0_7_F76" />
         <verset token="#FO3#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3" />
         <verset token="#SKY#" string="V20_2_0_7_SKY" />
         <verset token="#SSE#" string="V20_2_0_7_SSE" />
         <verset token="#FO4#" string="V20_2_0_7_FO4" />
-        <verset token="#FO3_AND_LATER#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
-        <verset token="#SKY_AND_LATER#" string="V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4" />
+        <verset token="#F76#" string="V20_2_0_7_F76" />
+        <verset token="#FO3_AND_LATER#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4 V20_2_0_7_F76" />
+        <verset token="#SKY_AND_LATER#" string="V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4 V20_2_0_7_F76" />
     </token>
 
     <token name="default" attrs="default">
@@ -1324,7 +1329,7 @@
         <option value="13000" name="BP_TORSOSECTION_BRAIN">Torso Section | Brain</option>       
     </enum>
 	
-    <enum name="BSLightingShaderPropertyShaderType" storage="uint" prefix="ST" versions="#SKY_AND_LATER#">
+    <enum name="BSLightingShaderType" storage="uint" prefix="ST" versions="#SKY_AND_LATER#">
         Values for configuring the shader type in a BSLightingShaderProperty
         <option value="0" name="Default" />
         <option value="1" name="Environment Map">Enables EnvMap Mask(TS6), EnvMap Scale</option>
@@ -1347,6 +1352,15 @@
         <option value="18" name="LOD Landscape Noise" />
         <option value="19" name="Multitexture Landscape LOD Blend" />
         <option value="20" name="FO4 Dismemberment" />
+    </enum>
+
+    <enum name="BSLightingShaderType155" storage="uint" prefix="ST" versions="#F76#">
+        Values for configuring the shader type in a BSLightingShaderProperty
+        <option value="0" name="Default" />
+        <option value="2" name="Glow" />
+        <option value="3" name="Face Tint" />
+        <option value="4" name="Skin Tint" />
+        <option value="5" name="Hair Tint" />
     </enum>
 
     <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV" versions="#SKY_AND_LATER#">
@@ -1855,6 +1869,7 @@
     	Information about how the file was exported
         <add name="BS Version" type="ulittle32" />
         <add name="Author" type="ExportString" />
+        <add name="Unknown Int" type="uint" cond="BS Version #GT# 130" />
         <add name="Process Script" type="ExportString" />
         <add name="Export Script" type="ExportString" />
         <add name="Max Filepath" type="ExportString" cond="BS Version == 130" />
@@ -1974,7 +1989,7 @@
         <add name="v3" type="ushort">Third vertex index.</add>
     </compound>
 
-    <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4#">
+    <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4# #F76#">
         The bits of BSVertexDesc that describe the enabled vertex attributes.
         <option value="1" name="Vertex" />
         <option value="2" name="UVs" />
@@ -1989,7 +2004,7 @@
         <option value="11" name="Full_Precision" />
     </bitflags>
 
-    <bitfield name="BSVertexDesc" storage="uint64" versions="#SSE# #FO4#">
+    <bitfield name="BSVertexDesc" storage="uint64" versions="#SSE# #FO4# #F76#">
         <member width="4" pos="0" mask="0xF" name="Vertex Data Size" type="uint" />
         <member width="4" pos="4" mask="0xF0" name="Dynamic Vertex Size" type="uint" />
         <member width="4" pos="8" mask="0xF00" name="UV1 Offset" type="uint" />
@@ -2004,7 +2019,7 @@
         <member width="12" pos="44" mask="0xFFF00000000000" name="Vertex Attributes" type="VertexAttribute" />
     </bitfield>
 
-	<compound name="BSVertexData" versions="#SSE# #FO4#">
+	<compound name="BSVertexData" versions="#SSE# #FO4# #F76#">
 		<add name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x401) == 0x401" />
 		<add name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x411) == 0x411" />
 		<add name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x411) == 0x401" />
@@ -3246,7 +3261,7 @@
 
     <niobject name="NiObjectNET" abstract="true" inherit="NiObject" module="NiMain">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
-        <add name="Skyrim Shader Type" type="BSLightingShaderPropertyShaderType" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SKY#" onlyT="BSLightingShaderProperty">Configures the main shader path</add>
+        <add name="Shader Type" type="BSLightingShaderType" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SKY# #AND# #NI_BS_LTE_FO4#" onlyT="BSLightingShaderProperty">Configures the main shader path</add>
         <add name="Name" type="string">Name of this controllable object, used to refer to the object in .kf files.</add>
         <add name="Legacy Extra Data" type="LegacyExtraData" ver2="2.3" />
         <add name="Extra Data" type="Ref" template="NiExtraData" ver1="3.0" ver2="4.2.2.0">Extra data object index. (The first in a chain)</add>
@@ -3744,6 +3759,7 @@
             This causes massive inheritance problems so the rows below are doubled up to exclude NiParticleSystem for Bethesda Stream 100+
             and to add data exclusive to BSGeometry.
         <add name="Bounding Sphere" type="NiBound" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
+        <add name="Bound Min Max" type="float" arr1="6" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_F76#" onlyT="NiParticleSystem" />
         <add name="Skin" type="Ref" template="NiObject" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" onlyT="NiParticleSystem" />
         <add name="Data" type="Ref" template="NiGeometryData" vercond="#NI_BS_LT_SSE#">Data index (NiTriShapeData/NiTriStripData).</add>
         <add name="Data" type="Ref" template="NiGeometryData" ver1="20.2.0.7" ver2="20.2.0.7" vercond="#BS_GTE_SSE#" excludeT="NiParticleSystem">Data index (NiTriShapeData/NiTriStripData).</add>
@@ -3914,6 +3930,7 @@
     <niobject name="NiPSysData" inherit="NiParticlesData" module="NiParticle">
         Particle system data.
         <add name="Particle Info" type="NiParticleInfo" arr1="Num Vertices" vercond="!#BS202#" />
+        <add name="Unknown Vector" type="Vector3" vercond="#BS_F76#" />
         <add name="Has Rotation Speeds" type="bool" ver1="20.0.0.2" />
         <add name="Rotation Speeds" type="float" arr1="Num Vertices" cond="Has Rotation Speeds" ver1="20.0.0.2" vercond="!#BS202#" />
         <add name="Num Added Particles" type="ushort" vercond="!#BS202#" />
@@ -4752,6 +4769,8 @@
         Particle modifier that adds rotations to particles.
         <add name="Rotation Speed" type="float">Initial Rotation Speed in radians per second.</add>
         <add name="Rotation Speed Variation" type="float" ver1="20.0.0.2">Distributes rotation speed over the range [Speed - Variation, Speed + Variation].</add>
+        <add name="Unknown Vector" type="Vector4" vercond="#BS_F76#" />
+        <add name="Unknown Byte" type="byte" vercond="#BS_F76#" />
         <add name="Rotation Angle" type="float" ver1="20.0.0.2">Initial Rotation Angle in radians.</add>
         <add name="Rotation Angle Variation" type="float" ver1="20.0.0.2">Distributes rotation angle over the range [Angle - Variation, Angle + Variation].</add>
         <add name="Random Rot Speed Sign" type="bool" ver1="20.0.0.2">Randomly negate the initial rotation speed?</add>
@@ -6390,23 +6409,93 @@
         <option value="31" name="Refraction_Writes_Depth" />
     </bitflags>
 
+    <compound name="BSTextureArray" versions="#F76#">
+        <add name="Texture Array Width" type="uint" />
+        <add name="Texture Array" type="SizedString" arr1="Texture Array Width" />
+    </compound>
+
+    <enum name="BSShaderCRC32" storage="uint" prefix="SF" versions="#F76#">
+        <option name="CAST_SHADOWS" value="1563274220" />
+        <option name="ZBUFFER_TEST" value="1740048692" />
+        <option name="ZBUFFER_WRITE" value="3166356979" />
+        <option name="TWO_SIDED" value="759557230" />
+        <option name="VERTEXCOLORS" value="348504749" />
+        <option name="PBR" value="731263983" />
+        <option name="SKINNED" value="3744563888" />
+        <option name="ENVMAP" value="2893749418" />
+        <option name="VERTEX_ALPHA" value="2333069810" />
+        <option name="FACE" value="314919375" />
+        <option name="GRAYSCALE_TO_PALETTE_COLOR" value="442246519" />
+        <option name="DECAL" value="3849131744" />
+        <option name="DYNAMIC_DECAL" value="1576614759" />
+        <option name="HAIRTINT" value="1264105798" />
+        <option name="SKIN_TINT" value="1483897208" />
+        <option name="EMIT_ENABLED" value="2262553490" />
+        <option name="GLOWMAP" value="2399422528" />
+        <option name="REFRACTION" value="1957349758" />
+        <option name="REFRACTION_FALLOFF" value="902349195" />
+        <option name="NOFADE" value="2994043788" />
+        <option name="INVERTED_FADE_PATTERN" value="3030867718" />
+        <option name="RGB_FALLOFF" value="3448946507" />
+        <option name="EXTERNAL_EMITTANCE" value="2150459555" />
+        <option name="MODELSPACENORMALS" value="2548465567" />
+        <option name="TRANSFORM_CHANGED" value="3196772338" />
+        <option name="EFFECT_LIGHTING" value="3473438218" />
+        <option name="FALLOFF" value="3980660124" />
+        <option name="SOFT_EFFECT" value="3503164976" />
+        <option name="GRAYSCALE_TO_PALETTE_ALPHA" value="2901038324" />
+        <option name="WEAPON_BLOOD" value="2078326675" />
+        <option name="LOD_OBJECTS" value="2896726515" />
+    </enum>
+
+    <compound name="BSSPWetnessParams" module="BSMain" versions="#FO4# #F76#">
+        <add name="Spec Scale" type="float" default="-1.0" />
+        <add name="Spec Power" type="float" default="-1.0" />
+        <add name="Min Var" type="float" default="-1.0" />
+        <add name="Env Map Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
+        <add name="Fresnel Power" type="float" default="-1.0" />
+        <add name="Metalness" type="float" default="-1.0" />
+        <add name="Unknown 1" type="float" default="-1.0" vercond="#BS_F76#" />
+        <add name="Unknown 2" type="float" default="-1.0" vercond="#BS_F76#" />
+    </compound>
+
+    <compound name="BSSPLuminanceParams" module="BSMain" versions="#F76#">
+        <add name="Lum Emittance" type="float" default="100.0" range="#F_POS#" />
+        <add name="Exposure Offset" type="float" default="13.5" range="#F_POS#" />
+        <add name="Final Exposure Min" type="float" default="2.0" range="#F_POS#" />
+        <add name="Final Exposure Max" type="float" default="3.0" range="#F_POS#" />
+    </compound>
+
+    <compound name="BSSPTranslucencyParams" module="BSMain" versions="#F76#">
+        <add name="Subsurface Color" type="Color3" />
+        <add name="Transmissive Scale" type="float"/>
+        <add name="Turbulence" type="float" />
+        <add name="Thick Object" type="bool" />
+        <add name="Mix Albedo" type="bool" />
+    </compound>
+
     <niobject name="BSLightingShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
         Bethesda shader property for Skyrim and later.
-        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="!#BS_FO4#" default="0x82400301">Skyrim Shader Flags for setting render/shader options.</add>
-        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="!#BS_FO4#" default="0x8021">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" vercond="#NI_BS_LT_FO4#" default="0x82400301">Skyrim Shader Flags for setting render/shader options.</add>
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" vercond="#NI_BS_LT_FO4#" default="0x8021">Skyrim Shader Flags for setting render/shader options.</add>
         <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" vercond="#BS_FO4#" default="0x80400201">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
         <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" vercond="#BS_FO4#" default="1">Fallout 4 Shader Flags. Mostly overridden if "Name" is a path to a BGSM/BGEM file.</add>
+        <add name="Shader Type" type="BSLightingShaderType155" vercond="#BS_F76#" />
+        <add name="Num SF1" type="uint" vercond="#BS_F76#" />
+        <add name="Num SF2" type="uint" vercond="#BS_F76#" />
+        <add name="SF1" type="BSShaderCRC32" arr1="Num SF1" vercond="#BS_F76#" />
+        <add name="SF2" type="BSShaderCRC32" arr1="Num SF2" vercond="#BS_F76#" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Texture Set" type="Ref" template="BSShaderTextureSet">Texture Set, can have override in an esm/esp</add>
         <add name="Emissive Color" type="Color3" default="#VEC3_ZERO#">Glow color and alpha</add>
         <add name="Emissive Multiple" type="float" default="1.0" range="#F0_10#">Multiplied emissive colors</add>
-        <add name="Wet Material" type="NiFixedString" vercond="#BS_FO4#" />
+        <add name="Root Material" type="NiFixedString" vercond="#BS_GTE_FO4#" />
         <add name="Texture Clamp Mode" type="TexClampMode" default="WRAP_S_WRAP_T">How to handle texture borders.</add>
         <add name="Alpha" type="float" default="1.0" range="0.0:128.0">The material opacity (1=opaque). Greater than 1.0 is used to affect alpha falloff i.e. staying opaque longer based on vertex alpha and alpha mask.</add>
         <add name="Refraction Strength" type="float" range="#F0_1#">The amount of distortion. **Not based on physically accurate refractive index** (0=none)</add>
         <add name="Glossiness" type="float" default="80.0" range="#F0_999#" vercond="#NI_BS_LT_FO4#">The material specular power, or glossiness.</add>
-        <add name="Smoothness" type="float" default="1.0" range="#F0_1#" vercond="#BS_FO4#">The base roughness, multiplied by the smoothness map.</add>
+        <add name="Smoothness" type="float" default="1.0" range="#F0_1#" vercond="#BS_GTE_FO4#">The base roughness, multiplied by the smoothness map.</add>
         <add name="Specular Color" type="Color3" default="#VEC3_ONE#">Adds a colored highlight.</add>
         <add name="Specular Strength" type="float" default="1.0" range="#F0_10#">Brightness of specular highlight. (0=not visible)</add>
         <add name="Lighting Effect 1" type="float" default="0.3" range="#F0_10#" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</add>
@@ -6414,38 +6503,45 @@
         <add name="Subsurface Rolloff" type="float" default="0.0" range="#F0_10#" vercond="#BS_FO4#" />
         <add name="Rimlight Power" type="float" default="#FLT_MAX#" vercond="#BS_FO4#" />
         <add name="Backlight Power" type="float" range="#F0_1000#" cond="Rimlight Power == 0x7F7FFFFF" vercond="#BS_FO4#" />
-        <add name="Grayscale to Palette Scale" type="float" default="1.0" range="#F0_1#" vercond="#BS_FO4#" />
-        <add name="Fresnel Power" type="float" default="5.0" range="#F_PNZ#" vercond="#BS_FO4#" />
-        <add name="Wetness Spec Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Wetness Spec Power" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Wetness Min Var" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Wetness Env Map Scale" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Wetness Fresnel Power" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Wetness Metalness" type="float" default="-1.0" vercond="#BS_FO4#" />
-        <add name="Environment Map Scale" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 1">Scales the intensity of the environment/cube map.</add>
-        <add name="Use Screen Space Reflections" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
-        <add name="Wetness Control: Use SSR" type="bool" cond="Skyrim Shader Type == 1" vercond="#BS_FO4#" />
-        <add name="Skin Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
-        <add name="Skin Tint Alpha" type="float" default="1.0" cond="Skyrim Shader Type == 5" vercond="#BS_FO4#" />
-        <add name="Hair Tint Color" type="Color3" default="#VEC3_ONE#" cond="Skyrim Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
-        <add name="Max Passes" type="float" default="4.0" range="1.0:320.0" cond="Skyrim Shader Type == 7" />
-        <add name="Scale" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 7" />
-        <add name="Parallax Inner Layer Thickness" type="float" default="5.0" range="5.0:500.0" cond="Skyrim Shader Type == 11">How far from the surface the inner layer appears to be.</add>
-        <add name="Parallax Refraction Scale" type="float" default="0.25" range="#F0_1#" cond="Skyrim Shader Type == 11">Depth of inner parallax layer effect.</add>
-        <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Skyrim Shader Type == 11">Scales the inner parallax layer texture.</add>
-        <add name="Parallax Envmap Strength" type="float" default="1.0" range="#F0_10#" cond="Skyrim Shader Type == 11">How strong the environment/cube map is.</add>
-        <add name="Sparkle Parameters" type="Vector4" cond="Skyrim Shader Type == 14">CK lists "snow material" when used.</add>
-        <add name="Eye Cubemap Scale" type="float" default="1.3" range="#F0_10#" cond="Skyrim Shader Type == 16">Eye cubemap scale</add>
-        <add name="Left Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for left eye cubemap</add>
-        <add name="Right Eye Reflection Center" type="Vector3" cond="Skyrim Shader Type == 16">Offset to set center for right eye cubemap</add>
+        <add name="Grayscale to Palette Scale" type="float" default="1.0" range="#F0_1#" vercond="#BS_GTE_FO4#" />
+        <add name="Fresnel Power" type="float" default="5.0" range="#F_PNZ#" vercond="#BS_GTE_FO4#" />
+        <add name="Wetness" type="BSSPWetnessParams" vercond="#BS_GTE_FO4#" />
+        <add name="Luminance" type="BSSPLuminanceParams" vercond="#BS_F76#" />
+        <add name="Do Translucency" type="bool" vercond="#BS_F76#" />
+        <add name="Translucency" type="BSSPTranslucencyParams" vercond="#BS_F76#" cond="Do Translucency" />
+        <add name="Has Texture Arrays" type="byte" vercond="#BS_F76#" />
+        <add name="Num Texture Arrays" type="uint" vercond="#BS_F76#" cond="Has Texture Arrays" />
+        <add name="Texture Arrays" type="BSTextureArray" arr1="Num Texture Arrays" vercond="#BS_F76#" cond="Has Texture Arrays" />
+        <add name="Environment Map Scale" type="float" default="1.0" range="#F0_10#" cond="Shader Type == 1" vercond="#NI_BS_LTE_FO4#">Scales the intensity of the environment/cube map.</add>
+        <add name="Use Screen Space Reflections" type="bool" cond="Shader Type == 1" vercond="#BS_FO4#" />
+        <add name="Wetness Control: Use SSR" type="bool" cond="Shader Type == 1" vercond="#BS_FO4#" />
+        <add name="Skin Tint Color" type="Color4" vercond="#BS_F76#" cond="Shader Type == 4" />
+        <add name="Hair Tint Color" type="Color3" vercond="#BS_F76#" cond="Shader Type == 5" />
+        <add name="Skin Tint Color" type="Color3" default="#VEC3_ONE#" vercond="#NI_BS_LTE_FO4#" cond="Shader Type == 5">Tints the base texture. Overridden by game settings.</add>
+        <add name="Skin Tint Alpha" type="float" default="1.0" vercond="#BS_FO4#" cond="Shader Type == 5" />
+        <add name="Hair Tint Color" type="Color3" default="#VEC3_ONE#" vercond="#NI_BS_LTE_FO4#" cond="Shader Type == 6">Tints the base texture. Overridden by game settings.</add>
+        <add name="Max Passes" type="float" default="4.0" range="1.0:320.0" cond="Shader Type == 7" />
+        <add name="Scale" type="float" default="1.0" range="#F0_10#" cond="Shader Type == 7" />
+        <add name="Parallax Inner Layer Thickness" type="float" default="5.0" range="5.0:500.0" cond="Shader Type == 11">How far from the surface the inner layer appears to be.</add>
+        <add name="Parallax Refraction Scale" type="float" default="0.25" range="#F0_1#" cond="Shader Type == 11">Depth of inner parallax layer effect.</add>
+        <add name="Parallax Inner Layer Texture Scale" type="TexCoord" cond="Shader Type == 11">Scales the inner parallax layer texture.</add>
+        <add name="Parallax Envmap Strength" type="float" default="1.0" range="#F0_10#" cond="Shader Type == 11">How strong the environment/cube map is.</add>
+        <add name="Sparkle Parameters" type="Vector4" cond="Shader Type == 14">CK lists "snow material" when used.</add>
+        <add name="Eye Cubemap Scale" type="float" default="1.3" range="#F0_10#" cond="Shader Type == 16">Eye cubemap scale</add>
+        <add name="Left Eye Reflection Center" type="Vector3" cond="Shader Type == 16">Offset to set center for left eye cubemap</add>
+        <add name="Right Eye Reflection Center" type="Vector3" cond="Shader Type == 16">Offset to set center for right eye cubemap</add>
     </niobject>
 
     <niobject name="BSEffectShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
         Bethesda effect shader property for Skyrim and later.
-        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="0x80000000" vercond="!#BS_FO4#" />
-        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="0x20" vercond="!#BS_FO4#" />
+        <add name="Shader Flags 1" suffix="SK" type="SkyrimShaderPropertyFlags1" default="0x80000000" vercond="#NI_BS_LT_FO4#" />
+        <add name="Shader Flags 2" suffix="SK" type="SkyrimShaderPropertyFlags2" default="0x20" vercond="#NI_BS_LT_FO4#" />
         <add name="Shader Flags 1" suffix="FO4" type="Fallout4ShaderPropertyFlags1" default="0x80000000" vercond="#BS_FO4#" />
         <add name="Shader Flags 2" suffix="FO4" type="Fallout4ShaderPropertyFlags2" default="0x20" vercond="#BS_FO4#" />
+        <add name="Num SF1" type="uint" vercond="#BS_F76#" />
+        <add name="Num SF2" type="uint" vercond="#BS_F76#" />
+        <add name="SF1" type="BSShaderCRC32" arr1="Num SF1" vercond="#BS_F76#" />
+        <add name="SF2" type="BSShaderCRC32" arr1="Num SF2" vercond="#BS_F76#" />
         <add name="UV Offset" type="TexCoord">Offset UVs</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures</add>
         <add name="Source Texture"  type="SizedString">points to an external texture.</add>
@@ -6458,14 +6554,20 @@
         <add name="Falloff Stop Angle" type="float" default="1.0" range="#F_NRM#">At this cosine of angle falloff will be equal to Falloff Stop Opacity</add>
         <add name="Falloff Start Opacity" type="float" range="#F0_1#">Alpha falloff multiplier at start angle</add>
         <add name="Falloff Stop Opacity" type="float" range="#F0_1#">Alpha falloff multiplier at end angle</add>
-        <add name="Emissive Color" type="Color4" default="#VEC4_ONE#">Emissive color</add>
-        <add name="Emissive Multiple" type="float" default="1.0" range="0.0:360.0">Multiplier for Emissive Color (RGB part)</add>
+        <add name="Refraction Power" type="float" vercond="#BS_F76#" />
+        <add name="Base Color" type="Color4" default="#VEC4_ONE#">Base color</add>
+        <add name="Base Color Scale" type="float" default="1.0" range="0.0:360.0">Multiplier for Base Color (RGB part)</add>
         <add name="Soft Falloff Depth" type="float" default="100.0" range="0.0:9999.0" />
         <add name="Greyscale Texture"  type="SizedString">Points to an external texture, used as palette for SLSF1_Greyscale_To_PaletteColor/SLSF1_Greyscale_To_PaletteAlpha.</add>
-        <add name="Env Map Texture" type="SizedString" vercond="#BS_FO4#" />
-        <add name="Normal Texture" type="SizedString" vercond="#BS_FO4#" />
-        <add name="Env Mask Texture" type="SizedString" vercond="#BS_FO4#" />
-        <add name="Environment Map Scale" type="float" default="1.0" range="0.01:20.0" vercond="#BS_FO4#" />
+        <add name="Env Map Texture" type="SizedString" vercond="#BS_GTE_FO4#" />
+        <add name="Normal Texture" type="SizedString" vercond="#BS_GTE_FO4#" />
+        <add name="Env Mask Texture" type="SizedString" vercond="#BS_GTE_FO4#" />
+        <add name="Environment Map Scale" type="float" default="1.0" range="0.01:20.0" vercond="#BS_GTE_FO4#" />
+        <add name="Reflectance Texture" type="SizedString" vercond="#BS_F76#" />
+        <add name="Lighting Texture" type="SizedString" vercond="#BS_F76#" />
+        <add name="Emittance Color" type="Color3" vercond="#BS_F76#" />
+        <add name="Emit Gradient Texture" type="SizedString" vercond="#BS_F76#" />
+        <add name="Luminance" type="BSSPLuminanceParams" vercond="#BS_F76#" />
     </niobject>
     
     <bitflags name="WaterShaderPropertyFlags" storage="uint" prefix="BSWSP" versions="#SKY_AND_LATER#">
@@ -6488,8 +6590,12 @@
     
     <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
         Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000008" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" />
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000008" vercond="!#BS_F76#" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" vercond="!#BS_F76#" />
+        <add name="Num SF1" type="uint" vercond="#BS_F76#" />
+        <add name="Num SF2" type="uint" vercond="#BS_F76#" />
+        <add name="SF1" type="BSShaderCRC32" arr1="Num SF1" vercond="#BS_F76#" />
+        <add name="SF2" type="BSShaderCRC32" arr1="Num SF2" vercond="#BS_F76#" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Water Shader Flags" type="WaterShaderPropertyFlags" default="0xC4" />
@@ -6497,8 +6603,12 @@
     
     <niobject name="BSSkyShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
         Skyrim Sky shader block.
-        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000000" />
-        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" />
+        <add name="Shader Flags 1" type="SkyrimShaderPropertyFlags1" default="0x80000000" vercond="!#BS_F76#" />
+        <add name="Shader Flags 2" type="SkyrimShaderPropertyFlags2" default="0x21" vercond="!#BS_F76#" />
+        <add name="Num SF1" type="uint" vercond="#BS_F76#" />
+        <add name="Num SF2" type="uint" vercond="#BS_F76#" />
+        <add name="SF1" type="BSShaderCRC32" arr1="Num SF1" vercond="#BS_F76#" />
+        <add name="SF2" type="BSShaderCRC32" arr1="Num SF2" vercond="#BS_F76#" />
         <add name="UV Offset" type="TexCoord">Offset UVs. Seems to be unused, but it fits with the other Skyrim shader properties.</add>
         <add name="UV Scale" type="TexCoord" default="#VEC2_ONE#">Offset UV Scale to repeat tiling textures, see above.</add>
         <add name="Source Texture" type="SizedString">points to an external texture.</add>
@@ -6526,6 +6636,7 @@
         <add name="Color 2 End Percent" type="float" range="#F0_1#" />
         <add name="Color 2 Start Percent" type="float" default="1.0" range="#F0_1#" />
         <add name="Colors" type="Color4" arr1="3" />
+        <add name="Unknown Shorts" type="ushort" arr1="26" vercond="#BS_F76#" />
     </niobject>
 
 
@@ -6734,9 +6845,9 @@
         <add name="Flags" type="byte" vercond="#NI_BS_LT_FO4#" />
         <add name="Start Index" type="uint">Index = previous Index + previous Num Tris in Segment * 3</add>
         <add name="Num Primitives" type="uint">The number of triangles belonging to this segment</add>
-        <add name="Parent Array Index" type="uint" vercond="#BS_FO4#" />
-        <add name="Num Sub Segments" type="uint" vercond="#BS_FO4#" />
-        <add name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" vercond="#BS_FO4#" />
+        <add name="Parent Array Index" type="uint" vercond="#BS_GTE_FO4#" />
+        <add name="Num Sub Segments" type="uint" vercond="#BS_GTE_FO4#" />
+        <add name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" vercond="#BS_GTE_FO4#" />
     </compound>
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape" module="BSMain" versions="#FO3_AND_LATER#">
@@ -7999,18 +8110,19 @@
     
     <!-- Fallout 4 Geometry -->
     
-    <niobject name="BSTriShape" inherit="NiAVObject" module="BSMain" versions="#SSE# #FO4#">
+    <niobject name="BSTriShape" inherit="NiAVObject" module="BSMain" versions="#SSE# #FO4# #F76#">
         Fallout 4 Tri Shape
         <add name="Bounding Sphere" type="NiBound" />
+        <add name="Bound Min Max" type="float" arr1="6" vercond="#BS_F76#" />
         <add name="Skin" type="Ref" template="NiObject" />
         <add name="Shader Property" type="Ref" template="BSShaderProperty" />
         <add name="Alpha Property" type="Ref" template="NiAlphaProperty" />
         <add name="Vertex Desc" type="BSVertexDesc" />
-        <add name="Num Triangles" type="uint" vercond="#BS_FO4#" />
+        <add name="Num Triangles" type="uint" vercond="#BS_GTE_FO4#" />
         <add name="Num Triangles" type="ushort" vercond="#NI_BS_LT_FO4#" />
         <add name="Num Vertices" type="ushort" />
         <add name="Data Size" type="uint" calc="((Vertex Desc #BITAND# 0xF) #MUL# Num Vertices #MUL# 4) #ADD# (Num Triangles #MUL# 6)" />
-        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc #RSH# 44" cond="Data Size #GT# 0" vercond="#BS_FO4#" />
+        <add name="Vertex Data" type="BSVertexData" arr1="Num Vertices" arg="Vertex Desc #RSH# 44" cond="Data Size #GT# 0" vercond="#BS_GTE_FO4#" />
         <add name="Vertex Data" type="BSVertexDataSSE" arr1="Num Vertices" arg="Vertex Desc #RSH# 44" cond="Data Size #GT# 0" vercond="#BS_SSE#" />
         <add name="Triangles" type="Triangle" arr1="Num Triangles" cond="Data Size #GT# 0" />
         <add name="Particle Data Size" type="uint" calc="(Num Vertices #MUL# 6) #ADD# (Num Triangles #MUL# 3)" vercond="#BS_SSE#" />
@@ -8026,14 +8138,14 @@
         <add name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4#">
+    <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4# #F76#">
         <add name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</add>
         <add name="Bone ID" type="uint" default="#UINT_MAX#">A hash of the bone name string.</add>
         <add name="Num Cut Offsets" type="uint" range="0:8">Maximum of 8.</add>
         <add name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
     </compound>
 
-    <compound name="BSGeometrySegmentSharedData" versions="#FO4#">
+    <compound name="BSGeometrySegmentSharedData" versions="#FO4# #F76#">
         <add name="Num Segments" type="uint" />
         <add name="Total Segments" type="uint" />
         <add name="Segment Starts" type="uint" arr1="Num Segments" />
@@ -8041,24 +8153,24 @@
         <add name="SSF File" type="SizedString16" />
     </compound>
 
-    <niobject name="BSSubIndexTriShape" inherit="BSTriShape" module="BSMain" versions="#SSE# #FO4#">
+    <niobject name="BSSubIndexTriShape" inherit="BSTriShape" module="BSMain" versions="#SSE# #FO4# #F76#">
         Fallout 4 Sub-Index Tri Shape
-		<add name="Num Primitives" type="uint" calc="#LEN[Triangles]#" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
-		<add name="Num Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
-		<add name="Total Segments" type="uint" vercond="#BS_FO4#" cond="Data Size #GT# 0" />
-		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_FO4#" arr1="Num Segments" cond="Data Size #GT# 0" />
-		<add name="Segment Data" type="BSGeometrySegmentSharedData" vercond="#BS_FO4#" cond="(Num Segments #LT# Total Segments) #AND# (Data Size #GT# 0)" />
+		<add name="Num Primitives" type="uint" calc="#LEN[Triangles]#" vercond="#BS_GTE_FO4#" cond="Data Size #GT# 0" />
+		<add name="Num Segments" type="uint" vercond="#BS_GTE_FO4#" cond="Data Size #GT# 0" />
+		<add name="Total Segments" type="uint" vercond="#BS_GTE_FO4#" cond="Data Size #GT# 0" />
+		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_GTE_FO4#" arr1="Num Segments" cond="Data Size #GT# 0" />
+		<add name="Segment Data" type="BSGeometrySegmentSharedData" vercond="#BS_GTE_FO4#" cond="(Num Segments #LT# Total Segments) #AND# (Data Size #GT# 0)" />
 		<add name="Num Segments" type="uint" vercond="#BS_SSE#" />
 		<add name="Segment" type="BSGeometrySegmentData" vercond="#BS_SSE#" arr1="Num Segments" />
     </niobject>
     
     <!-- Fallout 4 Physics -->
 
-    <niobject name="bhkSystem" abstract="true" inherit="NiObject" module="BSHavok" versions="#FO4#">
+    <niobject name="bhkSystem" abstract="true" inherit="NiObject" module="BSHavok" versions="#FO4# #F76#">
         Fallout 4 Physics System
     </niobject>
 
-    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" module="BSHavok" versions="#FO4#">
+    <niobject name="bhkNPCollisionObject" inherit="NiCollisionObject" module="BSHavok" versions="#FO4# #F76#">
         Fallout 4 Collision Object
         <add name="Flags" type="bhkCOFlags" default="0x80">
             Note: The CK Preview scenegraph reports these bits incorrectly.
@@ -8067,28 +8179,28 @@
         <add name="Body ID" type="uint" />
     </niobject>
     
-    <niobject name="bhkPhysicsSystem" inherit="bhkSystem" module="BSHavok" versions="#FO4#">
+    <niobject name="bhkPhysicsSystem" inherit="bhkSystem" module="BSHavok" versions="#FO4# #F76#">
         Fallout 4 Collision System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="bhkRagdollSystem" inherit="bhkSystem" module="BSHavok" versions="#FO4#">
+    <niobject name="bhkRagdollSystem" inherit="bhkSystem" module="BSHavok" versions="#FO4# #F76#">
         Fallout 4 Ragdoll System
         <add name="Binary Data" type="ByteArray" />
     </niobject>
 
-    <niobject name="BSExtraData" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSExtraData" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Extra Data
     </niobject>
 
-    <niobject name="BSClothExtraData" inherit="BSExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSClothExtraData" inherit="BSExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Cloth data
         <add name="Binary Data" type="ByteArray" />
     </niobject>
     
     <!-- Fallout 4 Skeleton -->
 
-    <compound name="BSSkinBoneTrans" size="68" versions="#FO4#">
+    <compound name="BSSkinBoneTrans" size="68" versions="#FO4# #F76#">
         Fallout 4 Bone Transform
         <add name="Bounding Sphere" type="NiBound" />
         <add name="Rotation" type="Matrix33" />
@@ -8096,7 +8208,7 @@
         <add name="Scale" type="float" />
     </compound>
 
-    <niobject name="BSSkin::Instance" inherit="NiObject" module="BSMain" versions="#FO4#">
+    <niobject name="BSSkin::Instance" inherit="NiObject" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Skin Instance
         <add name="Skeleton Root" type="Ptr" template="NiAVObject" />
         <add name="Data" type="Ref" template="BSSkin::BoneData" />
@@ -8106,19 +8218,19 @@
         <add name="Scales" type="Vector3" arr1="Num Scales" />
     </niobject>
 
-    <niobject name="BSSkin::BoneData" inherit="NiObject" module="BSMain" versions="#FO4#">
+    <niobject name="BSSkin::BoneData" inherit="NiObject" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Bone Data
         <add name="Num Bones" type="uint" />
         <add name="Bone List" type="BSSkinBoneTrans" arr1="Num Bones" />
     </niobject>
 
-    <niobject name="BSPositionData" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSPositionData" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Positional Data
         <add name="Num Data" type="uint" />
         <add name="Data" type="hfloat" arr1="Num Data" />
     </niobject>
 
-    <compound name="BSConnectPoint" versions="#FO4#">
+    <compound name="BSConnectPoint" versions="#FO4# #F76#">
         <add name="Parent" type="SizedString" default="WorkshopConnectPoints" />
         <add name="Name" type="SizedString" />
         <add name="Rotation" type="Quaternion" />
@@ -8126,32 +8238,32 @@
         <add name="Scale" type="float" default="1.0" />
     </compound>
 
-    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Item Slot Parent
         <add name="Num Connect Points" type="uint" default="1" />
         <add name="Connect Points" type="BSConnectPoint" arr1="Num Connect Points" />
     </niobject>
 
-    <niobject name="BSConnectPoint::Children" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSConnectPoint::Children" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Item Slot Child
         <add name="Skinned" type="bool" />
         <add name="Num Points" type="uint" default="1" />
         <add name="Point Name" type="SizedString" arr1="Num Points" />
     </niobject>
     
-    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSEyeCenterExtraData" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Eye Center Data
         <add name="Num Data" type="uint" />
         <add name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-    <compound name="BSPackedGeomDataCombined" size="72" versions="#FO4#">
+    <compound name="BSPackedGeomDataCombined" size="72" versions="#FO4# #F76#">
         <add name="Grayscale to Palette Scale" type="float" />
         <add name="Transform" type="NiTransform" />
         <add name="Bounding Sphere" type="NiBound" />
     </compound>
 
-    <compound name="BSPackedGeomData" versions="#FO4#">
+    <compound name="BSPackedGeomData" versions="#FO4# #F76#">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -8167,7 +8279,7 @@
         <add name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
     </compound>
 
-    <compound name="BSPackedSharedGeomData" versions="#FO4#">
+    <compound name="BSPackedSharedGeomData" versions="#FO4# #F76#">
         <add name="Num Verts" type="uint" />
         <add name="LOD Levels" type="uint" />
         <add name="Tri Count LOD0" type="uint" />
@@ -8181,13 +8293,13 @@
         <add name="Vertex Desc" type="BSVertexDesc" />
     </compound>
 
-    <compound name="BSPackedGeomObject" size="8" versions="#FO4#">
+    <compound name="BSPackedGeomObject" size="8" versions="#FO4# #F76#">
         This is the data necessary to access the shared geometry in a PSG/CSG file.
         <add name="Filename Hash" type="uint">BSCRC32 of the filename without the PSG/CSG extension.</add>
         <add name="Data Offset" type="uint">Offset of the geometry data in the PSG/CSG file.</add>
     </compound>
 
-    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Packed Combined Geometry Data.
         Geometry is baked into the file and given a list of transforms to position each copy.
         <add name="Vertex Desc" type="BSVertexDesc" />
@@ -8199,7 +8311,7 @@
         <add name="Object Data" type="BSPackedGeomData" arr1="Num Data" />
     </niobject>
 
-    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4#">
+    <niobject name="BSPackedCombinedSharedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Packed Combined Shared Geometry Data.
         Geometry is NOT baked into the file. It is instead a reference to the geometry via a CSG filename hash and data offset.
         <add name="Vertex Desc" type="BSVertexDesc" />
@@ -8214,7 +8326,7 @@
 
     <!-- Fallout 4 Animation -->
     
-    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController" module="BSAnimation" versions="#FO4#">
+    <niobject name="NiLightRadiusController" inherit="NiFloatInterpController" module="BSAnimation" versions="#FO4# #F76#">
     
     </niobject>
 	
@@ -8229,5 +8341,30 @@
         Large ref flag.
 		<add name="Large Ref" type="bool" />
 	</niobject>
-	
+
+    <niobject name="BSDistantObjectExtraData" inherit="NiExtraData" module="BSMain" versions="#F76#">
+        Distant Object flags.
+        <add name="Distant Object Flags" type="uint" />
+    </niobject>
+
+    <compound name="BSDistantObjectInstance" module="BSMain" versions="#F76#">
+        <add name="Unknown Bytes 1" type="byte" arr1="12" />
+        <add name="Num Unknown 1" type="uint" />
+        <add name="Unknown Ints 1" type="uint" arr1="3 #MUL# Num Unknown 1" />
+        <add name="Num Unknown 2" type="uint" />
+        <add name="Unknown Bytes 2" type="byte" binary="true" arr1="64 #MUL# Num Unknown 2" />
+    </compound>
+
+    <compound name="BSDistantObjectTextureArray" module="BSMain" versions="#F76#">
+        <add name="Unknown Byte" type="byte" default="1" />
+        <add name="Num Texture Arrays" type="uint" />
+        <add name="Texture Arrays" type="BSTextureArray" arr1="Num Texture Arrays" />
+    </compound>
+
+    <niobject name="BSDistantObjectInstancedNode" inherit="BSMultiBoundNode" module="BSMain" versions="#F76#">
+        <add name="Num Instances" type="uint" />
+        <add name="Instances" type="BSDistantObjectInstance" arr1="Num Instances" />
+        <add name="Texture Arrays" type="BSDistantObjectTextureArray" arr1="3" />
+    </niobject>
+
 </niftoolsxml>
