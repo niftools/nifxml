@@ -1887,7 +1887,8 @@
         <add name="BS Header" type="BSStreamHeader" cond="#BSSTREAMHEADER#" />
         <add name="Metadata" type="ByteArray" ver1="30.0.0.0" />
         <add name="Num Block Types" type="ushort" ver1="5.0.0.1">Number of object types in this NIF file.</add>
-        <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="5.0.0.1">List of all object types used in this NIF file.</add>
+        <add name="Block Types" type="SizedString" arr1="Num Block Types" ver1="5.0.0.1" cond="Version != 20.3.1.2">List of all object types used in this NIF file.</add>
+        <add name="Block Type Hashes" type="uint" arr1="Num Block Types" ver1="20.3.1.2" ver2="20.3.1.2">List of all object types used in this NIF file.</add>
         <add name="Block Type Index" type="BlockTypeIndex" arr1="Num Blocks" ver1="5.0.0.1">Maps file objects on their corresponding type: first file object is of type object_types[object_type_index[0]], the second of object_types[object_type_index[1]], etc.</add>
         <add name="Block Size" type="uint" arr1="Num Blocks" ver1="20.2.0.5">Array of block sizes</add>
         <add name="Num Strings" type="uint" ver1="20.1.0.1">Number of strings.</add>
