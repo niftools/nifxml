@@ -323,16 +323,16 @@
 
     <bitflags name="AccumFlags" storage="uint">
         Describes the options for the accum root on NiControllerSequence.
-        <option value="0" name="ACCUM_X_TRANS">X Translation will be accumulated.</option>
-        <option value="1" name="ACCUM_Y_TRANS">Y Translation will be accumulated.</option>
-        <option value="2" name="ACCUM_Z_TRANS">Z Translation will be accumulated.</option>
-        <option value="3" name="ACCUM_X_ROT">X Rotation will be accumulated.</option>
-        <option value="4" name="ACCUM_Y_ROT">Y Rotation will be accumulated.</option>
-        <option value="5" name="ACCUM_Z_ROT">Z Rotation will be accumulated.</option>
-        <option value="6" name="ACCUM_X_FRONT">+X is front facing. (Default)</option>
-        <option value="7" name="ACCUM_Y_FRONT">+Y is front facing.</option>
-        <option value="8" name="ACCUM_Z_FRONT">+Z is front facing.</option>
-        <option value="9" name="ACCUM_NEG_FRONT">-X is front facing.</option>
+        <option bit="0" name="ACCUM_X_TRANS">X Translation will be accumulated.</option>
+        <option bit="1" name="ACCUM_Y_TRANS">Y Translation will be accumulated.</option>
+        <option bit="2" name="ACCUM_Z_TRANS">Z Translation will be accumulated.</option>
+        <option bit="3" name="ACCUM_X_ROT">X Rotation will be accumulated.</option>
+        <option bit="4" name="ACCUM_Y_ROT">Y Rotation will be accumulated.</option>
+        <option bit="5" name="ACCUM_Z_ROT">Z Rotation will be accumulated.</option>
+        <option bit="6" name="ACCUM_X_FRONT">+X is front facing. (Default)</option>
+        <option bit="7" name="ACCUM_Y_FRONT">+Y is front facing.</option>
+        <option bit="8" name="ACCUM_Z_FRONT">+Z is front facing.</option>
+        <option bit="9" name="ACCUM_NEG_FRONT">-X is front facing.</option>
     </bitflags>
 
     <enum name="ApplyMode" storage="uint">
@@ -1991,17 +1991,17 @@
 
     <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4# #F76#">
         The bits of BSVertexDesc that describe the enabled vertex attributes.
-        <option value="1" name="Vertex" />
-        <option value="2" name="UVs" />
-        <option value="3" name="UVs_2" />
-        <option value="4" name="Normals" />
-        <option value="5" name="Tangents" />
-        <option value="6" name="Vertex_Colors" />
-        <option value="7" name="Skinned" />
-        <option value="8" name="Land_Data" />
-        <option value="9" name="Eye_Data" />
-        <option value="10" name="Instance" />
-        <option value="11" name="Full_Precision" />
+        <option bit="1" name="Vertex" />
+        <option bit="2" name="UVs" />
+        <option bit="3" name="UVs_2" />
+        <option bit="4" name="Normals" />
+        <option bit="5" name="Tangents" />
+        <option bit="6" name="Vertex_Colors" />
+        <option bit="7" name="Skinned" />
+        <option bit="8" name="Land_Data" />
+        <option bit="9" name="Eye_Data" />
+        <option bit="10" name="Instance" />
+        <option bit="11" name="Full_Precision" />
     </bitflags>
 
     <bitfield name="BSVertexDesc" storage="uint64" versions="#SSE# #FO4# #F76#">
@@ -2125,11 +2125,11 @@
 
 	<bitflags name="FurnitureEntryPoints" storage="ushort" versions="#BETHESDA#">
 		Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
-		<option value="0" name="Front">front entry point</option>
-		<option value="1" name="Behind">behind entry point</option>
-		<option value="2" name="Right">right entry point</option>
-		<option value="3" name="Left">left entry point</option>
-		<option value="4" name="Up">up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
+		<option bit="0" name="Front">front entry point</option>
+		<option bit="1" name="Behind">behind entry point</option>
+		<option bit="2" name="Right">right entry point</option>
+		<option bit="3" name="Left">left entry point</option>
+		<option bit="4" name="Up">up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</option>
 	</bitflags>
 
 	<enum name="AnimationType" storage="ushort" versions="#BETHESDA#">
@@ -2491,8 +2491,8 @@
 
     <bitflags name="BSPartFlag" storage="ushort" versions="#BETHESDA#">
         Editor flags for the Body Partitions. 
-        <option value="0" name="PF_EDITOR_VISIBLE">Visible in Editor</option>
-        <option value="8" name="PF_START_NET_BONESET">Start a new shared boneset.  It is expected this BoneSet and the following sets in the Skin Partition will have the same bones.</option>
+        <option bit="0" name="PF_EDITOR_VISIBLE">Visible in Editor</option>
+        <option bit="8" name="PF_START_NET_BONESET">Start a new shared boneset.  It is expected this BoneSet and the following sets in the Skin Partition will have the same bones.</option>
     </bitflags>
 
     <compound name="BodyPartList" size="4" versions="#BETHESDA#">
@@ -3163,13 +3163,13 @@
     </niobject>
 
     <bitflags name="PathFlags" storage="ushort" prefix="NIPI">
-        <option value="0" name="CVDataNeedsUpdate" />
-        <option value="1" name="CurveTypeOpen" />
-        <option value="2" name="AllowFlip" />
-        <option value="3" name="Bank" />
-        <option value="4" name="ConstantVelocity" />
-        <option value="5" name="Follow" />
-        <option value="6" name="Flip" />
+        <option bit="0" name="CVDataNeedsUpdate" />
+        <option bit="1" name="CurveTypeOpen" />
+        <option bit="2" name="AllowFlip" />
+        <option bit="3" name="Bank" />
+        <option bit="4" name="ConstantVelocity" />
+        <option bit="5" name="Follow" />
+        <option bit="6" name="Flip" />
     </bitflags>
 
     <niobject name="NiPathInterpolator" inherit="NiKeyBasedInterpolator" module="NiAnimation">
@@ -3289,18 +3289,18 @@
     <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO" versions="#BETHESDA#">
         bhkNiCollisionObject flags.
         0x100 and 0x200 are only for bhkBlendCollisionObject
-        <option value="0" name="ACTIVE" />
-        <option value="1" name="RESET_TRANS" />
-        <option value="2" name="NOTIFY" />
-        <option value="3" name="SET_LOCAL" />
-        <option value="4" name="DBG_DISPLAY" />
-        <option value="5" name="USE_VEL" />
-        <option value="6" name="RESET" />
-        <option value="7" name="SYNC_ON_UPDATE" />
-        <option value="8" name="BLEND_POS" />
-        <option value="9" name="ALWAYS_BLEND" />
-        <option value="10" name="ANIM_TARGETED" />
-        <option value="11" name="DISMEMBERED_LIMB" />
+        <option bit="0" name="ACTIVE" />
+        <option bit="1" name="RESET_TRANS" />
+        <option bit="2" name="NOTIFY" />
+        <option bit="3" name="SET_LOCAL" />
+        <option bit="4" name="DBG_DISPLAY" />
+        <option bit="5" name="USE_VEL" />
+        <option bit="6" name="RESET" />
+        <option bit="7" name="SYNC_ON_UPDATE" />
+        <option bit="8" name="BLEND_POS" />
+        <option bit="9" name="ALWAYS_BLEND" />
+        <option bit="10" name="ANIM_TARGETED" />
+        <option bit="11" name="DISMEMBERED_LIMB" />
     </bitflags>
 
     <niobject name="bhkNiCollisionObject" abstract="true" inherit="NiCollisionObject" module="BSHavok">
@@ -3884,9 +3884,9 @@
     </niobject>
 
     <bitflags name="AspectFlags" storage="ushort" versions="#FO3_AND_LATER#">
-        <option value="0" name="Velocity Orientation" />
-        <option value="1" name="Initial Rotation from Velocity" />
-        <option value="8" name="Speed to Aspect Enabled" />
+        <option bit="0" name="Velocity Orientation" />
+        <option bit="1" name="Initial Rotation from Velocity" />
+        <option bit="8" name="Speed to Aspect Enabled" />
     </bitflags>
 
     <niobject name="NiParticlesData" inherit="NiGeometryData" module="NiMain">
@@ -4235,9 +4235,9 @@
     </niobject>
 
     <bitflags name="LookAtFlags" storage="ushort">
-        <option value="0" name="LOOK_FLIP">Flip</option>
-        <option value="1" name="LOOK_Y_AXIS">Y-Axis</option>
-        <option value="2" name="LOOK_Z_AXIS">Z-Axis</option>
+        <option bit="0" name="LOOK_FLIP">Flip</option>
+        <option bit="1" name="LOOK_Y_AXIS">Y-Axis</option>
+        <option bit="2" name="LOOK_Z_AXIS">Z-Axis</option>
     </bitflags>
 
     <niobject name="NiLookAtController" inherit="NiTimeController" module="NiAnimation" until="V20_5_0_0">
@@ -4351,8 +4351,8 @@
     
     <bitflags name="NiSwitchFlags" storage="ushort">
         Flags for NiSwitchNode.
-        <option value="0" name="UpdateOnlyActiveChild">Update Only Active Child</option>
-        <option value="1" name="UpdateControllers">Update Controllers</option>
+        <option bit="0" name="UpdateOnlyActiveChild">Update Only Active Child</option>
+        <option bit="1" name="UpdateControllers">Update Controllers</option>
     </bitflags>
 
     <niobject name="NiSwitchNode" inherit="NiNode" module="NiMain">
@@ -5456,18 +5456,18 @@
     </enum>
 
     <bitflags name="NxBodyFlag" storage="uint" prefix="NX_BF" since="V20_2_0_8">
-        <option value="0" name="DISABLE_GRAVITY" />
-        <option value="1" name="FROZEN_POS_X" />
-        <option value="2" name="FROZEN_POS_Y" />
-        <option value="3" name="FROZEN_POS_Z" />
-        <option value="4" name="FROZEN_ROT_X" />
-        <option value="5" name="FROZEN_ROT_Y" />
-        <option value="6" name="FROZEN_ROT_Z" />
-        <option value="7" name="KINEMATIC" />
-        <option value="8" name="VISUALIZATION" />
-        <option value="9" name="POSE_SLEEP_TEST" />
-        <option value="10" name="FILTER_SLEEP_VEL" />
-        <option value="11" name="ENERGY_SLEEP_TEST" />
+        <option bit="0" name="DISABLE_GRAVITY" />
+        <option bit="1" name="FROZEN_POS_X" />
+        <option bit="2" name="FROZEN_POS_Y" />
+        <option bit="3" name="FROZEN_POS_Z" />
+        <option bit="4" name="FROZEN_ROT_X" />
+        <option bit="5" name="FROZEN_ROT_Y" />
+        <option bit="6" name="FROZEN_ROT_Z" />
+        <option bit="7" name="KINEMATIC" />
+        <option bit="8" name="VISUALIZATION" />
+        <option bit="9" name="POSE_SLEEP_TEST" />
+        <option bit="10" name="FILTER_SLEEP_VEL" />
+        <option bit="11" name="ENERGY_SLEEP_TEST" />
     </bitflags>
 
     <compound name="NiPhysXMaterialDescMap" size="6" since="V20_2_0_8">
@@ -5730,26 +5730,26 @@
     </enum>
 
     <bitflags name="NxShapeFlag" storage="uint" prefix="NX_SF" since="V20_2_0_8">
-        <option value="0" name="TRIGGER_ON_ENTER" />
-        <option value="1" name="TRIGGER_ON_LEAVE" />
-        <option value="2" name="TRIGGER_ON_STAY" />
-        <option value="3" name="VISUALIZATION" />
-        <option value="4" name="DISABLE_COLLISION" />
-        <option value="5" name="FEATURE_INDICES" />
-        <option value="6" name="DISABLE_RAYCASTING" />
-        <option value="7" name="POINT_CONTACT_FORCE" />
-        <option value="8" name="FLUID_DRAIN" />
-        <option value="10" name="FLUID_DISABLE_COLLISION" />
-        <option value="11" name="FLUID_TWOWAY" />
-        <option value="12" name="DISABLE_RESPONSE" />
-        <option value="13" name="DYNAMIC_DYNAMIC_CCD" />
-        <option value="14" name="DISABLE_SCENE_QUERIES" />
-        <option value="15" name="CLOTH_DRAIN" />
-        <option value="16" name="CLOTH_DISABLE_COLLISION" />
-        <option value="17" name="CLOTH_TWOWAY" />
-        <option value="18" name="SOFTBODY_DRAIN" />
-        <option value="19" name="SOFTBODY_DISABLE_COLLISION" />
-        <option value="20" name="SOFTBODY_TWOWAY" />
+        <option bit="0" name="TRIGGER_ON_ENTER" />
+        <option bit="1" name="TRIGGER_ON_LEAVE" />
+        <option bit="2" name="TRIGGER_ON_STAY" />
+        <option bit="3" name="VISUALIZATION" />
+        <option bit="4" name="DISABLE_COLLISION" />
+        <option bit="5" name="FEATURE_INDICES" />
+        <option bit="6" name="DISABLE_RAYCASTING" />
+        <option bit="7" name="POINT_CONTACT_FORCE" />
+        <option bit="8" name="FLUID_DRAIN" />
+        <option bit="10" name="FLUID_DISABLE_COLLISION" />
+        <option bit="11" name="FLUID_TWOWAY" />
+        <option bit="12" name="DISABLE_RESPONSE" />
+        <option bit="13" name="DYNAMIC_DYNAMIC_CCD" />
+        <option bit="14" name="DISABLE_SCENE_QUERIES" />
+        <option bit="15" name="CLOTH_DRAIN" />
+        <option bit="16" name="CLOTH_DISABLE_COLLISION" />
+        <option bit="17" name="CLOTH_TWOWAY" />
+        <option bit="18" name="SOFTBODY_DRAIN" />
+        <option bit="19" name="SOFTBODY_DISABLE_COLLISION" />
+        <option bit="20" name="SOFTBODY_TWOWAY" />
     </bitflags>
 
     <compound name="NxPlane" size="16" since="V20_2_0_8">
@@ -5797,9 +5797,9 @@
     </niobject>
 
     <bitflags name="NxMaterialFlag" storage="uint" prefix="NX_MF" since="V20_2_0_8">
-        <option value="0" name="ANISOTROPIC" />
-        <option value="4" name="DISABLE_FRICTION" />
-        <option value="5" name="DISABLE_STRONG_FRICTION" />
+        <option bit="0" name="ANISOTROPIC" />
+        <option bit="4" name="DISABLE_FRICTION" />
+        <option bit="5" name="DISABLE_STRONG_FRICTION" />
     </bitflags>
 
     <compound name="NxSpringDesc" size="12" since="V20_2_0_8">
@@ -5837,24 +5837,24 @@
     </niobject>
 
     <bitflags name="NxClothFlag" storage="uint" prefix="NX_CLF" since="V20_2_0_8">
-        <option value="0" name="PRESSURE" />
-        <option value="1" name="STATIC" />
-        <option value="2" name="DISABLE_COLLISION" />
-        <option value="3" name="SELFCOLLISION" />
-        <option value="4" name="VISUALIZATION" />
-        <option value="5" name="GRAVITY" />
-        <option value="6" name="BENDING" />
-        <option value="7" name="BENDING_ORTHO" />
-        <option value="8" name="DAMPING" />
-        <option value="9" name="COLLISION_TWOWAY" />
-        <option value="11" name="TRIANGLE_COLLISION" />
-        <option value="12" name="TEARABLE" />
-        <option value="13" name="HARDWARE" />
-        <option value="14" name="COMDAMPING" />
-        <option value="15" name="VALIDBOUNDS" />
-        <option value="16" name="FLUID_COLLISION" />
-        <option value="17" name="DISABLE_DYNAMIC_CCD" />
-        <option value="18" name="ADHERE" />
+        <option bit="0" name="PRESSURE" />
+        <option bit="1" name="STATIC" />
+        <option bit="2" name="DISABLE_COLLISION" />
+        <option bit="3" name="SELFCOLLISION" />
+        <option bit="4" name="VISUALIZATION" />
+        <option bit="5" name="GRAVITY" />
+        <option bit="6" name="BENDING" />
+        <option bit="7" name="BENDING_ORTHO" />
+        <option bit="8" name="DAMPING" />
+        <option bit="9" name="COLLISION_TWOWAY" />
+        <option bit="11" name="TRIANGLE_COLLISION" />
+        <option bit="12" name="TEARABLE" />
+        <option bit="13" name="HARDWARE" />
+        <option bit="14" name="COMDAMPING" />
+        <option bit="15" name="VALIDBOUNDS" />
+        <option bit="16" name="FLUID_COLLISION" />
+        <option bit="17" name="DISABLE_DYNAMIC_CCD" />
+        <option bit="18" name="ADHERE" />
     </bitflags>
 
     <compound name="PhysXClothState" since="V20_2_0_8">
@@ -6044,74 +6044,74 @@
     
     <bitflags name="BSShaderFlags" storage="uint" prefix="F3SF1" versions="#FO3#">
         Shader Property Flags
-        <option value="0" name="Specular">Enables Specularity</option>
-        <option value="1" name="Skinned">Required For Skinned Meshes</option>
-        <option value="2" name="LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
-        <option value="3" name="Vertex_Alpha">Vertex Alpha</option>
-        <option value="4" name="Unknown_1">Unknown</option>
-        <option value="5" name="Single_Pass">Single Pass</option>
-        <option value="6" name="Empty">Unknown</option>
-        <option value="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
-        <option value="8" name="Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
-        <option value="9" name="Unknown_2">Unknown</option>
-        <option value="10" name="FaceGen">FaceGen</option>
-        <option value="11" name="Parallax_Shader_Index_15">Parallax</option>
-        <option value="12" name="Unknown_3">Unknown/Crash</option>
-        <option value="13" name="Non_Projective_Shadows">Non-Projective Shadows</option>
-        <option value="14" name="Unknown_4">Unknown/Crash</option>
-        <option value="15" name="Refraction">Refraction (switches on refraction power)</option>
-        <option value="16" name="Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
-        <option value="17" name="Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
-        <option value="18" name="Hair">Hair</option>
-        <option value="19" name="Dynamic_Alpha">Dynamic Alpha</option>
-        <option value="20" name="Localmap_Hide_Secret">Localmap Hide Secret</option>
-        <option value="21" name="Window_Environment_Mapping">Window Environment Mapping</option>
-        <option value="22" name="Tree_Billboard">Tree Billboard</option>
-        <option value="23" name="Shadow_Frustum">Shadow Frustum</option>
-        <option value="24" name="Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
-        <option value="25" name="Remappable_Textures">usually seen w/texture animation</option>
-        <option value="26" name="Decal_Single_Pass">Decal</option>
-        <option value="27" name="Dynamic_Decal_Single_Pass">Dynamic Decal</option>
-        <option value="28" name="Parallax_Occulsion">Parallax Occlusion</option>
-        <option value="29" name="External_Emittance">External Emittance</option>
-        <option value="30" name="Shadow_Map">Shadow Map</option>
-        <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
+        <option bit="0" name="Specular">Enables Specularity</option>
+        <option bit="1" name="Skinned">Required For Skinned Meshes</option>
+        <option bit="2" name="LowDetail">Lowddetail (seems to use standard diff/norm/spec shader)</option>
+        <option bit="3" name="Vertex_Alpha">Vertex Alpha</option>
+        <option bit="4" name="Unknown_1">Unknown</option>
+        <option bit="5" name="Single_Pass">Single Pass</option>
+        <option bit="6" name="Empty">Unknown</option>
+        <option bit="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale)</option>
+        <option bit="8" name="Alpha_Texture">Alpha Texture Requires NiAlphaProperty to Enable</option>
+        <option bit="9" name="Unknown_2">Unknown</option>
+        <option bit="10" name="FaceGen">FaceGen</option>
+        <option bit="11" name="Parallax_Shader_Index_15">Parallax</option>
+        <option bit="12" name="Unknown_3">Unknown/Crash</option>
+        <option bit="13" name="Non_Projective_Shadows">Non-Projective Shadows</option>
+        <option bit="14" name="Unknown_4">Unknown/Crash</option>
+        <option bit="15" name="Refraction">Refraction (switches on refraction power)</option>
+        <option bit="16" name="Fire_Refraction">Fire Refraction (switches on refraction power/period)</option>
+        <option bit="17" name="Eye_Environment_Mapping">Eye Environment Mapping (does not use envmap light fade or envmap scale)</option>
+        <option bit="18" name="Hair">Hair</option>
+        <option bit="19" name="Dynamic_Alpha">Dynamic Alpha</option>
+        <option bit="20" name="Localmap_Hide_Secret">Localmap Hide Secret</option>
+        <option bit="21" name="Window_Environment_Mapping">Window Environment Mapping</option>
+        <option bit="22" name="Tree_Billboard">Tree Billboard</option>
+        <option bit="23" name="Shadow_Frustum">Shadow Frustum</option>
+        <option bit="24" name="Multiple_Textures">Multiple Textures (base diff/norm become null)</option>
+        <option bit="25" name="Remappable_Textures">usually seen w/texture animation</option>
+        <option bit="26" name="Decal_Single_Pass">Decal</option>
+        <option bit="27" name="Dynamic_Decal_Single_Pass">Dynamic Decal</option>
+        <option bit="28" name="Parallax_Occulsion">Parallax Occlusion</option>
+        <option bit="29" name="External_Emittance">External Emittance</option>
+        <option bit="30" name="Shadow_Map">Shadow Map</option>
+        <option bit="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
 
     <bitflags name="BSShaderFlags2" storage="uint" prefix="F3SF2" versions="#FO3#">
         Shader Property Flags 2
-        <option value="0" name="ZBuffer_Write">ZBuffer Write</option>
-        <option value="1" name="LOD_Landscape">LOD Landscape</option>
-        <option value="2" name="LOD_Building">LOD Building</option>
-        <option value="3" name="No_Fade">No Fade</option>
-        <option value="4" name="Refraction_Tint">Refraction Tint</option>
-        <option value="5" name="Vertex_Colors">Has Vertex Colors</option>
-        <option value="6" name="Unknown1">Unknown</option>
-        <option value="7" name="First_Light_is_Point_Light">1st Light is Point Light</option>
-        <option value="8" name="Second_Light">2nd Light</option>
-        <option value="9" name="Third_Light">3rd Light</option>
-        <option value="10" name="Vertex_Lighting">Vertex Lighting</option>
-        <option value="11" name="Uniform_Scale">Uniform Scale</option>
-        <option value="12" name="Fit_Slope">Fit Slope</option>
-        <option value="13" name="Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
-        <option value="14" name="No_LOD_Land_Blend">No LOD Land Blend</option>
-        <option value="15" name="Envmap_Light_Fade">Envmap Light Fade</option>
-        <option value="16" name="Wireframe">Wireframe</option>
-        <option value="17" name="VATS_Selection">VATS Selection</option>
-        <option value="18" name="Show_in_Local_Map">Show in Local Map</option>
-        <option value="19" name="Premult_Alpha">Premult Alpha</option>
-        <option value="20" name="Skip_Normal_Maps">Skip Normal Maps</option>
-        <option value="21" name="Alpha_Decal">Alpha Decal</option>
-        <option value="22" name="No_Transparecny_Multisampling">No Transparency MultiSampling</option>
-        <option value="23" name="Unknown2">Unknown</option>
-        <option value="24" name="Unknown3">Unknown</option>
-        <option value="25" name="Unknown4">Unknown</option>
-        <option value="26" name="Unknown5">Unknown</option>
-        <option value="27" name="Unknown6">Unknown</option>
-        <option value="28" name="Unknown7">Unknown</option>
-        <option value="29" name="Unknown8">Unknown</option>
-        <option value="30" name="Unknown9">Unknown</option>
-        <option value="31" name="Unknown10">Unknown</option>
+        <option bit="0" name="ZBuffer_Write">ZBuffer Write</option>
+        <option bit="1" name="LOD_Landscape">LOD Landscape</option>
+        <option bit="2" name="LOD_Building">LOD Building</option>
+        <option bit="3" name="No_Fade">No Fade</option>
+        <option bit="4" name="Refraction_Tint">Refraction Tint</option>
+        <option bit="5" name="Vertex_Colors">Has Vertex Colors</option>
+        <option bit="6" name="Unknown1">Unknown</option>
+        <option bit="7" name="First_Light_is_Point_Light">1st Light is Point Light</option>
+        <option bit="8" name="Second_Light">2nd Light</option>
+        <option bit="9" name="Third_Light">3rd Light</option>
+        <option bit="10" name="Vertex_Lighting">Vertex Lighting</option>
+        <option bit="11" name="Uniform_Scale">Uniform Scale</option>
+        <option bit="12" name="Fit_Slope">Fit Slope</option>
+        <option bit="13" name="Billboard_and_Envmap_Light_Fade">Billboard and Envmap Light Fade</option>
+        <option bit="14" name="No_LOD_Land_Blend">No LOD Land Blend</option>
+        <option bit="15" name="Envmap_Light_Fade">Envmap Light Fade</option>
+        <option bit="16" name="Wireframe">Wireframe</option>
+        <option bit="17" name="VATS_Selection">VATS Selection</option>
+        <option bit="18" name="Show_in_Local_Map">Show in Local Map</option>
+        <option bit="19" name="Premult_Alpha">Premult Alpha</option>
+        <option bit="20" name="Skip_Normal_Maps">Skip Normal Maps</option>
+        <option bit="21" name="Alpha_Decal">Alpha Decal</option>
+        <option bit="22" name="No_Transparecny_Multisampling">No Transparency MultiSampling</option>
+        <option bit="23" name="Unknown2">Unknown</option>
+        <option bit="24" name="Unknown3">Unknown</option>
+        <option bit="25" name="Unknown4">Unknown</option>
+        <option bit="26" name="Unknown5">Unknown</option>
+        <option bit="27" name="Unknown6">Unknown</option>
+        <option bit="28" name="Unknown7">Unknown</option>
+        <option bit="29" name="Unknown8">Unknown</option>
+        <option bit="30" name="Unknown9">Unknown</option>
+        <option bit="31" name="Unknown10">Unknown</option>
     </bitflags>
     
     <niobject name="BSShaderProperty" inherit="NiShadeProperty" module="BSMain" versions="#FO3_AND_LATER#">
@@ -6267,146 +6267,146 @@
 
     <bitflags name="SkyrimShaderPropertyFlags1" storage="uint" prefix="SLSF1" versions="#SKY# #SSE#">
         Skyrim Shader Property Flags 1
-        <option value="0" name="Specular">Enables Specularity</option>
-        <option value="1" name="Skinned">Required For Skinned Meshes.</option>
-        <option value="2" name="Temp_Refraction"></option>
-        <option value="3" name="Vertex_Alpha">Enables using alpha component of vertex colors.</option>
-        <option value="4" name="Greyscale_To_PaletteColor">in EffectShaderProperty</option>
-        <option value="5" name="Greyscale_To_PaletteAlpha">in EffectShaderProperty</option>
-        <option value="6" name="Use_Falloff">Use Falloff value in EffectShaderProperty</option>
-        <option value="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale).</option>
-        <option value="8" name="Recieve_Shadows">Object can recieve shadows.</option>
-        <option value="9" name="Cast_Shadows">Can cast shadows</option>
-        <option value="10" name="Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
-        <option value="11" name="Parallax">Unused?</option>
-        <option value="12" name="Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
-        <option value="13" name="Non_Projective_Shadows"></option>
-        <option value="14" name="Landscape"></option>
-        <option value="15" name="Refraction">Use normal map for refraction effect.</option>
-        <option value="16" name="Fire_Refraction"></option>
-        <option value="17" name="Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
-        <option value="18" name="Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
-        <option value="19" name="Screendoor_Alpha_Fade"></option>
-        <option value="20" name="Localmap_Hide_Secret">Object and anything it is positioned above will not render on local map view.</option>
-        <option value="21" name="FaceGen_RGB_Tint">Use tintmask for Face.</option>
-        <option value="22" name="Own_Emit">Provides its own emittance color. (will not absorb light/ambient color?)</option>
-        <option value="23" name="Projected_UV">Used for decalling?</option>
-        <option value="24" name="Multiple_Textures"></option>
-        <option value="25" name="Remappable_Textures"></option>
-        <option value="26" name="Decal"></option>
-        <option value="27" name="Dynamic_Decal"></option>
-        <option value="28" name="Parallax_Occlusion"></option>
-        <option value="29" name="External_Emittance"></option>
-        <option value="30" name="Soft_Effect"></option>
-        <option value="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
+        <option bit="0" name="Specular">Enables Specularity</option>
+        <option bit="1" name="Skinned">Required For Skinned Meshes.</option>
+        <option bit="2" name="Temp_Refraction"></option>
+        <option bit="3" name="Vertex_Alpha">Enables using alpha component of vertex colors.</option>
+        <option bit="4" name="Greyscale_To_PaletteColor">in EffectShaderProperty</option>
+        <option bit="5" name="Greyscale_To_PaletteAlpha">in EffectShaderProperty</option>
+        <option bit="6" name="Use_Falloff">Use Falloff value in EffectShaderProperty</option>
+        <option bit="7" name="Environment_Mapping">Environment mapping (uses Envmap Scale).</option>
+        <option bit="8" name="Recieve_Shadows">Object can recieve shadows.</option>
+        <option bit="9" name="Cast_Shadows">Can cast shadows</option>
+        <option bit="10" name="Facegen_Detail_Map">Use a face detail map in the 4th texture slot.</option>
+        <option bit="11" name="Parallax">Unused?</option>
+        <option bit="12" name="Model_Space_Normals">Use Model space normals and an external Specular Map.</option>
+        <option bit="13" name="Non_Projective_Shadows"></option>
+        <option bit="14" name="Landscape"></option>
+        <option bit="15" name="Refraction">Use normal map for refraction effect.</option>
+        <option bit="16" name="Fire_Refraction"></option>
+        <option bit="17" name="Eye_Environment_Mapping">Eye Environment Mapping (Must use the Eye shader and the model must be skinned)</option>
+        <option bit="18" name="Hair_Soft_Lighting">Keeps from going too bright under lights (hair shader only)</option>
+        <option bit="19" name="Screendoor_Alpha_Fade"></option>
+        <option bit="20" name="Localmap_Hide_Secret">Object and anything it is positioned above will not render on local map view.</option>
+        <option bit="21" name="FaceGen_RGB_Tint">Use tintmask for Face.</option>
+        <option bit="22" name="Own_Emit">Provides its own emittance color. (will not absorb light/ambient color?)</option>
+        <option bit="23" name="Projected_UV">Used for decalling?</option>
+        <option bit="24" name="Multiple_Textures"></option>
+        <option bit="25" name="Remappable_Textures"></option>
+        <option bit="26" name="Decal"></option>
+        <option bit="27" name="Dynamic_Decal"></option>
+        <option bit="28" name="Parallax_Occlusion"></option>
+        <option bit="29" name="External_Emittance"></option>
+        <option bit="30" name="Soft_Effect"></option>
+        <option bit="31" name="ZBuffer_Test">ZBuffer Test (1=on)</option>
     </bitflags>
     
     <bitflags name="SkyrimShaderPropertyFlags2" storage="uint" prefix="SLSF2" versions="#SKY# #SSE#">
         Skyrim Shader Property Flags 2
-        <option value="0" name="ZBuffer_Write">Enables writing to the Z-Buffer</option>
-        <option value="1" name="LOD_Landscape"></option>
-        <option value="2" name="LOD_Objects"></option>
-        <option value="3" name="No_Fade"></option>
-        <option value="4" name="Double_Sided">Double-sided rendering.</option>
-        <option value="5" name="Vertex_Colors">Has Vertex Colors.</option>
-        <option value="6" name="Glow_Map">Use Glow Map in the third texture slot.</option>
-        <option value="7" name="Assume_Shadowmask"></option>
-        <option value="8" name="Packed_Tangent"></option>
-        <option value="9" name="Multi_Index_Snow"></option>
-        <option value="10" name="Vertex_Lighting"></option>
-        <option value="11" name="Uniform_Scale"></option>
-        <option value="12" name="Fit_Slope"></option>
-        <option value="13" name="Billboard"></option>
-        <option value="14" name="No_LOD_Land_Blend"></option>
-        <option value="15" name="EnvMap_Light_Fade"></option>
-        <option value="16" name="Wireframe">Wireframe (Seems to only work on particles)</option>
-        <option value="17" name="Weapon_Blood">Used for blood decals on weapons.</option>
-        <option value="18" name="Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
-        <option value="19" name="Premult_Alpha">Has Premultiplied Alpha</option>
-        <option value="20" name="Cloud_LOD"></option>
-        <option value="21" name="Anisotropic_Lighting">Hair only?</option>
-        <option value="22" name="No_Transparency_Multisampling"></option>
-        <option value="23" name="Unused01">Unused?</option>
-        <option value="24" name="Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
-        <option value="25" name="Soft_Lighting">Use Soft Lighting Map</option>
-        <option value="26" name="Rim_Lighting">Use Rim Lighting Map</option>
-        <option value="27" name="Back_Lighting">Use Back Lighting Map</option>
-        <option value="28" name="Unused02">Unused?</option>
-        <option value="29" name="Tree_Anim">Enables Vertex Animation, Flutter Animation</option>
-        <option value="30" name="Effect_Lighting"></option>
-        <option value="31" name="HD_LOD_Objects"></option>
+        <option bit="0" name="ZBuffer_Write">Enables writing to the Z-Buffer</option>
+        <option bit="1" name="LOD_Landscape"></option>
+        <option bit="2" name="LOD_Objects"></option>
+        <option bit="3" name="No_Fade"></option>
+        <option bit="4" name="Double_Sided">Double-sided rendering.</option>
+        <option bit="5" name="Vertex_Colors">Has Vertex Colors.</option>
+        <option bit="6" name="Glow_Map">Use Glow Map in the third texture slot.</option>
+        <option bit="7" name="Assume_Shadowmask"></option>
+        <option bit="8" name="Packed_Tangent"></option>
+        <option bit="9" name="Multi_Index_Snow"></option>
+        <option bit="10" name="Vertex_Lighting"></option>
+        <option bit="11" name="Uniform_Scale"></option>
+        <option bit="12" name="Fit_Slope"></option>
+        <option bit="13" name="Billboard"></option>
+        <option bit="14" name="No_LOD_Land_Blend"></option>
+        <option bit="15" name="EnvMap_Light_Fade"></option>
+        <option bit="16" name="Wireframe">Wireframe (Seems to only work on particles)</option>
+        <option bit="17" name="Weapon_Blood">Used for blood decals on weapons.</option>
+        <option bit="18" name="Hide_On_Local_Map">Similar to hide secret, but only for self?</option>
+        <option bit="19" name="Premult_Alpha">Has Premultiplied Alpha</option>
+        <option bit="20" name="Cloud_LOD"></option>
+        <option bit="21" name="Anisotropic_Lighting">Hair only?</option>
+        <option bit="22" name="No_Transparency_Multisampling"></option>
+        <option bit="23" name="Unused01">Unused?</option>
+        <option bit="24" name="Multi_Layer_Parallax">Use Multilayer (inner-layer) Map</option>
+        <option bit="25" name="Soft_Lighting">Use Soft Lighting Map</option>
+        <option bit="26" name="Rim_Lighting">Use Rim Lighting Map</option>
+        <option bit="27" name="Back_Lighting">Use Back Lighting Map</option>
+        <option bit="28" name="Unused02">Unused?</option>
+        <option bit="29" name="Tree_Anim">Enables Vertex Animation, Flutter Animation</option>
+        <option bit="30" name="Effect_Lighting"></option>
+        <option bit="31" name="HD_LOD_Objects"></option>
     </bitflags>
 
     <bitflags name="Fallout4ShaderPropertyFlags1" storage="uint" prefix="F4SF1" versions="#FO4#">
         Fallout 4 Shader Property Flags 1
-        <option value="0" name="Specular" />
-        <option value="1" name="Skinned" />
-        <option value="2" name="Temp_Refraction" />
-        <option value="3" name="Vertex_Alpha" />
-        <option value="4" name="GreyscaleToPalette_Color" />
-        <option value="5" name="GreyscaleToPalette_Alpha" />
-        <option value="6" name="Use_Falloff" />
-        <option value="7" name="Environment_Mapping" />
-        <option value="8" name="RGB_Falloff" />
-        <option value="9" name="Cast_Shadows" />
-        <option value="10" name="Face" />
-        <option value="11" name="UI_Mask_Rects" />
-        <option value="12" name="Model_Space_Normals" />
-        <option value="13" name="Non_Projective_Shadows" />
-        <option value="14" name="Landscape" />
-        <option value="15" name="Refraction" />
-        <option value="16" name="Fire_Refraction" />
-        <option value="17" name="Eye_Environment_Mapping" />
-        <option value="18" name="Hair" />
-        <option value="19" name="Screendoor_Alpha_Fade" />
-        <option value="20" name="Localmap_Hide_Secret" />
-        <option value="21" name="Skin_Tint" />
-        <option value="22" name="Own_Emit" />
-        <option value="23" name="Projected_UV" />
-        <option value="24" name="Multiple_Textures" />
-        <option value="25" name="Tessellate" />
-        <option value="26" name="Decal" />
-        <option value="27" name="Dynamic_Decal" />
-        <option value="28" name="Character_Lighting" />
-        <option value="29" name="External_Emittance" />
-        <option value="30" name="Soft_Effect" />
-        <option value="31" name="ZBuffer_Test" />
+        <option bit="0" name="Specular" />
+        <option bit="1" name="Skinned" />
+        <option bit="2" name="Temp_Refraction" />
+        <option bit="3" name="Vertex_Alpha" />
+        <option bit="4" name="GreyscaleToPalette_Color" />
+        <option bit="5" name="GreyscaleToPalette_Alpha" />
+        <option bit="6" name="Use_Falloff" />
+        <option bit="7" name="Environment_Mapping" />
+        <option bit="8" name="RGB_Falloff" />
+        <option bit="9" name="Cast_Shadows" />
+        <option bit="10" name="Face" />
+        <option bit="11" name="UI_Mask_Rects" />
+        <option bit="12" name="Model_Space_Normals" />
+        <option bit="13" name="Non_Projective_Shadows" />
+        <option bit="14" name="Landscape" />
+        <option bit="15" name="Refraction" />
+        <option bit="16" name="Fire_Refraction" />
+        <option bit="17" name="Eye_Environment_Mapping" />
+        <option bit="18" name="Hair" />
+        <option bit="19" name="Screendoor_Alpha_Fade" />
+        <option bit="20" name="Localmap_Hide_Secret" />
+        <option bit="21" name="Skin_Tint" />
+        <option bit="22" name="Own_Emit" />
+        <option bit="23" name="Projected_UV" />
+        <option bit="24" name="Multiple_Textures" />
+        <option bit="25" name="Tessellate" />
+        <option bit="26" name="Decal" />
+        <option bit="27" name="Dynamic_Decal" />
+        <option bit="28" name="Character_Lighting" />
+        <option bit="29" name="External_Emittance" />
+        <option bit="30" name="Soft_Effect" />
+        <option bit="31" name="ZBuffer_Test" />
     </bitflags>
     
     <bitflags name="Fallout4ShaderPropertyFlags2" storage="uint" prefix="F4SF2" versions="#FO4#">
         Fallout 4 Shader Property Flags 2
-        <option value="0" name="ZBuffer_Write" />
-        <option value="1" name="LOD_Landscape" />
-        <option value="2" name="LOD_Objects" />
-        <option value="3" name="No_Fade" />
-        <option value="4" name="Double_Sided" />
-        <option value="5" name="Vertex_Colors" />
-        <option value="6" name="Glow_Map" />
-        <option value="7" name="Transform_Changed" />
-        <option value="8" name="Dismemberment_Meatcuff" />
-        <option value="9" name="Tint" />
-        <option value="10" name="Grass_Vertex_Lighting" />
-        <option value="11" name="Grass_Uniform_Scale" />
-        <option value="12" name="Grass_Fit_Slope" />
-        <option value="13" name="Grass_Billboard" />
-        <option value="14" name="No_LOD_Land_Blend" />
-        <option value="15" name="Dismemberment" />
-        <option value="16" name="Wireframe" />
-        <option value="17" name="Weapon_Blood" />
-        <option value="18" name="Hide_On_Local_Map" />
-        <option value="19" name="Premult_Alpha" />
-        <option value="20" name="VATS_Target" />
-        <option value="21" name="Anisotropic_Lighting" />
-        <option value="22" name="Skew_Specular_Alpha" />
-        <option value="23" name="Menu_Screen" />
-        <option value="24" name="Multi_Layer_Parallax" />
-        <option value="25" name="Alpha_Test" />
-        <option value="26" name="Gradient_Remap" />
-        <option value="27" name="VATS_Target_Draw_All" />
-        <option value="28" name="Pipboy_Screen" />
-        <option value="29" name="Tree_Anim" />
-        <option value="30" name="Effect_Lighting" />
-        <option value="31" name="Refraction_Writes_Depth" />
+        <option bit="0" name="ZBuffer_Write" />
+        <option bit="1" name="LOD_Landscape" />
+        <option bit="2" name="LOD_Objects" />
+        <option bit="3" name="No_Fade" />
+        <option bit="4" name="Double_Sided" />
+        <option bit="5" name="Vertex_Colors" />
+        <option bit="6" name="Glow_Map" />
+        <option bit="7" name="Transform_Changed" />
+        <option bit="8" name="Dismemberment_Meatcuff" />
+        <option bit="9" name="Tint" />
+        <option bit="10" name="Grass_Vertex_Lighting" />
+        <option bit="11" name="Grass_Uniform_Scale" />
+        <option bit="12" name="Grass_Fit_Slope" />
+        <option bit="13" name="Grass_Billboard" />
+        <option bit="14" name="No_LOD_Land_Blend" />
+        <option bit="15" name="Dismemberment" />
+        <option bit="16" name="Wireframe" />
+        <option bit="17" name="Weapon_Blood" />
+        <option bit="18" name="Hide_On_Local_Map" />
+        <option bit="19" name="Premult_Alpha" />
+        <option bit="20" name="VATS_Target" />
+        <option bit="21" name="Anisotropic_Lighting" />
+        <option bit="22" name="Skew_Specular_Alpha" />
+        <option bit="23" name="Menu_Screen" />
+        <option bit="24" name="Multi_Layer_Parallax" />
+        <option bit="25" name="Alpha_Test" />
+        <option bit="26" name="Gradient_Remap" />
+        <option bit="27" name="VATS_Target_Draw_All" />
+        <option bit="28" name="Pipboy_Screen" />
+        <option bit="29" name="Tree_Anim" />
+        <option bit="30" name="Effect_Lighting" />
+        <option bit="31" name="Refraction_Writes_Depth" />
     </bitflags>
 
     <compound name="BSTextureArray" versions="#F76#">
@@ -6572,20 +6572,20 @@
     
     <bitflags name="WaterShaderPropertyFlags" storage="uint" prefix="BSWSP" versions="#SKY_AND_LATER#">
         Skyrim water shader property flags
-        <option value="0" name="DISPLACEMENT" />
-        <option value="1" name="LOD" />
-        <option value="2" name="DEPTH" />
-        <option value="3" name="ACTOR_IN_WATER" />
-        <option value="4" name="ACTOR_IN_WATER_IS_MOVING" />
-        <option value="5" name="UNDERWATER" />
-        <option value="6" name="REFLECTIONS" />
-        <option value="7" name="REFRACTIONS" />
-        <option value="8" name="VERTEX_UV" />
-        <option value="9" name="VERTEX_ALPHA_DEPTH" />
-        <option value="10" name="PROCEDURAL" />
-        <option value="11" name="FOG" />
-        <option value="12" name="UPDATE_CONSTANTS" />
-        <option value="13" name="CUBEMAP" />
+        <option bit="0" name="DISPLACEMENT" />
+        <option bit="1" name="LOD" />
+        <option bit="2" name="DEPTH" />
+        <option bit="3" name="ACTOR_IN_WATER" />
+        <option bit="4" name="ACTOR_IN_WATER_IS_MOVING" />
+        <option bit="5" name="UNDERWATER" />
+        <option bit="6" name="REFLECTIONS" />
+        <option bit="7" name="REFRACTIONS" />
+        <option bit="8" name="VERTEX_UV" />
+        <option bit="9" name="VERTEX_ALPHA_DEPTH" />
+        <option bit="10" name="PROCEDURAL" />
+        <option bit="11" name="FOG" />
+        <option bit="12" name="UPDATE_CONSTANTS" />
+        <option bit="13" name="CUBEMAP" />
     </bitflags>
     
     <niobject name="BSWaterShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
@@ -6642,8 +6642,8 @@
 
     <bitflags name="BSValueNodeFlags" storage="byte" versions="#FO3_AND_LATER#">
         Flags for BSValueNode.
-        <option value="0" name="BillboardWorldZ" />
-        <option value="1" name="UsePlayerAdjust" />
+        <option bit="0" name="BillboardWorldZ" />
+        <option bit="1" name="UsePlayerAdjust" />
     </bitflags>
 
     <niobject name="BSValueNode" inherit="NiNode" module="BSMain" versions="#FO3_AND_LATER#">
@@ -7056,13 +7056,13 @@
     
     <bitflags name="DataStreamAccess" storage="uint" since="V20_5_0_0">
         Determines how the data stream is accessed?
-        <option value="0" name="CPU Read"></option>
-        <option value="1" name="CPU Write Static"></option>
-        <option value="2" name="CPU Write Mutable"></option>
-        <option value="3" name="CPU Write Volatile"></option>
-        <option value="4" name="GPU Read"></option>
-        <option value="5" name="GPU Write"></option>
-        <option value="6" name="CPU Write Static Inititialized"></option>
+        <option bit="0" name="CPU Read"></option>
+        <option bit="1" name="CPU Write Static"></option>
+        <option bit="2" name="CPU Write Mutable"></option>
+        <option bit="3" name="CPU Write Volatile"></option>
+        <option bit="4" name="GPU Read"></option>
+        <option bit="5" name="GPU Write"></option>
+        <option bit="6" name="CPU Write Static Inititialized"></option>
     </bitflags>
 
 
@@ -7945,16 +7945,16 @@
         Bit Patterns:
             AUTO_CALC_NEARFAR = (AUTO_NEAR_DIST | AUTO_FAR_DIST) = 0xC0
             AUTO_CALC_FULL = (AUTO_NEAR_DIST | AUTO_FAR_DIST | AUTO_DIR_LIGHT_FRUSTUM_WIDTH | AUTO_DIR_LIGHT_FRUSTUM_POSITION) = 0x3C0
-        <option value="0" name="DIRTY_SHADOWMAP" />
-        <option value="1" name="DIRTY_RENDERVIEWS" />
-        <option value="2" name="GEN_STATIC" />
-        <option value="3" name="GEN_ACTIVE" />
-        <option value="4" name="RENDER_BACKFACES" />
-        <option value="5" name="STRICTLY_OBSERVE_SIZE_HINT" />
-        <option value="6" name="AUTO_NEAR_DIST" />
-        <option value="7" name="AUTO_FAR_DIST" />
-        <option value="8" name="AUTO_DIR_LIGHT_FRUSTUM_WIDTH" />
-        <option value="9" name="AUTO_DIR_LIGHT_FRUSTUM_POSITION" />
+        <option bit="0" name="DIRTY_SHADOWMAP" />
+        <option bit="1" name="DIRTY_RENDERVIEWS" />
+        <option bit="2" name="GEN_STATIC" />
+        <option bit="3" name="GEN_ACTIVE" />
+        <option bit="4" name="RENDER_BACKFACES" />
+        <option bit="5" name="STRICTLY_OBSERVE_SIZE_HINT" />
+        <option bit="6" name="AUTO_NEAR_DIST" />
+        <option bit="7" name="AUTO_FAR_DIST" />
+        <option bit="8" name="AUTO_DIR_LIGHT_FRUSTUM_WIDTH" />
+        <option bit="9" name="AUTO_DIR_LIGHT_FRUSTUM_POSITION" />
     </bitflags>
 
     <niobject name="NiShadowGenerator" inherit="NiObject" module="NiMain">
