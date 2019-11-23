@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.9.1.0">
+<niftoolsxml version="0.9.2.0">
     <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
             NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
 
