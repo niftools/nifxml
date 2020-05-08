@@ -48,10 +48,12 @@ DOC_FILE = '{}.html'
 CSS_PATH = os.path.join(SCRIPT_PATH, 'doc/nifdoc.css')
 ICO_PATH = os.path.join(SCRIPT_PATH, 'doc/favicon.ico')
 
+
 def clean(string):
     """Removes everything but letters from a string"""
     pattern = re.compile(r'[\W_]+')
     return pattern.sub('', string)
+
 
 def main():
     """Parses the XML and generates all doc pages"""
@@ -115,16 +117,17 @@ def main():
     doc.gen_index()
     logger.info("Generation Complete.")
 
-class DocGenerator():
+
+class DocGenerator:
     """Methods for formatting and outputting the template strings with data from the XML"""
 
-    def __init__(self, path, heading=True, metadata=True, minver=0):
+    def __init__(self, path, heading=True, metadata=True, min_ver=0):
         """Initialize generator"""
         self.doc_file = path + DOC_FILE
         self.main = tmpl.MAIN_H1 if heading else tmpl.MAIN_NO_H1
         self.attr_row = tmpl.ATTR if metadata else tmpl.ATTR_NO_META
         self.inherit = tmpl.INHERIT_ROW if metadata else tmpl.INHERIT_NO_META
-        self.minver = minver
+        self.min_ver = min_ver
         self.blocks = dict(TYPES_BLOCK, **TYPES_COMPOUND)
         install_dir = os.path.abspath(path)
         if not os.path.exists(install_dir):
@@ -137,13 +140,12 @@ class DocGenerator():
     #
     # Template Helper functions
     #
-
     def list_attributes(self, compound):
         """Create Attribute List"""
         attrs = ''
         count = 0
         for mem in compound.members:
-            if self.minver and mem.ver2 and mem.ver2 < self.minver:
+            if self.min_ver and mem.ver2 and mem.ver2 < self.min_ver:
                 continue
             attr_type = tmpl.TYPE_LINK.format(clean(mem.type), mem.type)
             if mem.template:
@@ -160,7 +162,7 @@ class DocGenerator():
                 'attr_to': mem.orig_ver2,
                 'row': 'even' if count % 2 == 0 else 'odd'
             }
-            count += 1 # Manually increment because of 'continue' on skipped versioned rows
+            count += 1  # Manually increment because of 'continue' on skipped versioned rows
             attrs += self.attr_row.format(**content)
         return attrs
 
@@ -233,7 +235,6 @@ class DocGenerator():
     #
     # Generation Functions
     #
-
     def gen_pages(self, names, types, template):
         """Generate Pages for XML Tag"""
         for count, name in enumerate(names):
@@ -257,24 +258,24 @@ class DocGenerator():
             page = {'title': tag.name, 'contents': template.format(**contents)}
 
             html = io.open(self.doc_file.format(clean(tag.name)), 'wt', 1, 'utf-8')
-            html.write( self.main.format(**page) )
+            html.write(self.main.format(**page))
             html.close()
 
-    def gen_list_page(self, title, names, types, pagename, rowtmpl=tmpl.LIST_ROW, header='Name'):
+    def gen_list_page(self, title, names, types, page_name, row_tmpl=tmpl.LIST_ROW, header='Name'):
         """Generate List Page for XML Tag"""
         page = {'title': title}
         contents = {
             'title': title,
             'list_header': header,
-            'list': self.list_tags(names, types, rowtmpl)
+            'list': self.list_tags(names, types, row_tmpl)
         }
         if isinstance(types[names[0]], Block):
             page['contents'] = tmpl.NAV_LIST.format(**contents)
         else:
             page['contents'] = tmpl.LIST.format(**contents)
 
-        html = io.open(self.doc_file.format(pagename), 'wt', 1, 'utf-8')
-        html.write( self.main.format(**page) )
+        html = io.open(self.doc_file.format(page_name), 'wt', 1, 'utf-8')
+        html.write(self.main.format(**page))
         html.close()
 
     def gen_index(self):
@@ -282,13 +283,14 @@ class DocGenerator():
         page = {'title': 'NIF Object Hierarchy'}
         contents = {
             'title': page['title'],
-            'object_tree': self.list_object_tree( TYPES_BLOCK['NiObject'] )
+            'object_tree': self.list_object_tree(TYPES_BLOCK['NiObject'])
         }
         page['contents'] = tmpl.NAV_HIER.format(**contents)
 
         html = io.open(self.doc_file.format('index'), 'wt', 1, 'utf-8')
-        html.write( self.main.format(**page) )
+        html.write(self.main.format(**page))
         html.close()
+
 
 if __name__ == "__main__":
     main()

@@ -779,7 +779,7 @@ class Member:
         self.ccond_ref = [member_name(n) for n in self.cond_ref]  # type: List[str]
 
 
-class Nifxml:
+class NifXml:
     """This class represents the nif.xml <niftoolsxml> tag."""
 
     def __init__(self, element):
@@ -857,6 +857,8 @@ class Enum(Basic):
         for option in element.getElementsByTagName('option'):
             if self.prefix and option.hasAttribute('name'):
                 option.setAttribute('name', self.prefix + "_" + option.getAttribute('name'))
+            if option.hasAttribute("bit"):
+                option.setAttribute('value', option.getAttribute("bit"))
             self.options.append(Option(option))
 
 
@@ -994,7 +996,7 @@ def parse_xml(ntypes=None, path=XML_PATH):  # type: (Optional[Dict[str, str]], s
     logging.basicConfig(level=logging.INFO)
     logger = logging.getLogger('nifxml')
 
-    nifxml = Nifxml(xml.documentElement)
+    nifxml = NifXml(xml.documentElement)
     if not nifxml.is_supported():
         logger.error("The nif.xml version you are trying to parse is not supported by nifxml.py.")
         return False
@@ -1040,8 +1042,13 @@ def parse_xml(ntypes=None, path=XML_PATH):  # type: (Optional[Dict[str, str]], s
 def validate_xml():  # type: () -> bool
     """Perform some basic validation on the data retrieved from the XML"""
     val = lambda x, y: x and y and len(x) == len(y) and all(n for n in y)
-    res = (val(TYPES_VERSION, NAMES_VERSION) and val(TYPES_BASIC, NAMES_BASIC) and val(TYPES_COMPOUND, NAMES_COMPOUND)
-           and val(TYPES_BLOCK, NAMES_BLOCK) and val(TYPES_ENUM, NAMES_ENUM) and val(TYPES_FLAG, NAMES_FLAG))
+    versions = val(TYPES_VERSION, NAMES_VERSION)
+    basics = val(TYPES_BASIC, NAMES_BASIC)
+    compounds = val(TYPES_COMPOUND, NAMES_COMPOUND)
+    blocks = val(TYPES_BLOCK, NAMES_BLOCK)
+    enums = val(TYPES_ENUM, NAMES_ENUM)
+    flags = val(TYPES_FLAG, NAMES_FLAG)
+    res = (versions and basics and compounds and blocks and enums and flags)
     if not res:
         logger = logging.getLogger('nifxml')
         logger.error("The parsing of nif.xml did not pass validation.")
