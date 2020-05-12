@@ -402,32 +402,32 @@ class Expression:
 
             # the next token should be the operator
             # find the position where the operator should start
-            op_startpos = left_endpos + 1
-            while op_startpos < lenstr and expr_str[op_startpos] == " ":
-                op_startpos += 1
-            if op_startpos < lenstr:
+            op_start_pos = left_endpos + 1
+            while op_start_pos < lenstr and expr_str[op_start_pos] == " ":
+                op_start_pos += 1
+            if op_start_pos < lenstr:
                 # to avoid confusion between && and &, and || and |,
                 # let's first scan for operators of two characters
                 # and then for operators of one character
-                for op_endpos in range(op_startpos + 1, op_startpos - 1, -1):
-                    op_str = expr_str[op_startpos:op_endpos + 1]
+                for op_end_pos in range(op_start_pos + 1, op_start_pos - 1, -1):
+                    op_str = expr_str[op_start_pos:op_end_pos + 1]
                     if op_str in cls.operators:
                         break
                 else:
-                    raise ValueError("expression syntax error: expected operator at '%s'" % expr_str[op_startpos:])
+                    raise ValueError("expression syntax error: expected operator at '%s'" % expr_str[op_start_pos:])
             else:
                 return cls._partition(left_str)
         else:
             # it's not... so we need to scan for the first operator
-            for op_startpos, ch in enumerate(expr_str):
+            for op_start_pos, ch in enumerate(expr_str):
                 if ch == ' ':
                     continue
                 if ch == '(' or ch == ')':
-                    raise ValueError("expression syntax error: expected operator before '%s'" % expr_str[op_startpos:])
+                    raise ValueError("expression syntax error: expected operator before '%s'" % expr_str[op_start_pos:])
                 # to avoid confusion between && and &, and || and |,
                 # let's first scan for operators of two characters
-                for op_endpos in range(op_startpos + 1, op_startpos - 1, -1):
-                    op_str = expr_str[op_startpos:op_endpos + 1]
+                for op_end_pos in range(op_start_pos + 1, op_start_pos - 1, -1):
+                    op_str = expr_str[op_start_pos:op_end_pos + 1]
                     if op_str in cls.operators:
                         break
                 else:
@@ -441,9 +441,9 @@ class Expression:
                 return left_str, op_str, right_str
 
             # operator found! now get the left hand side
-            left_str = expr_str[:op_startpos].strip()
+            left_str = expr_str[:op_start_pos].strip()
 
-        return left_str, op_str, expr_str[op_endpos + 1:].strip()
+        return left_str, op_str, expr_str[op_end_pos + 1:].strip()
 
     @staticmethod
     def _scan_brackets(expr_str, from_index=0):
@@ -724,7 +724,8 @@ class Member:
                 self.default = "(%s)%s" % (class_name(self.type), self.default)
 
         # calculate other stuff
-        self.uses_argument = (self.cond.lhs == '(ARG)' or self.arr1.lhs == '(ARG)' or self.arr2.lhs == '(ARG)')  # type: bool
+        self.uses_argument = (
+                    self.cond.lhs == '(ARG)' or self.arr1.lhs == '(ARG)' or self.arr2.lhs == '(ARG)')  # type: bool
 
         # true if the type is implemented natively
         self.type_is_native = self.name in TYPES_NATIVE  # type: bool
@@ -735,17 +736,17 @@ class Member:
 
         # true if arr2 refers to an array
         self.arr2_dynamic = False  # type: bool
-        sis = element.previousSibling
-        while sis:
-            if sis.nodeType == Node.ELEMENT_NODE:
-                sis_name = sis.getAttribute('name')
+        sib = element.previousSibling
+        while sib:
+            if sib.nodeType == Node.ELEMENT_NODE:
+                sis_name = sib.getAttribute('name')
                 if sis_name == self.name and not self.suffix:
                     self.is_duplicate = True
-                sis_arr1 = Expr(sis.getAttribute('arr1'))
-                sis_arr2 = Expr(sis.getAttribute('arr2'))
+                sis_arr1 = Expr(sib.getAttribute('arr1'))
+                sis_arr2 = Expr(sib.getAttribute('arr2'))
                 if sis_name == self.arr2.lhs and sis_arr1.lhs:
                     self.arr2_dynamic = True
-            sis = sis.previousSibling
+            sib = sib.previousSibling
 
         # Calculate stuff from reference to next members
         # Names of the attributes it is a (unmasked) size of
@@ -754,29 +755,29 @@ class Member:
         self.arr2_ref = []  # type: List[str]
         # Names of the attributes it is a condition of
         self.cond_ref = []  # type: List[str]
-        sis = element.nextSibling
-        while sis is not None:
-            if sis.nodeType == Node.ELEMENT_NODE:
-                sis_name = sis.getAttribute('name')
-                sis_arr1 = Expr(sis.getAttribute('arr1'))
-                sis_arr2 = Expr(sis.getAttribute('arr2'))
-                sis_cond = Expr(sis.getAttribute('cond'))
+        sib = element.nextSibling
+        while sib is not None:
+            if sib.nodeType == Node.ELEMENT_NODE:
+                sis_name = sib.getAttribute('name')
+                sis_arr1 = Expr(sib.getAttribute('arr1'))
+                sis_arr2 = Expr(sib.getAttribute('arr2'))
+                sis_cond = Expr(sib.getAttribute('cond'))
                 if sis_arr1.lhs == self.name and (not sis_arr1.rhs or sis_arr1.rhs.isdigit()):
                     self.arr1_ref.append(sis_name)
                 if sis_arr2.lhs == self.name and (not sis_arr2.rhs or sis_arr2.rhs.isdigit()):
                     self.arr2_ref.append(sis_name)
                 if sis_cond.lhs == self.name:
                     self.cond_ref.append(sis_name)
-            sis = sis.nextSibling
+            sib = sib.nextSibling
 
         # C++ names
-        self.cname = member_name(self.name if not self.suffix else self.name + "_" + self.suffix)  # type: str
-        self.ctype = class_name(self.type)  # type: str
-        self.carg = member_name(self.arg)  # type: str
-        self.ctemplate = class_name(self.template)  # type: str
-        self.carr1_ref = [member_name(n) for n in self.arr1_ref]  # type: List[str]
-        self.carr2_ref = [member_name(n) for n in self.arr2_ref]  # type: List[str]
-        self.ccond_ref = [member_name(n) for n in self.cond_ref]  # type: List[str]
+        self.c_name = member_name(self.name if not self.suffix else self.name + "_" + self.suffix)  # type: str
+        self.c_type = class_name(self.type)  # type: str
+        self.c_arg = member_name(self.arg)  # type: str
+        self.c_template = class_name(self.template)  # type: str
+        self.c_arr1_ref = [member_name(n) for n in self.arr1_ref]  # type: List[str]
+        self.c_arr2_ref = [member_name(n) for n in self.arr2_ref]  # type: List[str]
+        self.c_cond_ref = [member_name(n) for n in self.cond_ref]  # type: List[str]
 
 
 class NifXml:
@@ -1032,7 +1033,7 @@ def parse_xml(ntypes=None, path=XML_PATH):  # type: (Optional[Dict[str, str]], s
 
     for element in xml.getElementsByTagName('niobject'):
         instance = Block(element, ntypes)
-        assert not instance.name in TYPES_BLOCK
+        assert instance.name not in TYPES_BLOCK
         TYPES_BLOCK[instance.name] = instance
         NAMES_BLOCK.append(instance.name)
 
