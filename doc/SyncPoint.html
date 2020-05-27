@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - SyncPoint</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>SyncPoint</h2>
+A sync point corresponds to a particular stage in per-frame processing.
+
+<h3>Choices</h3>
+<table>
+	<tr class="even">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x8000</td>
+	<td><b>SYNC_ANY</b></td>
+	<td>Synchronize for any sync points that the modifier supports.</td>
+</tr>
+
+<tr class="odd">
+	<td>0x8010</td>
+	<td><b>SYNC_UPDATE</b></td>
+	<td>Synchronize when an object is updated.</td>
+</tr>
+
+<tr class="even">
+	<td>0x8020</td>
+	<td><b>SYNC_POST_UPDATE</b></td>
+	<td>Synchronize when an entire scene graph has been updated.</td>
+</tr>
+
+<tr class="odd">
+	<td>0x8030</td>
+	<td><b>SYNC_VISIBLE</b></td>
+	<td>Synchronize when an object is determined to be potentially visible.</td>
+</tr>
+
+<tr class="even">
+	<td>0x8040</td>
+	<td><b>SYNC_RENDER</b></td>
+	<td>Synchronize when an object is rendered.</td>
+</tr>
+
+<tr class="odd">
+	<td>0x8050</td>
+	<td><b>SYNC_PHYSICS_SIMULATE</b></td>
+	<td>Synchronize when a physics simulation step is about to begin.</td>
+</tr>
+
+<tr class="even">
+	<td>0x8060</td>
+	<td><b>SYNC_PHYSICS_COMPLETED</b></td>
+	<td>Synchronize when a physics simulation step has produced results.</td>
+</tr>
+
+<tr class="odd">
+	<td>0x8070</td>
+	<td><b>SYNC_REFLECTIONS</b></td>
+	<td>Synchronize after all data necessary to calculate reflections is ready.</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="ushort.html">ushort</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

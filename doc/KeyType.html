@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - KeyType</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>KeyType</h2>
+The type of animation interpolation (blending) that will be used on the associated key frames.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>1</td>
+	<td><b>LINEAR_KEY</b></td>
+	<td>Use linear interpolation.</td>
+</tr>
+
+<tr class="odd">
+	<td>2</td>
+	<td><b>QUADRATIC_KEY</b></td>
+	<td>Use quadratic interpolation.  Forward and back tangents will be stored.</td>
+</tr>
+
+<tr class="even">
+	<td>3</td>
+	<td><b>TBC_KEY</b></td>
+	<td>Use Tension Bias Continuity interpolation.  Tension, bias, and continuity will be stored.</td>
+</tr>
+
+<tr class="odd">
+	<td>4</td>
+	<td><b>XYZ_ROTATION_KEY</b></td>
+	<td>For use only with rotation data.  Separate X, Y, and Z keys will be stored instead of using quaternions.</td>
+</tr>
+
+<tr class="even">
+	<td>5</td>
+	<td><b>CONST_KEY</b></td>
+	<td>Step function. Used for visibility keys in NiBoolData.</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

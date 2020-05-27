@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - ComponentFormat</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>ComponentFormat</h2>
+The data format of components.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x00000000</td>
+	<td><b>F_UNKNOWN</b></td>
+	<td>Unknown, or don't care, format.</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010101</td>
+	<td><b>F_INT8_1</b></td>
+	<td>F_INT8_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020102</td>
+	<td><b>F_INT8_2</b></td>
+	<td>F_INT8_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030103</td>
+	<td><b>F_INT8_3</b></td>
+	<td>F_INT8_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040104</td>
+	<td><b>F_INT8_4</b></td>
+	<td>F_INT8_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010105</td>
+	<td><b>F_UINT8_1</b></td>
+	<td>F_UINT8_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020106</td>
+	<td><b>F_UINT8_2</b></td>
+	<td>F_UINT8_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030107</td>
+	<td><b>F_UINT8_3</b></td>
+	<td>F_UINT8_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040108</td>
+	<td><b>F_UINT8_4</b></td>
+	<td>F_UINT8_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010109</td>
+	<td><b>F_NORMINT8_1</b></td>
+	<td>F_NORMINT8_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002010A</td>
+	<td><b>F_NORMINT8_2</b></td>
+	<td>F_NORMINT8_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003010B</td>
+	<td><b>F_NORMINT8_3</b></td>
+	<td>F_NORMINT8_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x0004010C</td>
+	<td><b>F_NORMINT8_4</b></td>
+	<td>F_NORMINT8_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0001010D</td>
+	<td><b>F_NORMUINT8_1</b></td>
+	<td>F_NORMUINT8_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002010E</td>
+	<td><b>F_NORMUINT8_2</b></td>
+	<td>F_NORMUINT8_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003010F</td>
+	<td><b>F_NORMUINT8_3</b></td>
+	<td>F_NORMUINT8_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040110</td>
+	<td><b>F_NORMUINT8_4</b></td>
+	<td>F_NORMUINT8_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010211</td>
+	<td><b>F_INT16_1</b></td>
+	<td>F_INT16_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020212</td>
+	<td><b>F_INT16_2</b></td>
+	<td>F_INT16_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030213</td>
+	<td><b>F_INT16_3</b></td>
+	<td>F_INT16_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040214</td>
+	<td><b>F_INT16_4</b></td>
+	<td>F_INT16_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010215</td>
+	<td><b>F_UINT16_1</b></td>
+	<td>F_UINT16_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020216</td>
+	<td><b>F_UINT16_2</b></td>
+	<td>F_UINT16_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030217</td>
+	<td><b>F_UINT16_3</b></td>
+	<td>F_UINT16_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040218</td>
+	<td><b>F_UINT16_4</b></td>
+	<td>F_UINT16_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010219</td>
+	<td><b>F_NORMINT16_1</b></td>
+	<td>F_NORMINT16_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002021A</td>
+	<td><b>F_NORMINT16_2</b></td>
+	<td>F_NORMINT16_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003021B</td>
+	<td><b>F_NORMINT16_3</b></td>
+	<td>F_NORMINT16_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x0004021C</td>
+	<td><b>F_NORMINT16_4</b></td>
+	<td>F_NORMINT16_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0001021D</td>
+	<td><b>F_NORMUINT16_1</b></td>
+	<td>F_NORMUINT16_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002021E</td>
+	<td><b>F_NORMUINT16_2</b></td>
+	<td>F_NORMUINT16_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003021F</td>
+	<td><b>F_NORMUINT16_3</b></td>
+	<td>F_NORMUINT16_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040220</td>
+	<td><b>F_NORMUINT16_4</b></td>
+	<td>F_NORMUINT16_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010421</td>
+	<td><b>F_INT32_1</b></td>
+	<td>F_INT32_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020422</td>
+	<td><b>F_INT32_2</b></td>
+	<td>F_INT32_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030423</td>
+	<td><b>F_INT32_3</b></td>
+	<td>F_INT32_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040424</td>
+	<td><b>F_INT32_4</b></td>
+	<td>F_INT32_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010425</td>
+	<td><b>F_UINT32_1</b></td>
+	<td>F_UINT32_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020426</td>
+	<td><b>F_UINT32_2</b></td>
+	<td>F_UINT32_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030427</td>
+	<td><b>F_UINT32_3</b></td>
+	<td>F_UINT32_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040428</td>
+	<td><b>F_UINT32_4</b></td>
+	<td>F_UINT32_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010429</td>
+	<td><b>F_NORMINT32_1</b></td>
+	<td>F_NORMINT32_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002042A</td>
+	<td><b>F_NORMINT32_2</b></td>
+	<td>F_NORMINT32_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003042B</td>
+	<td><b>F_NORMINT32_3</b></td>
+	<td>F_NORMINT32_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x0004042C</td>
+	<td><b>F_NORMINT32_4</b></td>
+	<td>F_NORMINT32_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0001042D</td>
+	<td><b>F_NORMUINT32_1</b></td>
+	<td>F_NORMUINT32_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0002042E</td>
+	<td><b>F_NORMUINT32_2</b></td>
+	<td>F_NORMUINT32_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0003042F</td>
+	<td><b>F_NORMUINT32_3</b></td>
+	<td>F_NORMUINT32_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040430</td>
+	<td><b>F_NORMUINT32_4</b></td>
+	<td>F_NORMUINT32_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010231</td>
+	<td><b>F_FLOAT16_1</b></td>
+	<td>F_FLOAT16_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020232</td>
+	<td><b>F_FLOAT16_2</b></td>
+	<td>F_FLOAT16_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030233</td>
+	<td><b>F_FLOAT16_3</b></td>
+	<td>F_FLOAT16_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040234</td>
+	<td><b>F_FLOAT16_4</b></td>
+	<td>F_FLOAT16_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010435</td>
+	<td><b>F_FLOAT32_1</b></td>
+	<td>F_FLOAT32_1</td>
+</tr>
+
+<tr class="even">
+	<td>0x00020436</td>
+	<td><b>F_FLOAT32_2</b></td>
+	<td>F_FLOAT32_2</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00030437</td>
+	<td><b>F_FLOAT32_3</b></td>
+	<td>F_FLOAT32_3</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040438</td>
+	<td><b>F_FLOAT32_4</b></td>
+	<td>F_FLOAT32_4</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00010439</td>
+	<td><b>F_UINT_10_10_10_L1</b></td>
+	<td>F_UINT_10_10_10_L1</td>
+</tr>
+
+<tr class="even">
+	<td>0x0001043A</td>
+	<td><b>F_NORMINT_10_10_10_L1</b></td>
+	<td>F_NORMINT_10_10_10_L1</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0001043B</td>
+	<td><b>F_NORMINT_11_11_10</b></td>
+	<td>F_NORMINT_11_11_10</td>
+</tr>
+
+<tr class="even">
+	<td>0x0004013C</td>
+	<td><b>F_NORMUINT8_4_BGRA</b></td>
+	<td>F_NORMUINT8_4_BGRA</td>
+</tr>
+
+<tr class="odd">
+	<td>0x0001043D</td>
+	<td><b>F_NORMINT_10_10_10_2</b></td>
+	<td>F_NORMINT_10_10_10_2</td>
+</tr>
+
+<tr class="even">
+	<td>0x0001043E</td>
+	<td><b>F_UINT_10_10_10_2</b></td>
+	<td>F_UINT_10_10_10_2</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

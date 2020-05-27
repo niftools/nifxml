@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - PixelLayout</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>PixelLayout</h2>
+Describes the color depth in an NiTexture.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>PX_LAY_PALETTIZED_8</b></td>
+	<td>Texture is in 8-bit palettized format.</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>PX_LAY_HIGH_COLOR_16</b></td>
+	<td>Texture is in 16-bit high color format.</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>PX_LAY_TRUE_COLOR_32</b></td>
+	<td>Texture is in 32-bit true color format.</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>PX_LAY_COMPRESSED</b></td>
+	<td>Texture is compressed.</td>
+</tr>
+
+<tr class="even">
+	<td>4</td>
+	<td><b>PX_LAY_BUMPMAP</b></td>
+	<td>Texture is a grayscale bump map.</td>
+</tr>
+
+<tr class="odd">
+	<td>5</td>
+	<td><b>PX_LAY_PALETTIZED_4</b></td>
+	<td>Texture is in 4-bit palettized format.</td>
+</tr>
+
+<tr class="even">
+	<td>6</td>
+	<td><b>PX_LAY_DEFAULT</b></td>
+	<td>Use default setting.</td>
+</tr>
+
+<tr class="odd">
+	<td>7</td>
+	<td><b>PX_LAY_SINGLE_COLOR_8</b></td>
+	<td>PX_LAY_SINGLE_COLOR_8</td>
+</tr>
+
+<tr class="even">
+	<td>8</td>
+	<td><b>PX_LAY_SINGLE_COLOR_16</b></td>
+	<td>PX_LAY_SINGLE_COLOR_16</td>
+</tr>
+
+<tr class="odd">
+	<td>9</td>
+	<td><b>PX_LAY_SINGLE_COLOR_32</b></td>
+	<td>PX_LAY_SINGLE_COLOR_32</td>
+</tr>
+
+<tr class="even">
+	<td>10</td>
+	<td><b>PX_LAY_DOUBLE_COLOR_32</b></td>
+	<td>PX_LAY_DOUBLE_COLOR_32</td>
+</tr>
+
+<tr class="odd">
+	<td>11</td>
+	<td><b>PX_LAY_DOUBLE_COLOR_64</b></td>
+	<td>PX_LAY_DOUBLE_COLOR_64</td>
+</tr>
+
+<tr class="even">
+	<td>12</td>
+	<td><b>PX_LAY_FLOAT_COLOR_32</b></td>
+	<td>PX_LAY_FLOAT_COLOR_32</td>
+</tr>
+
+<tr class="odd">
+	<td>13</td>
+	<td><b>PX_LAY_FLOAT_COLOR_64</b></td>
+	<td>PX_LAY_FLOAT_COLOR_64</td>
+</tr>
+
+<tr class="even">
+	<td>14</td>
+	<td><b>PX_LAY_FLOAT_COLOR_128</b></td>
+	<td>PX_LAY_FLOAT_COLOR_128</td>
+</tr>
+
+<tr class="odd">
+	<td>15</td>
+	<td><b>PX_LAY_SINGLE_COLOR_4</b></td>
+	<td>PX_LAY_SINGLE_COLOR_4</td>
+</tr>
+
+<tr class="even">
+	<td>16</td>
+	<td><b>PX_LAY_DEPTH_24_X8</b></td>
+	<td>PX_LAY_DEPTH_24_X8</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

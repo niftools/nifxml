@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - SkyrimLayer</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>SkyrimLayer</h2>
+Bethesda Havok. Describes the collision layer a body belongs to in Skyrim.
+
+<h3>Choices</h3>
+<table>
+	<tr class="even">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>SKYL_UNIDENTIFIED</b></td>
+	<td>Unidentified</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>SKYL_STATIC</b></td>
+	<td>Static</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>SKYL_ANIMSTATIC</b></td>
+	<td>Anim Static</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>SKYL_TRANSPARENT</b></td>
+	<td>Transparent</td>
+</tr>
+
+<tr class="even">
+	<td>4</td>
+	<td><b>SKYL_CLUTTER</b></td>
+	<td>Clutter. Object with this layer will float on water surface.</td>
+</tr>
+
+<tr class="odd">
+	<td>5</td>
+	<td><b>SKYL_WEAPON</b></td>
+	<td>Weapon</td>
+</tr>
+
+<tr class="even">
+	<td>6</td>
+	<td><b>SKYL_PROJECTILE</b></td>
+	<td>Projectile</td>
+</tr>
+
+<tr class="odd">
+	<td>7</td>
+	<td><b>SKYL_SPELL</b></td>
+	<td>Spell</td>
+</tr>
+
+<tr class="even">
+	<td>8</td>
+	<td><b>SKYL_BIPED</b></td>
+	<td>Biped. Seems to apply to all creatures/NPCs</td>
+</tr>
+
+<tr class="odd">
+	<td>9</td>
+	<td><b>SKYL_TREES</b></td>
+	<td>Trees</td>
+</tr>
+
+<tr class="even">
+	<td>10</td>
+	<td><b>SKYL_PROPS</b></td>
+	<td>Props</td>
+</tr>
+
+<tr class="odd">
+	<td>11</td>
+	<td><b>SKYL_WATER</b></td>
+	<td>Water</td>
+</tr>
+
+<tr class="even">
+	<td>12</td>
+	<td><b>SKYL_TRIGGER</b></td>
+	<td>Trigger</td>
+</tr>
+
+<tr class="odd">
+	<td>13</td>
+	<td><b>SKYL_TERRAIN</b></td>
+	<td>Terrain</td>
+</tr>
+
+<tr class="even">
+	<td>14</td>
+	<td><b>SKYL_TRAP</b></td>
+	<td>Trap</td>
+</tr>
+
+<tr class="odd">
+	<td>15</td>
+	<td><b>SKYL_NONCOLLIDABLE</b></td>
+	<td>NonCollidable</td>
+</tr>
+
+<tr class="even">
+	<td>16</td>
+	<td><b>SKYL_CLOUD_TRAP</b></td>
+	<td>CloudTrap</td>
+</tr>
+
+<tr class="odd">
+	<td>17</td>
+	<td><b>SKYL_GROUND</b></td>
+	<td>Ground. It seems that produces no sound when collide.</td>
+</tr>
+
+<tr class="even">
+	<td>18</td>
+	<td><b>SKYL_PORTAL</b></td>
+	<td>Portal</td>
+</tr>
+
+<tr class="odd">
+	<td>19</td>
+	<td><b>SKYL_DEBRIS_SMALL</b></td>
+	<td>Debris Small</td>
+</tr>
+
+<tr class="even">
+	<td>20</td>
+	<td><b>SKYL_DEBRIS_LARGE</b></td>
+	<td>Debris Large</td>
+</tr>
+
+<tr class="odd">
+	<td>21</td>
+	<td><b>SKYL_ACOUSTIC_SPACE</b></td>
+	<td>Acoustic Space</td>
+</tr>
+
+<tr class="even">
+	<td>22</td>
+	<td><b>SKYL_ACTORZONE</b></td>
+	<td>Actor Zone</td>
+</tr>
+
+<tr class="odd">
+	<td>23</td>
+	<td><b>SKYL_PROJECTILEZONE</b></td>
+	<td>Projectile Zone</td>
+</tr>
+
+<tr class="even">
+	<td>24</td>
+	<td><b>SKYL_GASTRAP</b></td>
+	<td>Gas Trap</td>
+</tr>
+
+<tr class="odd">
+	<td>25</td>
+	<td><b>SKYL_SHELLCASING</b></td>
+	<td>Shell Casing</td>
+</tr>
+
+<tr class="even">
+	<td>26</td>
+	<td><b>SKYL_TRANSPARENT_SMALL</b></td>
+	<td>Transparent Small</td>
+</tr>
+
+<tr class="odd">
+	<td>27</td>
+	<td><b>SKYL_INVISIBLE_WALL</b></td>
+	<td>Invisible Wall</td>
+</tr>
+
+<tr class="even">
+	<td>28</td>
+	<td><b>SKYL_TRANSPARENT_SMALL_ANIM</b></td>
+	<td>Transparent Small Anim</td>
+</tr>
+
+<tr class="odd">
+	<td>29</td>
+	<td><b>SKYL_WARD</b></td>
+	<td>Ward</td>
+</tr>
+
+<tr class="even">
+	<td>30</td>
+	<td><b>SKYL_CHARCONTROLLER</b></td>
+	<td>Char Controller</td>
+</tr>
+
+<tr class="odd">
+	<td>31</td>
+	<td><b>SKYL_STAIRHELPER</b></td>
+	<td>Stair Helper</td>
+</tr>
+
+<tr class="even">
+	<td>32</td>
+	<td><b>SKYL_DEADBIP</b></td>
+	<td>Dead Bip</td>
+</tr>
+
+<tr class="odd">
+	<td>33</td>
+	<td><b>SKYL_BIPED_NO_CC</b></td>
+	<td>Biped No CC</td>
+</tr>
+
+<tr class="even">
+	<td>34</td>
+	<td><b>SKYL_AVOIDBOX</b></td>
+	<td>Avoid Box</td>
+</tr>
+
+<tr class="odd">
+	<td>35</td>
+	<td><b>SKYL_COLLISIONBOX</b></td>
+	<td>Collision Box</td>
+</tr>
+
+<tr class="even">
+	<td>36</td>
+	<td><b>SKYL_CAMERASHPERE</b></td>
+	<td>Camera Sphere</td>
+</tr>
+
+<tr class="odd">
+	<td>37</td>
+	<td><b>SKYL_DOORDETECTION</b></td>
+	<td>Door Detection</td>
+</tr>
+
+<tr class="even">
+	<td>38</td>
+	<td><b>SKYL_CONEPROJECTILE</b></td>
+	<td>Cone Projectile</td>
+</tr>
+
+<tr class="odd">
+	<td>39</td>
+	<td><b>SKYL_CAMERAPICK</b></td>
+	<td>Camera Pick</td>
+</tr>
+
+<tr class="even">
+	<td>40</td>
+	<td><b>SKYL_ITEMPICK</b></td>
+	<td>Item Pick</td>
+</tr>
+
+<tr class="odd">
+	<td>41</td>
+	<td><b>SKYL_LINEOFSIGHT</b></td>
+	<td>Line of Sight</td>
+</tr>
+
+<tr class="even">
+	<td>42</td>
+	<td><b>SKYL_PATHPICK</b></td>
+	<td>Path Pick</td>
+</tr>
+
+<tr class="odd">
+	<td>43</td>
+	<td><b>SKYL_CUSTOMPICK1</b></td>
+	<td>Custom Pick 1</td>
+</tr>
+
+<tr class="even">
+	<td>44</td>
+	<td><b>SKYL_CUSTOMPICK2</b></td>
+	<td>Custom Pick 2</td>
+</tr>
+
+<tr class="odd">
+	<td>45</td>
+	<td><b>SKYL_SPELLEXPLOSION</b></td>
+	<td>Spell Explosion</td>
+</tr>
+
+<tr class="even">
+	<td>46</td>
+	<td><b>SKYL_DROPPINGPICK</b></td>
+	<td>Dropping Pick</td>
+</tr>
+
+<tr class="odd">
+	<td>47</td>
+	<td><b>SKYL_NULL</b></td>
+	<td>Null</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="byte.html">byte</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - Fallout3Layer</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>Fallout3Layer</h2>
+Bethesda Havok. Describes the collision layer a body belongs to in Fallout 3 and Fallout NV.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>FOL_UNIDENTIFIED</b></td>
+	<td>Unidentified (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>FOL_STATIC</b></td>
+	<td>Static (red)</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>FOL_ANIM_STATIC</b></td>
+	<td>AnimStatic (magenta)</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>FOL_TRANSPARENT</b></td>
+	<td>Transparent (light pink)</td>
+</tr>
+
+<tr class="even">
+	<td>4</td>
+	<td><b>FOL_CLUTTER</b></td>
+	<td>Clutter (light blue)</td>
+</tr>
+
+<tr class="odd">
+	<td>5</td>
+	<td><b>FOL_WEAPON</b></td>
+	<td>Weapon (orange)</td>
+</tr>
+
+<tr class="even">
+	<td>6</td>
+	<td><b>FOL_PROJECTILE</b></td>
+	<td>Projectile (light orange)</td>
+</tr>
+
+<tr class="odd">
+	<td>7</td>
+	<td><b>FOL_SPELL</b></td>
+	<td>Spell (cyan)</td>
+</tr>
+
+<tr class="even">
+	<td>8</td>
+	<td><b>FOL_BIPED</b></td>
+	<td>Biped (green) Seems to apply to all creatures/NPCs</td>
+</tr>
+
+<tr class="odd">
+	<td>9</td>
+	<td><b>FOL_TREES</b></td>
+	<td>Trees (light brown)</td>
+</tr>
+
+<tr class="even">
+	<td>10</td>
+	<td><b>FOL_PROPS</b></td>
+	<td>Props (magenta)</td>
+</tr>
+
+<tr class="odd">
+	<td>11</td>
+	<td><b>FOL_WATER</b></td>
+	<td>Water (cyan)</td>
+</tr>
+
+<tr class="even">
+	<td>12</td>
+	<td><b>FOL_TRIGGER</b></td>
+	<td>Trigger (light grey)</td>
+</tr>
+
+<tr class="odd">
+	<td>13</td>
+	<td><b>FOL_TERRAIN</b></td>
+	<td>Terrain (light yellow)</td>
+</tr>
+
+<tr class="even">
+	<td>14</td>
+	<td><b>FOL_TRAP</b></td>
+	<td>Trap (light grey)</td>
+</tr>
+
+<tr class="odd">
+	<td>15</td>
+	<td><b>FOL_NONCOLLIDABLE</b></td>
+	<td>NonCollidable (white)</td>
+</tr>
+
+<tr class="even">
+	<td>16</td>
+	<td><b>FOL_CLOUD_TRAP</b></td>
+	<td>CloudTrap (greenish grey)</td>
+</tr>
+
+<tr class="odd">
+	<td>17</td>
+	<td><b>FOL_GROUND</b></td>
+	<td>Ground (none)</td>
+</tr>
+
+<tr class="even">
+	<td>18</td>
+	<td><b>FOL_PORTAL</b></td>
+	<td>Portal (green)</td>
+</tr>
+
+<tr class="odd">
+	<td>19</td>
+	<td><b>FOL_DEBRIS_SMALL</b></td>
+	<td>DebrisSmall (white)</td>
+</tr>
+
+<tr class="even">
+	<td>20</td>
+	<td><b>FOL_DEBRIS_LARGE</b></td>
+	<td>DebrisLarge (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>21</td>
+	<td><b>FOL_ACOUSTIC_SPACE</b></td>
+	<td>AcousticSpace (white)</td>
+</tr>
+
+<tr class="even">
+	<td>22</td>
+	<td><b>FOL_ACTORZONE</b></td>
+	<td>Actorzone (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>23</td>
+	<td><b>FOL_PROJECTILEZONE</b></td>
+	<td>Projectilezone (white)</td>
+</tr>
+
+<tr class="even">
+	<td>24</td>
+	<td><b>FOL_GASTRAP</b></td>
+	<td>GasTrap (yellowish green)</td>
+</tr>
+
+<tr class="odd">
+	<td>25</td>
+	<td><b>FOL_SHELLCASING</b></td>
+	<td>ShellCasing (white)</td>
+</tr>
+
+<tr class="even">
+	<td>26</td>
+	<td><b>FOL_TRANSPARENT_SMALL</b></td>
+	<td>TransparentSmall (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>27</td>
+	<td><b>FOL_INVISIBLE_WALL</b></td>
+	<td>InvisibleWall (white)</td>
+</tr>
+
+<tr class="even">
+	<td>28</td>
+	<td><b>FOL_TRANSPARENT_SMALL_ANIM</b></td>
+	<td>TransparentSmallAnim (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>29</td>
+	<td><b>FOL_DEADBIP</b></td>
+	<td>Dead Biped (green)</td>
+</tr>
+
+<tr class="even">
+	<td>30</td>
+	<td><b>FOL_CHARCONTROLLER</b></td>
+	<td>CharController (yellow)</td>
+</tr>
+
+<tr class="odd">
+	<td>31</td>
+	<td><b>FOL_AVOIDBOX</b></td>
+	<td>Avoidbox (orange)</td>
+</tr>
+
+<tr class="even">
+	<td>32</td>
+	<td><b>FOL_COLLISIONBOX</b></td>
+	<td>Collisionbox (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>33</td>
+	<td><b>FOL_CAMERASPHERE</b></td>
+	<td>Camerasphere (white)</td>
+</tr>
+
+<tr class="even">
+	<td>34</td>
+	<td><b>FOL_DOORDETECTION</b></td>
+	<td>Doordetection (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>35</td>
+	<td><b>FOL_CAMERAPICK</b></td>
+	<td>Camerapick (white)</td>
+</tr>
+
+<tr class="even">
+	<td>36</td>
+	<td><b>FOL_ITEMPICK</b></td>
+	<td>Itempick (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>37</td>
+	<td><b>FOL_LINEOFSIGHT</b></td>
+	<td>LineOfSight (white)</td>
+</tr>
+
+<tr class="even">
+	<td>38</td>
+	<td><b>FOL_PATHPICK</b></td>
+	<td>Pathpick (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>39</td>
+	<td><b>FOL_CUSTOMPICK1</b></td>
+	<td>Custompick1 (white)</td>
+</tr>
+
+<tr class="even">
+	<td>40</td>
+	<td><b>FOL_CUSTOMPICK2</b></td>
+	<td>Custompick2 (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>41</td>
+	<td><b>FOL_SPELLEXPLOSION</b></td>
+	<td>SpellExplosion (white)</td>
+</tr>
+
+<tr class="even">
+	<td>42</td>
+	<td><b>FOL_DROPPINGPICK</b></td>
+	<td>Droppingpick (white)</td>
+</tr>
+
+<tr class="odd">
+	<td>43</td>
+	<td><b>FOL_NULL</b></td>
+	<td>Null (white)</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="byte.html">byte</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

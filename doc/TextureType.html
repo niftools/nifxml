@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - TextureType</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>TextureType</h2>
+The type of information that is stored in a texture used by an NiTextureEffect.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>TEX_PROJECTED_LIGHT</b></td>
+	<td>Apply a projected light texture. Each light effect is summed before multiplying by the base texture.</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>TEX_PROJECTED_SHADOW</b></td>
+	<td>Apply a projected shadow texture. Each shadow effect is multiplied by the base texture.</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>TEX_ENVIRONMENT_MAP</b></td>
+	<td>Apply an environment map texture. Added to the base texture and light/shadow/decal maps.</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>TEX_FOG_MAP</b></td>
+	<td>Apply a fog map texture. Alpha channel is used to blend the color channel with the base texture.</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

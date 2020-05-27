@@ -1,0 +1,2194 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - NIF Object List</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	<p align="center"><a href="index.html">Hierarchy</a> | <a href="niobject_list.html">List</a></p>
+<center><h2>NIF Object List</h2></center>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+
+<tr class="even">
+	<td><b><a href="AbstractAdditionalGeometryData.html">AbstractAdditionalGeometryData</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="AvoidNode.html">AvoidNode</a></b></td>
+	<td>Morrowind specific.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSAnimNote.html">BSAnimNote</a></b></td>
+	<td>Bethesda-specific object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSAnimNotes.html">BSAnimNotes</a></b></td>
+	<td>Bethesda-specific object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSBehaviorGraphExtraData.html">BSBehaviorGraphExtraData</a></b></td>
+	<td>Links a nif with a Havok Behavior .hkx animation file</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSBlastNode.html">BSBlastNode</a></b></td>
+	<td>Bethesda-Specific node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSBoneLODExtraData.html">BSBoneLODExtraData</a></b></td>
+	<td>Unknown</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSBound.html">BSBound</a></b></td>
+	<td>Bethesda-specific collision bounding box for skeletons.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSClothExtraData.html">BSClothExtraData</a></b></td>
+	<td>Fallout 4 Cloth data</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSConnectPointChildren.html">BSConnectPoint::Children</a></b></td>
+	<td>Fallout 4 Item Slot Child</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSConnectPointParents.html">BSConnectPoint::Parents</a></b></td>
+	<td>Fallout 4 Item Slot Parent</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSDamageStage.html">BSDamageStage</a></b></td>
+	<td>Bethesda-Specific node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSDebrisNode.html">BSDebrisNode</a></b></td>
+	<td>Bethesda-Specific node.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSDecalPlacementVectorExtraData.html">BSDecalPlacementVectorExtraData</a></b></td>
+	<td>Bethesda-specific extra data. Lists locations and normals on a mesh that are appropriate for decal placement.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSDismemberSkinInstance.html">BSDismemberSkinInstance</a></b></td>
+	<td>Bethesda-specific skin instance.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSDistantObjectExtraData.html">BSDistantObjectExtraData</a></b></td>
+	<td>Distant Object flags.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSDistantObjectInstancedNode.html">BSDistantObjectInstancedNode</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSDistantObjectLargeRefExtraData.html">BSDistantObjectLargeRefExtraData</a></b></td>
+	<td>Large ref flag.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSDistantTreeShaderProperty.html">BSDistantTreeShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSDynamicTriShape.html">BSDynamicTriShape</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSEffectShaderProperty.html">BSEffectShaderProperty</a></b></td>
+	<td>Bethesda effect shader property for Skyrim and later.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSEffectShaderPropertyColorController.html">BSEffectShaderPropertyColorController</a></b></td>
+	<td>This controller is used to animate colors in BSEffectShaderProperty.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSEffectShaderPropertyFloatController.html">BSEffectShaderPropertyFloatController</a></b></td>
+	<td>This controller is used to animate float variables in BSEffectShaderProperty.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSExtraData.html">BSExtraData</a></b></td>
+	<td>Fallout 4 Extra Data</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSEyeCenterExtraData.html">BSEyeCenterExtraData</a></b></td>
+	<td>Fallout 4 Eye Center Data</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSFadeNode.html">BSFadeNode</a></b></td>
+	<td>Bethesda-specific fade node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSFrustumFOVController.html">BSFrustumFOVController</a></b></td>
+	<td>Bethesda-specific time controller.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSFurnitureMarker.html">BSFurnitureMarker</a></b></td>
+	<td>Unknown. Marks furniture sitting positions?</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSFurnitureMarkerNode.html">BSFurnitureMarkerNode</a></b></td>
+	<td>Furniture Marker for actors</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSInvMarker.html">BSInvMarker</a></b></td>
+	<td>Orientation marker for Skyrim's inventory view.<br/>        How to show the nif in the player's inventory.<br/>        Typically attached to the root node of the nif tree.<br/>        If not present, then Skyrim will still show the nif in inventory,<br/>        using the default values.<br/>        Name should be 'INV' (without the quotes).<br/>        For rotations, a short of "4712" appears as "4.712" but "959" appears as "0.959"  meshes\weapons\daedric\daedricbowskinned.nif</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSKeyframeController.html">BSKeyframeController</a></b></td>
+	<td>An extended keyframe controller.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSLODTriShape.html">BSLODTriShape</a></b></td>
+	<td>A variation on NiTriShape, for visibility control over vertex groups.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSLagBoneController.html">BSLagBoneController</a></b></td>
+	<td>A controller that trails a bone behind an actor.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSLeafAnimNode.html">BSLeafAnimNode</a></b></td>
+	<td>Unknown, related to trees.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSLightingShaderProperty.html">BSLightingShaderProperty</a></b></td>
+	<td>Bethesda shader property for Skyrim and later.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSLightingShaderPropertyColorController.html">BSLightingShaderPropertyColorController</a></b></td>
+	<td>This controller is used to animate colors in BSLightingShaderProperty.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSLightingShaderPropertyFloatController.html">BSLightingShaderPropertyFloatController</a></b></td>
+	<td>This controller is used to animate float variables in BSLightingShaderProperty.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSLightingShaderPropertyUShortController.html">BSLightingShaderPropertyUShortController</a></b></td>
+	<td>This controller is used to animate float variables in BSLightingShaderProperty.<br/>		NOTE: FO4 CK reports this block as unsupported.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSMasterParticleSystem.html">BSMasterParticleSystem</a></b></td>
+	<td>Bethesda-Specific particle system.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSMaterialEmittanceMultController.html">BSMaterialEmittanceMultController</a></b></td>
+	<td>Bethesda-Specific time controller.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSMeshLODTriShape.html">BSMeshLODTriShape</a></b></td>
+	<td>Fallout 4 LOD Tri Shape</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSMultiBound.html">BSMultiBound</a></b></td>
+	<td>Bethesda-specific object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSMultiBoundAABB.html">BSMultiBoundAABB</a></b></td>
+	<td>Bethesda-specific object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSMultiBoundData.html">BSMultiBoundData</a></b></td>
+	<td>Abstract base type for bounding data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSMultiBoundNode.html">BSMultiBoundNode</a></b></td>
+	<td>Bethesda-specific node.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSMultiBoundOBB.html">BSMultiBoundOBB</a></b></td>
+	<td>Oriented bounding box.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSMultiBoundSphere.html">BSMultiBoundSphere</a></b></td>
+	<td>Bethesda-specific object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSNiAlphaPropertyTestRefController.html">BSNiAlphaPropertyTestRefController</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSOrderedNode.html">BSOrderedNode</a></b></td>
+	<td>Bethesda-Specific node.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPSysArrayEmitter.html">BSPSysArrayEmitter</a></b></td>
+	<td>Particle emitter that uses a node, its children and subchildren to emit from.  Emission will be evenly spread along points from nodes leading to their direct parents/children only.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPSysHavokUpdateModifier.html">BSPSysHavokUpdateModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPSysInheritVelocityModifier.html">BSPSysInheritVelocityModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPSysLODModifier.html">BSPSysLODModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPSysMultiTargetEmitterCtlr.html">BSPSysMultiTargetEmitterCtlr</a></b></td>
+	<td>Particle system (multi?) emitter controller.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPSysRecycleBoundModifier.html">BSPSysRecycleBoundModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPSysScaleModifier.html">BSPSysScaleModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPSysSimpleColorModifier.html">BSPSysSimpleColorModifier</a></b></td>
+	<td>Bethesda-specific particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPSysStripUpdateModifier.html">BSPSysStripUpdateModifier</a></b></td>
+	<td>Bethesda-Specific (mesh?) Particle System Modifier.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPSysSubTexModifier.html">BSPSysSubTexModifier</a></b></td>
+	<td>Similar to a Flip Controller, this handles particle texture animation on a single texture atlas</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPackedAdditionalGeometryData.html">BSPackedAdditionalGeometryData</a></b></td>
+	<td>No longer appears to occur in any vanilla files. Older versions of FNV had the block in nvdlc01vaultposter01.nif.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSPackedCombinedGeomDataExtra.html">BSPackedCombinedGeomDataExtra</a></b></td>
+	<td>Fallout 4 Packed Combined Geometry Data.<br/>        Geometry is baked into the file and given a list of transforms to position each copy.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPackedCombinedSharedGeomDataExtra.html">BSPackedCombinedSharedGeomDataExtra</a></b></td>
+	<td>Fallout 4 Packed Combined Shared Geometry Data.<br/>        Geometry is NOT baked into the file. It is instead a reference to the geometry via a CSG filename hash and data offset.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSParentVelocityModifier.html">BSParentVelocityModifier</a></b></td>
+	<td>Particle modifier that adds a percentage of object space translation and rotation to particles born in world space.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSPositionData.html">BSPositionData</a></b></td>
+	<td>Fallout 4 Positional Data</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSProceduralLightningController.html">BSProceduralLightningController</a></b></td>
+	<td>Skyrim, Paired with dummy TriShapes, this controller generates lightning shapes for special effects.<br/>    First interpolator controls Generation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSRangeNode.html">BSRangeNode</a></b></td>
+	<td>Bethesda-Specific node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSRefractionFirePeriodController.html">BSRefractionFirePeriodController</a></b></td>
+	<td>Bethesda-specific time controller.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSRefractionStrengthController.html">BSRefractionStrengthController</a></b></td>
+	<td>Bethesda-Specific time controller.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSRotAccumTransfInterpolator.html">BSRotAccumTransfInterpolator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSSegmentedTriShape.html">BSSegmentedTriShape</a></b></td>
+	<td>Bethesda-specific AV object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSShaderLightingProperty.html">BSShaderLightingProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSShaderNoLightingProperty.html">BSShaderNoLightingProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSShaderPPLightingProperty.html">BSShaderPPLightingProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSShaderProperty.html">BSShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSShaderTextureSet.html">BSShaderTextureSet</a></b></td>
+	<td>Bethesda-specific Texture Set.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSSkinBoneData.html">BSSkin::BoneData</a></b></td>
+	<td>Fallout 4 Bone Data</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSSkinInstance.html">BSSkin::Instance</a></b></td>
+	<td>Fallout 4 Skin Instance</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSSkyShaderProperty.html">BSSkyShaderProperty</a></b></td>
+	<td>Skyrim Sky shader block.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSStripPSysData.html">BSStripPSysData</a></b></td>
+	<td>Bethesda-Specific (mesh?) Particle System Data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSStripParticleSystem.html">BSStripParticleSystem</a></b></td>
+	<td>Bethesda-Specific (mesh?) Particle System.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSSubIndexTriShape.html">BSSubIndexTriShape</a></b></td>
+	<td>Fallout 4 Sub-Index Tri Shape</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSTreadTransfInterpolator.html">BSTreadTransfInterpolator</a></b></td>
+	<td>Bethesda-specific interpolator.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSTreeNode.html">BSTreeNode</a></b></td>
+	<td>Node for handling Trees, Switches branch configurations for variation?</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSTriShape.html">BSTriShape</a></b></td>
+	<td>Fallout 4 Tri Shape</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSValueNode.html">BSValueNode</a></b></td>
+	<td>Bethesda-specific node. Found on fxFire effects</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSWArray.html">BSWArray</a></b></td>
+	<td>Bethesda-specific extra data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSWaterShaderProperty.html">BSWaterShaderProperty</a></b></td>
+	<td>Skyrim water shader property, different from "WaterShaderProperty" seen in Fallout.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="BSWindModifier.html">BSWindModifier</a></b></td>
+	<td>Particle Modifier that uses the wind value from the gamedata to alter the path of particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="BSXFlags.html">BSXFlags</a></b></td>
+	<td>Controls animation and collision.  Integer holds flags:<br/>        Bit 0 : enable havok, bAnimated(Skyrim)<br/>        Bit 1 : enable collision, bHavok(Skyrim)<br/>        Bit 2 : is skeleton nif?, bRagdoll(Skyrim)<br/>        Bit 3 : enable animation, bComplex(Skyrim)<br/>        Bit 4 : FlameNodes present, bAddon(Skyrim)<br/>        Bit 5 : EditorMarkers present, bEditorMarker(Skyrim)<br/>        Bit 6 : bDynamic(Skyrim)<br/>        Bit 7 : bArticulated(Skyrim)<br/>        Bit 8 : bIKTarget(Skyrim)/needsTransformUpdates<br/>        Bit 9 : bExternalEmit(Skyrim)<br/>        Bit 10: bMagicShaderParticles(Skyrim)<br/>        Bit 11: bLights(Skyrim)<br/>        Bit 12: bBreakable(Skyrim)<br/>        Bit 13: bSearchedBreakable(Skyrim) .. Runtime only?</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="CStreamableAssetData.html">CStreamableAssetData</a></b></td>
+	<td>Divinity 2 specific block</td>
+</tr>
+<tr class="even">
+	<td><b><a href="DistantLODShaderProperty.html">DistantLODShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="FxButton.html">FxButton</a></b></td>
+	<td>Unknown.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="FxRadioButton.html">FxRadioButton</a></b></td>
+	<td>Unknown.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="FxWidget.html">FxWidget</a></b></td>
+	<td>Firaxis-specific UI widgets?</td>
+</tr>
+<tr class="even">
+	<td><b><a href="HairShaderProperty.html">HairShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="Lighting30ShaderProperty.html">Lighting30ShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="Ni3dsAlphaAnimator.html">Ni3dsAlphaAnimator</a></b></td>
+	<td>Unknown.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="Ni3dsAnimationNode.html">Ni3dsAnimationNode</a></b></td>
+	<td>Unknown. Only found in 2.3 nifs.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="Ni3dsColorAnimator.html">Ni3dsColorAnimator</a></b></td>
+	<td>Unknown!</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="Ni3dsMorphShape.html">Ni3dsMorphShape</a></b></td>
+	<td>Unknown!</td>
+</tr>
+<tr class="even">
+	<td><b><a href="Ni3dsParticleSystem.html">Ni3dsParticleSystem</a></b></td>
+	<td>Unknown!</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="Ni3dsPathController.html">Ni3dsPathController</a></b></td>
+	<td>Unknown!</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiAVObject.html">NiAVObject</a></b></td>
+	<td>Abstract audio-visual base class from which all of Gamebryo's scene graph objects inherit.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiAVObjectPalette.html">NiAVObjectPalette</a></b></td>
+	<td>Abstract base class for indexing NiAVObject by name.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiAccumulator.html">NiAccumulator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiAdditionalGeometryData.html">NiAdditionalGeometryData</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiAlphaController.html">NiAlphaController</a></b></td>
+	<td>Animates the alpha value of a property using an interpolator.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiAlphaProperty.html">NiAlphaProperty</a></b></td>
+	<td>Transparency. Flags 0x00ED.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiAmbientLight.html">NiAmbientLight</a></b></td>
+	<td>Ambient light source.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiAutoNormalParticles.html">NiAutoNormalParticles</a></b></td>
+	<td>LEGACY (pre-10.1). NiParticles which do not house normals and generate them at runtime.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiAutoNormalParticlesData.html">NiAutoNormalParticlesData</a></b></td>
+	<td>Particle system data object (with automatic normals?).</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSAnimationNode.html">NiBSAnimationNode</a></b></td>
+	<td>Bethesda-specific extension of Node with animation properties stored in the flags, often 42?</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSBoneLODController.html">NiBSBoneLODController</a></b></td>
+	<td>A simple LOD controller for bones.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSPArrayController.html">NiBSPArrayController</a></b></td>
+	<td>A particle system controller, used by BS in conjunction with NiBSParticleNode.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSParticleNode.html">NiBSParticleNode</a></b></td>
+	<td>Unknown.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineBasisData.html">NiBSplineBasisData</a></b></td>
+	<td>Contains an NiBSplineBasis for use in interpolation of open, uniform B-Splines.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineColorEvaluator.html">NiBSplineColorEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineCompColorEvaluator.html">NiBSplineCompColorEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineCompFloatEvaluator.html">NiBSplineCompFloatEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineCompFloatInterpolator.html">NiBSplineCompFloatInterpolator</a></b></td>
+	<td>NiBSplineFloatInterpolator plus the information required for using compact control points.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineCompPoint3Evaluator.html">NiBSplineCompPoint3Evaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineCompPoint3Interpolator.html">NiBSplineCompPoint3Interpolator</a></b></td>
+	<td>NiBSplinePoint3Interpolator plus the information required for using compact control points.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineCompTransformEvaluator.html">NiBSplineCompTransformEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineCompTransformInterpolator.html">NiBSplineCompTransformInterpolator</a></b></td>
+	<td>NiBSplineTransformInterpolator plus the information required for using compact control points.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineData.html">NiBSplineData</a></b></td>
+	<td>Contains one or more sets of control points for use in interpolation of open, uniform B-Splines, stored as either float or compact.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineEvaluator.html">NiBSplineEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineFloatEvaluator.html">NiBSplineFloatEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineFloatInterpolator.html">NiBSplineFloatInterpolator</a></b></td>
+	<td>Uses B-Splines to animate a float value over time.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineInterpolator.html">NiBSplineInterpolator</a></b></td>
+	<td>Abstract base class for interpolators storing data via a B-spline.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplinePoint3Evaluator.html">NiBSplinePoint3Evaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplinePoint3Interpolator.html">NiBSplinePoint3Interpolator</a></b></td>
+	<td>Uses B-Splines to animate an NiPoint3 value over time.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBSplineTransformEvaluator.html">NiBSplineTransformEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBSplineTransformInterpolator.html">NiBSplineTransformInterpolator</a></b></td>
+	<td>Supports the animation of position, rotation, and scale using an NiQuatTransform.<br/>        The NiQuatTransform can be an unchanging pose or interpolated from B-Spline control point channels.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBezierMesh.html">NiBezierMesh</a></b></td>
+	<td>LEGACY (pre-10.1)<br/>        Unknown</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBezierTriangle4.html">NiBezierTriangle4</a></b></td>
+	<td>LEGACY (pre-10.1)<br/>        Sub data of NiBezierMesh</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBillboardNode.html">NiBillboardNode</a></b></td>
+	<td>These nodes will always be rotated to face the camera creating a billboard effect for any attached objects.<br/><br/>        In pre-10.1.0.0 the Flags field is used for BillboardMode.<br/>        Bit 0: hidden<br/>        Bits 1-2: collision mode<br/>        Bit 3: unknown (set in most official meshes)<br/>        Bits 5-6: billboard mode<br/><br/>        Collision modes:<br/>        00 NONE<br/>        01 USE_TRIANGLES<br/>        10 USE_OBBS<br/>        11 CONTINUE<br/><br/>        Billboard modes:<br/>        00 ALWAYS_FACE_CAMERA<br/>        01 ROTATE_ABOUT_UP<br/>        10 RIGID_FACE_CAMERA<br/>        11 ALWAYS_FACE_CENTER</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBinaryExtraData.html">NiBinaryExtraData</a></b></td>
+	<td>Binary extra data object. Used to store tangents and bitangents in Oblivion.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBinaryVoxelData.html">NiBinaryVoxelData</a></b></td>
+	<td>Voxel data object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBinaryVoxelExtraData.html">NiBinaryVoxelExtraData</a></b></td>
+	<td>Voxel extra data object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBlendBoolInterpolator.html">NiBlendBoolInterpolator</a></b></td>
+	<td>Blends bool values together.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBlendFloatInterpolator.html">NiBlendFloatInterpolator</a></b></td>
+	<td>Blends float values together.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBlendInterpolator.html">NiBlendInterpolator</a></b></td>
+	<td>Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBlendPoint3Interpolator.html">NiBlendPoint3Interpolator</a></b></td>
+	<td>Blends NiPoint3 values together.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBlendTransformInterpolator.html">NiBlendTransformInterpolator</a></b></td>
+	<td>Blends NiQuatTransform values together.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBone.html">NiBone</a></b></td>
+	<td>A NiNode used as a skeleton bone?</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBoneLODController.html">NiBoneLODController</a></b></td>
+	<td>DEPRECATED (20.5), Replaced by NiSkinningLODController.<br/>        Level of detail controller for bones.  Priority is arranged from low to high.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBoolData.html">NiBoolData</a></b></td>
+	<td>Wrapper for boolean animation keys.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBoolEvaluator.html">NiBoolEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBoolInterpController.html">NiBoolInterpController</a></b></td>
+	<td>Abstract base class for all NiInterpControllers that use a NiInterpolator to animate their target boolean value.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBoolInterpolator.html">NiBoolInterpolator</a></b></td>
+	<td>Uses NiBoolKeys to animate a bool value over time.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBoolTimelineEvaluator.html">NiBoolTimelineEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiBoolTimelineInterpolator.html">NiBoolTimelineInterpolator</a></b></td>
+	<td>Uses NiBoolKeys to animate a bool value over time.<br/>        Unlike NiBoolInterpolator, it ensures that keys have not been missed between two updates.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiBooleanExtraData.html">NiBooleanExtraData</a></b></td>
+	<td>Boolean extra data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiCamera.html">NiCamera</a></b></td>
+	<td>Camera object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiClod.html">NiClod</a></b></td>
+	<td>A shape node that holds continuous level of detail information.<br/>        Seems to be specific to Freedom Force.<br/>        Found in: Freedom Force, Spellbinder</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiClodData.html">NiClodData</a></b></td>
+	<td>Holds mesh data for continuous level of detail shapes.<br/>        Presumably a progressive mesh with triangles specified by edge splits.<br/>        Found in: Freedom Force, Spellbinder</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiClodSkinInstance.html">NiClodSkinInstance</a></b></td>
+	<td>A copy of NiSkinInstance for use with NiClod meshes.<br/>        Found in: Freedom Force, Spellbinder</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiCollisionData.html">NiCollisionData</a></b></td>
+	<td>Collision box.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiCollisionObject.html">NiCollisionObject</a></b></td>
+	<td>This is the most common collision object found in NIF files. It acts as a real object that<br/>        is visible and possibly (if the body allows for it) interactive. The node itself<br/>        is simple, it only has three properties.<br/>        For this type of collision object, bhkRigidBody or bhkRigidBodyT is generally used.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiCollisionSwitch.html">NiCollisionSwitch</a></b></td>
+	<td>Found in Munch's Oddysee</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiColorData.html">NiColorData</a></b></td>
+	<td>Wrapper for color animation keys.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiColorEvaluator.html">NiColorEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiColorExtraData.html">NiColorExtraData</a></b></td>
+	<td>Extra data in the form of NiColorA (red, green, blue, alpha).</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiColorExtraDataController.html">NiColorExtraDataController</a></b></td>
+	<td>Animates an NiColorExtraData object attached to an NiAVObject.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiColorInterpolator.html">NiColorInterpolator</a></b></td>
+	<td>Animates a color value over time.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiConstBoolEvaluator.html">NiConstBoolEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiConstColorEvaluator.html">NiConstColorEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiConstFloatEvaluator.html">NiConstFloatEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiConstPoint3Evaluator.html">NiConstPoint3Evaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiConstQuaternionEvaluator.html">NiConstQuaternionEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiConstTransformEvaluator.html">NiConstTransformEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiControllerManager.html">NiControllerManager</a></b></td>
+	<td>Controls animation sequences on a specific branch of the scene graph.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiControllerSequence.html">NiControllerSequence</a></b></td>
+	<td>Root node in Gamebryo .kf files (version 10.0.1.0 and up).</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiDataStream.html">NiDataStream</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiDefaultAVObjectPalette.html">NiDefaultAVObjectPalette</a></b></td>
+	<td>NiAVObjectPalette implementation. Used to quickly look up objects by name.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiDirectionalLight.html">NiDirectionalLight</a></b></td>
+	<td>Directional light source.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiDitherProperty.html">NiDitherProperty</a></b></td>
+	<td>NiDitherProperty allows the application to turn the dithering of interpolated colors and fog values on and off.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiDynamicEffect.html">NiDynamicEffect</a></b></td>
+	<td>Abstract base class for dynamic effects such as NiLights or projected texture effects.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiEmitterModifier.html">NiEmitterModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiEnvMappedTriShape.html">NiEnvMappedTriShape</a></b></td>
+	<td>Unknown</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiEnvMappedTriShapeData.html">NiEnvMappedTriShapeData</a></b></td>
+	<td>Holds mesh data using a list of singular triangles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiEvaluator.html">NiEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiExtraData.html">NiExtraData</a></b></td>
+	<td>A generic extra data object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiExtraDataController.html">NiExtraDataController</a></b></td>
+	<td>Abstract base class for all extra data controllers.<br/>        NiInterpController::GetCtlrID() string format:<br/>            '%s'<br/>        Where %s = Value of "Extra Data Name"</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFlipController.html">NiFlipController</a></b></td>
+	<td>Changes the image a Map (TexDesc) will use. Uses a float interpolator to animate the texture index.<br/>        Often used for performing flipbook animation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFloatData.html">NiFloatData</a></b></td>
+	<td>Wrapper for 1D (one-dimensional) floating point animation keys.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFloatEvaluator.html">NiFloatEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFloatExtraData.html">NiFloatExtraData</a></b></td>
+	<td>Extra float data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFloatExtraDataController.html">NiFloatExtraDataController</a></b></td>
+	<td>Animates an NiFloatExtraData object attached to an NiAVObject.<br/>        NiInterpController::GetCtlrID() string format is same as parent.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFloatInterpController.html">NiFloatInterpController</a></b></td>
+	<td>Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target float value.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFloatInterpolator.html">NiFloatInterpolator</a></b></td>
+	<td>Uses NiFloatKeys to animate a float value over time.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFloatsExtraData.html">NiFloatsExtraData</a></b></td>
+	<td>Extra float array data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFloatsExtraDataController.html">NiFloatsExtraDataController</a></b></td>
+	<td>Animates an NiFloatsExtraData object attached to an NiAVObject.<br/>        NiInterpController::GetCtlrID() string format:<br/>            '%s[%d]'<br/>        Where %s = Value of "Extra Data Name", %d = Value of "Floats Extra Data Index"</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFloatsExtraDataPoint3Controller.html">NiFloatsExtraDataPoint3Controller</a></b></td>
+	<td>Animates an NiFloatsExtraData object attached to an NiAVObject.<br/>        NiInterpController::GetCtlrID() string format:<br/>            '%s[%d]'<br/>        Where %s = Value of "Extra Data Name", %d = Value of "Floats Extra Data Index"</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiFogProperty.html">NiFogProperty</a></b></td>
+	<td>NiFogProperty allows the application to enable, disable and control the appearance of fog.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiFurSpringController.html">NiFurSpringController</a></b></td>
+	<td>Blood Bowl Specific<br/>        Used on things like hair/tails in conjunction with bones to animate them.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiGeomMorpherController.html">NiGeomMorpherController</a></b></td>
+	<td>DEPRECATED (20.5), replaced by NiMorphMeshModifier.<br/>        Time controller for geometry morphing.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiGeometry.html">NiGeometry</a></b></td>
+	<td>Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.<br/>            Bethesda 20.2.0.7 NIFs: NiGeometry was changed to BSGeometry. <br/>            Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except NiParticleSystem was changed to use BSGeometry.<br/>            This causes massive inheritance problems so the rows below are doubled up to exclude NiParticleSystem for Bethesda Stream 100+<br/>            and to add data exclusive to BSGeometry.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiGeometryData.html">NiGeometryData</a></b></td>
+	<td>Mesh data: vertices, vertex normals, etc.<br/>            Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly. <br/>            "Num Vertices" is renamed to "BS Max Vertices" for Bethesda 20.2 because Vertices, Normals, Tangents, Colors, and UV arrays<br/>            do not have length for NiPSysData regardless of "Num" or booleans.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiGravity.html">NiGravity</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier. Applies a gravitational field on the particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiImage.html">NiImage</a></b></td>
+	<td>LEGACY (pre-10.1)</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiInstancingMeshModifier.html">NiInstancingMeshModifier</a></b></td>
+	<td>Mesh modifier that provides per-frame instancing capabilities in Gamebryo.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiIntegerExtraData.html">NiIntegerExtraData</a></b></td>
+	<td>Extra integer data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiIntegersExtraData.html">NiIntegersExtraData</a></b></td>
+	<td>Extra integer array data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiInterpController.html">NiInterpController</a></b></td>
+	<td>Abstract base class for all NiTimeController objects using NiInterpolator objects to animate their target objects.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiInterpolator.html">NiInterpolator</a></b></td>
+	<td>Abstract base class for all interpolators of bool, float, NiQuaternion, NiPoint3, NiColorA, and NiQuatTransform data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiKeyBasedEvaluator.html">NiKeyBasedEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiKeyBasedInterpolator.html">NiKeyBasedInterpolator</a></b></td>
+	<td>Abstract base class for interpolators that use NiAnimationKeys (Key, KeyGrp) for interpolation.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiKeyframeController.html">NiKeyframeController</a></b></td>
+	<td>DEPRECATED (10.2), RENAMED (10.2) to NiTransformController<br/>        A time controller object for animation key frames.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiKeyframeData.html">NiKeyframeData</a></b></td>
+	<td>DEPRECATED (10.2), RENAMED (10.2) to NiTransformData.<br/>        Wrapper for transformation animation keys.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLODData.html">NiLODData</a></b></td>
+	<td>Abstract class used for different types of LOD selections.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLODNode.html">NiLODNode</a></b></td>
+	<td>Level of detail selector. Links to different levels of detail of the same model, used to switch a geometry at a specified distance.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLight.html">NiLight</a></b></td>
+	<td>Abstract base class that represents light sources in a scene graph.<br/>        For Bethesda Stream 130 (FO4), NiLight now directly inherits from NiAVObject.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLightColorController.html">NiLightColorController</a></b></td>
+	<td>Animates the ambient, diffuse and specular colors of an NiLight.<br/>        NiInterpController::GetCtlrID() string formats:<br/>            ['Diffuse', 'Ambient'] (Depending on "Target Color")</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLightDimmerController.html">NiLightDimmerController</a></b></td>
+	<td>Animates the dimmer value of an NiLight.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLightIntensityController.html">NiLightIntensityController</a></b></td>
+	<td>Unknown controller</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLightRadiusController.html">NiLightRadiusController</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLines.html">NiLines</a></b></td>
+	<td>Wireframe geometry.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLinesData.html">NiLinesData</a></b></td>
+	<td>Wireframe geometry data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLookAtController.html">NiLookAtController</a></b></td>
+	<td>DEPRECATED (10.2), REMOVED (20.5)<br/>        Replaced by NiTransformController and NiLookAtInterpolator.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiLookAtEvaluator.html">NiLookAtEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiLookAtInterpolator.html">NiLookAtInterpolator</a></b></td>
+	<td>NiLookAtInterpolator rotates an object so that it always faces a target object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMaterialColorController.html">NiMaterialColorController</a></b></td>
+	<td>Time controller for material color. Flags are used for color selection in versions below 10.1.0.0.<br/>        Bits 4-5: Target Color (00 = Ambient, 01 = Diffuse, 10 = Specular, 11 = Emissive)<br/>        NiInterpController::GetCtlrID() string formats:<br/>            ['AMB', 'DIFF', 'SPEC', 'SELF_ILLUM'] (Depending on "Target Color")</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMaterialProperty.html">NiMaterialProperty</a></b></td>
+	<td>Describes the surface properties of an object e.g. translucency, ambient color, diffuse color, emissive color, and specular color.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMesh.html">NiMesh</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMeshHWInstance.html">NiMeshHWInstance</a></b></td>
+	<td>An instance of a hardware-instanced mesh in a scene graph.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMeshModifier.html">NiMeshModifier</a></b></td>
+	<td>Base class for mesh modifiers.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMeshPSysData.html">NiMeshPSysData</a></b></td>
+	<td>Particle meshes data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMeshParticleSystem.html">NiMeshParticleSystem</a></b></td>
+	<td>Particle system.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMorphController.html">NiMorphController</a></b></td>
+	<td>Unknown! Used by Daoc->'healing.nif'.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMorphData.html">NiMorphData</a></b></td>
+	<td>DEPRECATED (20.5), replaced by NiMorphMeshModifier.<br/>        Geometry morphing data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMorphMeshModifier.html">NiMorphMeshModifier</a></b></td>
+	<td>Performs linear-weighted blending between a set of target data streams.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMorphWeightsController.html">NiMorphWeightsController</a></b></td>
+	<td>Manipulates a mesh with the semantic MORPHWEIGHTS using an NiMorphMeshModifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMorpherController.html">NiMorpherController</a></b></td>
+	<td>Unknown! Used by Daoc.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiMultiTargetTransformController.html">NiMultiTargetTransformController</a></b></td>
+	<td>DEPRECATED (20.6)</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiMultiTextureProperty.html">NiMultiTextureProperty</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiNode.html">NiNode</a></b></td>
+	<td>Generic node object for grouping.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiObject.html">NiObject</a></b></td>
+	<td>Abstract object type.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiObjectNET.html">NiObjectNET</a></b></td>
+	<td>Abstract base class for NiObjects that support names, extra data, and time controllers.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSAirFieldForce.html">NiPSAirFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of air movements.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSAlignedQuadGenerator.html">NiPSAlignedQuadGenerator</a></b></td>
+	<td>A mesh modifier that uses particle system data to generate aligned quads for each particle.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSBombForce.html">NiPSBombForce</a></b></td>
+	<td>Applies an explosive force to particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSBoundUpdater.html">NiPSBoundUpdater</a></b></td>
+	<td>Updates the bounding volume for an NiPSParticleSystem object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSBoxEmitter.html">NiPSBoxEmitter</a></b></td>
+	<td>A particle emitter that emits particles from a rectangular volume.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSCollider.html">NiPSCollider</a></b></td>
+	<td>Abstract base class for all particle colliders.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSCurveEmitter.html">NiPSCurveEmitter</a></b></td>
+	<td>Emits particles from a curve.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSCylinderEmitter.html">NiPSCylinderEmitter</a></b></td>
+	<td>A particle emitter that emits particles from a cylindrical volume.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSDragFieldForce.html">NiPSDragFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of drag.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSDragForce.html">NiPSDragForce</a></b></td>
+	<td>Applies a linear drag force to particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitParticlesCtlr.html">NiPSEmitParticlesCtlr</a></b></td>
+	<td>Animates particle emission and birth rate.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitter.html">NiPSEmitter</a></b></td>
+	<td>Abstract base class for all particle emitters.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterCtlr.html">NiPSEmitterCtlr</a></b></td>
+	<td>Abstract base class for all particle emitter time controllers.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterDeclinationCtlr.html">NiPSEmitterDeclinationCtlr</a></b></td>
+	<td>Animates the declination value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterDeclinationVarCtlr.html">NiPSEmitterDeclinationVarCtlr</a></b></td>
+	<td>Animates the declination variation value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterFloatCtlr.html">NiPSEmitterFloatCtlr</a></b></td>
+	<td>Abstract base class for controllers that animate a floating point value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterLifeSpanCtlr.html">NiPSEmitterLifeSpanCtlr</a></b></td>
+	<td>Animates the lifespan value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterPlanarAngleCtlr.html">NiPSEmitterPlanarAngleCtlr</a></b></td>
+	<td>Animates the planar angle value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterPlanarAngleVarCtlr.html">NiPSEmitterPlanarAngleVarCtlr</a></b></td>
+	<td>Animates the planar angle variation value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterRadiusCtlr.html">NiPSEmitterRadiusCtlr</a></b></td>
+	<td>Animates the size value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterRotAngleCtlr.html">NiPSEmitterRotAngleCtlr</a></b></td>
+	<td>Animates the rotation angle value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterRotAngleVarCtlr.html">NiPSEmitterRotAngleVarCtlr</a></b></td>
+	<td>Animates the rotation angle variation value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterRotSpeedCtlr.html">NiPSEmitterRotSpeedCtlr</a></b></td>
+	<td>Animates the rotation speed value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSEmitterRotSpeedVarCtlr.html">NiPSEmitterRotSpeedVarCtlr</a></b></td>
+	<td>Animates the rotation speed variation value on an NiPSEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSEmitterSpeedCtlr.html">NiPSEmitterSpeedCtlr</a></b></td>
+	<td>Animates the speed value on an NiPSEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSFacingQuadGenerator.html">NiPSFacingQuadGenerator</a></b></td>
+	<td>A mesh modifier that uses particle system data to generate camera-facing quads.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSFieldAttenuationCtlr.html">NiPSFieldAttenuationCtlr</a></b></td>
+	<td>Animates the attenuation value of an NiPSFieldForce object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSFieldForce.html">NiPSFieldForce</a></b></td>
+	<td>Abstract base class for all particle field forces.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSFieldMagnitudeCtlr.html">NiPSFieldMagnitudeCtlr</a></b></td>
+	<td>Animates the magnitude value of an NiPSFieldForce object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSFieldMaxDistanceCtlr.html">NiPSFieldMaxDistanceCtlr</a></b></td>
+	<td>Animates the max distance value of an NiPSFieldForce object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSForce.html">NiPSForce</a></b></td>
+	<td>Abstract base class for all particle forces.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSForceActiveCtlr.html">NiPSForceActiveCtlr</a></b></td>
+	<td>Animates whether or not an NiPSForce object is active.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSForceBoolCtlr.html">NiPSForceBoolCtlr</a></b></td>
+	<td>Abstract base class for controllers that animate a Boolean value on an NiPSForce object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSForceCtlr.html">NiPSForceCtlr</a></b></td>
+	<td>Abstract base class for all particle force time controllers.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSForceFloatCtlr.html">NiPSForceFloatCtlr</a></b></td>
+	<td>Abstract base class for controllers that animate a floating point value on an NiPSForce object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSGravityFieldForce.html">NiPSGravityFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of directional gravity.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSGravityForce.html">NiPSGravityForce</a></b></td>
+	<td>Applies a gravitational force to particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSGravityStrengthCtlr.html">NiPSGravityStrengthCtlr</a></b></td>
+	<td>Animates the strength value of an NiPSGravityForce object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSMeshEmitter.html">NiPSMeshEmitter</a></b></td>
+	<td>Emits particles from one or more NiMesh objects. A random mesh emitter is selected for each particle emission.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSMeshParticleSystem.html">NiPSMeshParticleSystem</a></b></td>
+	<td>Represents a particle system that uses mesh particles instead of sprite-based particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSParticleSystem.html">NiPSParticleSystem</a></b></td>
+	<td>Represents a particle system.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSPlanarCollider.html">NiPSPlanarCollider</a></b></td>
+	<td>A planar collider for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSRadialFieldForce.html">NiPSRadialFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of point gravity.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSResetOnLoopCtlr.html">NiPSResetOnLoopCtlr</a></b></td>
+	<td>Calls ResetParticleSystem on an NiPSParticleSystem target upon looping.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSSimulator.html">NiPSSimulator</a></b></td>
+	<td>The mesh modifier that performs all particle system simulation.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSSimulatorCollidersStep.html">NiPSSimulatorCollidersStep</a></b></td>
+	<td>Encapsulates a floodgate kernel that simulates particle colliders.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSSimulatorFinalStep.html">NiPSSimulatorFinalStep</a></b></td>
+	<td>Encapsulates a floodgate kernel that updates particle positions and ages. As indicated by its name, this step should be attached last in the NiPSSimulator mesh modifier.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSSimulatorForcesStep.html">NiPSSimulatorForcesStep</a></b></td>
+	<td>Encapsulates a floodgate kernel that simulates particle forces.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSSimulatorGeneralStep.html">NiPSSimulatorGeneralStep</a></b></td>
+	<td>Encapsulates a floodgate kernel that updates particle size, colors, and rotations.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSSimulatorMeshAlignStep.html">NiPSSimulatorMeshAlignStep</a></b></td>
+	<td>Encapsulates a floodgate kernel that updates mesh particle alignment and transforms.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSSimulatorStep.html">NiPSSimulatorStep</a></b></td>
+	<td>Abstract base class for a single step in the particle system simulation process.  It has no seralized data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSSpawner.html">NiPSSpawner</a></b></td>
+	<td>Creates a new particle whose initial parameters are based on an existing particle.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSSphereEmitter.html">NiPSSphereEmitter</a></b></td>
+	<td>A particle emitter that emits particles from a spherical volume.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSSphericalCollider.html">NiPSSphericalCollider</a></b></td>
+	<td>A spherical collider for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSTorusEmitter.html">NiPSTorusEmitter</a></b></td>
+	<td>A particle emitter that emits particles from a toroidal volume.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSTurbulenceFieldForce.html">NiPSTurbulenceFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of turbulence.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSVolumeEmitter.html">NiPSVolumeEmitter</a></b></td>
+	<td>Abstract base class for particle emitters that emit particles from a volume.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSVortexFieldForce.html">NiPSVortexFieldForce</a></b></td>
+	<td>Inside a field, updates particle velocity to simulate the effects of a vortex.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysAgeDeathModifier.html">NiPSysAgeDeathModifier</a></b></td>
+	<td>Particle modifier that controls and updates the age of particles in the system.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysAirFieldAirFrictionCtlr.html">NiPSysAirFieldAirFrictionCtlr</a></b></td>
+	<td>Particle system controller for air field air friction.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysAirFieldInheritVelocityCtlr.html">NiPSysAirFieldInheritVelocityCtlr</a></b></td>
+	<td>Particle system controller for air field inherit velocity.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysAirFieldModifier.html">NiPSysAirFieldModifier</a></b></td>
+	<td>Particle system modifier, updates the particle velocity to simulate the effects of air movements like wind, fans, or wake.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysAirFieldSpreadCtlr.html">NiPSysAirFieldSpreadCtlr</a></b></td>
+	<td>Particle system controller for air field spread.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysBombModifier.html">NiPSysBombModifier</a></b></td>
+	<td>Particle modifier that applies an explosive force to particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysBoundUpdateModifier.html">NiPSysBoundUpdateModifier</a></b></td>
+	<td>Particle modifier that creates and updates bound volumes.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysBoxEmitter.html">NiPSysBoxEmitter</a></b></td>
+	<td>Particle emitter that uses points within a defined Box shape to emit from.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysCollider.html">NiPSysCollider</a></b></td>
+	<td>Particle system collider.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysColliderManager.html">NiPSysColliderManager</a></b></td>
+	<td>Particle modifier that adds a defined shape to act as a collision object for particles to interact with.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysColorModifier.html">NiPSysColorModifier</a></b></td>
+	<td>Particle modifier that adds keyframe data to modify color/alpha values of particles over time.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysCylinderEmitter.html">NiPSysCylinderEmitter</a></b></td>
+	<td>Particle emitter that uses points within a defined Cylinder shape to emit from.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysData.html">NiPSysData</a></b></td>
+	<td>Particle system data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysDragFieldModifier.html">NiPSysDragFieldModifier</a></b></td>
+	<td>Particle system modifier, implements a drag field force for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysDragModifier.html">NiPSysDragModifier</a></b></td>
+	<td>Particle modifier that applies a linear drag force to particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysEmitter.html">NiPSysEmitter</a></b></td>
+	<td>Abstract base class for all particle system emitters.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysEmitterCtlr.html">NiPSysEmitterCtlr</a></b></td>
+	<td>Particle system emitter controller.<br/>        NiInterpController::GetInterpolatorID() string format:<br/>            ['BirthRate', 'EmitterActive'] (for "Interpolator" and "Visibility Interpolator" respectively)</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysEmitterCtlrData.html">NiPSysEmitterCtlrData</a></b></td>
+	<td>DEPRECATED (10.2). Particle system emitter controller data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysEmitterDeclinationCtlr.html">NiPSysEmitterDeclinationCtlr</a></b></td>
+	<td>Animates the declination value on an NiPSysEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysEmitterDeclinationVarCtlr.html">NiPSysEmitterDeclinationVarCtlr</a></b></td>
+	<td>Animates the declination variation value on an NiPSysEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysEmitterInitialRadiusCtlr.html">NiPSysEmitterInitialRadiusCtlr</a></b></td>
+	<td>Animates the size value on an NiPSysEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysEmitterLifeSpanCtlr.html">NiPSysEmitterLifeSpanCtlr</a></b></td>
+	<td>Animates the lifespan value on an NiPSysEmitter object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysEmitterPlanarAngleCtlr.html">NiPSysEmitterPlanarAngleCtlr</a></b></td>
+	<td>Particle system controller for emitter planar angle.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysEmitterPlanarAngleVarCtlr.html">NiPSysEmitterPlanarAngleVarCtlr</a></b></td>
+	<td>Particle system controller for emitter planar angle variation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysEmitterSpeedCtlr.html">NiPSysEmitterSpeedCtlr</a></b></td>
+	<td>Animates the speed value on an NiPSysEmitter object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysFieldAttenuationCtlr.html">NiPSysFieldAttenuationCtlr</a></b></td>
+	<td>Particle system controller for force field attenuation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysFieldMagnitudeCtlr.html">NiPSysFieldMagnitudeCtlr</a></b></td>
+	<td>Particle system controller for force field magnitude.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysFieldMaxDistanceCtlr.html">NiPSysFieldMaxDistanceCtlr</a></b></td>
+	<td>Particle system controller for force field maximum distance.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysFieldModifier.html">NiPSysFieldModifier</a></b></td>
+	<td>Base for all force field particle modifiers.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysGravityFieldModifier.html">NiPSysGravityFieldModifier</a></b></td>
+	<td>Particle system modifier, implements a gravity field force for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysGravityModifier.html">NiPSysGravityModifier</a></b></td>
+	<td>Particle modifier that applies a gravitational force to particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysGravityStrengthCtlr.html">NiPSysGravityStrengthCtlr</a></b></td>
+	<td>Animates the strength value of an NiPSysGravityModifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysGrowFadeModifier.html">NiPSysGrowFadeModifier</a></b></td>
+	<td>Particle modifier that controls the time it takes to grow and shrink a particle.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysInitialRotAngleCtlr.html">NiPSysInitialRotAngleCtlr</a></b></td>
+	<td>Particle system controller for emitter initial rotation angle.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysInitialRotAngleVarCtlr.html">NiPSysInitialRotAngleVarCtlr</a></b></td>
+	<td>Particle system controller for emitter initial rotation angle variation.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysInitialRotSpeedCtlr.html">NiPSysInitialRotSpeedCtlr</a></b></td>
+	<td>Particle system controller for emitter initial rotation speed.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysInitialRotSpeedVarCtlr.html">NiPSysInitialRotSpeedVarCtlr</a></b></td>
+	<td>Particle system controller for emitter initial rotation speed variation.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysMeshEmitter.html">NiPSysMeshEmitter</a></b></td>
+	<td>Particle emitter that uses points on a specified mesh to emit from.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysMeshUpdateModifier.html">NiPSysMeshUpdateModifier</a></b></td>
+	<td>Particle modifier that updates mesh particles using the age of each particle.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysModifier.html">NiPSysModifier</a></b></td>
+	<td>Abstract base class for all particle system modifiers.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysModifierActiveCtlr.html">NiPSysModifierActiveCtlr</a></b></td>
+	<td>A particle system modifier controller that animates active/inactive state for particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysModifierBoolCtlr.html">NiPSysModifierBoolCtlr</a></b></td>
+	<td>A particle system modifier controller that animates a boolean value for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysModifierCtlr.html">NiPSysModifierCtlr</a></b></td>
+	<td>A particle system modifier controller.<br/>        NiInterpController::GetCtlrID() string format:<br/>            '%s'<br/>        Where %s = Value of "Modifier Name"</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysModifierFloatCtlr.html">NiPSysModifierFloatCtlr</a></b></td>
+	<td>A particle system modifier controller that animates a floating point value for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysPartSpawnModifier.html">NiPSysPartSpawnModifier</a></b></td>
+	<td>WorldShift-specific Particle Spawn modifier</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysPlanarCollider.html">NiPSysPlanarCollider</a></b></td>
+	<td>Particle Collider object which particles will interact with.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysPositionModifier.html">NiPSysPositionModifier</a></b></td>
+	<td>Particle modifier that updates the particle positions based on velocity and last update time.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysRadialFieldModifier.html">NiPSysRadialFieldModifier</a></b></td>
+	<td>Particle system modifier, updates the particle velocity to simulate the effects of point gravity.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysResetOnLoopCtlr.html">NiPSysResetOnLoopCtlr</a></b></td>
+	<td>Particle modifier that calls reset on a target upon looping.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysRotationModifier.html">NiPSysRotationModifier</a></b></td>
+	<td>Particle modifier that adds rotations to particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysSpawnModifier.html">NiPSysSpawnModifier</a></b></td>
+	<td>Particle modifier that spawns additional copies of a particle.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysSphereEmitter.html">NiPSysSphereEmitter</a></b></td>
+	<td>Particle emitter that uses points within a sphere shape to emit from.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysSphericalCollider.html">NiPSysSphericalCollider</a></b></td>
+	<td>Particle Collider object which particles will interact with.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysTrailEmitter.html">NiPSysTrailEmitter</a></b></td>
+	<td>Guild 2-Specific node</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysTurbulenceFieldModifier.html">NiPSysTurbulenceFieldModifier</a></b></td>
+	<td>Particle system modifier, implements a turbulence field force for particles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysUpdateCtlr.html">NiPSysUpdateCtlr</a></b></td>
+	<td>Particle system controller, tells the system to update its simulation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPSysVolumeEmitter.html">NiPSysVolumeEmitter</a></b></td>
+	<td>Abstract base class for particle emitters that emit particles from a volume.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPSysVortexFieldModifier.html">NiPSysVortexFieldModifier</a></b></td>
+	<td>Particle system modifier, implements a vortex field force for particles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPalette.html">NiPalette</a></b></td>
+	<td>NiPalette objects represent mappings from 8-bit indices to 24-bit RGB or 32-bit RGBA colors.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleBomb.html">NiParticleBomb</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticleCollider.html">NiParticleCollider</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleColorModifier.html">NiParticleColorModifier</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticleGrowFade.html">NiParticleGrowFade</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleMeshModifier.html">NiParticleMeshModifier</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticleMeshes.html">NiParticleMeshes</a></b></td>
+	<td>LEGACY (pre-10.1). Particle meshes.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleMeshesData.html">NiParticleMeshesData</a></b></td>
+	<td>LEGACY (pre-10.1). Particle meshes data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticleModifier.html">NiParticleModifier</a></b></td>
+	<td>LEGACY (pre-10.1). Abstract base class for particle system modifiers.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleRotation.html">NiParticleRotation</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticleSystem.html">NiParticleSystem</a></b></td>
+	<td>A particle system.<br/>        Contains members to mimic inheritance shifts for Bethesda 20.2, where NiParticles switched to inheriting BSGeometry.<br/>        Until inheritance shifts are supported, the members are on NiParticleSystem instead of NiParticles for module reasons.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticleSystemController.html">NiParticleSystemController</a></b></td>
+	<td>A generic particle system time controller object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiParticles.html">NiParticles</a></b></td>
+	<td>Generic particle system node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiParticlesData.html">NiParticlesData</a></b></td>
+	<td>Generic rotating particles data object.<br/>        Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from NiGeometryData and inherits NiObject directly.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPathController.html">NiPathController</a></b></td>
+	<td>DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiPathInterpolator.<br/>        Time controller for a path.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPathEvaluator.html">NiPathEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPathInterpolator.html">NiPathInterpolator</a></b></td>
+	<td>Used to make an object follow a predefined spline path.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPersistentSrcTextureRendererData.html">NiPersistentSrcTextureRendererData</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXActorDesc.html">NiPhysXActorDesc</a></b></td>
+	<td>For serializing NxActor objects.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXBodyDesc.html">NiPhysXBodyDesc</a></b></td>
+	<td>For serializing NxBodyDesc objects.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXClothDesc.html">NiPhysXClothDesc</a></b></td>
+	<td>For serializing NxClothDesc objects.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXD6JointDesc.html">NiPhysXD6JointDesc</a></b></td>
+	<td>A 6DOF (6 degrees of freedom) joint.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXDest.html">NiPhysXDest</a></b></td>
+	<td>A destination is a link between a PhysX actor and a Gamebryo object being driven by the physics.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXDynamicSrc.html">NiPhysXDynamicSrc</a></b></td>
+	<td>Sends Gamebryo scene state to a PhysX dynamic actor.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXJointDesc.html">NiPhysXJointDesc</a></b></td>
+	<td>A PhysX Joint abstract base class.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXKinematicSrc.html">NiPhysXKinematicSrc</a></b></td>
+	<td>Sets state of kinematic PhysX actor.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXMaterialDesc.html">NiPhysXMaterialDesc</a></b></td>
+	<td>For serializing NxMaterialDesc objects.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXMeshDesc.html">NiPhysXMeshDesc</a></b></td>
+	<td>Holds mesh data for streaming.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXPSParticleSystem.html">NiPhysXPSParticleSystem</a></b></td>
+	<td>Implements Gamebryo particle systems that use PhysX actors for the particles</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXPSParticleSystemDest.html">NiPhysXPSParticleSystemDest</a></b></td>
+	<td>An object which interfaces between the PhysX scene and the Gamebryo particle system.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXPSParticleSystemProp.html">NiPhysXPSParticleSystemProp</a></b></td>
+	<td>A PhysX prop which holds information about a PhysX particle system prop.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXPSSimulator.html">NiPhysXPSSimulator</a></b></td>
+	<td>Adds additional sync points to a NiPSSimulator mesh modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXPSSimulatorFinalStep.html">NiPhysXPSSimulatorFinalStep</a></b></td>
+	<td>Used to push the results of the particle system update into the PhysX actors.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXPSSimulatorInitialStep.html">NiPhysXPSSimulatorInitialStep</a></b></td>
+	<td>Used to set the post-simulation state of particles in a physics-enabled particle system.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXProp.html">NiPhysXProp</a></b></td>
+	<td>A PhysX prop which holds information about PhysX actors in a Gamebryo scene</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXPropDesc.html">NiPhysXPropDesc</a></b></td>
+	<td>For serialization of PhysX objects and to attach them to the scene.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXRigidBodyDest.html">NiPhysXRigidBodyDest</a></b></td>
+	<td>Base for destinations that set a rigid body state.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXRigidBodySrc.html">NiPhysXRigidBodySrc</a></b></td>
+	<td>Sets state of a rigid body PhysX actor.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXScene.html">NiPhysXScene</a></b></td>
+	<td>Object which manages a NxScene object and the Gamebryo objects that interact with it.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXSceneDesc.html">NiPhysXSceneDesc</a></b></td>
+	<td>Object which caches the properties of NxScene, stored as a snapshot in a NiPhysXScene.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXShapeDesc.html">NiPhysXShapeDesc</a></b></td>
+	<td>For serializing NxShapeDesc objects</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPhysXSrc.html">NiPhysXSrc</a></b></td>
+	<td>A source is a link between a Gamebryo object and a PhysX actor.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPhysXTransformDest.html">NiPhysXTransformDest</a></b></td>
+	<td>Connects PhysX rigid body actors to a scene node.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPixelData.html">NiPixelData</a></b></td>
+	<td>A texture.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPixelFormat.html">NiPixelFormat</a></b></td>
+	<td>NiPixelFormat is not the parent to NiPixelData/NiPersistentSrcTextureRendererData,<br/>        but actually a member class loaded at the top of each. The two classes are not related.<br/>        However, faking this inheritance is useful for several things.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPlanarCollider.html">NiPlanarCollider</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPoint3Evaluator.html">NiPoint3Evaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPoint3InterpController.html">NiPoint3InterpController</a></b></td>
+	<td>Abstract base class for all NiInterpControllers that use an NiInterpolator to animate their target NiPoint3 value.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPoint3Interpolator.html">NiPoint3Interpolator</a></b></td>
+	<td>Uses NiPosKeys to animate an NiPoint3 value over time.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPointLight.html">NiPointLight</a></b></td>
+	<td>A point light.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiPortal.html">NiPortal</a></b></td>
+	<td>NiPortal objects are grouping nodes that support aggressive visibility culling.<br/>        They represent flat polygonal regions through which a part of a scene graph can be viewed.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiPosData.html">NiPosData</a></b></td>
+	<td>Wrapper for position animation keys.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiProperty.html">NiProperty</a></b></td>
+	<td>Abstract base class representing all rendering properties. Subclasses are attached to NiAVObjects to control their rendering.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiQuaternionEvaluator.html">NiQuaternionEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiRangeLODData.html">NiRangeLODData</a></b></td>
+	<td>NiRangeLODData controls switching LOD levels based on Z depth from the camera to the NiLODNode.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiRawImageData.html">NiRawImageData</a></b></td>
+	<td>LEGACY (pre-10.1)<br/>        Raw image data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiRenderObject.html">NiRenderObject</a></b></td>
+	<td>An object that can be rendered.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiRollController.html">NiRollController</a></b></td>
+	<td>DEPRECATED (10.2), REMOVED (20.5). Replaced by NiTransformController and NiLookAtInterpolator.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiRoom.html">NiRoom</a></b></td>
+	<td>NiRoom objects represent cells in a cell-portal culling system.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiRoomGroup.html">NiRoomGroup</a></b></td>
+	<td>NiRoomGroup represents a set of connected rooms i.e. a game level.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiRotData.html">NiRotData</a></b></td>
+	<td>Wrapper for rotation animation keys.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiRotatingParticles.html">NiRotatingParticles</a></b></td>
+	<td>Unknown.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiRotatingParticlesData.html">NiRotatingParticlesData</a></b></td>
+	<td>Rotating particles data object.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiScreenElements.html">NiScreenElements</a></b></td>
+	<td>DEPRECATED (20.5), replaced by NiMeshScreenElements.<br/>        Two dimensional screen elements.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiScreenElementsData.html">NiScreenElementsData</a></b></td>
+	<td>DEPRECATED (20.5), functionality included in NiMeshScreenElements.<br/>        Two dimensional screen elements.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiScreenLODData.html">NiScreenLODData</a></b></td>
+	<td>NiScreenLODData controls switching LOD levels based on proportion of the screen that a bound would include.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSequence.html">NiSequence</a></b></td>
+	<td>Root node in NetImmerse .kf files (until version 10.0).</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSequenceData.html">NiSequenceData</a></b></td>
+	<td>Root node in Gamebryo .kf files (20.5.0.1 and up).<br/>        For 20.5.0.0, "NiSequenceData" is an alias for "NiControllerSequence" and this is not handled in nifxml.<br/>        This was not found in any 20.5.0.0 KFs available and they instead use NiControllerSequence directly.<br/>        After 20.5.0.1, Controlled Blocks are no longer used and instead the sequences uses NiEvaluator.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSequenceStreamHelper.html">NiSequenceStreamHelper</a></b></td>
+	<td>DEPRECATED (pre-10.1), REMOVED (20.3).<br/>        Keyframe animation root node, in .kf files.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiShadeProperty.html">NiShadeProperty</a></b></td>
+	<td>Determines whether flat shading or smooth shading is used on a shape.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiShadowGenerator.html">NiShadowGenerator</a></b></td>
+	<td>An NiShadowGenerator object is attached to an NiDynamicEffect object to inform the shadowing system that the effect produces shadows.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSingleInterpController.html">NiSingleInterpController</a></b></td>
+	<td>Uses a single NiInterpolator to animate its target value.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSkinData.html">NiSkinData</a></b></td>
+	<td>Skinning data.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSkinInstance.html">NiSkinInstance</a></b></td>
+	<td>Skinning instance.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSkinPartition.html">NiSkinPartition</a></b></td>
+	<td>Skinning data, optimized for hardware skinning. The mesh is partitioned in submeshes such that each vertex of a submesh is influenced only by a limited and fixed number of bones.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSkinningLODController.html">NiSkinningLODController</a></b></td>
+	<td>Defines the levels of detail for a given character and dictates the character's current LOD.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSkinningMeshModifier.html">NiSkinningMeshModifier</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSortAdjustNode.html">NiSortAdjustNode</a></b></td>
+	<td>Used to turn sorting off for individual subtrees in a scene. Useful if objects must be drawn in a fixed order.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSourceCubeMap.html">NiSourceCubeMap</a></b></td>
+	<td>Represents cube maps that are created from either a set of six image files, six blocks of pixel data, or a single pixel data with six faces.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSourceTexture.html">NiSourceTexture</a></b></td>
+	<td>Describes texture source and properties.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSpecularProperty.html">NiSpecularProperty</a></b></td>
+	<td>Gives specularity to a shape. Flags 0x0001.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSphericalCollider.html">NiSphericalCollider</a></b></td>
+	<td>LEGACY (pre-10.1) particle modifier.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiSpotLight.html">NiSpotLight</a></b></td>
+	<td>A spot.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiStencilProperty.html">NiStencilProperty</a></b></td>
+	<td>Allows control of stencil testing.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiStringExtraData.html">NiStringExtraData</a></b></td>
+	<td>Extra data in the form of text.<br/>        Used in various official or user-defined ways, e.g. preventing optimization on objects ("NiOptimizeKeep", "sgoKeep").</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiStringPalette.html">NiStringPalette</a></b></td>
+	<td>List of 0x00-seperated strings, which are names of controlled objects and controller types. Used in .kf files in conjunction with NiControllerSequence.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiStringsExtraData.html">NiStringsExtraData</a></b></td>
+	<td>Extra data in the form of a list of strings.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiSwitchNode.html">NiSwitchNode</a></b></td>
+	<td>Represents groups of multiple scenegraph subtrees, only one of which (the "active child") is drawn at any given time.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTextKeyExtraData.html">NiTextKeyExtraData</a></b></td>
+	<td>Extra data that holds an array of NiTextKey objects for use in animation sequences.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTexture.html">NiTexture</a></b></td>
+	<td>A texture.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTextureEffect.html">NiTextureEffect</a></b></td>
+	<td>Represents an effect that uses projected textures such as projected lights (gobos), environment maps, and fog maps.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTextureModeProperty.html">NiTextureModeProperty</a></b></td>
+	<td>LEGACY (pre-10.1)</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTextureProperty.html">NiTextureProperty</a></b></td>
+	<td>LEGACY (pre-10.1)</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTextureTransformController.html">NiTextureTransformController</a></b></td>
+	<td>Used to animate a single member of an NiTextureTransform.<br/>        NiInterpController::GetCtlrID() string formats:<br/>            ['%1-%2-TT_TRANSLATE_U', '%1-%2-TT_TRANSLATE_V', '%1-%2-TT_ROTATE', '%1-%2-TT_SCALE_U', '%1-%2-TT_SCALE_V']<br/>        (Depending on "Operation" enumeration, %1 = Value of "Shader Map", %2 = Value of "Texture Slot")</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTexturingProperty.html">NiTexturingProperty</a></b></td>
+	<td>Describes how a fragment shader should be configured for a given piece of geometry.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTimeController.html">NiTimeController</a></b></td>
+	<td>Abstract base class that provides the base timing and update functionality for all the Gamebryo animation controllers.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTransformController.html">NiTransformController</a></b></td>
+	<td>NiTransformController replaces NiKeyframeController.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTransformData.html">NiTransformData</a></b></td>
+	<td>Wrapper for transformation animation keys.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTransformEvaluator.html">NiTransformEvaluator</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTransformInterpolator.html">NiTransformInterpolator</a></b></td>
+	<td>An interpolator for transform keyframes.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTransparentProperty.html">NiTransparentProperty</a></b></td>
+	<td>Unknown</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTriBasedGeom.html">NiTriBasedGeom</a></b></td>
+	<td>Describes a mesh, built from triangles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTriBasedGeomData.html">NiTriBasedGeomData</a></b></td>
+	<td>Describes a mesh, built from triangles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTriShape.html">NiTriShape</a></b></td>
+	<td>A shape node that refers to singular triangle data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTriShapeData.html">NiTriShapeData</a></b></td>
+	<td>Holds mesh data using a list of singular triangles.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTriShapeSkinController.html">NiTriShapeSkinController</a></b></td>
+	<td>Old version of skinning instance.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiTriStrips.html">NiTriStrips</a></b></td>
+	<td>A shape node that refers to data organized into strips of triangles</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiTriStripsData.html">NiTriStripsData</a></b></td>
+	<td>Holds mesh data using strips of triangles.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiUVController.html">NiUVController</a></b></td>
+	<td>DEPRECATED (pre-10.1), REMOVED (20.3).<br/>        Time controller for texture coordinates.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiUVData.html">NiUVData</a></b></td>
+	<td>DEPRECATED (pre-10.1), REMOVED (20.3)<br/>        Texture coordinate data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiVectorExtraData.html">NiVectorExtraData</a></b></td>
+	<td>DEPRECATED (20.5).<br/>        Extra data in the form of a vector (as x, y, z, w components).</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiVertWeightsExtraData.html">NiVertWeightsExtraData</a></b></td>
+	<td>DEPRECATED (10.x), REMOVED (?)<br/>        Not used in skinning.<br/>        Unsure of use - perhaps for morphing animation or gravity.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiVertexColorProperty.html">NiVertexColorProperty</a></b></td>
+	<td>Property of vertex colors. This object is referred to by the root object of the NIF file whenever some NiTriShapeData object has vertex colors with non-default settings; if not present, vertex colors have vertex_mode=2 and lighting_mode=1.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiVisController.html">NiVisController</a></b></td>
+	<td>Animates the visibility of an NiAVObject.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiVisData.html">NiVisData</a></b></td>
+	<td>DEPRECATED (10.2), REMOVED (?), Replaced by NiBoolData.<br/>        Visibility data for a controller.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiWall.html">NiWall</a></b></td>
+	<td></td>
+</tr>
+<tr class="odd">
+	<td><b><a href="NiWireframeProperty.html">NiWireframeProperty</a></b></td>
+	<td>Allows applications to switch between drawing solid geometry or wireframe outlines.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="NiZBufferProperty.html">NiZBufferProperty</a></b></td>
+	<td>Allows applications to set the test and write modes of the renderer's Z-buffer and to set the comparison function used for the Z-buffer test.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="RootCollisionNode.html">RootCollisionNode</a></b></td>
+	<td>Morrowind-specific node for collision mesh.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="SkyShaderProperty.html">SkyShaderProperty</a></b></td>
+	<td>Bethesda-specific property. Found in Fallout3</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="TallGrassShaderProperty.html">TallGrassShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="TileShaderProperty.html">TileShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="VolumetricFogShaderProperty.html">VolumetricFogShaderProperty</a></b></td>
+	<td>Bethesda-specific property.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="WaterShaderProperty.html">WaterShaderProperty</a></b></td>
+	<td>Bethesda-specific property. Found in Fallout3</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkAabbPhantom.html">bhkAabbPhantom</a></b></td>
+	<td>Bethesda extension of hkpAabbPhantom. A non-physical object made up of only an AABB.<br/>            - Very fast as they use only broadphase collision detection.<br/>            - Used for triggers/regions where a shape is not necessary.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkAction.html">bhkAction</a></b></td>
+	<td>Bethesda extension of hkpAction. hkpAction performs some action on a body or bodies during every simulation step.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkBallAndSocketConstraint.html">bhkBallAndSocketConstraint</a></b></td>
+	<td>Bethesda extension of hkpBallAndSocketConstraintData.<br/>        Point-to-point constraint that attempts to keep the pivot point of two bodies in the same space.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkBallSocketConstraintChain.html">bhkBallSocketConstraintChain</a></b></td>
+	<td>Bethesda extension of hkpBallSocketChainData. A chain of ball and socket constraints.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkBinaryAction.html">bhkBinaryAction</a></b></td>
+	<td>Bethesda extension of hkpBinaryAction. hkpBinaryAction performs an action on two bodies.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkBlendCollisionObject.html">bhkBlendCollisionObject</a></b></td>
+	<td>Bethesda Havok object used in skeletons.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkBlendController.html">bhkBlendController</a></b></td>
+	<td>Unknown. Is apparently only used in skeleton.nif files.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkBoxShape.html">bhkBoxShape</a></b></td>
+	<td>A box.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkBreakableConstraint.html">bhkBreakableConstraint</a></b></td>
+	<td>Bethesda extension of hkpBreakableConstraintData, a wrapper around hkpConstraintInstance.<br/>        The constraint can "break" i.e. stop applying the forces to each body to keep them constrained.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkBvTreeShape.html">bhkBvTreeShape</a></b></td>
+	<td>Bethesda extension of hkpBvTreeShape. hkpBvTreeShape adds a bounding volume tree to an hkpShapeCollection.<br/>        A bounding volume tree is useful for testing collision between a moving object and large static geometry.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkCapsuleShape.html">bhkCapsuleShape</a></b></td>
+	<td>A capsule.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkCollisionObject.html">bhkCollisionObject</a></b></td>
+	<td>Primary Bethesda Havok object.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkCompressedMeshShape.html">bhkCompressedMeshShape</a></b></td>
+	<td>Compressed collision mesh.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkCompressedMeshShapeData.html">bhkCompressedMeshShapeData</a></b></td>
+	<td>A compressed mesh shape for collision in Skyrim.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkConstraint.html">bhkConstraint</a></b></td>
+	<td>Bethesda extension of hkpConstraintData. Base class for all constraints.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkConvexListShape.html">bhkConvexListShape</a></b></td>
+	<td>A list of shapes. However,<br/>            - The sub shapes must ALL be convex: Sphere, Capsule, Cylinder, Convex Vertices, Convex Transform<br/>            - The radius of all shapes must be identical<br/>            - The number of sub shapes is restricted to 255<br/>            - The number of vertices of each sub shape is restricted to 255<br/><br/>        For this reason you most likely cannot combine Sphere Shapes, Capsule Shapes, and Convex Vertices Shapes,<br/>        as their Radius values differ in function. (Sphere/Capsule radius = physical size, CVS radius = padding/shell)<br/>        <br/>        Shapes collected in a bhkConvexListShape may not have the correct material noise.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkConvexShape.html">bhkConvexShape</a></b></td>
+	<td>An interface that allows testing convex sets using the GJK algorithm. Also holds a radius value for creating a shell.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkConvexShapeBase.html">bhkConvexShapeBase</a></b></td>
+	<td>An imaginary abstract base to solve inheritance issues in nif.xml with Havok serialization not matching class hierarchy.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkConvexSweepShape.html">bhkConvexSweepShape</a></b></td>
+	<td></td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkConvexTransformShape.html">bhkConvexTransformShape</a></b></td>
+	<td>Contains a bhkConvexShape and an additional transform for that shape.<br/>        The advantage of using bhkConvexTransformShape over bhkTransformShape is that it does not require additional agents to be created as it is itself convex.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkConvexVerticesShape.html">bhkConvexVerticesShape</a></b></td>
+	<td>A convex shape built from vertices. Note that if the shape is used in<br/>        a non-static object (such as clutter), then they will simply fall<br/>        through ground when they are under a bhkListShape.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkCylinderShape.html">bhkCylinderShape</a></b></td>
+	<td>A cylinder.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkEntity.html">bhkEntity</a></b></td>
+	<td>Bethesda extension of hkpEntity. An Entity is the core physical object in the system.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkHeightFieldShape.html">bhkHeightFieldShape</a></b></td>
+	<td>An interface for a shape which can collide with an array of spheres.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkHingeConstraint.html">bhkHingeConstraint</a></b></td>
+	<td>Bethesda extension of hkpHingeConstraintData. A basic hinge with no angular limits or motor.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkLimitedHingeConstraint.html">bhkLimitedHingeConstraint</a></b></td>
+	<td>Bethesda extension of hkpLimitedHingeConstraintData. Hinge constraint with limits and a motor.<br/>        Enabling the motor will remove any friction.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkLiquidAction.html">bhkLiquidAction</a></b></td>
+	<td>Bethesda custom bhkUnaryAction. Does not hold a link to the body like other bhkUnaryActions however.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkListShape.html">bhkListShape</a></b></td>
+	<td>A list of shapes.<br/><br/>        Shapes collected in a bhkListShape may not have the correct collision sound/FX due to HavokMaterial issues.<br/>        Do not put a bhkPackedNiTriStripsShape in the Sub Shapes. Use a separate collision nodes without a list shape for those.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkMalleableConstraint.html">bhkMalleableConstraint</a></b></td>
+	<td>Bethesda extension of hkpMalleableConstraintData. Constraint wrapper used to soften or harden constraints.<br/>        Does not affect angular limits or angular motors.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkMeshShape.html">bhkMeshShape</a></b></td>
+	<td>Bethesda extension of hkpMeshShape, but using NiTriStripsData instead of Havok storage.<br/>        Appears in one old Oblivion NIF, but only in certain distributions. NIF version 10.0.1.0 only.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkMoppBvTreeShape.html">bhkMoppBvTreeShape</a></b></td>
+	<td>Bethesda extension of hkpMoppBvTreeShape. hkpMoppBvTreeShape is a bounding volume tree using Havok-proprietary MOPP code.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkMultiSphereShape.html">bhkMultiSphereShape</a></b></td>
+	<td>A compound shape made up of spheres. This is useful as an approximation for complex shapes, as collision detection for spheres is very fast.<br/>        However, if two bhkMultiSphereShape collide, every sphere needs to be checked against every other sphere.<br/>            Example: 10 spheres colliding with 10 spheres will result in 100 collision checks.<br/>            Therefore shapes like bhkCapsuleShape or bhkConvexVerticesShape should be preferred.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkNPCollisionObject.html">bhkNPCollisionObject</a></b></td>
+	<td>Fallout 4 Collision Object</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkNiCollisionObject.html">bhkNiCollisionObject</a></b></td>
+	<td>Abstract base class to merge NiCollisionObject with Bethesda Havok.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkNiTriStripsShape.html">bhkNiTriStripsShape</a></b></td>
+	<td>Bethesda custom hkpShapeCollection using NiTriStripsData for geometry storage.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkOrientHingedBodyAction.html">bhkOrientHingedBodyAction</a></b></td>
+	<td>Bethesda extension of hkpReorientAction (or similar). Will try to reorient a body to stay facing a given direction.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkPCollisionObject.html">bhkPCollisionObject</a></b></td>
+	<td>Bethesda Havok object for phantoms such as bhkAabbPhantom.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkPackedNiTriStripsShape.html">bhkPackedNiTriStripsShape</a></b></td>
+	<td>Bethesda custom hkpShapeCollection using custom packed tri strips data.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkPhantom.html">bhkPhantom</a></b></td>
+	<td>Bethesda extension of hkpPhantom. A Phantom is the core non-physical object in the system.<br/>        Receives events when an overlap with another phantom or an entity begins or ends.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkPhysicsSystem.html">bhkPhysicsSystem</a></b></td>
+	<td>Fallout 4 Collision System</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkPlaneShape.html">bhkPlaneShape</a></b></td>
+	<td>Contains a normal and distance from the origin, bounded by a given AABB.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkPoseArray.html">bhkPoseArray</a></b></td>
+	<td>Found in Fallout 3 .psa files, extra ragdoll info for NPCs/creatures. (usually idleanims\deathposes.psa)<br/>        Defines different kill poses. The game selects the pose randomly and applies it to a skeleton immediately upon ragdolling.<br/>        Poses can be previewed in GECK Object Window-Actor Data-Ragdoll and selecting Pose Matching tab.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkPrismaticConstraint.html">bhkPrismaticConstraint</a></b></td>
+	<td>Bethesda extension of hkpPrismaticConstraintData.<br/>        Creates a rail between two bodies that allows translation along a single axis with linear limits and a motor.<br/>        All three rotation axes and the remaining two translation axes are fixed.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkRagdollConstraint.html">bhkRagdollConstraint</a></b></td>
+	<td>Bethesda extension of hkpRagdollConstraintData. Creates a joint between two bodies with 3 degrees of freedom and a motor.<br/>        Enabling the motor will remove any friction.<br/>        The area of movement can be represented as a main cone + 2 orthogonal cones which may subtract from the main cone volume depending on limits.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkRagdollSystem.html">bhkRagdollSystem</a></b></td>
+	<td>Fallout 4 Ragdoll System</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkRagdollTemplate.html">bhkRagdollTemplate</a></b></td>
+	<td>Found in Fallout 3, more ragdoll info?  (meshes\ragdollconstraint\*.rdt)</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkRagdollTemplateData.html">bhkRagdollTemplateData</a></b></td>
+	<td>Data for bhkRagdollTemplate</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkRefObject.html">bhkRefObject</a></b></td>
+	<td>Bethesda extension of hkReferencedObject, the base for all classes in the Havok SDK.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkRigidBody.html">bhkRigidBody</a></b></td>
+	<td>This is the default body type for all "normal" usable and static world objects. The "T" suffix<br/>        marks this body as active for translation and rotation, a normal bhkRigidBody ignores those<br/>        properties. Because the properties are equal, a bhkRigidBody may be renamed into a bhkRigidBodyT and vice-versa.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkRigidBodyT.html">bhkRigidBodyT</a></b></td>
+	<td>The "T" suffix marks this body as active for translation and rotation.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkSPCollisionObject.html">bhkSPCollisionObject</a></b></td>
+	<td>Bethesda Havok object for shape phantoms such as bhkSimpleShapePhantom.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkSerializable.html">bhkSerializable</a></b></td>
+	<td>Bethesda class to combine NiObject and hkReferencedObject so that Havok classes can be read/written with NiStream.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkShape.html">bhkShape</a></b></td>
+	<td>The base class for narrowphase collision detection objects.<br/>        All narrowphase collision detection is performed between pairs of bhkShape objects by creating appropriate collision agents.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkShapeCollection.html">bhkShapeCollection</a></b></td>
+	<td>An interface to a collection of bhkShapes.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkShapePhantom.html">bhkShapePhantom</a></b></td>
+	<td>Bethesda extension of hkpShapePhantom, a base for hkpSimpleShapePhantom and hkpCachingShapePhantom.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkSimpleShapePhantom.html">bhkSimpleShapePhantom</a></b></td>
+	<td>Bethesda extension of hkpSimpleShapePhantom. A Phantom with arbitrary shape and transform.<br/>        Does not do any narrowphase caching, in contrast to hkpCachingShapePhantom.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkSphereRepShape.html">bhkSphereRepShape</a></b></td>
+	<td>An interface that produces a set of spheres that represent a simplified version of the shape.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkSphereShape.html">bhkSphereShape</a></b></td>
+	<td>A sphere.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkStiffSpringConstraint.html">bhkStiffSpringConstraint</a></b></td>
+	<td>Bethesda extension of hkpStiffSpringConstraintData. Holds two bodies at a specified distance from one another.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkSystem.html">bhkSystem</a></b></td>
+	<td>Fallout 4 Physics System</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkTransformShape.html">bhkTransformShape</a></b></td>
+	<td>Contains a bhkShape and an additional transform for that shape.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="bhkUnaryAction.html">bhkUnaryAction</a></b></td>
+	<td>Bethesda extension of hkpUnaryAction. hkpUnaryAction performs an action on one body.</td>
+</tr>
+<tr class="odd">
+	<td><b><a href="bhkWorldObject.html">bhkWorldObject</a></b></td>
+	<td>Bethesda extension of hkpWorldObject, the base class for hkpEntity and hkpPhantom.</td>
+</tr>
+<tr class="even">
+	<td><b><a href="hkPackedNiTriStripsData.html">hkPackedNiTriStripsData</a></b></td>
+	<td>Bethesda custom tri strips data block for bhkPackedNiTriStripsShape.</td>
+</tr>
+</table>
+</body>
+</html>
