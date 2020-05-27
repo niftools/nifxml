@@ -795,10 +795,13 @@ class NifXml:
 class Version:
     """This class represents the nif.xml <version> tag."""
 
+    def __str__(self):
+        return self.name
+
     def __init__(self, element):
         self.num = element.getAttribute('num')  # type: str
         # Treat the version as a name to match other tags
-        self.name = self.num  # type: str
+        self.name = element.getAttribute('id')  # type: str
         self.description = element.firstChild.nodeValue.strip()  # type: str
 
 
@@ -1004,8 +1007,9 @@ def parse_xml(ntypes=None, path=XML_PATH):  # type: (Optional[Dict[str, str]], s
 
     for element in xml.getElementsByTagName('version'):
         instance = Version(element)
-        TYPES_VERSION[instance.num] = instance
-        NAMES_VERSION.append(instance.num)
+        assert instance.name not in TYPES_VERSION
+        TYPES_VERSION[instance.name] = instance
+        NAMES_VERSION.append(instance.name)
 
     for element in xml.getElementsByTagName('basic'):
         instance = Basic(element, ntypes)
