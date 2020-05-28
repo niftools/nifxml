@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - FurnitureEntryPoints</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>FurnitureEntryPoints</h2>
+Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x00000001</td>
+	<td><b>Front</b></td>
+	<td>front entry point</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000002</td>
+	<td><b>Behind</b></td>
+	<td>behind entry point</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000004</td>
+	<td><b>Right</b></td>
+	<td>right entry point</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000008</td>
+	<td><b>Left</b></td>
+	<td>left entry point</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000010</td>
+	<td><b>Up</b></td>
+	<td>up entry point - unknown function. Used on some beds in Skyrim, probably for blocking of sleeping position.</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="ushort.html">ushort</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

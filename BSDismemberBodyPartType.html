@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - BSDismemberBodyPartType</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>BSDismemberBodyPartType</h2>
+Biped bodypart data used for visibility control of triangles.  Options are Fallout 3, except where marked for Skyrim (uses SBP prefix)<br/>        Skyrim BP names are listed only for vanilla names, different creatures have different defnitions for naming.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>BP_TORSO</b></td>
+	<td>Torso</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>BP_HEAD</b></td>
+	<td>Head</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>BP_HEAD2</b></td>
+	<td>Head 2</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>BP_LEFTARM</b></td>
+	<td>Left Arm</td>
+</tr>
+
+<tr class="even">
+	<td>4</td>
+	<td><b>BP_LEFTARM2</b></td>
+	<td>Left Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>5</td>
+	<td><b>BP_RIGHTARM</b></td>
+	<td>Right Arm</td>
+</tr>
+
+<tr class="even">
+	<td>6</td>
+	<td><b>BP_RIGHTARM2</b></td>
+	<td>Right Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>7</td>
+	<td><b>BP_LEFTLEG</b></td>
+	<td>Left Leg</td>
+</tr>
+
+<tr class="even">
+	<td>8</td>
+	<td><b>BP_LEFTLEG2</b></td>
+	<td>Left Leg 2</td>
+</tr>
+
+<tr class="odd">
+	<td>9</td>
+	<td><b>BP_LEFTLEG3</b></td>
+	<td>Left Leg 3</td>
+</tr>
+
+<tr class="even">
+	<td>10</td>
+	<td><b>BP_RIGHTLEG</b></td>
+	<td>Right Leg</td>
+</tr>
+
+<tr class="odd">
+	<td>11</td>
+	<td><b>BP_RIGHTLEG2</b></td>
+	<td>Right Leg 2</td>
+</tr>
+
+<tr class="even">
+	<td>12</td>
+	<td><b>BP_RIGHTLEG3</b></td>
+	<td>Right Leg 3</td>
+</tr>
+
+<tr class="odd">
+	<td>13</td>
+	<td><b>BP_BRAIN</b></td>
+	<td>Brain</td>
+</tr>
+
+<tr class="even">
+	<td>30</td>
+	<td><b>SBP_30_HEAD</b></td>
+	<td>Skyrim, Head(Human), Body(Atronachs,Beasts), Mask(Dragonpriest)</td>
+</tr>
+
+<tr class="odd">
+	<td>31</td>
+	<td><b>SBP_31_HAIR</b></td>
+	<td>Skyrim, Hair(human), Far(Dragon), Mask2(Dragonpriest),SkinnedFX(Spriggan)</td>
+</tr>
+
+<tr class="even">
+	<td>32</td>
+	<td><b>SBP_32_BODY</b></td>
+	<td>Skyrim, Main body, extras(Spriggan)</td>
+</tr>
+
+<tr class="odd">
+	<td>33</td>
+	<td><b>SBP_33_HANDS</b></td>
+	<td>Skyrim, Hands L/R, BodyToo(Dragonpriest), Legs(Draugr), Arms(Giant)</td>
+</tr>
+
+<tr class="even">
+	<td>34</td>
+	<td><b>SBP_34_FOREARMS</b></td>
+	<td>Skyrim, Forearms L/R, Beard(Draugr)</td>
+</tr>
+
+<tr class="odd">
+	<td>35</td>
+	<td><b>SBP_35_AMULET</b></td>
+	<td>Skyrim, Amulet</td>
+</tr>
+
+<tr class="even">
+	<td>36</td>
+	<td><b>SBP_36_RING</b></td>
+	<td>Skyrim, Ring</td>
+</tr>
+
+<tr class="odd">
+	<td>37</td>
+	<td><b>SBP_37_FEET</b></td>
+	<td>Skyrim, Feet L/R</td>
+</tr>
+
+<tr class="even">
+	<td>38</td>
+	<td><b>SBP_38_CALVES</b></td>
+	<td>Skyrim, Calves L/R</td>
+</tr>
+
+<tr class="odd">
+	<td>39</td>
+	<td><b>SBP_39_SHIELD</b></td>
+	<td>Skyrim, Shield</td>
+</tr>
+
+<tr class="even">
+	<td>40</td>
+	<td><b>SBP_40_TAIL</b></td>
+	<td>Skyrim, Tail(Argonian/Khajiit), Skeleton01(Dragon), FX01(AtronachStorm),FXMist (Dragonpriest), Spit(Chaurus,Spider),SmokeFins(IceWraith)</td>
+</tr>
+
+<tr class="odd">
+	<td>41</td>
+	<td><b>SBP_41_LONGHAIR</b></td>
+	<td>Skyrim, Long Hair(Human), Skeleton02(Dragon),FXParticles(Dragonpriest)</td>
+</tr>
+
+<tr class="even">
+	<td>42</td>
+	<td><b>SBP_42_CIRCLET</b></td>
+	<td>Skyrim, Circlet(Human, MouthFireEffect(Dragon)</td>
+</tr>
+
+<tr class="odd">
+	<td>43</td>
+	<td><b>SBP_43_EARS</b></td>
+	<td>Skyrim, Ears</td>
+</tr>
+
+<tr class="even">
+	<td>44</td>
+	<td><b>SBP_44_DRAGON_BLOODHEAD_OR_MOD_MOUTH</b></td>
+	<td>Skyrim, Bloodied dragon head, or NPC face/mouth</td>
+</tr>
+
+<tr class="odd">
+	<td>45</td>
+	<td><b>SBP_45_DRAGON_BLOODWINGL_OR_MOD_NECK</b></td>
+	<td>Skyrim, Left Bloodied dragon wing, Saddle(Horse), or NPC cape, scarf, shawl, neck-tie, etc.</td>
+</tr>
+
+<tr class="even">
+	<td>46</td>
+	<td><b>SBP_46_DRAGON_BLOODWINGR_OR_MOD_CHEST_PRIMARY</b></td>
+	<td>Skyrim, Right Bloodied dragon wing, or NPC chest primary or outergarment</td>
+</tr>
+
+<tr class="odd">
+	<td>47</td>
+	<td><b>SBP_47_DRAGON_BLOODTAIL_OR_MOD_BACK</b></td>
+	<td>Skyrim, Bloodied dragon tail, or NPC backpack/wings/...</td>
+</tr>
+
+<tr class="even">
+	<td>48</td>
+	<td><b>SBP_48_MOD_MISC1</b></td>
+	<td>Anything that does not fit in the list</td>
+</tr>
+
+<tr class="odd">
+	<td>49</td>
+	<td><b>SBP_49_MOD_PELVIS_PRIMARY</b></td>
+	<td>Pelvis primary or outergarment</td>
+</tr>
+
+<tr class="even">
+	<td>50</td>
+	<td><b>SBP_50_DECAPITATEDHEAD</b></td>
+	<td>Skyrim, Decapitated Head</td>
+</tr>
+
+<tr class="odd">
+	<td>51</td>
+	<td><b>SBP_51_DECAPITATE</b></td>
+	<td>Skyrim, Decapitate, neck gore</td>
+</tr>
+
+<tr class="even">
+	<td>52</td>
+	<td><b>SBP_52_MOD_PELVIS_SECONDARY</b></td>
+	<td>Pelvis secondary or undergarment</td>
+</tr>
+
+<tr class="odd">
+	<td>53</td>
+	<td><b>SBP_53_MOD_LEG_RIGHT</b></td>
+	<td>Leg primary or outergarment or right leg</td>
+</tr>
+
+<tr class="even">
+	<td>54</td>
+	<td><b>SBP_54_MOD_LEG_LEFT</b></td>
+	<td>Leg secondary or undergarment or left leg</td>
+</tr>
+
+<tr class="odd">
+	<td>55</td>
+	<td><b>SBP_55_MOD_FACE_JEWELRY</b></td>
+	<td>Face alternate or jewelry</td>
+</tr>
+
+<tr class="even">
+	<td>56</td>
+	<td><b>SBP_56_MOD_CHEST_SECONDARY</b></td>
+	<td>Chest secondary or undergarment</td>
+</tr>
+
+<tr class="odd">
+	<td>57</td>
+	<td><b>SBP_57_MOD_SHOULDER</b></td>
+	<td>Shoulder</td>
+</tr>
+
+<tr class="even">
+	<td>58</td>
+	<td><b>SBP_58_MOD_ARM_LEFT</b></td>
+	<td>Arm secondary or undergarment or left arm</td>
+</tr>
+
+<tr class="odd">
+	<td>59</td>
+	<td><b>SBP_59_MOD_ARM_RIGHT</b></td>
+	<td>Arm primary or outergarment or right arm</td>
+</tr>
+
+<tr class="even">
+	<td>60</td>
+	<td><b>SBP_60_MOD_MISC2</b></td>
+	<td>Anything that does not fit in the list</td>
+</tr>
+
+<tr class="odd">
+	<td>61</td>
+	<td><b>SBP_61_FX01</b></td>
+	<td>Skyrim, FX01(Humanoid)</td>
+</tr>
+
+<tr class="even">
+	<td>101</td>
+	<td><b>BP_SECTIONCAP_HEAD</b></td>
+	<td>Section Cap | Head</td>
+</tr>
+
+<tr class="odd">
+	<td>102</td>
+	<td><b>BP_SECTIONCAP_HEAD2</b></td>
+	<td>Section Cap | Head 2</td>
+</tr>
+
+<tr class="even">
+	<td>103</td>
+	<td><b>BP_SECTIONCAP_LEFTARM</b></td>
+	<td>Section Cap | Left Arm</td>
+</tr>
+
+<tr class="odd">
+	<td>104</td>
+	<td><b>BP_SECTIONCAP_LEFTARM2</b></td>
+	<td>Section Cap | Left Arm 2</td>
+</tr>
+
+<tr class="even">
+	<td>105</td>
+	<td><b>BP_SECTIONCAP_RIGHTARM</b></td>
+	<td>Section Cap | Right Arm</td>
+</tr>
+
+<tr class="odd">
+	<td>106</td>
+	<td><b>BP_SECTIONCAP_RIGHTARM2</b></td>
+	<td>Section Cap | Right Arm 2</td>
+</tr>
+
+<tr class="even">
+	<td>107</td>
+	<td><b>BP_SECTIONCAP_LEFTLEG</b></td>
+	<td>Section Cap | Left Leg</td>
+</tr>
+
+<tr class="odd">
+	<td>108</td>
+	<td><b>BP_SECTIONCAP_LEFTLEG2</b></td>
+	<td>Section Cap | Left Leg 2</td>
+</tr>
+
+<tr class="even">
+	<td>109</td>
+	<td><b>BP_SECTIONCAP_LEFTLEG3</b></td>
+	<td>Section Cap | Left Leg 3</td>
+</tr>
+
+<tr class="odd">
+	<td>110</td>
+	<td><b>BP_SECTIONCAP_RIGHTLEG</b></td>
+	<td>Section Cap | Right Leg</td>
+</tr>
+
+<tr class="even">
+	<td>111</td>
+	<td><b>BP_SECTIONCAP_RIGHTLEG2</b></td>
+	<td>Section Cap | Right Leg 2</td>
+</tr>
+
+<tr class="odd">
+	<td>112</td>
+	<td><b>BP_SECTIONCAP_RIGHTLEG3</b></td>
+	<td>Section Cap | Right Leg 3</td>
+</tr>
+
+<tr class="even">
+	<td>113</td>
+	<td><b>BP_SECTIONCAP_BRAIN</b></td>
+	<td>Section Cap | Brain</td>
+</tr>
+
+<tr class="odd">
+	<td>130</td>
+	<td><b>SBP_130_HEAD</b></td>
+	<td>Skyrim, Head slot, use on full-face helmets</td>
+</tr>
+
+<tr class="even">
+	<td>131</td>
+	<td><b>SBP_131_HAIR</b></td>
+	<td>Skyrim, Hair slot 1, use on hoods</td>
+</tr>
+
+<tr class="odd">
+	<td>141</td>
+	<td><b>SBP_141_LONGHAIR</b></td>
+	<td>Skyrim, Hair slot 2, use for longer hair</td>
+</tr>
+
+<tr class="even">
+	<td>142</td>
+	<td><b>SBP_142_CIRCLET</b></td>
+	<td>Skyrim, Circlet slot 1, use for circlets</td>
+</tr>
+
+<tr class="odd">
+	<td>143</td>
+	<td><b>SBP_143_EARS</b></td>
+	<td>Skyrim, Ear slot</td>
+</tr>
+
+<tr class="even">
+	<td>150</td>
+	<td><b>SBP_150_DECAPITATEDHEAD</b></td>
+	<td>Skyrim, neck gore on head side</td>
+</tr>
+
+<tr class="odd">
+	<td>201</td>
+	<td><b>BP_TORSOCAP_HEAD</b></td>
+	<td>Torso Cap | Head</td>
+</tr>
+
+<tr class="even">
+	<td>202</td>
+	<td><b>BP_TORSOCAP_HEAD2</b></td>
+	<td>Torso Cap | Head 2</td>
+</tr>
+
+<tr class="odd">
+	<td>203</td>
+	<td><b>BP_TORSOCAP_LEFTARM</b></td>
+	<td>Torso Cap | Left Arm</td>
+</tr>
+
+<tr class="even">
+	<td>204</td>
+	<td><b>BP_TORSOCAP_LEFTARM2</b></td>
+	<td>Torso Cap | Left Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>205</td>
+	<td><b>BP_TORSOCAP_RIGHTARM</b></td>
+	<td>Torso Cap | Right Arm</td>
+</tr>
+
+<tr class="even">
+	<td>206</td>
+	<td><b>BP_TORSOCAP_RIGHTARM2</b></td>
+	<td>Torso Cap | Right Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>207</td>
+	<td><b>BP_TORSOCAP_LEFTLEG</b></td>
+	<td>Torso Cap | Left Leg</td>
+</tr>
+
+<tr class="even">
+	<td>208</td>
+	<td><b>BP_TORSOCAP_LEFTLEG2</b></td>
+	<td>Torso Cap | Left Leg 2</td>
+</tr>
+
+<tr class="odd">
+	<td>209</td>
+	<td><b>BP_TORSOCAP_LEFTLEG3</b></td>
+	<td>Torso Cap | Left Leg 3</td>
+</tr>
+
+<tr class="even">
+	<td>210</td>
+	<td><b>BP_TORSOCAP_RIGHTLEG</b></td>
+	<td>Torso Cap | Right Leg</td>
+</tr>
+
+<tr class="odd">
+	<td>211</td>
+	<td><b>BP_TORSOCAP_RIGHTLEG2</b></td>
+	<td>Torso Cap | Right Leg 2</td>
+</tr>
+
+<tr class="even">
+	<td>212</td>
+	<td><b>BP_TORSOCAP_RIGHTLEG3</b></td>
+	<td>Torso Cap | Right Leg 3</td>
+</tr>
+
+<tr class="odd">
+	<td>213</td>
+	<td><b>BP_TORSOCAP_BRAIN</b></td>
+	<td>Torso Cap | Brain</td>
+</tr>
+
+<tr class="even">
+	<td>230</td>
+	<td><b>SBP_230_HEAD</b></td>
+	<td>Skyrim, Head slot, use for neck on character head</td>
+</tr>
+
+<tr class="odd">
+	<td>1000</td>
+	<td><b>BP_TORSOSECTION_HEAD</b></td>
+	<td>Torso Section | Head</td>
+</tr>
+
+<tr class="even">
+	<td>2000</td>
+	<td><b>BP_TORSOSECTION_HEAD2</b></td>
+	<td>Torso Section | Head 2</td>
+</tr>
+
+<tr class="odd">
+	<td>3000</td>
+	<td><b>BP_TORSOSECTION_LEFTARM</b></td>
+	<td>Torso Section | Left Arm</td>
+</tr>
+
+<tr class="even">
+	<td>4000</td>
+	<td><b>BP_TORSOSECTION_LEFTARM2</b></td>
+	<td>Torso Section | Left Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>5000</td>
+	<td><b>BP_TORSOSECTION_RIGHTARM</b></td>
+	<td>Torso Section | Right Arm</td>
+</tr>
+
+<tr class="even">
+	<td>6000</td>
+	<td><b>BP_TORSOSECTION_RIGHTARM2</b></td>
+	<td>Torso Section | Right Arm 2</td>
+</tr>
+
+<tr class="odd">
+	<td>7000</td>
+	<td><b>BP_TORSOSECTION_LEFTLEG</b></td>
+	<td>Torso Section | Left Leg</td>
+</tr>
+
+<tr class="even">
+	<td>8000</td>
+	<td><b>BP_TORSOSECTION_LEFTLEG2</b></td>
+	<td>Torso Section | Left Leg 2</td>
+</tr>
+
+<tr class="odd">
+	<td>9000</td>
+	<td><b>BP_TORSOSECTION_LEFTLEG3</b></td>
+	<td>Torso Section | Left Leg 3</td>
+</tr>
+
+<tr class="even">
+	<td>10000</td>
+	<td><b>BP_TORSOSECTION_RIGHTLEG</b></td>
+	<td>Torso Section | Right Leg</td>
+</tr>
+
+<tr class="odd">
+	<td>11000</td>
+	<td><b>BP_TORSOSECTION_RIGHTLEG2</b></td>
+	<td>Torso Section | Right Leg 2</td>
+</tr>
+
+<tr class="even">
+	<td>12000</td>
+	<td><b>BP_TORSOSECTION_RIGHTLEG3</b></td>
+	<td>Torso Section | Right Leg 3</td>
+</tr>
+
+<tr class="odd">
+	<td>13000</td>
+	<td><b>BP_TORSOSECTION_BRAIN</b></td>
+	<td>Torso Section | Brain</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="ushort.html">ushort</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

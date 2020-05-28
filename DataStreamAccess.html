@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - DataStreamAccess</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>DataStreamAccess</h2>
+Determines how the data stream is accessed?
+
+<h3>Choices</h3>
+<table>
+	<tr class="even">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x00000001</td>
+	<td><b>CPU Read</b></td>
+	<td>CPU Read</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000002</td>
+	<td><b>CPU Write Static</b></td>
+	<td>CPU Write Static</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000004</td>
+	<td><b>CPU Write Mutable</b></td>
+	<td>CPU Write Mutable</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000008</td>
+	<td><b>CPU Write Volatile</b></td>
+	<td>CPU Write Volatile</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000010</td>
+	<td><b>GPU Read</b></td>
+	<td>GPU Read</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000020</td>
+	<td><b>GPU Write</b></td>
+	<td>GPU Write</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000040</td>
+	<td><b>CPU Write Static Inititialized</b></td>
+	<td>CPU Write Static Inititialized</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

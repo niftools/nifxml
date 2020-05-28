@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - hkQualityType</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>hkQualityType</h2>
+hkpCollidableQualityType. Describes the priority and quality of collisions for a body,<br/>            e.g. you may expect critical game play objects to have solid high-priority collisions so that they never sink into ground,<br/>            or may allow penetrations for visual debris objects.<br/>        Notes:<br/>            - Fixed and keyframed objects cannot interact with each other.<br/>            - Debris can interpenetrate but still responds to Bullet hits.<br/>            - Critical objects are forced to not interpenetrate.<br/>            - Moving objects can interpenetrate slightly with other Moving or Debris objects but nothing else.
+
+<h3>Choices</h3>
+<table>
+	<tr class="odd">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0</td>
+	<td><b>MO_QUAL_INVALID</b></td>
+	<td>Automatically assigned to MO_QUAL_FIXED, MO_QUAL_KEYFRAMED or MO_QUAL_DEBRIS</td>
+</tr>
+
+<tr class="odd">
+	<td>1</td>
+	<td><b>MO_QUAL_FIXED</b></td>
+	<td>Static body.</td>
+</tr>
+
+<tr class="even">
+	<td>2</td>
+	<td><b>MO_QUAL_KEYFRAMED</b></td>
+	<td>Animated body with infinite mass.</td>
+</tr>
+
+<tr class="odd">
+	<td>3</td>
+	<td><b>MO_QUAL_DEBRIS</b></td>
+	<td>Low importance bodies adding visual detail.</td>
+</tr>
+
+<tr class="even">
+	<td>4</td>
+	<td><b>MO_QUAL_MOVING</b></td>
+	<td>Moving bodies which should not penetrate or leave the world, but can.</td>
+</tr>
+
+<tr class="odd">
+	<td>5</td>
+	<td><b>MO_QUAL_CRITICAL</b></td>
+	<td>Gameplay critical bodies which cannot penetrate or leave the world under any circumstance.</td>
+</tr>
+
+<tr class="even">
+	<td>6</td>
+	<td><b>MO_QUAL_BULLET</b></td>
+	<td>Fast-moving bodies, such as projectiles.</td>
+</tr>
+
+<tr class="odd">
+	<td>7</td>
+	<td><b>MO_QUAL_USER</b></td>
+	<td>For user.</td>
+</tr>
+
+<tr class="even">
+	<td>8</td>
+	<td><b>MO_QUAL_CHARACTER</b></td>
+	<td>For use with rigid body character controllers.</td>
+</tr>
+
+<tr class="odd">
+	<td>9</td>
+	<td><b>MO_QUAL_KEYFRAMED_REPORT</b></td>
+	<td>Moving bodies with infinite mass which should report contact points and TOI collisions against all other bodies.</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="byte.html">byte</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

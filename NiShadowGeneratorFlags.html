@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - NiShadowGeneratorFlags</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>NiShadowGeneratorFlags</h2>
+Flags for NiShadowGenerator.<br/>        Bit Patterns:<br/>            AUTO_CALC_NEARFAR = (AUTO_NEAR_DIST | AUTO_FAR_DIST) = 0xC0<br/>            AUTO_CALC_FULL = (AUTO_NEAR_DIST | AUTO_FAR_DIST | AUTO_DIR_LIGHT_FRUSTUM_WIDTH | AUTO_DIR_LIGHT_FRUSTUM_POSITION) = 0x3C0
+
+<h3>Choices</h3>
+<table>
+	<tr class="even">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x00000001</td>
+	<td><b>DIRTY_SHADOWMAP</b></td>
+	<td>DIRTY_SHADOWMAP</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000002</td>
+	<td><b>DIRTY_RENDERVIEWS</b></td>
+	<td>DIRTY_RENDERVIEWS</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000004</td>
+	<td><b>GEN_STATIC</b></td>
+	<td>GEN_STATIC</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000008</td>
+	<td><b>GEN_ACTIVE</b></td>
+	<td>GEN_ACTIVE</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000010</td>
+	<td><b>RENDER_BACKFACES</b></td>
+	<td>RENDER_BACKFACES</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000020</td>
+	<td><b>STRICTLY_OBSERVE_SIZE_HINT</b></td>
+	<td>STRICTLY_OBSERVE_SIZE_HINT</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000040</td>
+	<td><b>AUTO_NEAR_DIST</b></td>
+	<td>AUTO_NEAR_DIST</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000080</td>
+	<td><b>AUTO_FAR_DIST</b></td>
+	<td>AUTO_FAR_DIST</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000100</td>
+	<td><b>AUTO_DIR_LIGHT_FRUSTUM_WIDTH</b></td>
+	<td>AUTO_DIR_LIGHT_FRUSTUM_WIDTH</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000200</td>
+	<td><b>AUTO_DIR_LIGHT_FRUSTUM_POSITION</b></td>
+	<td>AUTO_DIR_LIGHT_FRUSTUM_POSITION</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="ushort.html">ushort</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>

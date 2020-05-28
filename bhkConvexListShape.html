@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - bhkConvexListShape</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<center><h2>bhkConvexListShape</h2></center>
+A list of shapes. However,<br/>            - The sub shapes must ALL be convex: Sphere, Capsule, Cylinder, Convex Vertices, Convex Transform<br/>            - The radius of all shapes must be identical<br/>            - The number of sub shapes is restricted to 255<br/>            - The number of vertices of each sub shape is restricted to 255<br/><br/>        For this reason you most likely cannot combine Sphere Shapes, Capsule Shapes, and Convex Vertices Shapes,<br/>        as their Radius values differ in function. (Sphere/Capsule radius = physical size, CVS radius = padding/shell)<br/>        <br/>        Shapes collected in a bhkConvexListShape may not have the correct material noise.
+<h3>Attributes</h3>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Arg</th>
+		<th>Arr1</th>
+		<th>Arr2</th>
+		<th>Cond</th>
+		<th>Description</th>
+		<th>From</th><th>To</th>
+	</tr>
+	
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="bhkRefObject.html">bhkRefObject</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="bhkSerializable.html">bhkSerializable</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="bhkShape.html">bhkShape</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="bhkConvexShapeBase.html">bhkConvexShapeBase</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="bhkConvexListShape.html">bhkConvexListShape</a></th>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

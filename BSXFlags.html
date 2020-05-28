@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - BSXFlags</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<center><h2>BSXFlags</h2></center>
+Controls animation and collision.  Integer holds flags:<br/>        Bit 0 : enable havok, bAnimated(Skyrim)<br/>        Bit 1 : enable collision, bHavok(Skyrim)<br/>        Bit 2 : is skeleton nif?, bRagdoll(Skyrim)<br/>        Bit 3 : enable animation, bComplex(Skyrim)<br/>        Bit 4 : FlameNodes present, bAddon(Skyrim)<br/>        Bit 5 : EditorMarkers present, bEditorMarker(Skyrim)<br/>        Bit 6 : bDynamic(Skyrim)<br/>        Bit 7 : bArticulated(Skyrim)<br/>        Bit 8 : bIKTarget(Skyrim)/needsTransformUpdates<br/>        Bit 9 : bExternalEmit(Skyrim)<br/>        Bit 10: bMagicShaderParticles(Skyrim)<br/>        Bit 11: bLights(Skyrim)<br/>        Bit 12: bBreakable(Skyrim)<br/>        Bit 13: bSearchedBreakable(Skyrim) .. Runtime only?
+<h3>Attributes</h3>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Type</th>
+		<th>Arg</th>
+		<th>Arr1</th>
+		<th>Arr2</th>
+		<th>Cond</th>
+		<th>Description</th>
+		<th>From</th><th>To</th>
+	</tr>
+	
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="NiObject.html">NiObject</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="NiExtraData.html">NiExtraData</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="NiIntegerExtraData.html">NiIntegerExtraData</a></th>
+</tr>
+
+<tr>
+	<th align="left" style="text-align:left;" colspan="9">From <a href ="BSXFlags.html">BSXFlags</a></th>
+</tr>
+
+</table>
+
+<h3>Parent Of</h3>
+<ul>
+
+</ul>
+</body>
+</html>

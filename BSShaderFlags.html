@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<title>NIF File Format Documentation - BSShaderFlags</title>
+	<link rel="stylesheet" href="nifdoc.css" type="text/css" />
+	<link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body><center><h1>NIF File Format Documentation</h1></center>
+	<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+	| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
+	
+<h2>BSShaderFlags</h2>
+Shader Property Flags
+
+<h3>Choices</h3>
+<table>
+	<tr class="even">
+		<th>Number</th>
+		<th>Name</th>
+		<th>Description</th>
+	</tr>
+	
+<tr class="even">
+	<td>0x00000001</td>
+	<td><b>F3SF1_Specular</b></td>
+	<td>Enables Specularity</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000002</td>
+	<td><b>F3SF1_Skinned</b></td>
+	<td>Required For Skinned Meshes</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000004</td>
+	<td><b>F3SF1_LowDetail</b></td>
+	<td>Lowddetail (seems to use standard diff/norm/spec shader)</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000008</td>
+	<td><b>F3SF1_Vertex_Alpha</b></td>
+	<td>Vertex Alpha</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000010</td>
+	<td><b>F3SF1_Unknown_1</b></td>
+	<td>Unknown</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000020</td>
+	<td><b>F3SF1_Single_Pass</b></td>
+	<td>Single Pass</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000040</td>
+	<td><b>F3SF1_Empty</b></td>
+	<td>Unknown</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000080</td>
+	<td><b>F3SF1_Environment_Mapping</b></td>
+	<td>Environment mapping (uses Envmap Scale)</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000100</td>
+	<td><b>F3SF1_Alpha_Texture</b></td>
+	<td>Alpha Texture Requires NiAlphaProperty to Enable</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000200</td>
+	<td><b>F3SF1_Unknown_2</b></td>
+	<td>Unknown</td>
+</tr>
+
+<tr class="even">
+	<td>0x00000400</td>
+	<td><b>F3SF1_FaceGen</b></td>
+	<td>FaceGen</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00000800</td>
+	<td><b>F3SF1_Parallax_Shader_Index_15</b></td>
+	<td>Parallax</td>
+</tr>
+
+<tr class="even">
+	<td>0x00001000</td>
+	<td><b>F3SF1_Unknown_3</b></td>
+	<td>Unknown/Crash</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00002000</td>
+	<td><b>F3SF1_Non_Projective_Shadows</b></td>
+	<td>Non-Projective Shadows</td>
+</tr>
+
+<tr class="even">
+	<td>0x00004000</td>
+	<td><b>F3SF1_Unknown_4</b></td>
+	<td>Unknown/Crash</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00008000</td>
+	<td><b>F3SF1_Refraction</b></td>
+	<td>Refraction (switches on refraction power)</td>
+</tr>
+
+<tr class="even">
+	<td>0x00010000</td>
+	<td><b>F3SF1_Fire_Refraction</b></td>
+	<td>Fire Refraction (switches on refraction power/period)</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00020000</td>
+	<td><b>F3SF1_Eye_Environment_Mapping</b></td>
+	<td>Eye Environment Mapping (does not use envmap light fade or envmap scale)</td>
+</tr>
+
+<tr class="even">
+	<td>0x00040000</td>
+	<td><b>F3SF1_Hair</b></td>
+	<td>Hair</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00080000</td>
+	<td><b>F3SF1_Dynamic_Alpha</b></td>
+	<td>Dynamic Alpha</td>
+</tr>
+
+<tr class="even">
+	<td>0x00100000</td>
+	<td><b>F3SF1_Localmap_Hide_Secret</b></td>
+	<td>Localmap Hide Secret</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00200000</td>
+	<td><b>F3SF1_Window_Environment_Mapping</b></td>
+	<td>Window Environment Mapping</td>
+</tr>
+
+<tr class="even">
+	<td>0x00400000</td>
+	<td><b>F3SF1_Tree_Billboard</b></td>
+	<td>Tree Billboard</td>
+</tr>
+
+<tr class="odd">
+	<td>0x00800000</td>
+	<td><b>F3SF1_Shadow_Frustum</b></td>
+	<td>Shadow Frustum</td>
+</tr>
+
+<tr class="even">
+	<td>0x01000000</td>
+	<td><b>F3SF1_Multiple_Textures</b></td>
+	<td>Multiple Textures (base diff/norm become null)</td>
+</tr>
+
+<tr class="odd">
+	<td>0x02000000</td>
+	<td><b>F3SF1_Remappable_Textures</b></td>
+	<td>usually seen w/texture animation</td>
+</tr>
+
+<tr class="even">
+	<td>0x04000000</td>
+	<td><b>F3SF1_Decal_Single_Pass</b></td>
+	<td>Decal</td>
+</tr>
+
+<tr class="odd">
+	<td>0x08000000</td>
+	<td><b>F3SF1_Dynamic_Decal_Single_Pass</b></td>
+	<td>Dynamic Decal</td>
+</tr>
+
+<tr class="even">
+	<td>0x10000000</td>
+	<td><b>F3SF1_Parallax_Occulsion</b></td>
+	<td>Parallax Occlusion</td>
+</tr>
+
+<tr class="odd">
+	<td>0x20000000</td>
+	<td><b>F3SF1_External_Emittance</b></td>
+	<td>External Emittance</td>
+</tr>
+
+<tr class="even">
+	<td>0x40000000</td>
+	<td><b>F3SF1_Shadow_Map</b></td>
+	<td>Shadow Map</td>
+</tr>
+
+<tr class="odd">
+	<td>0x80000000</td>
+	<td><b>F3SF1_ZBuffer_Test</b></td>
+	<td>ZBuffer Test (1=on)</td>
+</tr>
+
+</table>
+
+<h3>Storage Type</h3>
+<a href ="uint.html">uint</a>
+
+<h3>Found In</h3>
+<ul>
+
+</ul>
+
+</body>
+</html>
