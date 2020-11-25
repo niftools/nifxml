@@ -4,6 +4,7 @@ Utility functions for nifxml module
 
 import sys
 
+
 def export(clsorfn):
     """Export decorator"""
     mod = sys.modules[clsorfn.__module__]
