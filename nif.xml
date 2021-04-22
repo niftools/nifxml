@@ -762,7 +762,7 @@
         <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
         <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
         <option value="47" name="SKYL_DEADACTORZONE">Dead Actor Zone</option>
-        <option value="48" name="SKYL_TRIGGER_FALLINGTRAP">Falling Trap Trigger</option>
+        <option value="48" name="SKYL_TRIGGER_FALLINGTRAP">Trigger Falling Trap</option>
         <option value="49" name="SKYL_NAVCUT">Nav Cut</option>
         <option value="50" name="SKYL_CRITTER">Critter</option>
         <option value="51" name="SKYL_SPELLTRIGGER">Spell Trigger</option>
