@@ -761,14 +761,7 @@
         <option value="44" name="SKYL_CUSTOMPICK2">Custom Pick 2</option>
         <option value="45" name="SKYL_SPELLEXPLOSION">Spell Explosion</option>
         <option value="46" name="SKYL_DROPPINGPICK">Dropping Pick</option>
-        <option value="47" name="SKYL_DEADACTORZONE">Dead Actor Zone</option>
-        <option value="48" name="SKYL_TRIGGER_FALLINGTRAP">Trigger Falling Trap</option>
-        <option value="49" name="SKYL_NAVCUT">Nav Cut</option>
-        <option value="50" name="SKYL_CRITTER">Critter</option>
-        <option value="51" name="SKYL_SPELLTRIGGER">Spell Trigger</option>
-        <option value="52" name="SKYL_LIVING_AND_DEAD_ACTORS">Living And Dead Actors</option>
-        <option value="53" name="SKYL_DETECTION">Detection</option>
-        <option value="54" name="SKYL_TRAP_TRIGGER">Trap Trigger</option>
+        <option value="47" name="SKYL_NULL">Null</option>
     </enum>
 
     <enum name="BipedPart" storage="byte">
