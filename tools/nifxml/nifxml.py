@@ -605,8 +605,8 @@ class Member:
     @ivar name:  The name of this member variable.  Comes from the "name" attribute of the <add> tag.
     @ivar arg: The argument of this member variable.  Comes from the "arg" attribute of the <add> tag.
     @ivar template: The template type of this member variable.  Comes from the "template" attribute of the <add> tag.
-    @ivar arr1: The first array size of this member variable.  Comes from the "arr1" attribute of the <add> tag.
-    @ivar arr2: The first array size of this member variable.  Comes from the "arr2" attribute of the <add> tag.
+    @ivar length: The first array size of this member variable.  Comes from the "length" attribute of the <add> tag.
+    @ivar width: The first array size of this member variable.  Comes from the "width" attribute of the <add> tag.
     @ivar cond: The condition of this member variable.  Comes from the "cond" attribute of the <add> tag.
     @ivar func: The function of this member variable.  Comes from the "func" attribute of the <add> tag.
     @ivar default: The default value of this member variable.  Comes from the "default" attribute of the <add> tag.
@@ -622,16 +622,16 @@ class Member:
     @ivar uses_argument: Specifies whether this attribute uses an argument.
     @ivar type_is_native: Specifies whether the type is implemented natively
     @ivar is_duplicate: Specifies whether this is a duplicate of a previously declared member
-    @ivar arr2_dynamic: Specifies whether arr2 refers to an array (?)
-    @ivar arr1_ref: Names of the attributes it is a (unmasked) size of (?)
-    @ivar arr2_ref: Names of the attributes it is a (unmasked) size of (?)
+    @ivar width_dynamic: Specifies whether width refers to an array (?)
+    @ivar length_ref: Names of the attributes it is a (unmasked) size of (?)
+    @ivar width_ref: Names of the attributes it is a (unmasked) size of (?)
     @ivar cond_ref: Names of the attributes it is a condition of (?)
     @ivar cname: Unlike default, name isn't formatted for C++ so use this instead?
     @ivar ctype: Unlike default, type isn't formatted for C++ so use this instead?
     @ivar carg: Unlike default, arg isn't formatted for C++ so use this instead?
     @ivar ctemplate: Unlike default, template isn't formatted for C++ so use this instead?
-    @ivar carr1_ref: Unlike default, arr1_ref isn't formatted for C++ so use this instead?
-    @ivar carr2_ref: Unlike default, arr2_ref isn't formatted for C++ so use this instead?
+    @ivar clength_ref: Unlike default, length_ref isn't formatted for C++ so use this instead?
+    @ivar cwidth_ref: Unlike default, width_ref isn't formatted for C++ so use this instead?
     @ivar ccond_ref: Unlike default, cond_ref isn't formatted for C++ so use this instead?
     @ivar next_dup: Next duplicate member
     @ivar is_manual_update: True if the member value is manually updated by the code
@@ -657,8 +657,8 @@ class Member:
         self.type = element.getAttribute('type')  # type: str
         self.arg = element.getAttribute('arg')  # type: str
         self.template = element.getAttribute('template')  # type: str
-        self.arr1 = Expr(element.getAttribute('arr1'))  # type: Expr
-        self.arr2 = Expr(element.getAttribute('arr2'))  # type: Expr
+        self.length = Expr(element.getAttribute('length'))  # type: Expr
+        self.width = Expr(element.getAttribute('width'))  # type: Expr
         self.cond = Expr(element.getAttribute('cond'))  # type: Expr
         self.func = element.getAttribute('function')  # type: str
         self.default = element.getAttribute('default')  # type: str
@@ -685,7 +685,7 @@ class Member:
             self.description = "Unknown."
 
         # Format default value so that it can be used in a C++ initializer list
-        if not self.default and (not self.arr1.lhs and not self.arr2.lhs):
+        if not self.default and (not self.length.lhs and not self.width.lhs):
             if self.type in ["unsigned int", "unsigned short", "byte", "int", "short", "char"]:
                 self.default = "0"
             elif self.type == "bool":
@@ -707,10 +707,10 @@ class Member:
         if self.default:
             if self.default[0] == '(' and self.default[-1] == ')':
                 self.default = self.default[1:-1]
-            if self.arr1.lhs:  # handle static array types
-                if self.arr1.lhs.isdigit():
+            if self.length.lhs:  # handle static array types
+                if self.length.lhs.isdigit():
                     sep = (',(%s)' % class_name(self.type))
-                    self.default = self.arr1.lhs + sep + sep.join(self.default.split(' ', int(self.arr1.lhs)))
+                    self.default = self.length.lhs + sep + sep.join(self.default.split(' ', int(self.length.lhs)))
             elif self.type == "string" or self.type == "IndexString":
                 self.default = "\"" + self.default + "\""
             elif self.type == "float":
@@ -725,7 +725,7 @@ class Member:
 
         # calculate other stuff
         self.uses_argument = (
-                    self.cond.lhs == '(ARG)' or self.arr1.lhs == '(ARG)' or self.arr2.lhs == '(ARG)')  # type: bool
+                    self.cond.lhs == '(ARG)' or self.length.lhs == '(ARG)' or self.width.lhs == '(ARG)')  # type: bool
 
         # true if the type is implemented natively
         self.type_is_native = self.name in TYPES_NATIVE  # type: bool
@@ -734,38 +734,38 @@ class Member:
         # true if this is a duplicate of a previously declared member
         self.is_duplicate = False  # type: bool
 
-        # true if arr2 refers to an array
-        self.arr2_dynamic = False  # type: bool
+        # true if width refers to an array
+        self.width_dynamic = False  # type: bool
         sib = element.previousSibling
         while sib:
             if sib.nodeType == Node.ELEMENT_NODE:
                 sis_name = sib.getAttribute('name')
                 if sis_name == self.name and not self.suffix:
                     self.is_duplicate = True
-                sis_arr1 = Expr(sib.getAttribute('arr1'))
-                sis_arr2 = Expr(sib.getAttribute('arr2'))
-                if sis_name == self.arr2.lhs and sis_arr1.lhs:
-                    self.arr2_dynamic = True
+                sis_length = Expr(sib.getAttribute('length'))
+                sis_width = Expr(sib.getAttribute('width'))
+                if sis_name == self.width.lhs and sis_length.lhs:
+                    self.width_dynamic = True
             sib = sib.previousSibling
 
         # Calculate stuff from reference to next members
         # Names of the attributes it is a (unmasked) size of
-        self.arr1_ref = []  # type: List[str]
+        self.length_ref = []  # type: List[str]
         # Names of the attributes it is a (unmasked) size of
-        self.arr2_ref = []  # type: List[str]
+        self.width_ref = []  # type: List[str]
         # Names of the attributes it is a condition of
         self.cond_ref = []  # type: List[str]
         sib = element.nextSibling
         while sib is not None:
             if sib.nodeType == Node.ELEMENT_NODE:
                 sis_name = sib.getAttribute('name')
-                sis_arr1 = Expr(sib.getAttribute('arr1'))
-                sis_arr2 = Expr(sib.getAttribute('arr2'))
+                sis_length = Expr(sib.getAttribute('length'))
+                sis_width = Expr(sib.getAttribute('width'))
                 sis_cond = Expr(sib.getAttribute('cond'))
-                if sis_arr1.lhs == self.name and (not sis_arr1.rhs or sis_arr1.rhs.isdigit()):
-                    self.arr1_ref.append(sis_name)
-                if sis_arr2.lhs == self.name and (not sis_arr2.rhs or sis_arr2.rhs.isdigit()):
-                    self.arr2_ref.append(sis_name)
+                if sis_length.lhs == self.name and (not sis_length.rhs or sis_length.rhs.isdigit()):
+                    self.length_ref.append(sis_name)
+                if sis_width.lhs == self.name and (not sis_width.rhs or sis_width.rhs.isdigit()):
+                    self.width_ref.append(sis_name)
                 if sis_cond.lhs == self.name:
                     self.cond_ref.append(sis_name)
             sib = sib.nextSibling
@@ -775,8 +775,8 @@ class Member:
         self.c_type = class_name(self.type)  # type: str
         self.c_arg = member_name(self.arg)  # type: str
         self.c_template = class_name(self.template)  # type: str
-        self.c_arr1_ref = [member_name(n) for n in self.arr1_ref]  # type: List[str]
-        self.c_arr2_ref = [member_name(n) for n in self.arr2_ref]  # type: List[str]
+        self.c_length_ref = [member_name(n) for n in self.length_ref]  # type: List[str]
+        self.c_width_ref = [member_name(n) for n in self.width_ref]  # type: List[str]
         self.c_cond_ref = [member_name(n) for n in self.cond_ref]  # type: List[str]
 
 
@@ -937,16 +937,16 @@ class Struct(Basic):
     def find_first_ref(self, name):  # type: (str) -> Optional[Member]
         """Find first reference of name in class."""
         for mem in self.members:
-            if mem.arr1 and mem.arr1.lhs == name:
+            if mem.length and mem.length.lhs == name:
                 return mem
-            elif mem.arr2 and mem.arr2.lhs == name:
+            elif mem.width and mem.width.lhs == name:
                 return mem
         return None
 
     def has_arr(self):  # type: () -> bool
         """Tests recursively for members with an array size."""
         for mem in self.members:
-            if mem.arr1.lhs or (mem.type in TYPES_STRUCT and TYPES_STRUCT[mem.type].has_arr()):
+            if mem.length.lhs or (mem.type in TYPES_STRUCT and TYPES_STRUCT[mem.type].has_arr()):
                 return True
         return False
 

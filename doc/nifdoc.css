@@ -27,6 +27,6 @@ tr.even       { background: #EEEEEE; color: black; }
 td.aname { white-space: nowrap; }
 td.atype { white-space: nowrap; }
 td.aarg  { font-size: small; font-family: 'Courier New', Courier, monospace; }
-td.aarr1 { font-size: small; font-family: 'Courier New', Courier, monospace; }
-td.aarr2 { font-size: small; font-family: 'Courier New', Courier, monospace; }
+td.alength { font-size: small; font-family: 'Courier New', Courier, monospace; }
+td.awidth { font-size: small; font-family: 'Courier New', Courier, monospace; }
 td.acond { font-size: small; font-family: 'Courier New', Courier, monospace; }

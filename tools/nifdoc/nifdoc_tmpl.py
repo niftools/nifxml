@@ -48,8 +48,8 @@ ATTR = """
 \t<td class="aname">{attr_name}</td>
 \t<td class="atype">{attr_type}</td>
 \t<td class="aarg">{attr_arg}</td>
-\t<td class="aarr1">{attr_arr1}</td>
-\t<td class="aarr2">{attr_arr2}</td>
+\t<td class="alength">{attr_length}</td>
+\t<td class="awidth">{attr_width}</td>
 \t<td class="acond">{attr_cond}</td>
 \t<td class="adesc">{attr_desc}</td>
 \t<td class="afrom">{attr_from}</td>
@@ -100,8 +100,8 @@ BLOCK = """
 \t\t<th>Name</th>
 \t\t<th>Type</th>
 \t\t<th>Arg</th>
-\t\t<th>Arr1</th>
-\t\t<th>Arr2</th>
+\t\t<th>Length</th>
+\t\t<th>Width</th>
 \t\t<th>Cond</th>
 \t\t<th>Description</th>
 \t\t<th>From</th><th>To</th>

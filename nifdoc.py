@@ -79,7 +79,7 @@ def main():
     parser.add_argument('-no-h1', '--no-heading', action='store_true',
                         help="Whether to not generate the main <h1> heading. Used by NifSkope for built-in help.")
     parser.add_argument('-no-meta', '--no-metadata-columns', action='store_true',
-                        help="Whether to not generate the metadata attribute columns (arg, arr1, arr2, etc.)")
+                        help="Whether to not generate the metadata attribute columns (arg, length, width, etc.)")
     parser.add_argument('-min-ver', '--minimum-version',
                         help="Hides attributes below this version. Format 'XX.X.X.XX'")
     args = parser.parse_args()
@@ -154,8 +154,8 @@ class DocGenerator:
                 'attr_name': mem.name,
                 'attr_type': attr_type,
                 'attr_arg': mem.arg,
-                'attr_arr1': mem.arr1.lhs,
-                'attr_arr2': mem.arr2.lhs,
+                'attr_length': mem.length.lhs,
+                'attr_width': mem.width.lhs,
                 'attr_cond': mem.cond,
                 'attr_desc': mem.description.replace('\n', '<br/>'),
                 'attr_from': mem.orig_since,
