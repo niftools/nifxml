@@ -611,8 +611,8 @@ class Member:
     @ivar func: The function of this member variable.  Comes from the "func" attribute of the <add> tag.
     @ivar default: The default value of this member variable.  Comes from the "default" attribute of the <add> tag.
         Formatted to be ready to use in a C++ constructor initializer list.
-    @ivar ver1: The first version this member exists.  Comes from the "ver1" attribute of the <add> tag.
-    @ivar ver2: The last version this member exists.  Comes from the "ver2" attribute of the <add> tag.
+    @ivar since: The first version this member exists.  Comes from the "since" attribute of the <add> tag.
+    @ivar until: The last version this member exists.  Comes from the "until" attribute of the <add> tag.
     @ivar userver: The user version where this member exists.  Comes from the "userver" attribute of the <add> tag.
     @ivar userver2: The user version 2 where this member exists.  Comes from the "userver2" attribute of the <add> tag.
     @ivar vercond: The version condition of this member variable.  Comes from the "vercond" attribute of the <add> tag.
@@ -662,10 +662,10 @@ class Member:
         self.cond = Expr(element.getAttribute('cond'))  # type: Expr
         self.func = element.getAttribute('function')  # type: str
         self.default = element.getAttribute('default')  # type: str
-        self.orig_ver1 = element.getAttribute('ver1')  # type: str
-        self.orig_ver2 = element.getAttribute('ver2')  # type: str
-        self.ver1 = version2number(element.getAttribute('ver1'))  # type: int
-        self.ver2 = version2number(element.getAttribute('ver2'))  # type: int
+        self.orig_since = element.getAttribute('since')  # type: str
+        self.orig_until = element.getAttribute('until')  # type: str
+        self.since = version2number(element.getAttribute('since'))  # type: int
+        self.until = version2number(element.getAttribute('until'))  # type: int
         xint = lambda s: int(s) if s else None
         self.userver = xint(element.getAttribute('userver'))  # type: Optional[int]
         self.userver2 = xint(element.getAttribute('userver2'))  # type: Optional[int]

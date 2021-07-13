@@ -145,7 +145,7 @@ class DocGenerator:
         attrs = ''
         count = 0
         for mem in compound.members:
-            if self.min_ver and mem.ver2 and mem.ver2 < self.min_ver:
+            if self.min_ver and mem.until and mem.until < self.min_ver:
                 continue
             attr_type = tmpl.TYPE_LINK.format(clean(mem.type), mem.type)
             if mem.template:
@@ -158,8 +158,8 @@ class DocGenerator:
                 'attr_arr2': mem.arr2.lhs,
                 'attr_cond': mem.cond,
                 'attr_desc': mem.description.replace('\n', '<br/>'),
-                'attr_from': mem.orig_ver1,
-                'attr_to': mem.orig_ver2,
+                'attr_from': mem.orig_since,
+                'attr_to': mem.orig_until,
                 'row': 'even' if count % 2 == 0 else 'odd'
             }
             count += 1  # Manually increment because of 'continue' on skipped versioned rows
