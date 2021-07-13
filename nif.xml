@@ -128,7 +128,7 @@
     </token>
 
     <token name="verset" attrs="versions">
-        The set of versions that any Basic, Compound, NiObject, Enum, or Bitflags is restricted to.
+        The set of versions that any Basic, Struct, NiObject, Enum, or Bitflags is restricted to.
         <verset token="#BETHESDA#" string="V10_0_1_2 V10_1_0_101 V10_1_0_106 V10_2_0_0__10 V20_0_0_4__10 V20_0_0_4__11 V20_0_0_5_OBL V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3 V20_2_0_7_SKY V20_2_0_7_SSE V20_2_0_7_FO4 V20_2_0_7_F76" />
         <verset token="#FO3#" string="V20_0_0_4__11 V20_2_0_7__11_1 V20_2_0_7__11_2 V20_2_0_7__11_3 V20_2_0_7__11_4 V20_2_0_7__11_5 V20_2_0_7__11_6 V20_2_0_7__11_7 V20_2_0_7__11_8 V20_2_0_7_FO3" />
         <verset token="#SKY#" string="V20_2_0_7_SKY" />
@@ -319,7 +319,7 @@
     
     <!--Enumerations
         These are like C enums and consist of a list of options.  They can appear
-        as parts of compounds or niobjects.-->
+        as parts of structs or niobjects.-->
 
     <bitflags name="AccumFlags" storage="uint">
         Describes the options for the accum root on NiControllerSequence.
@@ -1568,163 +1568,163 @@
     </bitfield>
 
 
-    <!--Compounds
+    <!--Structs
         These are like C structures and are used as sub-parts of more complex
         classes when there are multiple pieces of data repeated in an array.-->
 
-    <compound name="SizedString">
+    <struct name="SizedString">
         A string of given length.
         <field name="Length" type="uint">The string length.</field>
         <field name="Value" type="char" arr1="Length">The string itself.</field>
-    </compound>
+    </struct>
 
-    <compound name="SizedString16">
+    <struct name="SizedString16">
         A string of given length, using a ushort to store string length.
         <field name="Length" type="ushort">The string length.</field>
         <field name="Value" type="char" arr1="Length">The string itself.</field>
-    </compound>
+    </struct>
 
-    <compound name="string">
+    <struct name="string">
         A string type.
         <field name="String" type="SizedString" until="20.0.0.5">The normal string.</field>
         <field name="Index" type="NiFixedString" since="20.1.0.3">The string index.</field>
-    </compound>
+    </struct>
 
-    <compound name="NiTFixedStringMapItem" generic="true">
+    <struct name="NiTFixedStringMapItem" generic="true">
         Currently, #T# must be a basic type due to nif.xml restrictions.
         <field name="String" type="NiFixedString" />
         <field name="Value" type="#T#" />
-    </compound>
+    </struct>
 
-    <compound name="NiTFixedStringMap" generic="true">
+    <struct name="NiTFixedStringMap" generic="true">
         A mapping or hash table between NiFixedString keys and a generic value.
         Currently, #T# must be a basic type due to nif.xml restrictions.
         <field name="Num Strings" type="uint" />
         <field name="Strings" type="NiTFixedStringMapItem" template="#T#" arr1="Num Strings" />
-    </compound>
+    </struct>
 
-    <compound name="ByteArray">
+    <struct name="ByteArray">
         An array of bytes.
         <field name="Data Size" type="uint">The number of bytes in this array</field>
         <field name="Data" type="byte" arr1="Data Size">The bytes which make up the array</field>
-    </compound>
+    </struct>
 
-    <compound name="ByteMatrix">
+    <struct name="ByteMatrix">
         An array of bytes.
         <field name="Data Size 1" type="uint">The number of bytes in this array</field>
         <field name="Data Size 2" type="uint">The number of bytes in this array</field>
         <field name="Data" type="byte" arr1="Data Size 2" arr2="Data Size 1">The bytes which make up the array</field>
-    </compound>
+    </struct>
 
-    <compound name="Color3" size="12">
+    <struct name="Color3" size="12">
         A color without alpha (red, green, blue).
         <field name="r" type="float">Red color component.</field>
         <field name="g" type="float">Green color component.</field>
         <field name="b" type="float">Blue color component.</field>
-    </compound>
+    </struct>
 
-    <compound name="ByteColor3" size="3" convertible="Color3">
+    <struct name="ByteColor3" size="3" convertible="Color3">
         A color without alpha (red, green, blue).
         <field name="r" type="byte">Red color component.</field>
         <field name="g" type="byte">Green color component.</field>
         <field name="b" type="byte">Blue color component.</field>
-    </compound>
+    </struct>
 
-    <compound name="Color4" size="16">
+    <struct name="Color4" size="16">
         A color with alpha (red, green, blue, alpha).
         <field name="r" type="float">Red component.</field>
         <field name="g" type="float">Green component.</field>
         <field name="b" type="float">Blue component.</field>
         <field name="a" type="float">Alpha.</field>
-    </compound>
+    </struct>
 
-    <compound name="ByteColor4" size="4" convertible="Color4">
+    <struct name="ByteColor4" size="4" convertible="Color4">
         A color with alpha (red, green, blue, alpha).
         <field name="r" type="byte">Red color component.</field>
         <field name="g" type="byte">Green color component.</field>
         <field name="b" type="byte">Blue color component.</field>
         <field name="a" type="byte">Alpha color component.</field>
-    </compound>
+    </struct>
 
-    <compound name="FilePath">
+    <struct name="FilePath">
         A string that contains the path to a file.
         <field name="String" type="SizedString" until="20.0.0.5">The normal string.</field>
         <field name="Index" type="NiFixedString" since="20.1.0.3">The string index.</field>
-    </compound>
+    </struct>
 
-    <compound name="Footer">
+    <struct name="Footer">
         The NIF file footer.
         <field name="Num Roots" type="uint" since="3.3.0.13">The number of root references.</field>
         <field name="Roots" type="Ref" template="NiObject" arr1="Num Roots" since="3.3.0.13">List of root NIF objects. If there is a camera, for 1st person view, then this NIF object is referred to as well in this list, even if it is not a root object (usually we want the camera to be attached to the Bip Head node).</field>
-    </compound>
+    </struct>
 
-    <compound name="LODRange">
+    <struct name="LODRange">
         The distance range where a specific level of detail applies.
         <field name="Near Extent" type="float">Begining of range.</field>
         <field name="Far Extent" type="float">End of Range.</field>
         <field name="Unknown Ints" type="uint" arr1="3" until="3.1" />
-    </compound>
+    </struct>
 
-    <compound name="MatchGroup">
+    <struct name="MatchGroup">
         Group of vertex indices of vertices that match.
         <field name="Num Vertices" type="ushort">Number of vertices in this group.</field>
         <field name="Vertex Indices" type="ushort" arr1="Num Vertices">The vertex indices.</field>
-    </compound>
+    </struct>
     
-    <compound name="Vector3" size="12">
+    <struct name="Vector3" size="12">
         A vector in 3D space (x,y,z).
         <field name="x" type="float">First coordinate.</field>
         <field name="y" type="float">Second coordinate.</field>
         <field name="z" type="float">Third coordinate.</field>
-    </compound>
+    </struct>
     
-    <compound name="HalfVector3" size="6" convertible="Vector3">
+    <struct name="HalfVector3" size="6" convertible="Vector3">
         A vector in 3D space (x,y,z).
         <field name="x" type="hfloat">First coordinate.</field>
         <field name="y" type="hfloat">Second coordinate.</field>
         <field name="z" type="hfloat">Third coordinate.</field>
-    </compound>
+    </struct>
 
-    <compound name="ByteVector3" size="3" convertible="Vector3">
+    <struct name="ByteVector3" size="3" convertible="Vector3">
         A vector in 3D space (x,y,z).
         <field name="x" type="byte">First coordinate.</field>
         <field name="y" type="byte">Second coordinate.</field>
         <field name="z" type="byte">Third coordinate.</field>
-    </compound>
+    </struct>
 
-    <compound name="Vector4" size="16">
+    <struct name="Vector4" size="16">
         A 4-dimensional vector.
         <field name="x" type="float">First coordinate.</field>
         <field name="y" type="float">Second coordinate.</field>
         <field name="z" type="float">Third coordinate.</field>
         <field name="w" type="float">Fourth coordinate.</field>
-    </compound>
+    </struct>
 
-    <compound name="Quaternion" size="16">
+    <struct name="Quaternion" size="16">
         A quaternion.
         <field name="w" type="float" default="1.0">The w-coordinate.</field>
         <field name="x" type="float" default="0.0">The x-coordinate.</field>
         <field name="y" type="float" default="0.0">The y-coordinate.</field>
         <field name="z" type="float" default="0.0">The z-coordinate.</field>
-    </compound>
+    </struct>
 
-    <compound name="hkQuaternion" size="16" versions="#BETHESDA#">
+    <struct name="hkQuaternion" size="16" versions="#BETHESDA#">
         A quaternion as it appears in the havok objects.
         <field name="x" type="float" default="0.0">The x-coordinate.</field>
         <field name="y" type="float" default="0.0">The y-coordinate.</field>
         <field name="z" type="float" default="0.0">The z-coordinate.</field>
         <field name="w" type="float" default="1.0">The w-coordinate.</field>
-    </compound>
+    </struct>
 
-    <compound name="Matrix22" size="16">
+    <struct name="Matrix22" size="16">
         A 2x2 matrix of float values.  Stored in OpenGL column-major format.
         <field name="m11" type="float" default="1.0">Member 1,1 (top left)</field>
         <field name="m21" type="float" default="0.0">Member 2,1 (bottom left)</field>
         <field name="m12" type="float" default="0.0">Member 1,2 (top right)</field>
         <field name="m22" type="float" default="1.0">Member 2,2 (bottom right)</field>
-    </compound>
+    </struct>
 
-    <compound name="Matrix33" size="36">
+    <struct name="Matrix33" size="36">
         A 3x3 rotation matrix; M^T M=identity, det(M)=1.    Stored in OpenGL column-major format.
         <field name="m11" type="float" default="1.0">Member 1,1 (top left)</field>
         <field name="m21" type="float" default="0.0">Member 2,1</field>
@@ -1735,9 +1735,9 @@
         <field name="m13" type="float" default="0.0">Member 1,3 (top right)</field>
         <field name="m23" type="float" default="0.0">Member 2,3</field>
         <field name="m33" type="float" default="1.0">Member 3,3 (bottom left)</field>
-    </compound>
+    </struct>
 
-    <compound name="Matrix34" size="48">
+    <struct name="Matrix34" size="48">
         A 3x4 transformation matrix.
         <field name="m11" type="float" default="1.0">The (1,1) element.</field>
         <field name="m21" type="float" default="0.0">The (2,1) element.</field>
@@ -1751,9 +1751,9 @@
         <field name="m14" type="float" default="0.0">The (1,4) element.</field>
         <field name="m24" type="float" default="0.0">The (2,4) element.</field>
         <field name="m34" type="float" default="0.0">The (3,4) element.</field>
-    </compound>
+    </struct>
 
-    <compound name="Matrix44" size="64">
+    <struct name="Matrix44" size="64">
         A 4x4 transformation matrix.
         <field name="m11" type="float" default="1.0">The (1,1) element.</field>
         <field name="m21" type="float" default="0.0">The (2,1) element.</field>
@@ -1771,9 +1771,9 @@
         <field name="m24" type="float" default="0.0">The (2,4) element.</field>
         <field name="m34" type="float" default="0.0">The (3,4) element.</field>
         <field name="m44" type="float" default="1.0">The (4,4) element.</field>
-    </compound>
+    </struct>
 
-    <compound name="hkMatrix3" size="48" versions="#BETHESDA#">
+    <struct name="hkMatrix3" size="48" versions="#BETHESDA#">
         A 3x3 Havok matrix stored in 4x3 due to memory alignment.
         <field name="m11" type="float" default="1.0" />
         <field name="m12" type="float" />
@@ -1787,52 +1787,52 @@
         <field name="m32" type="float" />
         <field name="m33" type="float" default="1.0" />
         <field name="m34" type="float">Unused</field>
-    </compound>
+    </struct>
 
-    <compound name="MipMap" size="12">
+    <struct name="MipMap" size="12">
         Description of a mipmap within an NiPixelData object.
         <field name="Width" type="uint">Width of the mipmap image.</field>
         <field name="Height" type="uint">Height of the mipmap image.</field>
         <field name="Offset" type="uint">Offset into the pixel data array where this mipmap starts.</field>
-    </compound>
+    </struct>
 
-    <compound name="NodeSet">
+    <struct name="NodeSet">
         A set of NiNode references.
         <field name="Num Nodes" type="uint">Number of node references that follow.</field>
         <field name="Nodes" type="Ptr" template="NiNode" arr1="Num Nodes">The list of NiNode references.</field>
-    </compound>
+    </struct>
 
-    <compound name="ExportString">
+    <struct name="ExportString">
         Specific to Bethesda-specific header export strings.
         <field name="Length" type="byte">The string length.</field>
         <field name="Value" type="char" arr1="Length">The string itself, null terminated (the null terminator is taken into account in the length byte).</field>
-    </compound>
+    </struct>
 
-    <compound name="SkinInfo" size="8" since="V4_2_2_0">
+    <struct name="SkinInfo" size="8" since="V4_2_2_0">
         NiBoneLODController::SkinInfo. Reference to shape and skin instance.
         <field name="Shape" type="Ptr" template="NiTriBasedGeom" />
         <field name="Skin Instance" type="Ref" template="NiSkinInstance" />
-    </compound>
+    </struct>
 
-    <compound name="SkinInfoSet" since="V4_2_2_0">
+    <struct name="SkinInfoSet" since="V4_2_2_0">
         A set of NiBoneLODController::SkinInfo.
         <field name="Num Skin Info" type="uint" />
         <field name="Skin Info" type="SkinInfo" arr1="Num Skin Info" />
-    </compound>
+    </struct>
 
-    <compound name="BoneVertData" size="6">
+    <struct name="BoneVertData" size="6">
         NiSkinData::BoneVertData. A vertex and its weight.
         <field name="Index" type="ushort">The vertex index, in the mesh.</field>
         <field name="Weight" type="float" range="#F0_1#">The vertex weight - between 0.0 and 1.0</field>
-    </compound>
+    </struct>
 
-    <compound name="AVObject">
+    <struct name="AVObject">
         Used in NiDefaultAVObjectPalette.
         <field name="Name" type="SizedString">Object name.</field>
         <field name="AV Object" type="Ptr" template="NiAVObject">Object reference.</field>
-    </compound>
+    </struct>
 
-    <compound name="ControlledBlock">
+    <struct name="ControlledBlock">
         In a .kf file, this links to a controllable object, via its name (or for version 10.2.0.0 and up, a link and offset to a NiStringPalette that contains the name), and a sequence of interpolators that apply to this controllable object, via links.
         For Controller ID, NiInterpController::GetCtlrID() virtual function returns a string formatted specifically for the derived type.
         For Interpolator ID, NiInterpController::GetInterpolatorID() virtual function returns a string formatted specifically for the derived type.
@@ -1863,9 +1863,9 @@
         <field name="Controller Type" type="string" since="20.1.0.1">The RTTI type of the NiTimeController.</field>
         <field name="Controller ID" type="string" since="20.1.0.1">An ID that can uniquely identify the controller among others of the same type on the same NiObjectNET.</field>
         <field name="Interpolator ID" type="string" since="20.1.0.1">An ID that can uniquely identify the interpolator among others of the same type on the same NiObjectNET.</field>
-    </compound>
+    </struct>
 
-    <compound name="BSStreamHeader" versions="#BETHESDA#">
+    <struct name="BSStreamHeader" versions="#BETHESDA#">
     	Information about how the file was exported
         <field name="BS Version" type="ulittle32" />
         <field name="Author" type="ExportString" />
@@ -1873,10 +1873,10 @@
         <field name="Process Script" type="ExportString" />
         <field name="Export Script" type="ExportString" />
         <field name="Max Filepath" type="ExportString" cond="BS Version == 130" />
-    </compound>
+    </struct>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
-    <compound name="Header">
+    <struct name="Header">
         The NIF file header.
         <field name="Header String" type="HeaderString">'NetImmerse File Format x.x.x.x' (versions &lt;= 10.0.1.2) or 'Gamebryo File Format x.x.x.x' (versions &gt;= 10.1.0.0), with x.x.x.x the version written out. Ends with a newline character (0x0A).</field>
         <field name="Copyright" type="LineString" arr1="3" until="3.1.0.0" />
@@ -1896,56 +1896,56 @@
         <field name="Strings" type="SizedString" arr1="Num Strings" since="20.1.0.1">Strings.</field>
         <field name="Num Groups" type="uint" default="0" since="5.0.0.6" />
         <field name="Groups" type="uint" arr1="Num Groups" since="5.0.0.6" />
-    </compound>
+    </struct>
 
-    <compound name="StringPalette">
+    <struct name="StringPalette">
         A list of \\0 terminated strings.
         <field name="Palette" type="SizedString">A bunch of 0x00 seperated strings.</field>
         <field name="Length" type="uint">Length of the palette string is repeated here.</field>
-    </compound>
+    </struct>
 
-    <compound name="TBC" size="12">
+    <struct name="TBC" size="12">
         Tension, bias, continuity.
         <field name="t" type="float">Tension.</field>
         <field name="b" type="float">Bias.</field>
         <field name="c" type="float">Continuity.</field>
-    </compound>
+    </struct>
 
-    <compound name="Key" generic="true">
+    <struct name="Key" generic="true">
         A generic key with support for interpolation. Type 1 is normal linear interpolation, type 2 has forward and backward tangents, and type 3 has tension, bias and continuity arguments. Note that color4 and byte always seem to be of type 1.
         <field name="Time" type="float">Time of the key.</field>
         <field name="Value" type="#T#">The key value.</field>
         <field name="Forward" type="#T#" cond="#ARG# == 2">Key forward tangent.</field>
         <field name="Backward" type="#T#" cond="#ARG# == 2">The key backward tangent.</field>
         <field name="TBC" type="TBC" cond="#ARG# == 3">The TBC of the key.</field>
-    </compound>
+    </struct>
 
-    <compound name="KeyGroup" generic="true">
+    <struct name="KeyGroup" generic="true">
         Array of vector keys (anything that can be interpolated, except rotations).
         <field name="Num Keys" type="uint">Number of keys in the array.</field>
         <field name="Interpolation" type="KeyType" cond="Num Keys != 0">The key type.</field>
         <field name="Keys" type="Key" arg="Interpolation" template="#T#" arr1="Num Keys">The keys.</field>
-    </compound>
+    </struct>
 
-    <compound name="QuatKey" generic="true">
+    <struct name="QuatKey" generic="true">
         A special version of the key type used for quaternions. Never has tangents. #T# should always be Quaternion.
         <field name="Time" type="float" until="10.1.0.0">Time the key applies.</field>
         <field name="Time" type="float" cond="#ARG# != 4" since="10.1.0.106">Time the key applies.</field>
         <field name="Value" type="#T#" cond="#ARG# != 4">Value of the key.</field>
         <field name="TBC" type="TBC" cond="#ARG# == 3">The TBC of the key.</field>
-    </compound>
+    </struct>
 
-    <compound name="TexCoord" size="8">
+    <struct name="TexCoord" size="8">
         Texture coordinates (u,v). As in OpenGL; image origin is in the lower left corner.
         <field name="u" type="float" range="#FPM_100#">First coordinate.</field>
         <field name="v" type="float" range="#FPM_100#">Second coordinate.</field>
-    </compound>
+    </struct>
     
-    <compound name="HalfTexCoord" size="4">
+    <struct name="HalfTexCoord" size="4">
         Texture coordinates (u,v).
         <field name="u" type="hfloat" range="#FPM_10#">First coordinate.</field>
         <field name="v" type="hfloat" range="#FPM_10#">Second coordinate.</field>
-    </compound>
+    </struct>
     
     <enum name="TransformMethod" storage="uint" prefix="TM">
         Describes the order of scaling and rotation matrices. Translate, Scale, Rotation, Center are from TexDesc.
@@ -1955,7 +1955,7 @@
         <option value="2" name="Maya">Center * Rotation * Back * FromMaya * Translate * Scale</option>
     </enum>
 
-    <compound name="TexDesc">
+    <struct name="TexDesc">
         NiTexturingProperty::Map. Texture description.
         <field name="Image" type="Ref" template="NiImage" until="3.1">Link to the texture image.</field>
         <field name="Source" type="Ref" template="NiSourceTexture" since="3.3.0.13">NiSourceTexture object index.</field>
@@ -1974,21 +1974,21 @@
         <field name="Rotation" type="float" default="0.0" cond="Has Texture Transform" since="10.1.0.0">The W axis rotation in texture space.</field>
         <field name="Transform Method" type="TransformMethod" cond="Has Texture Transform" since="10.1.0.0">Depending on the source, scaling can occur before or after rotation.</field>
         <field name="Center" type="TexCoord" cond="Has Texture Transform" since="10.1.0.0">The origin around which the texture rotates.</field>
-    </compound>
+    </struct>
 
-    <compound name="ShaderTexDesc">
+    <struct name="ShaderTexDesc">
         NiTexturingProperty::ShaderMap. Shader texture description.
         <field name="Has Map" type="bool" />
         <field name="Map" type="TexDesc" cond="Has Map" />
         <field name="Map ID" type="uint" cond="Has Map">Unique identifier for the Gamebryo shader system.</field>
-    </compound>
+    </struct>
 
-    <compound name="Triangle" size="6">
+    <struct name="Triangle" size="6">
         List of three vertex indices.
         <field name="v1" type="ushort">First vertex index.</field>
         <field name="v2" type="ushort">Second vertex index.</field>
         <field name="v3" type="ushort">Third vertex index.</field>
-    </compound>
+    </struct>
 
     <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4# #F76#">
         The bits of BSVertexDesc that describe the enabled vertex attributes.
@@ -2020,7 +2020,7 @@
         <member width="12" pos="44" mask="0xFFF00000000000" name="Vertex Attributes" type="VertexAttribute" />
     </bitfield>
 
-	<compound name="BSVertexData" versions="#SSE# #FO4# #F76#">
+	<struct name="BSVertexData" versions="#SSE# #FO4# #F76#">
 		<field name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x401) == 0x401" />
 		<field name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x411) == 0x411" />
 		<field name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x411) == 0x401" />
@@ -2038,9 +2038,9 @@
 		<field name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
-	</compound>
+	</struct>
 
-	<compound name="BSVertexDataSSE" versions="#SSE# #FO4#">
+	<struct name="BSVertexDataSSE" versions="#SSE# #FO4#">
 		<field name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x1" />
 		<field name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x11) == 0x11" />
 		<field name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x11) == 0x1" />
@@ -2053,9 +2053,9 @@
 		<field name="Bone Weights" type="hfloat" arr1="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Bone Indices" type="byte" arr1="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
-	</compound>
+	</struct>
 
-    <compound name="SkinPartition" since="V4_2_1_0">
+    <struct name="SkinPartition" since="V4_2_1_0">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <field name="Num Vertices" type="ushort">Number of vertices in this submesh.</field>
         <field name="Num Triangles" type="ushort" calc="(#LEN2[Strips]# #GT# 0) #THEN# (#LEN2[Strips]# - 2) #ELSE# (#LEN[Triangles]#)">Number of triangles in this submesh.</field>
@@ -2081,48 +2081,48 @@
         <field name="Global VB" type="bool" since="20.2.0.7" until="20.2.0.7" vercond="#BS_GT_FO3#" />
 		<field name="Vertex Desc" type="BSVertexDesc" since="20.2.0.7" until="20.2.0.7" vercond="#BS_SSE#" />
 		<field name="Triangles Copy" type="Triangle" arr1="Num Triangles" since="20.2.0.7" until="20.2.0.7" vercond="#BS_SSE#" />
-    </compound>
+    </struct>
 
-    <compound name="NiPlane" size="16">
+    <struct name="NiPlane" size="16">
         A plane.
         <field name="Normal" type="Vector3">The plane normal.</field>
         <field name="Constant" type="float">The plane constant.</field>
-    </compound>
+    </struct>
 
-    <compound name="NiBoundAABB" size="26">
+    <struct name="NiBoundAABB" size="26">
         Divinity 2 specific NiBound extension.
         <field name="Num Corners" type="ushort" default="2" />
         <field name="Corners" type="Vector3" arr1="2">Corners are only non-zero if Num Corners is 2. Hardcoded to 2.</field>
-    </compound>
+    </struct>
 
-    <compound name="NiBound">
+    <struct name="NiBound">
         A sphere.
         <field name="Center" type="Vector3">The sphere's center.</field>
         <field name="Radius" type="float">The sphere's radius.</field>
         <field name="DIV2 AABB" type="NiBoundAABB" since="20.3.0.9" until="20.3.0.9" vercond="#DIVINITY2#" />
-    </compound>
+    </struct>
 
-    <compound name="NiCurve3">
+    <struct name="NiCurve3">
         A 3D curve made up of control points and knots.
         <field name="Degree" type="uint" />
         <field name="Num Control Points" type="uint" />
         <field name="Control Points" type="Vector3" arr1="Num Control Points" />
         <field name="Num Knots" type="uint" />
         <field name="Knots" type="float" arr1="Num Knots" />
-    </compound>
+    </struct>
 
-    <compound name="NiQuatTransform">
+    <struct name="NiQuatTransform">
         <field name="Translation" type="Vector3" />
         <field name="Rotation" type="Quaternion" />
         <field name="Scale" type="float" default="1.0" />
         <field name="TRS Valid" type="bool" arr1="3" until="10.1.0.109">Whether each transform component is valid.</field>
-    </compound>
+    </struct>
 
-    <compound name="NiTransform" size="52">
+    <struct name="NiTransform" size="52">
         <field name="Rotation" type="Matrix33">The rotation part of the transformation matrix.</field>
         <field name="Translation" type="Vector3">The translation vector.</field>
         <field name="Scale" type="float" default="1.0">Scaling part (only uniform scaling is supported).</field>
-    </compound>
+    </struct>
 
 	<bitflags name="FurnitureEntryPoints" storage="ushort" versions="#BETHESDA#">
 		Bethesda Animation. Furniture entry points. It specifies the direction(s) from where the actor is able to enter (and leave) the position.
@@ -2140,7 +2140,7 @@
 		<option value="4" name="Lean">Used for lean animations?</option>
 	</enum>
 
-    <compound name="FurniturePosition" versions="#BETHESDA#">
+    <struct name="FurniturePosition" versions="#BETHESDA#">
         Bethesda Animation. Describes a furniture position?
         <field name="Offset" type="Vector3">Offset of furniture marker.</field>
         <field name="Orientation" type="ushort" vercond="#NI_BS_LTE_FO3#">Furniture marker orientation.</field>
@@ -2149,16 +2149,16 @@
         <field name="Heading" type="float" vercond="#BS_GT_FO3#">Similar to Orientation, in float form.</field>
         <field name="Animation Type" type="AnimationType" vercond="#BS_GT_FO3#" />
         <field name="Entry Properties" type="FurnitureEntryPoints" vercond="#BS_GT_FO3#" />
-    </compound>
+    </struct>
 
-    <compound name="TriangleData" versions="#BETHESDA#">
+    <struct name="TriangleData" versions="#BETHESDA#">
         Bethesda Havok. A triangle with extra data used for physics.
         <field name="Triangle" type="Triangle">The triangle.</field>
         <field name="Welding Info" type="ushort">Additional havok information on how triangles are welded.</field>
         <field name="Normal" type="Vector3" until="20.0.0.5">This is the triangle's normal.</field>
-    </compound>
+    </struct>
 
-    <compound name="Morph">
+    <struct name="Morph">
         Geometry morphing data component.
         <field name="Frame Name" type="string" since="10.1.0.106">Name of the frame.</field>
         <field name="Num Keys" type="uint" until="10.1.0.0">The number of morph keys that follow.</field>
@@ -2166,9 +2166,9 @@
         <field name="Keys" type="Key" arg="Interpolation" template="float" arr1="Num Keys" until="10.1.0.0">The morph key frames.</field>
         <field name="Legacy Weight" type="float" since="10.1.0.104" until="20.1.0.2" vercond="#BSVER# #LT# 10" />
         <field name="Vectors" type="Vector3" arr1="#ARG#">Morph vectors.</field>
-    </compound>
+    </struct>
 
-    <compound name="NiParticleInfo" size="40">
+    <struct name="NiParticleInfo" size="40">
         Called NiPerParticleData in NiOldParticles.
         Holds the state of a particle at the time the system was saved.
         <field name="Velocity" type="Vector3">Particle direction and speed.</field>
@@ -2178,46 +2178,46 @@
         <field name="Last Update" type="float">Timestamp of the last update.</field>
         <field name="Spawn Generation" type="ushort" default="0" />
         <field name="Code" type="ushort">Usually matches array index</field>
-    </compound>
+    </struct>
 
-    <compound name="BoneData">
+    <struct name="BoneData">
         NiSkinData::BoneData. Skinning data component.
         <field name="Skin Transform" type="NiTransform">Offset of the skin from this bone in bind position.</field>
         <field name="Bounding Sphere" type="NiBound">Note that its a Sphere Containing Axis Aligned Box not a minimum volume Sphere</field>
         <field name="Num Vertices" type="ushort">Number of weighted vertices.</field>
         <field name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" until="4.2.1.0">The vertex weights.</field>
         <field name="Vertex Weights" type="BoneVertData" arr1="Num Vertices" since="4.2.2.0" cond="#ARG# != 0">The vertex weights.</field>
-    </compound>
+    </struct>
 
-    <compound name="HavokFilter" size="4" versions="#BETHESDA#">
+    <struct name="HavokFilter" size="4" versions="#BETHESDA#">
         Bethesda Havok. Collision filter info representing Layer, Flags, Part Number, and Group all combined into one uint.
         <field name="Layer" suffix="OB" type="OblivionLayer" default="OL_STATIC" until="20.0.0.5" vercond="#BSVER# #LT# 16">The layer the collision belongs to.</field>
         <field name="Layer" suffix="FO" type="Fallout3Layer" default="FOL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #NI_BS_LTE_FO3#">The layer the collision belongs to.</field>
         <field name="Layer" suffix="SK" type="SkyrimLayer" default="SKYL_STATIC" vercond="(#VER# == 20.2.0.7) #AND# #BS_GT_FO3#">The layer the collision belongs to.</field>
         <field name="Flags" type="CollisionFilterFlags" default="0" />
         <field name="Group" type="ushort" />
-    </compound>
+    </struct>
 
-    <compound name="HavokMaterial" versions="#BETHESDA#">
+    <struct name="HavokMaterial" versions="#BETHESDA#">
         Bethesda Havok. Material wrapper for varying material enums by game.
         <field name="Unknown Int" type="uint" until="10.0.1.2" />
         <field name="Material" suffix="OB" type="OblivionHavokMaterial" until="20.0.0.5" vercond="#BSVER# #LT# 16">The material of the shape.</field>
         <field name="Material" suffix="FO" type="Fallout3HavokMaterial" vercond="(#VER# == 20.2.0.7) #AND# #NI_BS_LTE_FO3#">The material of the shape.</field>
         <field name="Material" suffix="SK" type="SkyrimHavokMaterial" vercond="(#VER# == 20.2.0.7) #AND# #BS_GT_FO3#">The material of the shape.</field>
-    </compound>
+    </struct>
 
-    <compound name="hkSubPartData" versions="#BETHESDA#">
+    <struct name="hkSubPartData" versions="#BETHESDA#">
         Bethesda Havok. Havok Information for packed TriStrip shapes.
         <field name="Havok Filter" type="HavokFilter" />
         <field name="Num Vertices" type="uint">The number of vertices that form this sub shape.</field>
         <field name="Material" type="HavokMaterial">The material of the subshape.</field>
-    </compound>
+    </struct>
 
-    <compound name="hkAabb" versions="#BETHESDA#">
+    <struct name="hkAabb" versions="#BETHESDA#">
         Havok AABB using min/max coordinates instead of center/half extents.
         <field name="Min" type="Vector4">Coordinates of the corner with the lowest numerical values.</field>
         <field name="Max" type="Vector4">Coordinates of the corner with the highest numerical values.</field>
-    </compound>
+    </struct>
 
     <enum name="ConstraintPriority" storage="uint" versions="#BETHESDA#">
         hkpConstraintInstance::ConstraintPriority. Priority used for the constraint.
@@ -2227,22 +2227,22 @@
         <option value="3" name="PRIORITY_TOI">Constraint is also solved at time of impact events.</option>
     </enum>
 
-    <compound name="bhkConstraintCInfo" size="16" versions="#BETHESDA#">
+    <struct name="bhkConstraintCInfo" size="16" versions="#BETHESDA#">
         Bethesda extension of hkpConstraintInstance.
         <field name="Num Entities" type="uint" default="2">Always 2 (Hardcoded). Number of bodies affected by this constraint.</field>
         <field name="Entity A" type="Ptr" template="bhkEntity">The entity affected by this constraint.</field>
         <field name="Entity B" type="Ptr" template="bhkEntity">The entity affected by this constraint.</field>
         <field name="Priority" type="ConstraintPriority" default="PRIORITY_PSI">Either PSI or TOI priority. TOI is higher priority.</field>
-    </compound>
+    </struct>
 
-    <compound name="bhkConstraintChainCInfo" versions="#BETHESDA#">
+    <struct name="bhkConstraintChainCInfo" versions="#BETHESDA#">
         Bethesda extension of hkpConstraintChainInstance.
         <field name="Num Chained Entities" type="uint" />
         <field name="Chained Entities" type="Ptr" template="bhkRigidBody" arr1="Num Chained Entities" />
         <field name="Constraint Info" type="bhkConstraintCInfo" />
-    </compound>
+    </struct>
 
-    <compound name="bhkPositionConstraintMotor" size="25" versions="#BETHESDA#">
+    <struct name="bhkPositionConstraintMotor" size="25" versions="#BETHESDA#">
         Bethesda extension of hkpPositionConstraintMotor.
         A motor which tries to reach a desired position/angle given a max force and recovery speed.
         This motor is a good choice for driving a ragdoll to a given pose.
@@ -2253,9 +2253,9 @@
         <field name="Proportional Recovery Velocity" type="float" default="2.0">A factor of the current error to calculate the recovery velocity</field>
         <field name="Constant Recovery Velocity" type="float" default="1.0">A constant velocity which is used to recover from errors</field>
         <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
-    </compound>
+    </struct>
 
-    <compound name="bhkVelocityConstraintMotor" size="18" versions="#BETHESDA#">
+    <struct name="bhkVelocityConstraintMotor" size="18" versions="#BETHESDA#">
         Bethesda extension of hkpVelocityConstraintMotor. Tries to reach and keep a desired target velocity.
         <field name="Min Force" type="float" default="-1000000.0">Minimum motor force</field>
         <field name="Max Force" type="float" default="1000000.0">Maximum motor force</field>
@@ -2263,9 +2263,9 @@
         <field name="Target Velocity" type="float" default="0.0" />
         <field name="Use Velocity Target" type="bool" default="0" />
         <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
-    </compound>
+    </struct>
 
-    <compound name="bhkSpringDamperConstraintMotor" size="17" versions="#BETHESDA#">
+    <struct name="bhkSpringDamperConstraintMotor" size="17" versions="#BETHESDA#">
         Bethesda extension of hkpSpringDamperConstraintMotor.
         Tries to reach a given target position using an angular spring which has a spring constant.
         <field name="Min Force" type="float" default="-1000000.0">Minimum motor force</field>
@@ -2273,7 +2273,7 @@
         <field name="Spring Constant" type="float" default="0.0">The spring constant in N/m</field>
         <field name="Spring Damping" type="float" default="0.0">The spring damping in Nsec/m</field>
         <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
-    </compound>
+    </struct>
     
     <enum name="hkMotorType" storage="byte" versions="#BETHESDA#">
         <option value="0" name="MOTOR_NONE" />
@@ -2282,15 +2282,15 @@
         <option value="3" name="MOTOR_SPRING" />
     </enum>
 
-    <compound name="bhkConstraintMotorCInfo" versions="#BETHESDA#">
+    <struct name="bhkConstraintMotorCInfo" versions="#BETHESDA#">
         hkConstraintCinfo::SaveMotor(). Not a Bethesda extension of hkpConstraintMotor, but a wrapper for its serialization function. 
         <field name="Type" type="hkMotorType" default="MOTOR_NONE" />
         <field name="Position Motor" type="bhkPositionConstraintMotor" cond="Type == 1" />
         <field name="Velocity Motor" type="bhkVelocityConstraintMotor" cond="Type == 2" />
         <field name="Spring Damper Motor" type="bhkSpringDamperConstraintMotor" cond="Type == 3" />
-    </compound>
+    </struct>
 
-    <compound name="bhkRagdollConstraintCInfo" versions="#BETHESDA#">
+    <struct name="bhkRagdollConstraintCInfo" versions="#BETHESDA#">
         Serialization data for bhkRagdollConstraint.
         The area of movement can be represented as a main cone + 2 orthogonal cones which may subtract from the main cone volume depending on limits.
         <!-- Oblivion and Fallout 3, Havok 550 -->
@@ -2319,9 +2319,9 @@
         <field name="Max Friction" type="float">Maximum friction, typically 0 or 10. In Fallout 3, typically 100.</field>
 
         <field name="Motor" type="bhkConstraintMotorCInfo" since="20.2.0.7" vercond="!#NI_BS_LTE_16#" />
-    </compound>
+    </struct>
 
-    <compound name="bhkLimitedHingeConstraintCInfo" versions="#BETHESDA#">
+    <struct name="bhkLimitedHingeConstraintCInfo" versions="#BETHESDA#">
         Serialization data for bhkLimitedHingeConstraint.
         This constraint allows rotation about a specified axis, limited by specified boundaries.
     
@@ -2350,9 +2350,9 @@
         <field name="Max Friction" type="float">Maximum friction, typically either 0 or 10. In Fallout 3, typically 100.</field>
 
         <field name="Motor" type="bhkConstraintMotorCInfo" since="20.2.0.7" vercond="!#NI_BS_LTE_16#" />
-    </compound>
+    </struct>
 
-    <compound name="bhkHingeConstraintCInfo" versions="#BETHESDA#">
+    <struct name="bhkHingeConstraintCInfo" versions="#BETHESDA#">
         Serialization data for bhkHingeConstraint. A basic hinge with no angular limits or motor.
         <!-- Oblivion -->
         <field name="Pivot A" type="Vector4" until="20.0.0.5">Pivot point around which the object will rotate.</field>
@@ -2370,16 +2370,16 @@
         <field name="Perp Axis In B1" type="Vector4" since="20.2.0.7">Perp Axis In A1 in second entity coordinate system.</field>
         <field name="Perp Axis In B2" type="Vector4" since="20.2.0.7">Perp Axis In A2 in second entity coordinate system.</field>
         <field name="Pivot B" type="Vector4" since="20.2.0.7">Pivot A in second entity coordinate system.</field>
-    </compound>
+    </struct>
 
-    <compound name="bhkBallAndSocketConstraintCInfo" size="32" versions="#BETHESDA#">
+    <struct name="bhkBallAndSocketConstraintCInfo" size="32" versions="#BETHESDA#">
         Serialization data for bhkBallAndSocketConstraint.
         Point-to-point constraint that attempts to keep the pivot point of two bodies in the same space.
         <field name="Pivot A" type="Vector4">Constraint pivot in Entity A space.</field>
         <field name="Pivot B" type="Vector4">Constraint pivot in Entity B space.</field>
-    </compound>
+    </struct>
 
-    <compound name="bhkPrismaticConstraintCInfo" versions="#BETHESDA#">
+    <struct name="bhkPrismaticConstraintCInfo" versions="#BETHESDA#">
         Serialization data for bhkPrismaticConstraint.
         Creates a rail between two bodies that allows translation along a single axis with linear limits and a motor.
         All three rotation axes and the remaining two translation axes are fixed.
@@ -2409,21 +2409,21 @@
         <field name="Friction" type="float">Friction.</field>
 
         <field name="Motor" type="bhkConstraintMotorCInfo" since="20.2.0.7" vercond="!#NI_BS_LTE_16#" />
-    </compound>
+    </struct>
 
-    <compound name="bhkStiffSpringConstraintCInfo" size="36" versions="#BETHESDA#">
+    <struct name="bhkStiffSpringConstraintCInfo" size="36" versions="#BETHESDA#">
         bhkStiffSpringConstraint serialization data. Holds two bodies at a specified distance from one another.
         <field name="Pivot A" type="Vector4" />
         <field name="Pivot B" type="Vector4" />
         <field name="Length" type="float" />
-    </compound>
+    </struct>
 
-    <compound name="OldSkinData" size="18">
+    <struct name="OldSkinData" size="18">
         Used to store skin weights in NiTriShapeSkinController.
         <field name="Vertex Weight" type="float">The amount that this bone affects the vertex.</field>
         <field name="Vertex Index" type="ushort">The index of the vertex that this weight applies to.</field>
         <field name="Unknown Vector" type="Vector3" />
-    </compound>
+    </struct>
 
     <enum name="ImageType" storage="uint">
         Determines how the raw image data is stored in NiRawImageData.
@@ -2431,64 +2431,64 @@
         <option value="2" name="RGBA">Colors store red, blue, green, and alpha components.</option>
     </enum>
 
-    <compound name="BoxBV" size="60">
+    <struct name="BoxBV" size="60">
         Box Bounding Volume
         <field name="Center" type="Vector3" />
         <field name="Axis" type="Vector3" arr1="3" />
         <field name="Extent" type="Vector3" />
-    </compound>
+    </struct>
 
-    <compound name="CapsuleBV" size="32">
+    <struct name="CapsuleBV" size="32">
         Capsule Bounding Volume
         <field name="Center" type="Vector3" />
         <field name="Origin" type="Vector3" />
         <field name="Extent" type="float" />
         <field name="Radius" type="float" />
-    </compound>
+    </struct>
 
-    <compound name="HalfSpaceBV" size="28">
+    <struct name="HalfSpaceBV" size="28">
         <field name="Plane" type="NiPlane" />
         <field name="Center" type="Vector3" />
-    </compound>
+    </struct>
 
-    <compound name="BoundingVolume">
+    <struct name="BoundingVolume">
         <field name="Collision Type" type="BoundVolumeType">Type of collision data.</field>
         <field name="Sphere" type="NiBound" cond="Collision Type == 0" />
         <field name="Box" type="BoxBV" cond="Collision Type == 1" />
         <field name="Capsule" type="CapsuleBV" cond="Collision Type == 2" />
         <!--<field name="Union BV" type="UnionBV" cond="Collision Type == 4" />-->
         <field name="Half Space" type="HalfSpaceBV" cond="Collision Type == 5" />
-    </compound>
+    </struct>
 
-    <compound name="UnionBV">
+    <struct name="UnionBV">
         <field name="Num BV" type="uint" />
         <field name="Bounding Volumes" type="BoundingVolume" arr1="Num BV" />
-    </compound>
+    </struct>
 
-    <compound name="MorphWeight" size="8">
+    <struct name="MorphWeight" size="8">
         <field name="Interpolator" type="Ref" template="NiInterpolator" />
         <field name="Weight" type="float" />
-    </compound>
+    </struct>
 
-    <compound name="BoneTransform" size="40">
+    <struct name="BoneTransform" size="40">
         Transformation data for the bone at this index in bhkPoseArray.
         <field name="Translation" type="Vector3" />
         <field name="Rotation" type="hkQuaternion" />
         <field name="Scale" type="Vector3" />
-    </compound>
+    </struct>
 
-    <compound name="BonePose" versions="#FO3_AND_LATER#">
+    <struct name="BonePose" versions="#FO3_AND_LATER#">
         A list of transforms for each bone in bhkPoseArray.
         <field name="Num Transforms" type="uint" />
         <field name="Transforms" type="BoneTransform" arr1="Num Transforms" />
-    </compound>
+    </struct>
 
-    <compound name="DecalVectorArray" versions="#FO3_AND_LATER#">
+    <struct name="DecalVectorArray" versions="#FO3_AND_LATER#">
         Array of Vectors for Decal placement in BSDecalPlacementVectorExtraData.
         <field name="Num Vectors" type="ushort" />
         <field name="Points" type="Vector3" arr1="Num Vectors">Vector XYZ coords</field>
         <field name="Normals" type="Vector3" arr1="Num Vectors">Vector Normals</field>
-    </compound>
+    </struct>
 
     <bitflags name="BSPartFlag" storage="ushort" versions="#BETHESDA#">
         Editor flags for the Body Partitions. 
@@ -2496,38 +2496,38 @@
         <option bit="8" name="PF_START_NET_BONESET">Start a new shared boneset.  It is expected this BoneSet and the following sets in the Skin Partition will have the same bones.</option>
     </bitflags>
 
-    <compound name="BodyPartList" size="4" versions="#BETHESDA#">
+    <struct name="BodyPartList" size="4" versions="#BETHESDA#">
         Body part list for DismemberSkinInstance
         <field name="Part Flag" type="BSPartFlag" default="257">Flags related to the Body Partition</field>
         <field name="Body Part" type="BSDismemberBodyPartType">Body Part Index</field>
-    </compound>
+    </struct>
     
-    <compound name="BoneLOD" size="8" versions="#SKY_AND_LATER#">
+    <struct name="BoneLOD" size="8" versions="#SKY_AND_LATER#">
         Stores Bone Level of Detail info in a BSBoneLODExtraData
         <field name="Distance" type="uint" />
         <field name="Bone Name" type="NiFixedString" />
-    </compound>
+    </struct>
 
-    <compound name="bhkMeshMaterial" size="8" versions="#SKY_AND_LATER#">
+    <struct name="bhkMeshMaterial" size="8" versions="#SKY_AND_LATER#">
         hkpBSMaterial, a subclass of hkpMeshMaterial. hkpMeshMaterial is a base class for material info for hkMeshShapes.
         <field name="Material" type="SkyrimHavokMaterial" />
         <field name="Filter" type="HavokFilter" />
-    </compound>
+    </struct>
 
-    <compound name="bhkCMSBigTri" size="12" versions="#SKY_AND_LATER#">
+    <struct name="bhkCMSBigTri" size="12" versions="#SKY_AND_LATER#">
         Bethesda extension of hkpCompressedMeshShape::BigTriangle. Triangles that don't fit the maximum size.
         <field name="Triangle" type="Triangle" />
         <field name="Material" type="uint" />
         <field name="Welding Info" type="ushort" />
-    </compound>
+    </struct>
     
-    <compound name="bhkQsTransform" size="32" versions="#SKY_AND_LATER#">
+    <struct name="bhkQsTransform" size="32" versions="#SKY_AND_LATER#">
         Bethesda extension of hkQsTransform. The scale vector is not serialized.
         <field name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</field>
         <field name="Rotation" type="hkQuaternion">Rotation. Reference point for rotation is bhkRigidBody translation.</field>
-    </compound>
+    </struct>
     
-    <compound name="bhkCMSChunk" versions="#SKY_AND_LATER#">
+    <struct name="bhkCMSChunk" versions="#SKY_AND_LATER#">
         Bethesda extension of hkpCompressedMeshShape::Chunk. A compressed chunk of hkpCompressedMeshShape geometry.
         <field name="Translation" type="Vector4" />
         <field name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</field>
@@ -2541,9 +2541,9 @@
         <field name="Strips" type="ushort" arr1="Num Strips" />
         <field name="Num Welding Info" type="uint" />
         <field name="Welding Info" type="ushort" arr1="Num Welding Info" />
-    </compound>
+    </struct>
 
-    <compound name="bhkMalleableConstraintCInfo" versions="#BETHESDA#">
+    <struct name="bhkMalleableConstraintCInfo" versions="#BETHESDA#">
         bhkMalleableConstraint serialization data. A constraint wrapper used to soften or harden constraints.
         <field name="Type" type="hkConstraintType">Type of constraint.</field>
         <field name="Constraint Info" type="bhkConstraintCInfo" />
@@ -2556,9 +2556,9 @@
         <field name="Tau" type="float" until="20.0.0.5" />
         <field name="Damping" type="float" until="20.0.0.5" />
         <field name="Strength" type="float" since="20.2.0.7" />
-    </compound>
+    </struct>
 
-    <compound name="bhkWrappedConstraintData" versions="#BETHESDA#">
+    <struct name="bhkWrappedConstraintData" versions="#BETHESDA#">
         A constraint wrapper for polymorphic hkpConstraintData serialization.
         <field name="Type" type="hkConstraintType">Type of constraint.</field>
         <field name="Constraint Info" type="bhkConstraintCInfo" />
@@ -2569,12 +2569,12 @@
         <field name="Ragdoll" type="bhkRagdollConstraintCInfo" cond="Type == 7" />
         <field name="Stiff Spring" type="bhkStiffSpringConstraintCInfo" cond="Type == 8" />
         <field name="Malleable" type="bhkMalleableConstraintCInfo" cond="Type == 13" />
-    </compound>
+    </struct>
 
     <!-- NIF Objects
          These are the main units of data that NIF files are arranged in.
          They are like C classes and can contain many pieces of data.
-         The only differences between these and compounds is that these
+         The only differences between these and structs is that these
          are treated as object types by the NIF format and can inherit
          from other classes.-->
 
@@ -2656,19 +2656,19 @@
         Bethesda class to combine NiObject and hkReferencedObject so that Havok classes can be read/written with NiStream.
     </niobject>
 
-    <compound name="bhkWorldObjCInfoProperty" size="12" versions="#BETHESDA#">
+    <struct name="bhkWorldObjCInfoProperty" size="12" versions="#BETHESDA#">
         hkWorldObjectCinfo::Property struct
         <field name="Data" type="uint" default="0" />
         <field name="Size" type="uint" default="0" />
         <field name="Capacity and Flags" type="uint" default="0x80000000" />
-    </compound>
+    </struct>
 
-    <compound name="bhkWorldObjectCInfo">
+    <struct name="bhkWorldObjectCInfo">
         <field name="Unused 01" type="byte" arr1="4" binary="true" />
         <field name="Broad Phase Type" type="BroadPhaseType" default="BROAD_PHASE_ENTITY" />
         <field name="Unused 02" type="byte" arr1="3" binary="true" />
         <field name="Property" type="bhkWorldObjCInfoProperty" />
-    </compound>
+    </struct>
 
     <niobject name="bhkWorldObject" abstract="true" inherit="bhkSerializable" module="BSHavok" versions="#BETHESDA#">
         Bethesda extension of hkpWorldObject, the base class for hkpEntity and hkpPhantom.
@@ -2702,18 +2702,18 @@
         <field name="Transform" type="Matrix44" />
     </niobject>
 
-    <compound name="bhkEntityCInfo">
+    <struct name="bhkEntityCInfo">
         <field name="Collision Response" type="hkResponseType" default="RESPONSE_SIMPLE_CONTACT">How the body reacts to collisions. See hkResponseType for hkpWorld default implementations.</field>
         <field name="Unused 01" type="byte" />
         <field name="Process Contact Callback Delay" type="ushort" default="0xffff">Lowers the frequency for processContactCallbacks. A value of 5 means that a callback is raised every 5th frame. The default is once every 65535 frames.</field>
-    </compound>
+    </struct>
 
     <niobject name="bhkEntity" abstract="true" inherit="bhkWorldObject" module="BSHavok" versions="#BETHESDA#">
         Bethesda extension of hkpEntity. An Entity is the core physical object in the system.
         <field name="Entity Info" type="bhkEntityCInfo" />
     </niobject>
 
-    <compound name="bhkRigidBodyCInfo550_660">
+    <struct name="bhkRigidBodyCInfo550_660">
         <field name="Unused 01" type="byte" arr1="4" binary="true" since="10.1.0.0" />
         <field name="Havok Filter" type="HavokFilter" since="10.1.0.0" />
         <field name="Unused 02" type="byte" arr1="4" binary="true" since="10.1.0.0" />
@@ -2747,9 +2747,9 @@
         <field name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</field>
         <field name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</field>
         <field name="Unused 05" type="byte" arr1="12" binary="true" />
-    </compound>
+    </struct>
 
-    <compound name="bhkRigidBodyCInfo2010">
+    <struct name="bhkRigidBodyCInfo2010">
         <field name="Unused 01" type="byte" arr1="4" binary="true" />
         <field name="Havok Filter" type="HavokFilter" />
         <field name="Unused 02" type="byte" arr1="4" binary="true" />
@@ -2790,9 +2790,9 @@
         <field name="Num Shape Keys in Contact Point" type="byte" default="3" />
         <field name="Force Collided Onto PPU" type="bool" />
         <field name="Unused 04" type="byte" arr1="12" binary="true" />
-    </compound>
+    </struct>
 
-    <compound name="bhkRigidBodyCInfo2014">
+    <struct name="bhkRigidBodyCInfo2014">
         <field name="Unused 01" type="byte" arr1="4" binary="true" />
         <field name="Havok Filter" type="HavokFilter" />
         <field name="Unused 02" type="byte" arr1="12" binary="true" />
@@ -2834,7 +2834,7 @@
         <field name="Num Shape Keys in Contact Point" type="byte" default="3" />
         <field name="Force Collided Onto PPU" type="bool" />
         <field name="Unused 06" type="byte" arr1="3" binary="true" />
-    </compound>
+    </struct>
 
     <niobject name="bhkRigidBody" inherit="bhkEntity" module="BSHavok" versions="#BETHESDA#">
         This is the default body type for all "normal" usable and static world objects. The "T" suffix
@@ -3045,7 +3045,7 @@
         <field name="Shape" type="Ref" template="bhkShape">The shape.</field>
     </niobject>
 
-    <compound name="hkpMoppCode" versions="#BETHESDA#">
+    <struct name="hkpMoppCode" versions="#BETHESDA#">
         <field name="Data Size" type="uint">Number of bytes for MOPP data.</field>
         <field name="Offset" type="Vector4" since="10.1.0.0">
             XYZ: Origin of the object in mopp coordinates. This is the minimum of all vertices in the packed shape along each axis, minus 0.1.
@@ -3054,7 +3054,7 @@
         </field>
         <field name="Build Type" type="hkMoppCodeBuildType" vercond="#BS_GT_FO3#">Tells if MOPP Data was organized into smaller chunks (PS3) or not (PC)</field>
         <field name="Data" type="byte" binary="true" arr1="Data Size">The tree of bounding volume data.</field>
-    </compound>
+    </struct>
 
     <niobject name="bhkMoppBvTreeShape" inherit="bhkBvTreeShape" module="BSHavok" versions="#BETHESDA#">
         Bethesda extension of hkpMoppBvTreeShape. hkpMoppBvTreeShape is a bounding volume tree using Havok-proprietary MOPP code.
@@ -3199,7 +3199,7 @@
         <option value="1" name="MANAGER_CONTROLLED">MANAGER_CONTROLLED</option>
     </enum>
 
-    <compound name="InterpBlendItem">
+    <struct name="InterpBlendItem">
         Interpolator item for array in NiBlendInterpolator.
         <field name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</field>
         <field name="Weight" type="float" />
@@ -3207,7 +3207,7 @@
         <field name="Priority" type="int" until="10.1.0.109" />
         <field name="Priority" type="byte" since="10.1.0.110" />
         <field name="Ease Spinner" type="float" />
-    </compound>
+    </struct>
 
     <niobject name="NiBlendInterpolator" abstract="true" inherit="NiInterpolator" module="NiAnimation">
         Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
@@ -3251,14 +3251,14 @@
         <field name="Basis Data" type="Ref" template="NiBSplineBasisData" />
     </niobject>
 
-    <compound name="LegacyExtraData" until="V2_3">
+    <struct name="LegacyExtraData" until="V2_3">
         Extra Data for pre-3.0 versions
         <field name="Has Extra Data" type="bool" />
         <field name="Extra Prop Name" cond="Has Extra Data" type="SizedString" />
         <field name="Extra Ref ID" cond="Has Extra Data" type="uint" />
         <field name="Extra String" cond="Has Extra Data" type="SizedString" />
         <field name="Unknown Byte 1" type="byte" />
-    </compound>
+    </struct>
 
     <niobject name="NiObjectNET" abstract="true" inherit="NiObject" module="NiMain">
         Abstract base class for NiObjects that support names, extra data, and time controllers.
@@ -3740,7 +3740,7 @@
         A simple LOD controller for bones.
     </niobject>
     
-    <compound name="MaterialData">
+    <struct name="MaterialData">
         <field name="Has Shader" type="bool" since="10.0.1.0" until="20.1.0.3">Shader.</field>
         <field name="Shader Name" type="string" cond="Has Shader" since="10.0.1.0" until="20.1.0.3">The shader name.</field>
         <field name="Shader Extra Data" type="int" cond="Has Shader" since="10.0.1.0" until="20.1.0.3">Extra data associated with the shader. A value of -1 means the shader is the default implementation.</field>
@@ -3751,7 +3751,7 @@
         <field name="Cyanide Unknown" type="byte" default="255" since="10.2.0.0" until="10.2.0.0" vercond="#USER# == 1">Cyanide extension (Blood Bowl).</field>
         <field name="WorldShift Unknown" type="int" since="10.3.0.1" until="10.4.0.1" />
         <field name="Material Needs Update" type="bool" since="20.2.0.7">Whether the materials for this object always needs to be updated before rendering with them.</field>
-    </compound>
+    </struct>
 
     <niobject name="NiGeometry" abstract="true" inherit="NiAVObject" module="NiMain">
         Describes a visible scene element with vertices like a mesh, a particle system, lines, etc.
@@ -4527,12 +4527,12 @@
         <field name="Percent Data" type="Ref" template="NiFloatData" />
     </niobject>
 
-    <compound name="PixelFormatComponent">
+    <struct name="PixelFormatComponent">
         <field name="Type" type="PixelComponent">Component Type</field>
         <field name="Convention" type="PixelRepresentation">Data Storage Convention</field>
         <field name="Bits Per Channel" type="byte">Bits per component</field>
         <field name="Is Signed" type="bool" />
-    </compound>
+    </struct>
 
     <niobject name="NiPixelFormat" abstract="true" inherit="NiObject" module="NiMain">
         NiPixelFormat is not the parent to NiPixelData/NiPersistentSrcTextureRendererData,
@@ -5005,12 +5005,12 @@
         A texture.
     </niobject>
 
-    <compound name="FormatPrefs" size="12">
+    <struct name="FormatPrefs" size="12">
         NiTexture::FormatPrefs. These preferences are a request to the renderer to use a format the most closely matches the settings and may be ignored.
         <field name="Pixel Layout" type="PixelLayout">Requests the way the image will be stored.</field>
         <field name="Use Mipmaps" type="MipMapFormat" default="MIP_FMT_DEFAULT">Requests if mipmaps are used or not.</field>
         <field name="Alpha Format" type="AlphaFormat" default="ALPHA_DEFAULT">Requests no alpha, 1-bit alpha, or </field>
-    </compound>
+    </struct>
 
     <niobject name="NiSourceTexture" inherit="NiTexture" module="NiMain">
         Describes texture source and properties.
@@ -5473,18 +5473,18 @@
         <option bit="11" name="ENERGY_SLEEP_TEST" />
     </bitflags>
 
-    <compound name="NiPhysXMaterialDescMap" size="6" since="V20_2_0_8">
+    <struct name="NiPhysXMaterialDescMap" size="6" since="V20_2_0_8">
         <field name="Key" type="ushort" />
         <field name="Material" type="Ref" template="NiPhysXMaterialDesc" />
-    </compound>
+    </struct>
 
-    <compound name="NxCompartmentDescMap" size="20" since="V20_2_0_8">
+    <struct name="NxCompartmentDescMap" size="20" since="V20_2_0_8">
         <field name="ID" type="uint" />
         <field name="Type" type="NxCompartmentType" default="SCT_RIGIDBODY" />
         <field name="Device Code" type="NxDeviceCode" default="CPU" />
         <field name="Grid Hash Cell Size" type="float" default="100.0" />
         <field name="Grid Hash Table Power" type="uint" default="8" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXSceneDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         Object which caches the properties of NxScene, stored as a snapshot in a NiPhysXScene.
@@ -5590,11 +5590,11 @@
         <field name="Dest" type="Ref" template="NiPhysXRigidBodyDest" />
     </niobject>
 
-    <compound name="PhysXBodyStoredVels" since="V20_2_0_8">
+    <struct name="PhysXBodyStoredVels" since="V20_2_0_8">
         <field name="Linear Velocity" type="Vector3" />
         <field name="Angular Velocity" type="Vector3" />
         <field name="Sleep" type="bool" since="30.2.0.3" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXBodyDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxBodyDesc objects.
@@ -5647,32 +5647,32 @@
         <option value="2" name="JPM_LINEAR_MINDIST" />
     </enum>
 
-    <compound name="NiPhysXJointActor" size="40" since="V20_2_0_8">
+    <struct name="NiPhysXJointActor" size="40" since="V20_2_0_8">
         <field name="Actor" type="Ref" template="NiPhysXActorDesc" />
         <field name="Local Normal" type="Vector3" />
         <field name="Local Axis" type="Vector3" />
         <field name="Local Anchor" type="Vector3" />
-    </compound>
+    </struct>
 
-    <compound name="NxJointLimitSoftDesc" size="16" since="V20_2_0_8">
+    <struct name="NxJointLimitSoftDesc" size="16" since="V20_2_0_8">
         <field name="Value" type="float" />
         <field name="Restitution" type="float" />
         <field name="Spring" type="float" />
         <field name="Damping" type="float" />
-    </compound>
+    </struct>
 
-    <compound name="NxJointDriveDesc" size="16" since="V20_2_0_8">
+    <struct name="NxJointDriveDesc" size="16" since="V20_2_0_8">
         <field name="Drive Type" type="NxD6JointDriveType" />
         <field name="Spring" type="float" />
         <field name="Damping" type="float" />
         <field name="Force Limit" type="float" default="#FLT_MAX#" />
-    </compound>
+    </struct>
 
-    <compound name="NiPhysXJointLimit" since="V20_2_0_8">
+    <struct name="NiPhysXJointLimit" since="V20_2_0_8">
         <field name="Limit Plane Normal" type="Vector3" />
         <field name="Limit Plane D" type="float" />
         <field name="Limit Plane R" type="float" since="20.4.0.0" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXJointDesc" abstract="true" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         A PhysX Joint abstract base class.
@@ -5755,16 +5755,16 @@
         <option bit="20" name="SOFTBODY_TWOWAY" />
     </bitflags>
 
-    <compound name="NxPlane" size="16" since="V20_2_0_8">
+    <struct name="NxPlane" size="16" since="V20_2_0_8">
         <field name="Val 1" type="float" />
         <field name="Point 1" type="Vector3" />
-    </compound>
+    </struct>
 
-    <compound name="NxCapsule" size="12" since="V20_2_0_8">
+    <struct name="NxCapsule" size="12" since="V20_2_0_8">
         <field name="Val 1" type="float" />
         <field name="Val 2" type="float" />
         <field name="Capsule Flags" type="uint" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXShapeDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxShapeDesc objects
@@ -5805,11 +5805,11 @@
         <option bit="5" name="DISABLE_STRONG_FRICTION" />
     </bitflags>
 
-    <compound name="NxSpringDesc" size="12" since="V20_2_0_8">
+    <struct name="NxSpringDesc" size="12" since="V20_2_0_8">
         <field name="Spring" type="float" />
         <field name="Damper" type="float" />
         <field name="Target Value" type="float" />
-    </compound>
+    </struct>
 
     <enum name="NxCombineMode" storage="uint" prefix="NX_CM" since="V20_2_0_8">
         <option value="0" name="AVERAGE" />
@@ -5818,7 +5818,7 @@
         <option value="3" name="MAX" />
     </enum>
 
-    <compound name="NxMaterialDesc" since="V20_2_0_8">
+    <struct name="NxMaterialDesc" since="V20_2_0_8">
         <field name="Dynamic Friction" type="float" />
         <field name="Static Friction" type="float" />
         <field name="Restitution" type="float" />
@@ -5830,7 +5830,7 @@
         <field name="Restitution Combine Mode" type="NxCombineMode" />
         <field name="Has Spring" type="bool" until="20.2.3.0" />
         <field name="Spring" type="NxSpringDesc" until="20.2.3.0" cond="Has Spring" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXMaterialDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxMaterialDesc objects.
@@ -5860,27 +5860,27 @@
         <option bit="18" name="ADHERE" />
     </bitflags>
 
-    <compound name="PhysXClothState" since="V20_2_0_8">
+    <struct name="PhysXClothState" since="V20_2_0_8">
         <field name="Pose" type="Matrix34" />
         <field name="Num Vertex Positions" type="ushort" />
         <field name="Vertex Positions" type="Vector3" arr1="Num Vertex Positions" />
         <field name="Num Tear Indices" type="ushort" />
         <field name="Tear Indices" type="ushort" arr1="Num Tear Indices" />
         <field name="Tear Split Planes" type="Vector3" arr1="Num Tear Indices" />
-    </compound>
+    </struct>
 
-    <compound name="PhysXClothAttachmentPosition" since="V20_2_0_8">
+    <struct name="PhysXClothAttachmentPosition" since="V20_2_0_8">
         <field name="Vertex ID" type="uint" />
         <field name="Position" type="Vector3" />
         <field name="Flags" type="uint" />
-    </compound>
+    </struct>
 
-    <compound name="PhysXClothAttachment" since="V20_2_0_8">
+    <struct name="PhysXClothAttachment" since="V20_2_0_8">
         <field name="Shape" type="Ref" template="NiPhysXShapeDesc" />
         <field name="Num Vertices" type="uint" />
         <field name="Flags" type="uint" cond="Num Vertices == 0" />
         <field name="Positions" type="PhysXClothAttachmentPosition" cond="Num Vertices #GT# 0" arr1="Num Vertices" />
-    </compound>
+    </struct>
 
     <niobject name="NiPhysXClothDesc" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         For serializing NxClothDesc objects.
@@ -5968,13 +5968,13 @@
         <field name="Lines" type="bool" arr1="Num Vertices">Is vertex connected to other (next?) vertex?</field>
     </niobject>
 
-    <compound name="Polygon" size="8">
+    <struct name="Polygon" size="8">
         Two dimensional screen elements.
         <field name="Num Vertices" type="ushort" />
         <field name="Vertex Offset" type="ushort">Offset in vertex array.</field>
         <field name="Num Triangles" type="ushort" />
         <field name="Triangle Offset" type="ushort">Offset in indices array.</field>
-    </compound>
+    </struct>
 
     <niobject name="NiScreenElementsData" inherit="NiTriShapeData" module="NiMain">
         DEPRECATED (20.5), functionality included in NiMeshScreenElements.
@@ -6412,10 +6412,10 @@
         <option bit="31" name="Refraction_Writes_Depth" />
     </bitflags>
 
-    <compound name="BSTextureArray" versions="#F76#">
+    <struct name="BSTextureArray" versions="#F76#">
         <field name="Texture Array Width" type="uint" />
         <field name="Texture Array" type="SizedString" arr1="Texture Array Width" />
-    </compound>
+    </struct>
 
     <enum name="BSShaderCRC32" storage="uint" prefix="SF" versions="#F76#">
         <option name="CAST_SHADOWS" value="1563274220" />
@@ -6451,7 +6451,7 @@
         <option name="LOD_OBJECTS" value="2896726515" />
     </enum>
 
-    <compound name="BSSPWetnessParams" module="BSMain" versions="#FO4# #F76#">
+    <struct name="BSSPWetnessParams" module="BSMain" versions="#FO4# #F76#">
         <field name="Spec Scale" type="float" default="-1.0" />
         <field name="Spec Power" type="float" default="-1.0" />
         <field name="Min Var" type="float" default="-1.0" />
@@ -6460,22 +6460,22 @@
         <field name="Metalness" type="float" default="-1.0" />
         <field name="Unknown 1" type="float" default="-1.0" vercond="#BS_F76#" />
         <field name="Unknown 2" type="float" default="-1.0" vercond="#BS_F76#" />
-    </compound>
+    </struct>
 
-    <compound name="BSSPLuminanceParams" module="BSMain" versions="#F76#">
+    <struct name="BSSPLuminanceParams" module="BSMain" versions="#F76#">
         <field name="Lum Emittance" type="float" default="100.0" range="#F_POS#" />
         <field name="Exposure Offset" type="float" default="13.5" range="#F_POS#" />
         <field name="Final Exposure Min" type="float" default="2.0" range="#F_POS#" />
         <field name="Final Exposure Max" type="float" default="3.0" range="#F_POS#" />
-    </compound>
+    </struct>
 
-    <compound name="BSSPTranslucencyParams" module="BSMain" versions="#F76#">
+    <struct name="BSSPTranslucencyParams" module="BSMain" versions="#F76#">
         <field name="Subsurface Color" type="Color3" />
         <field name="Transmissive Scale" type="float"/>
         <field name="Turbulence" type="float" />
         <field name="Thick Object" type="bool" />
         <field name="Mix Albedo" type="bool" />
-    </compound>
+    </struct>
 
     <niobject name="BSLightingShaderProperty" inherit="BSShaderProperty" module="BSMain" versions="#SKY_AND_LATER#">
         Bethesda shader property for Skyrim and later.
@@ -6753,12 +6753,12 @@
         <field name="Closest Point Min Distance" type="float">A distance which is used for getClosestPoint(). If the object being tested is closer, the children are recursed. Otherwise it returns this value.</field>
     </niobject>
 
-    <compound name="BSTreadTransform" size="68" versions="#FO3_AND_LATER#">
-        Bethesda-specific compound.
+    <struct name="BSTreadTransform" size="68" versions="#FO3_AND_LATER#">
+        Bethesda-specific struct.
         <field name="Name" type="NiFixedString" />
         <field name="Transform 1" type="NiQuatTransform" />
         <field name="Transform 2" type="NiQuatTransform" />
-    </compound>
+    </struct>
 
     <niobject name="BSTreadTransfInterpolator" inherit="NiInterpolator" module="BSAnimation" versions="#FO3_AND_LATER#">
         Bethesda-specific interpolator.
@@ -6835,15 +6835,15 @@
         <field name="Radius" type="float" />
     </niobject>
 
-    <compound name="BSGeometrySubSegment" size="16" versions="#FO3_AND_LATER#">
+    <struct name="BSGeometrySubSegment" size="16" versions="#FO3_AND_LATER#">
         This is only defined because of recursion issues.
         <field name="Start Index" type="uint" />
         <field name="Num Primitives" type="uint" />
         <field name="Parent Array Index" type="uint" />
         <field name="Unused" type="uint" />
-    </compound>
+    </struct>
 
-    <compound name="BSGeometrySegmentData" versions="#FO3_AND_LATER#">
+    <struct name="BSGeometrySegmentData" versions="#FO3_AND_LATER#">
         Bethesda-specific. Describes groups of triangles either segmented in a grid (for LOD) or by body part for skinned FO4 meshes.
         <field name="Flags" type="byte" vercond="#NI_BS_LT_FO4#" />
         <field name="Start Index" type="uint">Index = previous Index + previous Num Tris in Segment * 3</field>
@@ -6851,7 +6851,7 @@
         <field name="Parent Array Index" type="uint" vercond="#BS_GTE_FO4#" />
         <field name="Num Sub Segments" type="uint" vercond="#BS_GTE_FO4#" />
         <field name="Sub Segment" type="BSGeometrySubSegment" arr1="Num Sub Segments" vercond="#BS_GTE_FO4#" />
-    </compound>
+    </struct>
 
     <niobject name="BSSegmentedTriShape" inherit="NiTriShape" module="BSMain" versions="#FO3_AND_LATER#">
         Bethesda-specific AV object.
@@ -6865,7 +6865,7 @@
         <field name="Extent" type="Vector3">Extent of the AABB in all directions</field>
     </niobject>
 
-    <compound name="NiAGDDataStream">
+    <struct name="NiAGDDataStream">
         <field name="Type" type="uint">Type of data in this channel</field>
         <field name="Unit Size" type="uint">Number of bytes per element of this channel</field>
         <field name="Total Size" type="uint">Total number of bytes of this channel (num vertices times num bytes per element)</field>
@@ -6873,9 +6873,9 @@
         <field name="Block Index" type="uint">Unsure. The block in which this channel is stored? Usually there is only one block, and so this is zero.</field>
         <field name="Block Offset" type="uint">Offset (in bytes) of this channel. Sum of all num channel bytes per element of all preceeding block infos.</field>
         <field name="Flags" type="NiAGDDataStreamFlags" default="2" />
-    </compound>
+    </struct>
 
-    <compound name="NiAGDDataBlock">
+    <struct name="NiAGDDataBlock">
         <field name="Block Size" type="uint" />
         <field name="Num Blocks" type="uint" />
         <field name="Block Offsets" type="uint" arr1="Num Blocks" />
@@ -6885,12 +6885,12 @@
         <!-- NiBSPackedAGDDataBlock -->
         <field name="Shader Index" type="uint" cond="#ARG# == 1" />
         <field name="Total Size" type="uint" cond="#ARG# == 1" />
-    </compound>
+    </struct>
 
-    <compound name="NiAGDDataBlocks">
+    <struct name="NiAGDDataBlocks">
         <field name="Has Data" type="bool" />
         <field name="Data Block" type="NiAGDDataBlock" cond="Has Data" arg="#ARG#" />
-    </compound>
+    </struct>
 
     <niobject name="NiAdditionalGeometryData" inherit="AbstractAdditionalGeometryData" module="NiMain">
         <field name="Num Vertices" type="ushort" />
@@ -6969,11 +6969,11 @@
         <field name="Constraint" type="bhkWrappedConstraintData" arr1="Num Constraints" />
     </niobject>
 
-    <compound name="Region" size="8" since="V20_5_0_0">
+    <struct name="Region" size="8" since="V20_5_0_0">
         A range of indices, which make up a region (such as a submesh).
         <field name="Start Index" type="uint" />
         <field name="Num Indices" type="uint" />
-    </compound>
+    </struct>
 
     <enum name="CloningBehavior" storage="uint" since="V20_5_0_0">
         Sets how objects are to be cloned.
@@ -7082,7 +7082,7 @@
         <field name="Streamable" type="bool" default="1" />
     </niobject>
 
-    <compound name="SemanticData" size="8" since="V20_5_0_0">
+    <struct name="SemanticData" size="8" since="V20_5_0_0">
         <field name="Name" type="NiFixedString">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
@@ -7093,16 +7093,16 @@
             then the corresponding TEXCOORD data components would have indices
             0, 1, and 2, respectively.
         </field>
-    </compound>
+    </struct>
 
-    <compound name="DataStreamRef" since="V20_5_0_0">
+    <struct name="DataStreamRef" since="V20_5_0_0">
         <field name="Stream" type="Ref" template="NiDataStream">Reference to a data stream object which holds the data used by this reference.</field>
         <field name="Is Per Instance" type="bool" default="0">Sets whether this stream data is per-instance data for use in hardware instancing.</field>
         <field name="Num Submeshes" type="ushort" default="1">The number of submesh-to-region mappings that this data stream has.</field>
         <field name="Submesh To Region Map" type="ushort" arr1="Num Submeshes">A lookup table that maps submeshes to regions.</field>
         <field name="Num Components" type="uint" default="1" />
         <field name="Component Semantics" type="SemanticData" arr1="Num Components">Describes the semantic of each component.</field>
-    </compound>
+    </struct>
 
     <niobject name="NiRenderObject" abstract="true" inherit="NiAVObject" module="NiMain" since="V20_5_0_0">
         An object that can be rendered.
@@ -7139,27 +7139,27 @@
         <field name="Complete Points" type="SyncPoint" arr1="Num Complete Points">The sync points supported by this mesh modifier for CompleteTasks.</field>
     </niobject>
 
-    <compound name="MeshDataEpicMickey" versions="V20_6_5_0_DEM">
+    <struct name="MeshDataEpicMickey" versions="V20_6_5_0_DEM">
         <field name="Unknown 1" type="int" />
         <field name="Unknown 2" type="int" />
         <field name="Unknown 3" type="int" vercond="#USER# #GT# 14" />
         <field name="Unknown 4" type="int" />
         <field name="Unknown 5" type="float" />
         <field name="Unknown 6" type="int" />
-    </compound>
+    </struct>
 
-    <compound name="WeightDataEpicMickey" size="24" versions="V20_6_5_0_DEM">
+    <struct name="WeightDataEpicMickey" size="24" versions="V20_6_5_0_DEM">
         <field name="Bone Indices" type="int" arr1="3" />
         <field name="Weights" type="float" arr1="3" />
-    </compound>
+    </struct>
 
-    <compound name="PartitionDataEpicMickey" size="28" versions="V20_6_5_0_DEM">
+    <struct name="PartitionDataEpicMickey" size="28" versions="V20_6_5_0_DEM">
         <field name="Start" type="int" />
         <field name="End" type="int" />
         <field name="Weight Indices" type="ushort" arr1="10" />
-    </compound>
+    </struct>
 
-    <compound name="ExtraMeshDataEpicMickey" versions="V20_6_5_0_DEM">
+    <struct name="ExtraMeshDataEpicMickey" versions="V20_6_5_0_DEM">
         <field name="Unknown 1" type="uint" />
         <field name="Num Unknown Floats" type="uint" />
         <field name="Unknown Floats 1" type="float" arr1="Num Unknown Floats" />
@@ -7177,7 +7177,7 @@
         <field name="Partition Size" type="uint" />
         <field name="Partitions" type="PartitionDataEpicMickey" arr1="Partition Size" />
         <field name="Max Primitive Map Index" type="uint">The max value to appear in the Mapped Primitives array.</field>
-    </compound>
+    </struct>
 
     <niobject name="NiMesh" inherit="NiRenderObject" module="NiMesh" since="V20_5_0_0">
         <field name="Primitive Type" type="MeshPrimitiveType">The primitive type of the mesh, such as triangles or lines.</field>
@@ -7202,10 +7202,10 @@
         <field name="Target Names" type="NiFixedString" arr1="Num Targets" />
     </niobject>
 
-    <compound name="ElementReference" size="12" since="V20_5_0_0">
+    <struct name="ElementReference" size="12" since="V20_5_0_0">
         <field name="Semantic" type="SemanticData">The element semantic.</field>
         <field name="Normalize Flag" type="uint">Whether or not to normalize the data.</field>
-    </compound>
+    </struct>
 
     <niobject name="NiMorphMeshModifier" inherit="NiMeshModifier" module="NiMesh" since="V20_5_0_0">
         Performs linear-weighted blending between a set of target data streams.
@@ -7253,11 +7253,11 @@
         <field name="Instance Nodes" type="Ref" template="NiMeshHWInstance" arr1="Num Instance Nodes" cond="Has Instance Nodes" />
     </niobject>
 
-    <compound name="LODInfo">
+    <struct name="LODInfo">
         <field name="Num Bones" type="uint" />
         <field name="Num Active Skins" type="uint" />
         <field name="Skin Indices" type="uint" arr1="Num Active Skins" />
-    </compound>
+    </struct>
 
     <niobject name="NiSkinningLODController" inherit="NiTimeController" module="NiAnimation" since="V20_5_0_0">
         Defines the levels of detail for a given character and dictates the character's current LOD.
@@ -7273,10 +7273,10 @@
 
     <!-- NiPS Particle System -->
 
-    <compound name="PSSpawnRateKey" size="8" since="V20_5_0_0">
+    <struct name="PSSpawnRateKey" size="8" since="V20_5_0_0">
         <field name="Value" type="float" />
         <field name="Time" type="float" />
-    </compound>
+    </struct>
 
     <enum name="AlignMethod" storage="uint" since="V20_5_0_0">
         Describes the various methods that may be used to specify the orientation of the particles.
@@ -8141,20 +8141,20 @@
         <field name="LOD2 Size" type="uint" />
     </niobject>
     
-    <compound name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4# #F76#">
+    <struct name="BSGeometryPerSegmentSharedData" size="16" versions="#FO4# #F76#">
         <field name="User Index" type="uint">If Bone ID is 0xffffffff, this value refers to the Segment at the listed index. Otherwise this is the "Biped Object", which is like the body part types in Skyrim and earlier.</field>
         <field name="Bone ID" type="uint" default="#UINT_MAX#">A hash of the bone name string.</field>
         <field name="Num Cut Offsets" type="uint" range="0:8">Maximum of 8.</field>
         <field name="Cut Offsets" type="float" arr1="Num Cut Offsets" />
-    </compound>
+    </struct>
 
-    <compound name="BSGeometrySegmentSharedData" versions="#FO4# #F76#">
+    <struct name="BSGeometrySegmentSharedData" versions="#FO4# #F76#">
         <field name="Num Segments" type="uint" />
         <field name="Total Segments" type="uint" />
         <field name="Segment Starts" type="uint" arr1="Num Segments" />
         <field name="Per Segment Data" type="BSGeometryPerSegmentSharedData" arr1="Total Segments" />>
         <field name="SSF File" type="SizedString16" />
-    </compound>
+    </struct>
 
     <niobject name="BSSubIndexTriShape" inherit="BSTriShape" module="BSMain" versions="#SSE# #FO4# #F76#">
         Fallout 4 Sub-Index Tri Shape
@@ -8203,13 +8203,13 @@
     
     <!-- Fallout 4 Skeleton -->
 
-    <compound name="BSSkinBoneTrans" size="68" versions="#FO4# #F76#">
+    <struct name="BSSkinBoneTrans" size="68" versions="#FO4# #F76#">
         Fallout 4 Bone Transform
         <field name="Bounding Sphere" type="NiBound" />
         <field name="Rotation" type="Matrix33" />
         <field name="Translation" type="Vector3" />
         <field name="Scale" type="float" />
-    </compound>
+    </struct>
 
     <niobject name="BSSkin::Instance" inherit="NiObject" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Skin Instance
@@ -8233,13 +8233,13 @@
         <field name="Data" type="hfloat" arr1="Num Data" />
     </niobject>
 
-    <compound name="BSConnectPoint" versions="#FO4# #F76#">
+    <struct name="BSConnectPoint" versions="#FO4# #F76#">
         <field name="Parent" type="SizedString" default="WorkshopConnectPoints" />
         <field name="Name" type="SizedString" />
         <field name="Rotation" type="Quaternion" />
         <field name="Translation" type="Vector3" />
         <field name="Scale" type="float" default="1.0" />
-    </compound>
+    </struct>
 
     <niobject name="BSConnectPoint::Parents" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Item Slot Parent
@@ -8260,13 +8260,13 @@
         <field name="Data" type="float" arr1="Num Data" />
     </niobject>
 	
-    <compound name="BSPackedGeomDataCombined" size="72" versions="#FO4# #F76#">
+    <struct name="BSPackedGeomDataCombined" size="72" versions="#FO4# #F76#">
         <field name="Grayscale to Palette Scale" type="float" />
         <field name="Transform" type="NiTransform" />
         <field name="Bounding Sphere" type="NiBound" />
-    </compound>
+    </struct>
 
-    <compound name="BSPackedGeomData" versions="#FO4# #F76#">
+    <struct name="BSPackedGeomData" versions="#FO4# #F76#">
         <field name="Num Verts" type="uint" />
         <field name="LOD Levels" type="uint" />
         <field name="Tri Count LOD0" type="uint" />
@@ -8280,9 +8280,9 @@
         <field name="Vertex Desc" type="BSVertexDesc" />
         <field name="Vertex Data" type="BSVertexData" arr1="Num Verts" arg="Vertex Desc #RSH# 44" />
         <field name="Triangles" type="Triangle" arr1="Tri Count LOD0 + Tri Count LOD1 + Tri Count LOD2" />
-    </compound>
+    </struct>
 
-    <compound name="BSPackedSharedGeomData" versions="#FO4# #F76#">
+    <struct name="BSPackedSharedGeomData" versions="#FO4# #F76#">
         <field name="Num Verts" type="uint" />
         <field name="LOD Levels" type="uint" />
         <field name="Tri Count LOD0" type="uint" />
@@ -8294,13 +8294,13 @@
         <field name="Num Combined" type="uint" />
         <field name="Combined" type="BSPackedGeomDataCombined" arr1="Num Combined" />
         <field name="Vertex Desc" type="BSVertexDesc" />
-    </compound>
+    </struct>
 
-    <compound name="BSPackedGeomObject" size="8" versions="#FO4# #F76#">
+    <struct name="BSPackedGeomObject" size="8" versions="#FO4# #F76#">
         This is the data necessary to access the shared geometry in a PSG/CSG file.
         <field name="Filename Hash" type="uint">BSCRC32 of the filename without the PSG/CSG extension.</field>
         <field name="Data Offset" type="uint">Offset of the geometry data in the PSG/CSG file.</field>
-    </compound>
+    </struct>
 
     <niobject name="BSPackedCombinedGeomDataExtra" inherit="NiExtraData" module="BSMain" versions="#FO4# #F76#">
         Fallout 4 Packed Combined Geometry Data.
@@ -8350,19 +8350,19 @@
         <field name="Distant Object Flags" type="uint" />
     </niobject>
 
-    <compound name="BSDistantObjectInstance" module="BSMain" versions="#F76#">
+    <struct name="BSDistantObjectInstance" module="BSMain" versions="#F76#">
         <field name="Unknown Bytes 1" type="byte" arr1="12" />
         <field name="Num Unknown 1" type="uint" />
         <field name="Unknown Ints 1" type="uint" arr1="3 #MUL# Num Unknown 1" />
         <field name="Num Unknown 2" type="uint" />
         <field name="Unknown Bytes 2" type="byte" binary="true" arr1="64 #MUL# Num Unknown 2" />
-    </compound>
+    </struct>
 
-    <compound name="BSDistantObjectTextureArray" module="BSMain" versions="#F76#">
+    <struct name="BSDistantObjectTextureArray" module="BSMain" versions="#F76#">
         <field name="Unknown Byte" type="byte" default="1" />
         <field name="Num Texture Arrays" type="uint" />
         <field name="Texture Arrays" type="BSTextureArray" arr1="Num Texture Arrays" />
-    </compound>
+    </struct>
 
     <niobject name="BSDistantObjectInstancedNode" inherit="BSMultiBoundNode" module="BSMain" versions="#F76#">
         <field name="Num Instances" type="uint" />

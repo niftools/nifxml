@@ -73,19 +73,19 @@ TYPES_NATIVE = {'TEMPLATE': 'T'}
 TYPES_BASIC = {}
 TYPES_ENUM = {}
 TYPES_FLAG = {}
-TYPES_COMPOUND = {}
+TYPES_STRUCT = {}
 TYPES_BLOCK = {}
 TYPES_VERSION = {}
 
 NAMES_BASIC = []
-NAMES_COMPOUND = []
+NAMES_STRUCT = []
 NAMES_ENUM = []
 NAMES_FLAG = []
 NAMES_BLOCK = []
 NAMES_VERSION = []
 
-__all__ = ['TYPES_VERSION', 'TYPES_BASIC', 'TYPES_BLOCK', 'TYPES_COMPOUND', 'TYPES_ENUM', 'TYPES_FLAG', 'TYPES_NATIVE',
-           'NAMES_VERSION', 'NAMES_BASIC', 'NAMES_BLOCK', 'NAMES_COMPOUND', 'NAMES_ENUM', 'NAMES_FLAG']
+__all__ = ['TYPES_VERSION', 'TYPES_BASIC', 'TYPES_BLOCK', 'TYPES_STRUCT', 'TYPES_ENUM', 'TYPES_FLAG', 'TYPES_NATIVE',
+           'NAMES_VERSION', 'NAMES_BASIC', 'NAMES_BLOCK', 'NAMES_STRUCT', 'NAMES_ENUM', 'NAMES_FLAG']
 
 
 @export
@@ -878,8 +878,8 @@ class Flag(Enum):
 
 
 @export
-class Compound(Basic):
-    """This class represents the nif.xml <compound> tag."""
+class Struct(Basic):
+    """This class represents the nif.xml <struct> tag."""
 
     def __init__(self, element, ntypes):
         Basic.__init__(self, element, ntypes)
@@ -891,7 +891,7 @@ class Compound(Basic):
         for member in element.getElementsByTagName('add'):
             x = Member(member)
 
-            # Ignore infinite recursion on already visited compounds
+            # Ignore infinite recursion on already visited structs
             if x in self.members:
                 continue
 
@@ -906,7 +906,7 @@ class Compound(Basic):
                 mem = TYPES_BASIC[x.type]
             except KeyError:
                 try:
-                    mem = TYPES_COMPOUND[x.type]
+                    mem = TYPES_STRUCT[x.type]
                 except KeyError:
                     pass
             if mem:
@@ -946,17 +946,17 @@ class Compound(Basic):
     def has_arr(self):  # type: () -> bool
         """Tests recursively for members with an array size."""
         for mem in self.members:
-            if mem.arr1.lhs or (mem.type in TYPES_COMPOUND and TYPES_COMPOUND[mem.type].has_arr()):
+            if mem.arr1.lhs or (mem.type in TYPES_STRUCT and TYPES_STRUCT[mem.type].has_arr()):
                 return True
         return False
 
 
 @export
-class Block(Compound):
+class Block(Struct):
     """This class represents the nif.xml <niobject> tag."""
 
     def __init__(self, element, ntypes):
-        Compound.__init__(self, element, ntypes)
+        Struct.__init__(self, element, ntypes)
         self.is_ancestor = (element.getAttribute('abstract') == "1")
         inherit = element.getAttribute('inherit')
         self.inherit = TYPES_BLOCK[inherit] if inherit else None
@@ -964,7 +964,7 @@ class Block(Compound):
 
     def find_member(self, name, inherit=False):  # type: (str, bool) -> Optional[Member]
         """Find member by name"""
-        ret = Compound.find_member(self, name)
+        ret = Struct.find_member(self, name)
         if not ret and inherit and self.inherit:
             ret = self.inherit.find_member(name, inherit)
         return ret
@@ -975,7 +975,7 @@ class Block(Compound):
         if self.inherit:
             ret = self.inherit.find_first_ref(name)
         if not ret:
-            ret = Compound.find_first_ref(self, name)
+            ret = Struct.find_first_ref(self, name)
         return ret
 
     def ancestors(self):  # type: () -> List[Block]
@@ -1029,11 +1029,11 @@ def parse_xml(ntypes=None, path=XML_PATH):  # type: (Optional[Dict[str, str]], s
         TYPES_FLAG[instance.name] = instance
         NAMES_FLAG.append(instance.name)
 
-    for element in xml.getElementsByTagName('compound'):
-        instance = Compound(element, ntypes)
-        assert instance.name not in TYPES_COMPOUND
-        TYPES_COMPOUND[instance.name] = instance
-        NAMES_COMPOUND.append(instance.name)
+    for element in xml.getElementsByTagName('struct'):
+        instance = Struct(element, ntypes)
+        assert instance.name not in TYPES_STRUCT
+        TYPES_STRUCT[instance.name] = instance
+        NAMES_STRUCT.append(instance.name)
 
     for element in xml.getElementsByTagName('niobject'):
         instance = Block(element, ntypes)
@@ -1049,11 +1049,11 @@ def validate_xml():  # type: () -> bool
     val = lambda x, y: x and y and len(x) == len(y) and all(n for n in y)
     versions = val(TYPES_VERSION, NAMES_VERSION)
     basics = val(TYPES_BASIC, NAMES_BASIC)
-    compounds = val(TYPES_COMPOUND, NAMES_COMPOUND)
+    structs = val(TYPES_STRUCT, NAMES_STRUCT)
     blocks = val(TYPES_BLOCK, NAMES_BLOCK)
     enums = val(TYPES_ENUM, NAMES_ENUM)
     flags = val(TYPES_FLAG, NAMES_FLAG)
-    res = (versions and basics and compounds and blocks and enums and flags)
+    res = (versions and basics and structs and blocks and enums and flags)
     if not res:
         logger = logging.getLogger('nifxml')
         logger.error("The parsing of nif.xml did not pass validation.")
