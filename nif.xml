@@ -8117,8 +8117,8 @@
         using the default values.
         Name should be 'INV' (without the quotes).
         For rotations, a short of "4712" appears as "4.712" but "959" appears as "0.959"  meshes\weapons\daedric\daedricbowskinned.nif
-        <field name="Rotation X" type="ushort" default="4712"></field>
-        <field name="Rotation Y" type="ushort" default="6283"></field>
+        <field name="Rotation X" type="ushort" default="0"></field>
+        <field name="Rotation Y" type="ushort" default="0"></field>
         <field name="Rotation Z" type="ushort" default="0"></field>
         <field name="Zoom" type="float" default="1.0">Zoom factor.</field>
     </niobject>
