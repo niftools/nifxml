@@ -2603,7 +2603,7 @@
         <field name="Num Strips" type="uint" />
         <field name="Strips" type="ushort" length="Num Strips">Length of strips longer than one triangle.</field>
         <field name="Num Welding Info" type="uint">Generally the same as Num Indices field.</field>
-        <field name="Welding Info" type="ushort" length="Num Welding Info" />
+        <field name="Welding Info" type="bhkWeldInfo" length="Num Welding Info" />
     </struct>
 
     <struct name="bhkMalleableConstraintCInfo" module="BSHavok" versions="#BETHESDA#">
