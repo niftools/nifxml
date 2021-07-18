@@ -1734,7 +1734,14 @@
         <field name="z" type="hfloat">Third coordinate.</field>
     </struct>
 
-    <struct name="ByteVector3" size="3" convertible="Vector3" module="NiMain">
+    <struct name="UshortVector3" size="6" convertible="Vector3" module="NiMain">
+        A vector in 3D space (x,y,z).
+        <field name="x" type="ushort">First coordinate.</field>
+        <field name="y" type="ushort">Second coordinate.</field>
+        <field name="z" type="ushort">Third coordinate.</field>
+    </struct>
+
+    <struct name="ByteVector3" size="3" convertible="Vector3 UshortVector3" module="NiMain">
         A vector in 3D space (x,y,z).
         <field name="x" type="byte">First coordinate.</field>
         <field name="y" type="byte">Second coordinate.</field>
@@ -2575,20 +2582,27 @@
         <field name="Translation" type="Vector4">A vector that moves the chunk by the specified amount. W is not used.</field>
         <field name="Rotation" type="hkQuaternion">Rotation. Reference point for rotation is bhkRigidBody translation.</field>
     </struct>
-    
+
+    <bitfield name="bhkWeldInfo" storage="ushort">
+        <member width="5" pos="0" mask="0x001F" name="Angle Edge 1" type="ushort" default="15"/>
+        <member width="5" pos="5" mask="0x03E0" name="Angle Edge 2" type="ushort" default="15" />
+        <member width="5" pos="10" mask="0x7C00" name="Angle Edge 3" type="ushort" default="15" />
+        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="false">
+    </bitfield>
+
     <struct name="bhkCMSChunk" module="BSHavok" versions="#SKY_AND_LATER#">
         Bethesda extension of hkpCompressedMeshShape::Chunk. A compressed chunk of hkpCompressedMeshShape geometry.
         <field name="Translation" type="Vector4" />
         <field name="Material Index" type="uint">Index of material in bhkCompressedMeshShapeData::Chunk Materials</field>
         <field name="Reference" type="ushort" default="#USHRT_MAX#">Index of another chunk in the chunks list.</field>
         <field name="Transform Index" type="ushort">Index of transformation in bhkCompressedMeshShapeData::Chunk Transforms</field>
-        <field name="Num Vertices" type="uint" />
-        <field name="Vertices" type="ushort" length="Num Vertices" />
+        <field name="Num Vertices" type="uint">Number of vertices, multiplied by 3.</field>
+        <field name="Vertices" type="UshortVector3" length="Num Vertices #DIV# 3">Vertex positions in havok coordinates*1000.</field>
         <field name="Num Indices" type="uint" />
-        <field name="Indices" type="ushort" length="Num Indices" />
+        <field name="Indices" type="ushort" length="Num Indices">Vertex indices as used by strips.</field>
         <field name="Num Strips" type="uint" />
-        <field name="Strips" type="ushort" length="Num Strips" />
-        <field name="Num Welding Info" type="uint" />
+        <field name="Strips" type="ushort" length="Num Strips">Length of strips longer than one triangle.</field>
+        <field name="Num Welding Info" type="uint">Generally the same as Num Indices field.</field>
         <field name="Welding Info" type="ushort" length="Num Welding Info" />
     </struct>
 
