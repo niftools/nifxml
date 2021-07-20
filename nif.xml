@@ -2587,7 +2587,7 @@
         <member width="5" pos="0" mask="0x001F" name="Angle Edge 1" type="ushort" default="15"/>
         <member width="5" pos="5" mask="0x03E0" name="Angle Edge 2" type="ushort" default="15" />
         <member width="5" pos="10" mask="0x7C00" name="Angle Edge 3" type="ushort" default="15" />
-        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="false">
+        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="false" />
     </bitfield>
 
     <struct name="bhkCMSChunk" module="BSHavok" versions="#SKY_AND_LATER#">
