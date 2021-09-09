@@ -2048,17 +2048,17 @@
 
     <bitflags name="VertexAttribute" storage="ushort" prefix="VF" versions="#SSE# #FO4# #F76#">
         The bits of BSVertexDesc that describe the enabled vertex attributes.
-        <option bit="1" name="Vertex" />
-        <option bit="2" name="UVs" />
-        <option bit="3" name="UVs_2" />
-        <option bit="4" name="Normals" />
-        <option bit="5" name="Tangents" />
-        <option bit="6" name="Vertex_Colors" />
-        <option bit="7" name="Skinned" />
-        <option bit="8" name="Land_Data" />
-        <option bit="9" name="Eye_Data" />
-        <option bit="10" name="Instance" />
-        <option bit="11" name="Full_Precision" />
+        <option bit="0" name="Vertex" />
+        <option bit="1" name="UVs" />
+        <option bit="2" name="UVs_2" />
+        <option bit="3" name="Normals" />
+        <option bit="4" name="Tangents" />
+        <option bit="5" name="Vertex_Colors" />
+        <option bit="6" name="Skinned" />
+        <option bit="7" name="Land_Data" />
+        <option bit="8" name="Eye_Data" />
+        <option bit="9" name="Instance" />
+        <option bit="10" name="Full_Precision" />
     </bitflags>
 
     <bitfield name="BSVertexDesc" storage="uint64" versions="#SSE# #FO4# #F76#">
