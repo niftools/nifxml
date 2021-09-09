@@ -3377,14 +3377,14 @@
         <field name="Flags" type="bhkCOFlags" default="1">
             OB-FO3: Add 0x28 (SET_LOCAL | USE_VEL) for ANIM_STATIC layer objects.
             Post-FO3: Always add 0x80 (SYNC_ON_UPDATE).
-            <default type="bhkCollisionObject" value="0x81" />
-            <default type="bhkCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
-            <default type="bhkPCollisionObject" value="0x81" />
-            <default type="bhkPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
-            <default type="bhkSPCollisionObject" value="0x81" />
-            <default type="bhkSPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
-            <default type="bhkBlendCollisionObject" value="0x89" />
-            <default type="bhkBlendCollisionObject" value="0x9" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default onlyT="bhkCollisionObject" value="0x81" />
+            <default onlyT="bhkCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default onlyT="bhkPCollisionObject" value="0x81" />
+            <default onlyT="bhkPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default onlyT="bhkSPCollisionObject" value="0x81" />
+            <default onlyT="bhkSPCollisionObject" value="0x1" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
+            <default onlyT="bhkBlendCollisionObject" value="0x89" />
+            <default onlyT="bhkBlendCollisionObject" value="0x9" versions="V20_2_0_7_FO3 V20_0_0_5_OBL" />
         </field>
         <field name="Body" type="Ref" template="bhkWorldObject" />
     </niobject>
@@ -3417,40 +3417,40 @@
             BSTreeNode: 0x8080E (pre-FO4), 0x400E (FO4)
             BSLeafAnimNode: 0x808000E (pre-FO4), 0x500E (FO4)
             BSDamageStage, BSBlastNode: 0x8000F (pre-FO4), 0x2000000F (FO4)
-            <default type="NiNode" value="0xE" />
-            <default type="NiNode" value="0x8000E" versions="V20_2_0_7_FO3" />
-            <default type="NiLight" value="0xE" />
-            <default type="NiLight" value="0x8000E" versions="V20_2_0_7_FO3" />
-            <default type="BSMultiBoundNode" value="0xE" />
-            <default type="BSMultiBoundNode" value="0x8080E" versions="V20_2_0_7_FO3" />
-            <default type="BSTriShape" value="0xE" />
-            <default type="BSTriShape" value="0x8000E" versions="V20_2_0_7_SSE" />
-            <default type="BSSubIndexTriShape" value="0xE" />
-            <default type="BSMeshLODTriShape" value="0x100E" />
-            <default type="BSFadeNode" value="0x8000E" />
-            <default type="NiParticleSystem" value="0x8000E" />
-            <default type="BSMasterParticleSystem" value="0x8000E" />
-            <default type="NiParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
-            <default type="BSMasterParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
-            <default type="BSStripParticleSystem" value="0x8000E" />
-            <default type="NiTriShape" value="0x8000E" />
-            <default type="NiTriStrips" value="0x8000E" />
-            <default type="BSSegmentedTriShape" value="0xE" />
-            <default type="BSSegmentedTriShape" value="0x8000E" versions="V20_2_0_7_FO3" />
-            <default type="BSLeafAnimNode" value="0x808000E" />
-            <default type="BSLeafAnimNode" value="0x500E" versions="V20_2_0_7_FO4" />
-            <default type="BSTreeNode" value="0x8080E" />
-            <default type="BSTreeNode" value="0x400E" versions="V20_2_0_7_FO4" />
-            <default type="BSDebrisNode" value="0x8000F" />
-            <default type="BSBlastNode" value="0x8000F" />
-            <default type="BSBlastNode" value="0x2000000F" versions="V20_2_0_7_FO4" />
-            <default type="BSDamageStage" value="0x8000F" />
-            <default type="BSDamageStage" value="0x2000000F" versions="V20_2_0_7_FO4" />
-            <default type="BSOrderedNode" value="0x8200E" />
-            <default type="BSOrderedNode" value="0x200E" versions="V20_2_0_7_FO4" />
-            <default type="BSOrderedNode" value="0x8000E" versions="V20_2_0_7_FO3" />
-            <default type="BSLODTriShape" value="0x800000E" versions="V20_2_0_7_SSE" />
-            <default type="BSLODTriShape" value="0x808000E" versions="V20_2_0_7_SKY" />
+            <default onlyT="NiNode" value="0xE" />
+            <default onlyT="NiNode" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default onlyT="NiLight" value="0xE" />
+            <default onlyT="NiLight" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default onlyT="BSMultiBoundNode" value="0xE" />
+            <default onlyT="BSMultiBoundNode" value="0x8080E" versions="V20_2_0_7_FO3" />
+            <default onlyT="BSTriShape" value="0xE" />
+            <default onlyT="BSTriShape" value="0x8000E" versions="V20_2_0_7_SSE" />
+            <default onlyT="BSSubIndexTriShape" value="0xE" />
+            <default onlyT="BSMeshLODTriShape" value="0x100E" />
+            <default onlyT="BSFadeNode" value="0x8000E" />
+            <default onlyT="NiParticleSystem" value="0x8000E" />
+            <default onlyT="BSMasterParticleSystem" value="0x8000E" />
+            <default onlyT="NiParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSMasterParticleSystem" value="0xE" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSStripParticleSystem" value="0x8000E" />
+            <default onlyT="NiTriShape" value="0x8000E" />
+            <default onlyT="NiTriStrips" value="0x8000E" />
+            <default onlyT="BSSegmentedTriShape" value="0xE" />
+            <default onlyT="BSSegmentedTriShape" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default onlyT="BSLeafAnimNode" value="0x808000E" />
+            <default onlyT="BSLeafAnimNode" value="0x500E" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSTreeNode" value="0x8080E" />
+            <default onlyT="BSTreeNode" value="0x400E" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSDebrisNode" value="0x8000F" />
+            <default onlyT="BSBlastNode" value="0x8000F" />
+            <default onlyT="BSBlastNode" value="0x2000000F" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSDamageStage" value="0x8000F" />
+            <default onlyT="BSDamageStage" value="0x2000000F" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSOrderedNode" value="0x8200E" />
+            <default onlyT="BSOrderedNode" value="0x200E" versions="V20_2_0_7_FO4" />
+            <default onlyT="BSOrderedNode" value="0x8000E" versions="V20_2_0_7_FO3" />
+            <default onlyT="BSLODTriShape" value="0x800000E" versions="V20_2_0_7_SSE" />
+            <default onlyT="BSLODTriShape" value="0x808000E" versions="V20_2_0_7_SKY" />
         </field>
         <field name="Flags" type="ushort" since="3.0" vercond="#BSVER# #LTE# 26">Basic flags for AV objects.</field>
         <field name="Translation" type="Vector3">The translation vector.</field>
@@ -3517,32 +3517,32 @@
         <field name="Name" type="string">Used to locate the modifier.</field>
         <field name="Order" type="NiPSysModifierOrder" default="ORDER_GENERAL">
             Modifier's priority in the particle modifier chain.
-            <default type="NiPSysAgeDeathModifier" value="ORDER_KILLOLDPARTICLES" />
-            <default type="NiPSysMeshEmitter" value="ORDER_EMITTER" />
-            <default type="NiPSysVolumeEmitter" value="ORDER_EMITTER" />
-            <default type="NiPSysSpawnModifier" value="ORDER_EMITTER" />
-            <default type="NiPSysColorModifier" value="ORDER_GENERAL" />
-            <default type="NiPSysGrowFadeModifier" value="ORDER_GENERAL" />
-            <default type="NiPSysRotationModifier" value="ORDER_GENERAL" />
-            <default type="NiPSysBombModifier" value="ORDER_FORCE" />
-            <default type="NiPSysDragModifier" value="ORDER_FORCE" />
-            <default type="NiPSysFieldModifier" value="ORDER_FORCE" />
-            <default type="NiPSysGravityModifier" value="ORDER_FORCE" />
-            <default type="NiPSysColliderManager" value="ORDER_COLLIDER" />
-            <default type="NiPSysPositionModifier" value="ORDER_POS_UPDATE" />
-            <default type="NiPSysMeshUpdateModifier" value="ORDER_POSTPOS_UPDATE" />
-            <default type="NiPSysBoundUpdateModifier" value="ORDER_BOUND_UPDATE" />
-            <default type="BSPSysInheritVelocityModifier" value="ORDER_EMITTER" />
-            <default type="BSPSysScaleModifier" value="ORDER_GENERAL" />
-            <default type="BSPSysSimpleColorModifier" value="ORDER_GENERAL" />
-            <default type="BSPSysSubTexModifier" value="ORDER_GENERAL" />
-            <default type="BSParentVelocityModifier" value="ORDER_GENERAL" />
-            <default type="BSWindModifier" value="ORDER_FORCE" />
-            <default type="BSPSysRecycleBoundModifier" value="ORDER_POSTPOS_UPDATE" />
-            <default type="BSPSysLODModifier" value="ORDER_BSLOD" />
-            <default type="BSPSysStripUpdateModifier" value="ORDER_FO3_BSSTRIPUPDATE" versions="V20_2_0_7_FO3" />
-            <default type="BSPSysStripUpdateModifier" value="ORDER_SK_BSSTRIPUPDATE" versions="V20_2_0_7_SKY V20_2_0_7_SSE" />
-            <default type="NiPSysPartSpawnModifier" value="ORDER_WORLDSHIFT_PARTSPAWN" />
+            <default onlyT="NiPSysAgeDeathModifier" value="ORDER_KILLOLDPARTICLES" />
+            <default onlyT="NiPSysMeshEmitter" value="ORDER_EMITTER" />
+            <default onlyT="NiPSysVolumeEmitter" value="ORDER_EMITTER" />
+            <default onlyT="NiPSysSpawnModifier" value="ORDER_EMITTER" />
+            <default onlyT="NiPSysColorModifier" value="ORDER_GENERAL" />
+            <default onlyT="NiPSysGrowFadeModifier" value="ORDER_GENERAL" />
+            <default onlyT="NiPSysRotationModifier" value="ORDER_GENERAL" />
+            <default onlyT="NiPSysBombModifier" value="ORDER_FORCE" />
+            <default onlyT="NiPSysDragModifier" value="ORDER_FORCE" />
+            <default onlyT="NiPSysFieldModifier" value="ORDER_FORCE" />
+            <default onlyT="NiPSysGravityModifier" value="ORDER_FORCE" />
+            <default onlyT="NiPSysColliderManager" value="ORDER_COLLIDER" />
+            <default onlyT="NiPSysPositionModifier" value="ORDER_POS_UPDATE" />
+            <default onlyT="NiPSysMeshUpdateModifier" value="ORDER_POSTPOS_UPDATE" />
+            <default onlyT="NiPSysBoundUpdateModifier" value="ORDER_BOUND_UPDATE" />
+            <default onlyT="BSPSysInheritVelocityModifier" value="ORDER_EMITTER" />
+            <default onlyT="BSPSysScaleModifier" value="ORDER_GENERAL" />
+            <default onlyT="BSPSysSimpleColorModifier" value="ORDER_GENERAL" />
+            <default onlyT="BSPSysSubTexModifier" value="ORDER_GENERAL" />
+            <default onlyT="BSParentVelocityModifier" value="ORDER_GENERAL" />
+            <default onlyT="BSWindModifier" value="ORDER_FORCE" />
+            <default onlyT="BSPSysRecycleBoundModifier" value="ORDER_POSTPOS_UPDATE" />
+            <default onlyT="BSPSysLODModifier" value="ORDER_BSLOD" />
+            <default onlyT="BSPSysStripUpdateModifier" value="ORDER_FO3_BSSTRIPUPDATE" versions="V20_2_0_7_FO3" />
+            <default onlyT="BSPSysStripUpdateModifier" value="ORDER_SK_BSSTRIPUPDATE" versions="V20_2_0_7_SKY V20_2_0_7_SSE" />
+            <default onlyT="NiPSysPartSpawnModifier" value="ORDER_WORLDSHIFT_PARTSPAWN" />
         </field>
         <field name="Target" type="Ptr" template="NiParticleSystem">NiParticleSystem parent of this modifier.</field>
         <field name="Active" type="bool" default="1">Whether or not the modifier is active.</field>
@@ -7508,15 +7508,15 @@
         <field name="Name" type="NiFixedString" />
         <field name="Type" type="PSForceType">
             The force type is set by each derived class and cannot be changed.
-            <default type="NiPSBombForce" value="FORCE_BOMB" />
-            <default type="NiPSDragForce" value="FORCE_DRAG" />
-            <default type="NiPSAirFieldForce" value="FORCE_AIR_FIELD" />
-            <default type="NiPSDragFieldForce" value="FORCE_DRAG_FIELD" />
-            <default type="NiPSGravityFieldForce" value="FORCE_GRAVITY_FIELD" />
-            <default type="NiPSRadialFieldForce" value="FORCE_RADIAL_FIELD" />
-            <default type="NiPSTurbulenceFieldForce" value="FORCE_TURBULENCE_FIELD" />
-            <default type="NiPSVortexFieldForce" value="FORCE_VORTEX_FIELD" />
-            <default type="NiPSGravityForce" value="FORCE_GRAVITY" />
+            <default onlyT="NiPSBombForce" value="FORCE_BOMB" />
+            <default onlyT="NiPSDragForce" value="FORCE_DRAG" />
+            <default onlyT="NiPSAirFieldForce" value="FORCE_AIR_FIELD" />
+            <default onlyT="NiPSDragFieldForce" value="FORCE_DRAG_FIELD" />
+            <default onlyT="NiPSGravityFieldForce" value="FORCE_GRAVITY_FIELD" />
+            <default onlyT="NiPSRadialFieldForce" value="FORCE_RADIAL_FIELD" />
+            <default onlyT="NiPSTurbulenceFieldForce" value="FORCE_TURBULENCE_FIELD" />
+            <default onlyT="NiPSVortexFieldForce" value="FORCE_VORTEX_FIELD" />
+            <default onlyT="NiPSGravityForce" value="FORCE_GRAVITY" />
         </field>
         <field name="Active" type="bool" />
     </niobject>
