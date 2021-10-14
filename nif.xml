@@ -28,6 +28,10 @@
             Note: A unique game name should only have `{{}}` around it once.
     -->
 
+    <verattr name="num" access="#VER#" index="0" />
+    <verattr name="user" access="#USER#" index="1" />
+    <verattr name="bsver" access="#BSVER#" index="2" />
+
     <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
     <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
     <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
@@ -199,7 +203,7 @@
         <range token="#FPM_1000#" string="-1000.0:1000.0" />
     </token>
 
-    <token name="global" attrs="vercond">
+    <token name="global" attrs="vercond access">
         Global Tokens.
         NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
         <global token="#VER#" string="Version" />
@@ -2208,7 +2212,7 @@
         <field name="Entry Properties" type="FurnitureEntryPoints" vercond="#BS_GT_FO3#" />
     </struct>
 
-    <bitfield name="bhkWeldInfo" storage="ushort">
+    <bitfield name="bhkWeldInfo" storage="ushort" module="BSHavok">
         <member width="5" pos="0" mask="0x001F" name="Angle Edge 1" type="ushort" default="15"/>
         <member width="5" pos="5" mask="0x03E0" name="Angle Edge 2" type="ushort" default="15" />
         <member width="5" pos="10" mask="0x7C00" name="Angle Edge 3" type="ushort" default="15" />
@@ -3355,7 +3359,7 @@
         <field name="Bounding Volume" type="BoundingVolume" cond="Use ABV == 1" />
     </niobject>
 
-    <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO" versions="#BETHESDA#">
+    <bitflags name="bhkCOFlags" storage="ushort" prefix="BHKCO" versions="#BETHESDA#" module="BSHavok">
         bhkNiCollisionObject flags.
         0x100 and 0x200 are only for bhkBlendCollisionObject
         <option bit="0" name="ACTIVE" />
@@ -8088,7 +8092,7 @@
         <!--<option value="6" name="NONE" />-->
     </enum>
 
-    <enum name="bhkCMSMatType" storage="byte" prefix="CMS">
+    <enum name="bhkCMSMatType" storage="byte" prefix="CMS" module="BSHavok">
         hkpCompressedMeshShape::MaterialType
         <option value="1" name="SINGLE_VALUE_PER_CHUNK">Chunk builder makes sure that only chunks with the same material are created.</option>
         <!--<option value="2" name="ONE_BYTE_PER_TRIANGLE" />-->
