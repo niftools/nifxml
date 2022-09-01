@@ -28,84 +28,6 @@
             Note: A unique game name should only have `{{}}` around it once.
     -->
 
-    <verattr name="num" access="#VER#" index="0" />
-    <verattr name="user" access="#USER#" index="1" />
-    <verattr name="bsver" access="#BSVER#" index="2" />
-
-    <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
-    <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
-    <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
-    <version id="V3_1" num="3.1" supported="false">Dark Age of Camelot, Star Trek: Bridge Commander</version>
-    <version id="V3_3_0_13" num="3.3.0.13">{{Munch's Oddysee}}, Oblivion</version>
-    <version id="V4_0_0_0" num="4.0.0.0">Freedom Force</version>
-    <version id="V4_0_0_2" num="4.0.0.2">{{Morrowind}}, {{Freedom Force}}</version>
-    <version id="V4_1_0_12" num="4.1.0.12">Dark Age of Camelot</version>
-    <version id="V4_2_0_2" num="4.2.0.2">Civilization IV</version>
-    <version id="V4_2_1_0" num="4.2.1.0">Dark Age of Camelot, Civilization IV</version>
-    <version id="V4_2_2_0" num="4.2.2.0">{{Culpa Innata}}, Civilization IV, Dark Age of Camelot, Empire Earth II</version>
-    <version id="V10_0_1_0" num="10.0.1.0">{{Zoo Tycoon 2}}, Civilization IV, Oblivion</version>
-    <version id="V10_0_1_2" num="10.0.1.2" bsver="1 3">Oblivion</version>
-    <version id="V10_1_0_0" num="10.1.0.0">{{Freedom Force vs. the 3rd Reich}}, {{Axis and Allies}}, {{Empire Earth II}}, {{Kohan 2}}, {{Sid Meier's Pirates!}}, Dark Age of Camelot, Civilization IV, Wildlife Park 2, The Guild 2, NeoSteam</version>
-    <version id="V10_1_0_101" num="10.1.0.101" user="10" bsver="4">Oblivion</version>
-    <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
-    <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
-    <version id="V10_2_0_0__1" num="10.2.0.0" user="1">{{Blood Bowl}}</version>
-    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
-    <version id="V10_2_0_1" num="10.2.0.1" custom="true">WorldShift</version>
-    <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
-    <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
-    <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
-    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
-    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Fallout 3</version>
-    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">{{Oblivion}}</version>
-    <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
-    <version id="V20_2_0_7" num="20.2.0.7" user="0">{{Florensia}}, Empire Earth III, Atlantica Online, IRIS Online, Wizard101</version>
-    <version id="V20_2_0_7__11_1" num="20.2.0.7" user="11" bsver="14">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_2" num="20.2.0.7" user="11" bsver="16" ext="rdt">Fallout 3</version>
-    <version id="V20_2_0_7__11_3" num="20.2.0.7" user="11" bsver="21">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_4" num="20.2.0.7" user="11" bsver="24">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_5" num="20.2.0.7" user="11" bsver="25">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_6" num="20.2.0.7" user="11" bsver="26">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_7" num="20.2.0.7" user="11" bsver="27 28">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7__11_8" num="20.2.0.7" user="11" bsver="30 31 32 33">Fallout 3, Fallout NV</version>
-    <version id="V20_2_0_7_FO3" num="20.2.0.7" user="11" bsver="34" ext="rdt">{{Fallout 3}}, {{Fallout NV}}</version>
-    <version id="V20_2_0_7_SKY" num="20.2.0.7" user="12" bsver="83" ext="bto btr">{{Skyrim}}</version>
-    <version id="V20_2_0_7_SSE" num="20.2.0.7" user="12" bsver="100" ext="bto btr">{{Skyrim SE}}</version>
-    <version id="V20_2_0_7_FO4" num="20.2.0.7" user="12" bsver="130" ext="bto btr">{{Fallout 4}}</version>
-    <version id="V20_2_0_7_FO4_2" num="20.2.0.7" user="12" bsver="132 139" ext="bto btr" supported="false">Fallout 4 (LS_Mirelurk.nif, Screen.nif)</version>
-    <version id="V20_2_0_7_F76" num="20.2.0.7" user="12" bsver="155" ext="bto">{{Fallout 76}}</version>
-    <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">{{Empire Earth III}}, {{FFT Online}}, Atlantica Online, IRIS Online, Wizard101</version>
-    <version id="V20_3_0_1" num="20.3.0.1">Emerge</version>
-    <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
-    <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
-    <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
-    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000)</version>
-    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">{{Divinity 2}}</version>
-    <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
-    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
-    <version id="V20_6_5_0" num="20.6.5.0" supported="false">Epic Mickey</version>
-    <version id="V20_6_5_0_DEM" num="20.6.5.0" user="15" supported="false">Epic Mickey</version>
-    <version id="V20_6_5_0_DEM2" num="20.6.5.0" user="17" supported="false">Epic Mickey 2</version>
-    <version id="V30_0_0_2" num="30.0.0.2">Emerge</version>
-    <version id="V30_1_0_1" num="30.1.0.1">Emerge</version>
-    <version id="V30_1_0_3" num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
-    <version id="V30_2_0_3" num="30.2.0.3">Ghost In The Shell: First Assault, MapleStory 2</version>
-
-    <!-- BSMain = 0x1fff384d000 -->
-    <module name="NiMain" priority="0" />
-    <module name="NiAnimation" priority="25" depends="NiMain" />
-    <module name="NiParticle" priority="50" depends="NiMain NiAnimation" />
-    <module name="NiMesh" priority="70" depends="NiMain NiAnimation" />
-    <module name="NiPSParticle" priority="80" depends="NiMain NiMesh NiAnimation" />
-    <module name="NiPhysX" priority="90" depends="NiMain NiMesh NiPSParticle" />
-    <module name="NiLegacy" priority="99" depends="NiMain NiAnimation NiParticle" />
-    <module name="BSMain" priority="100" depends="NiMain" custom="true" />
-    <module name="BSAnimation" priority="125" depends="NiMain NiAnimation BSMain" custom="true" />
-    <module name="BSParticle" priority="150" depends="NiMain NiParticle BSMain" custom="true" />
-    <module name="BSHavok" priority="190" depends="NiMain BSMain" custom="true" />
-    <module name="BSLegacy" priority="199" depends="NiMain NiLegacy" custom="true" />
-    <module name="NiCustom" priority="255" depends="NiMain NiParticle" custom="true" />
-
     <token name="verexpr" attrs="vercond">
         Commonly used version expressions.
         NOTE: `string` should be wrapped in parentheses for string subsitutions in larger expressions.
@@ -137,7 +59,8 @@
     </token>
 
     <token name="condexpr" attrs="cond">
-        <condexpr token="#FLT_MAX#" string="0x7F7FFFFF" />
+        <condexpr token="#FLT_MAX#" string="3.402823466e+38" />
+        <condexpr token="#INF#" string="INFINITY" />
         <condexpr token="#BSSTREAMHEADER#" string="(Version #EQ# 10.0.1.2) #OR# ((Version #EQ# 20.2.0.7) #OR# (Version #EQ# 20.0.0.5) #OR# ((Version #GTE# 10.1.0.0) #AND# (Version #LTE# 20.0.0.4) #AND# (User Version #LTE# 11))) #AND# (User Version #GTE# 3)" />
     </token>
 
@@ -232,6 +155,84 @@
         <operator token="#BITAND#" string="&amp;" />
         <operator token="#BITOR#" string="|" />
     </token>
+
+    <verattr name="num" access="#VER#" index="0" />
+    <verattr name="user" access="#USER#" index="1" />
+    <verattr name="bsver" access="#BSVER#" index="2" />
+
+    <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
+    <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
+    <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
+    <version id="V3_1" num="3.1" supported="false">Dark Age of Camelot, Star Trek: Bridge Commander</version>
+    <version id="V3_3_0_13" num="3.3.0.13">{{Munch's Oddysee}}, Oblivion</version>
+    <version id="V4_0_0_0" num="4.0.0.0">Freedom Force</version>
+    <version id="V4_0_0_2" num="4.0.0.2">{{Morrowind}}, {{Freedom Force}}</version>
+    <version id="V4_1_0_12" num="4.1.0.12">Dark Age of Camelot</version>
+    <version id="V4_2_0_2" num="4.2.0.2">Civilization IV</version>
+    <version id="V4_2_1_0" num="4.2.1.0">Dark Age of Camelot, Civilization IV</version>
+    <version id="V4_2_2_0" num="4.2.2.0">{{Culpa Innata}}, Civilization IV, Dark Age of Camelot, Empire Earth II</version>
+    <version id="V10_0_1_0" num="10.0.1.0">{{Zoo Tycoon 2}}, Civilization IV, Oblivion</version>
+    <version id="V10_0_1_2" num="10.0.1.2" bsver="1 3">Oblivion</version>
+    <version id="V10_1_0_0" num="10.1.0.0">{{Freedom Force vs. the 3rd Reich}}, {{Axis and Allies}}, {{Empire Earth II}}, {{Kohan 2}}, {{Sid Meier's Pirates!}}, Dark Age of Camelot, Civilization IV, Wildlife Park 2, The Guild 2, NeoSteam</version>
+    <version id="V10_1_0_101" num="10.1.0.101" user="10" bsver="4">Oblivion</version>
+    <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
+    <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
+    <version id="V10_2_0_0__1" num="10.2.0.0" user="1">{{Blood Bowl}}</version>
+    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
+    <version id="V10_2_0_1" num="10.2.0.1" custom="true">WorldShift</version>
+    <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
+    <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
+    <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
+    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
+    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Fallout 3</version>
+    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">{{Oblivion}}</version>
+    <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
+    <version id="V20_2_0_7" num="20.2.0.7" user="0">{{Florensia}}, Empire Earth III, Atlantica Online, IRIS Online, Wizard101</version>
+    <version id="V20_2_0_7__11_1" num="20.2.0.7" user="11" bsver="14">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_2" num="20.2.0.7" user="11" bsver="16" ext="rdt">Fallout 3</version>
+    <version id="V20_2_0_7__11_3" num="20.2.0.7" user="11" bsver="21">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_4" num="20.2.0.7" user="11" bsver="24">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_5" num="20.2.0.7" user="11" bsver="25">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_6" num="20.2.0.7" user="11" bsver="26">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_7" num="20.2.0.7" user="11" bsver="27 28">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7__11_8" num="20.2.0.7" user="11" bsver="30 31 32 33">Fallout 3, Fallout NV</version>
+    <version id="V20_2_0_7_FO3" num="20.2.0.7" user="11" bsver="34" ext="rdt">{{Fallout 3}}, {{Fallout NV}}</version>
+    <version id="V20_2_0_7_SKY" num="20.2.0.7" user="12" bsver="83" ext="bto btr">{{Skyrim}}</version>
+    <version id="V20_2_0_7_SSE" num="20.2.0.7" user="12" bsver="100" ext="bto btr">{{Skyrim SE}}</version>
+    <version id="V20_2_0_7_FO4" num="20.2.0.7" user="12" bsver="130" ext="bto btr">{{Fallout 4}}</version>
+    <version id="V20_2_0_7_FO4_2" num="20.2.0.7" user="12" bsver="132 139" ext="bto btr" supported="false">Fallout 4 (LS_Mirelurk.nif, Screen.nif)</version>
+    <version id="V20_2_0_7_F76" num="20.2.0.7" user="12" bsver="155" ext="bto">{{Fallout 76}}</version>
+    <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">{{Empire Earth III}}, {{FFT Online}}, Atlantica Online, IRIS Online, Wizard101</version>
+    <version id="V20_3_0_1" num="20.3.0.1">Emerge</version>
+    <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
+    <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
+    <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
+    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000)</version>
+    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">{{Divinity 2}}</version>
+    <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
+    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
+    <version id="V20_6_5_0" num="20.6.5.0" supported="false">Epic Mickey</version>
+    <version id="V20_6_5_0_DEM" num="20.6.5.0" user="15" supported="false">Epic Mickey</version>
+    <version id="V20_6_5_0_DEM2" num="20.6.5.0" user="17" supported="false">Epic Mickey 2</version>
+    <version id="V30_0_0_2" num="30.0.0.2">Emerge</version>
+    <version id="V30_1_0_1" num="30.1.0.1">Emerge</version>
+    <version id="V30_1_0_3" num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
+    <version id="V30_2_0_3" num="30.2.0.3">Ghost In The Shell: First Assault, MapleStory 2</version>
+
+    <!-- BSMain = 0x1fff384d000 -->
+    <module name="NiMain" priority="0" />
+    <module name="NiAnimation" priority="25" depends="NiMain" />
+    <module name="NiParticle" priority="50" depends="NiMain NiAnimation" />
+    <module name="NiMesh" priority="70" depends="NiMain NiAnimation" />
+    <module name="NiPSParticle" priority="80" depends="NiMain NiMesh NiAnimation" />
+    <module name="NiPhysX" priority="90" depends="NiMain NiMesh NiPSParticle" />
+    <module name="NiLegacy" priority="99" depends="NiMain NiAnimation NiParticle" />
+    <module name="BSMain" priority="100" depends="NiMain" custom="true" />
+    <module name="BSAnimation" priority="125" depends="NiMain NiAnimation BSMain" custom="true" />
+    <module name="BSParticle" priority="150" depends="NiMain NiParticle BSMain" custom="true" />
+    <module name="BSHavok" priority="190" depends="NiMain BSMain" custom="true" />
+    <module name="BSLegacy" priority="199" depends="NiMain NiLegacy" custom="true" />
+    <module name="NiCustom" priority="255" depends="NiMain NiParticle" custom="true" />
 
     <!--Basic Types-->
 
@@ -2028,7 +2029,7 @@
         <field name="PS2 K" type="short" default="-75" until="10.4.0.1">K is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.</field>
         <field name="Unknown Short 1" type="ushort" until="4.1.0.12" />
         <!-- NiTextureTransform -->
-        <field name="Has Texture Transform" type="bool" default="false" since="10.1.0.0">Whether or not the texture coordinates are transformed.</field>
+        <field name="Has Texture Transform" type="bool" default="0" since="10.1.0.0">Whether or not the texture coordinates are transformed.</field>
         <field name="Translation" type="TexCoord" cond="Has Texture Transform" since="10.1.0.0">The UV translation.</field>
         <field name="Scale" type="TexCoord" cond="Has Texture Transform" since="10.1.0.0" default="#VEC2_ONE#">The UV scale.</field>
         <field name="Rotation" type="float" default="0.0" cond="Has Texture Transform" since="10.1.0.0">The W axis rotation in texture space.</field>
@@ -2216,7 +2217,7 @@
         <member width="5" pos="0" mask="0x001F" name="Angle Edge 1" type="ushort" default="15"/>
         <member width="5" pos="5" mask="0x03E0" name="Angle Edge 2" type="ushort" default="15" />
         <member width="5" pos="10" mask="0x7C00" name="Angle Edge 3" type="ushort" default="15" />
-        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="false" />
+        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="0" />
     </bitfield>
 
     <struct name="TriangleData" module="BSHavok" versions="#BETHESDA#">
@@ -4197,7 +4198,7 @@
         <field name="Play Backwards" type="bool" since="10.1.0.106" until="10.1.0.106" />
         <field name="Manager" type="Ptr" template="NiControllerManager" since="10.1.0.106">The owner of this sequence.</field>
         <field name="Accum Root Name" type="string" since="10.1.0.106">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</field>
-        <field name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" since="20.3.0.8" />
+        <field name="Accum Flags" type="AccumFlags" default="0x40" since="20.3.0.8" />
         <field name="String Palette" type="Ref" template="NiStringPalette" since="10.1.0.113" until="20.1.0.0" />
         <field name="Anim Notes" type="Ref" template="BSAnimNotes" since="20.2.0.7" vercond="(#BSVER# #GTE# 24) #AND# (#BSVER# #LTE# 28)" />
         <field name="Num Anim Note Arrays" type="ushort" since="20.2.0.7" vercond="#BSVER# #GT# 28" />
@@ -6579,7 +6580,7 @@
         <field name="Lighting Effect 2" type="float" default="2.0" range="#F0_1000#" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</field>
         <field name="Subsurface Rolloff" type="float" default="0.0" range="#F0_10#" vercond="#BS_FO4_2#" />
         <field name="Rimlight Power" type="float" default="#FLT_MAX#" vercond="#BS_FO4_2#" />
-        <field name="Backlight Power" type="float" range="#F0_1000#" cond="Rimlight Power == #FLT_MAX#" vercond="#BS_FO4_2#" />
+        <field name="Backlight Power" type="float" range="#F0_1000#" cond="(Rimlight Power #GTE# #FLT_MAX#) #AND# (Rimlight Power #LT# #INF#)" vercond="#BS_FO4_2#" />
         <field name="Grayscale to Palette Scale" type="float" default="1.0" range="#F0_1#" vercond="#BS_GTE_130#" />
         <field name="Fresnel Power" type="float" default="5.0" range="#F_PNZ#" vercond="#BS_GTE_130#" />
         <field name="Wetness" type="BSSPWetnessParams" vercond="#BS_GTE_130#" />
@@ -8016,7 +8017,7 @@
         <field name="Cycle Type" type="CycleType" />
         <field name="Frequency" type="float" default="1.0" />
         <field name="Accum Root Name" type="NiFixedString">The name of the NiAVObject serving as the accumulation root. This is where all accumulated translations, scales, and rotations are applied.</field>
-        <field name="Accum Flags" type="AccumFlags" default="ACCUM_X_FRONT" />
+        <field name="Accum Flags" type="AccumFlags" default="0x40" />
     </niobject>
 
     <bitflags name="NiShadowGeneratorFlags" storage="ushort">
