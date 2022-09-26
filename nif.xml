@@ -2853,7 +2853,7 @@
             A good choice is 5% - 20% of the smallest diameter of the object.
         </field>
         <field name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</field>
-        <field name="Enable Deactivation" type="bool" default="1" />
+        <field name="Deactivator Type" type="hkDeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</field>
         <field name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</field>
         <field name="Quality Type" type="hkQualityType" default="MO_QUAL_FIXED">The type of interaction with other objects.</field>
         <field name="Auto Remove Level" type="byte" />
@@ -2886,7 +2886,7 @@
         <field name="Max Linear Velocity" type="float" default="104.4">Maximal linear velocity.</field>
         <field name="Max Angular Velocity" type="float" default="31.57">Maximal angular velocity.</field>
         <field name="Motion System" type="hkMotionType" default="MO_SYS_DYNAMIC">Motion system? Overrides Quality when on Keyframed?</field>
-        <field name="Enable Deactivation" type="bool" default="1" />
+        <field name="Deactivator Type" type="hkDeactivatorType" default="DEACTIVATOR_NEVER">The initial deactivator type of the body.</field>
         <field name="Solver Deactivation" type="hkSolverDeactivation" default="SOLVER_DEACTIVATION_OFF">How aggressively the engine will try to zero the velocity for slow objects. This does not save CPU.</field>
         <field name="Unused 03" type="byte" />
         <field name="Penetration Depth" type="float" default="0.15">
