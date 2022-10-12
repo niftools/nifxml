@@ -274,6 +274,10 @@
         An unsigned 8-bit integer.
     </basic>
 
+    <basic name="normbyte" boolean="false" size="1">
+        A float in the range -1.0:1.0, stored as a byte.
+    </basic>
+
     <basic name="bool" boolean="true" integral="true" countable="false">
         A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
     </basic>
@@ -1750,9 +1754,9 @@
 
     <struct name="ByteVector3" size="3" convertible="Vector3 UshortVector3" module="NiMain">
         A vector in 3D space (x,y,z).
-        <field name="x" type="byte">First coordinate.</field>
-        <field name="y" type="byte">Second coordinate.</field>
-        <field name="z" type="byte">Third coordinate.</field>
+        <field name="x" type="normbyte">First coordinate.</field>
+        <field name="y" type="normbyte">Second coordinate.</field>
+        <field name="z" type="normbyte">Third coordinate.</field>
     </struct>
 
     <struct name="Vector4" size="16" module="NiMain">
@@ -2095,9 +2099,9 @@
 
 		<field name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
 		<field name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
-		<field name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x8" />
+		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8" />
 		<field name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
-		<field name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<field name="Bitangent Z" type="normbyte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
 		<field name="Bone Weights" type="hfloat" length="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Bone Indices" type="byte" length="4" cond="#ARG# #BITAND# 0x40" />
@@ -2110,9 +2114,9 @@
 		<field name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x11) == 0x1" />
 		<field name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
 		<field name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
-		<field name="Bitangent Y" type="byte" cond="#ARG# #BITAND# 0x8" />
+		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8" />
 		<field name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
-		<field name="Bitangent Z" type="byte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
+		<field name="Bitangent Z" type="normbyte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
 		<field name="Bone Weights" type="hfloat" length="4" cond="#ARG# #BITAND# 0x40" />
 		<field name="Bone Indices" type="byte" length="4" cond="#ARG# #BITAND# 0x40" />
