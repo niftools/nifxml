@@ -7063,73 +7063,79 @@
         <option value="2" name="CLONING_BLANK_COPY">Create a copy of this object for use with the newly cloned stream, leaving some of the data to be written later.</option>
     </enum>
 
-    <enum name="ComponentFormat" storage="uint" since="V20_5_0_0">
+    <enum name="ComponentType" storage="byte" since="V20_5_0_0">
         The data format of components.
-        <option value="0x00000000" name="F_UNKNOWN">Unknown, or don't care, format.</option>
-        <option value="0x00010101" name="F_INT8_1"></option>
-        <option value="0x00020102" name="F_INT8_2"></option>
-        <option value="0x00030103" name="F_INT8_3"></option>
-        <option value="0x00040104" name="F_INT8_4"></option>
-        <option value="0x00010105" name="F_UINT8_1"></option>
-        <option value="0x00020106" name="F_UINT8_2"></option>
-        <option value="0x00030107" name="F_UINT8_3"></option>
-        <option value="0x00040108" name="F_UINT8_4"></option>
-        <option value="0x00010109" name="F_NORMINT8_1"></option>
-        <option value="0x0002010A" name="F_NORMINT8_2"></option>
-        <option value="0x0003010B" name="F_NORMINT8_3"></option>
-        <option value="0x0004010C" name="F_NORMINT8_4"></option>
-        <option value="0x0001010D" name="F_NORMUINT8_1"></option>
-        <option value="0x0002010E" name="F_NORMUINT8_2"></option>
-        <option value="0x0003010F" name="F_NORMUINT8_3"></option>
-        <option value="0x00040110" name="F_NORMUINT8_4"></option>
-        <option value="0x00010211" name="F_INT16_1"></option>
-        <option value="0x00020212" name="F_INT16_2"></option>
-        <option value="0x00030213" name="F_INT16_3"></option>
-        <option value="0x00040214" name="F_INT16_4"></option>
-        <option value="0x00010215" name="F_UINT16_1"></option>
-        <option value="0x00020216" name="F_UINT16_2"></option>
-        <option value="0x00030217" name="F_UINT16_3"></option>
-        <option value="0x00040218" name="F_UINT16_4"></option>
-        <option value="0x00010219" name="F_NORMINT16_1"></option>
-        <option value="0x0002021A" name="F_NORMINT16_2"></option>
-        <option value="0x0003021B" name="F_NORMINT16_3"></option>
-        <option value="0x0004021C" name="F_NORMINT16_4"></option>
-        <option value="0x0001021D" name="F_NORMUINT16_1"></option>
-        <option value="0x0002021E" name="F_NORMUINT16_2"></option>
-        <option value="0x0003021F" name="F_NORMUINT16_3"></option>
-        <option value="0x00040220" name="F_NORMUINT16_4"></option>
-        <option value="0x00010421" name="F_INT32_1"></option>
-        <option value="0x00020422" name="F_INT32_2"></option>
-        <option value="0x00030423" name="F_INT32_3"></option>
-        <option value="0x00040424" name="F_INT32_4"></option>
-        <option value="0x00010425" name="F_UINT32_1"></option>
-        <option value="0x00020426" name="F_UINT32_2"></option>
-        <option value="0x00030427" name="F_UINT32_3"></option>
-        <option value="0x00040428" name="F_UINT32_4"></option>
-        <option value="0x00010429" name="F_NORMINT32_1"></option>
-        <option value="0x0002042A" name="F_NORMINT32_2"></option>
-        <option value="0x0003042B" name="F_NORMINT32_3"></option>
-        <option value="0x0004042C" name="F_NORMINT32_4"></option>
-        <option value="0x0001042D" name="F_NORMUINT32_1"></option>
-        <option value="0x0002042E" name="F_NORMUINT32_2"></option>
-        <option value="0x0003042F" name="F_NORMUINT32_3"></option>
-        <option value="0x00040430" name="F_NORMUINT32_4"></option>
-        <option value="0x00010231" name="F_FLOAT16_1"></option>
-        <option value="0x00020232" name="F_FLOAT16_2"></option>
-        <option value="0x00030233" name="F_FLOAT16_3"></option>
-        <option value="0x00040234" name="F_FLOAT16_4"></option>
-        <option value="0x00010435" name="F_FLOAT32_1"></option>
-        <option value="0x00020436" name="F_FLOAT32_2"></option>
-        <option value="0x00030437" name="F_FLOAT32_3"></option>
-        <option value="0x00040438" name="F_FLOAT32_4"></option>
-        <option value="0x00010439" name="F_UINT_10_10_10_L1"></option>
-        <option value="0x0001043A" name="F_NORMINT_10_10_10_L1"></option>
-        <option value="0x0001043B" name="F_NORMINT_11_11_10"></option>
-        <option value="0x0004013C" name="F_NORMUINT8_4_BGRA"></option>
-        <option value="0x0001043D" name="F_NORMINT_10_10_10_2"></option>
-        <option value="0x0001043E" name="F_UINT_10_10_10_2"></option>
-        <option value="0x00020240" name="F_UNKNOWN_20240"></option>
+        <option value="0x00" name="F_UNKNOWN">Unknown, or don't care, format.</option>
+        <option value="0x01" name="F_INT8_1"></option>
+        <option value="0x02" name="F_INT8_2"></option>
+        <option value="0x03" name="F_INT8_3"></option>
+        <option value="0x04" name="F_INT8_4"></option>
+        <option value="0x05" name="F_UINT8_1"></option>
+        <option value="0x06" name="F_UINT8_2"></option>
+        <option value="0x07" name="F_UINT8_3"></option>
+        <option value="0x08" name="F_UINT8_4"></option>
+        <option value="0x09" name="F_NORMINT8_1"></option>
+        <option value="0x0A" name="F_NORMINT8_2"></option>
+        <option value="0x0B" name="F_NORMINT8_3"></option>
+        <option value="0x0C" name="F_NORMINT8_4"></option>
+        <option value="0x0D" name="F_NORMUINT8_1"></option>
+        <option value="0x0E" name="F_NORMUINT8_2"></option>
+        <option value="0x0F" name="F_NORMUINT8_3"></option>
+        <option value="0x10" name="F_NORMUINT8_4"></option>
+        <option value="0x11" name="F_INT16_1"></option>
+        <option value="0x12" name="F_INT16_2"></option>
+        <option value="0x13" name="F_INT16_3"></option>
+        <option value="0x14" name="F_INT16_4"></option>
+        <option value="0x15" name="F_UINT16_1"></option>
+        <option value="0x16" name="F_UINT16_2"></option>
+        <option value="0x17" name="F_UINT16_3"></option>
+        <option value="0x18" name="F_UINT16_4"></option>
+        <option value="0x19" name="F_NORMINT16_1"></option>
+        <option value="0x1A" name="F_NORMINT16_2"></option>
+        <option value="0x1B" name="F_NORMINT16_3"></option>
+        <option value="0x1C" name="F_NORMINT16_4"></option>
+        <option value="0x1D" name="F_NORMUINT16_1"></option>
+        <option value="0x1E" name="F_NORMUINT16_2"></option>
+        <option value="0x1F" name="F_NORMUINT16_3"></option>
+        <option value="0x20" name="F_NORMUINT16_4"></option>
+        <option value="0x21" name="F_INT32_1"></option>
+        <option value="0x22" name="F_INT32_2"></option>
+        <option value="0x23" name="F_INT32_3"></option>
+        <option value="0x24" name="F_INT32_4"></option>
+        <option value="0x25" name="F_UINT32_1"></option>
+        <option value="0x26" name="F_UINT32_2"></option>
+        <option value="0x27" name="F_UINT32_3"></option>
+        <option value="0x28" name="F_UINT32_4"></option>
+        <option value="0x29" name="F_NORMINT32_1"></option>
+        <option value="0x2A" name="F_NORMINT32_2"></option>
+        <option value="0x2B" name="F_NORMINT32_3"></option>
+        <option value="0x2C" name="F_NORMINT32_4"></option>
+        <option value="0x2D" name="F_NORMUINT32_1"></option>
+        <option value="0x2E" name="F_NORMUINT32_2"></option>
+        <option value="0x2F" name="F_NORMUINT32_3"></option>
+        <option value="0x30" name="F_NORMUINT32_4"></option>
+        <option value="0x31" name="F_FLOAT16_1"></option>
+        <option value="0x32" name="F_FLOAT16_2"></option>
+        <option value="0x33" name="F_FLOAT16_3"></option>
+        <option value="0x34" name="F_FLOAT16_4"></option>
+        <option value="0x35" name="F_FLOAT32_1"></option>
+        <option value="0x36" name="F_FLOAT32_2"></option>
+        <option value="0x37" name="F_FLOAT32_3"></option>
+        <option value="0x38" name="F_FLOAT32_4"></option>
+        <option value="0x39" name="F_UINT_10_10_10_L1"></option>
+        <option value="0x3A" name="F_NORMINT_10_10_10_L1"></option>
+        <option value="0x3B" name="F_NORMINT_11_11_10"></option>
+        <option value="0x3C" name="F_NORMUINT8_4_BGRA"></option>
+        <option value="0x3D" name="F_NORMINT_10_10_10_2"></option>
+        <option value="0x3E" name="F_UINT_10_10_10_2"></option>
+        <option value="0x40" name="F_UNKNOWN_20240"></option>
     </enum>
+
+    <bitfield name="ComponentFormat" storage="uint" since="V20_5_0_0">
+        <member width="8" pos="0" mask="0xFF" name="Type" type="ComponentType"></member>
+        <member width="8" pos="8" mask="0xFF00" name="Element Width" type="byte"></member>
+        <member width="8" pos="16" mask="0xFF0000" name="Num Elements" type="byte"></member>
+    </bitfield>
 
     <enum name="DataStreamUsage" storage="uint" since="V20_5_0_0">
         Determines how a data stream is used?
@@ -7150,6 +7156,10 @@
         <option bit="6" name="CPU Write Static Inititialized"></option>
     </bitflags>
 
+    <struct name="DataStreamData" generic="true" module="NiMesh" since="V20_5_0_0">
+        <field name="Data" type="byte" binary="true" length="#ARG#">The data stream as binary (fallback if interpretation with template is not implemented).</field>
+    </struct>
+
 
     <niobject name="NiDataStream" inherit="NiObject" module="NiMesh" since="V20_5_0_0">
         <field name="Usage" type="DataStreamUsage" abstract="true"></field>
@@ -7160,7 +7170,7 @@
         <field name="Regions" type="Region" length="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</field>
         <field name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</field>
         <field name="Component Formats" type="ComponentFormat" length="Num Components">The format of each component in this data stream.</field>
-        <field name="Data" type="byte" binary="true" length="Num Bytes" />
+        <field name="Data" type="DataStreamData" arg="Num Bytes" template="Component Formats"/>
         <field name="Streamable" type="bool" default="1" />
     </niobject>
 
