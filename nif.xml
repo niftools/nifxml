@@ -79,7 +79,7 @@
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
     <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
     <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
-    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000)</version>
+    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, {{LEGO Universe}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000)</version>
     <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">{{Divinity 2}}</version>
     <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
     <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
