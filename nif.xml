@@ -185,7 +185,7 @@
     <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
     <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
     <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Oblivion, Fallout 3</version>
-    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">{{Oblivion}}</version>
+    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10 11" bsver="11">{{Oblivion}}</version>
     <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
     <version id="V20_2_0_7" num="20.2.0.7" user="0">{{Florensia}}, Empire Earth III, Atlantica Online, IRIS Online, Wizard101</version>
     <version id="V20_2_0_7__11_1" num="20.2.0.7" user="11" bsver="14">Fallout 3, Fallout NV</version>
