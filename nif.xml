@@ -183,7 +183,7 @@
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
     <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
     <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
-    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
+    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}, Oblivion</version>
     <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Oblivion, Fallout 3</version>
     <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10 11" bsver="11">{{Oblivion}}</version>
     <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
@@ -280,7 +280,7 @@
     </basic>
 
     <basic name="bool" boolean="true" integral="true" countable="false">
-        A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
+        A boolean; 32-bit up to and including 4.0.0.2, 8-bit from 4.1.0.1 on.
     </basic>
 
     <basic name="BlockTypeIndex" integral="true" countable="false" size="2">
