@@ -271,6 +271,10 @@
         An 8-bit character.
     </basic>
 
+    <basic name="sbyte" integral="true" countable="false" size="1" convertible="short int int64">
+        A signed 8-bit integer.
+    </basic>
+
     <basic name="byte" boolean="true" integral="true" countable="true" size="1" convertible="ushort uint uint64">
         An unsigned 8-bit integer.
     </basic>
@@ -2532,7 +2536,7 @@
         <field name="Sphere" type="NiBound" cond="Collision Type == 0" />
         <field name="Box" type="BoxBV" cond="Collision Type == 1" />
         <field name="Capsule" type="CapsuleBV" cond="Collision Type == 2" />
-        <!--<field name="Union BV" type="UnionBV" cond="Collision Type == 4" />-->
+        <field name="Union BV" type="UnionBV" cond="Collision Type == 4" recursive="True" />
         <field name="Half Space" type="HalfSpaceBV" cond="Collision Type == 5" />
     </struct>
 
@@ -3299,8 +3303,8 @@
         <!-- Flags conds -->
         <field name="Interp Count" type="byte" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
         <field name="Single Index" type="byte" default="#BYTE_MAX#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Next High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
+        <field name="High Priority" type="sbyte" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
+        <field name="Next High Priority" type="sbyte" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
         <field name="Single Time" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
         <field name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
         <field name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
@@ -3319,8 +3323,8 @@
         <field name="Single Time" type="float" default="#FLT_MIN#" since="10.1.0.108" until="10.1.0.111" />
         <field name="High Priority" type="int" default="#INT_MIN#" until="10.1.0.109" />
         <field name="Next High Priority" type="int" default="#INT_MIN#" until="10.1.0.109" />
-        <field name="High Priority" type="char" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
-        <field name="Next High Priority" type="char" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
+        <field name="High Priority" type="sbyte" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
+        <field name="Next High Priority" type="sbyte" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="true" inherit="NiInterpolator" module="NiAnimation">
@@ -7153,8 +7157,8 @@
         <option bit="6" name="CPU Write Static Inititialized"></option>
     </bitflags>
 
-    <struct name="DataStreamData" generic="true" module="NiMesh" since="V20_5_0_0">
-        <field name="Data" type="byte" binary="true" length="#ARG#">The data stream as binary (fallback if interpretation with template is not implemented).</field>
+    <struct name="DataStreamData" args="2" module="NiMesh" since="V20_5_0_0">
+        <field name="Data" type="byte" binary="true" length="#ARG1#">The data stream as binary (fallback if interpretation with template is not implemented).</field>
     </struct>
 
     <niobject name="NiDataStream" inherit="NiObject" module="NiMesh" since="V20_5_0_0">
@@ -7166,7 +7170,7 @@
         <field name="Regions" type="Region" length="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</field>
         <field name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</field>
         <field name="Component Formats" type="ComponentFormat" length="Num Components">The format of each component in this data stream.</field>
-        <field name="Data" type="DataStreamData" arg="Num Bytes" template="Component Formats" />
+        <field name="Data" type="DataStreamData" arg1="Num Bytes" arg2="Component Formats" />
         <field name="Streamable" type="bool" default="1" />
     </niobject>
 
@@ -7248,7 +7252,7 @@
     </struct>
 
     <struct name="ExtraMeshDataEpicMickey" module="NiMesh" versions="V20_6_5_0_DEM">
-        <field name="Unknown 1" type="uint" />
+        <field name="Has Weights" type="uint" >1 if it has weights, 0 otherwise.</field>
         <field name="Num Transform Floats" type="uint" >Total number of floats in the bone transform matrices - divide by 16 to get the number of matrices.</field>
         <field name="Bone Transforms" type="Matrix44" length="Num Transform Floats #DIV# 16" >Transform matrices corresponding to the bones. Note: Stored transposed to normally.</field>
         <field name="Num Weights" type="uint" />
