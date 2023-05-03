@@ -1419,6 +1419,8 @@
         <option value="3" name="Face Tint" />
         <option value="4" name="Skin Tint" />
         <option value="5" name="Hair Tint" />
+        <option value="12" name="Eye Envmap">Enables EnvMap Mask, Eye EnvMap Scale</option>
+        <option value="17" name="Terrain" />
     </enum>
 
     <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV" versions="#SKY_AND_LATER#">
@@ -1942,9 +1944,9 @@
         <field name="BS Version" type="ulittle32" />
         <field name="Author" type="ExportString" />
         <field name="Unknown Int" type="uint" cond="BS Version #GT# 130" />
-        <field name="Process Script" type="ExportString" />
+        <field name="Process Script" type="ExportString"  cond="BS Version #LT# 131" />
         <field name="Export Script" type="ExportString" />
-        <field name="Max Filepath" type="ExportString" cond="BS Version == 130" />
+        <field name="Max Filepath" type="ExportString" cond="BS Version >= 103" />
     </struct>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
