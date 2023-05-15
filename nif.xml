@@ -60,8 +60,8 @@
 
     <token name="condexpr" attrs="cond">
         <condexpr token="#FLT_MAX#" string="3.402823466e+38" />
-        <condexpr token="#INF#" string="INFINITY" />
-        <condexpr token="#BSSTREAMHEADER#" string="(Version #EQ# 10.0.1.2) #OR# ((Version #EQ# 20.2.0.7) #OR# (Version #EQ# 20.0.0.5) #OR# ((Version #GTE# 10.1.0.0) #AND# (Version #LTE# 20.0.0.4) #AND# (User Version #LTE# 11))) #AND# (User Version #GTE# 3)" />
+        <condexpr token="#FLT_INF#" string="INFINITY" />
+        <condexpr token="#BSSTREAMHEADER#" string="(#VER# #EQ# 10.0.1.2) #OR# ((#VER# #EQ# 20.2.0.7) #OR# (#VER# #EQ# 20.0.0.5) #OR# ((#VER# #GTE# 10.1.0.0) #AND# (#VER# #LTE# 20.0.0.4) #AND# (#USER# #LTE# 11))) #AND# (#USER# #GTE# 3)" />
     </token>
 
     <token name="verset" attrs="versions">
@@ -94,9 +94,17 @@
         <default token="#X_AXIS#" string="1.0, 0.0, 0.0" />
         <default token="#Y_AXIS#" string="0.0, 1.0, 0.0" />
         <default token="#Z_AXIS#" string="0.0, 0.0, 1.0" />
+        <default token="#VEC4_X_AXIS#" string="1.0, 0.0, 0.0, 0.0" />
+        <default token="#VEC4_Y_AXIS#" string="0.0, 1.0, 0.0, 0.0" />
+        <default token="#VEC4_Z_AXIS#" string="0.0, 0.0, 1.0, 0.0" />
+        <default token="#VEC4_W_AXIS#" string="0.0, 0.0, 0.0, 1.0" />
         <default token="#NEG_X_AXIS#" string="-1.0, 0.0, 0.0" />
         <default token="#NEG_Y_AXIS#" string="0.0, -1.0, 0.0" />
         <default token="#NEG_Z_AXIS#" string="0.0, 0.0, -1.0" />
+        <default token="#VEC4_NEG_X_AXIS#" string="-1.0, 0.0, 0.0, 0.0" />
+        <default token="#VEC4_NEG_Y_AXIS#" string="0.0, -1.0, 0.0, 0.0" />
+        <default token="#VEC4_NEG_Z_AXIS#" string="0.0, 0.0, -1.0, 0.0" />
+        <default token="#VEC4_NEG_W_AXIS#" string="0.0, 0.0, 0.0, -1.0" />
         <default token="#FLT_MAX#" string="3.402823466e+38" />
         <default token="#FLT_MIN#" string="-3.402823466e+38" />
         <default token="#INV_FLT#" string="-3.402823466e+38" />
@@ -126,7 +134,7 @@
         <range token="#FPM_1000#" string="-1000.0:1000.0" />
     </token>
 
-    <token name="global" attrs="vercond access">
+    <token name="global" attrs="cond vercond access">
         Global Tokens.
         NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
         <global token="#VER#" string="Version" />
@@ -134,7 +142,7 @@
         <global token="#BSVER#" string="BS Header\BS Version" />
     </token>
 
-    <token name="operator" attrs="cond vercond length width arg">
+    <token name="operator" attrs="cond vercond length width arg calc">
         All Operators except for unary not (!), parentheses, and member of (\)
         NOTE: These can be ignored entirely by string substitution and dealt with directly.
         NOTE: These must be listed after the above tokens so that they replace last. For example, `verexpr` uses these tokens.
@@ -1527,10 +1535,10 @@
         Flags for NiTimeController
         <member width="1" pos="0" mask="0x0001" name="Anim Type" type="AnimType" />
         <member width="2" pos="1" mask="0x0006" name="Cycle Type" type="CycleType" default="CYCLE_CLAMP" />
-        <member width="1" pos="3" mask="0x0008" name="Active" type="bool" default="1" />
+        <member width="1" pos="3" mask="0x0008" name="Active" type="bool" default="true" />
         <member width="1" pos="4" mask="0x0010" name="Play Backwards" type="bool" />
         <member width="1" pos="5" mask="0x0020" name="Manager Controlled" type="bool" />
-        <member width="1" pos="6" mask="0x0040" name="Compute Scaled Time" type="bool" default="1" />
+        <member width="1" pos="6" mask="0x0040" name="Compute Scaled Time" type="bool" default="true" />
         <member width="1" pos="7" mask="0x0080" name="Forced Update" type="bool" />
     </bitfield>
 
@@ -1539,7 +1547,7 @@
         <member width="1" pos="0" mask="0x0001" name="Alpha Blend" type="bool" />
         <member width="4" pos="1" mask="0x001E" name="Source Blend Mode" type="AlphaFunction" default="SRC_ALPHA" />
         <member width="4" pos="5" mask="0x01E0" name="Destination Blend Mode" type="AlphaFunction" default="INV_SRC_ALPHA" />
-        <member width="1" pos="9" mask="0x0200" name="Alpha Test" type="bool" default="1" />
+        <member width="1" pos="9" mask="0x0200" name="Alpha Test" type="bool" default="true" />
         <member width="3" pos="10" mask="0x1C00" name="Test Func" type="TestFunction" default="TEST_GREATER" />
         <member width="1" pos="13" mask="0x2000" name="No Sorter" type="bool" />
         <member width="1" pos="14" mask="0x4000" name="Clone Unique" type="bool">Bethesda-only. Always true for weapon blood after FO3.</member>
@@ -1720,7 +1728,7 @@
 
     <struct name="LODRange" module="NiMain">
         The distance range where a specific level of detail applies.
-        <field name="Near Extent" type="float">Begining of range.</field>
+        <field name="Near Extent" type="float">Beginning of range.</field>
         <field name="Far Extent" type="float">End of Range.</field>
         <field name="Unknown Ints" type="uint" length="3" until="3.1" />
     </struct>
@@ -2035,7 +2043,7 @@
         <field name="PS2 K" type="short" default="-75" until="10.4.0.1">K is used as an offset into the mipmap levels and can range from -2047 to 2047. Positive values push the mipmap towards being blurry and negative values make the mipmap sharper.</field>
         <field name="Unknown Short 1" type="ushort" until="4.1.0.12" />
         <!-- NiTextureTransform -->
-        <field name="Has Texture Transform" type="bool" default="0" since="10.1.0.0">Whether or not the texture coordinates are transformed.</field>
+        <field name="Has Texture Transform" type="bool" default="false" since="10.1.0.0">Whether or not the texture coordinates are transformed.</field>
         <field name="Translation" type="TexCoord" cond="Has Texture Transform" since="10.1.0.0">The UV translation.</field>
         <field name="Scale" type="TexCoord" cond="Has Texture Transform" since="10.1.0.0" default="#VEC2_ONE#">The UV scale.</field>
         <field name="Rotation" type="float" default="0.0" cond="Has Texture Transform" since="10.1.0.0">The W axis rotation in texture space.</field>
@@ -2097,36 +2105,36 @@
 		<field name="Bitangent X" type="hfloat" cond="(#ARG# #BITAND# 0x411) == 0x11" />
 		<field name="Unused W" type="ushort" cond="(#ARG# #BITAND# 0x411) == 0x1" />
 
-		<field name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
-		<field name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
-		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8" />
+		<field name="UV" type="HalfTexCoord" cond="(#ARG# #BITAND# 0x2) != 0" />
+		<field name="Normal" type="ByteVector3" cond="(#ARG# #BITAND# 0x8) != 0" />
+		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8) != 0" />
 		<field name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Bitangent Z" type="normbyte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
-		<field name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
-		<field name="Bone Weights" type="hfloat" length="4" cond="#ARG# #BITAND# 0x40" />
-		<field name="Bone Indices" type="byte" length="4" cond="#ARG# #BITAND# 0x40" />
-		<field name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
+		<field name="Vertex Colors" type="ByteColor4" cond="(#ARG# #BITAND# 0x20) != 0" />
+		<field name="Bone Weights" type="hfloat" length="4" cond="(#ARG# #BITAND# 0x40) != 0" />
+		<field name="Bone Indices" type="byte" length="4" cond="(#ARG# #BITAND# 0x40) != 0" />
+		<field name="Eye Data" type="float" cond="(#ARG# #BITAND# 0x100) != 0" />
 	</struct>
 
 	<struct name="BSVertexDataSSE" versions="#SSE# #FO4#" module="BSMain">
-		<field name="Vertex" type="Vector3" cond="#ARG# #BITAND# 0x1" />
+		<field name="Vertex" type="Vector3" cond="(#ARG# #BITAND# 0x1) != 0" />
 		<field name="Bitangent X" type="float" cond="(#ARG# #BITAND# 0x11) == 0x11" />
 		<field name="Unused W" type="uint" cond="(#ARG# #BITAND# 0x11) == 0x1" />
-		<field name="UV" type="HalfTexCoord" cond="#ARG# #BITAND# 0x2" />
-		<field name="Normal" type="ByteVector3" cond="#ARG# #BITAND# 0x8" />
-		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8" />
+		<field name="UV" type="HalfTexCoord" cond="(#ARG# #BITAND# 0x2) != 0" />
+		<field name="Normal" type="ByteVector3" cond="(#ARG# #BITAND# 0x8) != 0" />
+		<field name="Bitangent Y" type="normbyte" cond="(#ARG# #BITAND# 0x8) != 0" />
 		<field name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Bitangent Z" type="normbyte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
-		<field name="Vertex Colors" type="ByteColor4" cond="#ARG# #BITAND# 0x20" />
-		<field name="Bone Weights" type="hfloat" length="4" cond="#ARG# #BITAND# 0x40" />
-		<field name="Bone Indices" type="byte" length="4" cond="#ARG# #BITAND# 0x40" />
-		<field name="Eye Data" type="float" cond="#ARG# #BITAND# 0x100" />
+		<field name="Vertex Colors" type="ByteColor4" cond="(#ARG# #BITAND# 0x20) != 0" />
+		<field name="Bone Weights" type="hfloat" length="4" cond="(#ARG# #BITAND# 0x40) != 0" />
+		<field name="Bone Indices" type="byte" length="4" cond="(#ARG# #BITAND# 0x40) != 0" />
+		<field name="Eye Data" type="float" cond="(#ARG# #BITAND# 0x100) != 0" />
 	</struct>
 
     <struct name="SkinPartition" since="V4_2_1_0" module="NiMain">
         Skinning data for a submesh, optimized for hardware skinning. Part of NiSkinPartition.
         <field name="Num Vertices" type="ushort">Number of vertices in this submesh.</field>
-        <field name="Num Triangles" type="ushort" calc="(#LEN2[Strips]# #GT# 0) #THEN# (#LEN2[Strips]# - 2) #ELSE# (#LEN[Triangles]#)">Number of triangles in this submesh.</field>
+        <field name="Num Triangles" type="ushort" calc="(#LEN[Strips]# #GT# 0) #THEN# (#LEN2[Strips]# - 2) #ELSE# (#LEN[Triangles]#)">Number of triangles in this submesh.</field>
         <field name="Num Bones" type="ushort">Number of bones influencing this submesh.</field>
         <field name="Num Strips" type="ushort">Number of strips in this submesh (zero if not stripped).</field>
         <field name="Num Weights Per Vertex" type="ushort" default="4">Number of weight coefficients per vertex. The Gamebryo engine seems to work well only if this number is equal to 4, even if there are less than 4 influences per vertex.</field>
@@ -2138,7 +2146,7 @@
         <field name="Vertex Weights" type="float" length="Num Vertices" width="Num Weights Per Vertex" until="10.0.1.2">The vertex weights.</field>
         <field name="Vertex Weights" type="float" length="Num Vertices" width="Num Weights Per Vertex" cond="Has Vertex Weights" since="10.1.0.0">The vertex weights.</field>
         <field name="Strip Lengths" type="ushort" length="Num Strips">The strip lengths.</field>
-        <field name="Has Faces" type="bool" calc="(#LEN[Strips]# #ADD# #LEN[Triangles]# #GT# 0) #THEN# 1 #ELSE# 0" since="10.1.0.0">Do we have triangle or strip data?</field>
+        <field name="Has Faces" type="bool" calc="(#LEN[Strips]# #ADD# #LEN[Triangles]#) #GT# 0 #THEN# true #ELSE# false" since="10.1.0.0">Do we have triangle or strip data?</field>
         <field name="Strips" type="ushort" length="Num Strips" width="Strip Lengths" cond="Num Strips != 0" until="10.0.1.2">The strips.</field>
         <field name="Strips" type="ushort" length="Num Strips" width="Strip Lengths" cond="(Has Faces) #AND# (Num Strips != 0)" since="10.1.0.0">The strips.</field>
         <field name="Triangles" type="Triangle" length="Num Triangles" cond="Num Strips == 0" until="10.0.1.2">The triangles.</field>
@@ -2223,7 +2231,7 @@
         <member width="5" pos="0" mask="0x001F" name="Angle Edge 1" type="ushort" default="15"/>
         <member width="5" pos="5" mask="0x03E0" name="Angle Edge 2" type="ushort" default="15" />
         <member width="5" pos="10" mask="0x7C00" name="Angle Edge 3" type="ushort" default="15" />
-        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="0" />
+        <member width="1" pos="15" mask="0x8000" name="Unused bit" type="bool" default="false" />
     </bitfield>
 
     <struct name="TriangleData" module="BSHavok" versions="#BETHESDA#">
@@ -2327,7 +2335,7 @@
         <field name="Damping" type="float" default="1.0">Motor damping value</field>
         <field name="Proportional Recovery Velocity" type="float" default="2.0">A factor of the current error to calculate the recovery velocity</field>
         <field name="Constant Recovery Velocity" type="float" default="1.0">A constant velocity which is used to recover from errors</field>
-        <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
+        <field name="Motor Enabled" type="bool" default="false">Is Motor enabled</field>
     </struct>
 
     <struct name="bhkVelocityConstraintMotor" size="18" module="BSHavok" versions="#BETHESDA#">
@@ -2336,8 +2344,8 @@
         <field name="Max Force" type="float" default="1000000.0">Maximum motor force</field>
         <field name="Tau" type="float" default="0.0">Relative stiffness</field>
         <field name="Target Velocity" type="float" default="0.0" />
-        <field name="Use Velocity Target" type="bool" default="0" />
-        <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
+        <field name="Use Velocity Target" type="bool" default="false" />
+        <field name="Motor Enabled" type="bool" default="false">Is Motor enabled</field>
     </struct>
 
     <struct name="bhkSpringDamperConstraintMotor" size="17" module="BSHavok" versions="#BETHESDA#">
@@ -2347,7 +2355,7 @@
         <field name="Max Force" type="float" default="1000000.0">Maximum motor force</field>
         <field name="Spring Constant" type="float" default="0.0">The spring constant in N/m</field>
         <field name="Spring Damping" type="float" default="0.0">The spring damping in Nsec/m</field>
-        <field name="Motor Enabled" type="bool" default="0">Is Motor enabled</field>
+        <field name="Motor Enabled" type="bool" default="false">Is Motor enabled</field>
     </struct>
     
     <enum name="hkMotorType" storage="byte" versions="#BETHESDA#">
@@ -2663,7 +2671,7 @@
         <field name="Parent" type="Ref" template="NiObject" />
         <field name="Num 1" type="uint" />
         <field name="Num 2" type="uint" />
-        <field name="Unknown 2" type="uint" length="Num 1 * Num 2" width="2" />
+        <field name="Unknown 2" type="uint" length="Num 1 #MUL# Num 2" width="2" />
     </niobject>
 
     <niobject name="Ni3dsAnimationNode" inherit="NiObject" module="NiLegacy" versions="V2_3">
@@ -2995,7 +3003,7 @@
 
     <niobject name="bhkBallSocketConstraintChain" inherit="bhkSerializable" module="BSHavok" versions="#BETHESDA#">
         Bethesda extension of hkpBallSocketChainData. A chain of ball and socket constraints.
-        <field name="Num Pivots" type="uint" calc="#LEN[Pivots]# * 2">Should equal (Num Chained Entities - 1) * 2</field>
+        <field name="Num Pivots" type="uint" calc="#LEN[Pivots]# #MUL# 2">Should equal (Num Chained Entities - 1) * 2</field>
         <field name="Pivots" type="bhkBallAndSocketConstraintCInfo" length="Num Pivots / 2">Two pivot points A and B for each constraint.</field>
         <field name="Tau" type="float" default="1.0">High values are harder and more reactive, lower values are smoother.</field>
         <field name="Damping" type="float" default="0.6">Defines damping strength for the current velocity.</field>
@@ -3296,15 +3304,15 @@
         <field name="Array Size" type="byte" since="10.1.0.110" />
         <field name="Weight Threshold" type="float" since="10.1.0.112" />
         <!-- Flags conds -->
-        <field name="Interp Count" type="byte" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Single Index" type="byte" default="#BYTE_MAX#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Next High Priority" type="char" default="#CHAR_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Single Time" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="High Ease Spinner" type="float" default="#FLT_MIN#" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
-        <field name="Interp Array Items" type="InterpBlendItem" length="Array Size" cond="!(Flags #BITAND# 1)" since="10.1.0.112" />
+        <field name="Interp Count" type="byte" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Single Index" type="byte" default="#BYTE_MAX#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="High Priority" type="char" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Next High Priority" type="char" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Single Time" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="High Ease Spinner" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Interp Array Items" type="InterpBlendItem" length="Array Size" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
         <!-- /Flags conds -->
         <field name="Interp Array Items" type="InterpBlendItem" length="Array Size" until="10.1.0.111" />
         <field name="Manager Controlled" type="bool" until="10.1.0.111" />
@@ -3479,7 +3487,7 @@
 
     <niobject name="NiDynamicEffect" abstract="true" inherit="NiAVObject" module="NiMain">
         Abstract base class for dynamic effects such as NiLights or projected texture effects.
-        <field name="Switch State" type="bool" default="1" since="10.1.0.106" vercond="#NI_BS_LT_FO4#">If true, then the dynamic effect is applied to affected nodes during rendering.</field>
+        <field name="Switch State" type="bool" default="true" since="10.1.0.106" vercond="#NI_BS_LT_FO4#">If true, then the dynamic effect is applied to affected nodes during rendering.</field>
         <field name="Num Affected Nodes" type="uint" until="4.0.0.2" />
         <field name="Affected Nodes" type="Ptr" template="NiNode" length="Num Affected Nodes" until="3.3.0.13">If a node appears in this list, then its entire subtree will be affected by the effect.</field>
         <field name="Affected Node Pointers" type="uint" length="Num Affected Nodes" since="4.0.0.0" until="4.0.0.2">As of 4.0 the pointer hash is no longer stored alongside each NiObject on disk, yet this node list still refers to the pointer hashes. Cannot leave the type as Ptr because the link will be invalid.</field>
@@ -3556,7 +3564,7 @@
             <default onlyT="NiPSysPartSpawnModifier" value="ORDER_WORLDSHIFT_PARTSPAWN" />
         </field>
         <field name="Target" type="Ptr" template="NiParticleSystem">NiParticleSystem parent of this modifier.</field>
-        <field name="Active" type="bool" default="1">Whether or not the modifier is active.</field>
+        <field name="Active" type="bool" default="true">Whether or not the modifier is active.</field>
     </niobject>
 
     <niobject name="NiPSysEmitter" abstract="true" inherit="NiPSysModifier" module="NiParticle">
@@ -3867,15 +3875,15 @@
         <field name="BS Max Vertices" type="ushort" onlyT="NiPSysData" since="20.2.0.7" until="20.2.0.7" vercond="#BS_GTE_FO3#">Bethesda uses this for max number of particles in NiPSysData.</field>
         <field name="Keep Flags" type="byte" since="10.1.0.0">Used with NiCollision objects when OBB or TRI is set.</field>
         <field name="Compress Flags" type="byte" since="10.1.0.0" />
-        <field name="Has Vertices" type="bool" default="1">Is the vertex array present? (Always non-zero.)</field>
+        <field name="Has Vertices" type="bool" default="true">Is the vertex array present? (Always non-zero.)</field>
         <field name="Vertices" type="Vector3" length="Num Vertices" cond="Has Vertices">The mesh vertices.</field>
         <field name="Data Flags" type="NiGeometryDataFlags" since="10.0.1.0" vercond="!#BS202#" />
         <field name="BS Data Flags" type="BSGeometryDataFlags" vercond="#BS202#" />
         <field name="Material CRC" type="uint" since="20.2.0.7" until="20.2.0.7" vercond="#BS_GT_FO3#" />
         <field name="Has Normals" type="bool">Do we have lighting normals? These are essential for proper lighting: if not present, the model will only be influenced by ambient light.</field>
         <field name="Normals" type="Vector3" length="Num Vertices" cond="Has Normals">The lighting normals.</field>
-        <field name="Tangents" type="Vector3" length="Num Vertices" cond="(Has Normals) #AND# ((Data Flags #BITOR# BS Data Flags) #BITAND# 4096)" since="10.1.0.0">Tangent vectors.</field>
-        <field name="Bitangents" type="Vector3" length="Num Vertices" cond="(Has Normals) #AND# ((Data Flags #BITOR# BS Data Flags) #BITAND# 4096)" since="10.1.0.0">Bitangent vectors.</field>
+        <field name="Tangents" type="Vector3" length="Num Vertices" cond="(Has Normals) #AND# (((Data Flags #BITOR# BS Data Flags) #BITAND# 4096) != 0)" since="10.1.0.0">Tangent vectors.</field>
+        <field name="Bitangents" type="Vector3" length="Num Vertices" cond="(Has Normals) #AND# (((Data Flags #BITOR# BS Data Flags) #BITAND# 4096) != 0)" since="10.1.0.0">Bitangent vectors.</field>
         <field name="Has DIV2 Floats" type="bool" since="20.3.0.9" until="20.3.0.9" vercond="#DIVINITY2#" />
         <field name="DIV2 Floats" type="float" length="Num Vertices" since="20.3.0.9" until="20.3.0.9" vercond="#DIVINITY2#" cond="Has DIV2 Floats" />
         <field name="Bounding Sphere" type="NiBound" />
@@ -4523,7 +4531,7 @@
         <field name="Near End" type="ushort" vercond="#BS_GTE_SKY#" />
         <field name="Data" type="Ref" template="NiPSysData" vercond="#BS_GTE_SSE#" />
 
-        <field name="World Space" type="bool" default="1" since="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</field>
+        <field name="World Space" type="bool" default="true" since="10.1.0.0">If true, Particles are birthed into world space.  If false, Particles are birthed into object space.</field>
         <field name="Num Modifiers" type="uint" since="10.1.0.0">The number of modifier references.</field>
         <field name="Modifiers" type="Ref" template="NiPSysModifier" length="Num Modifiers" since="10.1.0.0">The list of particle modifiers.</field>
     </niobject>
@@ -4650,7 +4658,7 @@
         <field name="Num Faces" type="uint" />
         <field name="Platform" type="PlatformID" until="30.1.0.0" />
         <field name="Renderer" type="RendererID" since="30.1.0.1" />
-        <field name="Pixel Data" type="byte" binary="true" length="Num Pixels * Num Faces" />
+        <field name="Pixel Data" type="byte" binary="true" length="Num Pixels #MUL# Num Faces" />
     </niobject>
 
     <niobject name="NiPixelData" inherit="NiPixelFormat" module="NiMain">
@@ -4663,7 +4671,7 @@
         <!-- Technically since 10.3.0.6, fudging for WorldShift custom version as no games have official 10.3 NIFs anyway. -->
         <field name="Num Faces" type="uint" since="10.4.0.2" default="1" />
         <field name="Pixel Data" type="byte" binary="true" length="Num Pixels" until="10.4.0.1" />
-        <field name="Pixel Data" type="byte" binary="true" length="Num Pixels * Num Faces" since="10.4.0.2" />
+        <field name="Pixel Data" type="byte" binary="true" length="Num Pixels #MUL# Num Faces" since="10.4.0.2" />
     </niobject>
 
     <niobject name="NiParticleCollider" inherit="NiParticleModifier" module="NiLegacy" until="V10_0_1_0">
@@ -4856,7 +4864,7 @@
         <field name="Rotation Angle" type="float" since="20.0.0.2">Initial Rotation Angle in radians.</field>
         <field name="Rotation Angle Variation" type="float" since="20.0.0.2">Distributes rotation angle over the range [Angle - Variation, Angle + Variation].</field>
         <field name="Random Rot Speed Sign" type="bool" since="20.0.0.2">Randomly negate the initial rotation speed?</field>
-        <field name="Random Axis" type="bool" default="1">Assign a random axis to new particles?</field>
+        <field name="Random Axis" type="bool" default="true">Assign a random axis to new particles?</field>
         <field name="Axis" type="Vector3" default="#X_AXIS#">Initial rotation axis.</field>
     </niobject>
 
@@ -5049,7 +5057,7 @@
         <field name="Skin Transform" type="NiTransform">Offset of the skin from this bone in bind position.</field>
         <field name="Num Bones" type="uint">Number of bones.</field>
         <field name="Skin Partition" type="Ref" template="NiSkinPartition" since="4.0.0.2" until="10.1.0.0">This optionally links a NiSkinPartition for hardware-acceleration information.</field>
-        <field name="Has Vertex Weights" type="byte" since="4.2.1.0" default="1">Enables Vertex Weights for this NiSkinData.</field>
+        <field name="Has Vertex Weights" type="bool" since="4.2.1.0" default="true">Enables Vertex Weights for this NiSkinData.</field>
         <field name="Bone List" type="BoneData" length="Num Bones" arg="Has Vertex Weights">Contains offset data for each node that this skin is influenced by.</field>
     </niobject>
 
@@ -5102,8 +5110,8 @@
         <field name="Pixel Data" type="Ref" template="NiPixelFormat" cond="Use External == 0" since="10.0.1.4">NiPixelData or NiPersistentSrcTextureRendererData</field>
         <field name="Format Prefs" type="FormatPrefs">A set of preferences for the texture format. They are a request only and the renderer may ignore them.</field>
         <field name="Is Static" type="byte" default="1">If set, then the application cannot assume that any dynamic changes to the pixel data will show in the rendered image.</field>
-        <field name="Direct Render" type="bool" default="1" since="10.1.0.103">A hint to the renderer that the texture can be loaded directly from a texture file into a renderer-specific resource, bypassing the NiPixelData object.</field>
-        <field name="Persist Render Data" type="bool" default="0" since="20.2.0.4">Pixel Data is NiPersistentSrcTextureRendererData instead of NiPixelData.</field>
+        <field name="Direct Render" type="bool" default="true" since="10.1.0.103">A hint to the renderer that the texture can be loaded directly from a texture file into a renderer-specific resource, bypassing the NiPixelData object.</field>
+        <field name="Persist Render Data" type="bool" default="false" since="20.2.0.4">Pixel Data is NiPersistentSrcTextureRendererData instead of NiPixelData.</field>
     </niobject>
 
     <niobject name="NiSpecularProperty" inherit="NiProperty" module="NiMain">
@@ -5277,7 +5285,7 @@
         Holds mesh data using strips of triangles.
         <field name="Num Strips" type="ushort" default="1" />
         <field name="Strip Lengths" type="ushort" length="Num Strips">The number of points in each triangle strip.</field>
-        <field name="Has Points" type="bool" default="1" since="10.0.1.3">Do we have strip point data?</field>
+        <field name="Has Points" type="bool" default="true" since="10.0.1.3">Do we have strip point data?</field>
         <field name="Points" type="ushort" length="Num Strips" width="Strip Lengths" until="10.0.1.2">The points in the Triangle strips.  Size is the sum of all entries in Strip Lengths.</field>
         <field name="Points" type="ushort" length="Num Strips" width="Strip Lengths" cond="Has Points" since="10.0.1.3">The points in the Triangle strips. Size is the sum of all entries in Strip Lengths.</field>
     </niobject>
@@ -5614,7 +5622,7 @@
         <field name="Group Collision Flags" type="bool" length="1024" />
         <field name="Filter Ops" type="NxFilterOp" length="3" />
         <field name="Filter Constants" type="uint" length="8" />
-        <field name="Filter" type="bool" default="1" />
+        <field name="Filter" type="bool" default="true" />
         <field name="Num States" type="uint" until="20.3.0.1" />
         <field name="Num Compartments" type="uint" since="20.3.0.6" />
         <field name="Compartments" type="NxCompartmentDescMap" length="Num Compartments" since="20.3.0.6" />
@@ -6006,7 +6014,7 @@
 
     <niobject name="NiPhysXDest" abstract="true" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         A destination is a link between a PhysX actor and a Gamebryo object being driven by the physics.
-        <field name="Active" type="bool" default="1" />
+        <field name="Active" type="bool" default="true" />
         <field name="Interpolate" type="bool" />
     </niobject>
 
@@ -6021,7 +6029,7 @@
 
     <niobject name="NiPhysXSrc" abstract="true" inherit="NiObject" module="NiPhysX" since="V20_2_0_8">
         A source is a link between a Gamebryo object and a PhysX actor.
-        <field name="Active" type="bool" default="1" />
+        <field name="Active" type="bool" default="true" />
         <field name="Interpolate" type="bool" />
     </niobject>
 
@@ -6278,9 +6286,9 @@
         <field name="Width" type="float" default="16.0" range="#F0_100#">How wide the bolt will be.</field>
         <field name="Child Width Mult" type="float" default="0.75" range="#F0_10#">Influences forking behavior with a multiplier.</field>
         <field name="Arc Offset" type="float" default="20.0" range="#F0_1000#" />
-        <field name="Fade Main Bolt" type="bool" default="1" />
-        <field name="Fade Child Bolts" type="bool" default="1" />
-        <field name="Animate Arc Offset" type="bool" default="1" />
+        <field name="Fade Main Bolt" type="bool" default="true" />
+        <field name="Fade Child Bolts" type="bool" default="true" />
+        <field name="Animate Arc Offset" type="bool" default="true" />
         <field name="Shader Property" type="Ref" template="BSShaderProperty">Reference to a shader property.</field>
 	</niobject>
 
@@ -6586,7 +6594,7 @@
         <field name="Lighting Effect 2" type="float" default="2.0" range="#F0_1000#" vercond="#NI_BS_LT_FO4#">Controls strength for envmap/backlight/rim/softlight lighting effect?</field>
         <field name="Subsurface Rolloff" type="float" default="0.0" range="#F0_10#" vercond="#BS_FO4_2#" />
         <field name="Rimlight Power" type="float" default="#FLT_MAX#" vercond="#BS_FO4_2#" />
-        <field name="Backlight Power" type="float" range="#F0_1000#" cond="(Rimlight Power #GTE# #FLT_MAX#) #AND# (Rimlight Power #LT# #INF#)" vercond="#BS_FO4_2#" />
+        <field name="Backlight Power" type="float" range="#F0_1000#" cond="(Rimlight Power #GTE# #FLT_MAX#) #AND# (Rimlight Power #LT# #FLT_INF#)" vercond="#BS_FO4_2#" />
         <field name="Grayscale to Palette Scale" type="float" default="1.0" range="#F0_1#" vercond="#BS_GTE_130#" />
         <field name="Fresnel Power" type="float" default="5.0" range="#F_PNZ#" vercond="#BS_GTE_130#" />
         <field name="Wetness" type="BSSPWetnessParams" vercond="#BS_GTE_130#" />
@@ -6787,7 +6795,7 @@
     <niobject name="BSOrderedNode" inherit="NiNode" module="BSMain" versions="#FO3_AND_LATER#">
         Bethesda-Specific node.
         <field name="Alpha Sort Bound" type="Vector4" />
-        <field name="Static Bound" type="bool" default="1" />
+        <field name="Static Bound" type="bool" default="true" />
     </niobject>
 
 
@@ -7009,14 +7017,14 @@
         The constraint can "break" i.e. stop applying the forces to each body to keep them constrained.
         <field name="Constraint Data" type="bhkWrappedConstraintData">The wrapped constraint.</field>
         <field name="Threshold" type="float">The larger the value, the harder to "break" the constraint.</field>
-        <field name="Remove When Broken" type="bool" default="0">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</field>
+        <field name="Remove When Broken" type="bool" default="false">No: Constraint stays active. Yes: Constraint gets removed when breaking threshold is exceeded.</field>
     </niobject>
 
     <niobject name="bhkOrientHingedBodyAction" inherit="bhkUnaryAction" module="BSHavok" versions="#BETHESDA#">
         Bethesda extension of hkpReorientAction (or similar). Will try to reorient a body to stay facing a given direction.
         <field name="Unused 02" type="byte" length="8" binary="true" />
-        <field name="Hinge Axis LS" type="Vector4" default="#X_AXIS#" />
-        <field name="Forward LS" type="Vector4" default="#Y_AXIS#" />
+        <field name="Hinge Axis LS" type="Vector4" default="#VEC4_X_AXIS#" />
+        <field name="Forward LS" type="Vector4" default="#VEC4_Y_AXIS#" />
         <field name="Strength" type="float" default="1.0" />
         <field name="Damping" type="float" default="0.1" />
         <field name="Unused 03" type="byte" length="8" binary="true" />
@@ -7161,7 +7169,7 @@
         <field name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</field>
         <field name="Component Formats" type="ComponentFormat" length="Num Components">The format of each component in this data stream.</field>
         <field name="Data" type="byte" binary="true" length="Num Bytes" />
-        <field name="Streamable" type="bool" default="1" />
+        <field name="Streamable" type="bool" default="true" />
     </niobject>
 
     <struct name="SemanticData" size="8" module="NiMesh" since="V20_5_0_0">
@@ -7179,7 +7187,7 @@
 
     <struct name="DataStreamRef" module="NiMesh" since="V20_5_0_0">
         <field name="Stream" type="Ref" template="NiDataStream">Reference to a data stream object which holds the data used by this reference.</field>
-        <field name="Is Per Instance" type="bool" default="0">Sets whether this stream data is per-instance data for use in hardware instancing.</field>
+        <field name="Is Per Instance" type="bool" default="false">Sets whether this stream data is per-instance data for use in hardware instancing.</field>
         <field name="Num Submeshes" type="ushort" default="1">The number of submesh-to-region mappings that this data stream has.</field>
         <field name="Submesh To Region Map" type="ushort" length="Num Submeshes">A lookup table that maps submeshes to regions.</field>
         <field name="Num Components" type="uint" default="1" />
@@ -7315,7 +7323,7 @@
         <field name="Num Bones" type="uint">The number of bones referenced by this mesh modifier.</field>
         <field name="Bones" type="Ptr" template="NiAVObject" length="Num Bones">Pointers to the bone nodes that affect this skin.</field>
         <field name="Bone Transforms" type="NiTransform" length="Num Bones">The transforms that go from bind-pose space to bone space.</field>
-        <field name="Bone Bounds" type="NiBound" cond="Flags #BITAND# 2" length="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</field>
+        <field name="Bone Bounds" type="NiBound" cond="(Flags #BITAND# 2) != 0" length="Num Bones">The bounds of the bones.  Only stored if the RECOMPUTE_BOUNDS bit is set.</field>
     </niobject>
 
     <niobject name="NiMeshHWInstance" inherit="NiAVObject" module="NiMesh" since="V20_5_0_0">
@@ -7384,7 +7392,7 @@
         <field name="Has Rotations" type="bool" />
         <field name="Has Rotation Axes" type="bool" />
         <field name="Has Animated Textures" type="bool" since="20.6.1.0" />
-        <field name="World Space" type="bool" default="1" />
+        <field name="World Space" type="bool" default="true" />
         <field name="Normal Method" type="AlignMethod" default="ALIGN_CAMERA" since="20.6.1.0" />
         <field name="Normal Direction" type="Vector3" since="20.6.1.0" />
         <field name="Up Method" type="AlignMethod" default="ALIGN_CAMERA" since="20.6.1.0" />
