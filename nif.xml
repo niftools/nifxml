@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
 <niftoolsxml version="0.9.3.0">
-    <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
-            NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
-
-        id = "VX_X_X_X": The unique identifier for this version. Can be used to generate C-style enums, etc.
-        num = "X.X.X.X": The numeric representation created by storing each part of the version in a byte.
-            Example:  4.0.0.2 == 0x04000002
-                     10.1.0.0 == 0x0A010000.
-        supported = "<boolean>": False if the XML does not fully support reading of this version.
-        user = "<List[integer]>": The custom User Version(s) for a specific Version from a game/developer.
-            Note: Grouping multiple user in a list means that these user produce identical NIF layout.
-            Example: user="12"
-                     user="0x20000 0x30000"
-        bsver = "<List[integer]>": The custom Bethesda Version(s) for a specific Version and User Version.
-            Note: Grouping multiple bsver in a list means that these bsver produce identical NIF layout.
-            Example: bsver="34"
-                     bsver="30 31 32 33"
-        custom = "<boolean>": True when version contains extensions to the format not originating from Gamebryo.
-            Note: A user or bsver of non-zero implies custom="true" and is not necessary.
-        ext = "<List[string]>": Any custom NIF extensions associated with this version.
-            Example: ext="bto btr"
-
-        Content: A comma-separated list of games which use this version.
-            `{{}}` around a game name denotes that this version is the primary version for that game.
-            A version without any `{{}}` names implies that this version is "secondary".
-            Note: A unique game name should only have `{{}}` around it once.
-    -->
 
     <token name="verexpr" attrs="vercond">
         Commonly used version expressions.
@@ -160,6 +134,33 @@
     <verattr name="user" access="#USER#" index="1" />
     <verattr name="bsver" access="#BSVER#" index="2" />
 
+    <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
+            NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
+
+        id = "VX_X_X_X": The unique identifier for this version. Can be used to generate C-style enums, etc.
+        num = "X.X.X.X": The numeric representation created by storing each part of the version in a byte.
+            Example:  4.0.0.2 == 0x04000002
+                     10.1.0.0 == 0x0A010000.
+        supported = "<boolean>": False if the XML does not fully support reading of this version.
+        user = "<List[integer]>": The custom User Version(s) for a specific Version from a game/developer.
+            Note: Grouping multiple user in a list means that these user produce identical NIF layout.
+            Example: user="12"
+                     user="0x20000 0x30000"
+        bsver = "<List[integer]>": The custom Bethesda Version(s) for a specific Version and User Version.
+            Note: Grouping multiple bsver in a list means that these bsver produce identical NIF layout.
+            Example: bsver="34"
+                     bsver="30 31 32 33"
+        custom = "<boolean>": True when version contains extensions to the format not originating from Gamebryo.
+            Note: A user or bsver of non-zero implies custom="true" and is not necessary.
+        ext = "<List[string]>": Any custom NIF extensions associated with this version.
+            Example: ext="bto btr"
+
+        Content: A comma-separated list of games which use this version.
+            `{{}}` around a game name denotes that this version is the primary version for that game.
+            A version without any `{{}}` names implies that this version is "secondary".
+            Note: A unique game name should only have `{{}}` around it once.
+    -->
+
     <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
     <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
     <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
@@ -212,7 +213,7 @@
     <version id ="V20_3_1_1" num="20.3.1.1">Fantasy Frontier, Aura Kingdom</version>
     <version id ="V20_3_1_2" num="20.3.1.2">{{Fantasy Frontier}}, {{Aura Kingdom}}</version>
     <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
-    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
+    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101, Archlord 2</version>
     <version id="V20_6_0_2" num="20.6.0.2">{{MXM}}</version>
     <version id="V20_6_5_0" num="20.6.5.0" user="0" supported="false">Epic Mickey</version>
     <version id="V20_6_5_0_DEM" num="20.6.5.0" user="14 15" ext="nif_wii" >Epic Mickey</version>
@@ -7160,7 +7161,7 @@
     </bitflags>
 
     <struct name="DataStreamData" args="2" module="NiMesh" since="V20_5_0_0">
-        <field name="Data" type="byte" binary="true" length="#ARG1#">The data stream as binary (fallback if interpretation with template is not implemented).</field>
+        <field name="Data" type="byte" binary="true" length="#ARG1#">The data stream as binary (fallback if interpretation with arg2 is not implemented).</field>
     </struct>
 
     <niobject name="NiDataStream" inherit="NiObject" module="NiMesh" since="V20_5_0_0">
