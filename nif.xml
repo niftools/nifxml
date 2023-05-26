@@ -2107,7 +2107,7 @@
 
 		<field name="UV" type="HalfTexCoord" cond="(#ARG# #BITAND# 0x2) != 0" />
 		<field name="Normal" type="ByteVector3" cond="(#ARG# #BITAND# 0x8) != 0" />
-		<field name="Bitangent Y" type="normbyte" cond="#ARG# #BITAND# 0x8) != 0" />
+		<field name="Bitangent Y" type="normbyte" cond="(#ARG# #BITAND# 0x8) != 0" />
 		<field name="Tangent" type="ByteVector3" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Bitangent Z" type="normbyte" cond="(#ARG# #BITAND# 0x18) == 0x18" />
 		<field name="Vertex Colors" type="ByteColor4" cond="(#ARG# #BITAND# 0x20) != 0" />
