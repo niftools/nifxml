@@ -3589,6 +3589,7 @@
         <field name="Radius Variation" type="float" since="10.4.0.1">Particle Radius randomness.</field>
         <field name="Life Span" type="float">Duration until a particle dies.</field>
         <field name="Life Span Variation" type="float">Adds randomness to Life Span.</field>
+        <field name="Unknown QQSpeed Floats" type="float" length="2">Both 1.0 in example nif.</field>
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="true" inherit="NiPSysEmitter" module="NiParticle">
@@ -4028,10 +4029,12 @@
         Particle system data.
         <field name="Particle Info" type="NiParticleInfo" length="Num Vertices" vercond="!#BS202#" />
         <field name="Unknown Vector" type="Vector3" vercond="#BS_F76#" />
+        <field name="Unknown QQSpeed Byte 1" type="byte" since="20.2.4.7" until="20.2.4.7" />
         <field name="Has Rotation Speeds" type="bool" since="20.0.0.2" />
         <field name="Rotation Speeds" type="float" length="Num Vertices" cond="Has Rotation Speeds" since="20.0.0.2" vercond="!#BS202#" />
         <field name="Num Added Particles" type="ushort" vercond="!#BS202#" />
         <field name="Added Particles Base" type="ushort" vercond="!#BS202#" />
+        <field name="Unknown QQSpeed Byte 2" type="byte" since="20.2.4.7" until="20.2.4.7">Exact position unknown, could be before Num Added Particles instead.</field>
     </niobject>
     
     <niobject name="NiMeshPSysData" inherit="NiPSysData" module="NiParticle">
@@ -8505,6 +8508,11 @@
         <field name="Unknown Bytes 1" type="byte" length="14" />
         <field name="Unknown Float" type="float" />
         <field name="Unknown Bytes 2" type="byte" length="13" />
+    </niobject>
+
+    <niobject name="NiRimLightProperty" inherit="NiProperty" module="NiMain" versions="V20_2_4_7">
+        <field name="Unknown Byte" type="byte">01 in the example nifs</field>
+        <field name="Unknown Floats" type="float" length="6"></field>
     </niobject>
 
     <struct name="QQSpeedLODEntry">
