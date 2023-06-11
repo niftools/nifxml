@@ -215,8 +215,8 @@
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
     <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
     <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
-    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item">{{Bully SE}}, {{LEGO Universe}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000), Digimon Masters Online</version>
-    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item">{{Divinity 2}}</version>
+    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item cat">{{Bully SE}}, {{LEGO Universe}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000), Digimon Masters Online</version>
+    <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item cat">{{Divinity 2}}</version>
     <version id ="V20_3_1_1" num="20.3.1.1">Fantasy Frontier, Aura Kingdom</version>
     <version id ="V20_3_1_2" num="20.3.1.2">{{Fantasy Frontier}}, {{Aura Kingdom}}</version>
     <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
@@ -8481,4 +8481,35 @@
 
     <niobject name="CsNiNode" inherit="NiNode" />
 
+    <!-- Divinity 2 character template files -->
+
+	<niobject name="MdlMan::CDataEntry" abstract="1" inherit="NiObject">
+		<field name="Unknown 18" type="uint" />
+		<field name="Unknown 2C" type="byte" />
+        <field name="Name" type="string">Object name.</field>
+	</niobject>
+	
+	<niobject name="MdlMan::CModelTemplateDataEntry" abstract="0" inherit="MdlMan::CDataEntry">
+		<field name="Max Bound Extra Data" type="Ref" template="NiFloatsExtraData" />
+		<field name="Num SubEntry List" type="uint" />
+        <field name="SubEntry List" type="Ref" template="MdlMan::CDataEntry" length="Num SubEntry List" />
+	</niobject>
+	
+	<niobject name="MdlMan::CAMDataEntry" abstract="0" inherit="MdlMan::CDataEntry">
+		<field name="Binary Data" type="ByteArray">A KFM without header</field>
+	</niobject>
+	
+	<niobject name="MdlMan::CMeshDataEntry" abstract="0" inherit="MdlMan::CDataEntry">
+		<field name="Unknown 38" type="bool" />
+		<field name="Mesh Data Reference" type="Ref" template="NiAVObject" />
+	</niobject>
+	
+	<niobject name="MdlMan::CSkeletonDataEntry" abstract="0" inherit="MdlMan::CDataEntry">
+		<field name="Skeleton Data Reference" type="Ref" template="NiAVObject" />
+	</niobject>
+	
+	<niobject name="MdlMan::CAnimationDataEntry" abstract="0" inherit="MdlMan::CDataEntry">
+		<field name="Num Controller Seq List" type="uint" />
+		<field name="Controller Seq List" type="Ref" template="NiControllerSequence" length="Num Controller Seq List" />
+	</niobject>
 </niftoolsxml>
