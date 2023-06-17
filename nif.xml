@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.9.3.0">
+<niftoolsxml version="0.10.0.0">
 
     <token name="verexpr" attrs="vercond">
         Commonly used version expressions.
