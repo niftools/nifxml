@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE niftoolsxml>
-<niftoolsxml version="0.9.3.0">
-    <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
-            NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
-
-        id = "VX_X_X_X": The unique identifier for this version. Can be used to generate C-style enums, etc.
-        num = "X.X.X.X": The numeric representation created by storing each part of the version in a byte.
-            Example:  4.0.0.2 == 0x04000002
-                     10.1.0.0 == 0x0A010000.
-        supported = "<boolean>": False if the XML does not fully support reading of this version.
-        user = "<List[integer]>": The custom User Version(s) for a specific Version from a game/developer.
-            Note: Grouping multiple user in a list means that these user produce identical NIF layout.
-            Example: user="12"
-                     user="0x20000 0x30000"
-        bsver = "<List[integer]>": The custom Bethesda Version(s) for a specific Version and User Version.
-            Note: Grouping multiple bsver in a list means that these bsver produce identical NIF layout.
-            Example: bsver="34"
-                     bsver="30 31 32 33"
-        custom = "<boolean>": True when version contains extensions to the format not originating from Gamebryo.
-            Note: A user or bsver of non-zero implies custom="true" and is not necessary.
-        ext = "<List[string]>": Any custom NIF extensions associated with this version.
-            Example: ext="bto btr"
-
-        Content: A comma-separated list of games which use this version.
-            `{{}}` around a game name denotes that this version is the primary version for that game.
-            A version without any `{{}}` names implies that this version is "secondary".
-            Note: A unique game name should only have `{{}}` around it once.
-    -->
+<niftoolsxml version="0.10.0.0">
 
     <token name="verexpr" attrs="vercond">
         Commonly used version expressions.
@@ -168,6 +142,33 @@
     <verattr name="user" access="#USER#" index="1" />
     <verattr name="bsver" access="#BSVER#" index="2" />
 
+    <!-- The versions found in use by the engine which have any amount of decoding or support from nif.xml
+            NOTE: Hypothetical versions such as those used in version conditions must NOT receive version tags.
+
+        id = "VX_X_X_X": The unique identifier for this version. Can be used to generate C-style enums, etc.
+        num = "X.X.X.X": The numeric representation created by storing each part of the version in a byte.
+            Example:  4.0.0.2 == 0x04000002
+                     10.1.0.0 == 0x0A010000.
+        supported = "<boolean>": False if the XML does not fully support reading of this version.
+        user = "<List[integer]>": The custom User Version(s) for a specific Version from a game/developer.
+            Note: Grouping multiple user in a list means that these user produce identical NIF layout.
+            Example: user="12"
+                     user="0x20000 0x30000"
+        bsver = "<List[integer]>": The custom Bethesda Version(s) for a specific Version and User Version.
+            Note: Grouping multiple bsver in a list means that these bsver produce identical NIF layout.
+            Example: bsver="34"
+                     bsver="30 31 32 33"
+        custom = "<boolean>": True when version contains extensions to the format not originating from Gamebryo.
+            Note: A user or bsver of non-zero implies custom="true" and is not necessary.
+        ext = "<List[string]>": Any custom NIF extensions associated with this version.
+            Example: ext="bto btr"
+
+        Content: A comma-separated list of games which use this version.
+            `{{}}` around a game name denotes that this version is the primary version for that game.
+            A version without any `{{}}` names implies that this version is "secondary".
+            Note: A unique game name should only have `{{}}` around it once.
+    -->
+
     <version id="V2_3" num="2.3" supported="false">Dark Age of Camelot</version>
     <version id="V3_0" num="3.0" supported="false">Star Trek: Bridge Commander</version>
     <version id="V3_03" num="3.03" supported="false">Dark Age of Camelot</version>
@@ -191,9 +192,9 @@
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
     <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
     <version id="V20_0_0_4" num="20.0.0.4" user="0">{{Civilization IV}}, {{Sid Meier's Railroads}}, Florensia, Ragnarok Online 2, IRIS Online</version>
-    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}</version>
-    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Fallout 3</version>
-    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10" bsver="11">{{Oblivion}}</version>
+    <version id="V20_0_0_4__10" num="20.0.0.4" user="10" bsver="11">{{Oblivion KF}}, Oblivion</version>
+    <version id="V20_0_0_4__11" num="20.0.0.4" user="11" bsver="11">Oblivion, Fallout 3</version>
+    <version id="V20_0_0_5_OBL" num="20.0.0.5" user="10 11" bsver="11">{{Oblivion}}</version>
     <version id="V20_1_0_3" num="20.1.0.3">{{Shin Megami Tensei: Imagine}}</version>
     <version id="V20_2_0_7" num="20.2.0.7" user="0">{{Florensia}}, Empire Earth III, Atlantica Online, IRIS Online, Wizard101</version>
     <version id="V20_2_0_7__11_1" num="20.2.0.7" user="11" bsver="14">Fallout 3, Fallout NV</version>
@@ -211,6 +212,7 @@
     <version id="V20_2_0_7_FO4_2" num="20.2.0.7" user="12" bsver="132 139" ext="bto btr" supported="false">Fallout 4 (LS_Mirelurk.nif, Screen.nif)</version>
     <version id="V20_2_0_7_F76" num="20.2.0.7" user="12" bsver="155" ext="bto">{{Fallout 76}}</version>
     <version id="V20_2_0_8" num="20.2.0.8" ext="nifcache">{{Empire Earth III}}, {{FFT Online}}, Atlantica Online, IRIS Online, Wizard101</version>
+    <version id="V20_2_4_7" num="20.2.4.7">QQSpeed</version>
     <version id="V20_3_0_1" num="20.3.0.1">Emerge</version>
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
     <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
@@ -220,10 +222,11 @@
     <version id ="V20_3_1_1" num="20.3.1.1">Fantasy Frontier, Aura Kingdom</version>
     <version id ="V20_3_1_2" num="20.3.1.2">{{Fantasy Frontier}}, {{Aura Kingdom}}</version>
     <version id="V20_5_0_0" num="20.5.0.0">MicroVolts, KrazyRain</version>
-    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101</version>
-    <version id="V20_6_5_0" num="20.6.5.0" supported="false">Epic Mickey</version>
-    <version id="V20_6_5_0_DEM" num="20.6.5.0" user="15" supported="false">Epic Mickey</version>
-    <version id="V20_6_5_0_DEM2" num="20.6.5.0" user="17" supported="false">Epic Mickey 2</version>
+    <version id="V20_6_0_0" num="20.6.0.0">{{MicroVolts}}, {{IRIS Online}}, {{Ragnarok Online 2}}, KrazyRain, Atlantica Online, Wizard101, Archlord 2</version>
+    <version id="V20_6_0_2" num="20.6.0.2">{{MXM}}</version>
+    <version id="V20_6_5_0" num="20.6.5.0" user="0" supported="false">Epic Mickey</version>
+    <version id="V20_6_5_0_DEM" num="20.6.5.0" user="14 15" ext="nif_wii" >Epic Mickey</version>
+    <version id="V20_6_5_0_DEM2" num="20.6.5.0" user="17">Epic Mickey 2</version>
     <version id="V30_0_0_2" num="30.0.0.2">Emerge</version>
     <version id="V30_1_0_1" num="30.1.0.1">Emerge</version>
     <version id="V30_1_0_3" num="30.1.0.3">Rocksmith, Rocksmith 2014</version>
@@ -278,6 +281,10 @@
         An 8-bit character.
     </basic>
 
+    <basic name="sbyte" integral="true" countable="false" size="1" convertible="short int int64">
+        A signed 8-bit integer.
+    </basic>
+
     <basic name="byte" boolean="true" integral="true" countable="true" size="1" convertible="ushort uint uint64">
         An unsigned 8-bit integer.
     </basic>
@@ -287,7 +294,7 @@
     </basic>
 
     <basic name="bool" boolean="true" integral="true" countable="false">
-        A boolean; 32-bit from 4.0.0.2, and 8-bit from 4.1.0.1 on.
+        A boolean; 32-bit up to and including 4.0.0.2, 8-bit from 4.1.0.1 on.
     </basic>
 
     <basic name="BlockTypeIndex" integral="true" countable="false" size="2">
@@ -567,7 +574,7 @@
     </enum>
 
     <enum name="SkyrimHavokMaterial" storage="uint" versions="#SKY_AND_LATER#">
-        Bethesda Havok. Material descriptor for a Havok shape in Skyrim.
+        Bethesda Havok. Material descriptor for a Havok shape in Skyrim. CRC32 of the lowercase of the Creation Kit Material Name.
         <option value="0" name="SKY_HAV_MAT_NONE">Invalid Material</option>
         <option value="131151687" name="SKY_HAV_MAT_BROKEN_STONE">Broken Stone</option>
         <option value="322207473" name="SKY_HAV_MAT_MATERIAL_CARRIAGE_WHEEL">Material Carriage Wheel</option>
@@ -1422,6 +1429,8 @@
         <option value="3" name="Face Tint" />
         <option value="4" name="Skin Tint" />
         <option value="5" name="Hair Tint" />
+        <option value="12" name="Eye Envmap">Enables EnvMap Mask, Eye EnvMap Scale</option>
+        <option value="17" name="Terrain" />
     </enum>
 
     <enum name="EffectShaderControlledVariable" storage="uint" prefix="ESCV" versions="#SKY_AND_LATER#">
@@ -1945,9 +1954,9 @@
         <field name="BS Version" type="ulittle32" />
         <field name="Author" type="ExportString" />
         <field name="Unknown Int" type="uint" cond="BS Version #GT# 130" />
-        <field name="Process Script" type="ExportString" />
+        <field name="Process Script" type="ExportString"  cond="BS Version #LT# 131" />
         <field name="Export Script" type="ExportString" />
-        <field name="Max Filepath" type="ExportString" cond="BS Version == 130" />
+        <field name="Max Filepath" type="ExportString" cond="BS Version >= 103" />
     </struct>
 
     <!-- Don't use vercond in Header, it breaks niflib -->
@@ -2222,7 +2231,7 @@
         <field name="Orientation" type="ushort" vercond="#NI_BS_LTE_FO3#">Furniture marker orientation.</field>
         <field name="Position Ref 1" type="byte" vercond="#NI_BS_LTE_FO3#">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 2.</field>
         <field name="Position Ref 2" type="byte" vercond="#NI_BS_LTE_FO3#">Refers to a furnituremarkerxx.nif file. Always seems to be the same as Position Ref 1.</field>
-        <field name="Heading" type="float" vercond="#BS_GT_FO3#">Similar to Orientation, in float form.</field>
+        <field name="Heading" type="float" vercond="#BS_GT_FO3#">Rotation around z-axis in radians.</field>
         <field name="Animation Type" type="AnimationType" vercond="#BS_GT_FO3#" />
         <field name="Entry Properties" type="FurnitureEntryPoints" vercond="#BS_GT_FO3#" />
     </struct>
@@ -2539,7 +2548,7 @@
         <field name="Sphere" type="NiBound" cond="Collision Type == 0" />
         <field name="Box" type="BoxBV" cond="Collision Type == 1" />
         <field name="Capsule" type="CapsuleBV" cond="Collision Type == 2" />
-        <!--<field name="Union BV" type="UnionBV" cond="Collision Type == 4" />-->
+        <field name="Union BV" type="UnionBV" cond="Collision Type == 4" recursive="True" />
         <field name="Half Space" type="HalfSpaceBV" cond="Collision Type == 5" />
     </struct>
 
@@ -3306,8 +3315,8 @@
         <!-- Flags conds -->
         <field name="Interp Count" type="byte" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
         <field name="Single Index" type="byte" default="#BYTE_MAX#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
-        <field name="High Priority" type="char" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
-        <field name="Next High Priority" type="char" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="High Priority" type="sbyte" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
+        <field name="Next High Priority" type="sbyte" default="#CHAR_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
         <field name="Single Time" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
         <field name="High Weights Sum" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
         <field name="Next High Weights Sum" type="float" default="#FLT_MIN#" cond="!((Flags #BITAND# 1) != 0)" since="10.1.0.112" />
@@ -3326,8 +3335,8 @@
         <field name="Single Time" type="float" default="#FLT_MIN#" since="10.1.0.108" until="10.1.0.111" />
         <field name="High Priority" type="int" default="#INT_MIN#" until="10.1.0.109" />
         <field name="Next High Priority" type="int" default="#INT_MIN#" until="10.1.0.109" />
-        <field name="High Priority" type="char" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
-        <field name="Next High Priority" type="char" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
+        <field name="High Priority" type="sbyte" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
+        <field name="Next High Priority" type="sbyte" default="#CHAR_MIN#" since="10.1.0.110" until="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="true" inherit="NiInterpolator" module="NiAnimation">
@@ -3580,6 +3589,7 @@
         <field name="Radius Variation" type="float" since="10.4.0.1">Particle Radius randomness.</field>
         <field name="Life Span" type="float">Duration until a particle dies.</field>
         <field name="Life Span Variation" type="float">Adds randomness to Life Span.</field>
+        <field name="Unknown QQSpeed Floats" type="float" length="2">Both 1.0 in example nif.</field>
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="true" inherit="NiPSysEmitter" module="NiParticle">
@@ -4019,10 +4029,12 @@
         Particle system data.
         <field name="Particle Info" type="NiParticleInfo" length="Num Vertices" vercond="!#BS202#" />
         <field name="Unknown Vector" type="Vector3" vercond="#BS_F76#" />
+        <field name="Unknown QQSpeed Byte 1" type="byte" since="20.2.4.7" until="20.2.4.7" />
         <field name="Has Rotation Speeds" type="bool" since="20.0.0.2" />
         <field name="Rotation Speeds" type="float" length="Num Vertices" cond="Has Rotation Speeds" since="20.0.0.2" vercond="!#BS202#" />
         <field name="Num Added Particles" type="ushort" vercond="!#BS202#" />
         <field name="Added Particles Base" type="ushort" vercond="!#BS202#" />
+        <field name="Unknown QQSpeed Byte 2" type="byte" since="20.2.4.7" until="20.2.4.7">Exact position unknown, could be before Num Added Particles instead.</field>
     </niobject>
     
     <niobject name="NiMeshPSysData" inherit="NiPSysData" module="NiParticle">
@@ -7072,7 +7084,8 @@
     </enum>
 
     <enum name="ComponentFormat" storage="uint" since="V20_5_0_0">
-        The data format of components.
+        The data format of components. Mask 0x00FF0000 to get the number of subfields. Mask 0x0000FF00 to get the size of each subfield.
+        It's not a bitfield, because the values are not independent.
         <option value="0x00000000" name="F_UNKNOWN">Unknown, or don't care, format.</option>
         <option value="0x00010101" name="F_INT8_1"></option>
         <option value="0x00020102" name="F_INT8_2"></option>
@@ -7145,6 +7158,7 @@
         <option value="1" name="USAGE_VERTEX"></option>
         <option value="2" name="USAGE_SHADER_CONSTANT"></option>
         <option value="3" name="USAGE_USER"></option>
+        <option value="4" name="USAGE_UNKNOWN">Seems to be associated with DISPLAYLIST component semantics.</option>
     </enum>
     
     <bitflags name="DataStreamAccess" storage="uint" since="V20_5_0_0">
@@ -7158,6 +7172,9 @@
         <option bit="6" name="CPU Write Static Inititialized"></option>
     </bitflags>
 
+    <struct name="DataStreamData" args="2" module="NiMesh" since="V20_5_0_0">
+        <field name="Data" type="byte" binary="true" length="#ARG1#">The data stream as binary (fallback if interpretation with arg2 is not implemented).</field>
+    </struct>
 
     <niobject name="NiDataStream" inherit="NiObject" module="NiMesh" since="V20_5_0_0">
         <field name="Usage" type="DataStreamUsage" abstract="true"></field>
@@ -7168,7 +7185,7 @@
         <field name="Regions" type="Region" length="Num Regions">The regions in the mesh. Regions can be used to mark off submeshes which are independent draw calls.</field>
         <field name="Num Components" type="uint">Number of components of the data (matches corresponding field in MeshData).</field>
         <field name="Component Formats" type="ComponentFormat" length="Num Components">The format of each component in this data stream.</field>
-        <field name="Data" type="byte" binary="true" length="Num Bytes" />
+        <field name="Data" type="DataStreamData" arg1="Num Bytes" arg2="Component Formats" />
         <field name="Streamable" type="bool" default="true" />
     </niobject>
 
@@ -7176,7 +7193,7 @@
         <field name="Name" type="NiFixedString">
             Type of data (POSITION, POSITION_BP, INDEX, NORMAL, NORMAL_BP,
             TEXCOORD, BLENDINDICES, BLENDWEIGHT, BONE_PALETTE, COLOR, DISPLAYLIST,
-            MORPH_POSITION, BINORMAL_BP, TANGENT_BP).
+            MORPH_POSITION, BINORMAL_BP, TANGENT, TANGENT_BP).
         </field>
         <field name="Index" type="uint" default="0">
             An extra index of the data. For example, if there are 3 uv maps,
@@ -7250,9 +7267,9 @@
     </struct>
 
     <struct name="ExtraMeshDataEpicMickey" module="NiMesh" versions="V20_6_5_0_DEM">
-        <field name="Unknown 1" type="uint" />
-        <field name="Num Unknown Floats" type="uint" />
-        <field name="Unknown Floats 1" type="float" length="Num Unknown Floats" />
+        <field name="Has Weights" type="uint" >1 if it has weights, 0 otherwise.</field>
+        <field name="Num Transform Floats" type="uint" >Total number of floats in the bone transform matrices - divide by 16 to get the number of matrices.</field>
+        <field name="Bone Transforms" type="Matrix44" length="Num Transform Floats #DIV# 16" >Transform matrices corresponding to the bones. Note: Stored transposed to normally.</field>
         <field name="Num Weights" type="uint" />
         <field name="Weights" type="WeightDataEpicMickey" length="Num Weights" />
         <field name="Vertex to Weight Map Size" type="uint" />
@@ -8087,6 +8104,10 @@
         <field name="Refs" type="Ref" template="NiObject" length="Num Refs" />
     </niobject>
 
+    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" >
+        Epic Mickey specific block.
+    </niobject>
+
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape" module="BSHavok" versions="#SKY_AND_LATER#">
         Compressed collision mesh.
         <field name="Target" type="Ptr" template="NiAVObject">Points to root node?</field>
@@ -8243,7 +8264,7 @@
         <field name="Num Segments" type="uint" />
         <field name="Total Segments" type="uint" />
         <field name="Segment Starts" type="uint" length="Num Segments" />
-        <field name="Per Segment Data" type="BSGeometryPerSegmentSharedData" length="Total Segments" />>
+        <field name="Per Segment Data" type="BSGeometryPerSegmentSharedData" length="Total Segments" />
         <field name="SSF File" type="SizedString16" />
     </struct>
 
@@ -8481,6 +8502,32 @@
 
     <niobject name="CsNiNode" inherit="NiNode" />
 
+    <!-- QQSpeed -->
+
+    <niobject name="NiYAMaterialProperty" inherit="NiProperty" module="NiMain" versions="V20_2_4_7">
+        <field name="Unknown Bytes 1" type="byte" length="14" />
+        <field name="Unknown Float" type="float" />
+        <field name="Unknown Bytes 2" type="byte" length="13" />
+    </niobject>
+
+    <niobject name="NiRimLightProperty" inherit="NiProperty" module="NiMain" versions="V20_2_4_7">
+        <field name="Unknown Byte" type="byte">01 in the example nifs</field>
+        <field name="Unknown Floats" type="float" length="6"></field>
+    </niobject>
+
+    <struct name="QQSpeedLODEntry">
+        <field name="Unknown Bytes" type="byte" length="12" >Seemingly always zeros.</field>
+        <field name="Num Levels" type="uint">Always 3 in tested mesh.</field>
+        <field name="Unknown Values" type="float" length="Num Levels">Middle entry seemingly always 10^8, other two the same as LOD Distances</field>
+        <field name="LOD Distances" type="float" length="Num Levels">Entries corresponding to LODDistance specification in the block's NiStringExtraData, in the order of 1, 3, 2</field>
+    </struct>
+
+    <niobject name="NiProgramLODData" inherit="NiLODData" module="NiMain" versions="V20_2_4_7">
+        <field name="Unknown Uint" type="uint" />
+        <field name="Num LOD Entries" type="uint">Guess is that this is the number of LOD entries, but unsure given that there was only one example.</field>
+        <field name="LOD Entries" type="QQSpeedLODEntry" length="Num LOD Entries" />
+    </niobject>
+
     <!-- Divinity 2 character template files -->
 
 	<niobject name="MdlMan::CDataEntry" abstract="1" inherit="NiObject">
@@ -8512,4 +8559,5 @@
 		<field name="Num Controller Seq List" type="uint" />
 		<field name="Controller Seq List" type="Ref" template="NiControllerSequence" length="Num Controller Seq List" />
 	</niobject>
+
 </niftoolsxml>
