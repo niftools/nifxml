@@ -32,9 +32,9 @@ import logging
 import argparse
 from shutil import copy2
 
-from tools.nifxml import Compound, Block, Enum, parse_xml, version2number
-from tools.nifxml import TYPES_BLOCK, TYPES_BASIC, TYPES_COMPOUND, TYPES_ENUM, TYPES_FLAG, TYPES_VERSION
-from tools.nifxml import NAMES_BLOCK, NAMES_BASIC, NAMES_COMPOUND, NAMES_ENUM, NAMES_FLAG, NAMES_VERSION
+from tools.nifxml import Struct, Block, Enum, parse_xml, version2number
+from tools.nifxml import TYPES_BLOCK, TYPES_BASIC, TYPES_STRUCT, TYPES_ENUM, TYPES_FLAG, TYPES_VERSION
+from tools.nifxml import NAMES_BLOCK, NAMES_BASIC, NAMES_STRUCT, NAMES_ENUM, NAMES_FLAG, NAMES_VERSION
 
 from tools.nifdoc import nifdoc_tmpl as tmpl
 
@@ -62,7 +62,7 @@ def main():
         return
 
     NAMES_BASIC.sort()
-    NAMES_COMPOUND.sort()
+    NAMES_STRUCT.sort()
     NAMES_BLOCK.sort()
     NAMES_ENUM.sort()
     NAMES_FLAG.sort()
@@ -79,7 +79,7 @@ def main():
     parser.add_argument('-no-h1', '--no-heading', action='store_true',
                         help="Whether to not generate the main <h1> heading. Used by NifSkope for built-in help.")
     parser.add_argument('-no-meta', '--no-metadata-columns', action='store_true',
-                        help="Whether to not generate the metadata attribute columns (arg, arr1, arr2, etc.)")
+                        help="Whether to not generate the metadata attribute columns (arg, length, width, etc.)")
     parser.add_argument('-min-ver', '--minimum-version',
                         help="Hides attributes below this version. Format 'XX.X.X.XX'")
     args = parser.parse_args()
@@ -100,8 +100,8 @@ def main():
     doc = DocGenerator(root_dir + DOC_PATH, heading, metadata, version2number(minver))
     logger.info("Generating NiObject Pages...")
     doc.gen_pages(NAMES_BLOCK, TYPES_BLOCK, tmpl.NIOBJECT if metadata else tmpl.NIOBJECT_NO_META)
-    logger.info("Generating Compound Pages...")
-    doc.gen_pages(NAMES_COMPOUND, TYPES_COMPOUND, tmpl.COMPOUND if metadata else tmpl.COMPOUND_NO_META)
+    logger.info("Generating Struct Pages...")
+    doc.gen_pages(NAMES_STRUCT, TYPES_STRUCT, tmpl.STRUCT if metadata else tmpl.STRUCT_NO_META)
     logger.info("Generating Basic Pages...")
     doc.gen_pages(NAMES_BASIC, TYPES_BASIC, tmpl.BASIC)
     logger.info("Generating Enum Pages...")
@@ -111,7 +111,7 @@ def main():
     logger.info("Generating Index Pages...")
     doc.gen_list_page('Basic Data Types', NAMES_BASIC, TYPES_BASIC, 'basic_list')
     doc.gen_list_page('NIF Object List', NAMES_BLOCK, TYPES_BLOCK, 'niobject_list')
-    doc.gen_list_page('Compound Data Types', NAMES_COMPOUND, TYPES_COMPOUND, 'compound_list')
+    doc.gen_list_page('Struct Data Types', NAMES_STRUCT, TYPES_STRUCT, 'struct_list')
     doc.gen_list_page('Enum Data Types', sorted(enums), enums, 'enum_list')
     doc.gen_list_page('NIF File Format Versions', NAMES_VERSION, TYPES_VERSION, 'version_list', tmpl.VERSION_ROW, 'Versions')
     doc.gen_index()
@@ -128,7 +128,7 @@ class DocGenerator:
         self.attr_row = tmpl.ATTR if metadata else tmpl.ATTR_NO_META
         self.inherit = tmpl.INHERIT_ROW if metadata else tmpl.INHERIT_NO_META
         self.min_ver = min_ver
-        self.blocks = dict(TYPES_BLOCK, **TYPES_COMPOUND)
+        self.blocks = dict(TYPES_BLOCK, **TYPES_STRUCT)
         install_dir = os.path.abspath(path)
         if not os.path.exists(install_dir):
             os.makedirs(install_dir)
@@ -140,12 +140,12 @@ class DocGenerator:
     #
     # Template Helper functions
     #
-    def list_attributes(self, compound):
+    def list_attributes(self, struct):
         """Create Attribute List"""
         attrs = ''
         count = 0
-        for mem in compound.members:
-            if self.min_ver and mem.ver2 and mem.ver2 < self.min_ver:
+        for mem in struct.members:
+            if self.min_ver and mem.until and mem.until < self.min_ver:
                 continue
             attr_type = tmpl.TYPE_LINK.format(clean(mem.type), mem.type)
             if mem.template:
@@ -154,12 +154,12 @@ class DocGenerator:
                 'attr_name': mem.name,
                 'attr_type': attr_type,
                 'attr_arg': mem.arg,
-                'attr_arr1': mem.arr1.lhs,
-                'attr_arr2': mem.arr2.lhs,
+                'attr_length': mem.length.lhs,
+                'attr_width': mem.width.lhs,
                 'attr_cond': mem.cond,
                 'attr_desc': mem.description.replace('\n', '<br/>'),
-                'attr_from': mem.orig_ver1,
-                'attr_to': mem.orig_ver2,
+                'attr_from': mem.orig_since,
+                'attr_to': mem.orig_until,
                 'row': 'even' if count % 2 == 0 else 'odd'
             }
             count += 1  # Manually increment because of 'continue' on skipped versioned rows
@@ -204,7 +204,7 @@ class DocGenerator:
     def member_of(self, name):
         """Create Member Of list"""
         found = ''
-        for b_name in NAMES_BLOCK + NAMES_COMPOUND:
+        for b_name in NAMES_BLOCK + NAMES_STRUCT:
             for bmem in self.blocks[b_name].members:
                 if bmem.type == name:
                     found += tmpl.LI_LINK.format(clean(b_name), b_name)
@@ -250,7 +250,7 @@ class DocGenerator:
             if isinstance(tag, Block):
                 contents['attributes'] = self.list_ancestor_attributes(tag)
                 contents['parent_of'] = self.list_child_blocks(tag)
-            elif isinstance(tag, Compound):
+            elif isinstance(tag, Struct):
                 contents['attributes'] = self.list_attributes(tag)
             elif isinstance(tag, Enum):
                 contents['choices'] = self.list_choices(tag)

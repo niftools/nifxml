@@ -32,7 +32,7 @@ MAIN_BEG = """<!doctype html>
 </head>
 <body>"""
 MAIN_END = """
-\t<p align="center"><a href="index.html">NIF Objects</a> | <a href="compound_list.html">Compound Types</a> 
+\t<p align="center"><a href="index.html">NIF Objects</a> | <a href="struct_list.html">Struct Types</a> 
 \t| <a href="enum_list.html">Enum Types</a> | <a href="basic_list.html">Basic Types</a> | <a href="version_list.html">File Versions</a></p>
 \t{contents}
 </body>
@@ -48,8 +48,8 @@ ATTR = """
 \t<td class="aname">{attr_name}</td>
 \t<td class="atype">{attr_type}</td>
 \t<td class="aarg">{attr_arg}</td>
-\t<td class="aarr1">{attr_arr1}</td>
-\t<td class="aarr2">{attr_arr2}</td>
+\t<td class="alength">{attr_length}</td>
+\t<td class="awidth">{attr_width}</td>
 \t<td class="acond">{attr_cond}</td>
 \t<td class="adesc">{attr_desc}</td>
 \t<td class="afrom">{attr_from}</td>
@@ -100,8 +100,8 @@ BLOCK = """
 \t\t<th>Name</th>
 \t\t<th>Type</th>
 \t\t<th>Arg</th>
-\t\t<th>Arr1</th>
-\t\t<th>Arr2</th>
+\t\t<th>Length</th>
+\t\t<th>Width</th>
 \t\t<th>Cond</th>
 \t\t<th>Description</th>
 \t\t<th>From</th><th>To</th>
@@ -125,10 +125,10 @@ BLOCK_NM = """
 </table>
 """
 
-# Compound and NiObject with and without metadata columns
-COMPOUND = BLOCK + FOUND_IN
+# Struct and NiObject with and without metadata columns
+STRUCT = BLOCK + FOUND_IN
 NIOBJECT = BLOCK + PARENT_OF
-COMPOUND_NO_META = BLOCK_NM + FOUND_IN
+STRUCT_NO_META = BLOCK_NM + FOUND_IN
 NIOBJECT_NO_META = BLOCK_NM + PARENT_OF
 
 # Object tree for index.html
