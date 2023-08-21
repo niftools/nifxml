@@ -3589,7 +3589,7 @@
         <field name="Radius Variation" type="float" since="10.4.0.1">Particle Radius randomness.</field>
         <field name="Life Span" type="float">Duration until a particle dies.</field>
         <field name="Life Span Variation" type="float">Adds randomness to Life Span.</field>
-        <field name="Unknown QQSpeed Floats" type="float" length="2">Both 1.0 in example nif.</field>
+        <field name="Unknown QQSpeed Floats" type="float" length="2" since="20.2.4.7" until="20.2.4.7" >Both 1.0 in example nif.</field>
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="true" inherit="NiPSysEmitter" module="NiParticle">
