@@ -187,7 +187,7 @@
     <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
     <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
     <version id="V10_2_0_0__1" num="10.2.0.0" user="1">{{Blood Bowl}}</version>
-    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
+    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9 11">Oblivion</version>
     <version id="V10_2_0_1" num="10.2.0.1" custom="true">WorldShift</version>
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
     <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
