@@ -7417,7 +7417,7 @@
         <field name="Living Spawner" type="Ref" template="NiPSSpawner" since="20.6.1.0" />
         <field name="Num Spawn Rate Keys" type="byte" since="20.6.1.0" />
         <field name="Spawn Rate Keys" type="PSSpawnRateKey" length="Num Spawn Rate Keys" since="20.6.1.0" />
-        <field name="Pre RPI" type="bool" since="20.6.1.0" vercond="#USER# #EQ# 0 #OR# (#VER# #EQ# 20.6.5.0 #AND# #USER# #GTE# 11)" />
+        <field name="Pre RPI" type="bool" since="20.6.1.0" vercond="(#USER# #EQ# 0) #OR# ((#VER# #EQ# 20.6.5.0) #AND# (#USER# #GTE# 11))" />
         <field name="DEM Unknown Int" type="uint" since="20.6.5.0" until="20.6.5.0" vercond="#USER# #GTE# 11" />
         <field name="DEM Unknown Byte" type="byte" since="20.6.5.0" until="20.6.5.0" vercond="#USER# #GTE# 11" />
     </niobject>
@@ -8104,10 +8104,6 @@
         <field name="Refs" type="Ref" template="NiObject" length="Num Refs" />
     </niobject>
 
-    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" >
-        Epic Mickey specific block.
-    </niobject>
-
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape" module="BSHavok" versions="#SKY_AND_LATER#">
         Compressed collision mesh.
         <field name="Target" type="Ptr" template="NiAVObject">Points to root node?</field>
@@ -8501,6 +8497,27 @@
     </niobject>
 
     <niobject name="CsNiNode" inherit="NiNode" />
+
+    <!-- Epic Mickey -->
+
+    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" >
+        Epic Mickey specific block.
+    </niobject>
+
+    <niobject name="RibbonParticleSystem" inherit="NiPSParticleSystem" module="NiMesh" versions="V20_6_5_0_DEM">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes" type="byte" length="14">Based on MK_Paladin_Spin_01.nif_wii</field>
+    </niobject>
+
+    <niobject name="RibbonQuadGenerator" inherit="NiPSFacingQuadGenerator" module="NiMesh" versions="V20_6_5_0_DEM">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes" type="byte" length="12">Based on MK_Paladin_Spin_01.nif_wii</field>
+    </niobject>
+
+    <niobject name="RibbonEmitter" inherit="NiPSEmitter" module="NiMesh" versions="V20_6_5_0_DEM">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes" type="byte" length="7">Based on MK_Paladin_Spin_01.nif_wii</field>
+    </niobject>
 
     <!-- QQSpeed -->
 
