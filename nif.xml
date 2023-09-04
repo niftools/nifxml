@@ -8500,24 +8500,24 @@
 
     <!-- Epic Mickey -->
 
-    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" >
+    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
         Epic Mickey specific block.
     </niobject>
 
-    <niobject name="RibbonParticleSystem" inherit="NiPSParticleSystem" module="NiMesh" versions="V20_6_5_0_DEM">
+    <niobject name="RibbonParticleSystem" inherit="NiPSParticleSystem" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
         Epic Mickey specific block.
         <field name="EM Unknown Bytes 1" type="byte" length="6"></field>
         <field name="EM Unknown Float 1" type="float"></field>
         <field name="EM Unknown Bytes 2" type="byte" length="4"></field>
     </niobject>
 
-    <niobject name="RibbonQuadGenerator" inherit="NiPSFacingQuadGenerator" module="NiMesh" versions="V20_6_5_0_DEM">
+    <niobject name="RibbonQuadGenerator" inherit="NiPSFacingQuadGenerator" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
         Epic Mickey specific block.
         <field name="EM Unknown Bytes" type="byte" length="8"></field>
         <field name="EM Unknown Float 1" type="float"></field>
     </niobject>
 
-    <niobject name="RibbonEmitter" inherit="NiPSEmitter" module="NiMesh" versions="V20_6_5_0_DEM">
+    <niobject name="RibbonEmitter" inherit="NiPSEmitter" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
         Epic Mickey specific block.
         <field name="EM Unknown Bytes" type="byte" length="7"></field>
     </niobject>
