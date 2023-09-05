@@ -5223,7 +5223,7 @@
         <field name="Unknown Ints 1" type="uint" length="2" until="2.3" />
         <field name="Flags" type="ushort" since="3.0">Property flags.</field>
         <field name="Image" type="Ref" template="NiImage">Link to the texture image.</field>
-        <field name="Unknown Ints 2" type="uint" length="2" since="3.0" until="3.0.3" />
+        <field name="Unknown Ints 2" type="uint" length="2" since="3.0" until="3.0.3.0" />
     </niobject>
 
     <niobject name="NiTexturingProperty" inherit="NiProperty" module="NiMain">
