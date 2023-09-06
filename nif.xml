@@ -29,7 +29,6 @@
         <verexpr token="#BS_GTE_132#" string="(#BSVER# #GTE# 132)">Bethesda 132 and later.</verexpr>
         <verexpr token="#BS_GTE_152#" string="(#BSVER# #GTE# 152)">Bethesda 152 and later.</verexpr>
         <verexpr token="#BS_F76#" string="(#BSVER# #EQ# 155)">Fallout 76 stream 155 only.</verexpr>
-        <verexpr token="#BS_GTE_172#" string="(#BSVER# #GTE# 172)">Bethesda stream 172 and higher</verexpr>
         <verexpr token="#BS_SSE_FO4_FO76#" string="((#BSVER# #GTE# 100) #AND# (#BSVER# #LT# 172))">SSE, FO4, FO76</verexpr>
         <verexpr token="#BS202#" string="((#VER# #EQ# 20.2.0.7) #AND# (#BSVER# #GT# 0))">Bethesda 20.2 only.</verexpr>
         <verexpr token="#DIVINITY2#" string="((#USER# #EQ# 0x20000) #OR# (#USER# #EQ# 0x30000))">Divinity 2</verexpr>
