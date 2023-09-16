@@ -190,7 +190,7 @@
     <version id="V10_1_0_106" num="10.1.0.106" user="10" bsver="5">Oblivion</version>
     <version id="V10_2_0_0" num="10.2.0.0" user="0">{{Pro Cycling Manager}}, {{Prison Tycoon}}, {{Red Ocean}}, {{Wildlife Park 2}}, Civilization IV, Loki</version>
     <version id="V10_2_0_0__1" num="10.2.0.0" user="1">{{Blood Bowl}}</version>
-    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9">Oblivion</version>
+    <version id="V10_2_0_0__10" num="10.2.0.0" user="10" bsver="6 7 8 9 11">Oblivion</version>
     <version id="V10_2_0_1" num="10.2.0.1" custom="true">WorldShift</version>
     <version id="V10_3_0_1" num="10.3.0.1" custom="true">WorldShift</version>
     <version id="V10_4_0_1" num="10.4.0.1" custom="true">{{WorldShift}}</version>
@@ -3593,7 +3593,7 @@
         <field name="Radius Variation" type="float" since="10.4.0.1">Particle Radius randomness.</field>
         <field name="Life Span" type="float">Duration until a particle dies.</field>
         <field name="Life Span Variation" type="float">Adds randomness to Life Span.</field>
-        <field name="Unknown QQSpeed Floats" type="float" length="2">Both 1.0 in example nif.</field>
+        <field name="Unknown QQSpeed Floats" type="float" length="2" since="20.2.4.7" until="20.2.4.7" >Both 1.0 in example nif.</field>
     </niobject>
 
     <niobject name="NiPSysVolumeEmitter" abstract="true" inherit="NiPSysEmitter" module="NiParticle">
@@ -5227,7 +5227,7 @@
         <field name="Unknown Ints 1" type="uint" length="2" until="2.3" />
         <field name="Flags" type="ushort" since="3.0">Property flags.</field>
         <field name="Image" type="Ref" template="NiImage">Link to the texture image.</field>
-        <field name="Unknown Ints 2" type="uint" length="2" since="3.0" until="3.03" />
+        <field name="Unknown Ints 2" type="uint" length="2" since="3.0" until="3.0.3.0" />
     </niobject>
 
     <niobject name="NiTexturingProperty" inherit="NiProperty" module="NiMain">
@@ -7429,7 +7429,7 @@
         <field name="Living Spawner" type="Ref" template="NiPSSpawner" since="20.6.1.0" />
         <field name="Num Spawn Rate Keys" type="byte" since="20.6.1.0" />
         <field name="Spawn Rate Keys" type="PSSpawnRateKey" length="Num Spawn Rate Keys" since="20.6.1.0" />
-        <field name="Pre RPI" type="bool" since="20.6.1.0" vercond="#USER# #EQ# 0 #OR# (#VER# #EQ# 20.6.5.0 #AND# #USER# #GTE# 11)" />
+        <field name="Pre RPI" type="bool" since="20.6.1.0" vercond="(#USER# #EQ# 0) #OR# ((#VER# #EQ# 20.6.5.0) #AND# (#USER# #GTE# 11))" />
         <field name="DEM Unknown Int" type="uint" since="20.6.5.0" until="20.6.5.0" vercond="#USER# #GTE# 11" />
         <field name="DEM Unknown Byte" type="byte" since="20.6.5.0" until="20.6.5.0" vercond="#USER# #GTE# 11" />
     </niobject>
@@ -8116,10 +8116,6 @@
         <field name="Refs" type="Ref" template="NiObject" length="Num Refs" />
     </niobject>
 
-    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" >
-        Epic Mickey specific block.
-    </niobject>
-
     <niobject name="bhkCompressedMeshShape" inherit="bhkShape" module="BSHavok" versions="#SKY_AND_LATER#">
         Compressed collision mesh.
         <field name="Target" type="Ptr" template="NiAVObject">Points to root node?</field>
@@ -8581,6 +8577,30 @@
     </niobject>
 
     <niobject name="CsNiNode" inherit="NiNode" />
+
+    <!-- Epic Mickey -->
+
+    <niobject name="JPSJigsawNode" inherit="NiNode" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
+        Epic Mickey specific block.
+    </niobject>
+
+    <niobject name="RibbonParticleSystem" inherit="NiPSParticleSystem" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes 1" type="byte" length="6"></field>
+        <field name="EM Unknown Float 1" type="float"></field>
+        <field name="EM Unknown Bytes 2" type="byte" length="4"></field>
+    </niobject>
+
+    <niobject name="RibbonQuadGenerator" inherit="NiPSFacingQuadGenerator" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes" type="byte" length="8"></field>
+        <field name="EM Unknown Float 1" type="float"></field>
+    </niobject>
+
+    <niobject name="RibbonEmitter" inherit="NiPSEmitter" module="NiMesh" versions="V20_6_5_0_DEM V20_6_5_0_DEM2">
+        Epic Mickey specific block.
+        <field name="EM Unknown Bytes" type="byte" length="7"></field>
+    </niobject>
 
     <!-- QQSpeed -->
 
