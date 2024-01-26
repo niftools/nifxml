@@ -5182,6 +5182,7 @@
         <field name="Num Text Keys" type="uint">The number of text keys that follow.</field>
         <field name="Text Keys" type="Key" arg="1" template="string" length="Num Text Keys">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</field>
     </niobject>
+
     <niobject name="NiExtraTextKeyExtraData" inherit="NiTextKeyExtraData"></niobject>
 
     <niobject name="NiTextureEffect" inherit="NiDynamicEffect" module="NiMain">
