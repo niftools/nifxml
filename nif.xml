@@ -221,7 +221,7 @@
     <version id="V20_3_0_2" num="20.3.0.2">Emerge</version>
     <version id="V20_3_0_3" num="20.3.0.3">Emerge</version>
     <version id="V20_3_0_6" num="20.3.0.6">Emerge</version>
-    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item cat">{{Bully SE}}, {{LEGO Universe}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000), Digimon Masters Online</version>
+    <version id="V20_3_0_9" num="20.3.0.9" user="0 0x10000" ext="nft item cat etk">{{Bully SE}}, {{LEGO Universe}}, Warhammer, Lazeska, Howling Sword, Ragnarok Online 2, Divinity 2 (0x10000), Digimon Masters Online</version>
     <version id="V20_3_0_9_DIV2" num="20.3.0.9" user="0x20000 0x30000" ext="item cat">{{Divinity 2}}</version>
     <version id ="V20_3_1_1" num="20.3.1.1">Fantasy Frontier, Aura Kingdom</version>
     <version id ="V20_3_1_2" num="20.3.1.2">{{Fantasy Frontier}}, {{Aura Kingdom}}</version>
@@ -5186,6 +5186,8 @@
         <field name="Num Text Keys" type="uint">The number of text keys that follow.</field>
         <field name="Text Keys" type="Key" arg="1" template="string" length="Num Text Keys">List of textual notes and at which time they take effect. Used for designating the start and stop of animations and the triggering of sounds.</field>
     </niobject>
+
+    <niobject name="NiExtraTextKeyExtraData" inherit="NiTextKeyExtraData"></niobject>
 
     <niobject name="NiTextureEffect" inherit="NiDynamicEffect" module="NiMain">
         Represents an effect that uses projected textures such as projected lights (gobos), environment maps, and fog maps.
